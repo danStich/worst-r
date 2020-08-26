@@ -21,6 +21,10 @@ Let's start by reading in a data file - this time we use real data.
 
 The data are stored in a "comma separated values" file (`.csv` extension). This is a fairly universal format, so we read it in using the fairly universal `read.csv()` function. This would change depending on how the data were stored, or how big the data files were, but that is a topic further investigation for a later date. I probably do 95% of my data reads using `.csv` files.
 
+**Important** Remember that I am assuming your scripts are in the same directory (folder) on your computer as where you downloaded and unzipped the class data (see [here](https://danstich.github.io/stich/classes/BIOL217/software.html) for reminder).
+
+**Before you can read this file** you will need to set your working directory. For class, I will ask that you click `Session > Set Working Directory > To Source File Location`. This will set the working directory to wherever you have saved your code so that R can find the folder `data` and the files inside of it.
+
 ```{r}
 # Start by reading in the data
 am_shad <- read.csv("data/ctr_fish.csv")
