@@ -56,7 +56,7 @@ Regardless of how you end up styling your code, here are a few helpful hints tha
 
 <br>
 
-**File management is wicked important.** {#file-management} This is probably one of the primary struggles folks have with starting to learn R and other languages. At the same time, it is a big part of the secret sauce behind good programming. **For this class, I will assume that you are working out of a single working directory (call it something like "quant_bio" or "biol217". That means I will assume your scripts (`.R` files) for each chapter are in the same folder on your computer as your the folder that contains your data.** 
+**File management is wicked important.** This is probably one of the primary struggles folks have with starting to learn R and other languages. At the same time, it is a big part of the secret sauce behind good programming. **For this class, I will assume that you are working out of a single working directory (call it something like "quant_bio" or "biol217". That means I will assume your scripts (`.R` files) for each chapter are in the same folder on your computer as your the folder that contains your data.** 
 
 An example of your class folder might look like this:
 
