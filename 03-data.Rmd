@@ -1,0 +1,347 @@
+# Working with data {#Chapter3}
+
+<img src="images/roboshad.png" alt="">
+
+<p style="font-family: times, serif; font-size:.9em; font-style:italic">
+American shad, the best fish, lost in the data deluge. Let's figure out how to make some sense of it.</p>
+
+<br>
+
+The purpose of this chapter is to get you comfortable working with data in R and give you some tools for summarizing those data in a meaningful way. This is not meant to be a comprehensive treatment of these subjects but rather an introduction to the tools that are available to you (say it with me: "Worst Stats Text eveR"). There are a lot of tools out there and you may come up with something that works better for you once you have some basics under your belt. 
+
+Now that you have a handle on the types of data you can expect to run into in R, let's have a look at how we read and work with data that we get from the real world.
+
+We will work with the `ctr_fish.csv` file for Chapter 3, so you will need to download the class data sets that go with this book to play along.
+
+## Data read    
+
+There are few things that will turn someone away from a statistical software program faster than if they can't even figure out how to get the program to read in their data. So, we are going to get it out of the way right up front!
+
+Let's start by reading in a data file - this time we use real data. 
+
+The data are stored in a "comma separated values" file (`.csv` extension). This is a fairly universal format, so we read it in using the fairly universal `read.csv()` function. This would change depending on how the data were stored, or how big the data files were, but that is a topic further investigation for a later date. I probably do 95% of my data reads using `.csv` files.
+
+```{r}
+# Start by reading in the data
+am_shad <- read.csv("data/ctr_fish.csv")
+```
+
+Once you've read your data in, it's always a good idea to look at the first few lines of data to make sure nothing looks 'fishy'. Haha, I couldn't help myself.
+
+These are sex-specific length and age data for American shad (*Alosa sapidissima*) from the Connecticut River, USA. The data are used in some models that I maintain with collaborators from NOAA Fisheries, the US Geological Survey, the US Fish and Wildlife Service, and others. The data were provided by CT Department of Energy and Environmental Protection (CTDEEP) and come from adult fish that return to the river from the ocean each year to spawn in fresh water.
+
+You can look at the first few rows of data with the `head()` function:
+
+```{r}
+# Look at the first 10 rows
+head(am_shad, 10)
+```
+
+The `NA` values are supposed to be there. They are missing data.
+
+And, don't forget about your old friend `str()` for a peek at how R sees your data. This can take care of a lot of potential problems later on.
+
+```{r}
+# Look at the structure of the data
+str(am_shad)
+```
+ 
+There are about 17,000 observations (rows) of 6 variables (columns) in this data set. Here is a quick breakdown:
+
+`Sex`: fish gender. `B` stands for 'buck' (males), `R` stands for 'roe' (females).\
+
+`Age`: an integer describing fish age.\
+
+`Length`: fish length at age (cm).\
+
+`yearCollected`: the year in which the fish was caught.\
+
+`backCalculated`: a logical indicating whether or not the length
+      of the fish was back-calculated from aging.\
+      
+`Mass`: the mass of indnividual fish (in grams). Note that this is NA
+      for all ages that were estimated from hard structures (so all
+      cases for which `backCalculated == TRUE`). 
+        
+
+## Quick data summaries
+There are a number of simple ways to summarize data quickly in base R. We already looked at a few of these in previous chapters. But what about something a little more in-depth?
+
+One quick way to look at your data is using the `summary()` function
+```{r}
+summary(am_shad)
+```
+
+This is useful for getting the big-picture. For continuous variables (e.g., `Age` and `Length`) R will report some descriptive statistics like the `mean`, `median`, and quantiles. For discrete variables (e.g. `Sex` and `backCalculated`) we get the mode (if not `factor` or `chr`) and counts of observations within each discrete level (e.g. number of observations of `B` and `R` in the variable `Sex`).
+
+But, this approach doesn't really give us much info.
+
+We can create more meaningful summaries pretty easily if we install and load some packages like we talked about in [Chapter 1](#Chapter1), and then look at different ways of sub-setting the data with base R and some methods that might be a little more intuitive for you.
+
+## Subsetting and selecting data
+Before we can make meaningful data summaries, we will probably need to re-organize our data in a logical way (through sub-setting or selected specific chunks of data). A lot of times, we do this along the way without really thinking about it.
+
+### Manual subsets and selections
+
+We talked a little about sub-setting data with logical queries in [Chapter 2](#Chapter2). Now, let's refresh and take that a little further to see why we might want to do that.
+
+First, we'll select just the data from `am_shad` where `backCalculated` was `FALSE`. This will give us only the measured `Length` and `Mass` for each of the fish, along with their `Sex` and `yearCollected`. I'll call this new object `measured`. Remember, `am_shad` is a data frame, so it has two dimensions when we use `[ ]` for sub-setting and these are separated by a comma, like this: `object[rows, columns]`. When we leave the columns blank, R knows that it should keep all of the columns.
+
+```{r}
+measured <- am_shad[am_shad$backCalculated == FALSE, ]
+```
+
+We could do this for as many conceivable conditions in our data on which we may wish to subset data, but the code can get clunky and hard to manage. For example can you imagine re-writing this if you just want to select age six roes without back-calculated lengths?
+```{r}
+# Notice how we string together multiple 
+# conditions with "&". If these were 'or'
+# we would use the vertical pipe "|"
+age_6_rows_measured <- am_shad[am_shad$backCalculated == FALSE & 
+                                 am_shad$Sex == "R" &
+                                 am_shad$Age == 6, ]
+```
+
+### Subsetting and summaries in base R
+
+This notation can be really confusing to folks who are just trying to learn a new programming language. Because of that, there are great functions like `subset()` available that are more intuitive. You could also subset the data using the following code:
+```{r}
+measured <- subset(am_shad, backCalculated == FALSE)
+```
+
+We could also get our age-six females from the previous example using this approach, and at least the code is a little cleaner:
+```{r}
+age_6_roes_measured <- subset(am_shad,
+                              backCalculated == FALSE &
+                                Sex == "R" &
+                                Age == 6
+                              )
+```
+
+Both do the same thing, but we'll see below that using `subset` is preferable if we plan on chaining together a bunch of data manipulation commands using pipes (`%>%`).
+
+Next, we might be interested to know how many fish we have represented in each `Sex`. We can find this out using the `table` function in base R:
+```{r}
+# Here, I use the column name because
+# we just want all observations of a single
+# variable. Be careful switching between names,
+# numbers, and $names!
+table(measured['Sex'])
+```
+We see that we have ```r table(measured['Sex'])[1]``` females and ```r table(measured['Sex'])[2]``` males.
+
+We can also get tallies of the number of fish in each `Age` for each `Sex` if we would like to see that:
+```{r}
+table(measured$Sex, measured$Age)
+```
+
+But, what if we wanted to actually calculate some kind of summary statistic, like a `mean` and report that by group?
+
+For our age-6 females example, it would look like this:
+```{r}
+age_6_roes_measured <- subset(am_shad,
+                              backCalculated == FALSE &
+                                Sex == "R" &
+                                Age == 6
+                              )
+
+age_6_female_mean <- mean(age_6_roes_measured$Length)
+```
+
+Again, we could do this manually, but would require a lot of code for a simple calculation if we use the methods above all by themselves to get these for each age group of roes.
+
+We would basically just copy-and-paste the code over and over to force R into making the data summaries we need. Nothing wrong with this approach, and it certainly has its uses for simple summaries, but it can be cumbersome and redundant. It also fills your workspace up with tons of objects that are hard to keep track of and that will cause your code-completion suggestions to be wicked annoying in RStudio. 
+
+That usually means there is a better way to write the code...
+
+
+### Subsetting and summaries in the tidyverse {#tidyverse}
+
+Long ago, when I was still a noOb writing R code with a stand-alone text editor and a console there were not a ton of packages available for the express purpose of cleaning up data manipulation in R. The one I relied on most heavily was the `plyr` package. Since then, R has grown and a lot of these functions have been gathered under the umbrella of the [tidyverse](https://www.tidyverse.org/packages/), which is a collection of specific R packages designed to make the whole process less painful. These include packages like `dplyr` (which replaced `plyr`) and others that are designed to work together with similar syntax to make data science (for us data manipulation and presentation) a lot cleaner and better standardized. We will rely heavily on packages in the tidyverse throughout this book.
+
+Before we can work with these packages, however, we need to install them - something we haven't talked about yet! Most of the critical R packages are hosted through the Comprehensive R Archive Network, or [CRAN](https://cran.r-project.org/). Still, tons of others are available for installation from hosting services like GitHub and GitLab.
+
+If you haven't seen it yet, [here](https://www.youtube.com/watch?v=u1r5XTqrCTQ) is a three-minute video explaining how to install packages using RStudio.
+
+It is also easy to do this by running a line of code in the console. We could install each of the packages in the tidyverse separately, but because the packages are so closely related, we can also get all of them at once. Follow the instructions in the link above, or install the package from the command line:
+
+```{r eval=FALSE, echo=TRUE}
+install.packages('tidyverse')
+```
+
+Once we have installed these packages, we can use the functions in them to clean up our data manipulation pipeline and get some really useful information.
+
+## Better data summaries
+Now, we'll look at some slightly more advanced summaries. Start by loading the `dplyr` package into your R session with
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+```
+
+We can use functions from the `dplyr` package to calculate mean `Length` of fish for each combindation of `Sex` and `Age` group much more easily than we did for a single group above.
+
+First, we group the data in `measured` data frame that we created previously using the `group_by` function. For this, we just need to give R the data frame and the variables by which we would like to group:
+```{r}
+g_lengths <- group_by(measured, Sex, Age)
+```
+
+This doesn't change how we see the data much (it gets converted to a [`tibble`](https://tibble.tidyverse.org/#:~:text=A%20tibble%2C%20or%20tbl_df%20%2C%20is,modern%20reimagining%20of%20the%20data.&text=Tibbles%20are%20data.,a%20variable%20does%20not%20exist)), just how R sees it.
+
+Next, we summarize the variable `Length` by `Sex` and `Age` using the `summarize` function:
+```{r, message=FALSE}
+sum_out <- summarize(g_lengths, avg = mean(Length))
+
+head(sum_out)
+```
+
+Wow! That was super-easy! 
+
+Finally, to make things even more streamlined, we can chain all of these operations together using the `%>%` function from `magrittr`. This really cleans up the code and gives us small chunks of code that are easier to read than the dozens of lines of code it would take to do this manually.
+
+```{r, message = FALSE}
+# This will do it all at once!
+sum_out <- # Front-end object assignment
+  measured %>% # Pass measured to the group_by function
+  group_by(Sex, Age) %>% # Group by Sex and age and pass to summarize
+  summarize(avg = mean(Length))
+
+```
+
+We could also assign the output to a variable at the end, whichever is easier for you to read:
+```{r, message = FALSE}
+  measured %>% # Pass measured to the group_by function
+  group_by(Sex, Age) %>% # Group by Sex and age and pass to summarize
+  summarize(avg = mean(Length)) -> sim_out # Back-end object assignment
+```
+
+And, it is really easy to get multiple summaries out like this at once:
+```{r, message = FALSE}
+sum_out <-
+  measured %>% 
+  group_by(Sex, Age) %>% 
+  summarize(avg = mean(Length), s.d. = sd(Length))
+
+head(sum_out)
+
+```
+Isn't that slick? Just think how long that would have taken most of us in Excel!
+
+This is just one example of how functions in packages can make your life easier and your code more efficient. Now that we have the basics under our belts, lets move on to how we create new variables.
+
+## Creating new variables
+There are basically two ways to create new variables: we can modify an existing variable (groups or formulas), or we can simulate new values for that variable (random sampling.)
+
+If we have a formula that relates two variables, we could predict one based on the other deterministically. 
+
+For example, I have fit a length-weight regression to explain the relationship between `Length` and `Mass` using the `am_shad` data we've worked with in previous sections. 
+
+This relationship looks like your old friend $y = mx + b$, the equation for a line, but we log10-transform both of the variables before fitting the line (more to come later in the class). Using this relationship, we can predict our **independent variable** (`Mass`) from our **dependent variable** (`Length`) if we plug in new values for `Length` and the **parameters** of the line.
+
+```{r, echo=FALSE}
+mod <- lm(log10(Mass) ~ log10(Length), data = am_shad[am_shad$Mass != 0, ])
+```
+
+In this case, I know that `m` = `r mod$coefficients[2]`, and `b` = `r mod$coefficients[1]`.
+
+If I plug these numbers in to the equation above, I can predict `log10(Mass)` for new lengths `log10(Length)`:
+
+$log_{10}Mass = 3.0703621 \cdot log_{10}Length - 1.9535405$
+
+In R, this looks like:
+
+```{r}             
+# Parameters from length-weight regression
+m <- 3.0703621
+b <- 1.9535405
+
+# Make a sequence of new lengths based on range in data,
+# then take the log of the whole thing all at once.
+log_length <- log10( seq(min(am_shad$Length), max(am_shad$Length), 1) )
+
+# Calculate a new thing (log10_mass) using parameters for line
+# and sequence of new log10_length.
+log_mass <- m * log_length + b
+
+# Plot the prediction
+plot(x = log_length, y = log_mass, type = "l")
+```     
+
+
+## Data simulation
+
+The point of simulation is usually to account for uncertainty in some process (i.e. we could just pick a single value if we knew it). This is almost always done based on probability. There are a number of ways we could do this. One is by drawing from some probability distribution that we have described, and the other is by randomly sampling data that we already have.
+
+### Random sub-samples from a dataset
+
+Let's say we want to take random samples from our huge data set so we can fit models to a subset of data and then use the rest of our data for model validation in weeks to come.
+
+We have around 17,000 observations in the `am_shad` data set. But, what if we wanted to know what it would look like if we only had 100 samples from the same population?
+
+First, tell R how many samples you want. 
+
+```{r}
+n_samples <- 100
+```
+
+Now let's take two samples of 100 fish from our dataframe to see how they compare:
+```{r}  
+# Randomly sample 100 rows of data from our data frame two different
+# times to see the differences
+samp1 <- am_shad[sample(nrow(am_shad), size = n_samples, replace = FALSE), ]
+samp2 <- am_shad[sample(nrow(am_shad), size = n_samples, replace = FALSE), ]
+
+# We can look at them with our histograms
+par(mfrow = c(1, 2))
+hist(samp1$Length, main = "", ylim = c(0, 30))
+hist(samp2$Length, main = "", ylim = c(0, 30))
+```
+*If you are struggling to get your plotting window back to "normal" after this, you can either click the broom button in your "Plots" window, or you can run the following code for now:
+
+```{r, echo = FALSE}
+par(mfrow = c(1, 1))
+```
+
+
+### Stochastic simulation {#stochastic}
+
+Now, instead of sampling our data let's say we have some distribution from which we would like sample. So, let's make a distribution. 
+
+We will start with the normal, and we can move into others when we talk about probability distributions and sample statistics in [Chapter 5](#Chapter5). For this, we will use the distribution of American shad lengths for age-6 females because it approximates a normal distribution. We will calculate the `mean` and `sd` because those are the parameters of the normal distribution.
+
+Start by looking at the size distribution for age 6 females. We use the tidy workflow here with really awful default graphics (more to come in [Chapter 4](#Chapter4)), but we add two arguments to our `subset` call. We want to select only the variable `Length` from `am_shad`, and we want to drop all other information so we can send the output straight to the `hist()` function as a vector.
+
+```{r}
+am_shad %>%
+  subset(Age == 6 & Sex == "R", select='Length', drop=TRUE) %>%
+   hist(main = "")
+```
+
+Now, let's calculate the `mean` and `sd` of `Length` for age 6 females. We use `na.rm = TRUE` to tell R that it needs to ignore the `NA` values.
+```{r}
+# Calculate the mean Length 
+x_bar <- am_shad %>%
+  subset(Age == 6 & Sex == "R", select='Length', drop=TRUE) %>%
+  mean
+
+# Calculate standard deviation of Length
+sigma <- am_shad %>%
+  subset(Age == 6 & Sex == "R", select='Length', drop=TRUE) %>%
+  sd
+
+```  
+
+Note that we could also use the `filter()` function from the `dplyr` package for this job, and for big data sets it would be a lot faster for un-grouped data.
+
+Now, we can use the mean and standard deviation to randomly sample our normal distribution of lengths. 
+```{r}
+length_sample <- rnorm(n = 10000, mean = x_bar, sd = sigma)
+
+# Plot the sample to see if it is a normal- YAY it is!
+hist(length_sample,
+  col = "gray",
+  main = "",
+  xlab = "Forklength (cm)"
+)
+```
+We've add a couple of new arguments to the histogram call to make it a little less ugly here. In [Chapter 4] we are going to ramp it up and play with some plots!
+
+## Next steps
+In this chapter, we provided a general overview of our work flow when it comes to reading in data and manipulating them to get useful summaries. In [Chapter 4](#Chapter4) we will use these processes to help us visualize important trends in these summaries before we begin working with descriptive statistics and sampling distributions in [Chapter 5](#Chapter5).
