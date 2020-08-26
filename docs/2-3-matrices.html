@@ -134,8 +134,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -215,8 +213,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="matrices" class="section level2">
 <h2><span class="header-section-number">2.3</span> Matrices</h2>
 <p>Matrices are rectangular objects that we can think of as being made up of vectors.</p>
-<p>We can make matrices by binding vectors that already exist</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="2-3-matrices.html#cb68-1"></a><span class="kw">cbind</span>(a, e)</span></code></pre></div>
+<p>We can make matrices by binding vectors that already exist.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="2-3-matrices.html#cb59-1"></a><span class="kw">cbind</span>(a, e)</span></code></pre></div>
 <pre><code>##      a   e      
 ## [1,] &quot;1&quot; &quot;AAAAa&quot;
 ## [2,] &quot;2&quot; &quot;AAAAb&quot;
@@ -224,36 +222,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [4,] &quot;4&quot; &quot;AAAAd&quot;
 ## [5,] &quot;5&quot; &quot;AAAAe&quot;</code></pre>
 <p>Or we can make an empty one to fill.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="2-3-matrices.html#cb70-1"></a><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="2-3-matrices.html#cb61-1"></a><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]    0    0    0    0
 ## [2,]    0    0    0    0
 ## [3,]    0    0    0    0</code></pre>
 <p>Or we can make one from scratch.</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="2-3-matrices.html#cb72-1"></a>mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">12</span>), <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">nrow =</span> <span class="dv">4</span>)</span></code></pre></div>
-<p>We can do all of the things we did with vectors to matrices, but now we have more than one column, and official ‘rows’ that we can also use to these ends:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="2-3-matrices.html#cb73-1"></a><span class="kw">ncol</span>(mat) <span class="co"># Number of columns</span></span>
-<span id="cb73-2"><a href="2-3-matrices.html#cb73-2"></a><span class="kw">nrow</span>(mat) <span class="co"># Number of rows</span></span>
-<span id="cb73-3"><a href="2-3-matrices.html#cb73-3"></a><span class="kw">length</span>(mat) <span class="co"># Total number of entries</span></span>
-<span id="cb73-4"><a href="2-3-matrices.html#cb73-4"></a>mat[<span class="dv">2</span>, <span class="dv">3</span>] <span class="co"># Value of row 2, column 3</span></span>
-<span id="cb73-5"><a href="2-3-matrices.html#cb73-5"></a><span class="kw">str</span>(mat)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="2-3-matrices.html#cb63-1"></a>mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">12</span>), <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">nrow =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p>We can do all of the things we did with vectors to matrices, but now we have more than one column, and official “rows” that we can also use to these ends:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="2-3-matrices.html#cb64-1"></a><span class="kw">ncol</span>(mat) <span class="co"># Number of columns</span></span>
+<span id="cb64-2"><a href="2-3-matrices.html#cb64-2"></a><span class="kw">nrow</span>(mat) <span class="co"># Number of rows</span></span>
+<span id="cb64-3"><a href="2-3-matrices.html#cb64-3"></a><span class="kw">length</span>(mat) <span class="co"># Total number of entries</span></span>
+<span id="cb64-4"><a href="2-3-matrices.html#cb64-4"></a>mat[<span class="dv">2</span>, <span class="dv">3</span>] <span class="co"># Value of row 2, column 3</span></span>
+<span id="cb64-5"><a href="2-3-matrices.html#cb64-5"></a><span class="kw">str</span>(mat)</span></code></pre></div>
 <p>See how number of rows and columns is defined in data structure? With rows and columns, we can assign column names and row names.</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="2-3-matrices.html#cb74-1"></a><span class="kw">colnames</span>(mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;first&quot;</span>, <span class="st">&quot;second&quot;</span>, <span class="st">&quot;third&quot;</span>)</span>
-<span id="cb74-2"><a href="2-3-matrices.html#cb74-2"></a><span class="kw">rownames</span>(mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;matrix&quot;</span>)</span>
-<span id="cb74-3"><a href="2-3-matrices.html#cb74-3"></a></span>
-<span id="cb74-4"><a href="2-3-matrices.html#cb74-4"></a><span class="co"># Take a look</span></span>
-<span id="cb74-5"><a href="2-3-matrices.html#cb74-5"></a>mat</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="2-3-matrices.html#cb65-1"></a><span class="kw">colnames</span>(mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;first&quot;</span>, <span class="st">&quot;second&quot;</span>, <span class="st">&quot;third&quot;</span>)</span>
+<span id="cb65-2"><a href="2-3-matrices.html#cb65-2"></a><span class="kw">rownames</span>(mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;matrix&quot;</span>)</span>
+<span id="cb65-3"><a href="2-3-matrices.html#cb65-3"></a></span>
+<span id="cb65-4"><a href="2-3-matrices.html#cb65-4"></a><span class="co"># Take a look</span></span>
+<span id="cb65-5"><a href="2-3-matrices.html#cb65-5"></a>mat</span></code></pre></div>
 <pre><code>##        first second third
 ## This       1      5     9
 ## is         2      6    10
 ## a          3      7    11
 ## matrix     4      8    12</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="2-3-matrices.html#cb76-1"></a><span class="co"># We can also do math</span></span>
-<span id="cb76-2"><a href="2-3-matrices.html#cb76-2"></a><span class="co"># on matrices just like</span></span>
-<span id="cb76-3"><a href="2-3-matrices.html#cb76-3"></a><span class="co"># vectors, because matrices</span></span>
-<span id="cb76-4"><a href="2-3-matrices.html#cb76-4"></a><span class="co"># are just vectors smooshed</span></span>
-<span id="cb76-5"><a href="2-3-matrices.html#cb76-5"></a><span class="co"># into two dimensions</span></span>
-<span id="cb76-6"><a href="2-3-matrices.html#cb76-6"></a>mat <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<p>We can also do math on matrices just like vectors, because matrices are just vectors smooshed into two dimensions (it’s totally a word).</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="2-3-matrices.html#cb67-1"></a>mat <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
 <pre><code>##        first second third
 ## This       2     10    18
 ## is         4     12    20
@@ -318,20 +312,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

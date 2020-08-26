@@ -23,16 +23,16 @@ The data are stored in a "comma separated values" file (`.csv` extension). This 
 
 **Important** Remember that I am assuming your scripts are in the same directory (folder) on your computer as where you downloaded and unzipped the class data (see [here](https://danstich.github.io/stich/classes/BIOL217/software.html) for reminder).
 
-**Before you can read this file** you will need to set your working directory. For class, I will ask that you click `Session > Set Working Directory > To Source File Location`. This will set the working directory to wherever you have saved your code so that R can find the folder `data` and the files inside of it.
+**Before you can read this file** you will need to set your working directory. For class, I will ask that you click `Session > Set Working Directory > To Source File Location`. This will set the working directory to wherever you have saved your code so that R can find the folder `data` and the files inside of it. You'll notice that R spits out some code in the console when you click this. You can also use that code to set a working directory in your script but that can cause [all kinds of problems](https://support.rstudio.com/hc/en-us/articles/200711843-Working-Directories-and-Workspaces), so don't do it.
 
 ```{r}
 # Start by reading in the data
 am_shad <- read.csv("data/ctr_fish.csv")
 ```
 
-Once you've read your data in, it's always a good idea to look at the first few lines of data to make sure nothing looks 'fishy'. Haha, I couldn't help myself.
+Once you've read your data in, it's always a good idea to look at the first few lines of data to make sure nothing looks 'fishy'. Ha-ha, I couldn't help myself!
 
-These are sex-specific length and age data for American shad (*Alosa sapidissima*) from the Connecticut River, USA. The data are used in some models that I maintain with collaborators from NOAA Fisheries, the US Geological Survey, the US Fish and Wildlife Service, and others. The data were provided by CT Department of Energy and Environmental Protection (CTDEEP) and come from adult fish that return to the river from the ocean each year to spawn in fresh water.
+These are sex-specific length and age data for American shad (*Alosa sapidissima*) from the Connecticut River, USA. The data are used in models that I maintain with collaborators from NOAA Fisheries, the US Geological Survey, the US Fish and Wildlife Service, and others. The data were provided by CT Department of Energy and Environmental Protection (CTDEEP) and come from adult fish that return to the river from the ocean each year to spawn in fresh water.
 
 You can look at the first few rows of data with the `head()` function:
 
@@ -95,7 +95,8 @@ First, we'll select just the data from `am_shad` where `backCalculated` was `FAL
 measured <- am_shad[am_shad$backCalculated == FALSE, ]
 ```
 
-We could do this for as many conceivable conditions in our data on which we may wish to subset data, but the code can get clunky and hard to manage. For example can you imagine re-writing this if you just want to select age six roes without back-calculated lengths?
+We could do this for as many conceivable conditions in our data on which we may wish to subset, but the code can get clunky and hard to manage. For example can you imagine re-writing this if you just want to select age six roes without back-calculated lengths?
+
 ```{r}
 # Notice how we string together multiple 
 # conditions with "&". If these were 'or'
@@ -107,7 +108,7 @@ age_6_rows_measured <- am_shad[am_shad$backCalculated == FALSE &
 
 ### Subsetting and summaries in base R
 
-This notation can be really confusing to folks who are just trying to learn a new programming language. Because of that, there are great functions like `subset()` available that are more intuitive. You could also subset the data using the following code:
+This notation can be really confusing to folks who are just trying to learn a new programming language. Because of that, there are great functions like `subset()` available that are more intuitive (but less clear to programmers). You could also subset the data using the following code:
 ```{r}
 measured <- subset(am_shad, backCalculated == FALSE)
 ```
@@ -121,7 +122,7 @@ age_6_roes_measured <- subset(am_shad,
                               )
 ```
 
-Both do the same thing, but we'll see below that using `subset` is preferable if we plan on chaining together a bunch of data manipulation commands using pipes (`%>%`).
+Both do the same thing, but we'll see later that using `subset` is preferable if we plan on chaining together a bunch of data manipulation commands using pipes (`%>%`).
 
 Next, we might be interested to know how many fish we have represented in each `Sex`. We can find this out using the `table` function in base R:
 ```{r}
@@ -138,7 +139,7 @@ We can also get tallies of the number of fish in each `Age` for each `Sex` if we
 table(measured$Sex, measured$Age)
 ```
 
-But, what if we wanted to actually calculate some kind of summary statistic, like a `mean` and report that by group?
+But, what if we wanted to calculate some kind of summary statistic, like a `mean` and report that by group?
 
 For our age-6 females example, it would look like this:
 ```{r}
@@ -153,20 +154,22 @@ age_6_female_mean <- mean(age_6_roes_measured$Length)
 
 Again, we could do this manually, but would require a lot of code for a simple calculation if we use the methods above all by themselves to get these for each age group of roes.
 
-We would basically just copy-and-paste the code over and over to force R into making the data summaries we need. Nothing wrong with this approach, and it certainly has its uses for simple summaries, but it can be cumbersome and redundant. It also fills your workspace up with tons of objects that are hard to keep track of and that will cause your code-completion suggestions to be wicked annoying in RStudio. 
+We would basically just copy-and-paste the code over and over to force R into making the data summaries we need. Nothing wrong with this approach, and it certainly has its uses for simple summaries, but it can be cumbersome and redundant. It also fills your workspace up with tons of objects that are hard to keep track of and that will cause your code-completion suggestions to be *wicked* annoying in RStudio. 
 
 That usually means there is a better way to write the code...
 
 
 ### Subsetting and summaries in the tidyverse {#tidyverse}
 
-Long ago, when I was still a noOb writing R code with a stand-alone text editor and a console there were not a ton of packages available for the express purpose of cleaning up data manipulation in R. The one I relied on most heavily was the `plyr` package. Since then, R has grown and a lot of these functions have been gathered under the umbrella of the [tidyverse](https://www.tidyverse.org/packages/), which is a collection of specific R packages designed to make the whole process less painful. These include packages like `dplyr` (which replaced `plyr`) and others that are designed to work together with similar syntax to make data science (for us data manipulation and presentation) a lot cleaner and better standardized. We will rely heavily on packages in the tidyverse throughout this book.
+Long ago, when I was still a noOb writing R code with a stand-alone text editor and a console there were not a ton of packages available for the express purpose of cleaning up data manipulation in R. The one I relied on most heavily was the `plyr` package. Since then, R has grown and a lot of these functions have been gathered under the umbrella of the [tidyverse](https://www.tidyverse.org/packages/), which is a collection of specific R packages designed to make the whole process less painful. These include packages like `dplyr` (which replaced `plyr`) and others that are designed to work together with similar syntax to make data science (for us, data manipulation and presentation) a lot cleaner and better standardized. We will rely heavily on packages in the tidyverse throughout this book.
 
 Before we can work with these packages, however, we need to install them - something we haven't talked about yet! Most of the critical R packages are hosted through the Comprehensive R Archive Network, or [CRAN](https://cran.r-project.org/). Still, tons of others are available for installation from hosting services like GitHub and GitLab.
 
-If you haven't seen it yet, [here](https://www.youtube.com/watch?v=u1r5XTqrCTQ) is a three-minute video explaining how to install packages using RStudio.
+If you haven't seen it yet, [here](https://www.youtube.com/watch?v=u1r5XTqrCTQ) is a three-minute video explaining how to install packages using RStudio. **Watch it. Please.**
 
-It is also easy to do this by running a line of code in the console. We could install each of the packages in the tidyverse separately, but because the packages are so closely related, we can also get all of them at once. Follow the instructions in the link above, or install the package from the command line:
+It is also easy to install packages by running a line of code in the console. We could install each of the packages in the tidyverse separately. But we can also get all of them at once because they are all packaged together, too. 
+
+Follow the instructions in the YouTube link above, or install the package from the command line:
 
 ```{r eval=FALSE, echo=TRUE}
 install.packages('tidyverse')
@@ -175,12 +178,13 @@ install.packages('tidyverse')
 Once we have installed these packages, we can use the functions in them to clean up our data manipulation pipeline and get some really useful information.
 
 ## Better data summaries
-Now, we'll look at some slightly more advanced summaries. Start by loading the `dplyr` package into your R session with
+Now, we'll look at some slightly more advanced summaries. Start by loading the `dplyr` package into your R session with:
+
 ```{r message=FALSE, warning=FALSE}
 library(dplyr)
 ```
 
-We can use functions from the `dplyr` package to calculate mean `Length` of fish for each combindation of `Sex` and `Age` group much more easily than we did for a single group above.
+We can use functions from the `dplyr` package to calculate mean `Length` of fish for each combination of `Sex` and `Age` group much more easily than we did for a single group above.
 
 First, we group the data in `measured` data frame that we created previously using the `group_by` function. For this, we just need to give R the data frame and the variables by which we would like to group:
 ```{r}

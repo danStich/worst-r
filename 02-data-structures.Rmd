@@ -8,7 +8,7 @@ Contrast how you see a fish and how computers see fish. Our job is to bridge the
 
 <br>
 
-In this chapter, we will introduce basic data structures and how to work with them in R. One of our challenges is to understand how sees data.
+In this chapter, we will introduce basic data structures and how to work with them in R. One of our challenges is to understand how R sees our data.
 
 R is what is known as a "high-level" or "interpreted" programming language, in addition to being "functional" and "object-oriented". This means the pieces that make it up are a little more intuitive to the average user than most low-level languages like C or C++. The back-end of R is, in fact, a collection of low-level code that builds up the functionality that we need. This means that R has a broad range of uses, from data management to math, and even GIS and data visualization tools, all of which are conveniently wrapped in an "intuitive", "user-friendly" language.
 
@@ -30,7 +30,7 @@ a <- 1
 print(a)
 ```
 
-What is the square bracket in the output here? It's an index. The index is telling us that the first element of `a` is `1`. This means that `a` is actually a "vector", not a "scalar" or singular value as you may have been thinking about it. You can think of a vector as a column in an excel spreadsheet or an analogous data table. By treating every object (loosely) as a vector, or an element thereof, the language becomes much more general.
+What is the square bracket in the output here? It's an index. The index is telling us that the first element of `a` is `1`. This means that `a` is actually a "vector", not a "scalar" or singular value as you may have been thinking about it. You can think of a vector as a column in an Excel spreadsheet or an analogous data table. By treating every object (loosely) as a vector, or an element thereof, the language becomes much more general.
 
 So, even if we define something with a single value, it is still just a vector with one element. For us, this is important because of the way that it lets us do math. It makes vector operations so easy that we don't even need to think about them when we start to make statistical models. It makes working through the math a zillion times easier than on paper! In terms of programming, it can make a lot of things easier, too.
 
@@ -112,7 +112,7 @@ as.numeric(b)
 > Aside: we can ask R what functions mean by adding a question mark as we do above. And not just functions: we can ask it about pretty much any built-in object. The help pages take a little getting used to, but once you get the hang of it... In the mean time, the internet is your friend and you will find a multitude of online groups and forums with a quick search.
 
 ### Logical vectors {-#logicals}
-Most of the `logical` vectors we deal with are yes/no or comparisons to determine whether a given piece of information matches a condition. Here, we use a logical check to see if the object `a` we created earlier is the same as object `b`. If we store the results of this logical check to a new vector `c`, we get a new logical vector filled with `TRUE` and `FALSE`, one for each element in `a` and `b`.
+Most of the `logical` vectors we deal with are yes/no or comparisons to determine whether a given piece of information matches a condition. Here, we use a logical check to see if the object `a` we created earlier is the same as object `b`. If we store the results of this check to a new object `c`, we get a new logical vector filled with `TRUE` and `FALSE`, one for each element in `a` and `b`.
 ```{r, message=FALSE, warning=FALSE}
 # The "==" compares the numeric vector to the factor one
 c <- a == b
@@ -122,12 +122,12 @@ str(c)
 
 We now have a logical vector. For the sake of demonstration, we could perform any number of logical checks on a vector using built-in R functions (it does not need to be a logical like `c` above).
 
-We can check for missing values
+We can check for missing values.
 ```{r}   
 is.na(a)
 ```
 
-We can make sure that all values are finite
+We can make sure that all values are finite.
 ```{r}
 is.finite(a)
 ```
@@ -142,12 +142,12 @@ We can see if specific elements meet a criterion.
 a == 3
 ```
 
-We can just look at unique values
+We can just look at unique values.
 ```{r}
 unique(b)
 ```
 
-The examples above are all fairly simple vector operations. These form the basis for data manipulation and analysis in R.
+The examples above are all simple vector operations. These form the basis for data manipulation and analysis in R.
 
 ## Vector operations {#operations}
 A lot of data manipulation in R is based on logical checks like the ones shown above. We can take these one step further to actually perform what one might think of as a query.
@@ -171,10 +171,11 @@ f <- a[3]
 
 If it is not yet obvious, we have to assign the output of functions to new objects for the values to be usable in the future. In the example above, `a` is never actually *changed*. This is a common source of confusion early on.
 
-Going further, we could select vector elements based on  some condition. On the first line of code, we tell R to show us the indices of the elements in vector `b` that match the character string `c`. Outloud, we would say, "`b` where the value of `b` is equal to `c`" in the first example. We can also use built-in R functions to just store the indices for all elements of `b` where `b` is equal to the character string "`c`".
+Going further, we could select vector elements based on  some condition. On the first line of code, we tell R to show us the indices of the elements in vector `b` that match the character string `c`. Out loud, we would say, "`b` where the value of `b` is equal to `c`" in the first example. We can also use built-in R functions to just store the indices for all elements of `b` where `b` is equal to the character string "`c`".
 
 ```{r}
 b[b == "c"]
+
 which(b == "c")
 ```
 
@@ -197,7 +198,7 @@ If we change b to `character`, we can do string manipulation, too!
 b <- as.character(b)
 ```
 
-We can append text. Remember, these ones are just printing the result. We would have to overwrite `b` or save it to a new object if we wanted to be able to use the result somewhere else later.
+We can append text. Remember, the examples below will just print the result. We would have to overwrite `b` or save it to a new object if we wanted to be able to use the result somewhere else later.
 ```{r}
 # Paste an arbitrary string on to b
 paste(b, "AAAA", sep = "")
@@ -232,12 +233,13 @@ length(a)
 a
 ```
 
-And we can do lots of other nifty things like this.
+And we can do lots of other nifty things like this. We can also bind multiple vectors together into a rectangular `matrix`. Say what?
+
 
 ## Matrices {#matrices}
 Matrices are rectangular objects that we can think of as being made up of vectors.
 
-We can make matrices by binding vectors that already exist
+We can make matrices by binding vectors that already exist.
 ```{r}
 cbind(a, e)
 ```
@@ -252,7 +254,7 @@ Or we can make one from scratch.
 mat <- matrix(seq(1, 12), ncol = 3, nrow = 4)
 ```
 
-We can do all of the things we did with vectors to matrices, but now we have more than one column, and official 'rows' that we can also use to these ends:
+We can do all of the things we did with vectors to matrices, but now we have more than one column, and official "rows" that we can also use to these ends:
 ```{r, eval=FALSE}
 ncol(mat) # Number of columns
 nrow(mat) # Number of rows
@@ -270,12 +272,9 @@ rownames(mat) <- c("This", "is", "a", "matrix")
 mat
 ```
 
+
+We can also do math on matrices just like vectors, because matrices are just vectors smooshed into two dimensions (it's totally a word).
 ```{r}
-# We can also do math
-# on matrices just like
-# vectors, because matrices
-# are just vectors smooshed
-# into two dimensions
 mat * 2
 ```  
 
@@ -286,9 +285,9 @@ More on matrices as we need them. We won't use these a lot in this module, but R
 ## Dataframes {#dataframes}
 Dataframes are like matrices, only not. They have a row/column structure like matrices and are also rectangular in nature. But, they can hold more than one data type!
 
-**Dataframes** are made up of [atomic vectors](#atomics).
+Dataframes are made up of [atomic vectors](#atomics).
 
-This is probably the data structure that we will use most here, along with atomic vectors.
+This is probably the data structure that we will use most in this book, along with atomic vectors.
 
 Let's make a dataframe to see how it works.
 ```{r}
@@ -317,7 +316,7 @@ Notice that R assigns names to dataframes on the fly based on object names that 
 d <- data.frame(a = a, b = b, c = c)
 ```
 
-We can look at these names.
+Now can look at the names.
 ```{r}
 # All of the names
 names(d)
@@ -351,7 +350,9 @@ Have a look:
 # Head shows first six
 # rows by default
 head(e)
+```
 
+```{r}
 # Or, we can look at any
 # other number that we want
 head(e, 10)
@@ -373,7 +374,7 @@ Looking at specific elements of a dataframe is similar to a matrix, with some ad
 data("iris")
 ```
 
-Play with the functions below to explore how this data set is stored in environment, and how R sees it. This is a good practice to get into in general.
+Play with the functions below to explore how this data set is stored in the environment, and how R sees it. This is a good practice to get into in general.
 ```{r, eval=FALSE}
 # We can use ls() to see
 # what is in our environment
@@ -401,7 +402,7 @@ str(iris)
 summary(iris)
 ```
 
-Now let's look at some specific things
+Now let's look at some specific things.
 
 ```{r}
 # What is the value in 12th row
@@ -414,6 +415,7 @@ mean(iris$Sepal.Length)
 ```
 
 What about the `mean` of `Sepal.Length` just for `setosa`?
+
 A couple of new things going on here:
 
 1. We can refer to the columns as atomic vectors within the dataframe if we want to. Some times we have to do this...
@@ -440,9 +442,11 @@ We can also look at the whole data frame just for `setosa`.
 setosaData <- iris[iris$Species == "setosa", ]
 
 str(setosaData)
+
 ```
 
 Finally, once we are working with dataframes, plotting becomes much easier to understand, and we can ease into some rudimentary, clunky R plots.
+
 ```{r}  
 # Some quick plotting code
 
@@ -466,7 +470,7 @@ Much, **MUCH** more of this to come as we continue.
 
 **Lists** are the ultimate data type in R. They are actually a [vector](vectors) that can hold different kinds of data, like a [dataframe](#dataframes). In fact, a dataframe is just a spectacularly rectangular list. Each element of a list can be any kind of object (an atomic vector, a matrix, a dataframe, or even another list!!).
 
-The real, filthy R programming relies heavily on lists. We will have to work with them at some point in this class, but we won't take a ton of time on them here.
+Most of the real, filthy R programming relies heavily on lists. We will have to work with them at some point in this class, but we won't take a ton of time on them here.
 
 Let's make a list- just to see how they work. Notice how our index operator has changed from `[ ]` to `[[ ]]`? And, at the highest level of organization, we have only one dimension in our list, but any given element `myList[[i]]` could hold any number of dimensions.
 
@@ -518,4 +522,4 @@ Very commonly, model objects and output are stored as lists. In fact, most objec
 ## Next steps
 For more practice with the data structures and R functions we covered here, you can check out this <a href="https://www.youtube.com/watch?v=h_Nruq9-NQw">walk-through of basic R commands</a> from the How To R YouTube Channel.
 
-In the next Chapter 3(#Chapter3), we will begin using functions from external R packages to read and work with real data.
+In the Chapter 3(#Chapter3), we will begin using functions from external R packages to read and work with real data.
