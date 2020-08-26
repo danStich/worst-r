@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.17)  26 AUG 2020 10:38
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.17)  26 AUG 2020 11:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -905,31 +905,31 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 Chapter 1.
 [11] [12] [13]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 225.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 227.
 [14] [15] [16] [17] [18
 
 ]
 Chapter 2.
 [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32]
-Overfull \hbox (1.5pt too wide) in paragraph at lines 1230--1230
+Overfull \hbox (1.5pt too wide) in paragraph at lines 1232--1232
 []\TU/lmtt/m/n/10 ##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.
 1 ...[] 
  []
 
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 1230--1230
+Overfull \hbox (12.0pt too wide) in paragraph at lines 1232--1232
 []\TU/lmtt/m/n/10 ##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 
 1.5 ...[] 
  []
 
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 1230--1230
+Overfull \hbox (12.0pt too wide) in paragraph at lines 1232--1232
 []\TU/lmtt/m/n/10 ##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 
 0.1 ...[] 
  []
 
 
-Overfull \hbox (117.0pt too wide) in paragraph at lines 1230--1230
+Overfull \hbox (117.0pt too wide) in paragraph at lines 1232--1232
 []\TU/lmtt/m/n/10 ##  $ Species     : Factor w/ 3 levels "setosa","versicolor",
 ..: 1 1 1 1 1 1 1 1 1 1 ...[] 
  []
@@ -946,13 +946,13 @@ File: worstr_files/figure-latex/unnamed-chunk-53-2.pdf Graphic file (type pdf)
 File: worstr_files/figure-latex/unnamed-chunk-53-3.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-53-3.pdf>
 [35]
-Overfull \hbox (85.5pt too wide) in paragraph at lines 1340--1340
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1342--1342
 []\TU/lmtt/m/n/10 ##  [1]  0.5  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.
 5  6.0  6.5  7.0  7.5[] 
  []
 
 
-Overfull \hbox (90.75pt too wide) in paragraph at lines 1340--1340
+Overfull \hbox (90.75pt too wide) in paragraph at lines 1342--1342
 []\TU/lmtt/m/n/10 ##  [1] "a" "b" "c" "d" "a" "b" "c" "d" "a" "b" "c" "d" "a" "
 b" "c" "d" "a" "b" "c"[] 
  []
@@ -961,31 +961,16 @@ b" "c" "d" "a" "b" "c"[]
 
 ]
 Chapter 3.
-[39]
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1450--1450
+[39] [40]
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1456--1456
 []\TU/lmtt/m/n/10 ##  $ Sex           : Factor w/ 2 levels "B","R": 1 1 1 1 1 1
  1 1 1 1 ...[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 1450--1450
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1456--1456
 []\TU/lmtt/m/n/10 ##  $ yearCollected : int  2010 2010 2010 2010 2010 2010 2010
  2010 2010 2010 ...[] 
- []
-
-[40]
-Underfull \hbox (badness 10000) in paragraph at lines 1454--1455
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1456--1457
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1458--1459
-
  []
 
 
@@ -994,30 +979,45 @@ Underfull \hbox (badness 10000) in paragraph at lines 1460--1461
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1462--1464
+Underfull \hbox (badness 10000) in paragraph at lines 1462--1463
 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 1499--1499
+Underfull \hbox (badness 10000) in paragraph at lines 1464--1465
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1466--1467
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1468--1470
+
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 1505--1505
 []\TU/lmtt/m/n/10 ##  Sex           Age            Length      yearCollected  b
 ackCalculated[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1499--1499
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1505--1505
 []\TU/lmtt/m/n/10 ##  B:9512   Min.   :1.000   Min.   : 3.00   Min.   :2010   M
 ode :logical[] 
  []
 
 
-Overfull \hbox (22.5pt too wide) in paragraph at lines 1499--1499
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1505--1505
 []\TU/lmtt/m/n/10 ##  R:7434   1st Qu.:2.000   1st Qu.:31.00   1st Qu.:2011   F
 ALSE:3046[] 
  []
 
 
-Overfull \hbox (27.75pt too wide) in paragraph at lines 1499--1499
+Overfull \hbox (27.75pt too wide) in paragraph at lines 1505--1505
 []\TU/lmtt/m/n/10 ##           Median :3.000   Median :38.00   Median :2012   T
 RUE :13900[] 
  []
@@ -1025,32 +1025,29 @@ RUE :13900[]
 [41] [42] [43] [44] [45] [46] [47]
 File: worstr_files/figure-latex/unnamed-chunk-76-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-76-1.pdf>
-
-Underfull \vbox (badness 5091) has occurred while \output is active []
-
 [48]
 File: worstr_files/figure-latex/unnamed-chunk-78-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-78-1.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1815--1817
-[][]
- []
-
-[49]
-File: worstr_files/figure-latex/unnamed-chunk-80-1.pdf Graphic file (type pdf)
-<use worstr_files/figure-latex/unnamed-chunk-80-1.pdf>
-[50]
-File: worstr_files/figure-latex/unnamed-chunk-82-1.pdf Graphic file (type pdf)
-<use worstr_files/figure-latex/unnamed-chunk-82-1.pdf>
-
-Underfull \hbox (badness 10000) in paragraph at lines 1870--1872
+Underfull \hbox (badness 10000) in paragraph at lines 1821--1823
 [][]
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[51] [52]
+[49]
+File: worstr_files/figure-latex/unnamed-chunk-80-1.pdf Graphic file (type pdf)
+<use worstr_files/figure-latex/unnamed-chunk-80-1.pdf>
+[50] [51]
+File: worstr_files/figure-latex/unnamed-chunk-82-1.pdf Graphic file (type pdf)
+<use worstr_files/figure-latex/unnamed-chunk-82-1.pdf>
+
+Underfull \hbox (badness 10000) in paragraph at lines 1876--1878
+[][]
+ []
+
+[52]
 Chapter 4.
 [53
 
@@ -1114,7 +1111,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [65]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 2172.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 2178.
 [66]
 File: worstr_files/figure-latex/unnamed-chunk-98-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-98-1.pdf>
@@ -1153,7 +1150,7 @@ File: worstr_files/figure-latex/unnamed-chunk-106-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-106-1.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 2335--2337
+Underfull \hbox (badness 10000) in paragraph at lines 2341--2343
 [][]
  []
 
@@ -1198,24 +1195,24 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [78]
 No file worstr.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2483.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2489.
 [79]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2483.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2489.
 (./worstr.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2483.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2483.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2489.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2489.
 
 Package rerunfilecheck Info: File `worstr.out' has not changed.
-(rerunfilecheck)             Checksum: C34E0986C33AFEABF25A69EEC5A50F2C;4040.
+(rerunfilecheck)             Checksum: A3B860DA4F6F4C89FE866E00774CFD89;4040.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2483.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2489.
  ) 
 Here is how much of TeX's memory you used:
  17620 strings out of 481691
  317861 string characters out of 5931753
- 729017 words of memory out of 5000000
+ 728017 words of memory out of 5000000
  34451 multiletter control sequences out of 15000+600000
  541587 words of font info for 88 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191

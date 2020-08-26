@@ -36,7 +36,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={the Worst Stats Text Ever},
+  pdftitle={The Worst Stats Text eveR},
   pdfauthor={Dan Stich},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
@@ -111,7 +111,7 @@
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 
-\title{the Worst Stats Text Ever}
+\title{The Worst Stats Text eveR}
 \author{Dan Stich}
 \date{}
 
@@ -123,10 +123,12 @@
 \tableofcontents
 }
 \hypertarget{title}{%
-\chapter*{The Worst Stats Text EveR}\label{title}}
-\addcontentsline{toc}{chapter}{The Worst Stats Text EveR}
+\chapter*{The Worst Stats Text eveR}\label{title}}
+\addcontentsline{toc}{chapter}{The Worst Stats Text eveR}
 
 Dan Stich, PhD
+
+\emph{Biology Department and Biological Field Station, SUNY Oneonta}
 
 Unskillful representation of an alcohol molecule where -OH is the functional group and R is the radical group, or ``rest of the molecule'', much like it is to modern statistics. This is funny, because R is a ``functional'' programming language that will drive you to drink (or perhaps undertake some other, healthier stress-reducing activity). Don't worry, I'll explain all of the jokes, and \textbf{most} of the code as we go, because this
 
@@ -142,7 +144,7 @@ This book is a compilation of teaching content and lab activities that I have am
 
 \textbf{The purpose of this book is to} provide a tutorial survey of commonly used statistical tools in R for undergraduate students interested in biology. On any given week, our focus will be to demonstrate one or more techniques in R and show how they might be applied to real-world data, warts and all. My hope is that students take away 1) why we use these tools, 2) how to use them (and how not too!), and 3) how we show what it means. Along the way, we'll incorporate data management and exploration, statistical assumptions, and plotting.
 
-To that end, certain ideas and language within this book are simplified for the target audience - apologies in advance if simplicity or informality jeopardize accuracy in any way. I am happy to receive constructive advice through the GitHub repository for this project: \textbf{will insert url here once it is live}.
+To that end, certain ideas and language within this book are simplified for the target audience - apologies in advance if simplicity or informality jeopardize accuracy in any way. I am happy to receive constructive advice through the GitHub repository for this project located \href{https://github.com/danStich/worst-r}{here}.
 
 This text and the course assume minimal starting knowledge of statistics or computer programming. We build on both during each chapter, and from one chapter to the next. Throughout the book, we will demonstrate statistical and biological concepts using real and simulated data sets from a variety of sub-disciplines within the biological sciences. My own academic interests are in quantitative aspects of applied ecology and fisheries management. Therefore, many of our examples have a fishy flavor, but I try to incorporate examples from other realms of biology.
 
@@ -1393,6 +1395,10 @@ There are few things that will turn someone away from a statistical software pro
 Let's start by reading in a data file - this time we use real data.
 
 The data are stored in a ``comma separated values'' file (\texttt{.csv} extension). This is a fairly universal format, so we read it in using the fairly universal \texttt{read.csv()} function. This would change depending on how the data were stored, or how big the data files were, but that is a topic further investigation for a later date. I probably do 95\% of my data reads using \texttt{.csv} files.
+
+\textbf{Important} Remember that I am assuming your scripts are in the same directory (folder) on your computer as where you downloaded and unzipped the class data (see \href{https://danstich.github.io/stich/classes/BIOL217/software.html}{here} for reminder).
+
+\textbf{Before you can read this file} you will need to set your working directory. For class, I will ask that you click \texttt{Session\ \textgreater{}\ Set\ Working\ Directory\ \textgreater{}\ To\ Source\ File\ Location}. This will set the working directory to wherever you have saved your code so that R can find the folder \texttt{data} and the files inside of it.
 
 \begin{Shaded}
 \begin{Highlighting}[]

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.1 Data read | the Worst Stats Text Ever</title>
-  <meta name="description" content="3.1 Data read | the Worst Stats Text Ever" />
+  <title>3.1 Data read | The Worst Stats Text eveR</title>
+  <meta name="description" content="3.1 Data read | The Worst Stats Text eveR" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.1 Data read | the Worst Stats Text Ever" />
+  <meta property="og:title" content="3.1 Data read | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.1 Data read | the Worst Stats Text Ever" />
+  <meta name="twitter:title" content="3.1 Data read | The Worst Stats Text eveR" />
   
   
   
@@ -133,7 +133,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">The Worst Stats Text eveR</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text EveR</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -202,7 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">the Worst Stats Text Ever</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Worst Stats Text eveR</a>
           </h1>
         </div>
 
@@ -217,13 +219,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The data are stored in a “comma separated values” file (<code>.csv</code> extension). This is a fairly universal format, so we read it in using the fairly universal <code>read.csv()</code> function. This would change depending on how the data were stored, or how big the data files were, but that is a topic further investigation for a later date. I probably do 95% of my data reads using <code>.csv</code> files.</p>
 <p><strong>Important</strong> Remember that I am assuming your scripts are in the same directory (folder) on your computer as where you downloaded and unzipped the class data (see <a href="https://danstich.github.io/stich/classes/BIOL217/software.html">here</a> for reminder).</p>
 <p><strong>Before you can read this file</strong> you will need to set your working directory. For class, I will ask that you click <code>Session &gt; Set Working Directory &gt; To Source File Location</code>. This will set the working directory to wherever you have saved your code so that R can find the folder <code>data</code> and the files inside of it.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="3-1-data-read.html#cb1-1"></a><span class="co"># Start by reading in the data</span></span>
-<span id="cb1-2"><a href="3-1-data-read.html#cb1-2"></a>am_shad &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/ctr_fish.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="3-1-data-read.html#cb111-1"></a><span class="co"># Start by reading in the data</span></span>
+<span id="cb111-2"><a href="3-1-data-read.html#cb111-2"></a>am_shad &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/ctr_fish.csv&quot;</span>)</span></code></pre></div>
 <p>Once you’ve read your data in, it’s always a good idea to look at the first few lines of data to make sure nothing looks ‘fishy’. Haha, I couldn’t help myself.</p>
 <p>These are sex-specific length and age data for American shad (<em>Alosa sapidissima</em>) from the Connecticut River, USA. The data are used in some models that I maintain with collaborators from NOAA Fisheries, the US Geological Survey, the US Fish and Wildlife Service, and others. The data were provided by CT Department of Energy and Environmental Protection (CTDEEP) and come from adult fish that return to the river from the ocean each year to spawn in fresh water.</p>
 <p>You can look at the first few rows of data with the <code>head()</code> function:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="3-1-data-read.html#cb2-1"></a><span class="co"># Look at the first 10 rows</span></span>
-<span id="cb2-2"><a href="3-1-data-read.html#cb2-2"></a><span class="kw">head</span>(am_shad, <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="3-1-data-read.html#cb112-1"></a><span class="co"># Look at the first 10 rows</span></span>
+<span id="cb112-2"><a href="3-1-data-read.html#cb112-2"></a><span class="kw">head</span>(am_shad, <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##    Sex Age Length yearCollected backCalculated Mass
 ## 1    B   1     13          2010           TRUE   NA
 ## 2    B   1     15          2010           TRUE   NA
@@ -237,8 +239,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10   B   1     16          2010           TRUE   NA</code></pre>
 <p>The <code>NA</code> values are supposed to be there. They are missing data.</p>
 <p>And, don’t forget about your old friend <code>str()</code> for a peek at how R sees your data. This can take care of a lot of potential problems later on.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="3-1-data-read.html#cb4-1"></a><span class="co"># Look at the structure of the data</span></span>
-<span id="cb4-2"><a href="3-1-data-read.html#cb4-2"></a><span class="kw">str</span>(am_shad)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="3-1-data-read.html#cb114-1"></a><span class="co"># Look at the structure of the data</span></span>
+<span id="cb114-2"><a href="3-1-data-read.html#cb114-2"></a><span class="kw">str</span>(am_shad)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:	16946 obs. of  6 variables:
 ##  $ Sex           : Factor w/ 2 levels &quot;B&quot;,&quot;R&quot;: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ Age           : int  1 1 1 1 1 1 1 1 1 1 ...

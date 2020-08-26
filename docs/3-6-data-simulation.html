@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.6 Data simulation | the Worst Stats Text Ever</title>
-  <meta name="description" content="3.6 Data simulation | the Worst Stats Text Ever" />
+  <title>3.6 Data simulation | The Worst Stats Text eveR</title>
+  <meta name="description" content="3.6 Data simulation | The Worst Stats Text eveR" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.6 Data simulation | the Worst Stats Text Ever" />
+  <meta property="og:title" content="3.6 Data simulation | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.6 Data simulation | the Worst Stats Text Ever" />
+  <meta name="twitter:title" content="3.6 Data simulation | The Worst Stats Text eveR" />
   
   
   
@@ -133,7 +133,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">The Worst Stats Text eveR</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text EveR</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -202,7 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">the Worst Stats Text Ever</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Worst Stats Text eveR</a>
           </h1>
         </div>
 
@@ -218,18 +220,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s say we want to take random samples from our huge data set so we can fit models to a subset of data and then use the rest of our data for model validation in weeks to come.</p>
 <p>We have around 17,000 observations in the <code>am_shad</code> data set. But, what if we wanted to know what it would look like if we only had 100 samples from the same population?</p>
 <p>First, tell R how many samples you want.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="3-6-data-simulation.html#cb27-1"></a>n_samples &lt;-<span class="st"> </span><span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="3-6-data-simulation.html#cb137-1"></a>n_samples &lt;-<span class="st"> </span><span class="dv">100</span></span></code></pre></div>
 <p>Now let’s take two samples of 100 fish from our dataframe to see how they compare:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="3-6-data-simulation.html#cb28-1"></a><span class="co"># Randomly sample 100 rows of data from our data frame two different</span></span>
-<span id="cb28-2"><a href="3-6-data-simulation.html#cb28-2"></a><span class="co"># times to see the differences</span></span>
-<span id="cb28-3"><a href="3-6-data-simulation.html#cb28-3"></a>samp1 &lt;-<span class="st"> </span>am_shad[<span class="kw">sample</span>(<span class="kw">nrow</span>(am_shad), <span class="dt">size =</span> n_samples, <span class="dt">replace =</span> <span class="ot">FALSE</span>), ]</span>
-<span id="cb28-4"><a href="3-6-data-simulation.html#cb28-4"></a>samp2 &lt;-<span class="st"> </span>am_shad[<span class="kw">sample</span>(<span class="kw">nrow</span>(am_shad), <span class="dt">size =</span> n_samples, <span class="dt">replace =</span> <span class="ot">FALSE</span>), ]</span>
-<span id="cb28-5"><a href="3-6-data-simulation.html#cb28-5"></a></span>
-<span id="cb28-6"><a href="3-6-data-simulation.html#cb28-6"></a><span class="co"># We can look at them with our histograms</span></span>
-<span id="cb28-7"><a href="3-6-data-simulation.html#cb28-7"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb28-8"><a href="3-6-data-simulation.html#cb28-8"></a><span class="kw">hist</span>(samp1<span class="op">$</span>Length, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span>
-<span id="cb28-9"><a href="3-6-data-simulation.html#cb28-9"></a><span class="kw">hist</span>(samp2<span class="op">$</span>Length, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="3-6-data-simulation.html#cb138-1"></a><span class="co"># Randomly sample 100 rows of data from our data frame two different</span></span>
+<span id="cb138-2"><a href="3-6-data-simulation.html#cb138-2"></a><span class="co"># times to see the differences</span></span>
+<span id="cb138-3"><a href="3-6-data-simulation.html#cb138-3"></a>samp1 &lt;-<span class="st"> </span>am_shad[<span class="kw">sample</span>(<span class="kw">nrow</span>(am_shad), <span class="dt">size =</span> n_samples, <span class="dt">replace =</span> <span class="ot">FALSE</span>), ]</span>
+<span id="cb138-4"><a href="3-6-data-simulation.html#cb138-4"></a>samp2 &lt;-<span class="st"> </span>am_shad[<span class="kw">sample</span>(<span class="kw">nrow</span>(am_shad), <span class="dt">size =</span> n_samples, <span class="dt">replace =</span> <span class="ot">FALSE</span>), ]</span>
+<span id="cb138-5"><a href="3-6-data-simulation.html#cb138-5"></a></span>
+<span id="cb138-6"><a href="3-6-data-simulation.html#cb138-6"></a><span class="co"># We can look at them with our histograms</span></span>
+<span id="cb138-7"><a href="3-6-data-simulation.html#cb138-7"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb138-8"><a href="3-6-data-simulation.html#cb138-8"></a><span class="kw">hist</span>(samp1<span class="op">$</span>Length, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span>
+<span id="cb138-9"><a href="3-6-data-simulation.html#cb138-9"></a><span class="kw">hist</span>(samp2<span class="op">$</span>Length, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-78-1.png" width="672" />
 *If you are struggling to get your plotting window back to “normal” after this, you can either click the broom button in your “Plots” window, or you can run the following code for now:</p>
 </div>
 <div id="stochastic" class="section level3">
@@ -237,31 +239,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now, instead of sampling our data let’s say we have some distribution from which we would like sample. So, let’s make a distribution.</p>
 <p>We will start with the normal, and we can move into others when we talk about probability distributions and sample statistics in <a href="#Chapter5">Chapter 5</a>. For this, we will use the distribution of American shad lengths for age-6 females because it approximates a normal distribution. We will calculate the <code>mean</code> and <code>sd</code> because those are the parameters of the normal distribution.</p>
 <p>Start by looking at the size distribution for age 6 females. We use the tidy workflow here with really awful default graphics (more to come in <a href="4-Chapter4.html#Chapter4">Chapter 4</a>), but we add two arguments to our <code>subset</code> call. We want to select only the variable <code>Length</code> from <code>am_shad</code>, and we want to drop all other information so we can send the output straight to the <code>hist()</code> function as a vector.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="3-6-data-simulation.html#cb29-1"></a>am_shad <span class="op">%&gt;%</span></span>
-<span id="cb29-2"><a href="3-6-data-simulation.html#cb29-2"></a><span class="st">  </span><span class="kw">subset</span>(Age <span class="op">==</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>Sex <span class="op">==</span><span class="st"> &quot;R&quot;</span>, <span class="dt">select=</span><span class="st">&#39;Length&#39;</span>, <span class="dt">drop=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb29-3"><a href="3-6-data-simulation.html#cb29-3"></a><span class="st">   </span><span class="kw">hist</span>(<span class="dt">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="3-6-data-simulation.html#cb139-1"></a>am_shad <span class="op">%&gt;%</span></span>
+<span id="cb139-2"><a href="3-6-data-simulation.html#cb139-2"></a><span class="st">  </span><span class="kw">subset</span>(Age <span class="op">==</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>Sex <span class="op">==</span><span class="st"> &quot;R&quot;</span>, <span class="dt">select=</span><span class="st">&#39;Length&#39;</span>, <span class="dt">drop=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb139-3"><a href="3-6-data-simulation.html#cb139-3"></a><span class="st">   </span><span class="kw">hist</span>(<span class="dt">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
 <p>Now, let’s calculate the <code>mean</code> and <code>sd</code> of <code>Length</code> for age 6 females. We use <code>na.rm = TRUE</code> to tell R that it needs to ignore the <code>NA</code> values.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="3-6-data-simulation.html#cb30-1"></a><span class="co"># Calculate the mean Length </span></span>
-<span id="cb30-2"><a href="3-6-data-simulation.html#cb30-2"></a>x_bar &lt;-<span class="st"> </span>am_shad <span class="op">%&gt;%</span></span>
-<span id="cb30-3"><a href="3-6-data-simulation.html#cb30-3"></a><span class="st">  </span><span class="kw">subset</span>(Age <span class="op">==</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>Sex <span class="op">==</span><span class="st"> &quot;R&quot;</span>, <span class="dt">select=</span><span class="st">&#39;Length&#39;</span>, <span class="dt">drop=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb30-4"><a href="3-6-data-simulation.html#cb30-4"></a><span class="st">  </span>mean</span>
-<span id="cb30-5"><a href="3-6-data-simulation.html#cb30-5"></a></span>
-<span id="cb30-6"><a href="3-6-data-simulation.html#cb30-6"></a><span class="co"># Calculate standard deviation of Length</span></span>
-<span id="cb30-7"><a href="3-6-data-simulation.html#cb30-7"></a>sigma &lt;-<span class="st"> </span>am_shad <span class="op">%&gt;%</span></span>
-<span id="cb30-8"><a href="3-6-data-simulation.html#cb30-8"></a><span class="st">  </span><span class="kw">subset</span>(Age <span class="op">==</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>Sex <span class="op">==</span><span class="st"> &quot;R&quot;</span>, <span class="dt">select=</span><span class="st">&#39;Length&#39;</span>, <span class="dt">drop=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb30-9"><a href="3-6-data-simulation.html#cb30-9"></a><span class="st">  </span>sd</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="3-6-data-simulation.html#cb140-1"></a><span class="co"># Calculate the mean Length </span></span>
+<span id="cb140-2"><a href="3-6-data-simulation.html#cb140-2"></a>x_bar &lt;-<span class="st"> </span>am_shad <span class="op">%&gt;%</span></span>
+<span id="cb140-3"><a href="3-6-data-simulation.html#cb140-3"></a><span class="st">  </span><span class="kw">subset</span>(Age <span class="op">==</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>Sex <span class="op">==</span><span class="st"> &quot;R&quot;</span>, <span class="dt">select=</span><span class="st">&#39;Length&#39;</span>, <span class="dt">drop=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb140-4"><a href="3-6-data-simulation.html#cb140-4"></a><span class="st">  </span>mean</span>
+<span id="cb140-5"><a href="3-6-data-simulation.html#cb140-5"></a></span>
+<span id="cb140-6"><a href="3-6-data-simulation.html#cb140-6"></a><span class="co"># Calculate standard deviation of Length</span></span>
+<span id="cb140-7"><a href="3-6-data-simulation.html#cb140-7"></a>sigma &lt;-<span class="st"> </span>am_shad <span class="op">%&gt;%</span></span>
+<span id="cb140-8"><a href="3-6-data-simulation.html#cb140-8"></a><span class="st">  </span><span class="kw">subset</span>(Age <span class="op">==</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>Sex <span class="op">==</span><span class="st"> &quot;R&quot;</span>, <span class="dt">select=</span><span class="st">&#39;Length&#39;</span>, <span class="dt">drop=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb140-9"><a href="3-6-data-simulation.html#cb140-9"></a><span class="st">  </span>sd</span></code></pre></div>
 <p>Note that we could also use the <code>filter()</code> function from the <code>dplyr</code> package for this job, and for big data sets it would be a lot faster for un-grouped data.</p>
 <p>Now, we can use the mean and standard deviation to randomly sample our normal distribution of lengths.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="3-6-data-simulation.html#cb31-1"></a>length_sample &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">mean =</span> x_bar, <span class="dt">sd =</span> sigma)</span>
-<span id="cb31-2"><a href="3-6-data-simulation.html#cb31-2"></a></span>
-<span id="cb31-3"><a href="3-6-data-simulation.html#cb31-3"></a><span class="co"># Plot the sample to see if it is a normal- YAY it is!</span></span>
-<span id="cb31-4"><a href="3-6-data-simulation.html#cb31-4"></a><span class="kw">hist</span>(length_sample,</span>
-<span id="cb31-5"><a href="3-6-data-simulation.html#cb31-5"></a>  <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>,</span>
-<span id="cb31-6"><a href="3-6-data-simulation.html#cb31-6"></a>  <span class="dt">main =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb31-7"><a href="3-6-data-simulation.html#cb31-7"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Forklength (cm)&quot;</span></span>
-<span id="cb31-8"><a href="3-6-data-simulation.html#cb31-8"></a>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="3-6-data-simulation.html#cb141-1"></a>length_sample &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">mean =</span> x_bar, <span class="dt">sd =</span> sigma)</span>
+<span id="cb141-2"><a href="3-6-data-simulation.html#cb141-2"></a></span>
+<span id="cb141-3"><a href="3-6-data-simulation.html#cb141-3"></a><span class="co"># Plot the sample to see if it is a normal- YAY it is!</span></span>
+<span id="cb141-4"><a href="3-6-data-simulation.html#cb141-4"></a><span class="kw">hist</span>(length_sample,</span>
+<span id="cb141-5"><a href="3-6-data-simulation.html#cb141-5"></a>  <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>,</span>
+<span id="cb141-6"><a href="3-6-data-simulation.html#cb141-6"></a>  <span class="dt">main =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb141-7"><a href="3-6-data-simulation.html#cb141-7"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Forklength (cm)&quot;</span></span>
+<span id="cb141-8"><a href="3-6-data-simulation.html#cb141-8"></a>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-82-1.png" width="672" />
 We’ve add a couple of new arguments to the histogram call to make it a little less ugly here. In [Chapter 4] we are going to ramp it up and play with some plots!</p>
 </div>
 </div>
