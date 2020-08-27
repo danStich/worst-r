@@ -142,13 +142,13 @@ is \textbf{The Worst Stats Text eveR}.
 
 This book is a compilation of teaching content and lab activities that I have amassed like a digital hoarder during my time teaching BIOL 217 (Quantitative Biology) at SUNY Oneonta. The book started as a collection of R scripts that I eventually converted into web-pages under the former BIOL 217 course website using \href{https://rmarkdown.rstudio.com/}{rmarkdown}, and now finally into an e-document (thanks to \href{https://bookdown.org/home/about/}{bookdown}!) that is without doubt The Worst Stats Text eveR.
 
-\textbf{The purpose of this book is to} provide a tutorial survey of commonly used statistical tools in R for undergraduate students interested in biology. On any given week, our focus will be to demonstrate one or more techniques in R and show how they might be applied to real-world data, warts and all. My hope is that students take away 1) why we use these tools, 2) how to use them (and how not too!), and 3) how we show what it means. Along the way, we'll incorporate data management and exploration, statistical assumptions, and plotting.
+\textbf{The purpose of this book is to} provide a tutorial survey of commonly used statistical tools in R for undergraduate students interested in biology. On any given week, our focus will be to demonstrate one or more techniques in R and show how they might be applied to real-world data, warts and all. My hope is that students take away 1) why we use these tools, 2) how to use them (and how not to!), and 3) how we show what it means. Along the way, we'll incorporate data management and exploration, statistical assumptions, and plotting.
 
 To that end, certain ideas and language within this book are simplified for the target audience - apologies in advance if simplicity or informality jeopardize accuracy in any way. I am happy to receive constructive advice through the GitHub repository for this project located \href{https://github.com/danStich/worst-r}{here}.
 
 This text and the course assume minimal starting knowledge of statistics or computer programming. We build on both during each chapter, and from one chapter to the next. Throughout the book, we will demonstrate statistical and biological concepts using real and simulated data sets from a variety of sub-disciplines within the biological sciences. My own academic interests are in quantitative aspects of applied ecology and fisheries management. Therefore, many of our examples have a fishy flavor, but I try to incorporate examples from other realms of biology.
 
-\textbf{The purpose of this book is not} to serve as a stand-alone, citable reference document or even as a stand-alone comprehensive guide to R for even for students enrolled in my own class. It is The Worst Stats Text eveR! Why would you cite a book with that name? The code and generally citation-free ranting contained herein are, however, extensively supplemented by targeted readings on each topic from the primary literature, published text supplements and discussions. The reader is strongly encouraged to seek out other learning resources appropriate to their comfort level (see \href{https://danstich.github.io/stich/classes/BIOL217/index.html}{Additional Resources} on the course website).
+\textbf{The purpose of this book is not} to serve as a stand-alone, citable reference document or a comprehensive guide to R even for students enrolled in my own class. It is The Worst Stats Text eveR! Why would you cite a book with that name? The code and generally citation-free ranting contained herein are, however, extensively supplemented by targeted readings on each topic from the primary literature, published text supplements and discussions. The reader is strongly encouraged to seek out other learning resources appropriate to their comfort level (see \href{https://danstich.github.io/stich/classes/BIOL217/index.html}{Additional Resources} on the course website).
 
 \hypertarget{author}{%
 \chapter*{About the author}\label{author}}
@@ -224,7 +224,7 @@ Regardless of how you end up styling your code, here are a few helpful hints tha
 
 \textbf{Get to know your keyboard and your speed keys for code execution and completion.} Use the mouse to navigate the GUI, not to write code. Here is a fairly comprehensive list of speed-key combinations for all of the major operating systems from the \href{https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts}{Rstudio website}. You don't need to know them all, but it can save you a \textbf{ton} of time.
 
-\textbf{File management is wicked important.} \{\#file-management\} This is probably one of the primary struggles folks have with starting to learn R and other languages. At the same time, it is a big part of the secret sauce behind good programming. \textbf{For this class, I will assume that you are working out of a single working directory (call it something like ``quant\_bio'' or ``biol217''. That means I will assume your scripts (\texttt{.R} files) for each chapter are in the same folder on your computer as your the folder that contains your data.}
+\textbf{File management is wicked important.} This is probably one of the primary struggles folks have with starting to learn R and other languages. At the same time, it is a big part of the secret sauce behind good programming. \textbf{For this class, I will assume that you are working out of a single working directory (call it something like ``quant\_bio'' or ``biol217''. That means I will assume your scripts (\texttt{.R} files) for each chapter are in the same folder on your computer as your the folder that contains your data.}
 
 An example of your class folder might look like this:
 
@@ -377,7 +377,7 @@ These are just some basic guidelines that should help you get started working wi
 
 Contrast how you see a fish and how computers see fish. Our job is to bridge the gap. No problem\ldots{}
 
-In this chapter, we will introduce basic data structures and how to work with them in R. One of our challenges is to understand how sees data.
+In this chapter, we will introduce basic data structures and how to work with them in R. One of our challenges is to understand how R sees our data.
 
 R is what is known as a ``high-level'' or ``interpreted'' programming language, in addition to being ``functional'' and ``object-oriented''. This means the pieces that make it up are a little more intuitive to the average user than most low-level languages like C or C++. The back-end of R is, in fact, a collection of low-level code that builds up the functionality that we need. This means that R has a broad range of uses, from data management to math, and even GIS and data visualization tools, all of which are conveniently wrapped in an ``intuitive'', ``user-friendly'' language.
 
@@ -410,7 +410,7 @@ Let's take a look at how this works and why it matters. Here, we have defined \t
 ## [1] 1
 \end{verbatim}
 
-What is the square bracket in the output here? It's an index. The index is telling us that the first element of \texttt{a} is \texttt{1}. This means that \texttt{a} is actually a ``vector'', not a ``scalar'' or singular value as you may have been thinking about it. You can think of a vector as a column in an excel spreadsheet or an analogous data table. By treating every object (loosely) as a vector, or an element thereof, the language becomes much more general.
+What is the square bracket in the output here? It's an index. The index is telling us that the first element of \texttt{a} is \texttt{1}. This means that \texttt{a} is actually a ``vector'', not a ``scalar'' or singular value as you may have been thinking about it. You can think of a vector as a column in an Excel spreadsheet or an analogous data table. By treating every object (loosely) as a vector, or an element thereof, the language becomes much more general.
 
 So, even if we define something with a single value, it is still just a vector with one element. For us, this is important because of the way that it lets us do math. It makes vector operations so easy that we don't even need to think about them when we start to make statistical models. It makes working through the math a zillion times easier than on paper! In terms of programming, it can make a lot of things easier, too.
 
@@ -568,7 +568,7 @@ Aside: we can ask R what functions mean by adding a question mark as we do above
 \subsection*{Logical vectors}\label{logicals}}
 \addcontentsline{toc}{subsection}{Logical vectors}
 
-Most of the \texttt{logical} vectors we deal with are yes/no or comparisons to determine whether a given piece of information matches a condition. Here, we use a logical check to see if the object \texttt{a} we created earlier is the same as object \texttt{b}. If we store the results of this logical check to a new vector \texttt{c}, we get a new logical vector filled with \texttt{TRUE} and \texttt{FALSE}, one for each element in \texttt{a} and \texttt{b}.
+Most of the \texttt{logical} vectors we deal with are yes/no or comparisons to determine whether a given piece of information matches a condition. Here, we use a logical check to see if the object \texttt{a} we created earlier is the same as object \texttt{b}. If we store the results of this check to a new object \texttt{c}, we get a new logical vector filled with \texttt{TRUE} and \texttt{FALSE}, one for each element in \texttt{a} and \texttt{b}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -594,7 +594,7 @@ Most of the \texttt{logical} vectors we deal with are yes/no or comparisons to d
 
 We now have a logical vector. For the sake of demonstration, we could perform any number of logical checks on a vector using built-in R functions (it does not need to be a logical like \texttt{c} above).
 
-We can check for missing values
+We can check for missing values.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -606,7 +606,7 @@ We can check for missing values
 ## [1] FALSE FALSE FALSE FALSE FALSE
 \end{verbatim}
 
-We can make sure that all values are finite
+We can make sure that all values are finite.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -642,7 +642,7 @@ We can see if specific elements meet a criterion.
 ## [1] FALSE FALSE  TRUE FALSE FALSE
 \end{verbatim}
 
-We can just look at unique values
+We can just look at unique values.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -655,7 +655,7 @@ We can just look at unique values
 ## Levels: a b c d e
 \end{verbatim}
 
-The examples above are all fairly simple vector operations. These form the basis for data manipulation and analysis in R.
+The examples above are all simple vector operations. These form the basis for data manipulation and analysis in R.
 
 \hypertarget{operations}{%
 \section{Vector operations}\label{operations}}
@@ -690,7 +690,7 @@ We might want to store that value to a new object \texttt{f} that is easier to r
 
 If it is not yet obvious, we have to assign the output of functions to new objects for the values to be usable in the future. In the example above, \texttt{a} is never actually \emph{changed}. This is a common source of confusion early on.
 
-Going further, we could select vector elements based on some condition. On the first line of code, we tell R to show us the indices of the elements in vector \texttt{b} that match the character string \texttt{c}. Outloud, we would say, ``\texttt{b} where the value of \texttt{b} is equal to \texttt{c}'' in the first example. We can also use built-in R functions to just store the indices for all elements of \texttt{b} where \texttt{b} is equal to the character string ``\texttt{c}''.
+Going further, we could select vector elements based on some condition. On the first line of code, we tell R to show us the indices of the elements in vector \texttt{b} that match the character string \texttt{c}. Out loud, we would say, ``\texttt{b} where the value of \texttt{b} is equal to \texttt{c}'' in the first example. We can also use built-in R functions to just store the indices for all elements of \texttt{b} where \texttt{b} is equal to the character string ``\texttt{c}''.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -738,7 +738,7 @@ If we change b to \texttt{character}, we can do string manipulation, too!
 \end{Highlighting}
 \end{Shaded}
 
-We can append text. Remember, these ones are just printing the result. We would have to overwrite \texttt{b} or save it to a new object if we wanted to be able to use the result somewhere else later.
+We can append text. Remember, the examples below will just print the result. We would have to overwrite \texttt{b} or save it to a new object if we wanted to be able to use the result somewhere else later.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -835,14 +835,14 @@ We can check how many elements are in a vector.
 ## [1] 1 2 3 4 5
 \end{verbatim}
 
-And we can do lots of other nifty things like this.
+And we can do lots of other nifty things like this. We can also bind multiple vectors together into a rectangular \texttt{matrix}. Say what?
 
 \hypertarget{matrices}{%
 \section{Matrices}\label{matrices}}
 
 Matrices are rectangular objects that we can think of as being made up of vectors.
 
-We can make matrices by binding vectors that already exist
+We can make matrices by binding vectors that already exist.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -882,7 +882,7 @@ Or we can make one from scratch.
 \end{Highlighting}
 \end{Shaded}
 
-We can do all of the things we did with vectors to matrices, but now we have more than one column, and official `rows' that we can also use to these ends:
+We can do all of the things we did with vectors to matrices, but now we have more than one column, and official ``rows'' that we can also use to these ends:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -914,13 +914,10 @@ See how number of rows and columns is defined in data structure? With rows and c
 ## matrix     4      8    12
 \end{verbatim}
 
+We can also do math on matrices just like vectors, because matrices are just vectors smooshed into two dimensions (it's totally a word).
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# We can also do math}
-\CommentTok{# on matrices just like}
-\CommentTok{# vectors, because matrices}
-\CommentTok{# are just vectors smooshed}
-\CommentTok{# into two dimensions}
 \NormalTok{mat }\OperatorTok{*}\StringTok{ }\DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
@@ -942,9 +939,9 @@ More on matrices as we need them. We won't use these a lot in this module, but R
 
 Dataframes are like matrices, only not. They have a row/column structure like matrices and are also rectangular in nature. But, they can hold more than one data type!
 
-\textbf{Dataframes} are made up of \protect\hyperlink{atomics}{atomic vectors}.
+Dataframes are made up of \protect\hyperlink{atomics}{atomic vectors}.
 
-This is probably the data structure that we will use most here, along with atomic vectors.
+This is probably the data structure that we will use most in this book, along with atomic vectors.
 
 Let's make a dataframe to see how it works.
 
@@ -1005,7 +1002,7 @@ Notice that R assigns names to dataframes on the fly based on object names that 
 \end{Highlighting}
 \end{Shaded}
 
-We can look at these names.
+Now can look at the names.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1119,7 +1116,7 @@ Looking at specific elements of a dataframe is similar to a matrix, with some ad
 \end{Highlighting}
 \end{Shaded}
 
-Play with the functions below to explore how this data set is stored in environment, and how R sees it. This is a good practice to get into in general.
+Play with the functions below to explore how this data set is stored in the environment, and how R sees it. This is a good practice to get into in general.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1150,7 +1147,7 @@ Play with the functions below to explore how this data set is stored in environm
 \end{Highlighting}
 \end{Shaded}
 
-Now let's look at some specific things
+Now let's look at some specific things.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1177,6 +1174,7 @@ Now let's look at some specific things
 \end{verbatim}
 
 What about the \texttt{mean} of \texttt{Sepal.Length} just for \texttt{setosa}?
+
 A couple of new things going on here:
 
 \begin{enumerate}
@@ -1246,7 +1244,7 @@ Finally, once we are working with dataframes, plotting becomes much easier to un
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-53-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-54-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1255,7 +1253,7 @@ Finally, once we are working with dataframes, plotting becomes much easier to un
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-53-2.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-54-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1264,7 +1262,7 @@ Finally, once we are working with dataframes, plotting becomes much easier to un
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-53-3.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-54-3.pdf}
 
 Much, \textbf{MUCH} more of this to come as we continue.
 
@@ -1273,7 +1271,7 @@ Much, \textbf{MUCH} more of this to come as we continue.
 
 \textbf{Lists} are the ultimate data type in R. They are actually a \href{vectors}{vector} that can hold different kinds of data, like a \protect\hyperlink{dataframes}{dataframe}. In fact, a dataframe is just a spectacularly rectangular list. Each element of a list can be any kind of object (an atomic vector, a matrix, a dataframe, or even another list!!).
 
-The real, filthy R programming relies heavily on lists. We will have to work with them at some point in this class, but we won't take a ton of time on them here.
+Most of the real, filthy R programming relies heavily on lists. We will have to work with them at some point in this class, but we won't take a ton of time on them here.
 
 Let's make a list- just to see how they work. Notice how our index operator has changed from \texttt{{[}\ {]}} to \texttt{{[}{[}\ {]}{]}}? And, at the highest level of organization, we have only one dimension in our list, but any given element \texttt{myList{[}{[}i{]}{]}} could hold any number of dimensions.
 
@@ -1303,12 +1301,11 @@ Have a look at the list:
 
 \begin{verbatim}
 ## [[1]]
-##  [1]  0.5  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5
-## [16]  8.0  8.5  9.0  9.5 10.0
+##  [1]  0.5  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5  8.0
+## [17]  8.5  9.0  9.5 10.0
 ## 
 ## [[2]]
-##  [1] "a" "b" "c" "d" "a" "b" "c" "d" "a" "b" "c" "d" "a" "b" "c" "d" "a" "b" "c"
-## [20] "d"
+##  [1] "a" "b" "c" "d" "a" "b" "c" "d" "a" "b" "c" "d" "a" "b" "c" "d" "a" "b" "c" "d"
 ## 
 ## [[3]]
 ##        first second third
@@ -1374,7 +1371,7 @@ Very commonly, model objects and output are stored as lists. In fact, most objec
 
 For more practice with the data structures and R functions we covered here, you can check out this walk-through of basic R commands from the How To R YouTube Channel.
 
-In the next Chapter 3(\#Chapter3), we will begin using functions from external R packages to read and work with real data.
+In the Chapter 3(\#Chapter3), we will begin using functions from external R packages to read and work with real data.
 
 \hypertarget{Chapter3}{%
 \chapter{Working with data}\label{Chapter3}}
@@ -1398,7 +1395,7 @@ The data are stored in a ``comma separated values'' file (\texttt{.csv} extensio
 
 \textbf{Important} Remember that I am assuming your scripts are in the same directory (folder) on your computer as where you downloaded and unzipped the class data (see \href{https://danstich.github.io/stich/classes/BIOL217/software.html}{here} for reminder).
 
-\textbf{Before you can read this file} you will need to set your working directory. For class, I will ask that you click \texttt{Session\ \textgreater{}\ Set\ Working\ Directory\ \textgreater{}\ To\ Source\ File\ Location}. This will set the working directory to wherever you have saved your code so that R can find the folder \texttt{data} and the files inside of it.
+\textbf{Before you can read this file} you will need to set your working directory. For class, I will ask that you click \texttt{Session\ \textgreater{}\ Set\ Working\ Directory\ \textgreater{}\ To\ Source\ File\ Location}. This will set the working directory to wherever you have saved your code so that R can find the folder \texttt{data} and the files inside of it. You'll notice that R spits out some code in the console when you click this. You can also use that code to set a working directory in your script but that can cause \href{https://support.rstudio.com/hc/en-us/articles/200711843-Working-Directories-and-Workspaces}{all kinds of problems}, so don't do it.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1407,9 +1404,9 @@ The data are stored in a ``comma separated values'' file (\texttt{.csv} extensio
 \end{Highlighting}
 \end{Shaded}
 
-Once you've read your data in, it's always a good idea to look at the first few lines of data to make sure nothing looks `fishy'. Haha, I couldn't help myself.
+Once you've read your data in, it's always a good idea to look at the first few lines of data to make sure nothing looks `fishy'. Ha-ha, I couldn't help myself!
 
-These are sex-specific length and age data for American shad (\emph{Alosa sapidissima}) from the Connecticut River, USA. The data are used in some models that I maintain with collaborators from NOAA Fisheries, the US Geological Survey, the US Fish and Wildlife Service, and others. The data were provided by CT Department of Energy and Environmental Protection (CTDEEP) and come from adult fish that return to the river from the ocean each year to spawn in fresh water.
+These are sex-specific length and age data for American shad (\emph{Alosa sapidissima}) from the Connecticut River, USA. The data are used in models that I maintain with collaborators from NOAA Fisheries, the US Geological Survey, the US Fish and Wildlife Service, and others. The data were provided by CT Department of Energy and Environmental Protection (CTDEEP) and come from adult fish that return to the river from the ocean each year to spawn in fresh water.
 
 You can look at the first few rows of data with the \texttt{head()} function:
 
@@ -1528,7 +1525,7 @@ First, we'll select just the data from \texttt{am\_shad} where \texttt{backCalcu
 \end{Highlighting}
 \end{Shaded}
 
-We could do this for as many conceivable conditions in our data on which we may wish to subset data, but the code can get clunky and hard to manage. For example can you imagine re-writing this if you just want to select age six roes without back-calculated lengths?
+We could do this for as many conceivable conditions in our data on which we may wish to subset, but the code can get clunky and hard to manage. For example can you imagine re-writing this if you just want to select age six roes without back-calculated lengths?
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1544,7 +1541,7 @@ We could do this for as many conceivable conditions in our data on which we may 
 \hypertarget{subsetting-and-summaries-in-base-r}{%
 \subsection{Subsetting and summaries in base R}\label{subsetting-and-summaries-in-base-r}}
 
-This notation can be really confusing to folks who are just trying to learn a new programming language. Because of that, there are great functions like \texttt{subset()} available that are more intuitive. You could also subset the data using the following code:
+This notation can be really confusing to folks who are just trying to learn a new programming language. Because of that, there are great functions like \texttt{subset()} available that are more intuitive (but less clear to programmers). You could also subset the data using the following code:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1564,7 +1561,7 @@ We could also get our age-six females from the previous example using this appro
 \end{Highlighting}
 \end{Shaded}
 
-Both do the same thing, but we'll see below that using \texttt{subset} is preferable if we plan on chaining together a bunch of data manipulation commands using pipes (\texttt{\%\textgreater{}\%}).
+Both do the same thing, but we'll see later that using \texttt{subset} is preferable if we plan on chaining together a bunch of data manipulation commands using pipes (\texttt{\%\textgreater{}\%}).
 
 Next, we might be interested to know how many fish we have represented in each \texttt{Sex}. We can find this out using the \texttt{table} function in base R:
 
@@ -1601,7 +1598,7 @@ We can also get tallies of the number of fish in each \texttt{Age} for each \tex
 ##   R   0 361 658 220  14
 \end{verbatim}
 
-But, what if we wanted to actually calculate some kind of summary statistic, like a \texttt{mean} and report that by group?
+But, what if we wanted to calculate some kind of summary statistic, like a \texttt{mean} and report that by group?
 
 For our age-6 females example, it would look like this:
 
@@ -1619,20 +1616,22 @@ For our age-6 females example, it would look like this:
 
 Again, we could do this manually, but would require a lot of code for a simple calculation if we use the methods above all by themselves to get these for each age group of roes.
 
-We would basically just copy-and-paste the code over and over to force R into making the data summaries we need. Nothing wrong with this approach, and it certainly has its uses for simple summaries, but it can be cumbersome and redundant. It also fills your workspace up with tons of objects that are hard to keep track of and that will cause your code-completion suggestions to be wicked annoying in RStudio.
+We would basically just copy-and-paste the code over and over to force R into making the data summaries we need. Nothing wrong with this approach, and it certainly has its uses for simple summaries, but it can be cumbersome and redundant. It also fills your workspace up with tons of objects that are hard to keep track of and that will cause your code-completion suggestions to be \emph{wicked} annoying in RStudio.
 
 That usually means there is a better way to write the code\ldots{}
 
 \hypertarget{tidyverse}{%
 \subsection{Subsetting and summaries in the tidyverse}\label{tidyverse}}
 
-Long ago, when I was still a noOb writing R code with a stand-alone text editor and a console there were not a ton of packages available for the express purpose of cleaning up data manipulation in R. The one I relied on most heavily was the \texttt{plyr} package. Since then, R has grown and a lot of these functions have been gathered under the umbrella of the \href{https://www.tidyverse.org/packages/}{tidyverse}, which is a collection of specific R packages designed to make the whole process less painful. These include packages like \texttt{dplyr} (which replaced \texttt{plyr}) and others that are designed to work together with similar syntax to make data science (for us data manipulation and presentation) a lot cleaner and better standardized. We will rely heavily on packages in the tidyverse throughout this book.
+Long ago, when I was still a noOb writing R code with a stand-alone text editor and a console there were not a ton of packages available for the express purpose of cleaning up data manipulation in R. The one I relied on most heavily was the \texttt{plyr} package. Since then, R has grown and a lot of these functions have been gathered under the umbrella of the \href{https://www.tidyverse.org/packages/}{tidyverse}, which is a collection of specific R packages designed to make the whole process less painful. These include packages like \texttt{dplyr} (which replaced \texttt{plyr}) and others that are designed to work together with similar syntax to make data science (for us, data manipulation and presentation) a lot cleaner and better standardized. We will rely heavily on packages in the tidyverse throughout this book.
 
 Before we can work with these packages, however, we need to install them - something we haven't talked about yet! Most of the critical R packages are hosted through the Comprehensive R Archive Network, or \href{https://cran.r-project.org/}{CRAN}. Still, tons of others are available for installation from hosting services like GitHub and GitLab.
 
-If you haven't seen it yet, \href{https://www.youtube.com/watch?v=u1r5XTqrCTQ}{here} is a three-minute video explaining how to install packages using RStudio.
+If you haven't seen it yet, \href{https://www.youtube.com/watch?v=u1r5XTqrCTQ}{here} is a three-minute video explaining how to install packages using RStudio. \textbf{Watch it. Please.}
 
-It is also easy to do this by running a line of code in the console. We could install each of the packages in the tidyverse separately, but because the packages are so closely related, we can also get all of them at once. Follow the instructions in the link above, or install the package from the command line:
+It is also easy to install packages by running a line of code in the console. We could install each of the packages in the tidyverse separately. But we can also get all of them at once because they are all packaged together, too.
+
+Follow the instructions in the YouTube link above, or install the package from the command line:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1645,7 +1644,7 @@ Once we have installed these packages, we can use the functions in them to clean
 \hypertarget{better-data-summaries}{%
 \section{Better data summaries}\label{better-data-summaries}}
 
-Now, we'll look at some slightly more advanced summaries. Start by loading the \texttt{dplyr} package into your R session with
+Now, we'll look at some slightly more advanced summaries. Start by loading the \texttt{dplyr} package into your R session with:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1653,7 +1652,7 @@ Now, we'll look at some slightly more advanced summaries. Start by loading the \
 \end{Highlighting}
 \end{Shaded}
 
-We can use functions from the \texttt{dplyr} package to calculate mean \texttt{Length} of fish for each combindation of \texttt{Sex} and \texttt{Age} group much more easily than we did for a single group above.
+We can use functions from the \texttt{dplyr} package to calculate mean \texttt{Length} of fish for each combination of \texttt{Sex} and \texttt{Age} group much more easily than we did for a single group above.
 
 First, we group the data in \texttt{measured} data frame that we created previously using the \texttt{group\_by} function. For this, we just need to give R the data frame and the variables by which we would like to group:
 
@@ -1780,7 +1779,7 @@ In R, this looks like:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-76-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-77-1.pdf}
 
 \hypertarget{data-simulation}{%
 \section{Data simulation}\label{data-simulation}}
@@ -1818,7 +1817,7 @@ Now let's take two samples of 100 fish from our dataframe to see how they compar
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-78-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-79-1.pdf}
 *If you are struggling to get your plotting window back to ``normal'' after this, you can either click the broom button in your ``Plots'' window, or you can run the following code for now:
 
 \hypertarget{stochastic}{%
@@ -1838,7 +1837,7 @@ Start by looking at the size distribution for age 6 females. We use the tidy wor
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-80-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-81-1.pdf}
 
 Now, let's calculate the \texttt{mean} and \texttt{sd} of \texttt{Length} for age 6 females. We use \texttt{na.rm\ =\ TRUE} to tell R that it needs to ignore the \texttt{NA} values.
 
@@ -1873,7 +1872,7 @@ Now, we can use the mean and standard deviation to randomly sample our normal di
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-82-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-83-1.pdf}
 We've add a couple of new arguments to the histogram call to make it a little less ugly here. In {[}Chapter 4{]} we are going to ramp it up and play with some plots!
 
 \hypertarget{next-steps}{%
@@ -1959,7 +1958,7 @@ Make a histogram of temperature across all depths and dates just to see what we 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-85-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-86-1.pdf}
 
 The default histogram in base graphics leaves much to be desired. Thankfully, it is easy to modify the look of these figures. For example, we can add labels to the x and y-axis using \texttt{xlab} and \texttt{ylab}, and we can give the histogram a meaningful title by adding \texttt{main\ =\ ...} to the \texttt{hist()} call or remove it completely by saying \texttt{main\ =\ ""}.
 
@@ -1969,7 +1968,7 @@ The default histogram in base graphics leaves much to be desired. Thankfully, it
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-86-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-87-1.pdf}
 
 We can make the axes cross at zero if we are concerned about that. We need to do this by specifying \texttt{yaxt\ =\ "n"}, \texttt{xaxt\ =\ "n"} in the \texttt{hist()} call and then follow up by telling R exactly where to start each of the axes. In this example, I also add some changes to the color of the bars (\texttt{col}) and the color of the borders (\texttt{border}). Finally, I fix the x- and y-axis scales so I know where they'll start.
 
@@ -1998,7 +1997,7 @@ We can make the axes cross at zero if we are concerned about that. We need to do
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-87-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-88-1.pdf}
 
 \textbf{Colors!!!}
 
@@ -2020,7 +2019,7 @@ If you are a little more adventurous, you might try the \texttt{rgb()} color spe
 
 I get a transparent, purple histogram.
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-90-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-91-1.pdf}
 
 So purply.
 
@@ -2043,7 +2042,7 @@ Let's demonstrate by by plotting surface temperature (\texttt{depth} = 0.1 m) by
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-91-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-92-1.pdf}
 
 As with the \texttt{hist()} function, the default here is underwhelming. We can use many of the same arguments that we specified in \texttt{hist()} to dress this up a bit. This time, we will specify a plotting character \texttt{pch} that corresponds to a filled circle. Then, we tell R to give it an \texttt{rgb()} background (\texttt{bg}) with no color for lines that go around each point. That way the data points are darker where there is overlap between them. Finally, we use \texttt{expression()} to include the degree symbol in the y-axis label.
 
@@ -2061,7 +2060,7 @@ As with the \texttt{hist()} function, the default here is underwhelming. We can 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-92-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-93-1.pdf}
 
 This is a lot more informative because it shows us where most of the observations fall within a given month, and how much variability there is. But, it would be nice to have some summary.
 
@@ -2082,7 +2081,7 @@ For example, let's say that we want to just plot average surface temperature in 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-93-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-94-1.pdf}
 
 We could even add these to the scatter plot of our raw data using the \texttt{lines()} function. Play around with \texttt{lty} and \texttt{lwd} to see if you can figure out what they do. If you get stuck, don't forget to Google it! (Worst Stats Text eveR.)
 
@@ -2102,7 +2101,7 @@ We could even add these to the scatter plot of our raw data using the \texttt{li
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-94-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-95-1.pdf}
 
 We could also add the means to the main plot with \texttt{points()} and choose a different size or color than the raw data. We'll look at these options and more as we step up complexity.
 
@@ -2123,7 +2122,7 @@ Let's try to summarize surface temperature by month using a box plot to see how 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-95-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-96-1.pdf}
 
 Wow, that was waaaaay to easy! Have you ever tried to make one of those in Excel? Forget about it. It would take you half a day, and then when you realized you forgot ten data points you would have to do it all again.
 
@@ -2150,7 +2149,7 @@ Options are named consistently by the part of the plot. For example, \texttt{box
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-96-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-97-1.pdf}
 
 Finally, we can combine this with a scatter plot to \texttt{jitter} our raw data over the top of the boxes in each month:
 
@@ -2170,7 +2169,7 @@ Finally, we can combine this with a scatter plot to \texttt{jitter} our raw data
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-97-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-98-1.pdf}
 
 That is actually starting to look pretty snazzy! We'll continue to work to improve our base graphics as we move forward. For now, let's have a look at how to do these things in \texttt{ggplot2} next.
 
@@ -2196,7 +2195,7 @@ The default histogram is easy to create with \texttt{ggplot()} and a geometry la
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-98-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-99-1.pdf}
 
 Right away this looks a lot prettier than the default histogram that we produced with base graphics. Of course, we can customize just like we did before.
 
@@ -2215,7 +2214,7 @@ Let's add labels for the x and y-axis next:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-99-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-100-1.pdf}
 
 We can also scale the \texttt{x-axis} and the \texttt{y-axis} like we did in the base graphics example \{\#histograms\}.
 
@@ -2233,7 +2232,7 @@ We can also scale the \texttt{x-axis} and the \texttt{y-axis} like we did in the
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-100-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-101-1.pdf}
 
 We can modify each of other layers individually, all at once using preset ggplot \href{http://www.sthda.com/english/wiki/ggplot2-title-main-axis-and-legend-titles}{themes} or by modifying a pre-defined theme.
 
@@ -2259,7 +2258,7 @@ Let's have a look at how a theme changes the appearance. I am going to add \text
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-101-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-102-1.pdf}
 
 Spend some time practicing this and changing options to see what you can come up with. Be sure to check out the descriptions of the options you can pass to theme by running \texttt{?theme} to get the help file.
 
@@ -2288,7 +2287,7 @@ Now, we can make the default scatterplot:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-103-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-104-1.pdf}
 
 At a glance, this already looks a lot nicer than the default scatterplots from base graphics, but we still have a lot of work to do. Plus, we get ggplots own odd behaviors when it comes to the x-axis scale and titles. So, let's get to work!
 
@@ -2309,7 +2308,7 @@ First, we'll replace the default axis titles and add the \texttt{theme\_bw()} th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-104-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-105-1.pdf}
 
 Okay, now we need to fix that pesky x-axis scale to use whole months or text labels.
 
@@ -2338,7 +2337,7 @@ Whoa, that was a heavy lift (sarcasm). Let's see how that changes the appearance
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-106-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-107-1.pdf}
 This is starting to look really nice.
 
 Finally, we just add a little transparency to the points by specifying \texttt{alpha\ =\ 0.2} inside of \texttt{geom\_point()} and we are good to go!
@@ -2358,7 +2357,7 @@ Finally, we just add a little transparency to the points by specifying \texttt{a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-107-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-108-1.pdf}
 
 Looks just like the one we made with base graphics!
 
@@ -2390,7 +2389,7 @@ Now plot it with \texttt{ggplot()}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-109-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-110-1.pdf}
 
 There you have it!
 
@@ -2417,7 +2416,7 @@ Now, we just need to add this to our scatterplot that we made previously. To do 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-110-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-111-1.pdf}
 
 We will continue to use this approach throughout the book to plot raw data and model predictions. So, if it is giving you trouble now, spend some extra time with it.
 
@@ -2436,7 +2435,7 @@ Make the default box plot of surface water temperatures in Otsego Lake, NY. Noti
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-111-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-112-1.pdf}
 
 If we add changes we made to previous plots here, then we can get a cleaner look:
 
@@ -2456,7 +2455,7 @@ If we add changes we made to previous plots here, then we can get a cleaner look
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-112-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-113-1.pdf}
 
 And, of course, we can add our jittered, raw data points over the top to show the spread.
 
@@ -2477,7 +2476,7 @@ And, of course, we can add our jittered, raw data points over the top to show th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-113-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-114-1.pdf}
 
 \hypertarget{next-steps}{%
 \section{Next steps}\label{next-steps}}

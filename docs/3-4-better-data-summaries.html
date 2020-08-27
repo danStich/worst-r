@@ -214,9 +214,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="better-data-summaries" class="section level2">
 <h2><span class="header-section-number">3.4</span> Better data summaries</h2>
-<p>Now, we’ll look at some slightly more advanced summaries. Start by loading the <code>dplyr</code> package into your R session with</p>
+<p>Now, we’ll look at some slightly more advanced summaries. Start by loading the <code>dplyr</code> package into your R session with:</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="3-4-better-data-summaries.html#cb128-1"></a><span class="kw">library</span>(dplyr)</span></code></pre></div>
-<p>We can use functions from the <code>dplyr</code> package to calculate mean <code>Length</code> of fish for each combindation of <code>Sex</code> and <code>Age</code> group much more easily than we did for a single group above.</p>
+<p>We can use functions from the <code>dplyr</code> package to calculate mean <code>Length</code> of fish for each combination of <code>Sex</code> and <code>Age</code> group much more easily than we did for a single group above.</p>
 <p>First, we group the data in <code>measured</code> data frame that we created previously using the <code>group_by</code> function. For this, we just need to give R the data frame and the variables by which we would like to group:</p>
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="3-4-better-data-summaries.html#cb129-1"></a>g_lengths &lt;-<span class="st"> </span><span class="kw">group_by</span>(measured, Sex, Age)</span></code></pre></div>
 <p>This doesn’t change how we see the data much (it gets converted to a <a href="https://tibble.tidyverse.org/#:~:text=A%20tibble%2C%20or%20tbl_df%20%2C%20is,modern%20reimagining%20of%20the%20data.&amp;text=Tibbles%20are%20data.,a%20variable%20does%20not%20exist"><code>tibble</code></a>), just how R sees it.</p>

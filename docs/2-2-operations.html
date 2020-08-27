@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -214,66 +216,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.2</span> Vector operations</h2>
 <p>A lot of data manipulation in R is based on logical checks like the ones shown above. We can take these one step further to actually perform what one might think of as a query.</p>
 <p>For example, we can reference specific elements of vectors directly. Here, we specify that we want to print the third element of <code>a</code>.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="2-2-operations.html#cb34-1"></a><span class="co"># This one just prints it</span></span>
-<span id="cb34-2"><a href="2-2-operations.html#cb34-2"></a>a[<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="2-2-operations.html#cb43-1"></a><span class="co"># This one just prints it</span></span>
+<span id="cb43-2"><a href="2-2-operations.html#cb43-2"></a>a[<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>We might want to store that value to a new object <code>f</code> that is easier to read and type out.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="2-2-operations.html#cb36-1"></a><span class="co"># This one stores it in a new object</span></span>
-<span id="cb36-2"><a href="2-2-operations.html#cb36-2"></a>f &lt;-<span class="st"> </span>a[<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="2-2-operations.html#cb45-1"></a><span class="co"># This one stores it in a new object</span></span>
+<span id="cb45-2"><a href="2-2-operations.html#cb45-2"></a>f &lt;-<span class="st"> </span>a[<span class="dv">3</span>]</span></code></pre></div>
 <p><br></p>
 <blockquote>
 <p><strong>Important</strong></p>
 </blockquote>
 <p>If it is not yet obvious, we have to assign the output of functions to new objects for the values to be usable in the future. In the example above, <code>a</code> is never actually <em>changed</em>. This is a common source of confusion early on.</p>
 <p>Going further, we could select vector elements based on some condition. On the first line of code, we tell R to show us the indices of the elements in vector <code>b</code> that match the character string <code>c</code>. Out loud, we would say, “<code>b</code> where the value of <code>b</code> is equal to <code>c</code>” in the first example. We can also use built-in R functions to just store the indices for all elements of <code>b</code> where <code>b</code> is equal to the character string “<code>c</code>”.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="2-2-operations.html#cb37-1"></a>b[b <span class="op">==</span><span class="st"> &quot;c&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="2-2-operations.html#cb46-1"></a>b[b <span class="op">==</span><span class="st"> &quot;c&quot;</span>]</span></code></pre></div>
 <pre><code>## [1] c
 ## Levels: a b c d e</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="2-2-operations.html#cb39-1"></a><span class="kw">which</span>(b <span class="op">==</span><span class="st"> &quot;c&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="2-2-operations.html#cb48-1"></a><span class="kw">which</span>(b <span class="op">==</span><span class="st"> &quot;c&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>Perhaps more practically speaking, we can do elementwise operations on vectors easily in R. Here are a bunch of different things that you might be interested in doing with the objects that we’ve created so far. Give a few of these a try.
 Perhaps more practically speaking, we can do elementwise operations on vectors easily in R. Give a few of these a shot.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="2-2-operations.html#cb41-1"></a>a <span class="op">*</span><span class="st"> </span><span class="fl">.5</span> <span class="co"># Multiplication</span></span>
-<span id="cb41-2"><a href="2-2-operations.html#cb41-2"></a>a <span class="op">+</span><span class="st"> </span><span class="dv">100</span> <span class="co"># Addition</span></span>
-<span id="cb41-3"><a href="2-2-operations.html#cb41-3"></a>a <span class="op">-</span><span class="st"> </span><span class="dv">3</span> <span class="co"># Subtraction</span></span>
-<span id="cb41-4"><a href="2-2-operations.html#cb41-4"></a>a <span class="op">/</span><span class="st"> </span><span class="dv">2</span> <span class="co"># Division</span></span>
-<span id="cb41-5"><a href="2-2-operations.html#cb41-5"></a>a<span class="op">^</span><span class="dv">2</span> <span class="co"># Exponentiation</span></span>
-<span id="cb41-6"><a href="2-2-operations.html#cb41-6"></a><span class="kw">exp</span>(a) <span class="co"># Same as &quot;e to the a&quot;</span></span>
-<span id="cb41-7"><a href="2-2-operations.html#cb41-7"></a><span class="kw">log</span>(a) <span class="co"># Natural logarithm</span></span>
-<span id="cb41-8"><a href="2-2-operations.html#cb41-8"></a><span class="kw">log10</span>(a) <span class="co"># Log base 10</span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="2-2-operations.html#cb50-1"></a>a <span class="op">*</span><span class="st"> </span><span class="fl">.5</span> <span class="co"># Multiplication</span></span>
+<span id="cb50-2"><a href="2-2-operations.html#cb50-2"></a>a <span class="op">+</span><span class="st"> </span><span class="dv">100</span> <span class="co"># Addition</span></span>
+<span id="cb50-3"><a href="2-2-operations.html#cb50-3"></a>a <span class="op">-</span><span class="st"> </span><span class="dv">3</span> <span class="co"># Subtraction</span></span>
+<span id="cb50-4"><a href="2-2-operations.html#cb50-4"></a>a <span class="op">/</span><span class="st"> </span><span class="dv">2</span> <span class="co"># Division</span></span>
+<span id="cb50-5"><a href="2-2-operations.html#cb50-5"></a>a<span class="op">^</span><span class="dv">2</span> <span class="co"># Exponentiation</span></span>
+<span id="cb50-6"><a href="2-2-operations.html#cb50-6"></a><span class="kw">exp</span>(a) <span class="co"># Same as &quot;e to the a&quot;</span></span>
+<span id="cb50-7"><a href="2-2-operations.html#cb50-7"></a><span class="kw">log</span>(a) <span class="co"># Natural logarithm</span></span>
+<span id="cb50-8"><a href="2-2-operations.html#cb50-8"></a><span class="kw">log10</span>(a) <span class="co"># Log base 10</span></span></code></pre></div>
 <p>If we change b to <code>character</code>, we can do string manipulation, too!</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="2-2-operations.html#cb42-1"></a><span class="co"># Convert b to character</span></span>
-<span id="cb42-2"><a href="2-2-operations.html#cb42-2"></a>b &lt;-<span class="st"> </span><span class="kw">as.character</span>(b)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="2-2-operations.html#cb51-1"></a><span class="co"># Convert b to character</span></span>
+<span id="cb51-2"><a href="2-2-operations.html#cb51-2"></a>b &lt;-<span class="st"> </span><span class="kw">as.character</span>(b)</span></code></pre></div>
 <p>We can append text. Remember, the examples below will just print the result. We would have to overwrite <code>b</code> or save it to a new object if we wanted to be able to use the result somewhere else later.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="2-2-operations.html#cb43-1"></a><span class="co"># Paste an arbitrary string on to b</span></span>
-<span id="cb43-2"><a href="2-2-operations.html#cb43-2"></a><span class="kw">paste</span>(b, <span class="st">&quot;AAAA&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="2-2-operations.html#cb52-1"></a><span class="co"># Paste an arbitrary string on to b</span></span>
+<span id="cb52-2"><a href="2-2-operations.html#cb52-2"></a><span class="kw">paste</span>(b, <span class="st">&quot;AAAA&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;aAAAA&quot; &quot;bAAAA&quot; &quot;cAAAA&quot; &quot;dAAAA&quot; &quot;eAAAA&quot;</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="2-2-operations.html#cb45-1"></a><span class="co"># We can do it the other way</span></span>
-<span id="cb45-2"><a href="2-2-operations.html#cb45-2"></a><span class="kw">paste</span>(<span class="st">&quot;AAAA&quot;</span>, b, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="2-2-operations.html#cb54-1"></a><span class="co"># We can do it the other way</span></span>
+<span id="cb54-2"><a href="2-2-operations.html#cb54-2"></a><span class="kw">paste</span>(<span class="st">&quot;AAAA&quot;</span>, b, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;AAAAa&quot; &quot;AAAAb&quot; &quot;AAAAc&quot; &quot;AAAAd&quot; &quot;AAAAe&quot;</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="2-2-operations.html#cb47-1"></a><span class="co"># Add symbols to separate</span></span>
-<span id="cb47-2"><a href="2-2-operations.html#cb47-2"></a><span class="kw">paste</span>(<span class="st">&quot;AAAA&quot;</span>, b, <span class="dt">sep =</span> <span class="st">&quot;--&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="2-2-operations.html#cb56-1"></a><span class="co"># Add symbols to separate</span></span>
+<span id="cb56-2"><a href="2-2-operations.html#cb56-2"></a><span class="kw">paste</span>(<span class="st">&quot;AAAA&quot;</span>, b, <span class="dt">sep =</span> <span class="st">&quot;--&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;AAAA--a&quot; &quot;AAAA--b&quot; &quot;AAAA--c&quot; &quot;AAAA--d&quot; &quot;AAAA--e&quot;</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="2-2-operations.html#cb49-1"></a><span class="co"># We can replace text</span></span>
-<span id="cb49-2"><a href="2-2-operations.html#cb49-2"></a><span class="kw">gsub</span>(<span class="dt">pattern =</span> <span class="st">&quot;c&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;AAAA&quot;</span>, b)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="2-2-operations.html#cb58-1"></a><span class="co"># We can replace text</span></span>
+<span id="cb58-2"><a href="2-2-operations.html#cb58-2"></a><span class="kw">gsub</span>(<span class="dt">pattern =</span> <span class="st">&quot;c&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;AAAA&quot;</span>, b)</span></code></pre></div>
 <pre><code>## [1] &quot;a&quot;    &quot;b&quot;    &quot;AAAA&quot; &quot;d&quot;    &quot;e&quot;</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="2-2-operations.html#cb51-1"></a><span class="co"># Make a new object</span></span>
-<span id="cb51-2"><a href="2-2-operations.html#cb51-2"></a>e &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;AAAA&quot;</span>, b, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb51-3"><a href="2-2-operations.html#cb51-3"></a></span>
-<span id="cb51-4"><a href="2-2-operations.html#cb51-4"></a><span class="co"># Print to console</span></span>
-<span id="cb51-5"><a href="2-2-operations.html#cb51-5"></a>e</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="2-2-operations.html#cb60-1"></a><span class="co"># Make a new object</span></span>
+<span id="cb60-2"><a href="2-2-operations.html#cb60-2"></a>e &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;AAAA&quot;</span>, b, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb60-3"><a href="2-2-operations.html#cb60-3"></a></span>
+<span id="cb60-4"><a href="2-2-operations.html#cb60-4"></a><span class="co"># Print to console</span></span>
+<span id="cb60-5"><a href="2-2-operations.html#cb60-5"></a>e</span></code></pre></div>
 <pre><code>## [1] &quot;AAAAa&quot; &quot;AAAAb&quot; &quot;AAAAc&quot; &quot;AAAAd&quot; &quot;AAAAe&quot;</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="2-2-operations.html#cb53-1"></a><span class="co"># We can strip text</span></span>
-<span id="cb53-2"><a href="2-2-operations.html#cb53-2"></a><span class="co"># (or dates, or times, etc.)</span></span>
-<span id="cb53-3"><a href="2-2-operations.html#cb53-3"></a><span class="kw">substr</span>(e, <span class="dt">start =</span> <span class="dv">5</span>, <span class="dt">stop =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="2-2-operations.html#cb62-1"></a><span class="co"># We can strip text</span></span>
+<span id="cb62-2"><a href="2-2-operations.html#cb62-2"></a><span class="co"># (or dates, or times, etc.)</span></span>
+<span id="cb62-3"><a href="2-2-operations.html#cb62-3"></a><span class="kw">substr</span>(e, <span class="dt">start =</span> <span class="dv">5</span>, <span class="dt">stop =</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot;</code></pre>
 <p>We can check how many elements are in a vector.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="2-2-operations.html#cb55-1"></a><span class="co"># A has a length of 5,</span></span>
-<span id="cb55-2"><a href="2-2-operations.html#cb55-2"></a><span class="co"># try it and check it</span></span>
-<span id="cb55-3"><a href="2-2-operations.html#cb55-3"></a><span class="kw">length</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="2-2-operations.html#cb64-1"></a><span class="co"># A has a length of 5,</span></span>
+<span id="cb64-2"><a href="2-2-operations.html#cb64-2"></a><span class="co"># try it and check it</span></span>
+<span id="cb64-3"><a href="2-2-operations.html#cb64-3"></a><span class="kw">length</span>(a)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="2-2-operations.html#cb57-1"></a><span class="co"># Yup, looks about right</span></span>
-<span id="cb57-2"><a href="2-2-operations.html#cb57-2"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="2-2-operations.html#cb66-1"></a><span class="co"># Yup, looks about right</span></span>
+<span id="cb66-2"><a href="2-2-operations.html#cb66-2"></a>a</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
 <p>And we can do lots of other nifty things like this. We can also bind multiple vectors together into a rectangular <code>matrix</code>. Say what?</p>
 </div>
@@ -333,6 +335,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

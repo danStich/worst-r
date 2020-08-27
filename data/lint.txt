@@ -1,0 +1,25 @@
+species,gender,lintmass
+Species 1,Male,21.8
+Species 2,Male,14.5
+Species 3,Male,16
+Species 1,Male,19.6
+Species 2,Male,17.6
+Species 3,Male,20.3
+Species 1,Male,20.5
+Species 2,Male,15.9
+Species 3,Male,18.5
+Species 1,Male,22.4
+Species 2,Male,17.8
+Species 3,Male,19.3
+Species 1,Female,14.5
+Species 2,Female,12.1
+Species 3,Female,14.4
+Species 1,Female,15.4
+Species 2,Female,11.4
+Species 3,Female,14.7
+Species 1,Female,13
+Species 2,Female,12.7
+Species 3,Female,13.8
+Species 1,Female,16.8
+Species 2,Female,14.5
+Species 3,Female,12

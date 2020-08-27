@@ -1,0 +1,1100 @@
+year,region,country,sex,number
+1986,Africa,Senegal,Female,15.3
+1987,Africa,Mali,Female,27
+1987,Africa,Burundi,Female,27.8
+1988,Africa,Togo,Female,19.7
+1988,Africa,Zimbabwe,Female,7.2
+1988,Africa,Uganda,Female,19.1
+1988,Africa,Ghana,Female,23.4
+1990,Africa,Nigeria,Female,33.3
+1990,Africa,Mauritania,Female,42.1
+1991,Africa,United Republic of Tanzania,Female,23.3
+1991,Africa,Cameroon,Female,18.3
+1992,Africa,Namibia,Female,19.7
+1992,Africa,Senegal,Female,20.8
+1992,Africa,Burkina Faso,Female,27.5
+1992,Africa,Niger,Female,39.7
+1992,Africa,Malawi,Female,22.4
+1992,Africa,Zambia,Female,20.1
+1992,Africa,Madagascar,Female,32.6
+1992,Africa,Rwanda,Female,23.2
+1992,Africa,Algeria,Female,8.6
+1993,Africa,Kenya,Female,17.7
+1993,Africa,Ghana,Female,23.2
+1994,Africa,Central African Republic,Female,21.3
+1994,Africa,Zimbabwe,Female,9.8
+1994,Africa,Côte d'Ivoire,Female,18
+1995,Africa,Eritrea,Female,37.1
+1995,Africa,Uganda,Female,19.4
+1995,Africa,Mali,Female,37.2
+1995,Africa,Algeria,Female,10.4
+1996,Africa,Angola,Female,35.7
+1996,Africa,Zambia,Female,18.2
+1996,Africa,Benin,Female,23.8
+1996,Africa,United Republic of Tanzania,Female,25.3
+1996,Africa,Comoros,Female,18.6
+1996,Africa,Chad,Female,32.8
+1997,Africa,Equatorial Guinea,Female,12.2
+1997,Africa,Mozambique,Female,25.3
+1997,Africa,Madagascar,Female,31.1
+1998,Africa,Cameroon,Female,15.7
+1998,Africa,Burkina Faso,Female,32.2
+1998,Africa,Niger,Female,43.9
+1998,Africa,Togo,Female,20.9
+1998,Africa,Kenya,Female,15.1
+1998,Africa,Côte d'Ivoire,Female,19.7
+1998,Africa,Ghana,Female,19.9
+1999,Africa,Liberia,Female,17.7
+1999,Africa,Zambia,Female,16.7
+1999,Africa,Guinea,Female,21
+1999,Africa,United Republic of Tanzania,Female,26.8
+1999,Africa,Zimbabwe,Female,10.4
+2000,Africa,Mauritania,Female,28.2
+2000,Africa,Swaziland,Female,8.7
+2000,Africa,Burundi,Female,38.9
+2000,Africa,Comoros,Female,21.9
+2000,Africa,Kenya,Female,15.2
+2000,Africa,Malawi,Female,20.1
+2000,Africa,Chad,Female,28.3
+2000,Africa,Algeria,Female,5.6
+2000,Africa,Ethiopia,Female,39.6
+2000,Africa,Rwanda,Female,18.3
+2000,Africa,Sao Tome and Principe,Female,8.8
+2000,Africa,Senegal,Female,19.2
+2000,Africa,Uganda,Female,17
+2000,Africa,Botswana,Female,11
+2000,Africa,Central African Republic,Female,19.5
+2000,Africa,Gambia,Female,14.3
+2000,Africa,Guinea-Bissau,Female,21.5
+2000,Africa,Equatorial Guinea,Female,14.6
+2000,Africa,Lesotho,Female,12.6
+2000,Africa,Sierra Leone,Female,21.1
+2000,Africa,Gabon,Female,7.4
+2000,Africa,Namibia,Female,19.4
+2000,Africa,Niger,Female,42.4
+2001,Africa,Angola,Female,25.6
+2001,Africa,Mali,Female,28.5
+2001,Africa,Democratic Republic of the Congo,Female,30.7
+2001,Africa,Benin,Female,19.6
+2001,Africa,Zambia,Female,22.3
+2002,Africa,Eritrea,Female,33
+2002,Africa,Algeria,Female,9.6
+2003,Africa,Ghana,Female,17
+2003,Africa,Nigeria,Female,25.4
+2003,Africa,Kenya,Female,13.7
+2003,Africa,South Africa,Female,9.6
+2003,Africa,Burkina Faso,Female,33.5
+2003,Africa,Madagascar,Female,34.5
+2003,Africa,Mozambique,Female,19.9
+2004,Africa,Equatorial Guinea,Female,9.9
+2004,Africa,Lesotho,Female,15.9
+2004,Africa,Malawi,Female,17.2
+2004,Africa,United Republic of Tanzania,Female,15.4
+2004,Africa,Chad,Female,32.9
+2004,Africa,Cameroon,Female,15
+2005,Africa,Guinea,Female,20.6
+2005,Africa,Gambia,Female,15
+2005,Africa,Congo,Female,10.6
+2005,Africa,Algeria,Female,3.7
+2005,Africa,Ethiopia,Female,32.8
+2005,Africa,Rwanda,Female,17.2
+2005,Africa,Zimbabwe,Female,12.9
+2005,Africa,Senegal,Female,14.6
+2005,Africa,Sierra Leone,Female,26
+2006,Africa,Cameroon,Female,14.3
+2006,Africa,Guinea-Bissau,Female,16.7
+2006,Africa,Uganda,Female,14.6
+2006,Africa,South Sudan,Female,28.7
+2006,Africa,Benin,Female,17.6
+2006,Africa,Côte d'Ivoire,Female,14.4
+2006,Africa,Ghana,Female,12.5
+2006,Africa,Liberia,Female,18.7
+2006,Africa,Burkina Faso,Female,35.8
+2006,Africa,Central African Republic,Female,25.4
+2006,Africa,Malawi,Female,13.9
+2006,Africa,Niger,Female,37.5
+2006,Africa,Swaziland,Female,5.9
+2006,Africa,Namibia,Female,16.5
+2006,Africa,Mali,Female,26
+2006,Africa,Togo,Female,21
+2007,Africa,Botswana,Female,10.2
+2007,Africa,Guinea,Female,19.7
+2007,Africa,Mauritania,Female,22.8
+2007,Africa,Zambia,Female,13
+2007,Africa,Angola,Female,14.6
+2007,Africa,Côte d'Ivoire,Female,28.4
+2007,Africa,Democratic Republic of the Congo,Female,26.1
+2007,Africa,Nigeria,Female,24.2
+2008,Africa,Kenya,Female,15.5
+2008,Africa,Mozambique,Female,16
+2008,Africa,Togo,Female,20.5
+2008,Africa,Ghana,Female,12.9
+2008,Africa,Guinea-Bissau,Female,17
+2008,Africa,Mauritania,Female,13.9
+2008,Africa,Nigeria,Female,24.8
+2008,Africa,Sao Tome and Principe,Female,12.3
+2008,Africa,United Republic of Tanzania,Female,15.1
+2008,Africa,Sierra Leone,Female,18.5
+2009,Africa,Burkina Faso,Female,24.7
+2009,Africa,Lesotho,Female,11.1
+2009,Africa,Zimbabwe,Female,11.3
+2009,Africa,Malawi,Female,11.3
+2009,Africa,United Republic of Tanzania,Female,14.6
+2010,Africa,Central African Republic,Female,20.9
+2010,Africa,Eritrea,Female,39.4
+2010,Africa,Equatorial Guinea,Female,5.2
+2010,Africa,Malawi,Female,12.6
+2010,Africa,Rwanda,Female,10.4
+2010,Africa,Sierra Leone,Female,16.5
+2010,Africa,South Sudan,Female,24.5
+2010,Africa,Chad,Female,28.2
+2010,Africa,Togo,Female,14.4
+2010,Africa,United Republic of Tanzania,Female,12.9
+2010,Africa,Burundi,Female,26.1
+2010,Africa,Burkina Faso,Female,24.7
+2010,Africa,Senegal,Female,18.8
+2010,Africa,Sierra Leone,Female,19.6
+2010,Africa,Zimbabwe,Female,8.7
+2010,Africa,Guinea-Bissau,Female,17.1
+2010,Africa,Democratic Republic of the Congo,Female,21.3
+2010,Africa,Ethiopia,Female,27.3
+2010,Africa,Gambia,Female,16.9
+2010,Africa,Swaziland,Female,5
+2011,Africa,Mozambique,Female,13.6
+2011,Africa,Nigeria,Female,24.1
+2011,Africa,Côte d'Ivoire,Female,12.8
+2011,Africa,Ghana,Female,11.3
+2011,Africa,Mauritania,Female,23
+2011,Africa,Uganda,Female,12.8
+2011,Africa,Congo,Female,10.3
+2011,Africa,Guinea,Female,15.2
+2011,Africa,Cameroon,Female,14.5
+2012,Africa,Algeria,Female,3
+2012,Africa,Guinea,Female,18.7
+2012,Africa,Niger,Female,37.1
+2012,Africa,Senegal,Female,15.4
+2012,Africa,Gabon,Female,5
+2012,Africa,Mauritania,Female,17.2
+2012,Africa,Comoros,Female,17
+2012,Africa,Senegal,Female,13.2
+2013,Africa,Namibia,Female,11.3
+2013,Africa,Zambia,Female,13.4
+2013,Africa,Liberia,Female,13.5
+2013,Africa,Democratic Republic of the Congo,Female,21.1
+2013,Africa,Togo,Female,15.2
+2013,Africa,Sierra Leone,Female,17.1
+2013,Africa,Nigeria,Female,29
+2014,Africa,Senegal,Female,11.8
+2014,Africa,Ethiopia,Female,25.7
+2014,Africa,Nigeria,Female,18.3
+2014,Africa,Zimbabwe,Female,9.8
+1970,Americas,Canada,Female,1.7
+1981,Americas,Barbados,Female,5.7
+1986,Americas,Colombia,Female,8.1
+1986,Americas,Dominican Republic,Female,7.3
+1987,Americas,Guatemala,Female,26.6
+1987,Americas,Trinidad and Tobago,Female,4.7
+1988,Americas,El Salvador,Female,10.7
+1988,Americas,United States of America,Female,1.2
+1989,Americas,Brazil,Female,5.2
+1989,Americas,Mexico,Female,13.1
+1989,Americas,Bolivia (Plurinational State of),Female,7.5
+1990,Americas,Paraguay,Female,3.4
+1991,Americas,Peru,Female,7.9
+1991,Americas,Dominican Republic,Female,7.5
+1993,Americas,El Salvador,Female,6.1
+1993,Americas,Bolivia (Plurinational State of),Female,9.9
+1993,Americas,Nicaragua,Female,8.9
+1994,Americas,Haiti,Female,22.7
+1994,Americas,Jamaica,Female,3.5
+1995,Americas,Colombia,Female,5.5
+1995,Americas,Guatemala,Female,21.1
+1995,Americas,Jamaica,Female,2.9
+1996,Americas,Brazil,Female,4.2
+1996,Americas,Peru,Female,4.9
+1996,Americas,Dominican Republic,Female,4.1
+1996,Americas,Jamaica,Female,4.5
+1996,Americas,Honduras,Female,20.1
+1997,Americas,Jamaica,Female,3.2
+1997,Americas,Nicaragua,Female,9.6
+1997,Americas,Panama,Female,5.9
+1998,Americas,Jamaica,Female,2.6
+1998,Americas,Bolivia (Plurinational State of),Female,5.8
+1998,Americas,Mexico,Female,5.3
+1998,Americas,Nicaragua,Female,8.9
+1998,Americas,El Salvador,Female,9.3
+1998,Americas,Guatemala,Female,17.8
+1999,Americas,Uruguay,Female,4.2
+1999,Americas,United States of America,Female,0.9
+1999,Americas,Jamaica,Female,2.5
+1999,Americas,Suriname,Female,10.1
+1999,Americas,United States of America,Female,0.7
+2000,Americas,Trinidad and Tobago,Female,4.3
+2000,Americas,Colombia,Female,5
+2000,Americas,Haiti,Female,12.2
+2000,Americas,Dominican Republic,Female,2.9
+2000,Americas,Jamaica,Female,3
+2000,Americas,Guyana,Female,9.9
+2000,Americas,Peru,Female,5.1
+2001,Americas,Jamaica,Female,2.7
+2001,Americas,Honduras,Female,11.9
+2001,Americas,Nicaragua,Female,7.1
+2002,Americas,Guatemala,Female,17.5
+2002,Americas,Uruguay,Female,4.9
+2002,Americas,Jamaica,Female,2.6
+2002,Americas,Brazil,Female,3.1
+2002,Americas,Dominican Republic,Female,3.9
+2002,Americas,El Salvador,Female,5.3
+2003,Americas,Bolivia (Plurinational State of),Female,5.7
+2003,Americas,United States of America,Female,0.9
+2003,Americas,Nicaragua,Female,3.3
+2003,Americas,Uruguay,Female,4.9
+2004,Americas,Argentina,Female,2.2
+2004,Americas,Colombia,Female,4.7
+2004,Americas,Jamaica,Female,2.4
+2004,Americas,Ecuador,Female,6
+2004,Americas,Uruguay,Female,5.3
+2005,Americas,Haiti,Female,17.4
+2005,Americas,Honduras,Female,8.3
+2005,Americas,Peru,Female,4.8
+2006,Americas,Suriname,Female,7
+2006,Americas,Nicaragua,Female,5.9
+2006,Americas,Belize,Female,5.7
+2006,Americas,Guyana,Female,10
+2006,Americas,Brazil,Female,2.1
+2006,Americas,Jamaica,Female,5.1
+2006,Americas,Mexico,Female,2.6
+2007,Americas,Jamaica,Female,1.7
+2007,Americas,Uruguay,Female,3.2
+2007,Americas,Peru,Female,4.5
+2007,Americas,United States of America,Female,0.7
+2007,Americas,Dominican Republic,Female,3.7
+2008,Americas,Bolivia (Plurinational State of),Female,4
+2008,Americas,Guatemala,Female,12.1
+2008,Americas,Panama,Female,5.2
+2008,Americas,El Salvador,Female,6.7
+2008,Americas,Chile,Female,0.5
+2008,Americas,Jamaica,Female,0.9
+2008,Americas,Costa Rica,Female,1.8
+2009,Americas,Guyana,Female,9.4
+2009,Americas,Peru,Female,3.7
+2009,Americas,Colombia,Female,3.3
+2010,Americas,Suriname,Female,5.4
+2010,Americas,Peru,Female,3.9
+2010,Americas,Jamaica,Female,2.6
+2011,Americas,Peru,Female,4.3
+2011,Americas,Belize,Female,6.6
+2011,Americas,United States of America,Female,0.4
+2011,Americas,Uruguay,Female,4.2
+2011,Americas,Honduras,Female,6.5
+2011,Americas,Mexico,Female,2.8
+2011,Americas,Paraguay,Female,2.3
+2012,Americas,Barbados,Female,4.7
+2012,Americas,Haiti,Female,10.7
+2012,Americas,Jamaica,Female,2.1
+2012,Americas,Ecuador,Female,5.6
+2012,Americas,Peru,Female,3.2
+2013,Americas,Chile,Female,0.4
+2013,Americas,Dominican Republic,Female,4.1
+2014,Americas,Chile,Female,0.4
+1973,Eastern Mediterranean,Tunisia,Female,19.1
+1987,Eastern Mediterranean,Morocco,Female,13
+1988,Eastern Mediterranean,Tunisia,Female,7.7
+1988,Eastern Mediterranean,Egypt,Female,11.6
+1990,Eastern Mediterranean,Jordan,Female,4.4
+1990,Eastern Mediterranean,Pakistan,Female,37.6
+1990,Eastern Mediterranean,Pakistan,Female,36.5
+1991,Eastern Mediterranean,Yemen,Female,27.9
+1991,Eastern Mediterranean,Egypt,Female,9
+1992,Eastern Mediterranean,Egypt,Female,7.9
+1992,Eastern Mediterranean,Sudan,Female,31.9
+1992,Eastern Mediterranean,Morocco,Female,7.7
+1993,Eastern Mediterranean,Syrian Arab Republic,Female,10.4
+1994,Eastern Mediterranean,Oman,Female,6
+1994,Eastern Mediterranean,Tunisia,Female,8.3
+1995,Eastern Mediterranean,Libya,Female,3.8
+1995,Eastern Mediterranean,Egypt,Female,9.8
+1996,Eastern Mediterranean,Lebanon,Female,3.3
+1996,Eastern Mediterranean,Morocco,Female,7.2
+1997,Eastern Mediterranean,Jordan,Female,3.8
+1997,Eastern Mediterranean,Yemen,Female,45.8
+1999,Eastern Mediterranean,Oman,Female,10.9
+2000,Eastern Mediterranean,Iraq,Female,11.9
+2000,Eastern Mediterranean,Sudan,Female,36.7
+2000,Eastern Mediterranean,Egypt,Female,3.4
+2001,Eastern Mediterranean,Pakistan,Female,31
+2001,Eastern Mediterranean,Kuwait,Female,1.9
+2001,Eastern Mediterranean,Syrian Arab Republic,Female,9.4
+2002,Eastern Mediterranean,Djibouti,Female,23
+2002,Eastern Mediterranean,Jordan,Female,3.2
+2002,Eastern Mediterranean,Kuwait,Female,1.5
+2003,Eastern Mediterranean,Egypt,Female,7
+2003,Eastern Mediterranean,Kuwait,Female,1.9
+2003,Eastern Mediterranean,Yemen,Female,41.8
+2003,Eastern Mediterranean,Morocco,Female,9.2
+2004,Eastern Mediterranean,Saudi Arabia,Female,4.5
+2004,Eastern Mediterranean,Kuwait,Female,2.7
+2004,Eastern Mediterranean,Lebanon,Female,2.8
+2004,Eastern Mediterranean,Afghanistan,Female,33
+2005,Eastern Mediterranean,Kuwait,Female,2.4
+2005,Eastern Mediterranean,Egypt,Female,4.2
+2006,Eastern Mediterranean,Sudan,Female,30
+2006,Eastern Mediterranean,Djibouti,Female,26.7
+2006,Eastern Mediterranean,Syrian Arab Republic,Female,8.3
+2006,Eastern Mediterranean,Iraq,Female,6.6
+2006,Eastern Mediterranean,Tunisia,Female,2.9
+2006,Eastern Mediterranean,Kuwait,Female,3.4
+2006,Eastern Mediterranean,Somalia,Female,31.3
+2006,Eastern Mediterranean,Sudan,Female,25.9
+2007,Eastern Mediterranean,Kuwait,Female,2.7
+2007,Eastern Mediterranean,Libya,Female,4.8
+2008,Eastern Mediterranean,Kuwait,Female,1.8
+2008,Eastern Mediterranean,Egypt,Female,5.4
+2009,Eastern Mediterranean,Somalia,Female,21.3
+2009,Eastern Mediterranean,Kuwait,Female,1.5
+2009,Eastern Mediterranean,Oman,Female,8.3
+2009,Eastern Mediterranean,Jordan,Female,2.1
+2009,Eastern Mediterranean,Syrian Arab Republic,Female,8.7
+2010,Eastern Mediterranean,Kuwait,Female,1.5
+2010,Eastern Mediterranean,Morocco,Female,3.1
+2011,Eastern Mediterranean,Iraq,Female,7.4
+2011,Eastern Mediterranean,Pakistan,Female,30.4
+2011,Eastern Mediterranean,Tunisia,Female,1.4
+2011,Eastern Mediterranean,Kuwait,Female,1.8
+2011,Eastern Mediterranean,Yemen,Female,33.7
+2012,Eastern Mediterranean,Pakistan,Female,29.1
+2012,Eastern Mediterranean,Djibouti,Female,28.5
+2012,Eastern Mediterranean,Jordan,Female,2.6
+2012,Eastern Mediterranean,Kuwait,Female,2.3
+2013,Eastern Mediterranean,Kuwait,Female,3
+2014,Eastern Mediterranean,Kuwait,Female,2.6
+1980,Europe,Netherlands,Female,1.1
+1980,Europe,Hungary,Female,1.6
+1993,Europe,Turkey,Female,7.9
+1995,Europe,Kazakhstan,Female,5.1
+1996,Europe,Uzbekistan,Female,13.7
+1997,Europe,Kyrgyzstan,Female,5.6
+1998,Europe,Turkey,Female,7.1
+1998,Europe,Armenia,Female,2.6
+1999,Europe,Kazakhstan,Female,3.8
+1999,Europe,The former Yugoslav republic of Macedonia,Female,1.6
+1999,Europe,Romania,Female,2.8
+2000,Europe,Azerbaijan,Female,15
+2000,Europe,Albania,Female,14.2
+2000,Europe,Bosnia and Herzegovina,Female,3.3
+2000,Europe,Ukraine,Female,3.5
+2000,Europe,Armenia,Female,2.1
+2000,Europe,Romania,Female,2.8
+2001,Europe,Czech Republic,Female,1.6
+2001,Europe,Romania,Female,3
+2002,Europe,Romania,Female,2.9
+2002,Europe,Uzbekistan,Female,6.2
+2003,Europe,Turkey,Female,3.9
+2003,Europe,Germany,Female,1.3
+2004,Europe,The former Yugoslav republic of Macedonia,Female,1.2
+2004,Europe,Bulgaria,Female,1.9
+2005,Europe,Georgia,Female,1.9
+2005,Europe,Kyrgyzstan,Female,2.5
+2005,Europe,Republic of Moldova,Female,3.4
+2005,Europe,The former Yugoslav republic of Macedonia,Female,1.9
+2005,Europe,Montenegro,Female,1.6
+2005,Europe,Tajikistan,Female,13.3
+2005,Europe,Armenia,Female,5.2
+2005,Europe,Albania,Female,5.8
+2005,Europe,Belarus,Female,1
+2005,Europe,Serbia,Female,1.3
+2006,Europe,Uzbekistan,Female,4.3
+2006,Europe,Azerbaijan,Female,8
+2006,Europe,Bosnia and Herzegovina,Female,1
+2006,Europe,Kazakhstan,Female,4.3
+2007,Europe,Tajikistan,Female,14
+2008,Europe,Albania,Female,6
+2009,Europe,Georgia,Female,1
+2009,Europe,Kyrgyzstan,Female,4.7
+2009,Europe,Tajikistan,Female,7.7
+2010,Europe,The former Yugoslav republic of Macedonia,Female,1.4
+2010,Europe,Armenia,Female,5.9
+2010,Europe,Kazakhstan,Female,3.6
+2010,Europe,Serbia,Female,1.7
+2011,Europe,The former Yugoslav republic of Macedonia,Female,1.1
+2011,Europe,Bosnia and Herzegovina,Female,1.3
+2012,Europe,Republic of Moldova,Female,2.2
+2012,Europe,Tajikistan,Female,13.1
+2012,Europe,Kyrgyzstan,Female,3.7
+2013,Europe,Azerbaijan,Female,4.9
+2013,Europe,Montenegro,Female,0.9
+2013,Europe,Turkey,Female,2.1
+1975,South-East Asia,Nepal,Female,60.3
+1987,South-East Asia,Sri Lanka,Female,27.3
+1987,South-East Asia,Thailand,Female,16
+1989,South-East Asia,Indonesia,Female,25.4
+1991,South-East Asia,Bangladesh,Female,65.5
+1992,South-East Asia,Bangladesh,Female,63.9
+1992,South-East Asia,Indonesia,Female,26
+1992,South-East Asia,India,Female,48.8
+1993,South-East Asia,Bangladesh,Female,58.9
+1994,South-East Asia,Maldives,Female,31.9
+1994,South-East Asia,Bangladesh,Female,61.2
+1995,South-East Asia,Bangladesh,Female,58.6
+1995,South-East Asia,Indonesia,Female,25.2
+1996,South-East Asia,Bangladesh,Female,56.9
+1996,South-East Asia,Nepal,Female,42.5
+1996,South-East Asia,Bangladesh,Female,53
+1997,South-East Asia,Maldives,Female,31.2
+1997,South-East Asia,Nepal,Female,37.5
+1998,South-East Asia,India,Female,43.8
+1998,South-East Asia,Bangladesh,Female,52.8
+1998,South-East Asia,Indonesia,Female,22.8
+1999,South-East Asia,Bhutan,Female,11.5
+1999,South-East Asia,Bangladesh,Female,43.2
+1999,South-East Asia,Bangladesh,Female,50.5
+1999,South-East Asia,Indonesia,Female,21.1
+2000,South-East Asia,Sri Lanka,Female,23.8
+2000,South-East Asia,Bangladesh,Female,47.3
+2000,South-East Asia,Indonesia,Female,18.4
+2000,South-East Asia,Indonesia,Female,23.8
+2000,South-East Asia,Myanmar,Female,28.5
+2001,South-East Asia,Nepal,Female,43.7
+2001,South-East Asia,Indonesia,Female,22.4
+2001,South-East Asia,Maldives,Female,26
+2001,South-East Asia,Bangladesh,Female,44.5
+2001,South-East Asia,Indonesia,Female,20.3
+2002,South-East Asia,Democratic People's Republic of Korea,Female,16.2
+2002,South-East Asia,Bangladesh,Female,43.1
+2002,South-East Asia,Indonesia,Female,20.7
+2002,South-East Asia,Timor-Leste,Female,38.1
+2003,South-East Asia,Myanmar,Female,28.2
+2003,South-East Asia,Bangladesh,Female,41.3
+2003,South-East Asia,Indonesia,Female,20.6
+2004,South-East Asia,Bangladesh,Female,40.7
+2004,South-East Asia,Bangladesh,Female,42.7
+2004,South-East Asia,Indonesia,Female,18.7
+2005,South-East Asia,Bangladesh,Female,39.5
+2005,South-East Asia,Indonesia,Female,21.9
+2005,South-East Asia,India,Female,43.9
+2005,South-East Asia,Thailand,Female,7.1
+2006,South-East Asia,Sri Lanka,Female,20.4
+2006,South-East Asia,Nepal,Female,39.8
+2006,South-East Asia,Bangladesh,Female,40.4
+2007,South-East Asia,Indonesia,Female,18.6
+2007,South-East Asia,Timor-Leste,Female,44.5
+2007,South-East Asia,Bangladesh,Female,42.4
+2008,South-East Asia,Bhutan,Female,10.3
+2009,South-East Asia,Maldives,Female,17.2
+2009,South-East Asia,Timor-Leste,Female,43.7
+2009,South-East Asia,Sri Lanka,Female,21.6
+2009,South-East Asia,Myanmar,Female,22.1
+2009,South-East Asia,Democratic People's Republic of Korea,Female,18.8
+2010,South-East Asia,Bhutan,Female,12.3
+2010,South-East Asia,Indonesia,Female,15.7
+2011,South-East Asia,Nepal,Female,28.4
+2011,South-East Asia,Bangladesh,Female,38.8
+2012,South-East Asia,Thailand,Female,8.4
+2012,South-East Asia,Democratic People's Republic of Korea,Female,15
+2012,South-East Asia,Sri Lanka,Female,26.8
+2013,South-East Asia,Indonesia,Female,19.4
+2013,South-East Asia,Bangladesh,Female,36.9
+1970,Western Pacific,Solomon Islands,Female,15.5
+1970,Western Pacific,Singapore,Female,10.8
+1982,Western Pacific,Papua New Guinea,Female,23
+1989,Western Pacific,Solomon Islands,Female,14.2
+1990,Western Pacific,China,Female,12.1
+1992,Western Pacific,Viet Nam,Female,35.7
+1992,Western Pacific,China,Female,14.6
+1995,Western Pacific,China,Female,9.6
+1996,Western Pacific,Cambodia,Female,38.2
+1998,Western Pacific,China,Female,6.6
+1999,Western Pacific,Mongolia,Female,10.4
+1999,Western Pacific,Viet Nam,Female,30.3
+2000,Western Pacific,Singapore,Female,2.9
+2000,Western Pacific,Cambodia,Female,38.6
+2000,Western Pacific,Mongolia,Female,10.6
+2000,Western Pacific,Viet Nam,Female,26.7
+2000,Western Pacific,Viet Nam,Female,27.6
+2000,Western Pacific,China,Female,7.5
+2000,Western Pacific,Lao People's Democratic Republic,Female,34.5
+2002,Western Pacific,China,Female,6.5
+2002,Western Pacific,Viet Nam,Female,23
+2003,Western Pacific,Viet Nam,Female,24.2
+2003,Western Pacific,Philippines,Female,21.3
+2003,Western Pacific,Republic of Korea,Female,0.6
+2004,Western Pacific,Fiji,Female,5.7
+2004,Western Pacific,Viet Nam,Female,23.5
+2004,Western Pacific,Mongolia,Female,4.2
+2005,Western Pacific,China,Female,4.2
+2005,Western Pacific,Papua New Guinea,Female,14.6
+2005,Western Pacific,Viet Nam,Female,22.6
+2005,Western Pacific,Cambodia,Female,27.1
+2005,Western Pacific,Mongolia,Female,5.3
+2006,Western Pacific,Viet Nam,Female,21.9
+2006,Western Pacific,Lao People's Democratic Republic,Female,30.6
+2006,Western Pacific,Malaysia,Female,12.7
+2007,Western Pacific,Vanuatu,Female,9
+2007,Western Pacific,Viet Nam,Female,22
+2008,Western Pacific,Philippines,Female,20.6
+2008,Western Pacific,Viet Nam,Female,19.9
+2008,Western Pacific,Cambodia,Female,29.2
+2008,Western Pacific,Republic of Korea,Female,0.3
+2009,Western Pacific,Papua New Guinea,Female,26.7
+2009,Western Pacific,Viet Nam,Female,16.6
+2009,Western Pacific,Kiribati,Female,12.4
+2009,Western Pacific,Brunei Darussalam,Female,8.5
+2009,Western Pacific,China,Female,4.5
+2010,Western Pacific,Viet Nam,Female,12.1
+2010,Western Pacific,China,Female,3.3
+2010,Western Pacific,Japan,Female,3.3
+2010,Western Pacific,Mongolia,Female,4
+2010,Western Pacific,Cambodia,Female,29.1
+2011,Western Pacific,Philippines,Female,20.3
+2011,Western Pacific,Lao People's Democratic Republic,Female,26.2
+1986,Africa,Senegal,Male,19.3
+1987,Africa,Burundi,Male,32.6
+1987,Africa,Mali,Male,30.9
+1988,Africa,Ghana,Male,24.8
+1988,Africa,Zimbabwe,Male,8.7
+1988,Africa,Togo,Male,22.6
+1988,Africa,Uganda,Male,20.4
+1990,Africa,Mauritania,Male,44.6
+1990,Africa,Nigeria,Male,37
+1991,Africa,Cameroon,Male,17.6
+1991,Africa,United Republic of Tanzania,Male,27
+1992,Africa,Burkina Faso,Male,31.7
+1992,Africa,Madagascar,Male,38.3
+1992,Africa,Malawi,Male,26.3
+1992,Africa,Zambia,Male,22.4
+1992,Africa,Namibia,Male,23.4
+1992,Africa,Rwanda,Male,25.3
+1992,Africa,Senegal,Male,23.1
+1992,Africa,Algeria,Male,9.8
+1992,Africa,Niger,Male,42.1
+1993,Africa,Ghana,Male,27
+1993,Africa,Kenya,Male,22.4
+1994,Africa,Central African Republic,Male,25.2
+1994,Africa,Côte d'Ivoire,Male,23.7
+1994,Africa,Zimbabwe,Male,13.6
+1995,Africa,Algeria,Male,12.2
+1995,Africa,Mali,Male,39.2
+1995,Africa,Uganda,Male,23.8
+1995,Africa,Eritrea,Male,39.4
+1996,Africa,Chad,Male,35.9
+1996,Africa,Angola,Male,38.2
+1996,Africa,Comoros,Male,25.7
+1996,Africa,Benin,Male,29.9
+1996,Africa,Zambia,Male,21.1
+1996,Africa,United Republic of Tanzania,Male,28.4
+1997,Africa,Mozambique,Male,30.8
+1997,Africa,Equatorial Guinea,Male,15.4
+1997,Africa,Madagascar,Male,39.8
+1998,Africa,Niger,Male,46
+1998,Africa,Cameroon,Male,20.1
+1998,Africa,Côte d'Ivoire,Male,16.7
+1998,Africa,Ghana,Male,20.7
+1998,Africa,Togo,Male,25.5
+1998,Africa,Burkina Faso,Male,35.2
+1998,Africa,Kenya,Male,20
+1999,Africa,United Republic of Tanzania,Male,23.8
+1999,Africa,Guinea,Male,21.3
+1999,Africa,Zimbabwe,Male,12.6
+1999,Africa,Liberia,Male,27.6
+1999,Africa,Zambia,Male,22.2
+2000,Africa,Botswana,Male,10.3
+2000,Africa,Algeria,Male,5.3
+2000,Africa,Ethiopia,Male,44.4
+2000,Africa,Malawi,Male,23
+2000,Africa,Sierra Leone,Male,28.2
+2000,Africa,Burundi,Male,38.8
+2000,Africa,Central African Republic,Male,24.1
+2000,Africa,Namibia,Male,21.2
+2000,Africa,Niger,Male,44.7
+2000,Africa,Rwanda,Male,22.4
+2000,Africa,Senegal,Male,21.5
+2000,Africa,Comoros,Male,28
+2000,Africa,Mauritania,Male,32.7
+2000,Africa,Uganda,Male,21
+2000,Africa,Gambia,Male,16.5
+2000,Africa,Sao Tome and Principe,Male,11.5
+2000,Africa,Equatorial Guinea,Male,16.8
+2000,Africa,Kenya,Male,19.6
+2000,Africa,Swaziland,Male,9.5
+2000,Africa,Gabon,Male,10.1
+2000,Africa,Guinea-Bissau,Male,22.3
+2000,Africa,Lesotho,Male,17.4
+2000,Africa,Chad,Male,30.4
+2001,Africa,Mali,Male,31.6
+2001,Africa,Zambia,Male,24.4
+2001,Africa,Benin,Male,23.5
+2001,Africa,Democratic Republic of the Congo,Male,36.5
+2001,Africa,Angola,Male,29.4
+2002,Africa,Eritrea,Male,35.9
+2002,Africa,Algeria,Male,12.7
+2003,Africa,Mozambique,Male,22.6
+2003,Africa,Ghana,Male,20.6
+2003,Africa,Kenya,Male,19.3
+2003,Africa,Burkina Faso,Male,36.8
+2003,Africa,Madagascar,Male,39.2
+2003,Africa,Nigeria,Male,29.1
+2003,Africa,South Africa,Male,13.6
+2004,Africa,Lesotho,Male,17.3
+2004,Africa,Malawi,Male,19.7
+2004,Africa,Cameroon,Male,15.3
+2004,Africa,United Republic of Tanzania,Male,18
+2004,Africa,Equatorial Guinea,Male,11.3
+2004,Africa,Chad,Male,35
+2005,Africa,Sierra Leone,Male,30.7
+2005,Africa,Congo,Male,12.9
+2005,Africa,Algeria,Male,3.7
+2005,Africa,Ethiopia,Male,36.5
+2005,Africa,Senegal,Male,14.4
+2005,Africa,Guinea,Male,24.4
+2005,Africa,Zimbabwe,Male,15.1
+2005,Africa,Gambia,Male,16.7
+2005,Africa,Rwanda,Male,18.9
+2006,Africa,Benin,Male,22.7
+2006,Africa,Mali,Male,29.7
+2006,Africa,Namibia,Male,18.5
+2006,Africa,Burkina Faso,Male,39.5
+2006,Africa,Liberia,Male,21.9
+2006,Africa,Malawi,Male,17.2
+2006,Africa,Côte d'Ivoire,Male,18.8
+2006,Africa,Togo,Male,23.5
+2006,Africa,Ghana,Male,15.2
+2006,Africa,Niger,Male,42.1
+2006,Africa,South Sudan,Male,35.9
+2006,Africa,Swaziland,Male,6.3
+2006,Africa,Central African Republic,Male,30.6
+2006,Africa,Cameroon,Male,18.9
+2006,Africa,Guinea-Bissau,Male,18.2
+2006,Africa,Uganda,Male,18.2
+2007,Africa,Angola,Male,16.6
+2007,Africa,Botswana,Male,12.1
+2007,Africa,Guinea,Male,21.9
+2007,Africa,Mauritania,Male,23.6
+2007,Africa,Nigeria,Male,27.2
+2007,Africa,Côte d'Ivoire,Male,30.3
+2007,Africa,Democratic Republic of the Congo,Male,30.4
+2007,Africa,Zambia,Male,16.9
+2008,Africa,Kenya,Male,17.3
+2008,Africa,Mozambique,Male,20.6
+2008,Africa,Mauritania,Male,17.8
+2008,Africa,Sao Tome and Principe,Male,16.6
+2008,Africa,United Republic of Tanzania,Male,16.8
+2008,Africa,Guinea-Bissau,Male,16.2
+2008,Africa,Sierra Leone,Male,24.2
+2008,Africa,Ghana,Male,15.7
+2008,Africa,Nigeria,Male,28.6
+2008,Africa,Togo,Male,20.5
+2009,Africa,Burkina Faso,Male,27.1
+2009,Africa,Zimbabwe,Male,14.1
+2009,Africa,United Republic of Tanzania,Male,17.8
+2009,Africa,Malawi,Male,12.9
+2009,Africa,Lesotho,Male,16
+2010,Africa,Burundi,Male,32
+2010,Africa,Ethiopia,Male,30.9
+2010,Africa,Rwanda,Male,12.9
+2010,Africa,Sierra Leone,Male,20.8
+2010,Africa,Sierra Leone,Male,22.6
+2010,Africa,Swaziland,Male,6.7
+2010,Africa,Burkina Faso,Male,27.7
+2010,Africa,Central African Republic,Male,26.1
+2010,Africa,Eritrea,Male,38.1
+2010,Africa,Malawi,Male,15.2
+2010,Africa,Senegal,Male,19.7
+2010,Africa,Togo,Male,18.4
+2010,Africa,Democratic Republic of the Congo,Male,27.2
+2010,Africa,Gambia,Male,17.8
+2010,Africa,Equatorial Guinea,Male,5.9
+2010,Africa,Chad,Male,32.5
+2010,Africa,United Republic of Tanzania,Male,14.2
+2010,Africa,Zimbabwe,Male,11.5
+2010,Africa,Guinea-Bissau,Male,19.1
+2010,Africa,South Sudan,Male,30.4
+2011,Africa,Congo,Male,13.3
+2011,Africa,Côte d'Ivoire,Male,18.8
+2011,Africa,Cameroon,Male,15.8
+2011,Africa,Guinea,Male,17.3
+2011,Africa,Mauritania,Male,25.8
+2011,Africa,Uganda,Male,15.4
+2011,Africa,Mozambique,Male,17.5
+2011,Africa,Ghana,Male,15.4
+2011,Africa,Nigeria,Male,24.6
+2012,Africa,Niger,Male,38.7
+2012,Africa,Gabon,Male,7.9
+2012,Africa,Mauritania,Male,21.8
+2012,Africa,Comoros,Male,16.8
+2012,Africa,Algeria,Male,3.1
+2012,Africa,Senegal,Male,18.1
+2012,Africa,Senegal,Male,15.5
+2012,Africa,Guinea,Male,18.7
+2013,Africa,Togo,Male,17.1
+2013,Africa,Sierra Leone,Male,19.2
+2013,Africa,Namibia,Male,15.1
+2013,Africa,Zambia,Male,16.2
+2013,Africa,Nigeria,Male,32.9
+2013,Africa,Democratic Republic of the Congo,Male,25.7
+2013,Africa,Liberia,Male,16.8
+2014,Africa,Ethiopia,Male,24.8
+2014,Africa,Zimbabwe,Male,12.5
+2014,Africa,Senegal,Male,13.8
+2014,Africa,Nigeria,Male,21.3
+1970,Americas,Canada,Male,1.8
+1981,Americas,Barbados,Male,5
+1986,Americas,Colombia,Male,9
+1986,Americas,Dominican Republic,Male,11.4
+1987,Americas,Guatemala,Male,29
+1987,Americas,Trinidad and Tobago,Male,4.7
+1988,Americas,United States of America,Male,0.6
+1988,Americas,El Salvador,Male,11.6
+1989,Americas,Bolivia (Plurinational State of),Male,10.4
+1989,Americas,Brazil,Male,5.3
+1989,Americas,Mexico,Male,14.6
+1990,Americas,Paraguay,Male,2.2
+1991,Americas,Dominican Republic,Male,9.3
+1991,Americas,Peru,Male,9.7
+1993,Americas,Bolivia (Plurinational State of),Male,15.1
+1993,Americas,Nicaragua,Male,10.2
+1993,Americas,El Salvador,Male,8.2
+1994,Americas,Haiti,Male,25.3
+1994,Americas,Jamaica,Male,5.4
+1995,Americas,Colombia,Male,7
+1995,Americas,Guatemala,Male,22.3
+1995,Americas,Jamaica,Male,5
+1996,Americas,Brazil,Male,4.8
+1996,Americas,Dominican Republic,Male,5.3
+1996,Americas,Honduras,Male,18.3
+1996,Americas,Jamaica,Male,6.7
+1996,Americas,Peru,Male,6.4
+1997,Americas,Jamaica,Male,3.7
+1997,Americas,Panama,Male,6.7
+1997,Americas,Nicaragua,Male,11.1
+1998,Americas,El Salvador,Male,9.9
+1998,Americas,Mexico,Male,6.6
+1998,Americas,Nicaragua,Male,11.2
+1998,Americas,Bolivia (Plurinational State of),Male,6
+1998,Americas,Guatemala,Male,22.7
+1998,Americas,Jamaica,Male,4.1
+1999,Americas,Suriname,Male,12.6
+1999,Americas,Uruguay,Male,6.1
+1999,Americas,United States of America,Male,1.6
+1999,Americas,Jamaica,Male,2.2
+1999,Americas,United States of America,Male,1.4
+2000,Americas,Guyana,Male,13.6
+2000,Americas,Haiti,Male,15.7
+2000,Americas,Jamaica,Male,4.5
+2000,Americas,Peru,Male,5.2
+2000,Americas,Trinidad and Tobago,Male,4.4
+2000,Americas,Dominican Republic,Male,4
+2000,Americas,Colombia,Male,4.9
+2001,Americas,Honduras,Male,13.1
+2001,Americas,Jamaica,Male,5.5
+2001,Americas,Nicaragua,Male,8.4
+2002,Americas,Guatemala,Male,18
+2002,Americas,Uruguay,Male,5.9
+2002,Americas,Jamaica,Male,2.5
+2002,Americas,Dominican Republic,Male,4.6
+2002,Americas,El Salvador,Male,6.9
+2002,Americas,Brazil,Male,4.3
+2003,Americas,Bolivia (Plurinational State of),Male,6.1
+2003,Americas,Uruguay,Male,6.5
+2003,Americas,United States of America,Male,1.3
+2003,Americas,Nicaragua,Male,5.3
+2004,Americas,Jamaica,Male,3.9
+2004,Americas,Ecuador,Male,6.5
+2004,Americas,Colombia,Male,5.5
+2004,Americas,Uruguay,Male,6.7
+2004,Americas,Argentina,Male,2.4
+2005,Americas,Honduras,Male,8.9
+2005,Americas,Haiti,Male,20.4
+2005,Americas,Peru,Male,6
+2006,Americas,Jamaica,Male,2.3
+2006,Americas,Nicaragua,Male,5.6
+2006,Americas,Belize,Male,4
+2006,Americas,Guyana,Male,11.4
+2006,Americas,Suriname,Male,8
+2006,Americas,Brazil,Male,2.2
+2006,Americas,Mexico,Male,4.3
+2007,Americas,United States of America,Male,1
+2007,Americas,Peru,Male,4.5
+2007,Americas,Uruguay,Male,6.1
+2007,Americas,Dominican Republic,Male,3.2
+2007,Americas,Jamaica,Male,1.9
+2008,Americas,Panama,Male,2.8
+2008,Americas,Chile,Male,0.6
+2008,Americas,Costa Rica,Male,0.6
+2008,Americas,Jamaica,Male,3
+2008,Americas,El Salvador,Male,6.5
+2008,Americas,Guatemala,Male,13.9
+2008,Americas,Bolivia (Plurinational State of),Male,4.9
+2009,Americas,Guyana,Male,12.8
+2009,Americas,Peru,Male,4.9
+2009,Americas,Colombia,Male,3.5
+2010,Americas,Suriname,Male,6.2
+2010,Americas,Peru,Male,4.8
+2010,Americas,Jamaica,Male,3.8
+2011,Americas,Peru,Male,4.1
+2011,Americas,Honduras,Male,7.7
+2011,Americas,Uruguay,Male,4.8
+2011,Americas,Mexico,Male,2.8
+2011,Americas,United States of America,Male,0.5
+2011,Americas,Belize,Male,5.7
+2011,Americas,Paraguay,Male,2.8
+2012,Americas,Jamaica,Male,2.8
+2012,Americas,Peru,Male,3.7
+2012,Americas,Barbados,Male,2.5
+2012,Americas,Ecuador,Male,7.1
+2012,Americas,Haiti,Male,12.5
+2013,Americas,Dominican Republic,Male,3.9
+2013,Americas,Chile,Male,0.6
+2014,Americas,Chile,Male,0.6
+1973,Eastern Mediterranean,Tunisia,Male,15.5
+1987,Eastern Mediterranean,Morocco,Male,12.5
+1988,Eastern Mediterranean,Egypt,Male,11.7
+1988,Eastern Mediterranean,Tunisia,Male,9.3
+1990,Eastern Mediterranean,Jordan,Male,5.2
+1990,Eastern Mediterranean,Pakistan,Male,40.3
+1990,Eastern Mediterranean,Pakistan,Male,34.2
+1991,Eastern Mediterranean,Egypt,Male,11.9
+1991,Eastern Mediterranean,Yemen,Male,31.2
+1992,Eastern Mediterranean,Egypt,Male,8.6
+1992,Eastern Mediterranean,Morocco,Male,8.4
+1992,Eastern Mediterranean,Sudan,Male,31.7
+1993,Eastern Mediterranean,Syrian Arab Republic,Male,12.5
+1994,Eastern Mediterranean,Tunisia,Male,8
+1994,Eastern Mediterranean,Oman,Male,13.9
+1995,Eastern Mediterranean,Egypt,Male,11.6
+1995,Eastern Mediterranean,Libya,Male,4.6
+1996,Eastern Mediterranean,Morocco,Male,8.2
+1996,Eastern Mediterranean,Lebanon,Male,3.8
+1997,Eastern Mediterranean,Jordan,Male,3.9
+1997,Eastern Mediterranean,Yemen,Male,49.2
+1999,Eastern Mediterranean,Oman,Male,11.7
+2000,Eastern Mediterranean,Sudan,Male,40.2
+2000,Eastern Mediterranean,Egypt,Male,5
+2000,Eastern Mediterranean,Iraq,Male,13.9
+2001,Eastern Mediterranean,Pakistan,Male,31.6
+2001,Eastern Mediterranean,Kuwait,Male,2.5
+2001,Eastern Mediterranean,Syrian Arab Republic,Male,12.7
+2002,Eastern Mediterranean,Kuwait,Male,2.6
+2002,Eastern Mediterranean,Djibouti,Male,27.7
+2002,Eastern Mediterranean,Jordan,Male,4
+2003,Eastern Mediterranean,Yemen,Male,44.3
+2003,Eastern Mediterranean,Kuwait,Male,2.8
+2003,Eastern Mediterranean,Morocco,Male,10.5
+2003,Eastern Mediterranean,Egypt,Male,10.2
+2004,Eastern Mediterranean,Afghanistan,Male,32.7
+2004,Eastern Mediterranean,Kuwait,Male,2.9
+2004,Eastern Mediterranean,Lebanon,Male,5.4
+2004,Eastern Mediterranean,Saudi Arabia,Male,6.1
+2005,Eastern Mediterranean,Egypt,Male,6.6
+2005,Eastern Mediterranean,Kuwait,Male,2.9
+2006,Eastern Mediterranean,Iraq,Male,7.7
+2006,Eastern Mediterranean,Sudan,Male,28.1
+2006,Eastern Mediterranean,Syrian Arab Republic,Male,11.5
+2006,Eastern Mediterranean,Sudan,Male,33.4
+2006,Eastern Mediterranean,Tunisia,Male,3.7
+2006,Eastern Mediterranean,Kuwait,Male,2.1
+2006,Eastern Mediterranean,Djibouti,Male,32.1
+2006,Eastern Mediterranean,Somalia,Male,34.2
+2007,Eastern Mediterranean,Libya,Male,6.3
+2007,Eastern Mediterranean,Kuwait,Male,3.1
+2008,Eastern Mediterranean,Egypt,Male,8.1
+2008,Eastern Mediterranean,Kuwait,Male,2.8
+2009,Eastern Mediterranean,Jordan,Male,1.6
+2009,Eastern Mediterranean,Oman,Male,8.9
+2009,Eastern Mediterranean,Syrian Arab Republic,Male,11.5
+2009,Eastern Mediterranean,Kuwait,Male,2
+2009,Eastern Mediterranean,Somalia,Male,24.6
+2010,Eastern Mediterranean,Morocco,Male,3.1
+2010,Eastern Mediterranean,Kuwait,Male,1.9
+2011,Eastern Mediterranean,Yemen,Male,37.1
+2011,Eastern Mediterranean,Iraq,Male,9.4
+2011,Eastern Mediterranean,Tunisia,Male,3.2
+2011,Eastern Mediterranean,Kuwait,Male,2.4
+2011,Eastern Mediterranean,Pakistan,Male,31.4
+2012,Eastern Mediterranean,Jordan,Male,3.4
+2012,Eastern Mediterranean,Pakistan,Male,34.1
+2012,Eastern Mediterranean,Kuwait,Male,2.1
+2012,Eastern Mediterranean,Djibouti,Male,31.2
+2013,Eastern Mediterranean,Kuwait,Male,3.1
+2014,Eastern Mediterranean,Egypt,Male,7.7
+2014,Eastern Mediterranean,Kuwait,Male,3.5
+1980,Europe,Hungary,Male,2.9
+1980,Europe,Netherlands,Male,2.2
+1993,Europe,Turkey,Male,9.5
+1995,Europe,Kazakhstan,Male,8.7
+1996,Europe,Uzbekistan,Male,16.8
+1997,Europe,Kyrgyzstan,Male,10.7
+1998,Europe,Armenia,Male,2.8
+1998,Europe,Turkey,Male,7
+1999,Europe,Kazakhstan,Male,3.8
+1999,Europe,Romania,Male,4
+1999,Europe,The former Yugoslav republic of Macedonia,Male,2.1
+2000,Europe,Albania,Male,19.6
+2000,Europe,Armenia,Male,2.9
+2000,Europe,Romania,Male,4.5
+2000,Europe,Azerbaijan,Male,13.2
+2000,Europe,Bosnia and Herzegovina,Male,5.1
+2000,Europe,Ukraine,Male,4.8
+2001,Europe,Czech Republic,Male,2.5
+2001,Europe,Romania,Male,4.5
+2002,Europe,Romania,Male,4
+2002,Europe,Uzbekistan,Male,7.8
+2003,Europe,Germany,Male,0.9
+2003,Europe,Turkey,Male,3.1
+2004,Europe,Bulgaria,Male,1.3
+2004,Europe,The former Yugoslav republic of Macedonia,Male,1.2
+2005,Europe,Albania,Male,7.3
+2005,Europe,The former Yugoslav republic of Macedonia,Male,1.7
+2005,Europe,Tajikistan,Male,16.4
+2005,Europe,Belarus,Male,1.5
+2005,Europe,Montenegro,Male,2.8
+2005,Europe,Serbia,Male,2.2
+2005,Europe,Armenia,Male,3.4
+2005,Europe,Republic of Moldova,Male,3
+2005,Europe,Georgia,Male,2.6
+2005,Europe,Kyrgyzstan,Male,2.9
+2006,Europe,Kazakhstan,Male,5.4
+2006,Europe,Azerbaijan,Male,8.7
+2006,Europe,Uzbekistan,Male,4.6
+2006,Europe,Bosnia and Herzegovina,Male,2.2
+2007,Europe,Tajikistan,Male,15.9
+2008,Europe,Albania,Male,6.6
+2009,Europe,Tajikistan,Male,9
+2009,Europe,Georgia,Male,1.3
+2009,Europe,Kyrgyzstan,Male,4.7
+2010,Europe,Armenia,Male,4.7
+2010,Europe,The former Yugoslav republic of Macedonia,Male,2.8
+2010,Europe,Kazakhstan,Male,3.7
+2010,Europe,Serbia,Male,1.5
+2011,Europe,The former Yugoslav republic of Macedonia,Male,1.5
+2011,Europe,Bosnia and Herzegovina,Male,1.8
+2012,Europe,Kyrgyzstan,Male,3.7
+2012,Europe,Republic of Moldova,Male,2.1
+2012,Europe,Tajikistan,Male,13.6
+2013,Europe,Azerbaijan,Male,4.9
+2013,Europe,Montenegro,Male,1.1
+2013,Europe,Turkey,Male,1.8
+1975,South-East Asia,Nepal,Male,61.3
+1987,South-East Asia,Thailand,Male,18.7
+1987,South-East Asia,Sri Lanka,Male,31
+1989,South-East Asia,Indonesia,Male,36.4
+1991,South-East Asia,Bangladesh,Male,63.1
+1992,South-East Asia,Bangladesh,Male,63.5
+1992,South-East Asia,Indonesia,Male,33.6
+1992,South-East Asia,India,Male,52.4
+1993,South-East Asia,Bangladesh,Male,59
+1994,South-East Asia,Maldives,Male,33.2
+1994,South-East Asia,Bangladesh,Male,60.8
+1995,South-East Asia,Indonesia,Male,29.5
+1995,South-East Asia,Bangladesh,Male,57.4
+1996,South-East Asia,Bangladesh,Male,51.9
+1996,South-East Asia,Bangladesh,Male,56.4
+1996,South-East Asia,Nepal,Male,43.3
+1997,South-East Asia,Maldives,Male,53.5
+1997,South-East Asia,Nepal,Male,38.8
+1998,South-East Asia,Bangladesh,Male,53.7
+1998,South-East Asia,India,Male,45
+1998,South-East Asia,Indonesia,Male,28.6
+1999,South-East Asia,Bangladesh,Male,53.3
+1999,South-East Asia,Indonesia,Male,24.4
+1999,South-East Asia,Bangladesh,Male,41.4
+1999,South-East Asia,Bhutan,Male,16.7
+2000,South-East Asia,Indonesia,Male,24.7
+2000,South-East Asia,Sri Lanka,Male,22
+2000,South-East Asia,Bangladesh,Male,49
+2000,South-East Asia,Indonesia,Male,25.7
+2000,South-East Asia,Myanmar,Male,31.7
+2001,South-East Asia,Indonesia,Male,22.9
+2001,South-East Asia,Bangladesh,Male,46.1
+2001,South-East Asia,Indonesia,Male,24.4
+2001,South-East Asia,Maldives,Male,25.5
+2001,South-East Asia,Nepal,Male,42.3
+2002,South-East Asia,Democratic People's Republic of Korea,Male,19.2
+2002,South-East Asia,Timor-Leste,Male,43
+2002,South-East Asia,Bangladesh,Male,43.1
+2002,South-East Asia,Indonesia,Male,25.2
+2003,South-East Asia,Bangladesh,Male,40.6
+2003,South-East Asia,Indonesia,Male,25.5
+2003,South-East Asia,Myanmar,Male,31.1
+2004,South-East Asia,Bangladesh,Male,42.8
+2004,South-East Asia,Bangladesh,Male,39.9
+2004,South-East Asia,Indonesia,Male,20.7
+2005,South-East Asia,Indonesia,Male,26.9
+2005,South-East Asia,Thailand,Male,6.9
+2005,South-East Asia,India,Male,43.1
+2005,South-East Asia,Bangladesh,Male,38.9
+2006,South-East Asia,Nepal,Male,37.7
+2006,South-East Asia,Sri Lanka,Male,21.8
+2006,South-East Asia,Bangladesh,Male,39.3
+2007,South-East Asia,Bangladesh,Male,40.2
+2007,South-East Asia,Indonesia,Male,20.7
+2007,South-East Asia,Timor-Leste,Male,52.5
+2008,South-East Asia,Bhutan,Male,10.5
+2009,South-East Asia,Maldives,Male,18.4
+2009,South-East Asia,Democratic People's Republic of Korea,Male,18.8
+2009,South-East Asia,Myanmar,Male,23
+2009,South-East Asia,Timor-Leste,Male,46.8
+2009,South-East Asia,Sri Lanka,Male,21.6
+2010,South-East Asia,Bhutan,Male,13.4
+2010,South-East Asia,Indonesia,Male,19.5
+2011,South-East Asia,Nepal,Male,29.8
+2011,South-East Asia,Bangladesh,Male,34.8
+2012,South-East Asia,Sri Lanka,Male,25.7
+2012,South-East Asia,Thailand,Male,9.9
+2012,South-East Asia,Democratic People's Republic of Korea,Male,15.5
+2013,South-East Asia,Bangladesh,Male,33.4
+2013,South-East Asia,Indonesia,Male,20.5
+1970,Western Pacific,Singapore,Male,13.6
+1970,Western Pacific,Solomon Islands,Male,19.5
+1982,Western Pacific,Papua New Guinea,Male,26.2
+1989,Western Pacific,Solomon Islands,Male,18.1
+1990,Western Pacific,China,Male,13.1
+1992,Western Pacific,China,Male,13.8
+1992,Western Pacific,Viet Nam,Male,38
+1995,Western Pacific,China,Male,11.6
+1996,Western Pacific,Cambodia,Male,47
+1998,Western Pacific,China,Male,7.2
+1999,Western Pacific,Viet Nam,Male,31.9
+1999,Western Pacific,Mongolia,Male,11.3
+2000,Western Pacific,China,Male,7.3
+2000,Western Pacific,Viet Nam,Male,26.6
+2000,Western Pacific,Singapore,Male,3.6
+2000,Western Pacific,Mongolia,Male,12.6
+2000,Western Pacific,Viet Nam,Male,31.6
+2000,Western Pacific,Cambodia,Male,40.5
+2000,Western Pacific,Lao People's Democratic Republic,Male,38.4
+2002,Western Pacific,China,Male,7.2
+2002,Western Pacific,Viet Nam,Male,23.9
+2003,Western Pacific,Philippines,Male,20.3
+2003,Western Pacific,Republic of Korea,Male,1.2
+2003,Western Pacific,Viet Nam,Male,25.1
+2004,Western Pacific,Mongolia,Male,5.3
+2004,Western Pacific,Fiji,Male,4.9
+2004,Western Pacific,Viet Nam,Male,24.1
+2005,Western Pacific,China,Male,4.7
+2005,Western Pacific,Viet Nam,Male,22.9
+2005,Western Pacific,Mongolia,Male,5.3
+2005,Western Pacific,Papua New Guinea,Male,21
+2005,Western Pacific,Cambodia,Male,29.8
+2006,Western Pacific,Malaysia,Male,13.2
+2006,Western Pacific,Viet Nam,Male,22.2
+2006,Western Pacific,Lao People's Democratic Republic,Male,32.5
+2007,Western Pacific,Vanuatu,Male,14.1
+2007,Western Pacific,Viet Nam,Male,23.2
+2008,Western Pacific,Viet Nam,Male,20.5
+2008,Western Pacific,Republic of Korea,Male,0.9
+2008,Western Pacific,Philippines,Male,20.9
+2008,Western Pacific,Cambodia,Male,28.4
+2009,Western Pacific,Kiribati,Male,17.2
+2009,Western Pacific,Viet Nam,Male,18.4
+2009,Western Pacific,Brunei Darussalam,Male,10.8
+2009,Western Pacific,China,Male,4.7
+2009,Western Pacific,Papua New Guinea,Male,29
+2010,Western Pacific,Cambodia,Male,28.8
+2010,Western Pacific,China,Male,3.5
+2010,Western Pacific,Japan,Male,3.5
+2010,Western Pacific,Mongolia,Male,5.3
+2010,Western Pacific,Viet Nam,Male,11.8
+2011,Western Pacific,Philippines,Male,20.1
+2011,Western Pacific,Lao People's Democratic Republic,Male,26.8
+2012,Western Pacific,Tonga,Male,2.1
+2012,Western Pacific,Tonga,Male,2.1

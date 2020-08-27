@@ -231,7 +231,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb138-7"><a href="3-6-data-simulation.html#cb138-7"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
 <span id="cb138-8"><a href="3-6-data-simulation.html#cb138-8"></a><span class="kw">hist</span>(samp1<span class="op">$</span>Length, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span>
 <span id="cb138-9"><a href="3-6-data-simulation.html#cb138-9"></a><span class="kw">hist</span>(samp2<span class="op">$</span>Length, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-78-1.png" width="672" />
+<p><img src="worstr_files/figure-html/unnamed-chunk-79-1.png" width="672" />
 *If you are struggling to get your plotting window back to “normal” after this, you can either click the broom button in your “Plots” window, or you can run the following code for now:</p>
 </div>
 <div id="stochastic" class="section level3">
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="3-6-data-simulation.html#cb139-1"></a>am_shad <span class="op">%&gt;%</span></span>
 <span id="cb139-2"><a href="3-6-data-simulation.html#cb139-2"></a><span class="st">  </span><span class="kw">subset</span>(Age <span class="op">==</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>Sex <span class="op">==</span><span class="st"> &quot;R&quot;</span>, <span class="dt">select=</span><span class="st">&#39;Length&#39;</span>, <span class="dt">drop=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
 <span id="cb139-3"><a href="3-6-data-simulation.html#cb139-3"></a><span class="st">   </span><span class="kw">hist</span>(<span class="dt">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
 <p>Now, let’s calculate the <code>mean</code> and <code>sd</code> of <code>Length</code> for age 6 females. We use <code>na.rm = TRUE</code> to tell R that it needs to ignore the <code>NA</code> values.</p>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="3-6-data-simulation.html#cb140-1"></a><span class="co"># Calculate the mean Length </span></span>
 <span id="cb140-2"><a href="3-6-data-simulation.html#cb140-2"></a>x_bar &lt;-<span class="st"> </span>am_shad <span class="op">%&gt;%</span></span>
@@ -263,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb141-6"><a href="3-6-data-simulation.html#cb141-6"></a>  <span class="dt">main =</span> <span class="st">&quot;&quot;</span>,</span>
 <span id="cb141-7"><a href="3-6-data-simulation.html#cb141-7"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Forklength (cm)&quot;</span></span>
 <span id="cb141-8"><a href="3-6-data-simulation.html#cb141-8"></a>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-82-1.png" width="672" />
+<p><img src="worstr_files/figure-html/unnamed-chunk-83-1.png" width="672" />
 We’ve add a couple of new arguments to the histogram call to make it a little less ugly here. In [Chapter 4] we are going to ramp it up and play with some plots!</p>
 </div>
 </div>
