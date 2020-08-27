@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.17)  26 AUG 2020 22:16
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.17)  26 AUG 2020 23:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -946,15 +946,15 @@ File: worstr_files/figure-latex/unnamed-chunk-54-2.pdf Graphic file (type pdf)
 File: worstr_files/figure-latex/unnamed-chunk-54-3.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-54-3.pdf>
 [35]
-Overfull \hbox (111.75pt too wide) in paragraph at lines 1339--1339
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1340--1340
 []\TU/lmtt/m/n/10 ##  [1]  0.5  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.
-5  6.0  6.5  7.0  7.5  8.0[] 
+5  6.0  6.5  7.0  7.5[] 
  []
 
 
-Overfull \hbox (111.75pt too wide) in paragraph at lines 1339--1339
+Overfull \hbox (90.75pt too wide) in paragraph at lines 1340--1340
 []\TU/lmtt/m/n/10 ##  [1] "a" "b" "c" "d" "a" "b" "c" "d" "a" "b" "c" "d" "a" "
-b" "c" "d" "a" "b" "c" "d"[] 
+b" "c" "d" "a" "b" "c"[] 
  []
 
 [36] [37] [38
@@ -962,62 +962,62 @@ b" "c" "d" "a" "b" "c" "d"[]
 ]
 Chapter 3.
 [39] [40]
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1453--1453
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1454--1454
 []\TU/lmtt/m/n/10 ##  $ Sex           : Factor w/ 2 levels "B","R": 1 1 1 1 1 1
  1 1 1 1 ...[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 1453--1453
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1454--1454
 []\TU/lmtt/m/n/10 ##  $ yearCollected : int  2010 2010 2010 2010 2010 2010 2010
  2010 2010 2010 ...[] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1457--1458
+Underfull \hbox (badness 10000) in paragraph at lines 1458--1459
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1459--1460
+Underfull \hbox (badness 10000) in paragraph at lines 1460--1461
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1461--1462
+Underfull \hbox (badness 10000) in paragraph at lines 1462--1463
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1463--1464
+Underfull \hbox (badness 10000) in paragraph at lines 1464--1465
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1465--1467
+Underfull \hbox (badness 10000) in paragraph at lines 1466--1468
 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 1502--1502
+Overfull \hbox (43.5pt too wide) in paragraph at lines 1503--1503
 []\TU/lmtt/m/n/10 ##  Sex           Age            Length      yearCollected  b
 ackCalculated[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1502--1502
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1503--1503
 []\TU/lmtt/m/n/10 ##  B:9512   Min.   :1.000   Min.   : 3.00   Min.   :2010   M
 ode :logical[] 
  []
 
 
-Overfull \hbox (22.5pt too wide) in paragraph at lines 1502--1502
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1503--1503
 []\TU/lmtt/m/n/10 ##  R:7434   1st Qu.:2.000   1st Qu.:31.00   1st Qu.:2011   F
 ALSE:3046[] 
  []
 
 
-Overfull \hbox (27.75pt too wide) in paragraph at lines 1502--1502
+Overfull \hbox (27.75pt too wide) in paragraph at lines 1503--1503
 []\TU/lmtt/m/n/10 ##           Median :3.000   Median :38.00   Median :2012   T
 RUE :13900[] 
  []
@@ -1029,7 +1029,7 @@ File: worstr_files/figure-latex/unnamed-chunk-77-1.pdf Graphic file (type pdf)
 File: worstr_files/figure-latex/unnamed-chunk-79-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-79-1.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1820--1822
+Underfull \hbox (badness 10000) in paragraph at lines 1821--1823
 [][]
  []
 
@@ -1043,7 +1043,7 @@ File: worstr_files/figure-latex/unnamed-chunk-81-1.pdf Graphic file (type pdf)
 File: worstr_files/figure-latex/unnamed-chunk-83-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-83-1.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1875--1877
+Underfull \hbox (badness 10000) in paragraph at lines 1876--1878
 [][]
  []
 
@@ -1111,7 +1111,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [65]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 2177.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 2178.
 [66]
 File: worstr_files/figure-latex/unnamed-chunk-99-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-99-1.pdf>
@@ -1151,7 +1151,7 @@ File: worstr_files/figure-latex/unnamed-chunk-107-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-107-1.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 2340--2342
+Underfull \hbox (badness 10000) in paragraph at lines 2341--2343
 [][]
  []
 
@@ -1196,19 +1196,19 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [78]
 No file worstr.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2488.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2489.
 [79]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2488.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2489.
 (./worstr.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2488.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2488.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2489.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2489.
 
 Package rerunfilecheck Info: File `worstr.out' has not changed.
 (rerunfilecheck)             Checksum: A3B860DA4F6F4C89FE866E00774CFD89;4040.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2488.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2489.
  ) 
 Here is how much of TeX's memory you used:
  17620 strings out of 481691
