@@ -462,7 +462,7 @@ bp <- ggplot(surface, aes(x = c_month, y = temp)) +
 print(bp)
 ```
 
-And, of course, we can add our jittered, raw data points over the top to show the spread.
+And, of course, we can add our "jittered", raw data points over the top to show the spread.
 ```{r}
 bp <- ggplot(surface, aes(x = c_month, y = temp)) +
   geom_boxplot(color = 'gray40', fill = 'gray87', width = 0.4) +
@@ -480,5 +480,5 @@ print(bp)
 
 ## Next steps
 
-Hopefully this chapter provided you with a basic overview of plotting in R. If you struggled with these exercises, practice them again, or check out some additional online resources. In the coming chapters, we will continue to add functionality and complexity to how we use these kinds of plots. We'll look at how to compare two groups within a single plot in [Chapter 5](#Chapter5) when we dive into sampling distributions. And, eventually we will learn how to plot predictions from our statistical model against observed data in Chapters 6 through 10.
+Hopefully this chapter provided you with a basic overview of plotting in R. If you struggled with these exercises, practice them again, or check out some [additional online resources](https://danstich.github.io/stich/classes/BIOL217/resources.html). In the coming chapters, we will continue to add functionality and complexity to how we use these kinds of plots. We'll look at how to compare two groups within a single plot in [Chapter 6](#Chapter6) when we dive into sampling distributions. And, eventually we will learn how to plot predictions from our statistical model against observed data from Chapter 8 onward.
 
