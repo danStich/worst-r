@@ -11,7 +11,7 @@ The purpose of this chapter is to get you comfortable working with data in R and
 
 Now that you have a handle on the types of data you can expect to run into in R, let's have a look at how we read and work with data that we get from the real world.
 
-We will work with the `ctr_fish.csv` file for Chapter 3, so you will need to download the class data sets that go with this book to play along.
+We will work with the `ctr_fish.csv` file for Chapter 3, so you will need to download the class data sets that go with this book to play along. We will also need the `tidyverse` package, but instructions for installation are provided below because this is the first time we have downloaded and installed a package.
 
 ## Data read    
 
