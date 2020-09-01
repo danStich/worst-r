@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5.4 Continuous distributions | The Worst Stats Text eveR</title>
+  <meta name="description" content="5.4 Continuous distributions | The Worst Stats Text eveR" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5.4 Continuous distributions | The Worst Stats Text eveR" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5.4 Continuous distributions | The Worst Stats Text eveR" />
+  
+  
+  
+
+<meta name="author" content="Dan Stich" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="5-3-exponential-family.html"/>
+<link rel="next" href="5-5-discrete-distributions.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Worst Stats Text eveR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-where-do-i-start.html"><a href="1-3-where-do-i-start.html"><i class="fa fa-check"></i><b>1.3</b> Where do I start?</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html"><i class="fa fa-check"></i><b>1.4</b> Programming conventions</a><ul>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#style"><i class="fa fa-check"></i>Style and organization</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#tips"><i class="fa fa-check"></i>Some handy coding tips</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#rules"><i class="fa fa-check"></i>Stricter R programming rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-5-next-steps.html"><a href="1-5-next-steps.html"><i class="fa fa-check"></i><b>1.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-Chapter2.html"><a href="2-Chapter2.html"><i class="fa fa-check"></i><b>2</b> Data structures</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-vectors.html"><a href="2-1-vectors.html"><i class="fa fa-check"></i><b>2.1</b> Vectors</a><ul>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#nums"><i class="fa fa-check"></i>Integers and numerics</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#strings"><i class="fa fa-check"></i>Characters and factors</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#logicals"><i class="fa fa-check"></i>Logical vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-operations.html"><a href="2-2-operations.html"><i class="fa fa-check"></i><b>2.2</b> Vector operations</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-matrices.html"><a href="2-3-matrices.html"><i class="fa fa-check"></i><b>2.3</b> Matrices</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-dataframes.html"><a href="2-4-dataframes.html"><i class="fa fa-check"></i><b>2.4</b> Dataframes</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-lists.html"><a href="2-5-lists.html"><i class="fa fa-check"></i><b>2.5</b> Lists</a></li>
+<li class="chapter" data-level="2.6" data-path="1-5-next-steps.html"><a href="1-5-next-steps.html#next-steps"><i class="fa fa-check"></i><b>2.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-Chapter3.html"><a href="3-Chapter3.html"><i class="fa fa-check"></i><b>3</b> Working with data</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-data-read.html"><a href="3-1-data-read.html"><i class="fa fa-check"></i><b>3.1</b> Data read</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-quick-data-summaries.html"><a href="3-2-quick-data-summaries.html"><i class="fa fa-check"></i><b>3.2</b> Quick data summaries</a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html"><i class="fa fa-check"></i><b>3.3</b> Subsetting and selecting data</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#manual-subsets-and-selections"><i class="fa fa-check"></i><b>3.3.1</b> Manual subsets and selections</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#subsetting-and-summaries-in-base-r"><i class="fa fa-check"></i><b>3.3.2</b> Subsetting and summaries in base R</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#tidyverse"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting and summaries in the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-better-data-summaries.html"><a href="3-4-better-data-summaries.html"><i class="fa fa-check"></i><b>3.4</b> Better data summaries</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-creating-new-variables.html"><a href="3-5-creating-new-variables.html"><i class="fa fa-check"></i><b>3.5</b> Creating new variables</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html"><i class="fa fa-check"></i><b>3.6</b> Data simulation</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#random-sub-samples-from-a-dataset"><i class="fa fa-check"></i><b>3.6.1</b> Random sub-samples from a dataset</a></li>
+<li class="chapter" data-level="3.6.2" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#stochastic"><i class="fa fa-check"></i><b>3.6.2</b> Stochastic simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="1-5-next-steps.html"><a href="1-5-next-steps.html#next-steps"><i class="fa fa-check"></i><b>3.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-Chapter4.html"><a href="4-Chapter4.html"><i class="fa fa-check"></i><b>4</b> Plotting and graphics</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-plots-matter-as-much-as-stats.html"><a href="4-1-plots-matter-as-much-as-stats.html"><i class="fa fa-check"></i><b>4.1</b> Plots matter as much as stats</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html"><i class="fa fa-check"></i><b>4.2</b> Plotting with base R</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#histograms"><i class="fa fa-check"></i><b>4.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#scatterplots"><i class="fa fa-check"></i><b>4.2.2</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#lines"><i class="fa fa-check"></i><b>4.2.3</b> Lines</a></li>
+<li class="chapter" data-level="4.2.4" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#boxplots"><i class="fa fa-check"></i><b>4.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>4.3</b> Plotting with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gghists"><i class="fa fa-check"></i><b>4.3.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggscatter"><i class="fa fa-check"></i><b>4.3.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gglines"><i class="fa fa-check"></i><b>4.3.3</b> Lines</a></li>
+<li class="chapter" data-level="4.3.4" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggboxplots"><i class="fa fa-check"></i><b>4.3.4</b> Boxplots and</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="1-5-next-steps.html"><a href="1-5-next-steps.html#next-steps"><i class="fa fa-check"></i><b>4.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-sampling-distributions-in-r.html"><a href="5-sampling-distributions-in-r.html"><i class="fa fa-check"></i><b>5</b> Sampling distributions in R</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-what-are-sampling-distributions.html"><a href="5-1-what-are-sampling-distributions.html"><i class="fa fa-check"></i><b>5.1</b> What are sampling distributions?</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-probability-distributions-in-r.html"><a href="5-2-probability-distributions-in-r.html"><i class="fa fa-check"></i><b>5.2</b> Probability distributions in R</a></li>
+<li class="chapter" data-level="5.3" data-path="5-3-exponential-family.html"><a href="5-3-exponential-family.html"><i class="fa fa-check"></i><b>5.3</b> Exponential family</a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html"><i class="fa fa-check"></i><b>5.4</b> Continuous distributions</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-lognormal-distribution"><i class="fa fa-check"></i><b>5.4.1</b> The lognormal distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-beta-distribution"><i class="fa fa-check"></i><b>5.4.2</b> The beta distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html"><i class="fa fa-check"></i><b>5.5</b> Discrete distributions</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#bernoulli"><i class="fa fa-check"></i><b>5.5.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="5.5.2" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#binomial"><i class="fa fa-check"></i><b>5.5.2</b> Binomial</a></li>
+<li class="chapter" data-level="5.5.3" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#multinomial"><i class="fa fa-check"></i><b>5.5.3</b> Multinomial</a></li>
+<li class="chapter" data-level="5.5.4" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#poisson"><i class="fa fa-check"></i><b>5.5.4</b> Poisson</a></li>
+<li class="chapter" data-level="5.5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#the-negative-binomial-distribution"><i class="fa fa-check"></i><b>5.5.5</b> The negative binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html"><i class="fa fa-check"></i><b>5.6</b> Sample statistics</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#moments-about-the-mean"><i class="fa fa-check"></i><b>5.6.1</b> Moments about the mean</a></li>
+<li class="chapter" data-level="5.6.2" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#estimating-parameters-of-the-normal-distribution-from-a-sample"><i class="fa fa-check"></i><b>5.6.2</b> Estimating parameters of the normal distribution from a sample</a></li>
+<li class="chapter" data-level="5.6.3" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#quantiles-and-other-descriptive-statistics"><i class="fa fa-check"></i><b>5.6.3</b> Quantiles and other descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="5-7-next5.html"><a href="5-7-next5.html"><i class="fa fa-check"></i><b>5.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Worst Stats Text eveR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="continuous-distributions" class="section level2">
+<h2><span class="header-section-number">5.4</span> Continuous distributions</h2>
+<h3 id="multi">
+The normal distribution
+</h3>
+<p>This is one distribution with which most of you have at least some nodding acquaintance. It is the classic “bell curve” that college students once dreaded in upper-level courses. I don’t know if it’s a thing anymore. Go Google it.</p>
+<p>The <strong>normal distribution</strong> is defined by two parameters:</p>
+<ol style="list-style-type: decimal">
+<li><p>The mean (<span class="math inline">\(\mu\)</span>)</p></li>
+<li><p>The variance (<span class="math inline">\(\sigma^2\)</span>)</p></li>
+</ol>
+<p>Let’s take a look at what the normal distribution looks like. We’ll start with a special one called the standard normal (or <em>z</em>) distribution. The standard normal is a normal distribution with a mean of zero and a variance of 1. This one is really cool because the standard deviation (<span class="math inline">\(\sigma\)</span>) is the square-root of the variance, and in this special case <span class="math inline">\(\sqrt{1} = 1\)</span>, so the variance and standard deviation are equal! And because of this property, and other normal distribution can be converted to a standard normal using z-standardization, which we’ll talk about later. How exciting is that?</p>
+<p>First, take a sample from a normal distribution:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="5-4-continuous-distributions.html#cb2-1"></a>samp &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>Now, plot a histogram using the sick new skills you got in <a href="4-Chapter4.html#Chapter4">Chapter 4</a></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="5-4-continuous-distributions.html#cb3-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb3-2"><a href="5-4-continuous-distributions.html#cb3-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(samp), <span class="dt">binwidth =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb3-3"><a href="5-4-continuous-distributions.html#cb3-3"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb3-4"><a href="5-4-continuous-distributions.html#cb3-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb3-5"><a href="5-4-continuous-distributions.html#cb3-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Value&quot;</span>) <span class="op">+</span></span>
+<span id="cb3-6"><a href="5-4-continuous-distributions.html#cb3-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Count&quot;</span>) <span class="op">+</span></span>
+<span id="cb3-7"><a href="5-4-continuous-distributions.html#cb3-7"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb3-8"><a href="5-4-continuous-distributions.html#cb3-8"></a><span class="st">  </span><span class="kw">theme</span>(</span>
+<span id="cb3-9"><a href="5-4-continuous-distributions.html#cb3-9"></a>    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">-1</span>),</span>
+<span id="cb3-10"><a href="5-4-continuous-distributions.html#cb3-10"></a>    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb3-11"><a href="5-4-continuous-distributions.html#cb3-11"></a>    <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb3-12"><a href="5-4-continuous-distributions.html#cb3-12"></a>  )</span>
+<span id="cb3-13"><a href="5-4-continuous-distributions.html#cb3-13"></a><span class="kw">print</span>(p)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Pretty!</p>
+<p>Because this sample is from a <strong>continuous</strong> distribution, we might actually wish to represent this distribution with a probability density function. You can think of this as R calculating the relative probability of an given value. It implies a continuous surface, rather than the discrete bins like the histogram. In reality it doesn’t matter because at best we chop continuous distributions into tiny little bins when we do things like integrals, and R bases <code>binwidth</code> in histograms off a density function anyway (aaaaah!).</p>
+<p>Density plots are a new one for us, so let’s try them out. If you scroll back and forth, you’ll notice that the code below is basically identical to the histogram above except for labels and scales. We just replaced the histogram geometry (<code>geom_histogram</code>) with a density-based geometry (<code>geom_density</code>). Here, we use <code>fill = 1</code> to trick R into filling the area under the line because we have no grouping variables. By default, this is interpreted as <code>'black'</code>, so we add an alpha channel for transparency.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="5-4-continuous-distributions.html#cb4-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb4-2"><a href="5-4-continuous-distributions.html#cb4-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(samp), <span class="dt">alpha =</span> <span class="fl">.1</span>, <span class="dt">fill =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb4-3"><a href="5-4-continuous-distributions.html#cb4-3"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb4-4"><a href="5-4-continuous-distributions.html#cb4-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb4-5"><a href="5-4-continuous-distributions.html#cb4-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Value&quot;</span>) <span class="op">+</span></span>
+<span id="cb4-6"><a href="5-4-continuous-distributions.html#cb4-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Density&quot;</span>) <span class="op">+</span></span>
+<span id="cb4-7"><a href="5-4-continuous-distributions.html#cb4-7"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb4-8"><a href="5-4-continuous-distributions.html#cb4-8"></a><span class="st">  </span><span class="kw">theme</span>(</span>
+<span id="cb4-9"><a href="5-4-continuous-distributions.html#cb4-9"></a>    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">-1</span>),</span>
+<span id="cb4-10"><a href="5-4-continuous-distributions.html#cb4-10"></a>    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb4-11"><a href="5-4-continuous-distributions.html#cb4-11"></a>    <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb4-12"><a href="5-4-continuous-distributions.html#cb4-12"></a>  )</span>
+<span id="cb4-13"><a href="5-4-continuous-distributions.html#cb4-13"></a><span class="kw">print</span>(p)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Excellent use of <code>ggplot()</code> to make a figure that looks like the clunky base graphics. Maybe you can improve on it in the homework assignment?</p>
+<p>We can change the parameters of the standard normal to change both the location and the scale of our distribution. The influence of changing the mean, or average, on the location of a distribution is perhaps obvious. But, the influence of variance may be less intuitive, so let’s have a look!</p>
+<p>Create two more random samples, one with a larger <code>sd</code> and one with a smaller <code>sd</code>, to see how this changes the shape of the distribution:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="5-4-continuous-distributions.html#cb5-1"></a>samp2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="fl">1e4</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb5-2"><a href="5-4-continuous-distributions.html#cb5-2"></a>samp3 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="fl">1e4</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="fl">.5</span>)</span></code></pre></div>
+<p>Let’s put them in a data frame with <code>samp</code> so they’re easy to plot. We combine all three random samples into one column called <code>Value</code>. Then, we create a column to hold the standard deviation used in each sample (<code>Sigma</code>). If we make that one into a factor, we can use the <code>Sigma</code> columns to plot the samples as separate lines by tweaking our plotting code.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="5-4-continuous-distributions.html#cb6-1"></a>normals &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb6-2"><a href="5-4-continuous-distributions.html#cb6-2"></a>  <span class="dt">Value =</span> <span class="kw">c</span>(samp, samp2, samp3),</span>
+<span id="cb6-3"><a href="5-4-continuous-distributions.html#cb6-3"></a>  <span class="dt">Sigma =</span> <span class="kw">factor</span>(</span>
+<span id="cb6-4"><a href="5-4-continuous-distributions.html#cb6-4"></a>    <span class="kw">c</span>(</span>
+<span id="cb6-5"><a href="5-4-continuous-distributions.html#cb6-5"></a>      <span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">length</span>(samp)), </span>
+<span id="cb6-6"><a href="5-4-continuous-distributions.html#cb6-6"></a>      <span class="kw">rep</span>(<span class="dv">2</span>, <span class="kw">length</span>(samp2)), </span>
+<span id="cb6-7"><a href="5-4-continuous-distributions.html#cb6-7"></a>      <span class="kw">rep</span>(.<span class="dv">5</span>, <span class="kw">length</span>(samp3))</span>
+<span id="cb6-8"><a href="5-4-continuous-distributions.html#cb6-8"></a>    )</span>
+<span id="cb6-9"><a href="5-4-continuous-distributions.html#cb6-9"></a>  )</span>
+<span id="cb6-10"><a href="5-4-continuous-distributions.html#cb6-10"></a>)</span></code></pre></div>
+<p>Next, we can just add these to the plot to compare the sampling distributions. This time, we tell R to fill the area under our lines based on sample ID with a default color scheme by saying <code>fill = Sigma</code> in our <code>ggplot()</code> call. We also added <code>color = Sigma</code> to make the lines the same default colors. Remember, you can specify your own.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="5-4-continuous-distributions.html#cb7-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> normals, </span>
+<span id="cb7-2"><a href="5-4-continuous-distributions.html#cb7-2"></a>            <span class="kw">aes</span>(<span class="dt">x =</span> Value, <span class="dt">group =</span> Sigma, <span class="dt">fill =</span> Sigma, <span class="dt">color =</span> Sigma)) <span class="op">+</span></span>
+<span id="cb7-3"><a href="5-4-continuous-distributions.html#cb7-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">adjust =</span> <span class="fl">1.5</span>, <span class="dt">alpha =</span> <span class="fl">.4</span>) <span class="op">+</span></span>
+<span id="cb7-4"><a href="5-4-continuous-distributions.html#cb7-4"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>, <span class="dv">7</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb7-5"><a href="5-4-continuous-distributions.html#cb7-5"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb7-6"><a href="5-4-continuous-distributions.html#cb7-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Value&quot;</span>) <span class="op">+</span></span>
+<span id="cb7-7"><a href="5-4-continuous-distributions.html#cb7-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Density&quot;</span>) <span class="op">+</span></span>
+<span id="cb7-8"><a href="5-4-continuous-distributions.html#cb7-8"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb7-9"><a href="5-4-continuous-distributions.html#cb7-9"></a><span class="st">  </span><span class="kw">theme</span>(</span>
+<span id="cb7-10"><a href="5-4-continuous-distributions.html#cb7-10"></a>    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">-1</span>),</span>
+<span id="cb7-11"><a href="5-4-continuous-distributions.html#cb7-11"></a>    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb7-12"><a href="5-4-continuous-distributions.html#cb7-12"></a>    <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb7-13"><a href="5-4-continuous-distributions.html#cb7-13"></a>  )</span>
+<span id="cb7-14"><a href="5-4-continuous-distributions.html#cb7-14"></a><span class="kw">print</span>(p)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>The blue polygon in the plot above shows a distribution with greater variance than our z distribution (green). The red polygon shows a distribution with a smaller variance. Hopefully this helps demonstrate how variance influences the scale of the distribution.</p>
+<div id="the-lognormal-distribution" class="section level3">
+<h3><span class="header-section-number">5.4.1</span> The lognormal distribution</h3>
+<p>The <strong>lognormal distribution</strong> is a probability distribution that assumes our random variable is normally distributed on the <strong>log scale</strong>. This assumption allows us to incorporate <strong>skew</strong> into the normal distribution and change the location and scale of the normal distribution by transforming the parameters (<span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>) onto the log scale. This is one of the more common data transformations that you will run into, e.g.: “We log-transformed the data to achieve normality…”. One of the other reasons for that is that all values (positive or negative) transformed from the log to the real scale are positive, so it helps prevent us from making negative predictions about phenomena or variables that can’t be less than zero.</p>
+<p>Let’s take a look at how changes to the mean change the location of this distribution:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="5-4-continuous-distributions.html#cb8-1"></a><span class="co"># Create random samples from log-normal</span></span>
+<span id="cb8-2"><a href="5-4-continuous-distributions.html#cb8-2"></a><span class="co"># distributions with different means</span></span>
+<span id="cb8-3"><a href="5-4-continuous-distributions.html#cb8-3"></a>samp1 &lt;-<span class="st"> </span><span class="kw">rlnorm</span>(<span class="dt">n=</span><span class="fl">1e4</span>, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span>)</span>
+<span id="cb8-4"><a href="5-4-continuous-distributions.html#cb8-4"></a>samp2 &lt;-<span class="st"> </span><span class="kw">rlnorm</span>(<span class="dt">n=</span><span class="fl">1e4</span>, <span class="dt">mean=</span><span class="dv">1</span>, <span class="dt">sd=</span><span class="dv">1</span>)</span>
+<span id="cb8-5"><a href="5-4-continuous-distributions.html#cb8-5"></a>samp3 &lt;-<span class="st"> </span><span class="kw">rlnorm</span>(<span class="dt">n=</span><span class="fl">1e4</span>, <span class="dt">mean=</span><span class="dv">2</span>, <span class="dt">sd=</span><span class="dv">1</span>)</span>
+<span id="cb8-6"><a href="5-4-continuous-distributions.html#cb8-6"></a></span>
+<span id="cb8-7"><a href="5-4-continuous-distributions.html#cb8-7"></a><span class="co"># Put them in a data frame with the values</span></span>
+<span id="cb8-8"><a href="5-4-continuous-distributions.html#cb8-8"></a><span class="co"># of the means used to create them</span></span>
+<span id="cb8-9"><a href="5-4-continuous-distributions.html#cb8-9"></a>lognormals &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb8-10"><a href="5-4-continuous-distributions.html#cb8-10"></a>  <span class="dt">Value =</span> <span class="kw">c</span>(samp, samp2, samp3),</span>
+<span id="cb8-11"><a href="5-4-continuous-distributions.html#cb8-11"></a>  <span class="dt">X_bar =</span> <span class="kw">factor</span>(</span>
+<span id="cb8-12"><a href="5-4-continuous-distributions.html#cb8-12"></a>    <span class="kw">c</span>(</span>
+<span id="cb8-13"><a href="5-4-continuous-distributions.html#cb8-13"></a>      <span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">length</span>(samp)), </span>
+<span id="cb8-14"><a href="5-4-continuous-distributions.html#cb8-14"></a>      <span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">length</span>(samp2)), </span>
+<span id="cb8-15"><a href="5-4-continuous-distributions.html#cb8-15"></a>      <span class="kw">rep</span>(<span class="dv">2</span>, <span class="kw">length</span>(samp3))</span>
+<span id="cb8-16"><a href="5-4-continuous-distributions.html#cb8-16"></a>    )</span>
+<span id="cb8-17"><a href="5-4-continuous-distributions.html#cb8-17"></a>  )</span>
+<span id="cb8-18"><a href="5-4-continuous-distributions.html#cb8-18"></a>)</span></code></pre></div>
+<p>Now you can plot these using the code above with a couple of modifications to show how the mean of the log-normal distribution influences the location.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="5-4-continuous-distributions.html#cb9-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> lognormals,</span>
+<span id="cb9-2"><a href="5-4-continuous-distributions.html#cb9-2"></a>            <span class="kw">aes</span>(<span class="dt">x =</span> Value, <span class="dt">group =</span> X_bar, <span class="dt">fill =</span> X_bar, <span class="dt">color =</span> X_bar)) <span class="op">+</span></span>
+<span id="cb9-3"><a href="5-4-continuous-distributions.html#cb9-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">adjust =</span> <span class="fl">1.5</span>, <span class="dt">alpha =</span> <span class="fl">.4</span>) <span class="op">+</span></span>
+<span id="cb9-4"><a href="5-4-continuous-distributions.html#cb9-4"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb9-5"><a href="5-4-continuous-distributions.html#cb9-5"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb9-6"><a href="5-4-continuous-distributions.html#cb9-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Value&quot;</span>) <span class="op">+</span></span>
+<span id="cb9-7"><a href="5-4-continuous-distributions.html#cb9-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Density&quot;</span>) <span class="op">+</span></span>
+<span id="cb9-8"><a href="5-4-continuous-distributions.html#cb9-8"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb9-9"><a href="5-4-continuous-distributions.html#cb9-9"></a><span class="st">  </span><span class="kw">theme</span>(</span>
+<span id="cb9-10"><a href="5-4-continuous-distributions.html#cb9-10"></a>    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">-1</span>),</span>
+<span id="cb9-11"><a href="5-4-continuous-distributions.html#cb9-11"></a>    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb9-12"><a href="5-4-continuous-distributions.html#cb9-12"></a>    <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb9-13"><a href="5-4-continuous-distributions.html#cb9-13"></a>  )</span>
+<span id="cb9-14"><a href="5-4-continuous-distributions.html#cb9-14"></a><span class="kw">print</span>(p)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>You can see that the relative scale of these three distributions is similar, but the location shifts to the right on our x-axis as the value of <code>X_bar</code> (the mean) increases. Note also how this affects <em>kurtosis</em>.</p>
+</div>
+<div id="the-beta-distribution" class="section level3">
+<h3><span class="header-section-number">5.4.2</span> The beta distribution</h3>
+<p>The <strong>beta distribution</strong> is a probability distribution that is constrained to the interval [0, 1]. But, it is incredibly flexible in its parameterization, and as a result is very useful for stochastic simulation of variables on the probability scale, such as survival.</p>
+<p>The parameters of the beta distribution are <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, or commonly <code>a</code> and <code>b</code> or <code>shape 1</code> and <code>shape 2</code> in R. Within this distribution, <span class="math inline">\(\alpha\)</span> pushes the distribution to the right (toward 1), and <span class="math inline">\(\beta\)</span> pushes the distribution back toward the left (toward 0). The relative magnitude of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> determine the location, shape, and scale of the probability distribution for our random variable. When <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are equal, and greater than 1, the beta distribution looks like a normal distribution within the interval [0, 1].</p>
+<p>Let’s take a look:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="5-4-continuous-distributions.html#cb10-1"></a><span class="co"># Simulate random values from 3 different beta distributions</span></span>
+<span id="cb10-2"><a href="5-4-continuous-distributions.html#cb10-2"></a><span class="co"># so we can compare them</span></span>
+<span id="cb10-3"><a href="5-4-continuous-distributions.html#cb10-3"></a>samp1 &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="dt">n=</span><span class="fl">1e4</span>, <span class="dt">shape1=</span><span class="dv">50</span>, <span class="dt">shape2=</span><span class="dv">50</span>)</span>
+<span id="cb10-4"><a href="5-4-continuous-distributions.html#cb10-4"></a>samp2 &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="dt">n=</span><span class="fl">1e4</span>, <span class="dt">shape1=</span><span class="dv">50</span>, <span class="dt">shape2=</span><span class="dv">100</span>)     </span>
+<span id="cb10-5"><a href="5-4-continuous-distributions.html#cb10-5"></a>samp3 &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="dt">n=</span><span class="fl">1e4</span>, <span class="dt">shape1=</span><span class="dv">500</span>, <span class="dt">shape2=</span><span class="dv">250</span>) </span>
+<span id="cb10-6"><a href="5-4-continuous-distributions.html#cb10-6"></a></span>
+<span id="cb10-7"><a href="5-4-continuous-distributions.html#cb10-7"></a><span class="co"># Put them in a data frame with the values</span></span>
+<span id="cb10-8"><a href="5-4-continuous-distributions.html#cb10-8"></a><span class="co"># of the means used to create them. I am </span></span>
+<span id="cb10-9"><a href="5-4-continuous-distributions.html#cb10-9"></a><span class="co"># using &quot;theta&quot; because often that is how we</span></span>
+<span id="cb10-10"><a href="5-4-continuous-distributions.html#cb10-10"></a><span class="co"># refer collectively to a group of parameters</span></span>
+<span id="cb10-11"><a href="5-4-continuous-distributions.html#cb10-11"></a>betas &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb10-12"><a href="5-4-continuous-distributions.html#cb10-12"></a>  <span class="dt">Value =</span> <span class="kw">c</span>(samp, samp2, samp3),</span>
+<span id="cb10-13"><a href="5-4-continuous-distributions.html#cb10-13"></a>  <span class="dt">theta =</span> <span class="kw">factor</span>(</span>
+<span id="cb10-14"><a href="5-4-continuous-distributions.html#cb10-14"></a>    <span class="kw">c</span>(</span>
+<span id="cb10-15"><a href="5-4-continuous-distributions.html#cb10-15"></a>      <span class="kw">rep</span>(<span class="st">&#39;a = 50, b = 50&#39;</span>, <span class="kw">length</span>(samp)), </span>
+<span id="cb10-16"><a href="5-4-continuous-distributions.html#cb10-16"></a>      <span class="kw">rep</span>(<span class="st">&#39;a = 50, b = 100&#39;</span>, <span class="kw">length</span>(samp2)), </span>
+<span id="cb10-17"><a href="5-4-continuous-distributions.html#cb10-17"></a>      <span class="kw">rep</span>(<span class="st">&#39;a = 500, b = 250&#39;</span>, <span class="kw">length</span>(samp3))</span>
+<span id="cb10-18"><a href="5-4-continuous-distributions.html#cb10-18"></a>    )</span>
+<span id="cb10-19"><a href="5-4-continuous-distributions.html#cb10-19"></a>  )</span>
+<span id="cb10-20"><a href="5-4-continuous-distributions.html#cb10-20"></a>)</span></code></pre></div>
+<p>And then, we can plot them just like we did above. Copy and paste it - change what you need. Isn’t code great?. Just don’t forget to change the scale and the data in the plotting code!</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="5-4-continuous-distributions.html#cb11-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> betas,</span>
+<span id="cb11-2"><a href="5-4-continuous-distributions.html#cb11-2"></a>            <span class="kw">aes</span>(<span class="dt">x =</span> Value, <span class="dt">group =</span> theta, <span class="dt">fill =</span> theta, <span class="dt">color =</span> theta)) <span class="op">+</span></span>
+<span id="cb11-3"><a href="5-4-continuous-distributions.html#cb11-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">adjust =</span> <span class="fl">1.5</span>, <span class="dt">alpha =</span> <span class="fl">.4</span>) <span class="op">+</span></span>
+<span id="cb11-4"><a href="5-4-continuous-distributions.html#cb11-4"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb11-5"><a href="5-4-continuous-distributions.html#cb11-5"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb11-6"><a href="5-4-continuous-distributions.html#cb11-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Value&quot;</span>) <span class="op">+</span></span>
+<span id="cb11-7"><a href="5-4-continuous-distributions.html#cb11-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Density&quot;</span>) <span class="op">+</span></span>
+<span id="cb11-8"><a href="5-4-continuous-distributions.html#cb11-8"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb11-9"><a href="5-4-continuous-distributions.html#cb11-9"></a><span class="st">  </span><span class="kw">theme</span>(</span>
+<span id="cb11-10"><a href="5-4-continuous-distributions.html#cb11-10"></a>    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">-1</span>),</span>
+<span id="cb11-11"><a href="5-4-continuous-distributions.html#cb11-11"></a>    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb11-12"><a href="5-4-continuous-distributions.html#cb11-12"></a>    <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb11-13"><a href="5-4-continuous-distributions.html#cb11-13"></a>  )</span>
+<span id="cb11-14"><a href="5-4-continuous-distributions.html#cb11-14"></a><span class="kw">print</span>(p)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Play around with these to see what kind of cool shapes you can make and where they are located within the range between zero and one.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="5-3-exponential-family.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-5-discrete-distributions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["worstr.pdf", "worstr.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5.6 Calculating sample statistics and distributional parameters in R | The Worst Stats Text eveR</title>
+  <meta name="description" content="5.6 Calculating sample statistics and distributional parameters in R | The Worst Stats Text eveR" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5.6 Calculating sample statistics and distributional parameters in R | The Worst Stats Text eveR" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5.6 Calculating sample statistics and distributional parameters in R | The Worst Stats Text eveR" />
+  
+  
+  
+
+<meta name="author" content="Dan Stich" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="5-5-discrete-distributions.html"/>
+<link rel="next" href="5-7-next-steps.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Worst Stats Text eveR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-where-do-i-start.html"><a href="1-3-where-do-i-start.html"><i class="fa fa-check"></i><b>1.3</b> Where do I start?</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html"><i class="fa fa-check"></i><b>1.4</b> Programming conventions</a><ul>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#style"><i class="fa fa-check"></i>Style and organization</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#tips"><i class="fa fa-check"></i>Some handy coding tips</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#rules"><i class="fa fa-check"></i>Stricter R programming rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-5-next-steps.html"><a href="1-5-next-steps.html"><i class="fa fa-check"></i><b>1.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-Chapter2.html"><a href="2-Chapter2.html"><i class="fa fa-check"></i><b>2</b> Data structures</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-vectors.html"><a href="2-1-vectors.html"><i class="fa fa-check"></i><b>2.1</b> Vectors</a><ul>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#nums"><i class="fa fa-check"></i>Integers and numerics</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#strings"><i class="fa fa-check"></i>Characters and factors</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#logicals"><i class="fa fa-check"></i>Logical vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-operations.html"><a href="2-2-operations.html"><i class="fa fa-check"></i><b>2.2</b> Vector operations</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-matrices.html"><a href="2-3-matrices.html"><i class="fa fa-check"></i><b>2.3</b> Matrices</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-dataframes.html"><a href="2-4-dataframes.html"><i class="fa fa-check"></i><b>2.4</b> Dataframes</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-lists.html"><a href="2-5-lists.html"><i class="fa fa-check"></i><b>2.5</b> Lists</a></li>
+<li class="chapter" data-level="2.6" data-path="1-5-next-steps.html"><a href="1-5-next-steps.html#next-steps"><i class="fa fa-check"></i><b>2.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-Chapter3.html"><a href="3-Chapter3.html"><i class="fa fa-check"></i><b>3</b> Working with data</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-data-read.html"><a href="3-1-data-read.html"><i class="fa fa-check"></i><b>3.1</b> Data read</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-quick-data-summaries.html"><a href="3-2-quick-data-summaries.html"><i class="fa fa-check"></i><b>3.2</b> Quick data summaries</a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html"><i class="fa fa-check"></i><b>3.3</b> Subsetting and selecting data</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#manual-subsets-and-selections"><i class="fa fa-check"></i><b>3.3.1</b> Manual subsets and selections</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#subsetting-and-summaries-in-base-r"><i class="fa fa-check"></i><b>3.3.2</b> Subsetting and summaries in base R</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#tidyverse"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting and summaries in the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-better-data-summaries.html"><a href="3-4-better-data-summaries.html"><i class="fa fa-check"></i><b>3.4</b> Better data summaries</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-creating-new-variables.html"><a href="3-5-creating-new-variables.html"><i class="fa fa-check"></i><b>3.5</b> Creating new variables</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html"><i class="fa fa-check"></i><b>3.6</b> Data simulation</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#random-sub-samples-from-a-dataset"><i class="fa fa-check"></i><b>3.6.1</b> Random sub-samples from a dataset</a></li>
+<li class="chapter" data-level="3.6.2" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#stochastic"><i class="fa fa-check"></i><b>3.6.2</b> Stochastic simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="1-5-next-steps.html"><a href="1-5-next-steps.html#next-steps"><i class="fa fa-check"></i><b>3.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-Chapter4.html"><a href="4-Chapter4.html"><i class="fa fa-check"></i><b>4</b> Plotting and graphics</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-plots-matter-as-much-as-stats.html"><a href="4-1-plots-matter-as-much-as-stats.html"><i class="fa fa-check"></i><b>4.1</b> Plots matter as much as stats</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html"><i class="fa fa-check"></i><b>4.2</b> Plotting with base R</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#histograms"><i class="fa fa-check"></i><b>4.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#scatterplots"><i class="fa fa-check"></i><b>4.2.2</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#lines"><i class="fa fa-check"></i><b>4.2.3</b> Lines</a></li>
+<li class="chapter" data-level="4.2.4" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#boxplots"><i class="fa fa-check"></i><b>4.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>4.3</b> Plotting with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gghists"><i class="fa fa-check"></i><b>4.3.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggscatter"><i class="fa fa-check"></i><b>4.3.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gglines"><i class="fa fa-check"></i><b>4.3.3</b> Lines</a></li>
+<li class="chapter" data-level="4.3.4" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggboxplots"><i class="fa fa-check"></i><b>4.3.4</b> Boxplots and violins</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="1-5-next-steps.html"><a href="1-5-next-steps.html#next-steps"><i class="fa fa-check"></i><b>4.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-sampling-distributions-in-r.html"><a href="5-sampling-distributions-in-r.html"><i class="fa fa-check"></i><b>5</b> Sampling distributions in R</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-what-are-sampling-distributions.html"><a href="5-1-what-are-sampling-distributions.html"><i class="fa fa-check"></i><b>5.1</b> What are sampling distributions?</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-probability-distributions-in-r.html"><a href="5-2-probability-distributions-in-r.html"><i class="fa fa-check"></i><b>5.2</b> Probability distributions in R</a></li>
+<li class="chapter" data-level="5.3" data-path="5-3-exponential-family-of-distributions.html"><a href="5-3-exponential-family-of-distributions.html"><i class="fa fa-check"></i><b>5.3</b> Exponential family of distributions</a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html"><i class="fa fa-check"></i><b>5.4</b> Continuous distributions</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-normal-distribution"><i class="fa fa-check"></i><b>5.4.1</b> The normal distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-lognormal-distribution"><i class="fa fa-check"></i><b>5.4.2</b> The lognormal distribution</a></li>
+<li class="chapter" data-level="5.4.3" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-beta-distribution"><i class="fa fa-check"></i><b>5.4.3</b> The beta distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html"><i class="fa fa-check"></i><b>5.5</b> Discrete distributions</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#the-bernoulli-distribution"><i class="fa fa-check"></i><b>5.5.1</b> The Bernoulli distribution</a></li>
+<li class="chapter" data-level="5.5.2" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#the-binomial-distribution"><i class="fa fa-check"></i><b>5.5.2</b> The binomial distribution</a></li>
+<li class="chapter" data-level="5.5.3" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#the-multinomial-distribution"><i class="fa fa-check"></i><b>5.5.3</b> The multinomial distribution</a></li>
+<li class="chapter" data-level="5.5.4" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#the-poisson-distribution"><i class="fa fa-check"></i><b>5.5.4</b> The Poisson distribution</a></li>
+<li class="chapter" data-level="5.5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#the-negative-binomial-distribution"><i class="fa fa-check"></i><b>5.5.5</b> The negative binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html"><i class="fa fa-check"></i><b>5.6</b> Calculating sample statistics and distributional parameters in R</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#moments-about-the-mean"><i class="fa fa-check"></i><b>5.6.1</b> Moments about the mean</a></li>
+<li class="chapter" data-level="5.6.2" data-path="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#estimating-parameters-of-the-normal-distribution-from-a-sample"><i class="fa fa-check"></i><b>5.6.2</b> Estimating parameters of the normal distribution from a sample</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="1-5-next-steps.html"><a href="1-5-next-steps.html#next-steps"><i class="fa fa-check"></i><b>5.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Worst Stats Text eveR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="calculating-sample-statistics-and-distributional-parameters-in-r" class="section level2">
+<h2><span class="header-section-number">5.6</span> Calculating sample statistics and distributional parameters in R</h2>
+<p>In this section, we will learn how to derive the parameters of the <strong>normal distribution</strong> using a few different methods in R. We will use this opportunity to re-introduce the parameters as <strong>moments</strong> of the distribution so we can talk about what we mean by <strong>confidence intervals</strong>. We also will introduce a couple of different methods for calculating moments of a distribution. Specifically, we will look at how to derive…</p>
+<div id="moments-about-the-mean" class="section level3">
+<h3><span class="header-section-number">5.6.1</span> Moments about the mean</h3>
+<p>Sounds fancy, huh?</p>
+<ol style="list-style-type: decimal">
+<li>Zeroth moment
+<ul>
+<li>This is the sum of the total probability of the distribution 1.00, always</li>
+</ul></li>
+<li>First moment
+<ul>
+<li>The mean</li>
+<li>We will look at a few ways to calculate this</li>
+</ul></li>
+<li>Second moment
+<ul>
+<li>The variance</li>
+<li>As with the mean, we will examine a couple of options for calculating</li>
+</ul></li>
+<li>Third moment
+<ul>
+<li>Skew</li>
+<li>We won’t calculate for this class, but we have discussed, and this
+parameter contributes to the location/spread of the distribution (how
+far left or right the peak is)</li>
+</ul></li>
+<li>Fourth moment
+<ul>
+<li>Kurtosis</li>
+<li>Similarly, we won’t cover the calculation, but this is another moment
+that we have discussed with respect to departure from a z distribution
+in the normal</li>
+</ul></li>
+</ol>
+</div>
+<div id="estimating-parameters-of-the-normal-distribution-from-a-sample" class="section level3">
+<h3><span class="header-section-number">5.6.2</span> Estimating parameters of the normal distribution from a sample</h3>
+<p>The tools demonstrated below can be used for most of the probability distributions that have been implemented in R, and we could go on and on forever about them. But, for the sake of our collective sanity we will walk through the tools available using the normal distribution alone, <em>although I encourage you to explore others as applicable to the work that you are doing!</em></p>
+<div id="method-of-moments-estimator" class="section level4">
+<h4><span class="header-section-number">5.6.2.1</span> Method of moments estimator</h4>
+<p>See if you can rearrange this in a way that makes sense with how you know to
+calculate a <strong>mean</strong> and a <strong>variance</strong>!</p>
+<p>First, we’ll estimate it by making our own function:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb41-1"></a><span class="co"># Make up a vector of data to test this on</span></span>
+<span id="cb41-2"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb41-2"></a>test_norm =<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e3</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb41-3"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb41-3"></a>  </span>
+<span id="cb41-4"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb41-4"></a><span class="co"># Write the function</span></span>
+<span id="cb41-5"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb41-5"></a><span class="co"># First, define a function by name</span></span>
+<span id="cb41-6"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb41-6"></a>norm.mom =<span class="st"> </span><span class="cf">function</span>(x){      </span>
+<span id="cb41-7"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb41-7"></a>  <span class="co"># Calculate mean</span></span>
+<span id="cb41-8"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb41-8"></a>  x_bar =<span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(x)) <span class="op">*</span><span class="st"> </span><span class="kw">sum</span>(x) </span>
+<span id="cb41-9"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb41-9"></a>  <span class="co"># Calculate variance</span></span>
+<span id="cb41-10"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb41-10"></a>  sigma2 =<span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(x)) <span class="op">*</span><span class="st"> </span><span class="kw">sum</span>((x<span class="op">-</span>x_bar)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb41-11"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb41-11"></a>  <span class="co"># Return the calculations</span></span>
+<span id="cb41-12"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb41-12"></a>  <span class="kw">return</span>(<span class="kw">c</span>(x_bar, sigma2))                  </span>
+<span id="cb41-13"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb41-13"></a>}</span>
+<span id="cb41-14"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb41-14"></a><span class="co"># Test the function</span></span>
+<span id="cb41-15"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb41-15"></a><span class="kw">norm.mom</span>(test_norm)</span></code></pre></div>
+<pre><code>## [1] -0.0181036  0.9862614</code></pre>
+<p>Because this one is so common, R has built-in estimators that rely on
+the exact solution provided by the formulas for the first two moments
+of the normal distribution:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb43-1"></a><span class="kw">mean</span>(test_norm)</span></code></pre></div>
+<pre><code>## [1] -0.0181036</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb45-1"></a><span class="kw">var</span>(test_norm)</span></code></pre></div>
+<pre><code>## [1] 0.9872486</code></pre>
+<p>How do these compare to the answers returned by our function?</p>
+<blockquote>
+<p>Maximum likelihood estimator</p>
+</blockquote>
+<p>R also has built-in <strong>maximum likelihood</strong> estimators that provide an exact solution to the first two moments of the normal distribution.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb47-1"></a><span class="kw">library</span>(MASS)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:Rlab&#39;:
+## 
+##     michelson</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb50-1"></a><span class="kw">fitdistr</span>(test_norm, <span class="st">&#39;normal&#39;</span>)</span></code></pre></div>
+<pre><code>##       mean           sd     
+##   -0.01810360    0.99310693 
+##  ( 0.03140480) ( 0.02220655)</code></pre>
+<p>Only one problem here: R doesn’t report the second moment! It reports
+the square root of the second moment: the <strong>standard deviation</strong>!</p>
+<p>Finally, let’s write our own function and maximize the likelihood with the <code>optim()</code> function in R.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-1"></a><span class="co"># Define the function</span></span>
+<span id="cb52-2"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-2"></a>normal.lik =<span class="st"> </span><span class="cf">function</span>(theta, y){</span>
+<span id="cb52-3"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-3"></a>  <span class="co"># The starting value for</span></span>
+<span id="cb52-4"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-4"></a>  <span class="co"># mu that we provide</span></span>
+<span id="cb52-5"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-5"></a>  mu =<span class="st"> </span>theta[<span class="dv">1</span>]</span>
+<span id="cb52-6"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-6"></a>  <span class="co"># The starting value for</span></span>
+<span id="cb52-7"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-7"></a>  <span class="co"># sigma2 that we provide</span></span>
+<span id="cb52-8"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-8"></a>  sigma2 =<span class="st"> </span>theta[<span class="dv">2</span>]</span>
+<span id="cb52-9"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-9"></a>  <span class="co"># Number of observations in the data</span></span>
+<span id="cb52-10"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-10"></a>  n =<span class="st"> </span><span class="kw">nrow</span>(y)</span>
+<span id="cb52-11"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-11"></a>  <span class="co"># Compute the log likelihood of the</span></span>
+<span id="cb52-12"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-12"></a>  <span class="co"># data (y) using the likelihood</span></span>
+<span id="cb52-13"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-13"></a>  <span class="co"># function for the normal distribution</span></span>
+<span id="cb52-14"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-14"></a>  <span class="co"># given the starting values for our</span></span>
+<span id="cb52-15"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-15"></a>  <span class="co"># parameters (contained in the vector &#39;theta&#39;)</span></span>
+<span id="cb52-16"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-16"></a>  logl =<span class="st"> </span><span class="fl">-.5</span><span class="op">*</span>n<span class="op">*</span><span class="kw">log</span>(<span class="dv">2</span><span class="op">*</span>pi) <span class="fl">-.5</span><span class="op">*</span>n<span class="op">*</span><span class="kw">log</span>(sigma2)<span class="op">-</span>(<span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma2))<span class="op">*</span><span class="kw">sum</span>((y<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb52-17"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-17"></a>  <span class="kw">return</span>(<span class="op">-</span>logl)</span>
+<span id="cb52-18"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb52-18"></a>}</span></code></pre></div>
+<p>Now, we use the <code>optim</code> function to maximize the likelihood of the data
+(technically by minimizing the -log likehood) given different values of
+our parameters (<code>mu</code> and <code>sigma2</code>).</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb53-1"></a><span class="kw">optim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), normal.lik, <span class="dt">y=</span><span class="kw">data.frame</span>(test_norm))</span></code></pre></div>
+<pre><code>## $par
+## [1] -0.01802098  0.98617682
+## 
+## $value
+## [1] 1412.022
+## 
+## $counts
+## function gradient 
+##       37       NA 
+## 
+## $convergence
+## [1] 0
+## 
+## $message
+## NULL</code></pre>
+<p>We can also make this into an object and call the parts by name:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb55-1"></a><span class="co"># Make it into an object</span></span>
+<span id="cb55-2"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb55-2"></a>est =<span class="st"> </span><span class="kw">optim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb55-3"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb55-3"></a>            normal.lik,</span>
+<span id="cb55-4"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb55-4"></a>            <span class="dt">y=</span><span class="kw">data.frame</span>(test_norm)</span>
+<span id="cb55-5"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb55-5"></a>            ) </span>
+<span id="cb55-6"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb55-6"></a></span>
+<span id="cb55-7"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb55-7"></a><span class="co"># Look at the structure </span></span>
+<span id="cb55-8"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb55-8"></a><span class="co"># I&#39;ll be damned, it&#39;s a list!</span></span>
+<span id="cb55-9"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb55-9"></a><span class="co"># Hey, we learned about those!</span></span>
+<span id="cb55-10"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb55-10"></a><span class="kw">str</span>(est)   </span></code></pre></div>
+<pre><code>## List of 5
+##  $ par        : num [1:2] -0.018 0.986
+##  $ value      : num 1412
+##  $ counts     : Named int [1:2] 37 NA
+##   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;function&quot; &quot;gradient&quot;
+##  $ convergence: int 0
+##  $ message    : NULL</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb57-1"></a><span class="co"># Here are the estimates    </span></span>
+<span id="cb57-2"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb57-2"></a>est<span class="op">$</span>par </span></code></pre></div>
+<pre><code>## [1] -0.01802098  0.98617682</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb59-1"></a><span class="co"># The mean  </span></span>
+<span id="cb59-2"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb59-2"></a>est<span class="op">$</span>par[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] -0.01802098</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb61-1"></a><span class="co"># The variance  </span></span>
+<span id="cb61-2"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb61-2"></a>est<span class="op">$</span>par[<span class="dv">2</span>] </span></code></pre></div>
+<pre><code>## [1] 0.9861768</code></pre>
+<p>That’s better: an exact solution!</p>
+<p>Just in case you’d like to know exactly what <code>optim</code> is doing, you can find out like this:</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb63-1"></a>?optim</span></code></pre></div>
+</div>
+<div id="quantiles-and-other-descriptive-statistics" class="section level4">
+<h4><span class="header-section-number">5.6.2.2</span> Quantiles and other descriptive statistics</h4>
+<p>There are a number of other ways we might like to describe this this (or any) sampling distribution. Here are a few examples that we will work with this semester.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb64-1"></a><span class="co"># Here is the median, or 50th percentile</span></span>
+<span id="cb64-2"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb64-2"></a><span class="kw">median</span>(test_norm) </span></code></pre></div>
+<pre><code>## [1] 0.02672745</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb66-1"></a><span class="co"># The 95% confidence limits</span></span>
+<span id="cb66-2"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb66-2"></a><span class="kw">quantile</span>(test_norm, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)) </span></code></pre></div>
+<pre><code>##      2.5%     97.5% 
+## -2.007256  1.832602</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb68-1"></a><span class="co"># Inner quartile range</span></span>
+<span id="cb68-2"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb68-2"></a><span class="kw">quantile</span>(test_norm, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))    </span></code></pre></div>
+<pre><code>##        25%        75% 
+## -0.6849132  0.6602303</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb70-1"></a><span class="co"># Range of sample</span></span>
+<span id="cb70-2"><a href="5-6-calculating-sample-statistics-and-distributional-parameters-in-r.html#cb70-2"></a><span class="kw">range</span>(test_norm)                             </span></code></pre></div>
+<pre><code>## [1] -3.314976  3.249582</code></pre>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="5-5-discrete-distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-7-next-steps.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["worstr.pdf", "worstr.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
