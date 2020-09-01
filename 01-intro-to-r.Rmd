@@ -193,5 +193,5 @@ Other examples include functions like `in, if, else, for, function()` and a mess
 **Some *symbols* are also reserved for special use as "operators", like:**
 `+, -, *, % %, &, /, <, (, {, [, "", '', ...`, and a bunch of others. We will use basically all of these in just the first couple of chapters.
 
-## Next steps
+## Next steps {#next1}
 These are just some basic guidelines that should help you get started working with R and RStudio. In [Chapter 2](#data_struc), we will begin working with objects, talk about how R sees those objects, and then look at things we can do to those objects using functions.

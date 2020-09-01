@@ -519,7 +519,7 @@ myList$c[1]
 
 Very commonly, model objects and output are stored as lists. In fact, most objects that require a large amount of diverse information in R pack it all together in one place using lists, that way we always know where to find it and how as long as the objects are documented. Conceptually, every object in R, from your workspace on down the line, is a list **AND** an element of a list. It seems like a lot to take in now, but will be very useful in the future.
 
-## Next steps
+## Next steps {#next2}
 For more practice with the data structures and R functions we covered here, you can check out this <a href="https://www.youtube.com/watch?v=h_Nruq9-NQw">walk-through of basic R commands</a> from the How To R YouTube Channel.
 
 In the Chapter 3(#Chapter3), we will begin using functions from external R packages to read and work with real data.

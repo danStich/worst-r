@@ -437,7 +437,7 @@ print(s)
 
 We will continue to use this approach throughout the book to plot raw data and model predictions. So, if it is giving you trouble now, spend some extra time with it.
 
-### Boxplots and violins {#ggboxplots}
+### Boxplots and {#ggboxplots}
 To wrap up our tour of plotting examples in `ggplot2`, we will reproduce (more or less) the box plots we made in [base graphics](#boxplots).
 
 Make the default box plot of surface water temperatures in Otsego Lake, NY. Notice that we use the `c_month` variable that we made previously in the `surface` data so R knows these are groups.
@@ -478,7 +478,7 @@ bp <- ggplot(surface, aes(x = c_month, y = temp)) +
 print(bp)
 ```
 
-## Next steps
+## Next steps {#next4}
 
 Hopefully this chapter provided you with a basic overview of plotting in R. If you struggled with these exercises, practice them again, or check out some [additional online resources](https://danstich.github.io/stich/classes/BIOL217/resources.html). In the coming chapters, we will continue to add functionality and complexity to how we use these kinds of plots. We'll look at how to compare two groups within a single plot in [Chapter 6](#Chapter6) when we dive into sampling distributions. And, eventually we will learn how to plot predictions from our statistical model against observed data from Chapter 8 onward.
 

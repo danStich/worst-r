@@ -19,7 +19,7 @@ There are few things that will turn someone away from a statistical software pro
 
 Let's start by reading in a data file - this time we use real data. 
 
-The data are stored in a "comma separated values" file (`.csv` extension). This is a fairly universal format, so we read it in using the fairly universal `read.csv()` function. This would change depending on how the data were stored, or how big the data files were, but that is a topic further investigation for a later date. I probably do 95% of my data reads using `.csv` files.
+The data are stored in a "comma separated values" file (`.csv` extension). This is a fairly universal format, so we read it in using the fairly universal `read.csv()` function. This would change depending on how the data were stored, or how big the data files were, but that is a topic further investigation for a later date. I probably do 95% of my data reads using `.csv` files. We'll look at a few others later.
 
 **Important** Remember that I am assuming your scripts are in the same directory (folder) on your computer as where you downloaded and unzipped the class data (see [here](https://danstich.github.io/stich/classes/BIOL217/software.html) for reminder).
 
@@ -178,7 +178,7 @@ install.packages('tidyverse')
 Once we have installed these packages, we can use the functions in them to clean up our data manipulation pipeline and get some really useful information.
 
 ## Better data summaries
-Now, we'll look at some slightly more advanced summaries. Start by loading the `dplyr` package into your R session with:
+Now, we'll look at some slightly more advanced summaries. Start by loading the `dplyr` package into your R session with the following code.
 
 ```{r message=FALSE, warning=FALSE}
 library(dplyr)
@@ -322,7 +322,7 @@ am_shad %>%
    hist(main = "")
 ```
 
-Now, let's calculate the `mean` and `sd` of `Length` for age 6 females. We use `na.rm = TRUE` to tell R that it needs to ignore the `NA` values.
+Now, let's calculate the `mean` and `sd` of `Length` for age 6 females.
 ```{r}
 # Calculate the mean Length 
 x_bar <- am_shad %>%
@@ -340,6 +340,7 @@ Note that we could also use the `filter()` function from the `dplyr` package for
 
 Now, we can use the mean and standard deviation to randomly sample our normal distribution of lengths. 
 ```{r}
+# Take a random sample from a normal distribution
 length_sample <- rnorm(n = 10000, mean = x_bar, sd = sigma)
 
 # Plot the sample to see if it is a normal- YAY it is!
@@ -349,7 +350,7 @@ hist(length_sample,
   xlab = "Forklength (cm)"
 )
 ```
-We've add a couple of new arguments to the histogram call to make it a little less ugly here. In [Chapter 4] we are going to ramp it up and play with some plots!
+We've add a couple of new arguments to the histogram call to make it a little less ugly here. In [Chapter 4](#Chapter4) we are going to ramp it up and play with some plots!
 
-## Next steps
+## Next steps {#next3}
 In this chapter, we provided a general overview of our work flow when it comes to reading in data and manipulating them to get useful summaries. In [Chapter 4](#Chapter4) we will use these processes to help us visualize important trends in these summaries before we begin working with descriptive statistics and sampling distributions in [Chapter 5](#Chapter5).
