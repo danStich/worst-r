@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6.2 One-sample tests | The Worst Stats Text eveR</title>
+  <meta name="description" content="6.2 One-sample tests | The Worst Stats Text eveR" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6.2 One-sample tests | The Worst Stats Text eveR" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6.2 One-sample tests | The Worst Stats Text eveR" />
+  
+  
+  
+
+<meta name="author" content="Dan Stich" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="6-1-libraries-and-data.html"/>
+<link rel="next" href="6-3-two-sample-tests.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Worst Stats Text eveR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-where-do-i-start.html"><a href="1-3-where-do-i-start.html"><i class="fa fa-check"></i><b>1.3</b> Where do I start?</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html"><i class="fa fa-check"></i><b>1.4</b> Programming conventions</a><ul>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#style"><i class="fa fa-check"></i>Style and organization</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#tips"><i class="fa fa-check"></i>Some handy coding tips</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#rules"><i class="fa fa-check"></i>Stricter R programming rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-5-next1.html"><a href="1-5-next1.html"><i class="fa fa-check"></i><b>1.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-Chapter2.html"><a href="2-Chapter2.html"><i class="fa fa-check"></i><b>2</b> Data structures</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-vectors.html"><a href="2-1-vectors.html"><i class="fa fa-check"></i><b>2.1</b> Vectors</a><ul>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#nums"><i class="fa fa-check"></i>Integers and numerics</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#strings"><i class="fa fa-check"></i>Characters and factors</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#logicals"><i class="fa fa-check"></i>Logical vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-operations.html"><a href="2-2-operations.html"><i class="fa fa-check"></i><b>2.2</b> Vector operations</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-matrices.html"><a href="2-3-matrices.html"><i class="fa fa-check"></i><b>2.3</b> Matrices</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-dataframes.html"><a href="2-4-dataframes.html"><i class="fa fa-check"></i><b>2.4</b> Dataframes</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-lists.html"><a href="2-5-lists.html"><i class="fa fa-check"></i><b>2.5</b> Lists</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-next2.html"><a href="2-6-next2.html"><i class="fa fa-check"></i><b>2.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-Chapter3.html"><a href="3-Chapter3.html"><i class="fa fa-check"></i><b>3</b> Working with data</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-data-read.html"><a href="3-1-data-read.html"><i class="fa fa-check"></i><b>3.1</b> Data read</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-quick-data-summaries.html"><a href="3-2-quick-data-summaries.html"><i class="fa fa-check"></i><b>3.2</b> Quick data summaries</a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html"><i class="fa fa-check"></i><b>3.3</b> Subsetting and selecting data</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#manual-subsets-and-selections"><i class="fa fa-check"></i><b>3.3.1</b> Manual subsets and selections</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#subsetting-and-summaries-in-base-r"><i class="fa fa-check"></i><b>3.3.2</b> Subsetting and summaries in base R</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#tidyverse"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting and summaries in the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-better-data-summaries.html"><a href="3-4-better-data-summaries.html"><i class="fa fa-check"></i><b>3.4</b> Better data summaries</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-creating-new-variables.html"><a href="3-5-creating-new-variables.html"><i class="fa fa-check"></i><b>3.5</b> Creating new variables</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html"><i class="fa fa-check"></i><b>3.6</b> Data simulation</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#random-sub-samples-from-a-dataset"><i class="fa fa-check"></i><b>3.6.1</b> Random sub-samples from a dataset</a></li>
+<li class="chapter" data-level="3.6.2" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#stochastic"><i class="fa fa-check"></i><b>3.6.2</b> Stochastic simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="3-7-next3.html"><a href="3-7-next3.html"><i class="fa fa-check"></i><b>3.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-Chapter4.html"><a href="4-Chapter4.html"><i class="fa fa-check"></i><b>4</b> Plotting and graphics</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-plots-matter-as-much-as-stats.html"><a href="4-1-plots-matter-as-much-as-stats.html"><i class="fa fa-check"></i><b>4.1</b> Plots matter as much as stats</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html"><i class="fa fa-check"></i><b>4.2</b> Plotting with base R</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#histograms"><i class="fa fa-check"></i><b>4.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#scatterplots"><i class="fa fa-check"></i><b>4.2.2</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#lines"><i class="fa fa-check"></i><b>4.2.3</b> Lines</a></li>
+<li class="chapter" data-level="4.2.4" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#boxplots"><i class="fa fa-check"></i><b>4.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>4.3</b> Plotting with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gghists"><i class="fa fa-check"></i><b>4.3.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggscatter"><i class="fa fa-check"></i><b>4.3.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gglines"><i class="fa fa-check"></i><b>4.3.3</b> Lines</a></li>
+<li class="chapter" data-level="4.3.4" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggboxplots"><i class="fa fa-check"></i><b>4.3.4</b> Boxplots and</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4-4-next4.html"><a href="4-4-next4.html"><i class="fa fa-check"></i><b>4.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-sampling-distributions-in-r.html"><a href="5-sampling-distributions-in-r.html"><i class="fa fa-check"></i><b>5</b> Sampling distributions in R</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-what-are-sampling-distributions.html"><a href="5-1-what-are-sampling-distributions.html"><i class="fa fa-check"></i><b>5.1</b> What are sampling distributions?</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-probability-distributions-in-r.html"><a href="5-2-probability-distributions-in-r.html"><i class="fa fa-check"></i><b>5.2</b> Probability distributions in R</a></li>
+<li class="chapter" data-level="5.3" data-path="5-3-exponential-family.html"><a href="5-3-exponential-family.html"><i class="fa fa-check"></i><b>5.3</b> Exponential family</a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html"><i class="fa fa-check"></i><b>5.4</b> Continuous distributions</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-lognormal-distribution"><i class="fa fa-check"></i><b>5.4.1</b> The lognormal distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-beta-distribution"><i class="fa fa-check"></i><b>5.4.2</b> The beta distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html"><i class="fa fa-check"></i><b>5.5</b> Discrete distributions</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#bernoulli"><i class="fa fa-check"></i><b>5.5.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="5.5.2" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#binomial"><i class="fa fa-check"></i><b>5.5.2</b> Binomial</a></li>
+<li class="chapter" data-level="5.5.3" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#multinomial"><i class="fa fa-check"></i><b>5.5.3</b> Multinomial</a></li>
+<li class="chapter" data-level="5.5.4" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#poisson"><i class="fa fa-check"></i><b>5.5.4</b> Poisson</a></li>
+<li class="chapter" data-level="5.5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#the-negative-binomial-distribution"><i class="fa fa-check"></i><b>5.5.5</b> The negative binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html"><i class="fa fa-check"></i><b>5.6</b> Sample statistics</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#moments-about-the-mean"><i class="fa fa-check"></i><b>5.6.1</b> Moments about the mean</a></li>
+<li class="chapter" data-level="5.6.2" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#estimating-parameters-of-the-normal-distribution-from-a-sample"><i class="fa fa-check"></i><b>5.6.2</b> Estimating parameters of the normal distribution from a sample</a></li>
+<li class="chapter" data-level="5.6.3" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#quantiles-and-other-descriptive-statistics"><i class="fa fa-check"></i><b>5.6.3</b> Quantiles and other descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="5-7-next5.html"><a href="5-7-next5.html"><i class="fa fa-check"></i><b>5.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-inferential-statistics.html"><a href="6-inferential-statistics.html"><i class="fa fa-check"></i><b>6</b> Inferential statistics</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-libraries-and-data.html"><a href="6-1-libraries-and-data.html"><i class="fa fa-check"></i><b>6.1</b> Libraries and data</a></li>
+<li class="chapter" data-level="6.2" data-path="6-2-one-sample-tests.html"><a href="6-2-one-sample-tests.html"><i class="fa fa-check"></i><b>6.2</b> One-sample tests</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-2-one-sample-tests.html"><a href="6-2-one-sample-tests.html#one-sample-t-test"><i class="fa fa-check"></i><b>6.2.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-2-one-sample-tests.html"><a href="6-2-one-sample-tests.html#wilcox-test"><i class="fa fa-check"></i><b>6.2.2</b> Wilcox test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-3-two-sample-tests.html"><a href="6-3-two-sample-tests.html"><i class="fa fa-check"></i><b>6.3</b> Two-sample tests</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="6-3-two-sample-tests.html"><a href="6-3-two-sample-tests.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>6.3.1</b> The two-sample t-test</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Worst Stats Text eveR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="one-sample-tests" class="section level2">
+<h2><span class="header-section-number">6.2</span> One-sample tests</h2>
+<p>Sometimes, we are interested in simply knowing whether or not the measurements we’ve obtained from an individual or a group are representative of a larger population. For example, we may have a ‘control’ group in an experiment and we want to know if the group is truly representative of the population average or some measurement we have collected from a different biological population. For these situations, we will rely on one-sample tests this week and we’ll look at other (totally related) options moving forward.</p>
+<div id="one-sample-t-test" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> One sample t-test</h3>
+<p>We will examine parametric and non-parametric examples of one-sample tests here to demonstrate why and how we use them.</p>
+<p>Let’s start with a simple example of how we might do this, and what the results actually mean. We’ll use some data from grass carp (<em>Ctenopharyngodon idella</em>) from Lake Gaston, Virginia and North Carolina, USA for this example. We will compare the size of grass carp at specific ages with their population density using a few different tools</p>
+<p>Read in the data set:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="6-2-one-sample-tests.html#cb5-1"></a>  grasscarp =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/grasscarp.csv&#39;</span>)</span></code></pre></div>
+<p>Remember to check out the data set in your Environment tab so you understand how many observations there are and how many variables (as well as their types).</p>
+<p>Let’s start by asking a simple biological question: is the size of age-3 grass carp different from the average size of fish in this population?</p>
+<p>First, let’s create a sample that includes only age-3 fish. We will store this to a new vector called <code>age3_lengths</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="6-2-one-sample-tests.html#cb6-1"></a>age3_lengths &lt;-<span class="st"> </span>grasscarp<span class="op">$</span>Length[grasscarp<span class="op">$</span>Age <span class="op">==</span><span class="st"> </span><span class="dv">3</span>]</span></code></pre></div>
+<p>Now, let’s compare the <code>Length</code> of age-3 fish to the rest of the population using a one-sample t-test. To do this, we need to pass <code>age3_lengths</code></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="6-2-one-sample-tests.html#cb7-1"></a><span class="co"># Run the test and save the output to an object</span></span>
+<span id="cb7-2"><a href="6-2-one-sample-tests.html#cb7-2"></a>our_test =<span class="st"> </span><span class="kw">t.test</span>(age3_lengths,</span>
+<span id="cb7-3"><a href="6-2-one-sample-tests.html#cb7-3"></a>                  <span class="dt">mu =</span> <span class="kw">mean</span>(grasscarp<span class="op">$</span>Length),</span>
+<span id="cb7-4"><a href="6-2-one-sample-tests.html#cb7-4"></a>                  <span class="dt">conf.level =</span> <span class="fl">0.95</span></span>
+<span id="cb7-5"><a href="6-2-one-sample-tests.html#cb7-5"></a>                  )</span>
+<span id="cb7-6"><a href="6-2-one-sample-tests.html#cb7-6"></a></span>
+<span id="cb7-7"><a href="6-2-one-sample-tests.html#cb7-7"></a><span class="co"># Print the results of the object to the console</span></span>
+<span id="cb7-8"><a href="6-2-one-sample-tests.html#cb7-8"></a><span class="kw">print</span>(our_test)</span></code></pre></div>
+<pre><code>## 
+## 	One Sample t-test
+## 
+## data:  age3_lengths
+## t = -18.829, df = 47, p-value &lt; 2.2e-16
+## alternative hypothesis: true mean is not equal to 973.0118
+## 95 percent confidence interval:
+##  749.2547 792.4536
+## sample estimates:
+## mean of x 
+##  770.8542</code></pre>
+<p>Okay, so what does that mean???</p>
+<blockquote>
+<p>First, let’s look at what we’ve done here.</p>
+</blockquote>
+<p>We’ve conducted a one-sample t-test.</p>
+<p>The null hypothesis was that:</p>
+<blockquote>
+<p>(H<sub>0</sub>): the sample (age-3 fish) did not differ in <code>Length</code> from the mean of the population.</p>
+</blockquote>
+<p>This is because we stated no specific alternative hypothesis when we executed the t-test above. If we had used a different alternative hypothesis (i.e. <code>greater</code> or <code>less</code> in the argument <code>alternative</code>) then our null would be formalized as: “The length of age-3 fish is not significantly greater (or less) than the population mean”.</p>
+<p>Finally, we specified the confidence level. Here, we are told R that we want to know the result with a confidence level of 95% (0.95). This corresponds to a Type-I error rate (<span class="math inline">\(\alpha\)</span>) of 0.05. This means we are looking for <em>p</em> &lt; 0.05 to conclude that the sample is statistically different from the population mean. Since p &lt; 0.001, we reject the H<sub>0</sub> and conclude that age-3 fish are significantly shorter than the population mean.</p>
+<div id="output" class="section level4">
+<h4><span class="header-section-number">6.2.1.1</span> Output</h4>
+<p>R returns the output of statistical tests as objects, and you can reference any part of those objects by name or index. The type of object that R returns, and how you access the parts depends on the type of test you ran and with what options.</p>
+<p>Like so many other models objects, our one sample t-test is stored as a list:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="6-2-one-sample-tests.html#cb9-1"></a><span class="kw">str</span>(our_test)</span></code></pre></div>
+<pre><code>## List of 10
+##  $ statistic  : Named num -18.8
+##   ..- attr(*, &quot;names&quot;)= chr &quot;t&quot;
+##  $ parameter  : Named num 47
+##   ..- attr(*, &quot;names&quot;)= chr &quot;df&quot;
+##  $ p.value    : num 1.57e-23
+##  $ conf.int   : num [1:2] 749 792
+##   ..- attr(*, &quot;conf.level&quot;)= num 0.95
+##  $ estimate   : Named num 771
+##   ..- attr(*, &quot;names&quot;)= chr &quot;mean of x&quot;
+##  $ null.value : Named num 973
+##   ..- attr(*, &quot;names&quot;)= chr &quot;mean&quot;
+##  $ stderr     : num 10.7
+##  $ alternative: chr &quot;two.sided&quot;
+##  $ method     : chr &quot;One Sample t-test&quot;
+##  $ data.name  : chr &quot;age3_lengths&quot;
+##  - attr(*, &quot;class&quot;)= chr &quot;htest&quot;</code></pre>
+<p>We can just look at the names if there are specific pieces in which we are interested. For example, we might want to save the p-value (<code>p.value</code>):</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="6-2-one-sample-tests.html#cb11-1"></a><span class="co"># Shows us the names of the things inside the model list</span></span>
+<span id="cb11-2"><a href="6-2-one-sample-tests.html#cb11-2"></a>  <span class="kw">names</span>(our_test) </span></code></pre></div>
+<pre><code>##  [1] &quot;statistic&quot;   &quot;parameter&quot;   &quot;p.value&quot;     &quot;conf.int&quot;    &quot;estimate&quot;   
+##  [6] &quot;null.value&quot;  &quot;stderr&quot;      &quot;alternative&quot; &quot;method&quot;      &quot;data.name&quot;</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="6-2-one-sample-tests.html#cb13-1"></a><span class="co"># This stores our p-value to an object for use</span></span>
+<span id="cb13-2"><a href="6-2-one-sample-tests.html#cb13-2"></a>  p_out =<span class="st"> </span>our_test<span class="op">$</span>p.value </span>
+<span id="cb13-3"><a href="6-2-one-sample-tests.html#cb13-3"></a>  </span>
+<span id="cb13-4"><a href="6-2-one-sample-tests.html#cb13-4"></a><span class="co"># And of course we can look at it</span></span>
+<span id="cb13-5"><a href="6-2-one-sample-tests.html#cb13-5"></a>  <span class="kw">print</span>(p_out)             </span></code></pre></div>
+<pre><code>## [1] 1.572767e-23</code></pre>
+<p>Now we can go through the output as it is displayed by:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="6-2-one-sample-tests.html#cb15-1"></a><span class="co"># Print a summary of the test</span></span>
+<span id="cb15-2"><a href="6-2-one-sample-tests.html#cb15-2"></a>  <span class="kw">print</span>(our_test)</span></code></pre></div>
+<pre><code>## 
+## 	One Sample t-test
+## 
+## data:  age3_lengths
+## t = -18.829, df = 47, p-value &lt; 2.2e-16
+## alternative hypothesis: true mean is not equal to 973.0118
+## 95 percent confidence interval:
+##  749.2547 792.4536
+## sample estimates:
+## mean of x 
+##  770.8542</code></pre>
+<p>The first line of the output gives us the actual data that with which we are working- nothing of interest here other than a quick sanity check until later on in the course.</p>
+<p>The second line shows the ‘statistics’ that we are interested in: <code>t</code> is the calculated value of the test statistic for the t-test in this case. The <code>df</code>, or degrees of freedom, is the number of observations in the sample, minus the number of parameters that we are estimating (in this case, just one: the mean). Our <code>p-value</code> is the probability of observing data that are more extreme than what we observed if the null hypothesis is in fact true (i.e. the probability that rejection of the null is inappropriate). Again, because it is smaller than <span class="math inline">\(\alpha\)</span> we reject the null and accept the alternative hypothesis.</p>
+<p>Our <code>alteranive hypothesis</code> (H<sub>A</sub>) was that the sample mean is not equal to population mean. We can specify other alternatives (and therefore nulls) in this and other models in R.</p>
+<p>Finally, R reports the mean and the 95% confidence interval of <code>age3_lengths</code>.</p>
+</div>
+<div id="assumptions" class="section level4">
+<h4><span class="header-section-number">6.2.1.2</span> Assumptions</h4>
+<p>It’s always important for us to think about the assumptions that we are making when (read <em>before</em>) conducting a statistical test. First, there are implicit assumptions that we make. For example, we assume that the data are representative and were collected in a random manner in this case. Then, there are explicit assumptions that we make in specific tests.</p>
+<p>For the one-sample t-test, the assumption that we really care about is:</p>
+<ol style="list-style-type: decimal">
+<li>The data are normally distributed</li>
+</ol>
+<p>The t-test is generally robust to violations of this assumption provided that sample sizes are large enough (Google Central Limit Theorem, this is The Worst Stats Text eveR). But, it is always good to check. In particular, when we are working with small sample sizes like this example (n = <code>48</code>), we should really make sure that things look okay.</p>
+</div>
+<div id="checking-assumptions" class="section level4">
+<h4><span class="header-section-number">6.2.1.3</span> Checking assumptions</h4>
+<h5 id="multi">
+Visual check for normality
+</h5>
+<p>One simple way to gauge assumptions of normality is to look at a plot of the data. As you will see later, we are usually concerned with the <em>residuals</em>, but we can look at the actual data here because we have only one group.</p>
+<p>Have a quick look at these to see what we are working with using the histogram code from <a href="4-Chapter4.html#Chapter4">Chapter 4</a>. I set the x-axis limits below using the maximum <code>Length</code> from the <code>grasscarp</code> data so we can see what part of the length range we’ve sampled.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="6-2-one-sample-tests.html#cb17-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb17-2"><a href="6-2-one-sample-tests.html#cb17-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(age3_lengths), <span class="dt">bins =</span> <span class="dv">30</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb17-3"><a href="6-2-one-sample-tests.html#cb17-3"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(grasscarp<span class="op">$</span>Length)), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb17-4"><a href="6-2-one-sample-tests.html#cb17-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb17-5"><a href="6-2-one-sample-tests.html#cb17-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Total length (mm)&quot;</span>) <span class="op">+</span></span>
+<span id="cb17-6"><a href="6-2-one-sample-tests.html#cb17-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Count&quot;</span>) <span class="op">+</span></span>
+<span id="cb17-7"><a href="6-2-one-sample-tests.html#cb17-7"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb17-8"><a href="6-2-one-sample-tests.html#cb17-8"></a><span class="st">  </span><span class="kw">theme</span>(</span>
+<span id="cb17-9"><a href="6-2-one-sample-tests.html#cb17-9"></a>    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">-1</span>),</span>
+<span id="cb17-10"><a href="6-2-one-sample-tests.html#cb17-10"></a>    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb17-11"><a href="6-2-one-sample-tests.html#cb17-11"></a>    <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb17-12"><a href="6-2-one-sample-tests.html#cb17-12"></a>  )</span>
+<span id="cb17-13"><a href="6-2-one-sample-tests.html#cb17-13"></a><span class="kw">print</span>(p)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+Sure, looks totally normal to me? Wouldn’t it be great if there were a statistical test for determining whether this sample is different from the normal? Great that you should ask</p>
+<div id="tests-of-normality-shapiro-wilk" class="section level5">
+<h5><span class="header-section-number">6.2.1.3.1</span> Tests of normality (Shapiro-Wilk)</h5>
+<p>The Shapiro-Wilk test is commonly used to test normality of a distribution as a check of assumptions. We can use this to test whether our data deviate from normal in the following manner:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="6-2-one-sample-tests.html#cb18-1"></a><span class="kw">shapiro.test</span>(age3_lengths)</span></code></pre></div>
+<pre><code>## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  age3_lengths
+## W = 0.95715, p-value = 0.07746</code></pre>
+<p>First, note that the test statistic is the <code>W</code> statistic for this test.</p>
+<p>Second, we have a p-value of <code>0.0774637</code>. <strong>Oh, no</strong>! Wait, what does that mean?</p>
+<p>For this test, we actually don’t want p &lt; 0.05 if we are relying on assumptions of normality, so this is a “good” thing. But, it doesn’t necessarily mean that the length of <code>age3_lengths</code> is normally distributed. It just means that we can’t tell if the sample we have collected is different from normal. I guess that is good enough, but that p-value is awfully close to 0.05 for my taste.</p>
+<p>So, are we up that proverbial tributary without a paddle, or can we salvage the mess and move on with life? Don’t worry, there’s a statistical test for that, too.</p>
+</div>
+</div>
+</div>
+<div id="wilcox-test" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> Wilcox test</h3>
+<p>You can think of the Wilcox test as a non-parametric version of the t-test. In general, non-parametric tests tend to be slightly more “conservative” than the parametric alternatives because they require fewer assumptions. However, non-parametric tests can be useful where our data are not normal, or we don’t feel we have sufficient data to know (hmm…maybe don’t conduct any tests, in that case!).</p>
+<p>Here, we are checking for shifts in the median (not the mean) of one or more samples.</p>
+<p>Why is this? The mean of a non-normal distribution is not always a useful descriptor of the probability mass under a distribution (it still describes ‘central tendency’ but does not necessarily describe the place where ‘most of the data are’). But, the median always (as in always, always, always) describes central tendency of the data, so we can pretty much use it for describing any sample. This is because the median is defined as the “middle” value. That is, half of the data should fall on either side of the median if you lined up all of your data on the equator (wrong metaphor?).</p>
+<p>…back to the Wilcox test.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="6-2-one-sample-tests.html#cb20-1"></a><span class="co"># First, do this and have a quick read:</span></span>
+<span id="cb20-2"><a href="6-2-one-sample-tests.html#cb20-2"></a>  ?wilcox.test</span></code></pre></div>
+<p>Now we can actually run a test to see if the median length of age-3 fish is statistically different from the median value of length in the sample.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="6-2-one-sample-tests.html#cb21-1"></a>    <span class="kw">wilcox.test</span>(</span>
+<span id="cb21-2"><a href="6-2-one-sample-tests.html#cb21-2"></a>      age3_lengths,</span>
+<span id="cb21-3"><a href="6-2-one-sample-tests.html#cb21-3"></a>      <span class="dt">mu =</span> <span class="kw">median</span>(grasscarp<span class="op">$</span>Length),</span>
+<span id="cb21-4"><a href="6-2-one-sample-tests.html#cb21-4"></a>      <span class="dt">alternative =</span> <span class="st">&#39;less&#39;</span>,    <span class="co"># Note different alternative here!</span></span>
+<span id="cb21-5"><a href="6-2-one-sample-tests.html#cb21-5"></a>      <span class="dt">exact =</span> <span class="ot">FALSE</span>            <span class="co"># Not much data, so not exact</span></span>
+<span id="cb21-6"><a href="6-2-one-sample-tests.html#cb21-6"></a>    )</span></code></pre></div>
+<pre><code>## 
+## 	Wilcoxon signed rank test with continuity correction
+## 
+## data:  age3_lengths
+## V = 0, p-value = 8.414e-10
+## alternative hypothesis: true location is less than 1007</code></pre>
+<p>Interpretting the results is essentially the same as for the t-test, but without the degrees of freedom, so we won’t belabor this. Importantly, the test, being robust to any distributional assumptions, should also (and does) tell us that the length of age-3 fish is significantly shorter than the population mean (or median- whichever you used).</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="6-1-libraries-and-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="6-3-two-sample-tests.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["worstr.pdf", "worstr.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
