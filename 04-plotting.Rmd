@@ -283,7 +283,7 @@ p <- ggplot(otsego, aes(x=temp)) +
 print(p)
 ```
 
-We can also scale the `x-axis` and the `y-axis` like we did in the base graphics example {#histograms}.
+We can also scale the `x-axis` and the `y-axis` like we did in the [base graphics example](#histograms).
 ```{r, message = FALSE, warning = FALSE}
 # Histogram of water temperature across 
 # all dates and depths
