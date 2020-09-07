@@ -1,8 +1,7 @@
 
 # Data structures {#Chapter2}
 
-<img src="images/matrixSmolt.jpg" alt="The best fish">
-
+<img src="images/matrixSmolt.jpg" alt="The best fish"><br>
 <p style="font-family: times, serif; font-size:.9em; font-style:italic">
 Contrast how you see a fish and how computers see fish. Our job is to bridge the gap. No problem...</p>
 
