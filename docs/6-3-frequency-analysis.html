@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -226,7 +228,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="6-4-next6.html"><a href="6-4-next6.html"><i class="fa fa-check"></i><b>6.4</b> Next steps</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -255,9 +256,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">6.3.1</span> Worked example</h3>
 <p>Let’s say we want to know if the number of grass carp in a given age group (say age 10) varies between years. These fish are sterile hybrids, so we would expect that the number of fish in each age would change drastically with increasing time since the year of initial stocking (1995).</p>
 <p>First, make a table showing the number of fish in each <code>Age</code> by <code>Year</code> with the <code>grasscarp</code> data.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="6-3-frequency-analysis.html#cb34-1"></a>agexyear &lt;-<span class="st"> </span><span class="kw">with</span>(grasscarp, <span class="kw">table</span>(Age, Year))</span>
-<span id="cb34-2"><a href="6-3-frequency-analysis.html#cb34-2"></a></span>
-<span id="cb34-3"><a href="6-3-frequency-analysis.html#cb34-3"></a><span class="kw">print</span>(agexyear)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="6-3-frequency-analysis.html#cb275-1"></a>agexyear &lt;-<span class="st"> </span><span class="kw">with</span>(grasscarp, <span class="kw">table</span>(Age, Year))</span>
+<span id="cb275-2"><a href="6-3-frequency-analysis.html#cb275-2"></a></span>
+<span id="cb275-3"><a href="6-3-frequency-analysis.html#cb275-3"></a><span class="kw">print</span>(agexyear)</span></code></pre></div>
 <pre><code>##     Year
 ## Age  2006 2007 2009 2010 2017
 ##   1     0    0    0    2    0
@@ -286,10 +287,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Basically what we are going to do is analyze the proportion of total fish in each column</p>
 <p>You should see some pretty obvious patterns here. We have a couple of things to think about now. First, this is the kind of question you don’t need statistics for. Second, we have a whole bunch of empty groups, and these are not random with respect to year. Some of these come from ages that were not yet available in years 2006 - 2010 and some from patterns in fish stocking. The large number of empty pairings and the fact that most age classes had fewer than five fish in any year prior to 2017 means we should probably break the data down a little further. This stinks because we lose resolution, but that is the cost.</p>
 <p>For the sake of demonstration, let’s summarize the data by <code>high</code> and <code>low</code> density again and we’ll look at the number of fish collected in each age class during high and low density years.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="6-3-frequency-analysis.html#cb36-1"></a>freqs &lt;-<span class="st"> </span>grasscarp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Pass grass carp data frame to group_by()</span></span>
-<span id="cb36-2"><a href="6-3-frequency-analysis.html#cb36-2"></a><span class="st">    </span><span class="kw">filter</span>(Age <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span><span class="op">:</span><span class="dv">15</span>)) <span class="co"># Select only shared age range</span></span>
-<span id="cb36-3"><a href="6-3-frequency-analysis.html#cb36-3"></a></span>
-<span id="cb36-4"><a href="6-3-frequency-analysis.html#cb36-4"></a><span class="kw">head</span>(freqs)</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="6-3-frequency-analysis.html#cb277-1"></a>freqs &lt;-<span class="st"> </span>grasscarp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Pass grass carp data frame to group_by()</span></span>
+<span id="cb277-2"><a href="6-3-frequency-analysis.html#cb277-2"></a><span class="st">    </span><span class="kw">filter</span>(Age <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span><span class="op">:</span><span class="dv">15</span>)) <span class="co"># Select only shared age range</span></span>
+<span id="cb277-3"><a href="6-3-frequency-analysis.html#cb277-3"></a></span>
+<span id="cb277-4"><a href="6-3-frequency-analysis.html#cb277-4"></a><span class="kw">head</span>(freqs)</span></code></pre></div>
 <pre><code>##   Year Length Weight_kg Age cohort n_stocked     n acre   ha nha     kg kg_ha
 ## 1 2006   1262    23.154  12   1994      7000 25128 2957 1203  21 129929   108
 ## 2 2006   1138    23.923  10   1996      7000 25128 2957 1203  21 129929   108
@@ -305,11 +306,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5     low
 ## 6     low</code></pre>
 <p>We will test the null hypothesis that there is no difference in the number of age-10 fish between high and low densities.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="6-3-frequency-analysis.html#cb38-1"></a><span class="co"># Run the test</span></span>
-<span id="cb38-2"><a href="6-3-frequency-analysis.html#cb38-2"></a>chi_test &lt;-<span class="st"> </span><span class="kw">with</span>(freqs, <span class="kw">chisq.test</span>(<span class="dt">x =</span> density, <span class="dt">y =</span> Age))</span>
-<span id="cb38-3"><a href="6-3-frequency-analysis.html#cb38-3"></a></span>
-<span id="cb38-4"><a href="6-3-frequency-analysis.html#cb38-4"></a><span class="co"># Have a look</span></span>
-<span id="cb38-5"><a href="6-3-frequency-analysis.html#cb38-5"></a><span class="kw">print</span>(chi_test)</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="6-3-frequency-analysis.html#cb279-1"></a><span class="co"># Run the test</span></span>
+<span id="cb279-2"><a href="6-3-frequency-analysis.html#cb279-2"></a>chi_test &lt;-<span class="st"> </span><span class="kw">with</span>(freqs, <span class="kw">chisq.test</span>(<span class="dt">x =</span> density, <span class="dt">y =</span> Age))</span>
+<span id="cb279-3"><a href="6-3-frequency-analysis.html#cb279-3"></a></span>
+<span id="cb279-4"><a href="6-3-frequency-analysis.html#cb279-4"></a><span class="co"># Have a look</span></span>
+<span id="cb279-5"><a href="6-3-frequency-analysis.html#cb279-5"></a><span class="kw">print</span>(chi_test)</span></code></pre></div>
 <pre><code>## 
 ## 	Pearson&#39;s Chi-squared test
 ## 
@@ -317,8 +318,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## X-squared = 13.107, df = 5, p-value = 0.0224</code></pre>
 <p>And, bam! We see that there is a difference in the frequency of fish collected in each age class in high and low density years. Shocker.</p>
 <p>Data visualization techniques for contingency table analyses like this seem to have generally lagged behind theory in terms of wide-spread implementation. There is a base R <code>mosaicplot</code> that plots relative freqencies. You can interpret the width of the bars as the proportion of total observations in each age class. Likewise, the height of the vertical segnmens corresponds to proportion of <code>high</code> or <code>low</code> <code>density</code> observations in each <code>Age</code>.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="6-3-frequency-analysis.html#cb40-1"></a><span class="kw">mosaicplot</span>(Age <span class="op">~</span><span class="st"> </span>density, <span class="dt">data =</span> freqs)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="6-3-frequency-analysis.html#cb281-1"></a><span class="kw">mosaicplot</span>(Age <span class="op">~</span><span class="st"> </span>density, <span class="dt">data =</span> freqs)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
 <p>The need for improved graphical representation for these data types is recognized. There have been recent efforts to extend the philosophies used <code>ggplot()</code> to contingency analysis by r developers (see <a href="http://vita.had.co.nz/papers/prodplots.pdf">Wickham and Hofmann 2011&lt;&gt;). It was even the topic of a recent master’s thesis (<a href="https://lib.dr.iastate.edu/cgi/viewcontent.cgi?article=7144&context=etd">see Grant 2017</a>). But as far as I know the ideas from these works have not been integrated into <code>ggplot2</code> or the <code>tidyverse</code> yet. Sorry about the citations. I don’t know what I was thinking. This is supposed to be the Worst Stats Text eveR.</p>
 </div>
 </div>

@@ -172,7 +172,7 @@ We will use the \href{https://rstudio.com/}{Rstudio IDE} to work with \href{http
 
 Go Google it. This is The Worst Stats Text eveR.
 
-Okay, okay. Briefly, R is a statistical programming language. That language is made up of functions and various objects (R is functional and object-oriented). Objects are things that we do stuff to, or that we create by doing stuff. Functions are the things that do stuff to objects or create objects by doing things. A lot of functions and objects are included in the \texttt{base} software distribution (this is the one you just downloaded). Other collections of functions and objects are available through ``packages''. You could think of these packages like web-extensions, add-ins for Microsoft programs, or mods for Minecraft. All of these packages are built on a variety of other programming languages you may have heard of like C, C++, java, Python, etc. You can see a YouTube demo of installing packages in RStudio here. We will talk more about this later.
+Okay, okay. Briefly, R is a statistical programming language. That language is made up of functions and various objects (R is functional and object-oriented). Objects are things that we do stuff to, or that we create by doing stuff. Functions are the things that do stuff to objects or create objects by doing things. A lot of functions and objects are included in the \texttt{base} software distribution (this is the one you just downloaded). Other collections of functions and objects are available through ``packages''. You could think of these packages like web-extensions, add-ins for Microsoft programs, or mods for Minecraft. These packages may be written in R or built on a variety of other programming languages you may have heard of like C, C++, java, Python, etc. You can see a YouTube demo of installing packages in RStudio here. We will talk more about this later.
 
 Because R is open-source anybody can write packages (even me). Therefore, there are lots of packages out there and many of them have functions that do the same thing but have slightly different names or behaviors. This framework, and an avid user-community has propelled the capabilities of R and RStudio during recent years, and now R can do everything from basic arithmetic to spatial time-series analysis to searching Amazon. This means that learning R is also a lot like learning the English language because there are about 10 ways to do everything and many of those are based on other programming languages.
 
@@ -367,8 +367,8 @@ Other examples include functions like \texttt{in,\ if,\ else,\ for,\ function()}
 \textbf{Some \emph{symbols} are also reserved for special use as ``operators'', like:}
 \texttt{+,\ -,\ *,\ \%\ \%,\ \&,\ /,\ \textless{},\ (,\ \{,\ {[},\ "",\ \textquotesingle{}\textquotesingle{},\ ...}, and a bunch of others. We will use basically all of these in just the first couple of chapters.
 
-\hypertarget{next-steps}{%
-\section{Next steps}\label{next-steps}}
+\hypertarget{next1}{%
+\section{Next steps}\label{next1}}
 
 These are just some basic guidelines that should help you get started working with R and RStudio. In \protect\hyperlink{data_struc}{Chapter 2}, we will begin working with objects, talk about how R sees those objects, and then look at things we can do to those objects using functions.
 
@@ -1367,8 +1367,8 @@ You can assign names when you create the list like we did for dataframes, too. Y
 
 Very commonly, model objects and output are stored as lists. In fact, most objects that require a large amount of diverse information in R pack it all together in one place using lists, that way we always know where to find it and how as long as the objects are documented. Conceptually, every object in R, from your workspace on down the line, is a list \textbf{AND} an element of a list. It seems like a lot to take in now, but will be very useful in the future.
 
-\hypertarget{next-steps}{%
-\section{Next steps}\label{next-steps}}
+\hypertarget{next2}{%
+\section{Next steps}\label{next2}}
 
 For more practice with the data structures and R functions we covered here, you can check out this walk-through of basic R commands from the How To R YouTube Channel.
 
@@ -1383,7 +1383,7 @@ The purpose of this chapter is to get you comfortable working with data in R and
 
 Now that you have a handle on the types of data you can expect to run into in R, let's have a look at how we read and work with data that we get from the real world.
 
-We will work with the \texttt{ctr\_fish.csv} file for Chapter 3, so you will need to download the class data sets that go with this book to play along.
+We will work with the \texttt{ctr\_fish.csv} file for Chapter 3, so you will need to download the class data sets that go with this book to play along. We will also need the \texttt{tidyverse} package, but instructions for installation are provided below because this is the first time we have downloaded and installed a package.
 
 \hypertarget{data-read}{%
 \section{Data read}\label{data-read}}
@@ -1392,7 +1392,7 @@ There are few things that will turn someone away from a statistical software pro
 
 Let's start by reading in a data file - this time we use real data.
 
-The data are stored in a ``comma separated values'' file (\texttt{.csv} extension). This is a fairly universal format, so we read it in using the fairly universal \texttt{read.csv()} function. This would change depending on how the data were stored, or how big the data files were, but that is a topic further investigation for a later date. I probably do 95\% of my data reads using \texttt{.csv} files.
+The data are stored in a ``comma separated values'' file (\texttt{.csv} extension). This is a fairly universal format, so we read it in using the fairly universal \texttt{read.csv()} function. This would change depending on how the data were stored, or how big the data files were, but that is a topic further investigation for a later date. I probably do 95\% of my data reads using \texttt{.csv} files. We'll look at a few others later.
 
 \textbf{Important} Remember that I am assuming your scripts are in the same directory (folder) on your computer as where you downloaded and unzipped the class data (see \href{https://danstich.github.io/stich/classes/BIOL217/software.html}{here} for reminder).
 
@@ -1645,7 +1645,7 @@ Once we have installed these packages, we can use the functions in them to clean
 \hypertarget{better-data-summaries}{%
 \section{Better data summaries}\label{better-data-summaries}}
 
-Now, we'll look at some slightly more advanced summaries. Start by loading the \texttt{dplyr} package into your R session with:
+Now, we'll look at some slightly more advanced summaries. Start by loading the \texttt{dplyr} package into your R session with the following code.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1840,7 +1840,7 @@ Start by looking at the size distribution for age 6 females. We use the tidy wor
 
 \includegraphics{worstr_files/figure-latex/unnamed-chunk-81-1.pdf}
 
-Now, let's calculate the \texttt{mean} and \texttt{sd} of \texttt{Length} for age 6 females. We use \texttt{na.rm\ =\ TRUE} to tell R that it needs to ignore the \texttt{NA} values.
+Now, let's calculate the \texttt{mean} and \texttt{sd} of \texttt{Length} for age 6 females.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1862,6 +1862,7 @@ Now, we can use the mean and standard deviation to randomly sample our normal di
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# Take a random sample from a normal distribution}
 \NormalTok{length_sample <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10000}\NormalTok{, }\DataTypeTok{mean =}\NormalTok{ x_bar, }\DataTypeTok{sd =}\NormalTok{ sigma)}
 
 \CommentTok{# Plot the sample to see if it is a normal- YAY it is!}
@@ -1874,10 +1875,10 @@ Now, we can use the mean and standard deviation to randomly sample our normal di
 \end{Shaded}
 
 \includegraphics{worstr_files/figure-latex/unnamed-chunk-83-1.pdf}
-We've add a couple of new arguments to the histogram call to make it a little less ugly here. In {[}Chapter 4{]} we are going to ramp it up and play with some plots!
+We've add a couple of new arguments to the histogram call to make it a little less ugly here. In \protect\hyperlink{Chapter4}{Chapter 4} we are going to ramp it up and play with some plots!
 
-\hypertarget{next-steps}{%
-\section{Next steps}\label{next-steps}}
+\hypertarget{next3}{%
+\section{Next steps}\label{next3}}
 
 In this chapter, we provided a general overview of our work flow when it comes to reading in data and manipulating them to get useful summaries. In \protect\hyperlink{Chapter4}{Chapter 4} we will use these processes to help us visualize important trends in these summaries before we begin working with descriptive statistics and sampling distributions in \protect\hyperlink{Chapter5}{Chapter 5}.
 
@@ -1886,9 +1887,9 @@ In this chapter, we provided a general overview of our work flow when it comes t
 
 Sweet graphs, right? Want to learn how to make them? Okay, but baby steps here, alright?.
 
-In this Chapter we will walk through plotting in R, both with the base graphic utilities that come with R, and the \texttt{ggplot2()} package from the \texttt{tidyverse} that has taken over the world (er, revolutionized how we write R code). Both of these are actually great to work with for different reasons. The base graphics are built-in, powerful, and give you 100\% full control over your graphic environment. The \texttt{ggplot2()} library (and a million packages that people have written to work with it) takes these to a new level in terms of functionality and 95\% of the time it will do exactly what you need. That other 5\% of the time it is really great to be able to fall back on the base graphics.
+In this Chapter we will walk through plotting in R, both with the base graphic utilities that come with R, and the \texttt{ggplot2} package from the \texttt{tidyverse} that has taken over the world (er, revolutionized how we write R code). Both of these are actually great to work with for different reasons. The base graphics are built-in, powerful, and give you 100\% full control over your graphic environment. The \texttt{ggplot2} library (and a million packages that people have written to work with it) takes these to a new level in terms of functionality and 95\% of the time it will do exactly what you need. That other 5\% of the time it is really great to be able to fall back on the base graphics.
 
-For the examples in this chapter, we'll work with the water quality data contained in \texttt{physical.csv}. You will need to download the class data sets that go with this book to play along if you have not already (click \href{https://danstich.github.io/stich/classes/BIOL217/software.html}{here} for instructions from the course website).
+For the examples in this chapter, we'll work with the water quality data contained in \texttt{physical.csv}. You will need to download the class data sets that go with this book to play along if you have not already (click \href{https://danstich.github.io/stich/classes/BIOL217/software.html}{here} for instructions from the course website). But, you should have downloaded those to complete the examples in \protect\hyperlink{Chapter2}{Chapter 2}.
 
 We will walk through histograms, scatter plots, line graphs, and boxplots in base graphics and \texttt{ggplot2} in this Chapter. Later in the book, we will add examples of how to plot predictions from statistical models alongside raw data using these same tools.
 
@@ -2217,7 +2218,7 @@ Let's add labels for the x and y-axis next:
 
 \includegraphics{worstr_files/figure-latex/unnamed-chunk-100-1.pdf}
 
-We can also scale the \texttt{x-axis} and the \texttt{y-axis} like we did in the base graphics example \{\#histograms\}.
+We can also scale the \texttt{x-axis} and the \texttt{y-axis} like we did in the \protect\hyperlink{histograms}{base graphics example}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2422,7 +2423,7 @@ Now, we just need to add this to our scatterplot that we made previously. To do 
 We will continue to use this approach throughout the book to plot raw data and model predictions. So, if it is giving you trouble now, spend some extra time with it.
 
 \hypertarget{ggboxplots}{%
-\subsection{Boxplots and violins}\label{ggboxplots}}
+\subsection{Boxplots and}\label{ggboxplots}}
 
 To wrap up our tour of plotting examples in \texttt{ggplot2}, we will reproduce (more or less) the box plots we made in \protect\hyperlink{boxplots}{base graphics}.
 
@@ -2458,7 +2459,7 @@ If we add changes we made to previous plots here, then we can get a cleaner look
 
 \includegraphics{worstr_files/figure-latex/unnamed-chunk-113-1.pdf}
 
-And, of course, we can add our jittered, raw data points over the top to show the spread.
+And, of course, we can add our ``jittered'', raw data points over the top to show the spread.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2479,10 +2480,1726 @@ And, of course, we can add our jittered, raw data points over the top to show th
 
 \includegraphics{worstr_files/figure-latex/unnamed-chunk-114-1.pdf}
 
-\hypertarget{next-steps}{%
-\section{Next steps}\label{next-steps}}
+\hypertarget{next4}{%
+\section{Next steps}\label{next4}}
 
-Hopefully this chapter provided you with a basic overview of plotting in R. If you struggled with these exercises, practice them again, or check out some additional online resources. In the coming chapters, we will continue to add functionality and complexity to how we use these kinds of plots. We'll look at how to compare two groups within a single plot in \protect\hyperlink{Chapter5}{Chapter 5} when we dive into sampling distributions. And, eventually we will learn how to plot predictions from our statistical model against observed data in Chapters 6 through 10.
+Hopefully this chapter provided you with a basic overview of plotting in R. If you struggled with these exercises, practice them again, or check out some \href{https://danstich.github.io/stich/classes/BIOL217/resources.html}{additional online resources}. In the coming chapters, we will continue to add functionality and complexity to how we use these kinds of plots. We'll look at how to compare two groups within a single plot in \protect\hyperlink{Chapter6}{Chapter 6} when we dive into sampling distributions. And, eventually we will learn how to plot predictions from our statistical model against observed data from Chapter 8 onward.
+
+\hypertarget{sampling-distributions-in-r}{%
+\chapter{Sampling distributions in R}\label{sampling-distributions-in-r}}
+
+If we can describe the shape of a probability distribution for a random variable like temperature we can make predictions about the world. Sinister? Maybe. These are temperatures that I simulated from the Hudson River using historical data to estimate parameters of a multivariate normal distribution (muwahahaha).
+
+In this Chapter, we'll talk about probability and probability distributions as a backdrop for the models that we will be working with during the next several chapters. When we describe these from data we have collected, we call them \textbf{sampling distributions}. Probability theory is central to statistical techniques, so it will be important for you to have a pretty firm understanding of this to grab hold of big ideas later on. For now, play along and try to understand how they work. We'll swing back later for a refresher.
+
+In order to complete this Chapter, you will need to have the \texttt{ggplot2}, \texttt{MASS}, and \texttt{Rlab} packages loaded. The only one you should need to install is the \texttt{Rlab} package because \texttt{MASS} is installed when you install R, and we already installed \texttt{ggplot2} with the \texttt{tidyverse} in \protect\hyperlink{Chapter3}{Chapter3}.
+
+I'm going to load these now. In general, it is good practice to put these at the top of the script so we know they are needed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{library}\NormalTok{(MASS)}
+\KeywordTok{library}\NormalTok{(Rlab)}
+\end{Highlighting}
+\end{Shaded}
+
+None of the class data are required to complete this chapter.
+
+\hypertarget{what-are-sampling-distributions}{%
+\section{What are sampling distributions?}\label{what-are-sampling-distributions}}
+
+When we talk about sampling distributions, we are talking about the probability that a variable we can measure (e.g.~temperature) takes on some value. In most cases, there is a higher probability that the variable will take on certain values than others. That probability may be governed by any number of processes and thus may assume a number of different shapes with respect to the likelihood of any given value of our variable. The differences in the shapes that we assume, and the mathematical parameters that we use to describe those shapes are called ``probability distributions''. And, when they are estimated from data, they are sampling distributions.
+
+There was a time when biologists were largely restricted to using models that relied heavily on the assumption that the things we measured, and their errors, followed ``normal'' distributions, which you have probably heard of or seen in a scientific paper. This was because of how computationally intensive other methods were. This often led to the use of strictly parametric tools like ANOVA and t-tests, or the use of strictly non-parametric tools like frequency analyses and rank-order methods. While these are still useful techniques in our toolboxes, that time has passed, and now we have access to a wide range of tools that allow us to extend simple parametric and non-parametric tools to relax or change distributional assumptions. We will discuss these throughout the book, but we need to look at the underlying distributions that govern our decisions about which of these tools to use. So, this week we'll look at a few probability distributions that correspond to sampling distributions we frequently encounter in biology. To wrap-up, we will use this new information to talk about how we calculate descriptive statistics such as means and standard deviations from samples.
+
+\hypertarget{probability-distributions-in-r}{%
+\section{Probability distributions in R}\label{probability-distributions-in-r}}
+
+R has a number of built-in distribution types, and there are random-number generators associated with most or all of these that will allow us to take random samples from a distribution (like picking numbers out of a hat!). This is useful for data simulation, but is also helpful for us to learn about probability distributions and how their parameters affect the shape, spread, scale, location, etc. of those distributions. We will briefly discuss concepts like skew because of how they can help us think about the assumptions that we are making (or breaking!) in the models that we use.
+
+For this class, we will focus on one major family of distributions and then zero in on a few distributions within this family that you are guaranteed to encounter throughout your career.
+
+\hypertarget{exponential-family}{%
+\section{Exponential family}\label{exponential-family}}
+
+Most or all of the distributions we will use for this class come from the \textbf{exponential family} of distributions.
+
+The exponential family is very flexible, and whether you know it or not, it includes most of the distributions one might use to describe every day phenomena. It includes most of the probability distributions with which you are familiar, and many more. Just ask this \emph{very} reliable \href{https://en.wikipedia.org/wiki/Exponential_family}{Wikipedia entry}. Oh, let's face it, you were going there anyway, I just cut out the Google step.
+
+Take a look at the table at the bottom of this Wikipedia page just to get an idea of how many distributions are included within the exponential! Holy cow! We're not going to look at all of these in this class- I just want you to be aware that this is a \textbf{huge} family of specific distributions.
+
+\textbf{Distributions that we'll focus on in this chapter}:
+
+\textbf{1. Continuous distributions}
+Normal (Gaussian)
+Lognormal
+Beta
+Uniform
+\textbf{2. Discrete distributions}
+Bernouli
+Binomial
+Multinomial
+Poisson
+Negative binomial
+
+\hypertarget{continuous-distributions}{%
+\section{Continuous distributions}\label{continuous-distributions}}
+
+The normal distribution
+
+This is one distribution with which most of you have at least some nodding acquaintance. It is the classic ``bell curve'' that college students once dreaded in upper-level courses. I don't know if it's a thing anymore. Go Google it.
+
+The \textbf{normal distribution} is defined by two parameters:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The mean (\(\mu\))
+\item
+  The variance (\(\sigma^2\))
+\end{enumerate}
+
+Let's take a look at what the normal distribution looks like. We'll start with a special one called the standard normal (or \emph{z}) distribution. The standard normal is a normal distribution with a mean of zero and a variance of 1. This one is really cool because the standard deviation (\(\sigma\)) is the square-root of the variance, and in this special case \(\sqrt{1} = 1\), so the variance and standard deviation are equal! And because of this property, and other normal distribution can be converted to a standard normal using z-standardization, which we'll talk about later. How exciting is that?
+
+First, take a sample from a normal distribution:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{samp <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10000}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, plot a histogram using the sick new skills you got in \protect\hyperlink{Chapter4}{Chapter 4}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(samp), }\DataTypeTok{binwidth =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{limits=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{7}\NormalTok{,}\DecValTok{7}\NormalTok{), }\DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Value"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Count"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}
+    \DataTypeTok{axis.title.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{-1}\NormalTok{),}
+    \DataTypeTok{axis.title.y =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{3}\NormalTok{),}
+    \DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{()}
+\NormalTok{  )}
+\KeywordTok{print}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-117-1.pdf}
+
+Pretty!
+
+Because this sample is from a \textbf{continuous} distribution, we might actually wish to represent this distribution with a probability density function. You can think of this as R calculating the relative probability of an given value. It implies a continuous surface, rather than the discrete bins like the histogram. In reality it doesn't matter because at best we chop continuous distributions into tiny little bins when we do things like integrals, and R bases \texttt{binwidth} in histograms off a density function anyway (aaaaah!).
+
+Density plots are a new one for us, so let's try them out. If you scroll back and forth, you'll notice that the code below is basically identical to the histogram above except for labels and scales. We just replaced the histogram geometry (\texttt{geom\_histogram}) with a density-based geometry (\texttt{geom\_density}). Here, we use \texttt{fill\ =\ 1} to trick R into filling the area under the line because we have no grouping variables. By default, this is interpreted as \texttt{\textquotesingle{}black\textquotesingle{}}, so we add an alpha channel for transparency.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\KeywordTok{aes}\NormalTok{(samp), }\DataTypeTok{alpha =} \FloatTok{.1}\NormalTok{, }\DataTypeTok{fill =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{7}\NormalTok{,}\DecValTok{7}\NormalTok{), }\DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Value"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Density"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}
+    \DataTypeTok{axis.title.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{-1}\NormalTok{),}
+    \DataTypeTok{axis.title.y =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{3}\NormalTok{),}
+    \DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{()}
+\NormalTok{  )}
+\KeywordTok{print}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-118-1.pdf}
+
+Excellent use of \texttt{ggplot()} to make a figure that looks like the clunky base graphics. Maybe you can improve on it in the homework assignment?
+
+We can change the parameters of the standard normal to change both the location and the scale of our distribution. The influence of changing the mean, or average, on the location of a distribution is perhaps obvious. But, the influence of variance may be less intuitive, so let's have a look!
+
+Create two more random samples, one with a larger \texttt{sd} and one with a smaller \texttt{sd}, to see how this changes the shape of the distribution:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{samp2 <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =} \FloatTok{1e4}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{2}\NormalTok{)}
+\NormalTok{samp3 <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =} \FloatTok{1e4}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \FloatTok{.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Let's put them in a data frame with \texttt{samp} so they're easy to plot. We combine all three random samples into one column called \texttt{Value}. Then, we create a column to hold the standard deviation used in each sample (\texttt{Sigma}). If we make that one into a factor, we can use the \texttt{Sigma} columns to plot the samples as separate lines by tweaking our plotting code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{normals <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{Value =} \KeywordTok{c}\NormalTok{(samp, samp2, samp3),}
+  \DataTypeTok{Sigma =} \KeywordTok{factor}\NormalTok{(}
+    \KeywordTok{c}\NormalTok{(}
+      \KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\KeywordTok{length}\NormalTok{(samp)), }
+      \KeywordTok{rep}\NormalTok{(}\DecValTok{2}\NormalTok{, }\KeywordTok{length}\NormalTok{(samp2)), }
+      \KeywordTok{rep}\NormalTok{(.}\DecValTok{5}\NormalTok{, }\KeywordTok{length}\NormalTok{(samp3))}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Next, we can just add these to the plot to compare the sampling distributions. This time, we tell R to fill the area under our lines based on sample ID with a default color scheme by saying \texttt{fill\ =\ Sigma} in our \texttt{ggplot()} call. We also added \texttt{color\ =\ Sigma} to make the lines the same default colors. Remember, you can specify your own.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ normals, }
+            \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Value, }\DataTypeTok{group =}\NormalTok{ Sigma, }\DataTypeTok{fill =}\NormalTok{ Sigma, }\DataTypeTok{color =}\NormalTok{ Sigma)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\DataTypeTok{adjust =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{.4}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{7}\NormalTok{, }\DecValTok{7}\NormalTok{), }\DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Value"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Density"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}
+    \DataTypeTok{axis.title.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{-1}\NormalTok{),}
+    \DataTypeTok{axis.title.y =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{3}\NormalTok{),}
+    \DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{()}
+\NormalTok{  )}
+\KeywordTok{print}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-121-1.pdf}
+
+The blue polygon in the plot above shows a distribution with greater variance than our z distribution (green). The red polygon shows a distribution with a smaller variance. Hopefully this helps demonstrate how variance influences the scale of the distribution.
+
+\hypertarget{the-lognormal-distribution}{%
+\subsection{The lognormal distribution}\label{the-lognormal-distribution}}
+
+The \textbf{lognormal distribution} is a probability distribution that assumes our random variable is normally distributed on the \textbf{log scale}. This assumption allows us to incorporate \textbf{skew} into the normal distribution and change the location and scale of the normal distribution by transforming the parameters (\(\mu\) and \(\sigma\)) onto the log scale. This is one of the more common data transformations that you will run into, e.g.: ``We log-transformed the data to achieve normality\ldots{}''. One of the other reasons for that is that all values (positive or negative) transformed from the log to the real scale are positive, so it helps prevent us from making negative predictions about phenomena or variables that can't be less than zero.
+
+Let's take a look at how changes to the mean change the location of this distribution:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Create random samples from log-normal}
+\CommentTok{# distributions with different means}
+\NormalTok{samp1 <-}\StringTok{ }\KeywordTok{rlnorm}\NormalTok{(}\DataTypeTok{n=}\FloatTok{1e4}\NormalTok{, }\DataTypeTok{mean=}\DecValTok{0}\NormalTok{, }\DataTypeTok{sd=}\DecValTok{1}\NormalTok{)}
+\NormalTok{samp2 <-}\StringTok{ }\KeywordTok{rlnorm}\NormalTok{(}\DataTypeTok{n=}\FloatTok{1e4}\NormalTok{, }\DataTypeTok{mean=}\DecValTok{1}\NormalTok{, }\DataTypeTok{sd=}\DecValTok{1}\NormalTok{)}
+\NormalTok{samp3 <-}\StringTok{ }\KeywordTok{rlnorm}\NormalTok{(}\DataTypeTok{n=}\FloatTok{1e4}\NormalTok{, }\DataTypeTok{mean=}\DecValTok{2}\NormalTok{, }\DataTypeTok{sd=}\DecValTok{1}\NormalTok{)}
+
+\CommentTok{# Put them in a data frame with the values}
+\CommentTok{# of the means used to create them}
+\NormalTok{lognormals <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{Value =} \KeywordTok{c}\NormalTok{(samp, samp2, samp3),}
+  \DataTypeTok{X_bar =} \KeywordTok{factor}\NormalTok{(}
+    \KeywordTok{c}\NormalTok{(}
+      \KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{length}\NormalTok{(samp)), }
+      \KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\KeywordTok{length}\NormalTok{(samp2)), }
+      \KeywordTok{rep}\NormalTok{(}\DecValTok{2}\NormalTok{, }\KeywordTok{length}\NormalTok{(samp3))}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now you can plot these using the code above with a couple of modifications to show how the mean of the log-normal distribution influences the location.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ lognormals,}
+            \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Value, }\DataTypeTok{group =}\NormalTok{ X_bar, }\DataTypeTok{fill =}\NormalTok{ X_bar, }\DataTypeTok{color =}\NormalTok{ X_bar)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\DataTypeTok{adjust =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{.4}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{limits =}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{50}\NormalTok{), }\DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Value"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Density"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}
+    \DataTypeTok{axis.title.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{-1}\NormalTok{),}
+    \DataTypeTok{axis.title.y =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{3}\NormalTok{),}
+    \DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{()}
+\NormalTok{  )}
+\KeywordTok{print}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-123-1.pdf}
+
+You can see that the relative scale of these three distributions is similar, but the location shifts to the right on our x-axis as the value of \texttt{X\_bar} (the mean) increases. Note also how this affects \emph{kurtosis}.
+
+\hypertarget{the-beta-distribution}{%
+\subsection{The beta distribution}\label{the-beta-distribution}}
+
+The \textbf{beta distribution} is a probability distribution that is constrained to the interval {[}0, 1{]}. But, it is incredibly flexible in its parameterization, and as a result is very useful for stochastic simulation of variables on the probability scale, such as survival.
+
+The parameters of the beta distribution are \(\alpha\) and \(\beta\), or commonly \texttt{a} and \texttt{b} or \texttt{shape\ 1} and \texttt{shape\ 2} in R. Within this distribution, \(\alpha\) pushes the distribution to the right (toward 1), and \(\beta\) pushes the distribution back toward the left (toward 0). The relative magnitude of \(\alpha\) and \(\beta\) determine the location, shape, and scale of the probability distribution for our random variable. When \(\alpha\) and \(\beta\) are equal, and greater than 1, the beta distribution looks like a normal distribution within the interval {[}0, 1{]}.
+
+Let's take a look:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Simulate random values from 3 different beta distributions}
+\CommentTok{# so we can compare them}
+\NormalTok{samp1 <-}\StringTok{ }\KeywordTok{rbeta}\NormalTok{(}\DataTypeTok{n=}\FloatTok{1e4}\NormalTok{, }\DataTypeTok{shape1=}\DecValTok{50}\NormalTok{, }\DataTypeTok{shape2=}\DecValTok{50}\NormalTok{)}
+\NormalTok{samp2 <-}\StringTok{ }\KeywordTok{rbeta}\NormalTok{(}\DataTypeTok{n=}\FloatTok{1e4}\NormalTok{, }\DataTypeTok{shape1=}\DecValTok{50}\NormalTok{, }\DataTypeTok{shape2=}\DecValTok{100}\NormalTok{)     }
+\NormalTok{samp3 <-}\StringTok{ }\KeywordTok{rbeta}\NormalTok{(}\DataTypeTok{n=}\FloatTok{1e4}\NormalTok{, }\DataTypeTok{shape1=}\DecValTok{500}\NormalTok{, }\DataTypeTok{shape2=}\DecValTok{250}\NormalTok{) }
+
+\CommentTok{# Put them in a data frame with the values}
+\CommentTok{# of the means used to create them. I am }
+\CommentTok{# using "theta" because often that is how we}
+\CommentTok{# refer collectively to a group of parameters}
+\NormalTok{betas <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{Value =} \KeywordTok{c}\NormalTok{(samp, samp2, samp3),}
+  \DataTypeTok{theta =} \KeywordTok{factor}\NormalTok{(}
+    \KeywordTok{c}\NormalTok{(}
+      \KeywordTok{rep}\NormalTok{(}\StringTok{'a = 50, b = 50'}\NormalTok{, }\KeywordTok{length}\NormalTok{(samp)), }
+      \KeywordTok{rep}\NormalTok{(}\StringTok{'a = 50, b = 100'}\NormalTok{, }\KeywordTok{length}\NormalTok{(samp2)), }
+      \KeywordTok{rep}\NormalTok{(}\StringTok{'a = 500, b = 250'}\NormalTok{, }\KeywordTok{length}\NormalTok{(samp3))}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+And then, we can plot them just like we did above. Copy and paste it - change what you need. Isn't code great?. Just don't forget to change the scale and the data in the plotting code!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ betas,}
+            \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Value, }\DataTypeTok{group =}\NormalTok{ theta, }\DataTypeTok{fill =}\NormalTok{ theta, }\DataTypeTok{color =}\NormalTok{ theta)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\DataTypeTok{adjust =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{.4}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{limits =}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{), }\DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Value"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Density"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}
+    \DataTypeTok{axis.title.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{-1}\NormalTok{),}
+    \DataTypeTok{axis.title.y =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{3}\NormalTok{),}
+    \DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{()}
+\NormalTok{  )}
+\KeywordTok{print}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-125-1.pdf}
+
+Play around with these to see what kind of cool shapes you can make and where they are located within the range between zero and one.
+
+\hypertarget{discrete-distributions}{%
+\section{Discrete distributions}\label{discrete-distributions}}
+
+\textbf{Discrete} probability distributions are useful for situations in which our random variable of interest can only take specific values within the interval of interest. For example, this might include age, counts, pass/fail, or any number of conceivable categories. As a result, these require a slightly different treatment of probability as a discrete, rather than continuous phenomenon. (Think back to our histogram that we started with in this chapter.)
+
+\hypertarget{bernoulli}{%
+\subsection{Bernoulli}\label{bernoulli}}
+
+The \textbf{Bernoulli distribution} is a special case of the binomial distribution with a single trial (see below for clarification). Bernoulli outcomes are those for which the variable we are measuring can take on one of two values: a one or a zero. This distribution is useful for visualizing processes such as coin flips, yes/no responses, live/dead endpoints in lab studies, and a number of other very interesting phenomena. The Bernoulli distribution has a single parameter: the probability of success, but the number of successful outcomes is also governed by sample size: \emph{n}, which R calls \texttt{size} because \texttt{n} was already taken.
+
+We can simulate data from a Bernoulli distribution in one of two ways in R.
+
+The ``old-school'' way of doing this was to draw from a binomial with a single \textbf{trial}. Here we randomly draw a single sample from a binomial with a single trial, and a 50\% chance of success. We'll use the example of hatching chicken eggs with some probability of success. If you are boring, you can think about flipping coins, too!
+
+We'll start with one chicken egg that has a 50\% chance of successfully hatching (probability of success = 0.50).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rbinom}\NormalTok{(}\DataTypeTok{n=}\DecValTok{1}\NormalTok{, }\DataTypeTok{size=}\DecValTok{1}\NormalTok{, }\DataTypeTok{prob=}\NormalTok{.}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+There is also a function called \texttt{rbern} in the \texttt{Rlab} package that simplifies this for the specific case of a Bernoulli.
+
+Let's do it again with that function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Hatch one egg with 50% success rate}
+\KeywordTok{rbern}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+Or we could hatch a whole bunch of eggs:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Hatch ten eggs, each with p = 0.5}
+\KeywordTok{rbern}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 0 1 0 0 0 1 1 0 1 0
+\end{verbatim}
+
+Then, we could even count how many of those were successful. Do you remember how to do that? There are several different ways. You'll have to come up with one for the homework assignment (hint: see \protect\hyperlink{Chapter2}{Chapter 2}).
+
+\hypertarget{binomial}{%
+\subsection{Binomial}\label{binomial}}
+
+The \textbf{binomial distribution} is pretty similar to the Bernoulli distribution. In fact, the Bernoulli is just a special kind of binomial. The binomial includes a parameter called \(N\) (\texttt{size} in R) which corresponds to a number of trials per sample. We assume that this is 1 in the case of Bernoulli. In most cases in biology, it will suffice to use the Bernoulli, but for modeling we will want to understand the binomial for things like random stratified designs and nested models that rely on the use of binomial distribution. Later in your career, you might even get into cool models that estimate \(N\) as a latent state to estimate population size (for example). Plus, using the binomial is way faster and can be more precise for certain regression applications {[}okay, that one should probably have a citation, but this is The Worst Stats Text eveR, so go Google it{]}.
+
+To sample data from a binomial distribution, we can use \texttt{rbinom} from base R. In this example we tell R that we want 10 samples (\texttt{n}) from a binomial distribution that has 10 trials (\texttt{size}) and a probability of success (\texttt{prob}) of 0.5. This is like hatching ten eggs from each of ten chickens instead of just one chicken laying ten eggs.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Take a random draw of 10 samples}
+\CommentTok{# from a binomial distribution with 10 trials}
+\CommentTok{# and probability of success equal to 0.50}
+\KeywordTok{rbinom}\NormalTok{(}\DataTypeTok{n=}\DecValTok{10}\NormalTok{, }\DataTypeTok{size=}\DecValTok{10}\NormalTok{, }\DataTypeTok{prob=}\FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 4 5 5 7 6 3 5 5 5 3
+\end{verbatim}
+
+Remember as you look through these that your numbers should look different than mine (at least most of the time) because these are being generated randomly.
+
+\hypertarget{multinomial}{%
+\subsection{Multinomial}\label{multinomial}}
+
+The \textbf{multinomial distribution} is a further generalization of the Binomial and Bernoulli distributions. Here, there are one or more possible categorical outcomes (states), and the probability of each one occurring is specified individually \textbf{but all of them must sum to one}. The categories are, in this case, assumed to be a \textbf{mutually exclusive} and \textbf{exhaustive} set of possible outcomes.
+
+We can use the multinomial distribution to randomly sample from categories (imagine our response variable is a categorical variable, like the names of the students in this class).
+
+To do this, we need to read in the \texttt{s\_names.csv} file from our \texttt{data} folder that is definitely in your working directory (\textbf{remember to set your working directory first}).
+
+Read in the data file with \texttt{stringsAsFactors\ =\ FALSE} for purposes of demonstrating with categorical variables (not factors).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s_names <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'data/s_names.csv'}\NormalTok{, }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Next, let's assign the variable \texttt{name} in \texttt{s\_names} to a vector for simplicity.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{name <-}\StringTok{ }\NormalTok{s_names}\OperatorTok{$}\NormalTok{name}
+\end{Highlighting}
+\end{Shaded}
+
+Then, we can assign a uniform probability of drawing any given name if we divide one by the number of names.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Calculate probability of getting a given }
+\CommentTok{# name based on the length of the vector}
+\NormalTok{prob_each <-}\StringTok{ }\DecValTok{1} \OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(name)}
+
+\CommentTok{# Repeat this probability for each }
+\CommentTok{# name in our vector of names}
+\NormalTok{probs <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(prob_each, }\DataTypeTok{times =} \KeywordTok{length}\NormalTok{(name))      }
+\NormalTok{probs      }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154
+##  [7] 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154
+## [13] 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154
+## [19] 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154
+## [25] 0.03846154 0.03846154
+\end{verbatim}
+
+This shows us that the probability of drawing any of the individual names is \texttt{\{r\ prob\_each\}}.
+
+Now, we can sample from a multinomial distribution using our objects. Here we are taking 5 samples from the distribution, each time we sample there is only one trial, and we are sampling with the 26 probabilities above.
+
+Have a look:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rmultinom}\NormalTok{(}\DataTypeTok{n=}\DecValTok{5}\NormalTok{, }\DataTypeTok{size=}\DecValTok{1}\NormalTok{, }\DataTypeTok{prob=}\NormalTok{probs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       [,1] [,2] [,3] [,4] [,5]
+##  [1,]    0    0    1    0    0
+##  [2,]    0    0    0    0    0
+##  [3,]    0    0    0    0    0
+##  [4,]    0    0    0    0    0
+##  [5,]    0    0    0    0    1
+##  [6,]    0    0    0    0    0
+##  [7,]    0    0    0    1    0
+##  [8,]    0    0    0    0    0
+##  [9,]    0    0    0    0    0
+## [10,]    0    0    0    0    0
+## [11,]    0    0    0    0    0
+## [12,]    0    0    0    0    0
+## [13,]    1    0    0    0    0
+## [14,]    0    0    0    0    0
+## [15,]    0    0    0    0    0
+## [16,]    0    0    0    0    0
+## [17,]    0    0    0    0    0
+## [18,]    0    0    0    0    0
+## [19,]    0    0    0    0    0
+## [20,]    0    0    0    0    0
+## [21,]    0    0    0    0    0
+## [22,]    0    1    0    0    0
+## [23,]    0    0    0    0    0
+## [24,]    0    0    0    0    0
+## [25,]    0    0    0    0    0
+## [26,]    0    0    0    0    0
+\end{verbatim}
+
+\textbf{WHOA} a matrix??!!! \textbf{What does it all mean}?
+
+Take a step back, breathe, and think about this. The rows in this matrix are you and your classmates. If we took one random sample from the multinomial distribution, it would look like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Take a single sample from}
+\CommentTok{# the list of student names    }
+\KeywordTok{rmultinom}\NormalTok{(}\DataTypeTok{n=}\DecValTok{1}\NormalTok{, }\DataTypeTok{size=}\DecValTok{1}\NormalTok{, }\DataTypeTok{prob=}\NormalTok{probs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       [,1]
+##  [1,]    0
+##  [2,]    0
+##  [3,]    0
+##  [4,]    0
+##  [5,]    0
+##  [6,]    0
+##  [7,]    0
+##  [8,]    0
+##  [9,]    0
+## [10,]    0
+## [11,]    0
+## [12,]    0
+## [13,]    0
+## [14,]    0
+## [15,]    0
+## [16,]    0
+## [17,]    0
+## [18,]    0
+## [19,]    0
+## [20,]    0
+## [21,]    0
+## [22,]    0
+## [23,]    1
+## [24,]    0
+## [25,]    0
+## [26,]    0
+\end{verbatim}
+
+Here, we pulled a single sample from the distribution, and probability of sampling a given individual was 0.04 (1/26). If it makes it easier, we can put your names next to it:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cbind}\NormalTok{(name, }\KeywordTok{rmultinom}\NormalTok{(}\DataTypeTok{n=}\DecValTok{1}\NormalTok{, }\DataTypeTok{size=}\DecValTok{1}\NormalTok{, }\DataTypeTok{prob=}\NormalTok{probs))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       name             
+##  [1,] "Ava"         "0"
+##  [2,] "Dillon"      "0"
+##  [3,] "Delaney"     "0"
+##  [4,] "Manolo"      "0"
+##  [5,] "Sarah"       "0"
+##  [6,] "Shannon"     "0"
+##  [7,] "Olivia"      "0"
+##  [8,] "Ebony"       "0"
+##  [9,] "Julia"       "0"
+## [10,] "Davi"        "0"
+## [11,] "Gabrielle"   "0"
+## [12,] "Jordan"      "0"
+## [13,] "Tayler"      "0"
+## [14,] "Summer"      "0"
+## [15,] "Leah"        "0"
+## [16,] "Christine"   "0"
+## [17,] "Ashley"      "0"
+## [18,] "Katherine"   "0"
+## [19,] "James"       "0"
+## [20,] "Emily"       "0"
+## [21,] "Cassidy"     "0"
+## [22,] "Maximillion" "0"
+## [23,] "Sierra"      "1"
+## [24,] "Kyle"        "0"
+## [25,] "Diana"       "0"
+## [26,] "Amanda"      "0"
+\end{verbatim}
+
+Now, if I was calling on you randomly in class, after 10 questions, the spread of people who would have participated in class might look like this (or whatever you got - remember, it is random):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cbind}\NormalTok{(name, }\KeywordTok{rmultinom}\NormalTok{(}\DataTypeTok{n=}\DecValTok{10}\NormalTok{, }\DataTypeTok{size=}\DecValTok{1}\NormalTok{, }\DataTypeTok{prob=}\NormalTok{probs))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       name                                                 
+##  [1,] "Ava"         "0" "0" "0" "0" "1" "0" "0" "0" "0" "0"
+##  [2,] "Dillon"      "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [3,] "Delaney"     "1" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [4,] "Manolo"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "1"
+##  [5,] "Sarah"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [6,] "Shannon"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [7,] "Olivia"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [8,] "Ebony"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [9,] "Julia"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [10,] "Davi"        "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
+## [11,] "Gabrielle"   "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
+## [12,] "Jordan"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [13,] "Tayler"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [14,] "Summer"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [15,] "Leah"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [16,] "Christine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [17,] "Ashley"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [18,] "Katherine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [19,] "James"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [20,] "Emily"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [21,] "Cassidy"     "0" "0" "0" "0" "0" "0" "0" "0" "1" "0"
+## [22,] "Maximillion" "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
+## [23,] "Sierra"      "0" "0" "0" "0" "0" "0" "1" "1" "0" "0"
+## [24,] "Kyle"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [25,] "Diana"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [26,] "Amanda"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+\end{verbatim}
+
+Taking this one step further, we could just draw a name and stop looking at these ugly (no but really they are \textbf{awesome}!) matrices:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{name[}\KeywordTok{which}\NormalTok{(}\KeywordTok{rmultinom}\NormalTok{(}\DataTypeTok{n=}\DecValTok{1}\NormalTok{, }\DataTypeTok{size=}\DecValTok{1}\NormalTok{, }\DataTypeTok{prob=}\NormalTok{probs)}\OperatorTok{>}\DecValTok{0}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Amanda"
+\end{verbatim}
+
+And now we have a way to randomly select an individual based on a multinomial distribution. What fun!
+
+\hypertarget{poisson}{%
+\subsection{Poisson}\label{poisson}}
+
+The \textbf{Poisson distribution} is used for counts or other integer data. This distribution is widely used (and just as widely misused!) for its ability to account for a large number of biological and ecological processes in the models that we will discuss this semester. The Poisson distribution has a single parameter, \(\lambda\), which is both the mean and the variance of the distribution. So, despite its utility, the distribution is relatively inflexible with respect to shape and spread. \textbf{Fun fact}: this distribution was made widely known by a Russian economist to predict the number of soldiers who were accidentally killed from being kicked by horses in the Prussian army each year. It is named, however, after French mathematician Siméon Denis Poisson. {[}fails to provide citations for any of this{]}
+
+Take a look at how the distribution changes when you change \(\lambda\), and you will get an idea of how this one works. It is probably the most straightforward of any we've considered.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(}\KeywordTok{rpois}\NormalTok{(}\DataTypeTok{n=}\FloatTok{1e4}\NormalTok{, }\DataTypeTok{lambda=}\DecValTok{100}\NormalTok{), }\DataTypeTok{main=}\StringTok{''}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-138-1.pdf}
+
+We'll set it aside for now because it often fails us (or our data fail it, I suppose).
+
+\hypertarget{the-negative-binomial-distribution}{%
+\subsection{The negative binomial distribution}\label{the-negative-binomial-distribution}}
+
+Okay, this one can be a little difficult to wrap your head around but it's an important one for us to know about. So, we will spend a little extra time setting this one up to try and be clear. Often, folks start out thinking that they're going to use a Poisson distribution and they end up collecting with data that do not conform to the relative inflexibility of that single-parameter distribution. Where they end up usually tends to be a negative binomial in a best case (we'll talk about challenges associated with lots of zeros later in the book).
+
+For the purpose of this class, we are not going to dive into the mechanics of the \textbf{negative binomial distribution}, but we do need to know what it looks like and why we might need it.
+
+One useful way to conceptualize the negative binomial is ``how long does it take for some event to occur?'' For example, we might ask how long it takes a fish to start migrating, how long it takes a sea turtle to recover in a rehabilitation center, how long it will take for a terminal patient to expire (ooh, that's dark), or how frequently we see the expression of a gene of interest. These kinds of questions are asked in aptly named ``time-to-event'' models that rely on the variance structure of the negative binomial. In the context of these kinds of questions, the negative binomial is a discrete probability distribution (and not a continuous distribution) because the ``time'' component of the distribution is actually a series of independent Bernoulli trials (holy crap!). For example: if we want to know how many days it will take for a turtle to recover from an injury, what we are really doing is asking on each day until recovery, ``Is today the day?''. Then, we flip a coin and find out. So, each day in this example is a Bernoulli trial. Another way to think about this is the number of failures occurring in a sequence before a target number of sucesses is achieved.
+
+For the classical parameterization:
+
+We will start by looking at how many failures are observed before one success in a sequence of Bernoulli trials.
+
+With probability of succes equal to 0.95, it doesn't take long and most of the probability mass is near zero, with a couple of stragglers further out.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Take a random sample from the negative binomial}
+\NormalTok{Value <-}\StringTok{ }\KeywordTok{rnbinom}\NormalTok{(}\FloatTok{1e4}\NormalTok{, }\DataTypeTok{size=}\DecValTok{1}\NormalTok{, }\DataTypeTok{prob=}\NormalTok{.}\DecValTok{95}\NormalTok{)}
+
+\CommentTok{# Make a histogram of it with ggplot}
+\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{( }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Value) )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-139-1.pdf}
+
+If we decrease probability of success in each trial to 0.25, we see more failures on average before we reach success. Most of the time, it still takes less than 5 trials to reach a success, but some times it takes much longer.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Take a random sample from the negative binomial}
+\NormalTok{Value <-}\StringTok{ }\KeywordTok{rnbinom}\NormalTok{(}\FloatTok{1e4}\NormalTok{, }\DataTypeTok{size=}\DecValTok{1}\NormalTok{, }\DataTypeTok{prob=}\NormalTok{.}\DecValTok{25}\NormalTok{)}
+
+\CommentTok{# Make a histogram of it with ggplot}
+\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{( }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Value) )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-140-1.pdf}
+
+And, if we increase the number of successes that we use for our criterion, or target, then it spreads the distribution out even further.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Take a random sample from the negative binomial}
+\NormalTok{Value <-}\StringTok{ }\KeywordTok{rnbinom}\NormalTok{(}\FloatTok{1e4}\NormalTok{, }\DataTypeTok{size=}\DecValTok{10}\NormalTok{, }\DataTypeTok{prob=}\NormalTok{.}\DecValTok{25}\NormalTok{)}
+
+\CommentTok{# Make a histogram of it with ggplot}
+\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{( }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Value) )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-141-1.pdf}
+
+Now, because of it's properties, the negative binomial is also useful for number of other applications that have nothing to do with interpretting the results of repeated binomial trials. Specifically, it has been widely used to represent Poisson-like processes in which the mean and variance are not equal (e.g., \textbf{overdispersion}). This has seen a lot of application in the field of ecology, especially for overdispersed count data.
+
+Here, we draw 10,000 random samples from a negative binomial distribution with a mean of 10 and an overdispersion parameter of 1. The overdispersion parameter is called `size' because this is an alternative parameterization that is just making use of the relationships between existing parameters of the negative binomial. It's easy to grasp how the mean changes the location of the distribution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Take a random sample from the negative binomial}
+\NormalTok{Value <-}\StringTok{ }\KeywordTok{rnbinom}\NormalTok{(}\FloatTok{1e4}\NormalTok{, }\DataTypeTok{mu =} \DecValTok{10}\NormalTok{, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{)}
+
+\CommentTok{# Make a histogram of it with ggplot}
+\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{( }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Value), }\DataTypeTok{bins =} \DecValTok{20}\NormalTok{ )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-142-1.pdf}
+
+But, note how the overdispersion parameter changes things if you run the following code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Take a random sample from the negative binomial}
+\NormalTok{Value <-}\StringTok{ }\KeywordTok{rnbinom}\NormalTok{(}\FloatTok{1e4}\NormalTok{, }\DataTypeTok{mu =} \DecValTok{10}\NormalTok{, }\DataTypeTok{size =} \DecValTok{1000}\NormalTok{)}
+
+\CommentTok{# Make a histogram of it with ggplot}
+\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{( }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Value), }\DataTypeTok{bins =} \DecValTok{20}\NormalTok{ )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-143-1.pdf}
+
+A more intuitive way (I think) to work with the negative binomial in R is by using the \texttt{MASS} package. In this parameterization, we use the mean and the
+dispersion parameter explicitly so it makes more sense:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Take a random sample from the negative binomial}
+\NormalTok{Value <-}\StringTok{ }\KeywordTok{rnegbin}\NormalTok{(}\FloatTok{1e4}\NormalTok{, }\DataTypeTok{mu =} \DecValTok{10}\NormalTok{, }\DataTypeTok{theta =} \DecValTok{1000}\NormalTok{)}
+
+\CommentTok{# Make a histogram of it with ggplot}
+\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{( }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Value), }\DataTypeTok{bins =} \DecValTok{20}\NormalTok{ )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-144-1.pdf}
+
+The results are pretty much identical. Just two different naming systems for the parameters.
+
+\hypertarget{sample-statistics}{%
+\section{Sample statistics}\label{sample-statistics}}
+
+In this section, we will learn how to derive the parameters of the \textbf{normal distribution} using a few different methods in R. We will use this opportunity to re-introduce the parameters as \textbf{moments} of the distribution so we can talk about what we mean by \textbf{confidence intervals}. We also will introduce a couple of different methods for calculating moments of a distribution. Specifically, we will look at how to derive\ldots{}
+
+\hypertarget{moments-about-the-mean}{%
+\subsection{Moments about the mean}\label{moments-about-the-mean}}
+
+Sounds fancy, huh? Here they are, like a bandaid:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Zeroth moment
+
+  \begin{itemize}
+  \tightlist
+  \item
+    This is the sum of the total probability of the distribution 1.00, always
+  \end{itemize}
+\item
+  First moment
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The mean
+  \item
+    We will look at a few ways to calculate this
+  \end{itemize}
+\item
+  Second moment
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The variance
+  \item
+    As with the mean, we will examine a couple of options for calculating
+  \end{itemize}
+\item
+  Third moment
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Skew
+  \item
+    We won't calculate for this class, but we have discussed, and this
+    parameter contributes to the location/spread of the distribution (how
+    far left or right the peak is)
+  \end{itemize}
+\item
+  Fourth moment
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Kurtosis
+  \item
+    Similarly, we won't cover the calculation, but this is another moment
+    that we may have discussed with respect to departure from a z\\
+    distribution in the normal
+  \end{itemize}
+\end{enumerate}
+
+\hypertarget{estimating-parameters-of-the-normal-distribution-from-a-sample}{%
+\subsection{Estimating parameters of the normal distribution from a sample}\label{estimating-parameters-of-the-normal-distribution-from-a-sample}}
+
+The tools demonstrated below can be used for most of the probability distributions that have been implemented in R, and we could go on and on forever about them. But, for the sake of our collective sanity we will walk through the tools available using the normal distribution alone. Most of the time this will suffice because our objective in understanding other distributions is really just so that we can use them to assume asymptotic normality in response variables (with transformations) or parameter distributions (with link functions) later on anyway.
+
+\hypertarget{method-of-moments-estimator}{%
+\subsubsection{Method of moments estimator}\label{method-of-moments-estimator}}
+
+The moments of the normal distribution are well defined, and you are probably familiar with how to calculate a mean (average) already. See if you can rearrange this in a way that makes sense with how you know to calculate a \textbf{mean} and a \textbf{variance}!
+
+Start by simulating a variable with a known mean and standard deviation. We'll pretend that we are simulating cold temperatures here:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Take a random sample from a normal}
+\CommentTok{# with a mean of 20 and a standard}
+\CommentTok{# deviation of 2}
+\NormalTok{test_norm <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\FloatTok{1e4}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+First, we'll estimate it by making our own function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Write the function}
+\CommentTok{# First, define a function by name}
+\NormalTok{norm.mom =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x)\{      }
+  
+  \CommentTok{# Calculate mean}
+\NormalTok{  x_bar =}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\KeywordTok{length}\NormalTok{(x)) }\OperatorTok{*}\StringTok{ }\KeywordTok{sum}\NormalTok{(x) }
+  
+  \CommentTok{# Calculate variance}
+\NormalTok{  sigma2 =}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\KeywordTok{length}\NormalTok{(x)) }\OperatorTok{*}\StringTok{ }\KeywordTok{sum}\NormalTok{((x}\OperatorTok{-}\NormalTok{x_bar)}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+  
+  \CommentTok{# Return the calculations}
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{c}\NormalTok{(x_bar, sigma2))      }
+  
+\NormalTok{\}}
+\CommentTok{# Test the function}
+\KeywordTok{norm.mom}\NormalTok{(test_norm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 19.970094  3.990084
+\end{verbatim}
+
+Because this one is so common, R has built-in estimators that rely on
+the exact solution provided by the formulas for the first two moments
+of the normal distribution:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(test_norm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 19.97009
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{var}\NormalTok{(test_norm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.990483
+\end{verbatim}
+
+Wow, that was a lot less code. That is the beauty of having these functions available. How do these compare to the answers returned by our function if you scroll back up?
+
+\hypertarget{maximum-likelihood-estimator}{%
+\subsubsection{Maximum likelihood estimator}\label{maximum-likelihood-estimator}}
+
+R also has built-in \textbf{maximum likelihood} estimators that provide an exact solution to the first two moments of the normal distribution. These are available through the \texttt{MASS} package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{fitdistr}\NormalTok{(test_norm, }\StringTok{'normal'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       mean           sd     
+##   19.97009390    1.99751941 
+##  ( 0.01997519) ( 0.01412460)
+\end{verbatim}
+
+Only one problem here: R doesn't report the second moment! It reports
+the square root of the second moment: the \textbf{standard deviation}!
+
+Finally, let's write our own function and maximize the likelihood with the \texttt{optim()} function in R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Define the function}
+\NormalTok{normal.lik =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(theta, y)\{}
+  
+  \CommentTok{# The starting value for}
+  \CommentTok{# mu that we provide}
+\NormalTok{  mu =}\StringTok{ }\NormalTok{theta[}\DecValTok{1}\NormalTok{]}
+  
+  \CommentTok{# The starting value for}
+  \CommentTok{# sigma2 that we provide}
+\NormalTok{  sigma2 =}\StringTok{ }\NormalTok{theta[}\DecValTok{2}\NormalTok{]}
+  
+  \CommentTok{# Number of observations in the data}
+\NormalTok{  n =}\StringTok{ }\KeywordTok{nrow}\NormalTok{(y)}
+  
+  \CommentTok{# Compute the log likelihood of the}
+  \CommentTok{# data (y) using the likelihood}
+  \CommentTok{# function for the normal distribution}
+  \CommentTok{# given the starting values for our}
+  \CommentTok{# parameters (contained in the vector 'theta')}
+\NormalTok{  logl =}\StringTok{ }\FloatTok{-.5}\OperatorTok{*}\NormalTok{n}\OperatorTok{*}\KeywordTok{log}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{pi) }\FloatTok{-.5}\OperatorTok{*}\NormalTok{n}\OperatorTok{*}\KeywordTok{log}\NormalTok{(sigma2)}\OperatorTok{-}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{sigma2))}\OperatorTok{*}\KeywordTok{sum}\NormalTok{((y}\OperatorTok{-}\NormalTok{mu)}\OperatorTok{**}\DecValTok{2}\NormalTok{)}
+  \KeywordTok{return}\NormalTok{(}\OperatorTok{-}\NormalTok{logl)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we use the \texttt{optim} function to maximize the likelihood of the data
+(technically by minimizing the -2*log{[}likehood{]}) given different values of
+our parameters (\texttt{mu} and \texttt{sigma2}).
+
+To get started, we need to take a guess at what those parameters could be. (Yes, we know they are mu = 20 and sd = 2)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{optim}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DecValTok{4}\NormalTok{), normal.lik, }\DataTypeTok{y=}\KeywordTok{data.frame}\NormalTok{(test_norm))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $par
+## [1] 19.969855  3.991037
+## 
+## $value
+## [1] 21108.45
+## 
+## $counts
+## function gradient 
+##       47       NA 
+## 
+## $convergence
+## [1] 0
+## 
+## $message
+## NULL
+\end{verbatim}
+
+The pieces are in \texttt{pars} here (right where we told R to put them!). We can also make the output into an object and call the parts by name:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make it into an object}
+\NormalTok{est =}\StringTok{ }\KeywordTok{optim}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+\NormalTok{            normal.lik,}
+            \DataTypeTok{y=}\KeywordTok{data.frame}\NormalTok{(test_norm)}
+\NormalTok{            ) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in log(sigma2): NaNs produced
+
+## Warning in log(sigma2): NaNs produced
+
+## Warning in log(sigma2): NaNs produced
+
+## Warning in log(sigma2): NaNs produced
+
+## Warning in log(sigma2): NaNs produced
+
+## Warning in log(sigma2): NaNs produced
+\end{verbatim}
+
+Look at the structure I'll be damned, it's a list! Hey, we learned about those!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(est)   }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 5
+##  $ par        : num [1:2] 20 4
+##  $ value      : num 21108
+##  $ counts     : Named int [1:2] 97 NA
+##   ..- attr(*, "names")= chr [1:2] "function" "gradient"
+##  $ convergence: int 0
+##  $ message    : NULL
+\end{verbatim}
+
+And, here are the estimates:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Both}
+\NormalTok{est}\OperatorTok{$}\NormalTok{par }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 19.967219  3.995283
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# The mean  }
+\NormalTok{est}\OperatorTok{$}\NormalTok{par[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 19.96722
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# The variance  }
+\NormalTok{est}\OperatorTok{$}\NormalTok{par[}\DecValTok{2}\NormalTok{] }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.995283
+\end{verbatim}
+
+There you have it, a couple of different ways to calculate parameters of the normal distribution using a couple of different approaches each.
+
+\hypertarget{quantiles-and-other-descriptive-statistics}{%
+\subsection{Quantiles and other descriptive statistics}\label{quantiles-and-other-descriptive-statistics}}
+
+There are a number of other ways we might like to describe this this (or any) sampling distribution. Here are a few examples that we will work with this semester.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Here is the median, or 50th percentile}
+\KeywordTok{median}\NormalTok{(test_norm) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 19.96312
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# The 95% confidence limits}
+\KeywordTok{quantile}\NormalTok{(test_norm, }\DataTypeTok{probs =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.975}\NormalTok{)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     2.5%    97.5% 
+## 16.03437 23.89289
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Interquartile range (Q1 and Q3)}
+\KeywordTok{quantile}\NormalTok{(test_norm, }\DataTypeTok{probs =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.25}\NormalTok{, }\FloatTok{0.75}\NormalTok{))    }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      25%      75% 
+## 18.60878 21.31663
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Range of sample}
+\KeywordTok{range}\NormalTok{(test_norm)                             }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12.40963 27.28385
+\end{verbatim}
+
+\hypertarget{next5}{%
+\section{Next steps}\label{next5}}
+
+Here, we have explored some of the probability distributions that we use to describe samples (data) that we collect from the real world. In \protect\hyperlink{Chapter6}{Chapter 6} we will explore how these sampling distributions can be used for statistical inference before diving into applied statistical analyses for the remainder of the book. Hopefully the order of things is starting to make some sense! If not, well\ldots this \emph{is} The Worst Stats Text eveR.
+
+\hypertarget{inferential-statistics}{%
+\chapter{Inferential statistics}\label{inferential-statistics}}
+
+These are hot peppers. Like hot peppers, statistics can cause pain and heartburn if you are not accustomed to them. Ready or not, let's get munching!!
+
+This week we will begin conducting our first statistical tests! We are going to start small and simple, and we will build complexity during the remainder of the semester. We will also start to make more use of some of the programming techniques that you have been developing, and we will build a foundation for moving into regression models in coming weeks.
+
+We'll start with some simple methods for testing hypotheses about sampling distributions this week. Although relatively limited in scope within the fields of biology and ecology, these tend to be fairly robust tests, and can be powerful tools if studies are designed thoughtfully. For this week, we will focus on implementation of one-sample t-tests, two-sample t-tests, Wilcox tests, and frequency analysis using a \(\chi^2\) test. Within the context of the assumptions of these tests we will also discuss the F-test and the Shapiro-Wilk test of normality. In short, you probably will learn more statistical tests in this preliminary chapter about statistical inference than you have in your college career to this point. Take your time and soak in all the mathy goodness. We'll need it!
+
+For this Chapter, we will continue working with packages from the \texttt{tidyverse}. You can go ahead and put this in the top of your code for the chapter if you want to load it all at once:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+We will also need the grass carp data for this exercise, which we will load from \texttt{grasscarp.csv}. Remember that you can download all of the class data here or you can get the individual \texttt{grasscarp.csv} file by clicking here and saving with \texttt{Ctrl\ +\ S} (Windows) or \texttt{Command\ +\ S} (Mac OS-X).
+
+These data come from a long-term study of fish population responses to changes in their primary food source, the invasive hydrilla (\emph{Hydrilla verticallata}). There are a whole bunch of columns in here! The important variables for this chapter are \texttt{Year} (year of fish collection), \texttt{Age} (the age of each fish), \texttt{Length} (total length of fish in mm), and \texttt{hydrilla} (hectares of hydrilla measured each \texttt{Year}).
+
+\hypertarget{one-sample-tests}{%
+\section{One-sample tests}\label{one-sample-tests}}
+
+Sometimes, we are interested in simply knowing whether or not the measurements we've obtained from an individual or a group are representative of a larger population. For example, we may have a `control' group in an experiment and we want to know if the group is truly representative of the population average or some measurement we have collected from a different biological population. For these situations, we will rely on one-sample tests this week and we'll look at other (totally related) options moving forward.
+
+\hypertarget{one-sample-t-test}{%
+\subsection{One sample t-test}\label{one-sample-t-test}}
+
+We will examine parametric and non-parametric examples of one-sample tests here to demonstrate why and how we use them.
+
+Let's start with a simple example of how we might do this, and what the results actually mean. We'll use some data from grass carp (\emph{Ctenopharyngodon idella}) from Lake Gaston, Virginia and North Carolina, USA for this example. We will compare the size of grass carp at specific ages with their population density using a few different tools
+
+Read in the data set:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{  grasscarp <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'data/grasscarp.csv'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Just for funsies, you could also read this in directly from the link to the raw data in the \href{https://github.com/danStich/worst-r/tree/master/data}{GitHub repository for this book} if you have an internet connection:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{grasscarp <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'https://raw.githubusercontent.com/danStich/worst-r/master/data/grasscarp.csv'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Remember to check out the data set in your Environment tab so you understand how many observations there are and how many variables (as well as their types).
+
+Let's start by asking a simple biological question: is the size of age-3 grass carp different from the average size of fish in this population?
+
+First, let's create a sample that includes only age-3 fish. We will store this to a new vector called \texttt{age3\_lengths}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{age3_lengths <-}\StringTok{ }\NormalTok{grasscarp}\OperatorTok{$}\NormalTok{Length[grasscarp}\OperatorTok{$}\NormalTok{Age }\OperatorTok{==}\StringTok{ }\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Now, let's compare the \texttt{Length} of age-3 fish to the rest of the population using a one-sample t-test. To do this, we need to pass \texttt{age3\_lengths}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Run the test and save the output to an object}
+\NormalTok{our_test =}\StringTok{ }\KeywordTok{t.test}\NormalTok{(age3_lengths,}
+                  \DataTypeTok{mu =} \KeywordTok{mean}\NormalTok{(grasscarp}\OperatorTok{$}\NormalTok{Length),}
+                  \DataTypeTok{conf.level =} \FloatTok{0.95}
+\NormalTok{                  )}
+
+\CommentTok{# Print the results of the object to the console}
+\KeywordTok{print}\NormalTok{(our_test)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	One Sample t-test
+## 
+## data:  age3_lengths
+## t = -18.829, df = 47, p-value < 2.2e-16
+## alternative hypothesis: true mean is not equal to 973.0118
+## 95 percent confidence interval:
+##  749.2547 792.4536
+## sample estimates:
+## mean of x 
+##  770.8542
+\end{verbatim}
+
+Okay, so what does that mean???
+
+\begin{quote}
+First, let's look at what we've done here.
+\end{quote}
+
+We've conducted a one-sample t-test.
+
+The null hypothesis was that:
+
+\begin{quote}
+(H\textsubscript{0}): the sample (age-3 fish) did not differ in \texttt{Length} from the mean of the population.
+\end{quote}
+
+This is because we stated no specific alternative hypothesis when we executed the t-test above. If we had used a different alternative hypothesis (i.e.~\texttt{greater} or \texttt{less} in the argument \texttt{alternative}) then our null would be formalized as: ``The length of age-3 fish is not significantly greater (or less) than the population mean''.
+
+Finally, we specified the confidence level. Here, we are told R that we want to know the result with a confidence level of 95\% (0.95). This corresponds to a Type-I error rate (\(\alpha\)) of 0.05. This means we are looking for \emph{p} \textless{} 0.05 to conclude that the sample is statistically different from the population mean. Since p \textless{} 0.001, we reject the H\textsubscript{0} and conclude that age-3 fish are significantly shorter than the population mean.
+
+\hypertarget{output}{%
+\subsubsection{Output}\label{output}}
+
+R returns the output of statistical tests as objects, and you can reference any part of those objects by name or index. The type of object that R returns, and how you access the parts depends on the type of test you ran and with what options.
+
+Like so many other models objects, our one sample t-test is stored as a list:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(our_test)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 10
+##  $ statistic  : Named num -18.8
+##   ..- attr(*, "names")= chr "t"
+##  $ parameter  : Named num 47
+##   ..- attr(*, "names")= chr "df"
+##  $ p.value    : num 1.57e-23
+##  $ conf.int   : num [1:2] 749 792
+##   ..- attr(*, "conf.level")= num 0.95
+##  $ estimate   : Named num 771
+##   ..- attr(*, "names")= chr "mean of x"
+##  $ null.value : Named num 973
+##   ..- attr(*, "names")= chr "mean"
+##  $ stderr     : num 10.7
+##  $ alternative: chr "two.sided"
+##  $ method     : chr "One Sample t-test"
+##  $ data.name  : chr "age3_lengths"
+##  - attr(*, "class")= chr "htest"
+\end{verbatim}
+
+We can just look at the names if there are specific pieces in which we are interested. For example, we might want to save the p-value (\texttt{p.value}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Shows us the names of the things inside the model list}
+  \KeywordTok{names}\NormalTok{(our_test) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "statistic"   "parameter"   "p.value"     "conf.int"    "estimate"   
+##  [6] "null.value"  "stderr"      "alternative" "method"      "data.name"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# This stores our p-value to an object for use}
+\NormalTok{  p_out =}\StringTok{ }\NormalTok{our_test}\OperatorTok{$}\NormalTok{p.value }
+  
+\CommentTok{# And of course we can look at it}
+  \KeywordTok{print}\NormalTok{(p_out)             }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.572767e-23
+\end{verbatim}
+
+Now we can go through the output as it is displayed by:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Print a summary of the test}
+  \KeywordTok{print}\NormalTok{(our_test)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	One Sample t-test
+## 
+## data:  age3_lengths
+## t = -18.829, df = 47, p-value < 2.2e-16
+## alternative hypothesis: true mean is not equal to 973.0118
+## 95 percent confidence interval:
+##  749.2547 792.4536
+## sample estimates:
+## mean of x 
+##  770.8542
+\end{verbatim}
+
+The first line of the output gives us the actual data that with which we are working- nothing of interest here other than a quick sanity check until later on in the course.
+
+The second line shows the `statistics' that we are interested in: \texttt{t} is the calculated value of the test statistic for the t-test in this case. The \texttt{df}, or degrees of freedom, is the number of observations in the sample, minus the number of parameters that we are estimating (in this case, just one: the mean). Our \texttt{p-value} is the probability of observing data that are more extreme than what we observed if the null hypothesis is in fact true (i.e.~the probability that rejection of the null is inappropriate). Again, because it is smaller than \(\alpha\) we reject the null and accept the alternative hypothesis.
+
+Our \texttt{alteranive\ hypothesis} (H\textsubscript{A}) was that the sample mean is not equal to population mean. We can specify other alternatives (and therefore nulls) in this and other models in R.
+
+Finally, R reports the mean and the 95\% confidence interval of \texttt{age3\_lengths}.
+
+\hypertarget{assumptions}{%
+\subsubsection{Assumptions}\label{assumptions}}
+
+It's always important for us to think about the assumptions that we are making when (read \emph{before}) conducting a statistical test. First, there are implicit assumptions that we make. For example, we assume that the data are representative and were collected in a random manner in this case. Then, there are explicit assumptions that we make in specific tests.
+
+For the one-sample t-test, the assumption that we really care about is:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The data are normally distributed
+\end{enumerate}
+
+The t-test is generally robust to violations of this assumption provided that sample sizes are large enough (Google Central Limit Theorem, this is The Worst Stats Text eveR). But, it is always good to check. In particular, when we are working with small sample sizes like this example (n = \texttt{48}), we should really make sure that things look okay.
+
+\hypertarget{checking-assumptions}{%
+\subsubsection{Checking assumptions}\label{checking-assumptions}}
+
+Visual check for normality
+
+One simple way to gauge assumptions of normality is to look at a plot of the data. As you will see later, we are usually concerned with the \emph{residuals}, but we can look at the actual data here because we have only one group and if it's normal so are its errors.
+
+Have a quick look at these to see what we are working with using the histogram code from \protect\hyperlink{Chapter4}{Chapter 4}. I set the x-axis limits below using the maximum \texttt{Length} from the \texttt{grasscarp} data so we can see what part of the length range we've sampled here.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(age3_lengths), }\DataTypeTok{bins =} \DecValTok{30}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{limits=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{max}\NormalTok{(grasscarp}\OperatorTok{$}\NormalTok{Length)), }\DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Total length (mm)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Count"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}
+    \DataTypeTok{axis.title.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{-1}\NormalTok{),}
+    \DataTypeTok{axis.title.y =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{3}\NormalTok{),}
+    \DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{()}
+\NormalTok{  )}
+\KeywordTok{print}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-163-1.pdf}
+Sure, looks totally normal to me? Wouldn't it be great if there were a statistical test for determining whether this sample is different from the normal? Great that you should ask.
+
+\hypertarget{tests-of-normality-shapiro-wilk}{%
+\paragraph{Tests of normality (Shapiro-Wilk)}\label{tests-of-normality-shapiro-wilk}}
+
+The Shapiro-Wilk test is commonly used to test normality of a distribution as a check of assumptions. We can use this to test whether our data deviate from normal in the following manner:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{shapiro.test}\NormalTok{(age3_lengths)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  age3_lengths
+## W = 0.95715, p-value = 0.07746
+\end{verbatim}
+
+First, note that the test statistic is the \texttt{W} statistic for this test.
+
+Second, we have a p-value of \texttt{0.0774637}. \textbf{Oh, no}! Wait, what does that mean?
+
+For this test, we actually don't want p \textless{} 0.05 if we are relying on assumptions of normality, so this is a ``good'' thing. But, it doesn't necessarily mean \texttt{age3\_lengths} is normally distributed. It just means that we can't tell if the sample we have collected is different from normal (we fail to reject the null but can't ``accept'' it). I guess that is good enough, but that p-value is awfully close to 0.05 for my taste.
+
+So, are we up that proverbial tributary without a paddle, or can we salvage the mess and move on with life? Don't worry, there's a statistical test for that, too.
+
+\hypertarget{wilcox-test}{%
+\subsection{Wilcox test}\label{wilcox-test}}
+
+You can think of the Wilcox test as a non-parametric analog of the t-test. In general, non-parametric tests tend to be slightly more ``conservative'' than the parametric alternatives because they require fewer assumptions. However, non-parametric tests can be useful where our data are not normal, or we don't feel we have sufficient data to know (hmm\ldots maybe don't conduct any tests, in that case!).
+
+Here, we are checking for shifts in the median (not the mean) of one or more samples.
+
+Why is this? The mean of a non-normal distribution is not always a useful descriptor of the probability mass under a distribution (it still describes `central tendency' but does not necessarily describe the place where `most of the data are'). But, the median always (as in always, always, always) describes central tendency of the data, so we can pretty much use it for describing any sample. This is because the median is defined as the ``middle'' value. That is, half of the data should fall on either side of the median if you lined up all of your data on the equator (wrong metaphor?).
+
+\ldots back to the Wilcox test.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# First, do this and have a quick read:}
+\NormalTok{  ?wilcox.test}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can actually run a test to see if the median length of age-3 fish is statistically different from the median value of length in the sample.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \KeywordTok{wilcox.test}\NormalTok{(}
+\NormalTok{      age3_lengths,}
+      \DataTypeTok{mu =} \KeywordTok{median}\NormalTok{(grasscarp}\OperatorTok{$}\NormalTok{Length),}
+      \DataTypeTok{alternative =} \StringTok{'less'}\NormalTok{,    }\CommentTok{# Note different alternative here!}
+      \DataTypeTok{exact =} \OtherTok{FALSE}            \CommentTok{# Not much data, so not exact}
+\NormalTok{    )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Wilcoxon signed rank test with continuity correction
+## 
+## data:  age3_lengths
+## V = 0, p-value = 8.414e-10
+## alternative hypothesis: true location is less than 1007
+\end{verbatim}
+
+Interpretting the results is essentially the same as for the t-test, but without the degrees of freedom, so we won't belabor this. Importantly, the test, being robust to any distributional assumptions, should also (and does) tell us that the length of age-3 fish is significantly shorter than the population mean (or median- whichever you used).
+
+\hypertarget{two-sample-tests}{%
+\section{Two-sample tests}\label{two-sample-tests}}
+
+Okay, with that out of the way, now we can get on to some tests that might be a little more meaningful to most people. We can use \textbf{two-sample} tests to whether two groups differ in some metric of interest. This lends itself naturally to use in controlled experiments that we conduct in laboratories, for example.
+
+\hypertarget{the-two-sample-t-test}{%
+\subsection{The two-sample t-test}\label{the-two-sample-t-test}}
+
+If you have been exposed to only one statistical test already it is probably the two-sample t-test. This is a test that is used to test for differences in some continuous variable between two groups. The test statistic itself is pretty trivial to calculate. You can find a video of that \href{https://www.khanacademy.org/math/ap-statistics/two-sample-inference/two-sample-t-test-means/v/two-sample-t-test-for-difference-of-means}{here}. \textbf{Seriously, if you have never done a t-test, watch the 6-minute video now}. Otherwise, you may not understand what follows. I am not going to go into the math here because this is The Worst Stats Text eveR. The video will also help you understand how ANOVA and other tests work later. Understanding how these tests work will give you phenomenal cosmic powers when it comes to analyzing biological data. If you email asking me how a t-test works, I am going to send you this video.
+
+Let's keep working with the \texttt{grasscarp} data for now for the sake of consistency. But, now we want to know if there is a difference in mean length of fish depending on whether their population density is high or low. To look at this, we'll need to make some groups in our \texttt{grasscarp} data that correspond to years of high and low density.
+
+You can compare fish density between years quickly using the summary pipeline demonstrated in \protect\hyperlink{Chapter3}{Chapter 3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{grasscarp }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{dens =} \KeywordTok{unique}\NormalTok{(nha))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 2
+##    Year  dens
+##   <int> <int>
+## 1  2006    21
+## 2  2007    58
+## 3  2009    44
+## 4  2010    43
+## 5  2017   127
+\end{verbatim}
+
+You can see that density was much higher in \texttt{2017} than in any of the preceding years. This is because hydrilla area was reduced by several hundred hectares (\texttt{ha}) between 2010 and 2014 (which was actually the reason we went out to collect more data in 2017). But, these are just means and we need to be able to account for the variability in these measurements to call it science.
+
+So, let's build some groups based on high and low density years. First, we'll add a new categorical variable to \texttt{grasscarp} called ``\texttt{density}'', and we'll fill it all in with the word \texttt{"low"} because there is only one year when density was high.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{grasscarp}\OperatorTok{$}\NormalTok{density <-}\StringTok{ "low"}
+\end{Highlighting}
+\end{Shaded}
+
+Next, we'll change all of the observations for 2017 to \texttt{"high"} so we have low density and high density groupings in our \texttt{density} column. This way, we only have to change the variable for one year.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{grasscarp}\OperatorTok{$}\NormalTok{density[grasscarp}\OperatorTok{$}\NormalTok{Year }\OperatorTok{==}\StringTok{ }\DecValTok{2017}\NormalTok{] <-}\StringTok{ "high"}
+\end{Highlighting}
+\end{Shaded}
+
+Then, we'll subset the data to look at a single age so our comparisons are fair between years. I picked \texttt{Age\ ==\ 10} because 10 years is in the middle of the range of ages in the data set. You can try it with another age as long as there are enough data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mid_carps <-}\StringTok{ }\NormalTok{grasscarp }\OperatorTok{%>%}\StringTok{ }\KeywordTok{subset}\NormalTok{(Age }\OperatorTok{==}\StringTok{ }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we can conduct our two-sample t-test!
+
+The syntax is pretty straightforward, and is similar to what we used above, except that now we have two groups so we will omit \texttt{mu} and specify the t-test as a formula with independent (x, \texttt{density}) and dependent (y, \texttt{Length}) variables. There is no pairing of our observations, so we specify \texttt{paired\ =\ FALSE}, and we tell R we don't want to assume that the variance of \texttt{Length} is equal between \texttt{density} groups.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{t.test}\NormalTok{(Length }\OperatorTok{~}\StringTok{ }\NormalTok{density,}
+         \DataTypeTok{data =}\NormalTok{ mid_carps,}
+         \DataTypeTok{paired =} \OtherTok{FALSE}\NormalTok{,      }\CommentTok{# 2-sample test, not "paired"}
+         \DataTypeTok{var.equal =} \OtherTok{FALSE}\NormalTok{,   }\CommentTok{# We make no variance assumption}
+         \DataTypeTok{conf.level =} \FloatTok{0.95}    \CommentTok{# Alpha = 0.05}
+\NormalTok{    )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Welch Two Sample t-test
+## 
+## data:  Length by density
+## t = -3.2263, df = 11.133, p-value = 0.007952
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -190.03710  -36.03433
+## sample estimates:
+## mean in group high  mean in group low 
+##           987.7143          1100.7500
+\end{verbatim}
+
+The interpretation of the results is much the same as with the one-sample t-test, except that we are now testing the null hypothesis that there is no difference between groups.
+
+We reject the null hypothesis, and we conclude that age-10 fish were significantly larger during periods of low population density than they were during years of high population density (\emph{t} = \texttt{-3.2262903}, df = \texttt{11.1326183}, \emph{p} \textless{} 0.05). Makes perfect sense!
+
+\hypertarget{assumptions-1}{%
+\subsubsection{Assumptions}\label{assumptions-1}}
+
+Equal variance
+
+Now that we are using two samples, we should be cognizant that this test assumes equal variances in the independent variable between our two groups. If our variances are not equal, then we need to account for that (R actually assumes that the variances are unequal by default).
+
+Let's test to see if the variances were equal between age-10 fish in the \texttt{high} and \texttt{low} density groups. To do this, we will conduct an F-test on the ratio of the two variances. If the ratio of the variances is different than one, we reject the null that the variances are the same.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{var.test}\NormalTok{(Length}\OperatorTok{~}\NormalTok{density, mid_carps)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	F test to compare two variances
+## 
+## data:  Length by density
+## F = 0.72988, num df = 20, denom df = 7, p-value = 0.5423
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+##  0.1634026 2.1950440
+## sample estimates:
+## ratio of variances 
+##           0.729877
+\end{verbatim}
+
+Wow, this is way to easy. I hope that you are beginning to understand the \textbf{GLORY OF R}. This test could be a real pain in other software programs, and may not even be an option in many.
+
+Back on topic\ldots we fail to reject the null hypothesis that the variances were equal. In this case, we now feel validated in the use of a two-sample t-test regardless of what R uses as the default (yes, sarcasm intended).
+
+\hypertarget{normality}{%
+\paragraph{Normality}\label{normality}}
+
+Yes, we are still worried about this one because of the reasons given in the previous section. We can check this the same way as before. End of section.
+
+\hypertarget{two-sample-wilcox-test}{%
+\subsection{Two-sample Wilcox test}\label{two-sample-wilcox-test}}
+
+If we were in violation of normality, we would use the Wilcox test to test for differences in ranks. I will not go through the whole thing again here. As with the t-test, if you have not been exposed to doing a rank-sum test by hand you really should \href{https://www.youtube.com/watch?v=AM87jjnNt8U}{\textbf{watch a video of how to do it}}. It really is easy once you've seen it and the video demystify the test for you.
+
+I will note that the syntax is very much the same to that of the t-test now. This will pretty much stay the same for the next 6 chapters. Thank R, not me.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{wilcox.test}\NormalTok{(Length}\OperatorTok{~}\NormalTok{density, mid_carps)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Wilcoxon rank sum test with continuity correction
+## 
+## data:  Length by density
+## W = 26, p-value = 0.005015
+## alternative hypothesis: true location shift is not equal to 0
+\end{verbatim}
+
+As expected, this test also shows that the two samples differ significantly.
+
+\emph{Note: this is equivelent to the Mann-Whitney U-test you may have learned about elsewhere. Had these samples been paired, R would have defaulted to a signed-rank test, with which you may also be familiar.}
+
+\hypertarget{presenting-your-results}{%
+\subsection{Presenting your results}\label{presenting-your-results}}
+
+While it is important to report the test statistics, df, etc., it can be just as meaningful to give the sample means (reported in the \texttt{t.test}) and show a graph. \textbf{Remember}: don't make shitty graphs. Be proud of your results and show your readers what they mean.
+
+In this case, a boxplot or a violin plot would work great. We haven't looked at violin plots yet, so let's give them a whirl!
+
+Violins are a lot like box plots except they give us a little better visual description of the shape of sampling distributions within groups. I added some \texttt{ggplot2} functions to control fill and color of the violins in the example below. You can check out \href{https://www.datanovia.com/en/blog/ggplot-colors-best-tricks-you-will-love/\#predefined-ggplot-color-palettes}{this blog post} for some other cool examples with other \texttt{ggplot} geometries. Play around with the plotting code above to change what you like. Remember, all of the customization achieved using the \texttt{theme()} function is the same across plot types.
+
+Here is a quick, ugly violin plot with some basic options. Pretty easy to make, but also kind of makes you want to puke.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mid_carps, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ density, }\DataTypeTok{y =}\NormalTok{ Length)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_violin}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{group =}\NormalTok{ density), }\DataTypeTok{trim =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-175-1.pdf}
+
+Here is a much better plot. Not that much more difficult to make, and doesn't make you want to puke even if the code does a little bit.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mid_carps }\OperatorTok{%>%}
+\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ density, }\DataTypeTok{y =}\NormalTok{ Length, }\DataTypeTok{fill =}\NormalTok{ density, }\DataTypeTok{color =}\NormalTok{ density)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_violin}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{group =}\NormalTok{ density), }\DataTypeTok{trim =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{size =} \FloatTok{.75}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_discrete}\NormalTok{(}\DataTypeTok{breaks=}\KeywordTok{c}\NormalTok{(}\StringTok{"high"}\NormalTok{, }\StringTok{"low"}\NormalTok{), }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"High"}\NormalTok{, }\StringTok{"Low"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_grey}\NormalTok{(}\DataTypeTok{start =} \FloatTok{0.9}\NormalTok{, }\DataTypeTok{end =} \FloatTok{0.4}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_color_grey}\NormalTok{(}\DataTypeTok{start =} \FloatTok{0.8}\NormalTok{, }\DataTypeTok{end =} \FloatTok{0.3}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Density"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Total length (mm) at age 10"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"Density"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"Density"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}
+    \DataTypeTok{axis.title.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{-1}\NormalTok{),}
+    \DataTypeTok{axis.title.y =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{3}\NormalTok{),}
+    \DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{()}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-176-1.pdf}
+
+There, isn't that fancy? I think that gives you a much more detailed understanding of how \texttt{Length} varies between \texttt{high} and \texttt{low} population density than a simple p-value. But, maybe its just me\ldots{}
+
+\hypertarget{frequency-analysis}{%
+\section{Frequency analysis}\label{frequency-analysis}}
+
+Now, what if we didn't collect very good data, or we binned our data into low-resolution categories for the sake of ease in our study design? Often, and for a variety of reasons other than crappy data collection, we want to compare frequencies of events between two (or more) groups. We may even design studies specifically to test these kinds of hypotheses when we think about rates, for example. This is very common in studies of population genetics {[}definitely citations available for that one - go Google them{]}
+
+The simplest way to test for differences in the frequency of a categorical response between two groups is (some would argue) the \(\chi^2\) test. The \(\chi^2\) is another one of those that you should really work out by hand because it is used in a variety of settings ``under the hood'' of more complex routines. Here is your token \href{https://www.youtube.com/watch?v=V4SRgabFbz0}{video link showing and example}. Watch it. Please.
+
+\hypertarget{worked-example}{%
+\subsection{Worked example}\label{worked-example}}
+
+Let's say we want to know if the number of grass carp in a given age group (say age 10) varies between years. These fish are sterile hybrids, so we would expect that the number of fish in each age would change drastically with increasing time since the year of initial stocking (1995).
+
+First, make a table showing the number of fish in each \texttt{Age} by \texttt{Year} with the \texttt{grasscarp} data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{agexyear <-}\StringTok{ }\KeywordTok{with}\NormalTok{(grasscarp, }\KeywordTok{table}\NormalTok{(Age, Year))}
+
+\KeywordTok{print}\NormalTok{(agexyear)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Year
+## Age  2006 2007 2009 2010 2017
+##   1     0    0    0    2    0
+##   2     6    7    7    8    0
+##   3    11   10   10   14    3
+##   4     4    3    6    3    3
+##   5     0    1    3    2   10
+##   6     0    1    2    1   12
+##   7     0    0    1    3   11
+##   8     0    1    1    2   12
+##   9     1    0    1    3   21
+##   10    4    1    1    2   21
+##   11    4    9    0    6   15
+##   12    3   15    2    3   18
+##   13    0    1    4    3    7
+##   14    0    0   11    8    6
+##   15    0    0    2   12   12
+##   16    0    0    0    2   10
+##   17    0    0    0    0    8
+##   18    0    0    0    0    9
+##   19    0    0    0    0   12
+##   20    0    0    0    0   12
+##   21    0    0    0    0    5
+##   22    0    0    0    0    3
+##   23    0    0    0    0    2
+\end{verbatim}
+
+Basically what we are going to do is analyze the proportion of total fish in each column
+
+You should see some pretty obvious patterns here. We have a couple of things to think about now. First, this is the kind of question you don't need statistics for. Second, we have a whole bunch of empty groups, and these are not random with respect to year. Some of these come from ages that were not yet available in years 2006 - 2010 and some from patterns in fish stocking. The large number of empty pairings and the fact that most age classes had fewer than five fish in any year prior to 2017 means we should probably break the data down a little further. This stinks because we lose resolution, but that is the cost.
+
+For the sake of demonstration, let's summarize the data by \texttt{high} and \texttt{low} density again and we'll look at the number of fish collected in each age class during high and low density years.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{freqs <-}\StringTok{ }\NormalTok{grasscarp }\OperatorTok{%>%}\StringTok{ }\CommentTok{# Pass grass carp data frame to group_by()}
+\StringTok{    }\KeywordTok{filter}\NormalTok{(Age }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{10}\OperatorTok{:}\DecValTok{15}\NormalTok{)) }\CommentTok{# Select only shared age range}
+
+\KeywordTok{head}\NormalTok{(freqs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Year Length Weight_kg Age cohort n_stocked     n acre   ha nha     kg kg_ha
+## 1 2006   1262    23.154  12   1994      7000 25128 2957 1203  21 129929   108
+## 2 2006   1138    23.923  10   1996      7000 25128 2957 1203  21 129929   108
+## 3 2006   1187    18.614  10   1996      7000 25128 2957 1203  21 129929   108
+## 4 2006   1207    19.522  12   1994      7000 25128 2957 1203  21 129929   108
+## 5 2006   1086    21.285  10   1996      7000 25128 2957 1203  21 129929   108
+## 6 2006   1095    18.160  12   1994      7000 25128 2957 1203  21 129929   108
+##   density
+## 1     low
+## 2     low
+## 3     low
+## 4     low
+## 5     low
+## 6     low
+\end{verbatim}
+
+We will test the null hypothesis that there is no difference in the number of age-10 fish between high and low densities.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Run the test}
+\NormalTok{chi_test <-}\StringTok{ }\KeywordTok{with}\NormalTok{(freqs, }\KeywordTok{chisq.test}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ density, }\DataTypeTok{y =}\NormalTok{ Age))}
+
+\CommentTok{# Have a look}
+\KeywordTok{print}\NormalTok{(chi_test)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Pearson's Chi-squared test
+## 
+## data:  density and Age
+## X-squared = 13.107, df = 5, p-value = 0.0224
+\end{verbatim}
+
+And, bam! We see that there is a difference in the frequency of fish collected in each age class in high and low density years. Shocker.
+
+Data visualization techniques for contingency table analyses like this seem to have generally lagged behind theory in terms of wide-spread implementation. There is a base R \texttt{mosaicplot} that plots relative freqencies. You can interpret the width of the bars as the proportion of total observations in each age class. Likewise, the height of the vertical segnmens corresponds to proportion of \texttt{high} or \texttt{low} \texttt{density} observations in each \texttt{Age}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mosaicplot}\NormalTok{(Age }\OperatorTok{~}\StringTok{ }\NormalTok{density, }\DataTypeTok{data =}\NormalTok{ freqs)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-180-1.pdf}
+
+The need for improved graphical representation for these data types is recognized. There have been recent efforts to extend the philosophies used \texttt{ggplot()} to contingency analysis by r developers (see Wickham and Hofmann 2011\textless\textgreater). It was even the topic of a recent master's thesis (see Grant 2017). But as far as I know the ideas from these works have not been integrated into \texttt{ggplot2} or the \texttt{tidyverse} yet. Sorry about the citations. I don't know what I was thinking. This is supposed to be the Worst Stats Text eveR.
+
+\hypertarget{next6}{%
+\section{Next steps}\label{next6}}
+
+In this chapter, we introduced inferential statistics and walked through examples of a few simple statistical tests for comparing samples to one another using two-sample tests, or to a single value using a one-sample test. In \protect\hyperlink{Chapter7}{Chapter 7} we will continue to build on these tools as we press on to linear models and the rest of statistics.
 
   \bibliography{book.bib,packages.bib}
 
