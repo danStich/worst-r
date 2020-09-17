@@ -334,7 +334,7 @@ agexyear <- with(grasscarp, table(Age, Year))
 print(agexyear)
 ```
 
-Basically what we are going to do is analyze the proportion of total fish in each column
+Basically what we are going to do is analyze the proportion of total fish in each column by age.
 
 You should see some pretty obvious patterns here. We have a couple of things to think about now. First, this is the kind of question you don't need statistics for. Second, we have a whole bunch of empty groups, and these are not random with respect to year. Some of these come from ages that were not yet available in years 2006 - 2010 and some from patterns in fish stocking. The large number of empty pairings and the fact that most age classes had fewer than five fish in any year prior to 2017 means we should probably break the data down a little further. This stinks because we lose resolution, but that is the cost.
 

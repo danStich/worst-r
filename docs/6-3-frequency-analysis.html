@@ -282,7 +282,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   21    0    0    0    0    5
 ##   22    0    0    0    0    3
 ##   23    0    0    0    0    2</code></pre>
-<p>Basically what we are going to do is analyze the proportion of total fish in each column</p>
+<p>Basically what we are going to do is analyze the proportion of total fish in each column by age.</p>
 <p>You should see some pretty obvious patterns here. We have a couple of things to think about now. First, this is the kind of question you don’t need statistics for. Second, we have a whole bunch of empty groups, and these are not random with respect to year. Some of these come from ages that were not yet available in years 2006 - 2010 and some from patterns in fish stocking. The large number of empty pairings and the fact that most age classes had fewer than five fish in any year prior to 2017 means we should probably break the data down a little further. This stinks because we lose resolution, but that is the cost.</p>
 <p>For the sake of demonstration, let’s summarize the data by <code>high</code> and <code>low</code> density again and we’ll look at the number of fish collected in each age class during high and low density years.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="6-3-frequency-analysis.html#cb36-1"></a>freqs &lt;-<span class="st"> </span>grasscarp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Pass grass carp data frame to group_by()</span></span>
