@@ -321,7 +321,7 @@ There, isn't that fancy? I think that gives you a much more detailed understandi
 
 Now, what if we didn't collect very good data, or we binned our data into low-resolution categories for the sake of ease in our study design? Often, and for a variety of reasons other than crappy data collection, we want to compare frequencies of events between two (or more) groups. We may even design studies specifically to test these kinds of hypotheses when we think about rates, for example. This is very common in studies of population genetics [definitely citations available for that one - go Google them]
 
-The simplest way to test for differences in the frequency of a categorical response between two groups is (some would argue) the $\chi^2$ test. The $\chi^2$ is another one of those that you should really work out by hand because it is used in a variety of settings "under the hood" of more complex routines. Here is your token [video link showing and example](https://www.youtube.com/watch?v=V4SRgabFbz0). Watch it. Please.
+The simplest way to test for differences in the frequency of a categorical response between two groups is (some would argue) the $\chi^2$ test. The $\chi^2$ is another one of those that you should really work out by hand because it is used in a variety of settings "under the hood" of more complex routines. Here is your token [video link showing an example](https://www.youtube.com/watch?v=V4SRgabFbz0). Watch it. Please.
 
 ### Worked example
 
@@ -365,7 +365,7 @@ Data visualization techniques for contingency table analyses like this seem to h
 mosaicplot(Age ~ density, data = freqs)
 ```
 
-The need for improved graphical representation for these data types is recognized. There have been recent efforts to extend the philosophies used `ggplot()` to contingency analysis by r developers (see <a href="http://vita.had.co.nz/papers/prodplots.pdf">Wickham and Hofmann 2011<>). It was even the topic of a recent master's thesis (<a href="https://lib.dr.iastate.edu/cgi/viewcontent.cgi?article=7144&context=etd">see Grant 2017</a>). But as far as I know the ideas from these works have not been integrated into `ggplot2` or the `tidyverse` yet. Sorry about the citations. I don't know what I was thinking. This is supposed to be the Worst Stats Text eveR.
+The need for improved graphical representation for these data types is recognized. There have been recent efforts to extend the philosophies used `ggplot()` to contingency analysis by r developers (see <a href="http://vita.had.co.nz/papers/prodplots.pdf">Wickham and Hofmann 2011</a>). It was even the topic of a recent master's thesis (<a href="https://lib.dr.iastate.edu/cgi/viewcontent.cgi?article=7144&context=etd">see Grant 2017</a>). But as far as I know the ideas from these works have not been integrated into `ggplot2` or the `tidyverse` yet. Sorry about the citations. I don't know what I was thinking. This is supposed to be the Worst Stats Text eveR.
 
 
 ## Next steps {#next6}

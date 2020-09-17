@@ -134,8 +134,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -256,22 +254,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We will examine parametric and non-parametric examples of one-sample tests here to demonstrate why and how we use them.</p>
 <p>Let’s start with a simple example of how we might do this, and what the results actually mean. We’ll use some data from grass carp (<em>Ctenopharyngodon idella</em>) from Lake Gaston, Virginia and North Carolina, USA for this example. We will compare the size of grass carp at specific ages with their population density using a few different tools</p>
 <p>Read in the data set:</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="6-1-one-sample-tests.html#cb243-1"></a>  grasscarp &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/grasscarp.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="6-1-one-sample-tests.html#cb2-1"></a>  grasscarp &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/grasscarp.csv&#39;</span>)</span></code></pre></div>
 <p>Just for funsies, you could also read this in directly from the link to the raw data in the <a href="https://github.com/danStich/worst-r/tree/master/data">GitHub repository for this book</a> if you have an internet connection:</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="6-1-one-sample-tests.html#cb244-1"></a>grasscarp &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/danStich/worst-r/master/data/grasscarp.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="6-1-one-sample-tests.html#cb3-1"></a>grasscarp &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/danStich/worst-r/master/data/grasscarp.csv&#39;</span>)</span></code></pre></div>
 <p>Remember to check out the data set in your Environment tab so you understand how many observations there are and how many variables (as well as their types).</p>
 <p>Let’s start by asking a simple biological question: is the size of age-3 grass carp different from the average size of fish in this population?</p>
 <p>First, let’s create a sample that includes only age-3 fish. We will store this to a new vector called <code>age3_lengths</code>.</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="6-1-one-sample-tests.html#cb245-1"></a>age3_lengths &lt;-<span class="st"> </span>grasscarp<span class="op">$</span>Length[grasscarp<span class="op">$</span>Age <span class="op">==</span><span class="st"> </span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="6-1-one-sample-tests.html#cb4-1"></a>age3_lengths &lt;-<span class="st"> </span>grasscarp<span class="op">$</span>Length[grasscarp<span class="op">$</span>Age <span class="op">==</span><span class="st"> </span><span class="dv">3</span>]</span></code></pre></div>
 <p>Now, let’s compare the <code>Length</code> of age-3 fish to the rest of the population using a one-sample t-test. To do this, we need to pass <code>age3_lengths</code></p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="6-1-one-sample-tests.html#cb246-1"></a><span class="co"># Run the test and save the output to an object</span></span>
-<span id="cb246-2"><a href="6-1-one-sample-tests.html#cb246-2"></a>our_test =<span class="st"> </span><span class="kw">t.test</span>(age3_lengths,</span>
-<span id="cb246-3"><a href="6-1-one-sample-tests.html#cb246-3"></a>                  <span class="dt">mu =</span> <span class="kw">mean</span>(grasscarp<span class="op">$</span>Length),</span>
-<span id="cb246-4"><a href="6-1-one-sample-tests.html#cb246-4"></a>                  <span class="dt">conf.level =</span> <span class="fl">0.95</span></span>
-<span id="cb246-5"><a href="6-1-one-sample-tests.html#cb246-5"></a>                  )</span>
-<span id="cb246-6"><a href="6-1-one-sample-tests.html#cb246-6"></a></span>
-<span id="cb246-7"><a href="6-1-one-sample-tests.html#cb246-7"></a><span class="co"># Print the results of the object to the console</span></span>
-<span id="cb246-8"><a href="6-1-one-sample-tests.html#cb246-8"></a><span class="kw">print</span>(our_test)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="6-1-one-sample-tests.html#cb5-1"></a><span class="co"># Run the test and save the output to an object</span></span>
+<span id="cb5-2"><a href="6-1-one-sample-tests.html#cb5-2"></a>our_test =<span class="st"> </span><span class="kw">t.test</span>(age3_lengths,</span>
+<span id="cb5-3"><a href="6-1-one-sample-tests.html#cb5-3"></a>                  <span class="dt">mu =</span> <span class="kw">mean</span>(grasscarp<span class="op">$</span>Length),</span>
+<span id="cb5-4"><a href="6-1-one-sample-tests.html#cb5-4"></a>                  <span class="dt">conf.level =</span> <span class="fl">0.95</span></span>
+<span id="cb5-5"><a href="6-1-one-sample-tests.html#cb5-5"></a>                  )</span>
+<span id="cb5-6"><a href="6-1-one-sample-tests.html#cb5-6"></a></span>
+<span id="cb5-7"><a href="6-1-one-sample-tests.html#cb5-7"></a><span class="co"># Print the results of the object to the console</span></span>
+<span id="cb5-8"><a href="6-1-one-sample-tests.html#cb5-8"></a><span class="kw">print</span>(our_test)</span></code></pre></div>
 <pre><code>## 
 ## 	One Sample t-test
 ## 
@@ -298,7 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">6.1.1.1</span> Output</h4>
 <p>R returns the output of statistical tests as objects, and you can reference any part of those objects by name or index. The type of object that R returns, and how you access the parts depends on the type of test you ran and with what options.</p>
 <p>Like so many other models objects, our one sample t-test is stored as a list:</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="6-1-one-sample-tests.html#cb248-1"></a><span class="kw">str</span>(our_test)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="6-1-one-sample-tests.html#cb7-1"></a><span class="kw">str</span>(our_test)</span></code></pre></div>
 <pre><code>## List of 10
 ##  $ statistic  : Named num -18.8
 ##   ..- attr(*, &quot;names&quot;)= chr &quot;t&quot;
@@ -317,19 +315,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ data.name  : chr &quot;age3_lengths&quot;
 ##  - attr(*, &quot;class&quot;)= chr &quot;htest&quot;</code></pre>
 <p>We can just look at the names if there are specific pieces in which we are interested. For example, we might want to save the p-value (<code>p.value</code>):</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="6-1-one-sample-tests.html#cb250-1"></a><span class="co"># Shows us the names of the things inside the model list</span></span>
-<span id="cb250-2"><a href="6-1-one-sample-tests.html#cb250-2"></a>  <span class="kw">names</span>(our_test) </span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="6-1-one-sample-tests.html#cb9-1"></a><span class="co"># Shows us the names of the things inside the model list</span></span>
+<span id="cb9-2"><a href="6-1-one-sample-tests.html#cb9-2"></a>  <span class="kw">names</span>(our_test) </span></code></pre></div>
 <pre><code>##  [1] &quot;statistic&quot;   &quot;parameter&quot;   &quot;p.value&quot;     &quot;conf.int&quot;    &quot;estimate&quot;   
 ##  [6] &quot;null.value&quot;  &quot;stderr&quot;      &quot;alternative&quot; &quot;method&quot;      &quot;data.name&quot;</code></pre>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="6-1-one-sample-tests.html#cb252-1"></a><span class="co"># This stores our p-value to an object for use</span></span>
-<span id="cb252-2"><a href="6-1-one-sample-tests.html#cb252-2"></a>  p_out =<span class="st"> </span>our_test<span class="op">$</span>p.value </span>
-<span id="cb252-3"><a href="6-1-one-sample-tests.html#cb252-3"></a>  </span>
-<span id="cb252-4"><a href="6-1-one-sample-tests.html#cb252-4"></a><span class="co"># And of course we can look at it</span></span>
-<span id="cb252-5"><a href="6-1-one-sample-tests.html#cb252-5"></a>  <span class="kw">print</span>(p_out)             </span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="6-1-one-sample-tests.html#cb11-1"></a><span class="co"># This stores our p-value to an object for use</span></span>
+<span id="cb11-2"><a href="6-1-one-sample-tests.html#cb11-2"></a>  p_out =<span class="st"> </span>our_test<span class="op">$</span>p.value </span>
+<span id="cb11-3"><a href="6-1-one-sample-tests.html#cb11-3"></a>  </span>
+<span id="cb11-4"><a href="6-1-one-sample-tests.html#cb11-4"></a><span class="co"># And of course we can look at it</span></span>
+<span id="cb11-5"><a href="6-1-one-sample-tests.html#cb11-5"></a>  <span class="kw">print</span>(p_out)             </span></code></pre></div>
 <pre><code>## [1] 1.572767e-23</code></pre>
 <p>Now we can go through the output as it is displayed by:</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="6-1-one-sample-tests.html#cb254-1"></a><span class="co"># Print a summary of the test</span></span>
-<span id="cb254-2"><a href="6-1-one-sample-tests.html#cb254-2"></a>  <span class="kw">print</span>(our_test)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="6-1-one-sample-tests.html#cb13-1"></a><span class="co"># Print a summary of the test</span></span>
+<span id="cb13-2"><a href="6-1-one-sample-tests.html#cb13-2"></a>  <span class="kw">print</span>(our_test)</span></code></pre></div>
 <pre><code>## 
 ## 	One Sample t-test
 ## 
@@ -362,25 +360,25 @@ Visual check for normality
 </h5>
 <p>One simple way to gauge assumptions of normality is to look at a plot of the data. As you will see later, we are usually concerned with the <em>residuals</em>, but we can look at the actual data here because we have only one group and if it’s normal so are its errors.</p>
 <p>Have a quick look at these to see what we are working with using the histogram code from <a href="4-Chapter4.html#Chapter4">Chapter 4</a>. I set the x-axis limits below using the maximum <code>Length</code> from the <code>grasscarp</code> data so we can see what part of the length range we’ve sampled here.</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="6-1-one-sample-tests.html#cb256-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb256-2"><a href="6-1-one-sample-tests.html#cb256-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(age3_lengths), <span class="dt">bins =</span> <span class="dv">30</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb256-3"><a href="6-1-one-sample-tests.html#cb256-3"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(grasscarp<span class="op">$</span>Length)), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb256-4"><a href="6-1-one-sample-tests.html#cb256-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb256-5"><a href="6-1-one-sample-tests.html#cb256-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Total length (mm)&quot;</span>) <span class="op">+</span></span>
-<span id="cb256-6"><a href="6-1-one-sample-tests.html#cb256-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Count&quot;</span>) <span class="op">+</span></span>
-<span id="cb256-7"><a href="6-1-one-sample-tests.html#cb256-7"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
-<span id="cb256-8"><a href="6-1-one-sample-tests.html#cb256-8"></a><span class="st">  </span><span class="kw">theme</span>(</span>
-<span id="cb256-9"><a href="6-1-one-sample-tests.html#cb256-9"></a>    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">-1</span>),</span>
-<span id="cb256-10"><a href="6-1-one-sample-tests.html#cb256-10"></a>    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>),</span>
-<span id="cb256-11"><a href="6-1-one-sample-tests.html#cb256-11"></a>    <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
-<span id="cb256-12"><a href="6-1-one-sample-tests.html#cb256-12"></a>  )</span>
-<span id="cb256-13"><a href="6-1-one-sample-tests.html#cb256-13"></a><span class="kw">print</span>(p)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-163-1.png" width="672" />
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="6-1-one-sample-tests.html#cb15-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb15-2"><a href="6-1-one-sample-tests.html#cb15-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(age3_lengths), <span class="dt">bins =</span> <span class="dv">30</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb15-3"><a href="6-1-one-sample-tests.html#cb15-3"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">max</span>(grasscarp<span class="op">$</span>Length)), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb15-4"><a href="6-1-one-sample-tests.html#cb15-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb15-5"><a href="6-1-one-sample-tests.html#cb15-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Total length (mm)&quot;</span>) <span class="op">+</span></span>
+<span id="cb15-6"><a href="6-1-one-sample-tests.html#cb15-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Count&quot;</span>) <span class="op">+</span></span>
+<span id="cb15-7"><a href="6-1-one-sample-tests.html#cb15-7"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb15-8"><a href="6-1-one-sample-tests.html#cb15-8"></a><span class="st">  </span><span class="kw">theme</span>(</span>
+<span id="cb15-9"><a href="6-1-one-sample-tests.html#cb15-9"></a>    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">-1</span>),</span>
+<span id="cb15-10"><a href="6-1-one-sample-tests.html#cb15-10"></a>    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb15-11"><a href="6-1-one-sample-tests.html#cb15-11"></a>    <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb15-12"><a href="6-1-one-sample-tests.html#cb15-12"></a>  )</span>
+<span id="cb15-13"><a href="6-1-one-sample-tests.html#cb15-13"></a><span class="kw">print</span>(p)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 Sure, looks totally normal to me? Wouldn’t it be great if there were a statistical test for determining whether this sample is different from the normal? Great that you should ask.</p>
 <div id="tests-of-normality-shapiro-wilk" class="section level5">
 <h5><span class="header-section-number">6.1.1.3.1</span> Tests of normality (Shapiro-Wilk)</h5>
 <p>The Shapiro-Wilk test is commonly used to test normality of a distribution as a check of assumptions. We can use this to test whether our data deviate from normal in the following manner:</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="6-1-one-sample-tests.html#cb257-1"></a><span class="kw">shapiro.test</span>(age3_lengths)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="6-1-one-sample-tests.html#cb16-1"></a><span class="kw">shapiro.test</span>(age3_lengths)</span></code></pre></div>
 <pre><code>## 
 ## 	Shapiro-Wilk normality test
 ## 
@@ -399,15 +397,15 @@ Sure, looks totally normal to me? Wouldn’t it be great if there were a statist
 <p>Here, we are checking for shifts in the median (not the mean) of one or more samples.</p>
 <p>Why is this? The mean of a non-normal distribution is not always a useful descriptor of the probability mass under a distribution (it still describes ‘central tendency’ but does not necessarily describe the place where ‘most of the data are’). But, the median always (as in always, always, always) describes central tendency of the data, so we can pretty much use it for describing any sample. This is because the median is defined as the “middle” value. That is, half of the data should fall on either side of the median if you lined up all of your data on the equator (wrong metaphor?).</p>
 <p>…back to the Wilcox test.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="6-1-one-sample-tests.html#cb259-1"></a><span class="co"># First, do this and have a quick read:</span></span>
-<span id="cb259-2"><a href="6-1-one-sample-tests.html#cb259-2"></a>  ?wilcox.test</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="6-1-one-sample-tests.html#cb18-1"></a><span class="co"># First, do this and have a quick read:</span></span>
+<span id="cb18-2"><a href="6-1-one-sample-tests.html#cb18-2"></a>  ?wilcox.test</span></code></pre></div>
 <p>Now we can actually run a test to see if the median length of age-3 fish is statistically different from the median value of length in the sample.</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="6-1-one-sample-tests.html#cb260-1"></a>    <span class="kw">wilcox.test</span>(</span>
-<span id="cb260-2"><a href="6-1-one-sample-tests.html#cb260-2"></a>      age3_lengths,</span>
-<span id="cb260-3"><a href="6-1-one-sample-tests.html#cb260-3"></a>      <span class="dt">mu =</span> <span class="kw">median</span>(grasscarp<span class="op">$</span>Length),</span>
-<span id="cb260-4"><a href="6-1-one-sample-tests.html#cb260-4"></a>      <span class="dt">alternative =</span> <span class="st">&#39;less&#39;</span>,    <span class="co"># Note different alternative here!</span></span>
-<span id="cb260-5"><a href="6-1-one-sample-tests.html#cb260-5"></a>      <span class="dt">exact =</span> <span class="ot">FALSE</span>            <span class="co"># Not much data, so not exact</span></span>
-<span id="cb260-6"><a href="6-1-one-sample-tests.html#cb260-6"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="6-1-one-sample-tests.html#cb19-1"></a>    <span class="kw">wilcox.test</span>(</span>
+<span id="cb19-2"><a href="6-1-one-sample-tests.html#cb19-2"></a>      age3_lengths,</span>
+<span id="cb19-3"><a href="6-1-one-sample-tests.html#cb19-3"></a>      <span class="dt">mu =</span> <span class="kw">median</span>(grasscarp<span class="op">$</span>Length),</span>
+<span id="cb19-4"><a href="6-1-one-sample-tests.html#cb19-4"></a>      <span class="dt">alternative =</span> <span class="st">&#39;less&#39;</span>,    <span class="co"># Note different alternative here!</span></span>
+<span id="cb19-5"><a href="6-1-one-sample-tests.html#cb19-5"></a>      <span class="dt">exact =</span> <span class="ot">FALSE</span>            <span class="co"># Not much data, so not exact</span></span>
+<span id="cb19-6"><a href="6-1-one-sample-tests.html#cb19-6"></a>    )</span></code></pre></div>
 <pre><code>## 
 ## 	Wilcoxon signed rank test with continuity correction
 ## 
