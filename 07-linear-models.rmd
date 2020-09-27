@@ -1,0 +1,382 @@
+# Linear models {#Chapter7}
+
+<img src="images/graphs.png">
+
+<h2 id="multi"> Introduction </h2>  
+
+In this chapter, we will introduce a class of statistical tools known collectively as **linear models**. This class of tools includes such examples as analysis of variance (ANOVA), linear regression and correlation, and by extension includes n-way ANOVA, multiple linear regression, and analysis of covariance (ANCOVA). Later this semester, we will see that these models be extended even further to include generalized linear models, generalized linear mixed models, multivariate techniques and even machine learning algorithms.
+
+Linear models are, therefore, the gateway into the rest of the world of statistics. We will focus primarily on parametric applications this week and next. The over-arching theme for this week is that any of these methods can be expressed as the formula for a line, which is how they got their names (oh, snap!). We will start with ANOVA because it is analogous to many of the methods that we've already discussed. However, it is important to recognize that this is just a special case of the linear model. This will help you think about how we test statistical assumptions, test hypotheses, and communicate results of models.
+
+Because we are now entering into the realm of 'the rest of statistics' we also need to start 'talking the talk' in addition to 'walking the walk', so we will practice how to write methods sections for these tests and how to report the results. In reality, once you are comfortable using a couple of functions in R, writing up the methods and results is more challenging than fitting models.
+
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+## Analysis of variance (ANOVA) {#anova}
+We will use some of the built-in datasets in R this week to demonstrate our analyses and show how to communicate the methods and the results of our statistical inference.
+
+Analysis of variance is typically used when we have a continuous dependent variable (y, response) and a categorical independent variable (x, explanatory) containing three or more groups. As with the t-test, we assume that the error (variance) within groups is normal (we'll discuss in detail in [Chapter 8](#Chapter8)). Most of the math behind ANOVA is basically the same as a t-test, but we add a couple steps for the third group, and now it essentially becomes the same thing as an F test (`var.test()` from Chapter 6[#Chapter6]) on three groups. In fact, the t-test, the F test, and one-way anova are all pretty much the same thing! 
+
+`mind == blown`
+
+### One-way analysis of variance {#one-way}
+The number of grouping variables used in ANOVA confers different fancy naming conventions. The simplest of these contains a single grouping variable (e.g. treatment **or** year) and is referred to as one-way ANOVA. In theory, these models can be extended to include any number *n* of grouping variables (e.g. treatment **and** year) and are commonly referred to as *n*-way ANOVA.
+
+Let's start by loading the `PlantGrowth` dataset in R:
+```{r}
+data(PlantGrowth)
+```
+
+`PlantGrowth` is a dataframe with 30 observations of two variables. The first variable `weight` describes plant growth (in units of mass), and the second variable `group` contains control (`ctrl`) and two treatment groups (`trt1` and `trt2`) for individual plants. Have a look, as always:
+```{r}
+str(PlantGrowth)
+```
+
+Let's begin by using a one-way ANOVA to determine if the mass of plants differs between groups in `PlantGrowth`. In practice, this is *very* easy. First of all, though, we would report our **methods** something like this:
+
+> We used a one-way analysis of variance (ANOVA) to estimate the effects of treatment group on the mass (g) of plants assuming a Type-I error rate of $\alpha$ = 0.05. Our null hypothesis was that all group means were equal (H~0~: $\mu_{ctrl} = \mu_{trt1} = \mu_{trt2}$).
+
+Therefore, if any one of the means is not equal to the others, then we reject the null hypothesis.
+
+You can fit an ANOVA using either the `aov()` function or the `lm()` function in base R. I prefer to use `lm()` for two reasons. First, there is output from `lm()` that I don't get with `aov()`. Second, the `lm()` function is the one we'll use for linear regression, multiple regression, and analysis of covariance. This reminds us that these models are all special cases of the glorious, over-arching group of general linear models [Chapter 8](#Chapter8) and will help us develop a standard workflow moving forward.
+```{r}  
+# Fit the model
+model <- lm(weight~group, data=PlantGrowth)
+
+# Print the model object to the console
+model
+
+```  
+
+Wow, that is dangerously easy to do. But, this output is not very useful for getting the information we need if you don't already know what you are looking at. What we get here is essentially just one part of the information that we would like to (should) report.
+
+We'll proceed with a more standard ANOVA table for now using the `anova()` function:
+```{r}
+# Save anova table to an object
+plant_nova <- anova(model)
+
+# Have a look at the goodness
+print(plant_nova)
+
+```
+
+Okay, this is really what we needed in order to evaluate our null hypothesis: an ANOVA table with a break down of the residuals, mean squared errors, and test statistic(s). We interpret the test statistic and the p-value the same way we did in [Chapter 6](#Chapter6) when we did t-tests and Wilcox tests. And, we can now say:
+
+> We found that the treatment had a significant effect on plant weight
+  (ANOVA, F = 4.846, df~1~ = 2, df~2~ = 27, p = 0.0159).
+
+We can also calculate the R^2^ value for the ANOVA, which is a statistic used to describe the amount of variation in the data explained by the model  relative to the total variation in the data set. More correctly, we are actually comparing the sum of squared errors for the model we fit (SSB) to the total sum of squares (SST = SSB + SSE).
+
+For what it's worth, this is a super useful statistic for getting the big-picture perspective on whether your model is useful or crap. You calculate it pretty easily from the `anova()` output like as:
+
+$$R^2 = \frac{SSB}{SST}$$
+...or...
+
+Why wouldn't you do this in R?
+```{r, echo=TRUE, results='hide'}
+# Look at the names of the anova() output
+# We want the "Sum Sq" bit
+names(plant_nova)
+
+```
+
+```{r}
+# Here is the sum of squares for the model
+# Have to use back-ticks for spaces, sigh
+ssb <- plant_nova$`Sum Sq`[1]
+
+# And the sum of squares total is the sum
+# of the column in this case
+sst <- sum(plant_nova$`Sum Sq`)
+
+# Some quick division, and we get...
+R2 <- ssb/sst
+```
+
+Have a look:
+```{r}
+print(R2)
+
+```
+Now, we can say that our treatment effect explained about 26% of the variation in the data. The rest is a combination error and unexplained variation in the data that might require further investigation.
+
+The only problem here is that this is an awful lot of work to get something that should be really easy to do in R. And, we still don't know how `weight` varied between `groups`. We just know that at least one group is different from the other.
+
+Thankfully, the default output of `summary()` for linear models fit with `lm()` does a lot of this for us.
+```{r}
+# Print the summary of the model
+summary(model)
+
+```
+
+That's better, we get some useful information here. First of all, we get the value of the test statistic, the df, and the p-value for the model. We also get the $R^2$ for the model, `r round(summary(model)$r.squared, 2)`, as part of the default output. 
+
+But, what if we want to know more about how treatment affected weight? Like, which groups are different? Can we use the p-values reported in the column `Pr(>|t|)` to infer group-wise differences? The quick answer is "sometimes".
+
+The `Coefficients` chunk of this output can help us with inference in simple situations, and it really is the key to making predictions from our models (see [Chapter 10](#Chapter10)).
+
+Remember, most model output in R is stored as lists, so we can extract the coefficients table like this if we look at `names( summary(model) ) to find what we want:
+```{r}
+coeffs <- data.frame( summary(model)$coefficients )
+
+```
+
+Okay, what is going on here? This looks nothing like the output we got from `anova()`. 
+
+The `coeffs` object is a dataframe with columns for mean coefficient estimates, the standard error of those estimates, t-statistic, and p-value. We are actually not going to worry about the p-values here for a hot minute. 
+
+Let's focus on the estimate column first. There are three values here. Each of these represents one of the factor levels in the `group` variable in `PlantGrowth`. They are assigned alpha-numerically, and the first (`ctrl`) is assigned as the `(Intercept)` or base level against which all others are compared. In this sense, the `(Intercept)` coefficient is an estimate of the mean value of `weight` for the `group` called `ctrl.`
+
+Do a quick check:
+```{r}
+# Calculate and print mean weight
+# for the group ctrl in PlantGrowth
+PlantGrowth %>%
+  filter(group == 'ctrl') %>%
+  summarize(avg = mean(weight))
+
+```
+
+As you can see, the prediction from the ANOVA is identical to the group mean estimated directly from the data.
+
+The coefficients for `grouptrt1` and `grouptrt2` can be thought of adjustments to the `(Intercept)` coefficient, or the difference between the mean of `ctrl` and `trt1` or `trt2`. If the `Estimate` for `grouptrt1` or `grouptrt2` is negative, then the mean for that group is less than `ctrl` and if it is positive, the mean for the group is greater than `ctrl`. 
+
+If we wanted to calculate the mean `weight` of the `trt1` and `trt2` groups, we would add them to the `(Intercept)` coefficient like this:
+```{r}
+# Assign model coefficients to objects
+ctrl <- coeffs$Estimate[1]
+trt1 <- coeffs$Estimate[2]
+trt2 <- coeffs$Estimate[3]
+
+# Calculate group means for trt1 and trt2
+# from the model
+trt1_prediction <- ctrl + trt1
+trt2_prediction <- ctrl + trt2
+
+print(c(trt1_prediction, trt2_prediction))
+
+```
+
+If you calculate the means for these groups directly from the data you'll see that these values are identical to the mean `weight` of the `trt1` and `trt2` groups.
+
+In [Chapter 10](#Chapter10) we will examine how to estimate confidence intervals around these estimates and make predictions from the model that include our uncertainty. But for that, we'll need to talk about a little bit of math and we're dealing with enough right now already!
+
+Finally, the p-values associated with `trt1` and `trt2` indicates whether each group is significantly different from `ctrl`. In the case of the intercept, the p-value simply tells us whether the mean `weight` of `ctrl` is significantly different from zero. A fundamentally dull question - of course it is. This is the first time we really need to think about the differences between our statistical null hypotheses and our biological null hypotheses.
+
+If we want to do further comparisons between groups (other than just comparing `trt1` and `trt2` to `ctrl` by themselves), then we need to add on a little "post-hoc" testing to find out which groups differ. We can use a 'pair-wise' comparison to test for differences between factor levels. Because this essentially means conducting a whole bunch of t-tests, we need a way to account for our repeated Type-I error rate, because at $\alpha$ = 0.05 we stand a 1 in 20 chance of falsely rejecting the null even if it is true. 
+
+One tool that allows us to make multiple comparisons between groups while adjusting for elevated Type-I error is the Tukey HSD (honest significant difference) test. This test makes comparisons between each pairing of groups while controlling for Type-I error. Essentially, this makes it harder to detect differences between groups but when we do we are more sure that they are not spurious ("Honest significant difference", say it with me). 
+
+Sound confusing? At least it's easy to do in R.
+
+We need to recast our model this as an `aov` object in R...this is essentially the same thing as the `lm` function, but in a different wrapper (literally) that allows us to access the info in a different way. It would be a fine default function for doing ANOVA if we weren't interested in going any further with linear models.
+```{r}
+TukeyHSD(    # The function that does the Tukey test
+  aov(       # A wrapper for lm objects
+    model    # The model that we ran above
+    )
+  )
+
+```
+
+This report shows us exactly how `weight` differs between each pair of treatment groups. Here, we see that the only significant difference (`p adj < 0.05`) occurs between `trt2` and `trt1`.
+
+For the readers, and for us, it may be easier to see this information displayed graphically:
+
+```{r}
+# Make a boxplot of weight by group
+# using the PlantGrowth data and 
+# base graphics
+boxplot(
+  weight~group,           # Relationship of interest as formula
+  data=PlantGrowth,       # Name of the data set
+  col='gray',             # Fill color for boxes
+  ylab='Mass (g)',        # Y-axis label
+  xlab='Treatment group', # X-axis label
+  boxwex=.25
+  )
+```
+
+In addition to what we wrote before, we can now say something along the lines of:
+
+> "We found that the mass of plants in the trt2 group (5.5 $\pm$ 0.4 g) was significantly greater than plants in the trt1 group (4.7 $\pm$ 0.8 g; Tukey HSD, p = 0.012). However, we failed to detect differences in mass between plants in the control group (5.0 $\pm$ 0.6 g) and trt1 (p = 0.39) or trt2 (p = 0.20)."
+ 
+### Two(*n*)-way ANOVA 
+Next, we'll step up the complexity and talk about cases for which we have more than one grouping variable and some kind of numeric response. In these cases, we can use a two-way ANOVA (or '*n*-way' depending on number of factors) to examine effects of more than one grouping variable on the response.
+
+Here, we will use a data set describing differences in the mass of belly- button lint collected from males and females of three species of apes.
+
+```{r, echo=TRUE, eval=FALSE}
+# Read in the data:
+lint <- read.csv('lint.txt')
+```
+
+```{r, echo=FALSE, eval=TRUE}
+# Read in the data:
+lint <- read.csv('data/lint.txt')
+```
+
+#### Main effects model
+Now we can fit a model to the data. This will work the same way as for the one-way ANOVA above, but this time we will add more terms on the right hand side of the equation. We will start by looking at the *main effects* model for this data set.
+
+What is a main-effects model? This model assumes that the response of interest, in this case the mass of belly button lint, `lintmass`, is affected by both `species` and `gender`, and that within species the effect of gender is the same. For example, the mass of belly button lint could be greater in one species compared to others, and if there is a difference between sexes we would expect that trend to be the same across species (e.g., boys always have more lint than girls - sorry guys, it's probably true!).
+```{r}
+# Fit the model and save it to an object
+lint.model<- lm(lintmass~species + gender, data = lint)
+
+# Look at the summary of the model fit
+summary(lint.model)
+
+# Print the anova table
+anova(lint.model)
+```
+
+As you can see, the output for the model is much the same as for the one-way ANOVA. The only real difference is that we have more than one grouping variable here. We conclude that there is a significant difference in `lintmass` between `species` (F = 10.50, df = 2, p < 0.05) and between `genders` (F = 64.01, df = 1, p < 0.05). 
+      
+As before, we can make a quick boxplot and overlay our raw data to visualize these differences:
+```{r}
+lint %>% 
+  ggplot(aes(x = species, y = lintmass, fill=gender)) +
+    geom_boxplot() +
+    geom_point(position=position_jitterdodge(.1)) +
+    xlab('Species') +
+    ylab('Lint mass') +
+    labs(fill = "Gender") +
+    theme_bw() +
+    theme(axis.title.x = element_text(vjust=-1),
+          axis.title.y = element_text(vjust=3),
+          panel.grid = element_blank()
+          )
+
+```  
+
+Hopefully after seeing these results you are now starting to realize how important a few well-placed figures and tables can be for clearly communicating the results of your research (even if it is about belly-button lint).
+
+The math for making predictions becomes a little more complicated once we add a second grouping variable. Even the numbers of pair-wise comparisons can become overwhelming in a simple situation like this. Therefore, we'll hold off on digging too much deeper into the math until next week.
+
+#### Interaction terms
+The n-way ANOVA is the first kind of model we have used in which it is possible to consider *interactions* between two or more factors. An interaction occurs when the effects of two or more factors are not additive. This means that the effect of `gender` might change for different `species`. For example, let us consider the following scenario in the `lint` data. 
+
+Perhaps we hypothesize that lint accumulation in the belly buttons of females differs in pattern from males due to social grooming patterns and sex-specific behavioral patterns favoring females in only certain species. As a result, we might expect that `gender` and `species` could have some kind of non-additive effect on `lintmass` in these apes such that there are significant, sex-specific differences only in some species. To test this, we would use the following:
+```{r}
+# Fit a new model that includes an interaction, signified by '*'
+lint.modeli <- lm(lintmass~species * gender, data=lint)
+
+# Summarize the model
+summary(lint.modeli)
+
+# Print an ANOVA table for the model
+anova(lint.modeli)
+```
+
+Alas, in the case of the lint model, this interaction is not significant, so we lack the evidence we would need to say that lint accumulation changes differently between genders within species.
+
+
+## Linear regression
+We have now considered the case of what to do when we have a numerical response and categorical explanatory variable(s) with any number of groups or grouping variables. But, what if we have both a numerical response and numerical explanatory variables? Fear not, there is a stat for that! Now we are entering the realm of correlation and regression. Next week, we'll show that ANOVA is, in fact, just a special kind of regression.
+
+When we fit a linear regression model, we are trying to explain relationships between some response of interest (dependent variable y) and one or more explanatory (independent) variables, x.
+
+As with all linear models the goal of regression analysis is, in it's simplest sense, to fit a line through all of the points in bivariate space that minimizes the distance between the points and a line of the form:
+
+$$y = mx + b$$
+
+That ought to look familiar!
+
+In the case of statistics, we usually represent the formula for a line like this:
+
+$$Y_i = \beta_0 + \beta_i X_i$$
+
+We are ignoring an important part of these statistical models for now. In most cases, though, we will be estimating a parameter for the intercept and one parameter for each explanatory variable of interest.
+
+### Simple linear regression
+Since most folks are probably more familiar with linear regression than with ANOVA whether they know it or not, we'll jump right into this one with an example using the `swiss` data. 
+
+These data are for fertility and infant mortality rates as related to a number of socio-economic indicators. Take a moment to look at them:
+```{r}
+data(swiss)
+```
+
+You can see the description of these data by looking at the help file for the data set as always. Have look on your own:
+```{r, eval=FALSE}
+?swiss
+```
+
+Now, let's get cracking.
+
+We'll start by fitting a simple model and then build complexity.
+
+Fit a model that relates fertility to education level. Notice that this looks exactly the same as the call to `lm` for the ANOVAs above? That's because they are the same thing and people have been lying to you your whole life. Perhaps it took reading The Worst Stats Text eveR to learn it? If so, I aplogize for your misfortune.
+```{r}
+# Fit the model and assign it to a named object
+fert_mod <- lm(Fertility ~ Education, data = swiss)
+
+# Summarize the model
+summary(fert_mod)
+```
+
+The `(Intercept)` term in this summary is the y-intercept from our formula for a line and the `Education` coefficient is the slope of the line. Our intercept tells us that mean `Fertility` (y) is about 79.6 when `Education` (x) is zero. Note that this interpretation does not change even if we did not observe an education of zero in the data - something to think about in the weeks to come. The p-value for the intercept just tells us that this value is significantly different from zero (snores). 
+
+The p-value for the `Education` coefficient tells us that the slope of the line is also significantly different from zero. Because this number is negative, we know that there is an inverse relationship between `Education` and `Fertility`. In other words, more highly educated individuals have fewer children. You can tell this is an inverse relationship because of the minus sign in front of the coefficient for `Education`. We know that the relationship is significant because of the small p-value and corresponding significance codes.
+
+We explained a little more than 40% of the variability in the response with this one explanatory variable if we look at the R^2^ value that is returned (we'll work with the `Multiple R-squared` by default).
+
+This is as far as the summary goes for linear regression for now. That is, we don't need the ANOVA table to assess significance any more because we have no factors - just continuous variables. What we end up with in this summary are the coefficients that can be used to describe the line that passes through the data and minimizes the residual errors (that's the part we ignored above). 
+
+> WHAT??
+
+Let's explain this by actually looking at the data and plotting our model over the top of it.
+
+First, we'll use the built-in `predict()` function to create a trend line and a prediction interval. We'll dig deeper into how to do this in [Chapter 10](#Chapter10).
+
+```{r, message=FALSE, warning=FALSE}
+# Make predictions from the fitted model object using observed data
+predicted_fertility = predict(fert_mod, interval = 'confidence')
+
+# Add these to the swiss data
+swiss_pred <- cbind(swiss, predicted_fertility)
+
+```
+
+Now, we can plot the raw data as a scatterplot and add our model estimates over the top. You should notice that the confidence interval is much wider at high values of `Education` because there are few data points and thus more uncertainty in that part of the data.
+```{r}
+# Sets up data and aesthetics
+ggplot(swiss_pred, 
+       aes(x = Education, y = Fertility, color = 'red', fill = 'red')) +
+  # Adds raw data as points
+  geom_point(colour = 'blue', fill = 'blue', alpha = 0.3, size = 2) +
+  # Adds regression line
+  geom_line( aes(y = fit), size = 1) +
+  # Adds 95% confidence interval
+  geom_ribbon(aes(ymin = lwr, ymax = upr, color = NULL), alpha = .2) +
+  # Adds sweet style tweaks of your choosing
+  theme(legend.position = "none")
+  
+```
+
+Again, dangerously easy.
+
+We can, of course, extend this to include multiple continuous explanatory variables of interest just as we did with ANOVA for multiple categorical explanatory variables!
+
+Here is an example to whet your appetite. Let's say we want a multiple regression model that includes both `Education` and `Catholic`?
+```{r}  
+multiple_mod <- lm(Fertility ~ Education + Catholic, data = swiss)
+
+summary(multiple_mod)
+
+```
+
+
+Or if we really want to get crazy with the hot sauce:
+```{r}
+full_mod <- lm(
+  Fertility ~ Agriculture + Examination + Education + Catholic,
+  data = swiss
+  )
+
+summary(full_mod)
+```
+
+During the next couple of weeks, we'll try to figure out a way to deal with this rat's nest of different explanatory variables and how they are interpretted. But first, we'll talk about combining ANOVA and linear regression into a general linear model (analysis of covariance) in [Chapter 8](#Chapter8) and how to assess assumptions ([Chapter 9](#Chapter9)) and communicate our results effectively ([Chapter 10](#Chapter10)).
