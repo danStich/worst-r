@@ -1,4 +1,4 @@
-# Sampling distributions in R
+# Sampling distributions in R {#Chapter5}
 
 <img src="images/tempsims.png" alt="">
 <p style="font-family: times, serif; font-size:.9em; font-style:italic">
