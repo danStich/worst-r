@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7.1 Analysis of variance (ANOVA) | The Worst Stats Text eveR</title>
+  <meta name="description" content="7.1 Analysis of variance (ANOVA) | The Worst Stats Text eveR" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7.1 Analysis of variance (ANOVA) | The Worst Stats Text eveR" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7.1 Analysis of variance (ANOVA) | The Worst Stats Text eveR" />
+  
+  
+  
+
+<meta name="author" content="Dan Stich" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="7-Chapter7.html"/>
+<link rel="next" href="7-2-simple-linear-regression.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Worst Stats Text eveR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-where-do-i-start.html"><a href="1-3-where-do-i-start.html"><i class="fa fa-check"></i><b>1.3</b> Where do I start?</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html"><i class="fa fa-check"></i><b>1.4</b> Programming conventions</a><ul>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#style"><i class="fa fa-check"></i>Style and organization</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#tips"><i class="fa fa-check"></i>Some handy coding tips</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#rules"><i class="fa fa-check"></i>Stricter R programming rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-5-next1.html"><a href="1-5-next1.html"><i class="fa fa-check"></i><b>1.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-Chapter2.html"><a href="2-Chapter2.html"><i class="fa fa-check"></i><b>2</b> Data structures</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-vectors.html"><a href="2-1-vectors.html"><i class="fa fa-check"></i><b>2.1</b> Vectors</a><ul>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#nums"><i class="fa fa-check"></i>Integers and numerics</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#strings"><i class="fa fa-check"></i>Characters and factors</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#logicals"><i class="fa fa-check"></i>Logical vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-operations.html"><a href="2-2-operations.html"><i class="fa fa-check"></i><b>2.2</b> Vector operations</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-matrices.html"><a href="2-3-matrices.html"><i class="fa fa-check"></i><b>2.3</b> Matrices</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-dataframes.html"><a href="2-4-dataframes.html"><i class="fa fa-check"></i><b>2.4</b> Dataframes</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-lists.html"><a href="2-5-lists.html"><i class="fa fa-check"></i><b>2.5</b> Lists</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-next2.html"><a href="2-6-next2.html"><i class="fa fa-check"></i><b>2.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-Chapter3.html"><a href="3-Chapter3.html"><i class="fa fa-check"></i><b>3</b> Working with data</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-data-read.html"><a href="3-1-data-read.html"><i class="fa fa-check"></i><b>3.1</b> Data read</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-quick-data-summaries.html"><a href="3-2-quick-data-summaries.html"><i class="fa fa-check"></i><b>3.2</b> Quick data summaries</a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html"><i class="fa fa-check"></i><b>3.3</b> Subsetting and selecting data</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#manual-subsets-and-selections"><i class="fa fa-check"></i><b>3.3.1</b> Manual subsets and selections</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#subsetting-and-summaries-in-base-r"><i class="fa fa-check"></i><b>3.3.2</b> Subsetting and summaries in base R</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#tidyverse"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting and summaries in the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-better-data-summaries.html"><a href="3-4-better-data-summaries.html"><i class="fa fa-check"></i><b>3.4</b> Better data summaries</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-creating-new-variables.html"><a href="3-5-creating-new-variables.html"><i class="fa fa-check"></i><b>3.5</b> Creating new variables</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html"><i class="fa fa-check"></i><b>3.6</b> Data simulation</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#random-sub-samples-from-a-dataset"><i class="fa fa-check"></i><b>3.6.1</b> Random sub-samples from a dataset</a></li>
+<li class="chapter" data-level="3.6.2" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#stochastic"><i class="fa fa-check"></i><b>3.6.2</b> Stochastic simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="3-7-next3.html"><a href="3-7-next3.html"><i class="fa fa-check"></i><b>3.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-Chapter4.html"><a href="4-Chapter4.html"><i class="fa fa-check"></i><b>4</b> Plotting and graphics</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-plots-matter-as-much-as-stats.html"><a href="4-1-plots-matter-as-much-as-stats.html"><i class="fa fa-check"></i><b>4.1</b> Plots matter as much as stats</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html"><i class="fa fa-check"></i><b>4.2</b> Plotting with base R</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#histograms"><i class="fa fa-check"></i><b>4.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#scatterplots"><i class="fa fa-check"></i><b>4.2.2</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#lines"><i class="fa fa-check"></i><b>4.2.3</b> Lines</a></li>
+<li class="chapter" data-level="4.2.4" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#boxplots"><i class="fa fa-check"></i><b>4.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>4.3</b> Plotting with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gghists"><i class="fa fa-check"></i><b>4.3.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggscatter"><i class="fa fa-check"></i><b>4.3.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gglines"><i class="fa fa-check"></i><b>4.3.3</b> Lines</a></li>
+<li class="chapter" data-level="4.3.4" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggboxplots"><i class="fa fa-check"></i><b>4.3.4</b> Boxplots and</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4-4-next4.html"><a href="4-4-next4.html"><i class="fa fa-check"></i><b>4.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-Chapter5.html"><a href="5-Chapter5.html"><i class="fa fa-check"></i><b>5</b> Sampling distributions in R</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-what-are-sampling-distributions.html"><a href="5-1-what-are-sampling-distributions.html"><i class="fa fa-check"></i><b>5.1</b> What are sampling distributions?</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-probability-distributions-in-r.html"><a href="5-2-probability-distributions-in-r.html"><i class="fa fa-check"></i><b>5.2</b> Probability distributions in R</a></li>
+<li class="chapter" data-level="5.3" data-path="5-3-exponential-family.html"><a href="5-3-exponential-family.html"><i class="fa fa-check"></i><b>5.3</b> Exponential family</a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html"><i class="fa fa-check"></i><b>5.4</b> Continuous distributions</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-lognormal-distribution"><i class="fa fa-check"></i><b>5.4.1</b> The lognormal distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-beta-distribution"><i class="fa fa-check"></i><b>5.4.2</b> The beta distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html"><i class="fa fa-check"></i><b>5.5</b> Discrete distributions</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#bernoulli"><i class="fa fa-check"></i><b>5.5.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="5.5.2" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#binomial"><i class="fa fa-check"></i><b>5.5.2</b> Binomial</a></li>
+<li class="chapter" data-level="5.5.3" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#multinomial"><i class="fa fa-check"></i><b>5.5.3</b> Multinomial</a></li>
+<li class="chapter" data-level="5.5.4" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#poisson"><i class="fa fa-check"></i><b>5.5.4</b> Poisson</a></li>
+<li class="chapter" data-level="5.5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#the-negative-binomial-distribution"><i class="fa fa-check"></i><b>5.5.5</b> The negative binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html"><i class="fa fa-check"></i><b>5.6</b> Sample statistics</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#moments-about-the-mean"><i class="fa fa-check"></i><b>5.6.1</b> Moments about the mean</a></li>
+<li class="chapter" data-level="5.6.2" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#estimating-parameters-of-the-normal-distribution-from-a-sample"><i class="fa fa-check"></i><b>5.6.2</b> Estimating parameters of the normal distribution from a sample</a></li>
+<li class="chapter" data-level="5.6.3" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#quantiles-and-other-descriptive-statistics"><i class="fa fa-check"></i><b>5.6.3</b> Quantiles and other descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="5-7-next5.html"><a href="5-7-next5.html"><i class="fa fa-check"></i><b>5.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-Chapter6.html"><a href="6-Chapter6.html"><i class="fa fa-check"></i><b>6</b> Inferential statistics</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html"><i class="fa fa-check"></i><b>6.1</b> One-sample tests</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html#one-sample-t-test"><i class="fa fa-check"></i><b>6.1.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html#wilcox-test"><i class="fa fa-check"></i><b>6.1.2</b> Wilcox test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html"><i class="fa fa-check"></i><b>6.2</b> Two-sample tests</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>6.2.1</b> The two-sample t-test</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#two-sample-wilcox-test"><i class="fa fa-check"></i><b>6.2.2</b> Two-sample Wilcox test</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#presenting-your-results"><i class="fa fa-check"></i><b>6.2.3</b> Presenting your results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-3-frequency-analysis.html"><a href="6-3-frequency-analysis.html"><i class="fa fa-check"></i><b>6.3</b> Frequency analysis</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="6-3-frequency-analysis.html"><a href="6-3-frequency-analysis.html#worked-example"><i class="fa fa-check"></i><b>6.3.1</b> Worked example</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="6-4-next6.html"><a href="6-4-next6.html"><i class="fa fa-check"></i><b>6.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-Chapter7.html"><a href="7-Chapter7.html"><i class="fa fa-check"></i><b>7</b> Linear models</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-anova.html"><a href="7-1-anova.html"><i class="fa fa-check"></i><b>7.1</b> Analysis of variance (ANOVA)</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-1-anova.html"><a href="7-1-anova.html#one-way"><i class="fa fa-check"></i><b>7.1.1</b> One-way analysis of variance</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-1-anova.html"><a href="7-1-anova.html#twon-way-anova"><i class="fa fa-check"></i><b>7.1.2</b> Two(<em>n</em>)-way ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-2-simple-linear-regression.html"><a href="7-2-simple-linear-regression.html"><i class="fa fa-check"></i><b>7.2</b> Simple linear regression</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-2-simple-linear-regression.html"><a href="7-2-simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>7.2.1</b> Simple linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7-3-multiple-linear-regression.html"><a href="7-3-multiple-linear-regression.html"><i class="fa fa-check"></i><b>7.3</b> Multiple linear regression</a></li>
+<li class="chapter" data-level="7.4" data-path="7-4-next7.html"><a href="7-4-next7.html"><i class="fa fa-check"></i><b>7.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-Chapter8.html"><a href="8-Chapter8.html"><i class="fa fa-check"></i><b>8</b> General linear models</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-1-analysis-of-covariance-ancova.html"><a href="8-1-analysis-of-covariance-ancova.html"><i class="fa fa-check"></i><b>8.1</b> Analysis of covariance (ANCOVA)</a></li>
+<li class="chapter" data-level="8.2" data-path="8-2-motivation.html"><a href="8-2-motivation.html"><i class="fa fa-check"></i><b>8.2</b> Motivation</a></li>
+<li class="chapter" data-level="8.3" data-path="8-3-data.html"><a href="8-3-data.html"><i class="fa fa-check"></i><b>8.3</b> Data</a></li>
+<li class="chapter" data-level="8.4" data-path="8-4-analysis.html"><a href="8-4-analysis.html"><i class="fa fa-check"></i><b>8.4</b> Analysis</a></li>
+<li class="chapter" data-level="8.5" data-path="8-5-predictions.html"><a href="8-5-predictions.html"><i class="fa fa-check"></i><b>8.5</b> Predictions</a></li>
+<li class="chapter" data-level="8.6" data-path="8-6-next8.html"><a href="8-6-next8.html"><i class="fa fa-check"></i><b>8.6</b> Next steps</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Worst Stats Text eveR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="anova" class="section level2">
+<h2><span class="header-section-number">7.1</span> Analysis of variance (ANOVA)</h2>
+<p>We will use some of the built-in datasets in R this week to demonstrate our analyses and show how to communicate the methods and the results of our statistical inference.</p>
+<p>Analysis of variance is typically used when we have a continuous dependent variable (y, response) and a categorical independent variable (x, explanatory) containing three or more groups. As with the t-test, we assume that the error (variance) within groups is normal (we’ll discuss in detail in <a href="8-Chapter8.html#Chapter8">Chapter 8</a>). Most of the math behind ANOVA is basically the same as a t-test, but we add a couple steps for the third group, and now it essentially becomes the same thing as an F test (<code>var.test()</code> from Chapter 6[#Chapter6]) on three groups. In fact, the t-test, the F test, and one-way anova are all pretty much the same thing!</p>
+<p><code>mind == blown</code></p>
+<div id="one-way" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> One-way analysis of variance</h3>
+<p>The number of grouping variables used in ANOVA confers different fancy naming conventions. The simplest of these contains a single grouping variable (e.g. treatment <strong>or</strong> year) and is referred to as one-way ANOVA. In theory, these models can be extended to include any number <em>n</em> of grouping variables (e.g. treatment <strong>and</strong> year) and are commonly referred to as <em>n</em>-way ANOVA.</p>
+<p>Let’s start by loading the <code>PlantGrowth</code> dataset in R:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="7-1-anova.html#cb2-1"></a><span class="kw">data</span>(PlantGrowth)</span></code></pre></div>
+<p><code>PlantGrowth</code> is a dataframe with 30 observations of two variables. The first variable <code>weight</code> describes plant growth (in units of mass), and the second variable <code>group</code> contains control (<code>ctrl</code>) and two treatment groups (<code>trt1</code> and <code>trt2</code>) for individual plants. Have a look, as always:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="7-1-anova.html#cb3-1"></a><span class="kw">str</span>(PlantGrowth)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	30 obs. of  2 variables:
+##  $ weight: num  4.17 5.58 5.18 6.11 4.5 4.61 5.17 4.53 5.33 5.14 ...
+##  $ group : Factor w/ 3 levels &quot;ctrl&quot;,&quot;trt1&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<p>Let’s begin by using a one-way ANOVA to determine if the mass of plants differs between groups in <code>PlantGrowth</code>. In practice, this is <em>very</em> easy. First of all, though, we would report our <strong>methods</strong> something like this:</p>
+<blockquote>
+<p>We used a one-way analysis of variance (ANOVA) to estimate the effects of treatment group on the mass (g) of plants assuming a Type-I error rate of <span class="math inline">\(\alpha\)</span> = 0.05. Our null hypothesis was that all group means were equal (H<sub>0</sub>: <span class="math inline">\(\mu_{ctrl} = \mu_{trt1} = \mu_{trt2}\)</span>).</p>
+</blockquote>
+<p>Therefore, if any one of the means is not equal to the others, then we reject the null hypothesis.</p>
+<p>You can fit an ANOVA using either the <code>aov()</code> function or the <code>lm()</code> function in base R. I prefer to use <code>lm()</code> for two reasons. First, there is output from <code>lm()</code> that I don’t get with <code>aov()</code>. Second, the <code>lm()</code> function is the one we’ll use for linear regression, multiple regression, and analysis of covariance. This reminds us that these models are all special cases of the glorious, over-arching group of general linear models <a href="8-Chapter8.html#Chapter8">Chapter 8</a> and will help us develop a standard workflow moving forward.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="7-1-anova.html#cb5-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb5-2"><a href="7-1-anova.html#cb5-2"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>(weight<span class="op">~</span>group, <span class="dt">data=</span>PlantGrowth)</span>
+<span id="cb5-3"><a href="7-1-anova.html#cb5-3"></a></span>
+<span id="cb5-4"><a href="7-1-anova.html#cb5-4"></a><span class="co"># Print the model object to the console</span></span>
+<span id="cb5-5"><a href="7-1-anova.html#cb5-5"></a>model</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = weight ~ group, data = PlantGrowth)
+## 
+## Coefficients:
+## (Intercept)    grouptrt1    grouptrt2  
+##       5.032       -0.371        0.494</code></pre>
+<p>Wow, that is dangerously easy to do. But, this output is not very useful for getting the information we need if you don’t already know what you are looking at. What we get here is essentially just one part of the information that we would like to (should) report.</p>
+<p>We’ll proceed with a more standard ANOVA table for now using the <code>anova()</code> function:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="7-1-anova.html#cb7-1"></a><span class="co"># Save anova table to an object</span></span>
+<span id="cb7-2"><a href="7-1-anova.html#cb7-2"></a>plant_nova &lt;-<span class="st"> </span><span class="kw">anova</span>(model)</span>
+<span id="cb7-3"><a href="7-1-anova.html#cb7-3"></a></span>
+<span id="cb7-4"><a href="7-1-anova.html#cb7-4"></a><span class="co"># Have a look at the goodness</span></span>
+<span id="cb7-5"><a href="7-1-anova.html#cb7-5"></a><span class="kw">print</span>(plant_nova)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: weight
+##           Df  Sum Sq Mean Sq F value  Pr(&gt;F)  
+## group      2  3.7663  1.8832  4.8461 0.01591 *
+## Residuals 27 10.4921  0.3886                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Okay, this is really what we needed in order to evaluate our null hypothesis: an ANOVA table with a break down of the residuals, mean squared errors, and test statistic(s). We interpret the test statistic and the p-value the same way we did in <a href="6-Chapter6.html#Chapter6">Chapter 6</a> when we did t-tests and Wilcox tests. And, we can now say:</p>
+<blockquote>
+<p>We found that the treatment had a significant effect on plant weight
+(ANOVA, F = 4.846, df<sub>1</sub> = 2, df<sub>2</sub> = 27, p = 0.0159).</p>
+</blockquote>
+<p>We can also calculate the R<sup>2</sup> value for the ANOVA, which is a statistic used to describe the amount of variation in the data explained by the model relative to the total variation in the data set. More correctly, we are actually comparing the sum of squared errors for the model we fit (SSB) to the total sum of squares (SST = SSB + SSE).</p>
+<p>For what it’s worth, this is a super useful statistic for getting the big-picture perspective on whether your model is useful or crap. You calculate it pretty easily from the <code>anova()</code> output like as:</p>
+<p><span class="math display">\[R^2 = \frac{SSB}{SST}\]</span>
+…or…</p>
+<p>Why wouldn’t you do this in R?</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="7-1-anova.html#cb9-1"></a><span class="co"># Look at the names of the anova() output</span></span>
+<span id="cb9-2"><a href="7-1-anova.html#cb9-2"></a><span class="co"># We want the &quot;Sum Sq&quot; bit</span></span>
+<span id="cb9-3"><a href="7-1-anova.html#cb9-3"></a><span class="kw">names</span>(plant_nova)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="7-1-anova.html#cb10-1"></a><span class="co"># Here is the sum of squares for the model</span></span>
+<span id="cb10-2"><a href="7-1-anova.html#cb10-2"></a><span class="co"># Have to use back-ticks for spaces, sigh</span></span>
+<span id="cb10-3"><a href="7-1-anova.html#cb10-3"></a>ssb &lt;-<span class="st"> </span>plant_nova<span class="op">$</span><span class="st">`</span><span class="dt">Sum Sq</span><span class="st">`</span>[<span class="dv">1</span>]</span>
+<span id="cb10-4"><a href="7-1-anova.html#cb10-4"></a></span>
+<span id="cb10-5"><a href="7-1-anova.html#cb10-5"></a><span class="co"># And the sum of squares total is the sum</span></span>
+<span id="cb10-6"><a href="7-1-anova.html#cb10-6"></a><span class="co"># of the column in this case</span></span>
+<span id="cb10-7"><a href="7-1-anova.html#cb10-7"></a>sst &lt;-<span class="st"> </span><span class="kw">sum</span>(plant_nova<span class="op">$</span><span class="st">`</span><span class="dt">Sum Sq</span><span class="st">`</span>)</span>
+<span id="cb10-8"><a href="7-1-anova.html#cb10-8"></a></span>
+<span id="cb10-9"><a href="7-1-anova.html#cb10-9"></a><span class="co"># Some quick division, and we get...</span></span>
+<span id="cb10-10"><a href="7-1-anova.html#cb10-10"></a>R2 &lt;-<span class="st"> </span>ssb<span class="op">/</span>sst</span></code></pre></div>
+<p>Have a look:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="7-1-anova.html#cb11-1"></a><span class="kw">print</span>(R2)</span></code></pre></div>
+<pre><code>## [1] 0.2641483</code></pre>
+<p>Now, we can say that our treatment effect explained about 26% of the variation in the data. The rest is a combination error and unexplained variation in the data that might require further investigation.</p>
+<p>The only problem here is that this is an awful lot of work to get something that should be really easy to do in R. And, we still don’t know how <code>weight</code> varied between <code>groups</code>. We just know that at least one group is different from the other.</p>
+<p>Thankfully, the default output of <code>summary()</code> for linear models fit with <code>lm()</code> does a lot of this for us.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="7-1-anova.html#cb13-1"></a><span class="co"># Print the summary of the model</span></span>
+<span id="cb13-2"><a href="7-1-anova.html#cb13-2"></a><span class="kw">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = weight ~ group, data = PlantGrowth)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.0710 -0.4180 -0.0060  0.2627  1.3690 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   5.0320     0.1971  25.527   &lt;2e-16 ***
+## grouptrt1    -0.3710     0.2788  -1.331   0.1944    
+## grouptrt2     0.4940     0.2788   1.772   0.0877 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.6234 on 27 degrees of freedom
+## Multiple R-squared:  0.2641,	Adjusted R-squared:  0.2096 
+## F-statistic: 4.846 on 2 and 27 DF,  p-value: 0.01591</code></pre>
+<p>That’s better, we get some useful information here. First of all, we get the value of the test statistic, the df, and the p-value for the model. We also get the <span class="math inline">\(R^2\)</span> for the model, 0.26, as part of the default output.</p>
+<p>But, what if we want to know more about how treatment affected weight? Like, which groups are different? Can we use the p-values reported in the column <code>Pr(&gt;|t|)</code> to infer group-wise differences? The quick answer is “sometimes”.</p>
+<p>The <code>Coefficients</code> chunk of this output can help us with inference in simple situations, and it really is the key to making predictions from our models (see <a href="#Chapter10">Chapter 10</a>).</p>
+<p>Remember, most model output in R is stored as lists, so we can extract the coefficients table like this if we look at `names( summary(model) ) to find what we want:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="7-1-anova.html#cb15-1"></a>coeffs &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="kw">summary</span>(model)<span class="op">$</span>coefficients )</span></code></pre></div>
+<p>Okay, what is going on here? This looks nothing like the output we got from <code>anova()</code>.</p>
+<p>The <code>coeffs</code> object is a dataframe with columns for mean coefficient estimates, the standard error of those estimates, t-statistic, and p-value. We are actually not going to worry about the p-values here for a hot minute.</p>
+<p>Let’s focus on the estimate column first. There are three values here. Each of these represents one of the factor levels in the <code>group</code> variable in <code>PlantGrowth</code>. They are assigned alpha-numerically, and the first (<code>ctrl</code>) is assigned as the <code>(Intercept)</code> or base level against which all others are compared. In this sense, the <code>(Intercept)</code> coefficient is an estimate of the mean value of <code>weight</code> for the <code>group</code> called <code>ctrl.</code></p>
+<p>Do a quick check:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="7-1-anova.html#cb16-1"></a><span class="co"># Calculate and print mean weight</span></span>
+<span id="cb16-2"><a href="7-1-anova.html#cb16-2"></a><span class="co"># for the group ctrl in PlantGrowth</span></span>
+<span id="cb16-3"><a href="7-1-anova.html#cb16-3"></a>PlantGrowth <span class="op">%&gt;%</span></span>
+<span id="cb16-4"><a href="7-1-anova.html#cb16-4"></a><span class="st">  </span><span class="kw">filter</span>(group <span class="op">==</span><span class="st"> &#39;ctrl&#39;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb16-5"><a href="7-1-anova.html#cb16-5"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">avg =</span> <span class="kw">mean</span>(weight))</span></code></pre></div>
+<pre><code>##     avg
+## 1 5.032</code></pre>
+<p>As you can see, the prediction from the ANOVA is identical to the group mean estimated directly from the data.</p>
+<p>The coefficients for <code>grouptrt1</code> and <code>grouptrt2</code> can be thought of adjustments to the <code>(Intercept)</code> coefficient, or the difference between the mean of <code>ctrl</code> and <code>trt1</code> or <code>trt2</code>. If the <code>Estimate</code> for <code>grouptrt1</code> or <code>grouptrt2</code> is negative, then the mean for that group is less than <code>ctrl</code> and if it is positive, the mean for the group is greater than <code>ctrl</code>.</p>
+<p>If we wanted to calculate the mean <code>weight</code> of the <code>trt1</code> and <code>trt2</code> groups, we would add them to the <code>(Intercept)</code> coefficient like this:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="7-1-anova.html#cb18-1"></a><span class="co"># Assign model coefficients to objects</span></span>
+<span id="cb18-2"><a href="7-1-anova.html#cb18-2"></a>ctrl &lt;-<span class="st"> </span>coeffs<span class="op">$</span>Estimate[<span class="dv">1</span>]</span>
+<span id="cb18-3"><a href="7-1-anova.html#cb18-3"></a>trt1 &lt;-<span class="st"> </span>coeffs<span class="op">$</span>Estimate[<span class="dv">2</span>]</span>
+<span id="cb18-4"><a href="7-1-anova.html#cb18-4"></a>trt2 &lt;-<span class="st"> </span>coeffs<span class="op">$</span>Estimate[<span class="dv">3</span>]</span>
+<span id="cb18-5"><a href="7-1-anova.html#cb18-5"></a></span>
+<span id="cb18-6"><a href="7-1-anova.html#cb18-6"></a><span class="co"># Calculate group means for trt1 and trt2</span></span>
+<span id="cb18-7"><a href="7-1-anova.html#cb18-7"></a><span class="co"># from the model</span></span>
+<span id="cb18-8"><a href="7-1-anova.html#cb18-8"></a>trt1_prediction &lt;-<span class="st"> </span>ctrl <span class="op">+</span><span class="st"> </span>trt1</span>
+<span id="cb18-9"><a href="7-1-anova.html#cb18-9"></a>trt2_prediction &lt;-<span class="st"> </span>ctrl <span class="op">+</span><span class="st"> </span>trt2</span>
+<span id="cb18-10"><a href="7-1-anova.html#cb18-10"></a></span>
+<span id="cb18-11"><a href="7-1-anova.html#cb18-11"></a><span class="kw">print</span>(<span class="kw">c</span>(trt1_prediction, trt2_prediction))</span></code></pre></div>
+<pre><code>## [1] 4.661 5.526</code></pre>
+<p>If you calculate the means for these groups directly from the data you’ll see that these values are identical to the mean <code>weight</code> of the <code>trt1</code> and <code>trt2</code> groups.</p>
+<p>In <a href="#Chapter10">Chapter 10</a> we will examine how to estimate confidence intervals around these estimates and make predictions from the model that include our uncertainty. But for that, we’ll need to talk about a little bit of math and we’re dealing with enough right now already!</p>
+<p>Finally, the p-values associated with <code>trt1</code> and <code>trt2</code> indicates whether each group is significantly different from <code>ctrl</code>. In the case of the intercept, the p-value simply tells us whether the mean <code>weight</code> of <code>ctrl</code> is significantly different from zero. A fundamentally dull question - of course it is. This is the first time we really need to think about the differences between our statistical null hypotheses and our biological null hypotheses.</p>
+<p>If we want to do further comparisons between groups (other than just comparing <code>trt1</code> and <code>trt2</code> to <code>ctrl</code> by themselves), then we need to add on a little “post-hoc” testing to find out which groups differ. We can use a ‘pair-wise’ comparison to test for differences between factor levels. Because this essentially means conducting a whole bunch of t-tests, we need a way to account for our repeated Type-I error rate, because at <span class="math inline">\(\alpha\)</span> = 0.05 we stand a 1 in 20 chance of falsely rejecting the null even if it is true.</p>
+<p>One tool that allows us to make multiple comparisons between groups while adjusting for elevated Type-I error is the Tukey HSD (honest significant difference) test. This test makes comparisons between each pairing of groups while controlling for Type-I error. Essentially, this makes it harder to detect differences between groups but when we do we are more sure that they are not spurious (“Honest significant difference”, say it with me).</p>
+<p>Sound confusing? At least it’s easy to do in R.</p>
+<p>We need to recast our model this as an <code>aov</code> object in R…this is essentially the same thing as the <code>lm</code> function, but in a different wrapper (literally) that allows us to access the info in a different way. It would be a fine default function for doing ANOVA if we weren’t interested in going any further with linear models.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="7-1-anova.html#cb20-1"></a><span class="kw">TukeyHSD</span>(    <span class="co"># The function that does the Tukey test</span></span>
+<span id="cb20-2"><a href="7-1-anova.html#cb20-2"></a>  <span class="kw">aov</span>(       <span class="co"># A wrapper for lm objects</span></span>
+<span id="cb20-3"><a href="7-1-anova.html#cb20-3"></a>    model    <span class="co"># The model that we ran above</span></span>
+<span id="cb20-4"><a href="7-1-anova.html#cb20-4"></a>    )</span>
+<span id="cb20-5"><a href="7-1-anova.html#cb20-5"></a>  )</span></code></pre></div>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = model)
+## 
+## $group
+##             diff        lwr       upr     p adj
+## trt1-ctrl -0.371 -1.0622161 0.3202161 0.3908711
+## trt2-ctrl  0.494 -0.1972161 1.1852161 0.1979960
+## trt2-trt1  0.865  0.1737839 1.5562161 0.0120064</code></pre>
+<p>This report shows us exactly how <code>weight</code> differs between each pair of treatment groups. Here, we see that the only significant difference (<code>p adj &lt; 0.05</code>) occurs between <code>trt2</code> and <code>trt1</code>.</p>
+<p>For the readers, and for us, it may be easier to see this information displayed graphically:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="7-1-anova.html#cb22-1"></a><span class="co"># Make a boxplot of weight by group</span></span>
+<span id="cb22-2"><a href="7-1-anova.html#cb22-2"></a><span class="co"># using the PlantGrowth data and </span></span>
+<span id="cb22-3"><a href="7-1-anova.html#cb22-3"></a><span class="co"># base graphics</span></span>
+<span id="cb22-4"><a href="7-1-anova.html#cb22-4"></a><span class="kw">boxplot</span>(</span>
+<span id="cb22-5"><a href="7-1-anova.html#cb22-5"></a>  weight<span class="op">~</span>group,           <span class="co"># Relationship of interest as formula</span></span>
+<span id="cb22-6"><a href="7-1-anova.html#cb22-6"></a>  <span class="dt">data=</span>PlantGrowth,       <span class="co"># Name of the data set</span></span>
+<span id="cb22-7"><a href="7-1-anova.html#cb22-7"></a>  <span class="dt">col=</span><span class="st">&#39;gray&#39;</span>,             <span class="co"># Fill color for boxes</span></span>
+<span id="cb22-8"><a href="7-1-anova.html#cb22-8"></a>  <span class="dt">ylab=</span><span class="st">&#39;Mass (g)&#39;</span>,        <span class="co"># Y-axis label</span></span>
+<span id="cb22-9"><a href="7-1-anova.html#cb22-9"></a>  <span class="dt">xlab=</span><span class="st">&#39;Treatment group&#39;</span>, <span class="co"># X-axis label</span></span>
+<span id="cb22-10"><a href="7-1-anova.html#cb22-10"></a>  <span class="dt">boxwex=</span>.<span class="dv">25</span></span>
+<span id="cb22-11"><a href="7-1-anova.html#cb22-11"></a>  )</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>In addition to what we wrote before, we can now say something along the lines of:</p>
+<blockquote>
+<p>“We found that the mass of plants in the trt2 group (5.5 <span class="math inline">\(\pm\)</span> 0.4 g) was significantly greater than plants in the trt1 group (4.7 <span class="math inline">\(\pm\)</span> 0.8 g; Tukey HSD, p = 0.012). However, we failed to detect differences in mass between plants in the control group (5.0 <span class="math inline">\(\pm\)</span> 0.6 g) and trt1 (p = 0.39) or trt2 (p = 0.20).”</p>
+</blockquote>
+</div>
+<div id="twon-way-anova" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> Two(<em>n</em>)-way ANOVA</h3>
+<p>Next, we’ll step up the complexity and talk about cases for which we have more than one grouping variable and some kind of numeric response. In these cases, we can use a two-way ANOVA (or ‘<em>n</em>-way’ depending on number of factors) to examine effects of more than one grouping variable on the response.</p>
+<p>Here, we will use a data set describing differences in the mass of belly- button lint collected from males and females of three species of apes.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="7-1-anova.html#cb23-1"></a><span class="co"># Read in the data:</span></span>
+<span id="cb23-2"><a href="7-1-anova.html#cb23-2"></a>lint &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/lint.txt&#39;</span>)</span></code></pre></div>
+<div id="main-effects-model" class="section level4">
+<h4><span class="header-section-number">7.1.2.1</span> Main effects model</h4>
+<p>Now we can fit a model to the data. This will work the same way as for the one-way ANOVA above, but this time we will add more terms on the right hand side of the equation. We will start by looking at the <em>main effects</em> model for this data set.</p>
+<p>What is a main-effects model? This model assumes that the response of interest, in this case the mass of belly button lint, <code>lintmass</code>, is affected by both <code>species</code> and <code>gender</code>, and that within species the effect of gender is the same. For example, the mass of belly button lint could be greater in one species compared to others, and if there is a difference between sexes we would expect that trend to be the same across species (e.g., boys always have more lint than girls - sorry guys, it’s probably true!).</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="7-1-anova.html#cb24-1"></a><span class="co"># Fit the model and save it to an object</span></span>
+<span id="cb24-2"><a href="7-1-anova.html#cb24-2"></a>lint.model&lt;-<span class="st"> </span><span class="kw">lm</span>(lintmass<span class="op">~</span>species <span class="op">+</span><span class="st"> </span>gender, <span class="dt">data =</span> lint)</span>
+<span id="cb24-3"><a href="7-1-anova.html#cb24-3"></a></span>
+<span id="cb24-4"><a href="7-1-anova.html#cb24-4"></a><span class="co"># Look at the summary of the model fit</span></span>
+<span id="cb24-5"><a href="7-1-anova.html#cb24-5"></a><span class="kw">summary</span>(lint.model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = lintmass ~ species + gender, data = lint)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.5792 -0.9021  0.0875  0.8448  2.3917 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       15.5458     0.6133  25.346  &lt; 2e-16 ***
+## speciesSpecies 2  -3.4375     0.7512  -4.576 0.000183 ***
+## speciesSpecies 3  -1.8750     0.7512  -2.496 0.021414 *  
+## genderMale         4.9083     0.6133   8.003 1.16e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.502 on 20 degrees of freedom
+## Multiple R-squared:  0.8096,	Adjusted R-squared:  0.781 
+## F-statistic: 28.35 on 3 and 20 DF,  p-value: 2.107e-07</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="7-1-anova.html#cb26-1"></a><span class="co"># Print the anova table</span></span>
+<span id="cb26-2"><a href="7-1-anova.html#cb26-2"></a><span class="kw">anova</span>(lint.model)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: lintmass
+##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## species    2  47.396  23.698  10.499 0.0007633 ***
+## gender     1 144.550 144.550  64.041  1.16e-07 ***
+## Residuals 20  45.143   2.257                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>As you can see, the output for the model is much the same as for the one-way ANOVA. The only real difference is that we have more than one grouping variable here. We conclude that there is a significant difference in <code>lintmass</code> between <code>species</code> (F = 10.50, df = 2, p &lt; 0.05) and between <code>genders</code> (F = 64.01, df = 1, p &lt; 0.05).</p>
+<p>As before, we can make a quick boxplot and overlay our raw data to visualize these differences:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="7-1-anova.html#cb28-1"></a>lint <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb28-2"><a href="7-1-anova.html#cb28-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> lintmass, <span class="dt">fill=</span>gender)) <span class="op">+</span></span>
+<span id="cb28-3"><a href="7-1-anova.html#cb28-3"></a><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb28-4"><a href="7-1-anova.html#cb28-4"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">position=</span><span class="kw">position_jitterdodge</span>(.<span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb28-5"><a href="7-1-anova.html#cb28-5"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Species&#39;</span>) <span class="op">+</span></span>
+<span id="cb28-6"><a href="7-1-anova.html#cb28-6"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Lint mass&#39;</span>) <span class="op">+</span></span>
+<span id="cb28-7"><a href="7-1-anova.html#cb28-7"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;Gender&quot;</span>) <span class="op">+</span></span>
+<span id="cb28-8"><a href="7-1-anova.html#cb28-8"></a><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb28-9"><a href="7-1-anova.html#cb28-9"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">vjust=</span><span class="op">-</span><span class="dv">1</span>),</span>
+<span id="cb28-10"><a href="7-1-anova.html#cb28-10"></a>          <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust=</span><span class="dv">3</span>),</span>
+<span id="cb28-11"><a href="7-1-anova.html#cb28-11"></a>          <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb28-12"><a href="7-1-anova.html#cb28-12"></a>          )</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Hopefully after seeing these results you are now starting to realize how important a few well-placed figures and tables can be for clearly communicating the results of your research (even if it is about belly-button lint).</p>
+<p>The math for making predictions becomes a little more complicated once we add a second grouping variable. Even the numbers of pair-wise comparisons can become overwhelming in a simple situation like this. Therefore, we’ll hold off on digging too much deeper into the math until next week.</p>
+</div>
+<div id="interaction-terms" class="section level4">
+<h4><span class="header-section-number">7.1.2.2</span> Interaction terms</h4>
+<p>The n-way ANOVA is the first kind of model we have used in which it is possible to consider <em>interactions</em> between two or more factors. An interaction occurs when the effects of two or more factors are not additive. This means that the effect of <code>gender</code> might change for different <code>species</code>. For example, let us consider the following scenario in the <code>lint</code> data.</p>
+<p>Perhaps we hypothesize that lint accumulation in the belly buttons of females differs in pattern from males due to social grooming patterns and sex-specific behavioral patterns favoring females in only certain species. As a result, we might expect that <code>gender</code> and <code>species</code> could have some kind of non-additive effect on <code>lintmass</code> in these apes such that there are significant, sex-specific differences only in some species. To test this, we would use the following:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="7-1-anova.html#cb29-1"></a><span class="co"># Fit a new model that includes an interaction, signified by &#39;*&#39;</span></span>
+<span id="cb29-2"><a href="7-1-anova.html#cb29-2"></a>lint.modeli &lt;-<span class="st"> </span><span class="kw">lm</span>(lintmass<span class="op">~</span>species <span class="op">*</span><span class="st"> </span>gender, <span class="dt">data=</span>lint)</span>
+<span id="cb29-3"><a href="7-1-anova.html#cb29-3"></a></span>
+<span id="cb29-4"><a href="7-1-anova.html#cb29-4"></a><span class="co"># Summarize the model</span></span>
+<span id="cb29-5"><a href="7-1-anova.html#cb29-5"></a><span class="kw">summary</span>(lint.modeli)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = lintmass ~ species * gender, data = lint)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -2.525 -0.750  0.050  1.019  1.875 
+## 
+## Coefficients:
+##                             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                  14.9250     0.7404  20.159 8.40e-14 ***
+## speciesSpecies 2             -2.2500     1.0471  -2.149   0.0455 *  
+## speciesSpecies 3             -1.2000     1.0471  -1.146   0.2668    
+## genderMale                    6.1500     1.0471   5.874 1.46e-05 ***
+## speciesSpecies 2:genderMale  -2.3750     1.4808  -1.604   0.1261    
+## speciesSpecies 3:genderMale  -1.3500     1.4808  -0.912   0.3740    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.481 on 18 degrees of freedom
+## Multiple R-squared:  0.8335,	Adjusted R-squared:  0.7873 
+## F-statistic: 18.03 on 5 and 18 DF,  p-value: 1.898e-06</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="7-1-anova.html#cb31-1"></a><span class="co"># Print an ANOVA table for the model</span></span>
+<span id="cb31-2"><a href="7-1-anova.html#cb31-2"></a><span class="kw">anova</span>(lint.modeli)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: lintmass
+##                Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## species         2  47.396  23.698 10.8079 0.0008253 ***
+## gender          1 144.550 144.550 65.9253 1.983e-07 ***
+## species:gender  2   5.676   2.838  1.2943 0.2984104    
+## Residuals      18  39.468   2.193                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Alas, in the case of the lint model, this interaction is not significant, so we lack the evidence we would need to say that lint accumulation changes differently between genders within species.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="7-Chapter7.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="7-2-simple-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["worstr.pdf", "worstr.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

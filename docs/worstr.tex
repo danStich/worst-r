@@ -2485,8 +2485,8 @@ And, of course, we can add our ``jittered'', raw data points over the top to sho
 
 Hopefully this chapter provided you with a basic overview of plotting in R. If you struggled with these exercises, practice them again, or check out some \href{https://danstich.github.io/stich/classes/BIOL217/resources.html}{additional online resources}. In the coming chapters, we will continue to add functionality and complexity to how we use these kinds of plots. We'll look at how to compare two groups within a single plot in \protect\hyperlink{Chapter6}{Chapter 6} when we dive into sampling distributions. And, eventually we will learn how to plot predictions from our statistical model against observed data from Chapter 8 onward.
 
-\hypertarget{sampling-distributions-in-r}{%
-\chapter{Sampling distributions in R}\label{sampling-distributions-in-r}}
+\hypertarget{Chapter5}{%
+\chapter{Sampling distributions in R}\label{Chapter5}}
 
 If we can describe the shape of a probability distribution for a random variable like temperature we can make predictions about the world. Sinister? Maybe. These are temperatures that I simulated from the Hudson River using historical data to estimate parameters of a multivariate normal distribution (muwahahaha).
 
@@ -2810,7 +2810,7 @@ We'll start with one chicken egg that has a 50\% chance of successfully hatching
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0
+## [1] 1
 \end{verbatim}
 
 There is also a function called \texttt{rbern} in the \texttt{Rlab} package that simplifies this for the specific case of a Bernoulli.
@@ -2825,7 +2825,7 @@ Let's do it again with that function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1
+## [1] 0
 \end{verbatim}
 
 Or we could hatch a whole bunch of eggs:
@@ -2838,7 +2838,7 @@ Or we could hatch a whole bunch of eggs:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 0 1 0 0 0 1 1 0 1 0
+##  [1] 1 1 1 1 0 0 0 1 1 1
 \end{verbatim}
 
 Then, we could even count how many of those were successful. Do you remember how to do that? There are several different ways. You'll have to come up with one for the homework assignment (hint: see \protect\hyperlink{Chapter2}{Chapter 2}).
@@ -2860,7 +2860,7 @@ To sample data from a binomial distribution, we can use \texttt{rbinom} from bas
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 4 5 5 7 6 3 5 5 5 3
+##  [1] 4 5 5 6 6 3 6 2 6 7
 \end{verbatim}
 
 Remember as you look through these that your numbers should look different than mine (at least most of the time) because these are being generated randomly.
@@ -2927,32 +2927,32 @@ Have a look:
 
 \begin{verbatim}
 ##       [,1] [,2] [,3] [,4] [,5]
-##  [1,]    0    0    1    0    0
+##  [1,]    0    0    0    0    0
 ##  [2,]    0    0    0    0    0
 ##  [3,]    0    0    0    0    0
 ##  [4,]    0    0    0    0    0
-##  [5,]    0    0    0    0    1
+##  [5,]    0    0    0    0    0
 ##  [6,]    0    0    0    0    0
-##  [7,]    0    0    0    1    0
+##  [7,]    0    0    0    0    0
 ##  [8,]    0    0    0    0    0
 ##  [9,]    0    0    0    0    0
 ## [10,]    0    0    0    0    0
 ## [11,]    0    0    0    0    0
-## [12,]    0    0    0    0    0
-## [13,]    1    0    0    0    0
+## [12,]    0    1    0    0    0
+## [13,]    0    0    0    0    0
 ## [14,]    0    0    0    0    0
 ## [15,]    0    0    0    0    0
-## [16,]    0    0    0    0    0
+## [16,]    0    0    0    1    0
 ## [17,]    0    0    0    0    0
 ## [18,]    0    0    0    0    0
 ## [19,]    0    0    0    0    0
-## [20,]    0    0    0    0    0
+## [20,]    0    0    0    0    1
 ## [21,]    0    0    0    0    0
-## [22,]    0    1    0    0    0
-## [23,]    0    0    0    0    0
+## [22,]    0    0    0    0    0
+## [23,]    1    0    0    0    0
 ## [24,]    0    0    0    0    0
 ## [25,]    0    0    0    0    0
-## [26,]    0    0    0    0    0
+## [26,]    0    0    1    0    0
 \end{verbatim}
 
 \textbf{WHOA} a matrix??!!! \textbf{What does it all mean}?
@@ -2983,7 +2983,7 @@ Take a step back, breathe, and think about this. The rows in this matrix are you
 ## [12,]    0
 ## [13,]    0
 ## [14,]    0
-## [15,]    0
+## [15,]    1
 ## [16,]    0
 ## [17,]    0
 ## [18,]    0
@@ -2991,7 +2991,7 @@ Take a step back, breathe, and think about this. The rows in this matrix are you
 ## [20,]    0
 ## [21,]    0
 ## [22,]    0
-## [23,]    1
+## [23,]    0
 ## [24,]    0
 ## [25,]    0
 ## [26,]    0
@@ -3014,7 +3014,7 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 ##  [5,] "Sarah"       "0"
 ##  [6,] "Shannon"     "0"
 ##  [7,] "Olivia"      "0"
-##  [8,] "Ebony"       "0"
+##  [8,] "Ebony"       "1"
 ##  [9,] "Julia"       "0"
 ## [10,] "Davi"        "0"
 ## [11,] "Gabrielle"   "0"
@@ -3029,7 +3029,7 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 ## [20,] "Emily"       "0"
 ## [21,] "Cassidy"     "0"
 ## [22,] "Maximillion" "0"
-## [23,] "Sierra"      "1"
+## [23,] "Sierra"      "0"
 ## [24,] "Kyle"        "0"
 ## [25,] "Diana"       "0"
 ## [26,] "Amanda"      "0"
@@ -3045,30 +3045,30 @@ Now, if I was calling on you randomly in class, after 10 questions, the spread o
 
 \begin{verbatim}
 ##       name                                                 
-##  [1,] "Ava"         "0" "0" "0" "0" "1" "0" "0" "0" "0" "0"
+##  [1,] "Ava"         "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [2,] "Dillon"      "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [3,] "Delaney"     "1" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [4,] "Manolo"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "1"
+##  [3,] "Delaney"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [4,] "Manolo"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [5,] "Sarah"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [6,] "Shannon"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [7,] "Olivia"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [8,] "Ebony"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [7,] "Olivia"      "1" "0" "1" "0" "0" "0" "0" "0" "0" "0"
+##  [8,] "Ebony"       "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
 ##  [9,] "Julia"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [10,] "Davi"        "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
-## [11,] "Gabrielle"   "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
+## [10,] "Davi"        "0" "0" "0" "0" "0" "0" "0" "0" "1" "0"
+## [11,] "Gabrielle"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [12,] "Jordan"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [13,] "Tayler"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [14,] "Summer"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [14,] "Summer"      "0" "0" "0" "0" "1" "0" "0" "0" "0" "0"
 ## [15,] "Leah"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [16,] "Christine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [17,] "Ashley"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [18,] "Katherine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [19,] "James"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [18,] "Katherine"   "0" "0" "0" "0" "0" "0" "1" "0" "0" "0"
+## [19,] "James"       "0" "0" "0" "0" "0" "0" "0" "1" "0" "0"
 ## [20,] "Emily"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [21,] "Cassidy"     "0" "0" "0" "0" "0" "0" "0" "0" "1" "0"
-## [22,] "Maximillion" "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
-## [23,] "Sierra"      "0" "0" "0" "0" "0" "0" "1" "1" "0" "0"
-## [24,] "Kyle"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [21,] "Cassidy"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "1"
+## [22,] "Maximillion" "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [23,] "Sierra"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [24,] "Kyle"        "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
 ## [25,] "Diana"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [26,] "Amanda"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 \end{verbatim}
@@ -3082,7 +3082,7 @@ Taking this one step further, we could just draw a name and stop looking at thes
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Amanda"
+## [1] "Cassidy"
 \end{verbatim}
 
 And now we have a way to randomly select an individual based on a multinomial distribution. What fun!
@@ -3318,7 +3318,7 @@ First, we'll estimate it by making our own function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.970094  3.990084
+## [1] 19.976874  4.008235
 \end{verbatim}
 
 Because this one is so common, R has built-in estimators that rely on
@@ -3332,7 +3332,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.97009
+## [1] 19.97687
 \end{verbatim}
 
 \begin{Shaded}
@@ -3342,7 +3342,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.990483
+## [1] 4.008636
 \end{verbatim}
 
 Wow, that was a lot less code. That is the beauty of having these functions available. How do these compare to the answers returned by our function if you scroll back up?
@@ -3360,8 +3360,8 @@ R also has built-in \textbf{maximum likelihood} estimators that provide an exact
 
 \begin{verbatim}
 ##       mean           sd     
-##   19.97009390    1.99751941 
-##  ( 0.01997519) ( 0.01412460)
+##   19.97687446    2.00205773 
+##  ( 0.02002058) ( 0.01415669)
 \end{verbatim}
 
 Only one problem here: R doesn't report the second moment! It reports
@@ -3410,14 +3410,14 @@ To get started, we need to take a guess at what those parameters could be. (Yes,
 
 \begin{verbatim}
 ## $par
-## [1] 19.969855  3.991037
+## [1] 19.976970  4.007722
 ## 
 ## $value
-## [1] 21108.45
+## [1] 21131.14
 ## 
 ## $counts
 ## function gradient 
-##       47       NA 
+##       51       NA 
 ## 
 ## $convergence
 ## [1] 0
@@ -3462,8 +3462,8 @@ Look at the structure I'll be damned, it's a list! Hey, we learned about those!
 
 \begin{verbatim}
 ## List of 5
-##  $ par        : num [1:2] 20 4
-##  $ value      : num 21108
+##  $ par        : num [1:2] 19.97 4.01
+##  $ value      : num 21131
 ##  $ counts     : Named int [1:2] 97 NA
 ##   ..- attr(*, "names")= chr [1:2] "function" "gradient"
 ##  $ convergence: int 0
@@ -3480,7 +3480,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.967219  3.995283
+## [1] 19.97423  4.01201
 \end{verbatim}
 
 \begin{Shaded}
@@ -3491,7 +3491,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.96722
+## [1] 19.97423
 \end{verbatim}
 
 \begin{Shaded}
@@ -3502,7 +3502,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.995283
+## [1] 4.01201
 \end{verbatim}
 
 There you have it, a couple of different ways to calculate parameters of the normal distribution using a couple of different approaches each.
@@ -3520,7 +3520,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.96312
+## [1] 19.99038
 \end{verbatim}
 
 \begin{Shaded}
@@ -3532,7 +3532,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##     2.5%    97.5% 
-## 16.03437 23.89289
+## 15.99838 23.87155
 \end{verbatim}
 
 \begin{Shaded}
@@ -3544,7 +3544,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##      25%      75% 
-## 18.60878 21.31663
+## 18.64695 21.30840
 \end{verbatim}
 
 \begin{Shaded}
@@ -3555,7 +3555,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 12.40963 27.28385
+## [1] 12.49914 27.92930
 \end{verbatim}
 
 \hypertarget{next5}{%
@@ -3563,8 +3563,8 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 Here, we have explored some of the probability distributions that we use to describe samples (data) that we collect from the real world. In \protect\hyperlink{Chapter6}{Chapter 6} we will explore how these sampling distributions can be used for statistical inference before diving into applied statistical analyses for the remainder of the book. Hopefully the order of things is starting to make some sense! If not, well\ldots this \emph{is} The Worst Stats Text eveR.
 
-\hypertarget{inferential-statistics}{%
-\chapter{Inferential statistics}\label{inferential-statistics}}
+\hypertarget{Chapter6}{%
+\chapter{Inferential statistics}\label{Chapter6}}
 
 These are hot peppers. Like hot peppers, statistics can cause pain and heartburn if you are not accustomed to them. Ready or not, let's get munching!!
 
@@ -4085,7 +4085,7 @@ There, isn't that fancy? I think that gives you a much more detailed understandi
 
 Now, what if we didn't collect very good data, or we binned our data into low-resolution categories for the sake of ease in our study design? Often, and for a variety of reasons other than crappy data collection, we want to compare frequencies of events between two (or more) groups. We may even design studies specifically to test these kinds of hypotheses when we think about rates, for example. This is very common in studies of population genetics {[}definitely citations available for that one - go Google them{]}
 
-The simplest way to test for differences in the frequency of a categorical response between two groups is (some would argue) the \(\chi^2\) test. The \(\chi^2\) is another one of those that you should really work out by hand because it is used in a variety of settings ``under the hood'' of more complex routines. Here is your token \href{https://www.youtube.com/watch?v=V4SRgabFbz0}{video link showing and example}. Watch it. Please.
+The simplest way to test for differences in the frequency of a categorical response between two groups is (some would argue) the \(\chi^2\) test. The \(\chi^2\) is another one of those that you should really work out by hand because it is used in a variety of settings ``under the hood'' of more complex routines. Here is your token \href{https://www.youtube.com/watch?v=V4SRgabFbz0}{video link showing an example}. Watch it. Please.
 
 \hypertarget{worked-example}{%
 \subsection{Worked example}\label{worked-example}}
@@ -4130,7 +4130,7 @@ First, make a table showing the number of fish in each \texttt{Age} by \texttt{Y
 ##   23    0    0    0    0    2
 \end{verbatim}
 
-Basically what we are going to do is analyze the proportion of total fish in each column
+Basically what we are going to do is analyze the proportion of total fish in each column by age.
 
 You should see some pretty obvious patterns here. We have a couple of things to think about now. First, this is the kind of question you don't need statistics for. Second, we have a whole bunch of empty groups, and these are not random with respect to year. Some of these come from ages that were not yet available in years 2006 - 2010 and some from patterns in fish stocking. The large number of empty pairings and the fact that most age classes had fewer than five fish in any year prior to 2017 means we should probably break the data down a little further. This stinks because we lose resolution, but that is the cost.
 
@@ -4194,12 +4194,886 @@ Data visualization techniques for contingency table analyses like this seem to h
 
 \includegraphics{worstr_files/figure-latex/unnamed-chunk-180-1.pdf}
 
-The need for improved graphical representation for these data types is recognized. There have been recent efforts to extend the philosophies used \texttt{ggplot()} to contingency analysis by r developers (see Wickham and Hofmann 2011\textless\textgreater). It was even the topic of a recent master's thesis (see Grant 2017). But as far as I know the ideas from these works have not been integrated into \texttt{ggplot2} or the \texttt{tidyverse} yet. Sorry about the citations. I don't know what I was thinking. This is supposed to be the Worst Stats Text eveR.
+The need for improved graphical representation for these data types is recognized. There have been recent efforts to extend the philosophies used \texttt{ggplot()} to contingency analysis by r developers (see Wickham and Hofmann 2011). It was even the topic of a recent master's thesis (see Grant 2017). But as far as I know the ideas from these works have not been integrated into \texttt{ggplot2} or the \texttt{tidyverse} yet. Sorry about the citations. I don't know what I was thinking. This is supposed to be the Worst Stats Text eveR.
 
 \hypertarget{next6}{%
 \section{Next steps}\label{next6}}
 
 In this chapter, we introduced inferential statistics and walked through examples of a few simple statistical tests for comparing samples to one another using two-sample tests, or to a single value using a one-sample test. In \protect\hyperlink{Chapter7}{Chapter 7} we will continue to build on these tools as we press on to linear models and the rest of statistics.
+
+\hypertarget{Chapter7}{%
+\chapter{Linear models}\label{Chapter7}}
+
+Yeah, I know this is the picture from Chapter 4. I only have like five pictures. This is the Worst Stats Text eveR! But, both of the graphs in this picture are just applications of linear regression, which is one kind of linear model, which is also called the general linear model.
+
+Introduction
+
+In this chapter, we will introduce a class of statistical tools known collectively as \textbf{linear models}. This class of tools includes such examples as analysis of variance (ANOVA), linear regression and correlation, and by extension includes n-way ANOVA, multiple linear regression, and analysis of covariance (ANCOVA). Later this semester, we will see that these models be extended even further to include generalized linear models, generalized linear mixed models, multivariate techniques and even machine learning algorithms.
+
+Linear models are, therefore, the gateway into the rest of the world of statistics. We will focus primarily on parametric applications this week and next. The over-arching theme for this week is that any of these methods can be expressed as the formula for a line, which is how they got their names (oh, snap!). We will start with ANOVA because it is analogous to many of the methods that we've already discussed. However, it is important to recognize that this is just a special case of the linear model. This will help you think about how we test statistical assumptions, test hypotheses, and communicate results of models.
+
+Because we are now entering into the realm of `the rest of statistics' we also need to start `talking the talk' in addition to `walking the walk', so we will practice how to write methods sections for these tests and how to report the results. In reality, once you are comfortable using a couple of functions in R, writing up the methods and results is more challenging than fitting models.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{anova}{%
+\section{Analysis of variance (ANOVA)}\label{anova}}
+
+We will use some of the built-in datasets in R this week to demonstrate our analyses and show how to communicate the methods and the results of our statistical inference.
+
+Analysis of variance is typically used when we have a continuous dependent variable (y, response) and a categorical independent variable (x, explanatory) containing three or more groups. As with the t-test, we assume that the error (variance) within groups is normal (we'll discuss in detail in \protect\hyperlink{Chapter8}{Chapter 8}). Most of the math behind ANOVA is basically the same as a t-test, but we add a couple steps for the third group, and now it essentially becomes the same thing as an F test (\texttt{var.test()} from Chapter 6{[}\#Chapter6{]}) on three groups. In fact, the t-test, the F test, and one-way anova are all pretty much the same thing!
+
+\texttt{mind\ ==\ blown}
+
+\hypertarget{one-way}{%
+\subsection{One-way analysis of variance}\label{one-way}}
+
+The number of grouping variables used in ANOVA confers different fancy naming conventions. The simplest of these contains a single grouping variable (e.g.~treatment \textbf{or} year) and is referred to as one-way ANOVA. In theory, these models can be extended to include any number \emph{n} of grouping variables (e.g.~treatment \textbf{and} year) and are commonly referred to as \emph{n}-way ANOVA.
+
+Let's start by loading the \texttt{PlantGrowth} dataset in R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(PlantGrowth)}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{PlantGrowth} is a dataframe with 30 observations of two variables. The first variable \texttt{weight} describes plant growth (in units of mass), and the second variable \texttt{group} contains control (\texttt{ctrl}) and two treatment groups (\texttt{trt1} and \texttt{trt2}) for individual plants. Have a look, as always:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(PlantGrowth)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':	30 obs. of  2 variables:
+##  $ weight: num  4.17 5.58 5.18 6.11 4.5 4.61 5.17 4.53 5.33 5.14 ...
+##  $ group : Factor w/ 3 levels "ctrl","trt1",..: 1 1 1 1 1 1 1 1 1 1 ...
+\end{verbatim}
+
+Let's begin by using a one-way ANOVA to determine if the mass of plants differs between groups in \texttt{PlantGrowth}. In practice, this is \emph{very} easy. First of all, though, we would report our \textbf{methods} something like this:
+
+\begin{quote}
+We used a one-way analysis of variance (ANOVA) to estimate the effects of treatment group on the mass (g) of plants assuming a Type-I error rate of \(\alpha\) = 0.05. Our null hypothesis was that all group means were equal (H\textsubscript{0}: \(\mu_{ctrl} = \mu_{trt1} = \mu_{trt2}\)).
+\end{quote}
+
+Therefore, if any one of the means is not equal to the others, then we reject the null hypothesis.
+
+You can fit an ANOVA using either the \texttt{aov()} function or the \texttt{lm()} function in base R. I prefer to use \texttt{lm()} for two reasons. First, there is output from \texttt{lm()} that I don't get with \texttt{aov()}. Second, the \texttt{lm()} function is the one we'll use for linear regression, multiple regression, and analysis of covariance. This reminds us that these models are all special cases of the glorious, over-arching group of general linear models \protect\hyperlink{Chapter8}{Chapter 8} and will help us develop a standard workflow moving forward.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fit the model}
+\NormalTok{model <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(weight}\OperatorTok{~}\NormalTok{group, }\DataTypeTok{data=}\NormalTok{PlantGrowth)}
+
+\CommentTok{# Print the model object to the console}
+\NormalTok{model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = weight ~ group, data = PlantGrowth)
+## 
+## Coefficients:
+## (Intercept)    grouptrt1    grouptrt2  
+##       5.032       -0.371        0.494
+\end{verbatim}
+
+Wow, that is dangerously easy to do. But, this output is not very useful for getting the information we need if you don't already know what you are looking at. What we get here is essentially just one part of the information that we would like to (should) report.
+
+We'll proceed with a more standard ANOVA table for now using the \texttt{anova()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Save anova table to an object}
+\NormalTok{plant_nova <-}\StringTok{ }\KeywordTok{anova}\NormalTok{(model)}
+
+\CommentTok{# Have a look at the goodness}
+\KeywordTok{print}\NormalTok{(plant_nova)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: weight
+##           Df  Sum Sq Mean Sq F value  Pr(>F)  
+## group      2  3.7663  1.8832  4.8461 0.01591 *
+## Residuals 27 10.4921  0.3886                  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+Okay, this is really what we needed in order to evaluate our null hypothesis: an ANOVA table with a break down of the residuals, mean squared errors, and test statistic(s). We interpret the test statistic and the p-value the same way we did in \protect\hyperlink{Chapter6}{Chapter 6} when we did t-tests and Wilcox tests. And, we can now say:
+
+\begin{quote}
+We found that the treatment had a significant effect on plant weight
+(ANOVA, F = 4.846, df\textsubscript{1} = 2, df\textsubscript{2} = 27, p = 0.0159).
+\end{quote}
+
+We can also calculate the R\textsuperscript{2} value for the ANOVA, which is a statistic used to describe the amount of variation in the data explained by the model relative to the total variation in the data set. More correctly, we are actually comparing the sum of squared errors for the model we fit (SSB) to the total sum of squares (SST = SSB + SSE).
+
+For what it's worth, this is a super useful statistic for getting the big-picture perspective on whether your model is useful or crap. You calculate it pretty easily from the \texttt{anova()} output like as:
+
+\[R^2 = \frac{SSB}{SST}\]
+\ldots or\ldots{}
+
+Why wouldn't you do this in R?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Look at the names of the anova() output}
+\CommentTok{# We want the "Sum Sq" bit}
+\KeywordTok{names}\NormalTok{(plant_nova)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Here is the sum of squares for the model}
+\CommentTok{# Have to use back-ticks for spaces, sigh}
+\NormalTok{ssb <-}\StringTok{ }\NormalTok{plant_nova}\OperatorTok{$}\StringTok{`}\DataTypeTok{Sum Sq}\StringTok{`}\NormalTok{[}\DecValTok{1}\NormalTok{]}
+
+\CommentTok{# And the sum of squares total is the sum}
+\CommentTok{# of the column in this case}
+\NormalTok{sst <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(plant_nova}\OperatorTok{$}\StringTok{`}\DataTypeTok{Sum Sq}\StringTok{`}\NormalTok{)}
+
+\CommentTok{# Some quick division, and we get...}
+\NormalTok{R2 <-}\StringTok{ }\NormalTok{ssb}\OperatorTok{/}\NormalTok{sst}
+\end{Highlighting}
+\end{Shaded}
+
+Have a look:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(R2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2641483
+\end{verbatim}
+
+Now, we can say that our treatment effect explained about 26\% of the variation in the data. The rest is a combination error and unexplained variation in the data that might require further investigation.
+
+The only problem here is that this is an awful lot of work to get something that should be really easy to do in R. And, we still don't know how \texttt{weight} varied between \texttt{groups}. We just know that at least one group is different from the other.
+
+Thankfully, the default output of \texttt{summary()} for linear models fit with \texttt{lm()} does a lot of this for us.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Print the summary of the model}
+\KeywordTok{summary}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = weight ~ group, data = PlantGrowth)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.0710 -0.4180 -0.0060  0.2627  1.3690 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   5.0320     0.1971  25.527   <2e-16 ***
+## grouptrt1    -0.3710     0.2788  -1.331   0.1944    
+## grouptrt2     0.4940     0.2788   1.772   0.0877 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.6234 on 27 degrees of freedom
+## Multiple R-squared:  0.2641,	Adjusted R-squared:  0.2096 
+## F-statistic: 4.846 on 2 and 27 DF,  p-value: 0.01591
+\end{verbatim}
+
+That's better, we get some useful information here. First of all, we get the value of the test statistic, the df, and the p-value for the model. We also get the \(R^2\) for the model, 0.26, as part of the default output.
+
+But, what if we want to know more about how treatment affected weight? Like, which groups are different? Can we use the p-values reported in the column \texttt{Pr(\textgreater{}\textbar{}t\textbar{})} to infer group-wise differences? The quick answer is ``sometimes''.
+
+The \texttt{Coefficients} chunk of this output can help us with inference in simple situations, and it really is the key to making predictions from our models (see \protect\hyperlink{Chapter10}{Chapter 10}).
+
+Remember, most model output in R is stored as lists, so we can extract the coefficients table like this if we look at `names( summary(model) ) to find what we want:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coeffs <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{( }\KeywordTok{summary}\NormalTok{(model)}\OperatorTok{$}\NormalTok{coefficients )}
+\end{Highlighting}
+\end{Shaded}
+
+Okay, what is going on here? This looks nothing like the output we got from \texttt{anova()}.
+
+The \texttt{coeffs} object is a dataframe with columns for mean coefficient estimates, the standard error of those estimates, t-statistic, and p-value. We are actually not going to worry about the p-values here for a hot minute.
+
+Let's focus on the estimate column first. There are three values here. Each of these represents one of the factor levels in the \texttt{group} variable in \texttt{PlantGrowth}. They are assigned alpha-numerically, and the first (\texttt{ctrl}) is assigned as the \texttt{(Intercept)} or base level against which all others are compared. In this sense, the \texttt{(Intercept)} coefficient is an estimate of the mean value of \texttt{weight} for the \texttt{group} called \texttt{ctrl.}
+
+Do a quick check:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Calculate and print mean weight}
+\CommentTok{# for the group ctrl in PlantGrowth}
+\NormalTok{PlantGrowth }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(group }\OperatorTok{==}\StringTok{ 'ctrl'}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{avg =} \KeywordTok{mean}\NormalTok{(weight))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     avg
+## 1 5.032
+\end{verbatim}
+
+As you can see, the prediction from the ANOVA is identical to the group mean estimated directly from the data.
+
+The coefficients for \texttt{grouptrt1} and \texttt{grouptrt2} can be thought of adjustments to the \texttt{(Intercept)} coefficient, or the difference between the mean of \texttt{ctrl} and \texttt{trt1} or \texttt{trt2}. If the \texttt{Estimate} for \texttt{grouptrt1} or \texttt{grouptrt2} is negative, then the mean for that group is less than \texttt{ctrl} and if it is positive, the mean for the group is greater than \texttt{ctrl}.
+
+If we wanted to calculate the mean \texttt{weight} of the \texttt{trt1} and \texttt{trt2} groups, we would add them to the \texttt{(Intercept)} coefficient like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Assign model coefficients to objects}
+\NormalTok{ctrl <-}\StringTok{ }\NormalTok{coeffs}\OperatorTok{$}\NormalTok{Estimate[}\DecValTok{1}\NormalTok{]}
+\NormalTok{trt1 <-}\StringTok{ }\NormalTok{coeffs}\OperatorTok{$}\NormalTok{Estimate[}\DecValTok{2}\NormalTok{]}
+\NormalTok{trt2 <-}\StringTok{ }\NormalTok{coeffs}\OperatorTok{$}\NormalTok{Estimate[}\DecValTok{3}\NormalTok{]}
+
+\CommentTok{# Calculate group means for trt1 and trt2}
+\CommentTok{# from the model}
+\NormalTok{trt1_prediction <-}\StringTok{ }\NormalTok{ctrl }\OperatorTok{+}\StringTok{ }\NormalTok{trt1}
+\NormalTok{trt2_prediction <-}\StringTok{ }\NormalTok{ctrl }\OperatorTok{+}\StringTok{ }\NormalTok{trt2}
+
+\KeywordTok{print}\NormalTok{(}\KeywordTok{c}\NormalTok{(trt1_prediction, trt2_prediction))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.661 5.526
+\end{verbatim}
+
+If you calculate the means for these groups directly from the data you'll see that these values are identical to the mean \texttt{weight} of the \texttt{trt1} and \texttt{trt2} groups.
+
+In \protect\hyperlink{Chapter10}{Chapter 10} we will examine how to estimate confidence intervals around these estimates and make predictions from the model that include our uncertainty. But for that, we'll need to talk about a little bit of math and we're dealing with enough right now already!
+
+Finally, the p-values associated with \texttt{trt1} and \texttt{trt2} indicates whether each group is significantly different from \texttt{ctrl}. In the case of the intercept, the p-value simply tells us whether the mean \texttt{weight} of \texttt{ctrl} is significantly different from zero. A fundamentally dull question - of course it is. This is the first time we really need to think about the differences between our statistical null hypotheses and our biological null hypotheses.
+
+If we want to do further comparisons between groups (other than just comparing \texttt{trt1} and \texttt{trt2} to \texttt{ctrl} by themselves), then we need to add on a little ``post-hoc'' testing to find out which groups differ. We can use a `pair-wise' comparison to test for differences between factor levels. Because this essentially means conducting a whole bunch of t-tests, we need a way to account for our repeated Type-I error rate, because at \(\alpha\) = 0.05 we stand a 1 in 20 chance of falsely rejecting the null even if it is true.
+
+One tool that allows us to make multiple comparisons between groups while adjusting for elevated Type-I error is the Tukey HSD (honest significant difference) test. This test makes comparisons between each pairing of groups while controlling for Type-I error. Essentially, this makes it harder to detect differences between groups but when we do we are more sure that they are not spurious (``Honest significant difference'', say it with me).
+
+Sound confusing? At least it's easy to do in R.
+
+We need to recast our model this as an \texttt{aov} object in R\ldots this is essentially the same thing as the \texttt{lm} function, but in a different wrapper (literally) that allows us to access the info in a different way. It would be a fine default function for doing ANOVA if we weren't interested in going any further with linear models.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{TukeyHSD}\NormalTok{(    }\CommentTok{# The function that does the Tukey test}
+  \KeywordTok{aov}\NormalTok{(       }\CommentTok{# A wrapper for lm objects}
+\NormalTok{    model    }\CommentTok{# The model that we ran above}
+\NormalTok{    )}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = model)
+## 
+## $group
+##             diff        lwr       upr     p adj
+## trt1-ctrl -0.371 -1.0622161 0.3202161 0.3908711
+## trt2-ctrl  0.494 -0.1972161 1.1852161 0.1979960
+## trt2-trt1  0.865  0.1737839 1.5562161 0.0120064
+\end{verbatim}
+
+This report shows us exactly how \texttt{weight} differs between each pair of treatment groups. Here, we see that the only significant difference (\texttt{p\ adj\ \textless{}\ 0.05}) occurs between \texttt{trt2} and \texttt{trt1}.
+
+For the readers, and for us, it may be easier to see this information displayed graphically:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make a boxplot of weight by group}
+\CommentTok{# using the PlantGrowth data and }
+\CommentTok{# base graphics}
+\KeywordTok{boxplot}\NormalTok{(}
+\NormalTok{  weight}\OperatorTok{~}\NormalTok{group,           }\CommentTok{# Relationship of interest as formula}
+  \DataTypeTok{data=}\NormalTok{PlantGrowth,       }\CommentTok{# Name of the data set}
+  \DataTypeTok{col=}\StringTok{'gray'}\NormalTok{,             }\CommentTok{# Fill color for boxes}
+  \DataTypeTok{ylab=}\StringTok{'Mass (g)'}\NormalTok{,        }\CommentTok{# Y-axis label}
+  \DataTypeTok{xlab=}\StringTok{'Treatment group'}\NormalTok{, }\CommentTok{# X-axis label}
+  \DataTypeTok{boxwex=}\NormalTok{.}\DecValTok{25}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-194-1.pdf}
+
+In addition to what we wrote before, we can now say something along the lines of:
+
+\begin{quote}
+``We found that the mass of plants in the trt2 group (5.5 \(\pm\) 0.4 g) was significantly greater than plants in the trt1 group (4.7 \(\pm\) 0.8 g; Tukey HSD, p = 0.012). However, we failed to detect differences in mass between plants in the control group (5.0 \(\pm\) 0.6 g) and trt1 (p = 0.39) or trt2 (p = 0.20).''
+\end{quote}
+
+\hypertarget{twon-way-anova}{%
+\subsection{\texorpdfstring{Two(\emph{n})-way ANOVA}{Two(n)-way ANOVA}}\label{twon-way-anova}}
+
+Next, we'll step up the complexity and talk about cases for which we have more than one grouping variable and some kind of numeric response. In these cases, we can use a two-way ANOVA (or `\emph{n}-way' depending on number of factors) to examine effects of more than one grouping variable on the response.
+
+Here, we will use a data set describing differences in the mass of belly- button lint collected from males and females of three species of apes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Read in the data:}
+\NormalTok{lint <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'data/lint.txt'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{main-effects-model}{%
+\subsubsection{Main effects model}\label{main-effects-model}}
+
+Now we can fit a model to the data. This will work the same way as for the one-way ANOVA above, but this time we will add more terms on the right hand side of the equation. We will start by looking at the \emph{main effects} model for this data set.
+
+What is a main-effects model? This model assumes that the response of interest, in this case the mass of belly button lint, \texttt{lintmass}, is affected by both \texttt{species} and \texttt{gender}, and that within species the effect of gender is the same. For example, the mass of belly button lint could be greater in one species compared to others, and if there is a difference between sexes we would expect that trend to be the same across species (e.g., boys always have more lint than girls - sorry guys, it's probably true!).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fit the model and save it to an object}
+\NormalTok{lint.model<-}\StringTok{ }\KeywordTok{lm}\NormalTok{(lintmass}\OperatorTok{~}\NormalTok{species }\OperatorTok{+}\StringTok{ }\NormalTok{gender, }\DataTypeTok{data =}\NormalTok{ lint)}
+
+\CommentTok{# Look at the summary of the model fit}
+\KeywordTok{summary}\NormalTok{(lint.model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = lintmass ~ species + gender, data = lint)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.5792 -0.9021  0.0875  0.8448  2.3917 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)       15.5458     0.6133  25.346  < 2e-16 ***
+## speciesSpecies 2  -3.4375     0.7512  -4.576 0.000183 ***
+## speciesSpecies 3  -1.8750     0.7512  -2.496 0.021414 *  
+## genderMale         4.9083     0.6133   8.003 1.16e-07 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.502 on 20 degrees of freedom
+## Multiple R-squared:  0.8096,	Adjusted R-squared:  0.781 
+## F-statistic: 28.35 on 3 and 20 DF,  p-value: 2.107e-07
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Print the anova table}
+\KeywordTok{anova}\NormalTok{(lint.model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: lintmass
+##           Df  Sum Sq Mean Sq F value    Pr(>F)    
+## species    2  47.396  23.698  10.499 0.0007633 ***
+## gender     1 144.550 144.550  64.041  1.16e-07 ***
+## Residuals 20  45.143   2.257                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+As you can see, the output for the model is much the same as for the one-way ANOVA. The only real difference is that we have more than one grouping variable here. We conclude that there is a significant difference in \texttt{lintmass} between \texttt{species} (F = 10.50, df = 2, p \textless{} 0.05) and between \texttt{genders} (F = 64.01, df = 1, p \textless{} 0.05).
+
+As before, we can make a quick boxplot and overlay our raw data to visualize these differences:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lint }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ species, }\DataTypeTok{y =}\NormalTok{ lintmass, }\DataTypeTok{fill=}\NormalTok{gender)) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{position=}\KeywordTok{position_jitterdodge}\NormalTok{(.}\DecValTok{1}\NormalTok{)) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{xlab}\NormalTok{(}\StringTok{'Species'}\NormalTok{) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{ylab}\NormalTok{(}\StringTok{'Lint mass'}\NormalTok{) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"Gender"}\NormalTok{) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.title.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust=}\OperatorTok{-}\DecValTok{1}\NormalTok{),}
+          \DataTypeTok{axis.title.y =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust=}\DecValTok{3}\NormalTok{),}
+          \DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{()}
+\NormalTok{          )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-197-1.pdf}
+
+Hopefully after seeing these results you are now starting to realize how important a few well-placed figures and tables can be for clearly communicating the results of your research (even if it is about belly-button lint).
+
+The math for making predictions becomes a little more complicated once we add a second grouping variable. Even the numbers of pair-wise comparisons can become overwhelming in a simple situation like this. Therefore, we'll hold off on digging too much deeper into the math until next week.
+
+\hypertarget{interaction-terms}{%
+\subsubsection{Interaction terms}\label{interaction-terms}}
+
+The n-way ANOVA is the first kind of model we have used in which it is possible to consider \emph{interactions} between two or more factors. An interaction occurs when the effects of two or more factors are not additive. This means that the effect of \texttt{gender} might change for different \texttt{species}. For example, let us consider the following scenario in the \texttt{lint} data.
+
+Perhaps we hypothesize that lint accumulation in the belly buttons of females differs in pattern from males due to social grooming patterns and sex-specific behavioral patterns favoring females in only certain species. As a result, we might expect that \texttt{gender} and \texttt{species} could have some kind of non-additive effect on \texttt{lintmass} in these apes such that there are significant, sex-specific differences only in some species. To test this, we would use the following:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fit a new model that includes an interaction, signified by '*'}
+\NormalTok{lint.modeli <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(lintmass}\OperatorTok{~}\NormalTok{species }\OperatorTok{*}\StringTok{ }\NormalTok{gender, }\DataTypeTok{data=}\NormalTok{lint)}
+
+\CommentTok{# Summarize the model}
+\KeywordTok{summary}\NormalTok{(lint.modeli)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = lintmass ~ species * gender, data = lint)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -2.525 -0.750  0.050  1.019  1.875 
+## 
+## Coefficients:
+##                             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                  14.9250     0.7404  20.159 8.40e-14 ***
+## speciesSpecies 2             -2.2500     1.0471  -2.149   0.0455 *  
+## speciesSpecies 3             -1.2000     1.0471  -1.146   0.2668    
+## genderMale                    6.1500     1.0471   5.874 1.46e-05 ***
+## speciesSpecies 2:genderMale  -2.3750     1.4808  -1.604   0.1261    
+## speciesSpecies 3:genderMale  -1.3500     1.4808  -0.912   0.3740    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.481 on 18 degrees of freedom
+## Multiple R-squared:  0.8335,	Adjusted R-squared:  0.7873 
+## F-statistic: 18.03 on 5 and 18 DF,  p-value: 1.898e-06
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Print an ANOVA table for the model}
+\KeywordTok{anova}\NormalTok{(lint.modeli)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: lintmass
+##                Df  Sum Sq Mean Sq F value    Pr(>F)    
+## species         2  47.396  23.698 10.8079 0.0008253 ***
+## gender          1 144.550 144.550 65.9253 1.983e-07 ***
+## species:gender  2   5.676   2.838  1.2943 0.2984104    
+## Residuals      18  39.468   2.193                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+Alas, in the case of the lint model, this interaction is not significant, so we lack the evidence we would need to say that lint accumulation changes differently between genders within species.
+
+\hypertarget{linear-regression}{%
+\section{Linear regression}\label{linear-regression}}
+
+We have now considered the case of what to do when we have a numerical response and categorical explanatory variable(s) with any number of groups or grouping variables. But, what if we have both a numerical response and numerical explanatory variables? Fear not, there is a stat for that! Now we are entering the realm of correlation and regression. Next week, we'll show that ANOVA is, in fact, just a special kind of regression.
+
+When we fit a linear regression model, we are trying to explain relationships between some response of interest (dependent variable y) and one or more explanatory (independent) variables, x.
+
+As with all linear models the goal of regression analysis is, in it's simplest sense, to fit a line through all of the points in bivariate space that minimizes the distance between the points and a line of the form:
+
+\[y = mx + b\]
+
+That ought to look familiar!
+
+In the case of statistics, we usually represent the formula for a line like this:
+
+\[Y_i = \beta_0 + \beta_i X_i\]
+
+We are ignoring an important part of these statistical models for now. In most cases, though, we will be estimating a parameter for the intercept and one parameter for each explanatory variable of interest.
+
+\hypertarget{simple-linear-regression}{%
+\subsection{Simple linear regression}\label{simple-linear-regression}}
+
+Since most folks are probably more familiar with linear regression than with ANOVA whether they know it or not, we'll jump right into this one with an example using the \texttt{swiss} data.
+
+These data are for fertility and infant mortality rates as related to a number of socio-economic indicators. Take a moment to look at them:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(swiss)}
+\end{Highlighting}
+\end{Shaded}
+
+You can see the description of these data by looking at the help file for the data set as always. Have look on your own:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?swiss}
+\end{Highlighting}
+\end{Shaded}
+
+Now, let's get cracking.
+
+We'll start by fitting a simple model and then build complexity.
+
+Fit a model that relates fertility to education level. Notice that this looks exactly the same as the call to \texttt{lm} for the ANOVAs above? That's because they are the same thing and people have been lying to you your whole life. Perhaps it took reading The Worst Stats Text eveR to learn it? If so, I aplogize for your misfortune.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fit the model and assign it to a named object}
+\NormalTok{fert_mod <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility }\OperatorTok{~}\StringTok{ }\NormalTok{Education, }\DataTypeTok{data =}\NormalTok{ swiss)}
+
+\CommentTok{# Summarize the model}
+\KeywordTok{summary}\NormalTok{(fert_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Fertility ~ Education, data = swiss)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -17.036  -6.711  -1.011   9.526  19.689 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  79.6101     2.1041  37.836  < 2e-16 ***
+## Education    -0.8624     0.1448  -5.954 3.66e-07 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 9.446 on 45 degrees of freedom
+## Multiple R-squared:  0.4406,	Adjusted R-squared:  0.4282 
+## F-statistic: 35.45 on 1 and 45 DF,  p-value: 3.659e-07
+\end{verbatim}
+
+The \texttt{(Intercept)} term in this summary is the y-intercept from our formula for a line and the \texttt{Education} coefficient is the slope of the line. Our intercept tells us that mean \texttt{Fertility} (y) is about 79.6 when \texttt{Education} (x) is zero. Note that this interpretation does not change even if we did not observe an education of zero in the data - something to think about in the weeks to come. The p-value for the intercept just tells us that this value is significantly different from zero (snores).
+
+The p-value for the \texttt{Education} coefficient tells us that the slope of the line is also significantly different from zero. Because this number is negative, we know that there is an inverse relationship between \texttt{Education} and \texttt{Fertility}. In other words, more highly educated individuals have fewer children. You can tell this is an inverse relationship because of the minus sign in front of the coefficient for \texttt{Education}. We know that the relationship is significant because of the small p-value and corresponding significance codes.
+
+We explained a little more than 40\% of the variability in the response with this one explanatory variable if we look at the R\textsuperscript{2} value that is returned (we'll work with the \texttt{Multiple\ R-squared} by default).
+
+This is as far as the summary goes for linear regression for now. That is, we don't need the ANOVA table to assess significance any more because we have no factors - just continuous variables. What we end up with in this summary are the coefficients that can be used to describe the line that passes through the data and minimizes the residual errors (that's the part we ignored above).
+
+\begin{quote}
+WHAT??
+\end{quote}
+
+Let's explain this by actually looking at the data and plotting our model over the top of it.
+
+First, we'll use the built-in \texttt{predict()} function to create a trend line and a prediction interval. We'll dig deeper into how to do this in \protect\hyperlink{Chapter10}{Chapter 10}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make predictions from the fitted model object using observed data}
+\NormalTok{predicted_fertility =}\StringTok{ }\KeywordTok{predict}\NormalTok{(fert_mod, }\DataTypeTok{interval =} \StringTok{'confidence'}\NormalTok{)}
+
+\CommentTok{# Add these to the swiss data}
+\NormalTok{swiss_pred <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(swiss, predicted_fertility)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we can plot the raw data as a scatterplot and add our model estimates over the top. You should notice that the confidence interval is much wider at high values of \texttt{Education} because there are few data points and thus more uncertainty in that part of the data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Sets up data and aesthetics}
+\KeywordTok{ggplot}\NormalTok{(swiss_pred, }
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Education, }\DataTypeTok{y =}\NormalTok{ Fertility, }\DataTypeTok{color =} \StringTok{'red'}\NormalTok{, }\DataTypeTok{fill =} \StringTok{'red'}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\CommentTok{# Adds raw data as points}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{colour =} \StringTok{'blue'}\NormalTok{, }\DataTypeTok{fill =} \StringTok{'blue'}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{, }\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\CommentTok{# Adds regression line}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{( }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ fit), }\DataTypeTok{size =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\CommentTok{# Adds 95% confidence interval}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr, }\DataTypeTok{color =} \OtherTok{NULL}\NormalTok{), }\DataTypeTok{alpha =} \FloatTok{.2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\CommentTok{# Adds sweet style tweaks of your choosing}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-203-1.pdf}
+
+Again, dangerously easy.
+
+We can, of course, extend this to include multiple continuous explanatory variables of interest just as we did with ANOVA for multiple categorical explanatory variables!
+
+Here is an example to whet your appetite. Let's say we want a multiple regression model that includes both \texttt{Education} and \texttt{Catholic}?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{multiple_mod <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility }\OperatorTok{~}\StringTok{ }\NormalTok{Education }\OperatorTok{+}\StringTok{ }\NormalTok{Catholic, }\DataTypeTok{data =}\NormalTok{ swiss)}
+
+\KeywordTok{summary}\NormalTok{(multiple_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Fertility ~ Education + Catholic, data = swiss)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.042  -6.578  -1.431   6.122  14.322 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 74.23369    2.35197  31.562  < 2e-16 ***
+## Education   -0.78833    0.12929  -6.097 2.43e-07 ***
+## Catholic     0.11092    0.02981   3.721  0.00056 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 8.331 on 44 degrees of freedom
+## Multiple R-squared:  0.5745,	Adjusted R-squared:  0.5552 
+## F-statistic:  29.7 on 2 and 44 DF,  p-value: 6.849e-09
+\end{verbatim}
+
+Or if we really want to get crazy with the hot sauce:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{full_mod <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(}
+\NormalTok{  Fertility }\OperatorTok{~}\StringTok{ }\NormalTok{Agriculture }\OperatorTok{+}\StringTok{ }\NormalTok{Examination }\OperatorTok{+}\StringTok{ }\NormalTok{Education }\OperatorTok{+}\StringTok{ }\NormalTok{Catholic,}
+  \DataTypeTok{data =}\NormalTok{ swiss}
+\NormalTok{  )}
+
+\KeywordTok{summary}\NormalTok{(full_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Fertility ~ Agriculture + Examination + Education + 
+##     Catholic, data = swiss)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -15.7813  -6.3308   0.8113   5.7205  15.5569 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 91.05542    6.94881  13.104  < 2e-16 ***
+## Agriculture -0.22065    0.07360  -2.998  0.00455 ** 
+## Examination -0.26058    0.27411  -0.951  0.34722    
+## Education   -0.96161    0.19455  -4.943 1.28e-05 ***
+## Catholic     0.12442    0.03727   3.339  0.00177 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.736 on 42 degrees of freedom
+## Multiple R-squared:  0.6498,	Adjusted R-squared:  0.6164 
+## F-statistic: 19.48 on 4 and 42 DF,  p-value: 3.95e-09
+\end{verbatim}
+
+\hypertarget{next7}{%
+\section{Next steps}\label{next7}}
+
+During the next couple of weeks, we'll try to figure out a way to deal with this rat's nest of different explanatory variables and how they are interpretted. But first, we'll talk about combining ANOVA and linear regression into a general linear model (analysis of covariance) in \protect\hyperlink{Chapter8}{Chapter 8} and how to assess assumptions (\protect\hyperlink{Chapter9}{Chapter 9}) and communicate our results effectively (\protect\hyperlink{Chapter10}{Chapter 10}).
+
+\hypertarget{Chapter8}{%
+\chapter{General linear models}\label{Chapter8}}
+
+\hypertarget{analysis-of-covariance-ancova}{%
+\section{Analysis of covariance (ANCOVA)}\label{analysis-of-covariance-ancova}}
+
+Alright, to wrap up our crazy, eye-opening introduction to linear models we are going to unleash the power of ANCOVA, or the \emph{general linear model}. Hopefully the power and limitations of this approach will be readily apparent to you. If not, we will talk about them a lot more so don't worry.
+
+ANCOVA is the way into the world of real, complex data analyses. It will serve as the foundation for the next several weeks in this course. Get to know it well, it is your friend. That said, ANCOVA is just another type of linear model (see Chapter title!), so it really doesn't need it's own book chapter except that it sounds scary to people. Plus, this \emph{is} The Worst Stats Text eveR.
+
+We won't spend a tone of time on the development of these models as we covered most of the important ideas in \protect\hyperlink{Chapter4}{Chapter 4}. Instead, we are going to jump right in with an example. We'll need the \texttt{tidyverse} for this chapter, as well as the data contained in \texttt{crickets.txt}. Go ahead and load the \texttt{tidyverse} now so you don't forget.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{motivation}{%
+\section{Motivation}\label{motivation}}
+
+So here we are:
+
+We have multiple explanatory variables that we would like to test; some are factors and some are continuous. Each of those factors has some set of statistical and biological hypotheses associated with them as related to our continuous (and still normal) response of interest. We want a nice elegant way of wrapping these all in to one analysis.
+
+How in the world are we supposed to do that? It's easier than you might think.
+
+\hypertarget{data}{%
+\section{Data}\label{data}}
+
+Read in a new data set.
+
+This data set contains pulses of two species of crickets collected under varying temperatures.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Read in the cricket data and assign it to a named object}
+\NormalTok{crickets <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'data/crickets.txt'}\NormalTok{)}
+
+\CommentTok{# Have a look}
+\KeywordTok{head}\NormalTok{(crickets)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Species Temp Pulse
+## 1      ex 20.8  67.9
+## 2      ex 20.8  65.1
+## 3      ex 24.0  77.3
+## 4      ex 24.0  78.7
+## 5      ex 24.0  79.4
+## 6      ex 24.0  80.4
+\end{verbatim}
+
+\hypertarget{analysis}{%
+\section{Analysis}\label{analysis}}
+
+Here we want to investigate the effects of species and temperature on
+pulses of individual crickets. Our null hypotheses are that there is no difference in \texttt{Pulse} between \texttt{Species} and no change in \texttt{Pulse} with increasing temperature. We conduct the test at the default \(\alpha\) = 0.05.
+
+We use the \texttt{lm()} function to fit the model, and the formula looks identical to the main-effects ANOVA and linear regression models from \protect\hyperlink{Chapter4}{Chapter 4}. Isn't that handy?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fit the model}
+\NormalTok{cricket_mod <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Pulse }\OperatorTok{~}\StringTok{ }\NormalTok{Species }\OperatorTok{+}\StringTok{ }\NormalTok{Temp, }\DataTypeTok{data=}\NormalTok{crickets)}
+\end{Highlighting}
+\end{Shaded}
+
+Install the \texttt{car} package. We need a function from this library for model summary because now we have a mix of categorical and continuous explanatory variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Load the package after it's installed}
+\KeywordTok{library}\NormalTok{(car)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we create the anova table for our ancova model
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Anova}\NormalTok{(cricket_mod, }\DataTypeTok{type=}\StringTok{'III'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Anova Table (Type III tests)
+## 
+## Response: Pulse
+##             Sum Sq Df   F value    Pr(>F)    
+## (Intercept)   25.5  1    7.9906  0.008582 ** 
+## Species      598.0  1  187.3994 6.272e-14 ***
+## Temp        4376.1  1 1371.3541 < 2.2e-16 ***
+## Residuals     89.3 28                        
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+And we can look at the summary of the linear model
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(cricket_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Pulse ~ Species + Temp, data = crickets)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.0128 -1.1296 -0.3912  0.9650  3.7800 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  -7.21091    2.55094  -2.827  0.00858 ** 
+## Speciesniv  -10.06529    0.73526 -13.689 6.27e-14 ***
+## Temp          3.60275    0.09729  37.032  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.786 on 28 degrees of freedom
+## Multiple R-squared:  0.9896,	Adjusted R-squared:  0.9888 
+## F-statistic:  1331 on 2 and 28 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+We see that there are significant effects of species and temperature on the pulse of individual crickets. Everything else proceeds as in the analyses \protect\hyperlink{Chapter4}{Chapter 4}! We can build in complexity as needed, and we can make predictions as we did before.
+
+\hypertarget{predictions}{%
+\section{Predictions}\label{predictions}}
+
+Here we will take a quick look at how to plot model predictions over our raw data to demonstrate the relationships we have discovered and to show how they compare to our observations. We should have a separate line for each group based on differences in \texttt{Pulse} between species, but the lines should be parallel based on how our model was formulated. Again, we will dig deep into why this is the case in \protect\hyperlink{Chapter10}{Chapter 10}.
+
+Note that this procedure is identical to the one we used for linear regression. That is because linear regression is just one special case of the general linear model!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make predictions from the fitted model object using observed data}
+\NormalTok{predicted_pulse =}\StringTok{ }\KeywordTok{predict}\NormalTok{(cricket_mod, }\DataTypeTok{interval =} \StringTok{'confidence'}\NormalTok{)}
+
+\CommentTok{# Add these to the cricket data}
+\NormalTok{cricket_pred <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(crickets, predicted_pulse)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we can plot the raw data as a scatterplot and add our model estimates over the top just like we did for the \texttt{swiss} data in \protect\hyperlink{Chapter4}{Chapter 4}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Sets up data and aesthetics}
+\KeywordTok{ggplot}\NormalTok{(cricket_pred, }
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Temp, }\DataTypeTok{y =}\NormalTok{ Pulse, }\DataTypeTok{color =}\NormalTok{ Species, }\DataTypeTok{fill =}\NormalTok{ Species)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{, }\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ fit), }\DataTypeTok{size =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr, }\DataTypeTok{color =} \OtherTok{NULL}\NormalTok{), }\DataTypeTok{alpha =} \FloatTok{.3}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{'Temperature ('}\NormalTok{, degree, }\StringTok{'C)'}\NormalTok{)))  }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-213-1.pdf}
+
+\hypertarget{next7}{%
+\section{Next steps}\label{next7}}
+
+Now that you hold real power in your hands to do data analysis, we need to to have our first talk about due diligence and assumptions of the statistical models that we use.
+
+There are three fundamental assumptions that we either need to validate or address through experimental design in this class of models.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Independence of observations.
+\item
+  Normality of residuals (with mean = 0)
+\item
+  Homogeneity of variances (i.e.~homoscedasticity)
+\end{enumerate}
+
+We will discuss what each of these means and how to assess them in \protect\hyperlink{Chapter9}{Chapter 9}. During remaining Chapters, we will continue to discuss methods for verifying or relaxing these assumptions to meet our needs through specific techniques.
 
   \bibliography{book.bib,packages.bib}
 

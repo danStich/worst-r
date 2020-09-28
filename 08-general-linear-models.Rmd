@@ -1,0 +1,116 @@
+# General linear models{#Chapter8}
+
+```{r echo = FALSE, eval = TRUE, message=FALSE, warning=FALSE, fig.height=3}
+library(tidyverse)
+crickets <- read.csv('data/crickets.txt')
+cricket_mod <- lm(Pulse ~ Species + Temp, data=crickets)
+predicted_pulse = predict(cricket_mod, interval = 'confidence')
+cricket_pred <- cbind(crickets, predicted_pulse)
+ggplot(cricket_pred, 
+       aes(x = Temp, y = Pulse, color = Species, fill = Species)) +
+  geom_point(alpha = 0.3, size = 2) +
+  geom_line(aes(y = fit), size = 1) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, color = NULL), alpha = .3)+
+  xlab(expression(paste('Temperature (', degree, 'C)')))  
+```
+<p style="font-family: times, serif; font-size:.9em; font-style:italic">
+This is not the picture from Chapter 4. It is a new picture but it looks just like that one. That's because they are both linear models. This one just has two intercepts!</p>
+
+## Analysis of covariance (ANCOVA)
+Alright, to wrap up our crazy, eye-opening introduction to linear models we are going to unleash the power of ANCOVA, or the *general linear model*. Hopefully the power and limitations of this approach will be readily apparent to you. If not, we will talk about them a lot more so don't worry.
+
+ANCOVA is the way into the world of real, complex data analyses. It will serve as the foundation for the next several weeks in this course. Get to know it well, it is your friend. That said, ANCOVA is just another type of linear model (see Chapter title!), so it really doesn't need it's own book chapter except that it sounds scary to people. Plus, this *is* The Worst Stats Text eveR.
+
+We won't spend a tone of time on the development of these models as we covered most of the important ideas in [Chapter 4](#Chapter4). Instead, we are going to jump right in with an example. We'll need the `tidyverse` for this chapter, as well as the data contained in `crickets.txt`. Go ahead and load the `tidyverse` now so you don't forget.
+
+```{r, eval = FALSE}
+library(tidyverse)
+```
+
+## Motivation
+So here we are:
+
+We have multiple explanatory variables that we would like to test; some are factors and some are continuous. Each of those factors has some set of statistical and biological hypotheses associated with them as related to our continuous (and still normal) response of interest. We want a nice elegant way of wrapping these all in to one analysis. 
+
+How in the world are we supposed to do that? It's easier than you might think.
+
+## Data 
+Read in a new data set.
+
+This data set contains pulses of two species of crickets collected under varying temperatures.
+  
+```{r}
+# Read in the cricket data and assign it to a named object
+crickets <- read.csv('data/crickets.txt')
+
+# Have a look
+head(crickets)
+```
+
+## Analysis
+Here we want to investigate the effects of species and temperature on
+pulses of individual crickets. Our null hypotheses are that there is no difference in `Pulse` between `Species` and no change in `Pulse` with increasing temperature. We conduct the test at the default $\alpha$ = 0.05.
+
+We use the `lm()` function to fit the model, and the formula looks identical to the main-effects ANOVA and linear regression models from [Chapter 4](#Chapter4). Isn't that handy?
+```{r}
+# Fit the model
+cricket_mod <- lm(Pulse ~ Species + Temp, data=crickets)
+```
+
+Install the `car` package. We need a function from this package for model summary because now we have a mix of categorical and continuous explanatory variables. This means we want to calculate the sums of squared errors a little differently than we did before.
+```{r, message=FALSE, warning=FALSE}
+# Load the package after it's installed
+library(car)
+```
+
+Now we create the ANVOA table for our ANCOVA model
+```{r}
+Anova(cricket_mod, type='III')
+```
+
+And we can look at the summary:
+```{r}
+summary(cricket_mod)
+
+```
+
+We see that there are significant effects of species and temperature on the pulse of individual crickets. Everything else proceeds as in the analyses [Chapter 4](#Chapter4)! We can build in complexity as needed, and we can make predictions as we did before.
+
+## Predictions
+Here we will take a quick look at how to plot model predictions over our raw data to demonstrate the relationships we have discovered and to show how they compare to our observations. We should have a separate line for each group based on differences in `Pulse` between species, but the lines should be parallel based on how our model was formulated. Again, we will dig deep into why this is the case in [Chapter 10](#Chapter10).
+
+Note that this procedure is identical to the one we used for linear regression. That is because linear regression is just one special case of the general linear model!
+```{r, message=FALSE, warning=FALSE}
+# Make predictions from the fitted model object using observed data
+predicted_pulse = predict(cricket_mod, interval = 'confidence')
+
+# Add these to the cricket data
+cricket_pred <- cbind(crickets, predicted_pulse)
+
+```
+
+Now, we can plot the raw data as a scatterplot and add our model estimates over the top just like we did for the `swiss` data in [Chapter 4](#Chapter4). 
+```{r}
+# Sets up data and aesthetics
+ggplot(cricket_pred, 
+       aes(x = Temp, y = Pulse, color = Species, fill = Species)) +
+  geom_point(alpha = 0.3, size = 2) +
+  geom_line(aes(y = fit), size = 1) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, color = NULL), alpha = .3)+
+  xlab(expression(paste('Temperature (', degree, 'C)')))  
+  
+```
+
+
+## Next steps {#next8}
+
+Now that you hold real power in your hands to do data analysis, we need to to have our first talk about due diligence and assumptions of the statistical models that we use.
+
+There are three fundamental assumptions that we either need to validate or address through experimental design in this class of models.
+
+1. Independence of observations.
+2. Normality of residuals (with mean = 0)
+3. Homogeneity of variances
+
+We will discuss what each of these means and how to assess them in [Chapter 9](#Chapter9). During remaining Chapters, we will continue to discuss methods for verifying or relaxing these assumptions to meet our needs through specific techniques.
+

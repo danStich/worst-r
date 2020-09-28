@@ -1,6 +1,8 @@
 # Linear models {#Chapter7}
 
 <img src="images/graphs.png">
+<p style="font-family: times, serif; font-size:.9em; font-style:italic">
+Yeah, I know this is the picture from Chapter 4. I only have like five pictures. This is the Worst Stats Text eveR! But, both of the graphs in this picture are just applications of linear regression, which is one kind of linear model, which is also called the general linear model.</p>
 
 <h2 id="multi"> Introduction </h2>  
 
@@ -208,12 +210,7 @@ Next, we'll step up the complexity and talk about cases for which we have more t
 
 Here, we will use a data set describing differences in the mass of belly- button lint collected from males and females of three species of apes.
 
-```{r, echo=TRUE, eval=FALSE}
-# Read in the data:
-lint <- read.csv('lint.txt')
-```
-
-```{r, echo=FALSE, eval=TRUE}
+```{r}
 # Read in the data:
 lint <- read.csv('data/lint.txt')
 ```
@@ -274,7 +271,7 @@ anova(lint.modeli)
 Alas, in the case of the lint model, this interaction is not significant, so we lack the evidence we would need to say that lint accumulation changes differently between genders within species.
 
 
-## Linear regression
+## Simple linear regression
 We have now considered the case of what to do when we have a numerical response and categorical explanatory variable(s) with any number of groups or grouping variables. But, what if we have both a numerical response and numerical explanatory variables? Fear not, there is a stat for that! Now we are entering the realm of correlation and regression. Next week, we'll show that ANOVA is, in fact, just a special kind of regression.
 
 When we fit a linear regression model, we are trying to explain relationships between some response of interest (dependent variable y) and one or more explanatory (independent) variables, x.
@@ -358,6 +355,7 @@ ggplot(swiss_pred,
 
 Again, dangerously easy.
 
+## Multiple linear regression
 We can, of course, extend this to include multiple continuous explanatory variables of interest just as we did with ANOVA for multiple categorical explanatory variables!
 
 Here is an example to whet your appetite. Let's say we want a multiple regression model that includes both `Education` and `Catholic`?
@@ -368,7 +366,6 @@ summary(multiple_mod)
 
 ```
 
-
 Or if we really want to get crazy with the hot sauce:
 ```{r}
 full_mod <- lm(
@@ -378,5 +375,7 @@ full_mod <- lm(
 
 summary(full_mod)
 ```
+
+## Next steps {#next7}
 
 During the next couple of weeks, we'll try to figure out a way to deal with this rat's nest of different explanatory variables and how they are interpretted. But first, we'll talk about combining ANOVA and linear regression into a general linear model (analysis of covariance) in [Chapter 8](#Chapter8) and how to assess assumptions ([Chapter 9](#Chapter9)) and communicate our results effectively ([Chapter 10](#Chapter10)).
