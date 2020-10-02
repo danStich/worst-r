@@ -13,6 +13,7 @@ ggplot(cricket_pred,
   geom_ribbon(aes(ymin = lwr, ymax = upr, color = NULL), alpha = .3)+
   xlab(expression(paste('Temperature (', degree, 'C)')))  
 ```
+
 <p style="font-family: times, serif; font-size:.9em; font-style:italic">
 This is not the picture from Chapter 4. It is a new picture but it looks just like that one. That's because they are both linear models. This one just has two intercepts!</p>
 

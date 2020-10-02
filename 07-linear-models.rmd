@@ -341,13 +341,13 @@ Now, we can plot the raw data as a scatterplot and add our model estimates over 
 ```{r}
 # Sets up data and aesthetics
 ggplot(swiss_pred, 
-       aes(x = Education, y = Fertility, color = 'red', fill = 'red')) +
+       aes(x = Education, y = Fertility)) +
   # Adds raw data as points
   geom_point(colour = 'blue', fill = 'blue', alpha = 0.3, size = 2) +
   # Adds regression line
   geom_line( aes(y = fit), size = 1) +
   # Adds 95% confidence interval
-  geom_ribbon(aes(ymin = lwr, ymax = upr, color = NULL), alpha = .2) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr), color = 'purple', alpha = .2) +
   # Adds sweet style tweaks of your choosing
   theme(legend.position = "none")
   
