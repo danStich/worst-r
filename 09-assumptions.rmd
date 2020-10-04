@@ -1,0 +1,485 @@
+```{r ch9, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+# Assumptions of linear models {#Chapter9}
+
+<img src="images/watch.jpg" alt="">
+<p style="font-family: times, serif; font-size:.9em; font-style:italic">
+Statistics is like a fine-tuned machine that relies on many moving parts to work reliably, unlike the broken watch in the image above. What, you expected a working watch? Maybe you need to **check your assumptions**! This is The Worst Stats Text eveR. Just goes to show that even the fanciest model is useless if you don't validate that it works.</p>
+
+## Introduction {#intro9}
+
+In this chapter, we will start by taking a step back for an in-depth look at the assumptions we make when we fit parametric models to data in an effort to explain the effects of explanatory variables on some response of interest, using linear models as the backdrop for our discussions. In previous chapters we learned how to fit linear models. The purpose of this chapter is to provide you with the tools you need on the front end and the back end of that process so we are surrounding linear models with the goodness they deserve.
+
+We will also continue to talk about linear models that include multiple explanatory variables. Specifically, we will discuss how relationships between these variables might influence which ones we include in a given model and how we make defensible decisions when it comes to these choices. We will further probe the concept of the R^2^ statistic as a measure of model fit, and how this is influenced by the inclusion of multiple explanatory variables.
+
+Finally, we will conclude our discussions this week with tools for communicating the results of our analyses once we have verified that we are not in major violation of assumptions in [Chapter 10](#Chapter10). To do this, we will need to look a little more closely at the math behind linear models (not too closely!) and what exactly we are doing when we fit a linear model. These discussions will include the essential concepts of main effects, interaction effects, and response 'surfaces' for the case in which we include more than one explanatory variable. Please keep in mind that although we are using strictly linear models to introduce these concepts their application in the suite of models that we will discuss for the next several weeks is virtually identical, and we will discuss exactly why this is.
+
+We'll be working with the functions from various packages in the `tidyverse` and with the `turtles.txt` data file for this chapter. You'll also need to install the `GGally` package if you don't have it. Go ahead and load those in your code whenever you are ready to get started. I'll keep track of how long it takes on my broken watch.
+
+```{r, echo = FALSE, warning = FALSE, message=FALSE}
+library(tidyverse)
+library(GGally)
+```
+
+
+## Assumptions of linear models
+
+From last week:
+
+>Now that you hold real power in your hands to do data analysis, we need to to have our first talk about due diligence and assumptions of the statistical models that we use.
+There are three fundamental assumptions that we either need to validate or address through experimental design in this class of models.
+
+>**1.** Independence of observations.<br>
+**2.** Normality of residuals (with mean=0)<br>
+**3.** Homogeneity of variances (i.e. homoscedasticity)<br>
+
+We will discuss what each of these means in class this week, and during the next several weeks we will discuss methods for verifying these assumptions or relaxing the assumptions to meet our needs through specific techniques.
+
+## WTF is a residuals? {#ughmath}
+Up until now, we've been talking about the formula of a line in geometric terms as $y = mx + b$ or $y = \beta_0 + \beta X$. In [Chapter 7](#Chapter7) we extended this simple linear form to be:
+
+$$y = \beta_0 + \beta_1 X_1 ... + \beta_k X_k$$ 
+
+or
+
+$$\sum_{k=1}^{K} \beta_0 + \beta_k X_k$$
+
+for however many *K* explanatory variables we may wish to include in a linear model. That's gross, but it's about to get grosser. (More gross? Who cares, this is The Worst Stats Text eveR - go Google it)
+
+In this chapter we are going to acknowledge for the first time that it has all been a lie even though those summation symbols really make this book look more official.
+
+From now on, we are going to think about linear models, and all their generalizations or specializations, like this:
+
+$$y = \beta_0 + \beta X + \epsilon$$ 
+
+or 
+
+$$\sum_{k=1}^{K} \beta_0 + \beta_k X_k + \epsilon$$
+if you like that one better.
+
+> Don't freak out. The only thing that has changed is that we added an error term.
+
+The error term, $\epsilon$, is called the **residual error**. For grouping variables, it is **the difference between each i^th^ observation $x$ and the mean** ($\bar{x}$):
+
+$\epsilon_i = x_i - \bar{x}$
+
+This should look really familiar if you've seen the formula for the variance of a normal distribution (which you have because you definitely read and understood [Chapter 5](#Chapter5)):
+
+$$\sigma^2 = \frac{ {\sum_{i=1}^{n} (x - \bar{x})^2}}{n - 1}$$
+
+### Residuals in ANOVA
+
+The error for each observation is calculated relative to both the grand mean and group-specific means for each observation (data point) in ANOVA. And, these errors are directly related to the calculation of the sum of squares calculations we talked about for t-tests in [Chapter 6](#Chapter6) and ANOVA in [Chapter 7](#Chapter7). As an example of what this looks like, we can calculate the residual error ($\epsilon$) of `Petal.Length` for each `Species` in the `iris` data like this:
+
+```{r}
+# Load the iris data
+data(iris)
+
+# Calculate mean of each group
+means <- iris %>%
+  group_by(Species) %>%
+  summarise(x_bar = mean(Petal.Length))
+
+# Have a look
+means
+  
+```
+
+If we merge these group `means` with the `iris` data, it is really easy to calculate the error for each observation in each `Species`, or group:
+
+```{r}
+# Merge them. R will use "Species"  in both by default
+resid_df <- merge(iris, means)
+
+# Calculate residual error:
+resid_df$epsilon <- resid_df$Petal.Length - resid_df$x_bar
+  
+```
+
+We can make a histogram of the residuals to confirm the assumption that the residuals are normally distributed with a mean of zero. This assumption is important because it allows us to drop $\epsilon$ from the equations above and fall back to our old friend $y = mx + b$. As you can see below, the mean of our residuals is about zero, and the distribution of residuals also appears to be symmetrical (normal).
+
+```{r, warning = FALSE, message = FALSE}
+ggplot(resid_df, aes(x = epsilon)) +
+  geom_histogram()
+
+```
+
+We could also examine residuals within `Species` using a box plot. Again, we should see that our residuals are normally distributed with a mean of zero within groups. However, you may notice that the variance of $\epsilon$ is clearly not equal between groups.
+
+```{r, warning = FALSE, message = FALSE}
+ggplot(resid_df, aes(x = Species, y = epsilon)) +
+  geom_boxplot()
+```
+
+### Residuals in linear regression
+
+For linear regression (continuous $X$), the residuals are calculated as the difference between each data point ($x$) and the corresponding prediction of $\hat{y}$ at that value of $x$ from the line of best fit ($\epsilon_i = x_i - \hat{y}$). These are referred to as `fitted` ($x$) and `predicted` ($\hat{y}$) values in R.
+
+Here's some code in case the math isn't doing it for you. Don't worry, we'll make some graphs, too.
+
+```{r}
+# Fit a linear regression to estimate change
+# in Petal.Width with Petal.Length
+fit_lm <- lm(Petal.Width ~ Petal.Length, data = iris)
+
+# Now extract the residuals from
+# the fitted model object
+resids <- fit_lm$residuals
+
+```
+
+The order of values in the vector `resids` in the code above matches the order of the data in `iris`, so we can combine these as we did above:
+
+```{r}
+iris$resids <- resids
+```
+
+And now we can make a histogram to see if they are normal with a mean of zero.
+```{r, warning = FALSE, message = FALSE}
+ggplot(iris, aes(x = resids)) +
+  geom_histogram()
+```
+
+This also allows us to determine whether there are any changes in the residuals along the range of $x$ values to assess whether we have satisfied the assumption of independence of observations. To do this, we just need to plot the residuals against the fitted values (the data in the `iris$Petal.Length` column). 
+
+```{r, warning = FALSE, message = FALSE}
+ggplot(iris, aes(x = Petal.Length, y = resids)) +
+  geom_point() 
+```
+
+<br>
+
+If we've met assumptions of independence of observations, the plot above should look like random scatter from left to right and top to bottom. Looks like that is not the case here because the group of data on the left have a much lower spread of residuals than the rest of the data. In fact, if you color by `Species` it becomes obvious that these are samples for `setosa`. 
+
+```{r, warning = FALSE, message = FALSE}
+ggplot(iris, aes(x = Petal.Length, y = resids, color = Species)) +
+  geom_point() 
+```
+
+Boo `setosa`!
+
+Finally, if the code doesn't do it for you, we can graph the regression to see what residuals actually look like for our model. It is the squared sum of these errors, specifically, which R is trying to minimize when it estimates the coefficients for the formula of our line. That is why we talk about "sums of squares" in ANOVA tables.
+
+Here is a visual representation of residuals. The points are our raw data, the diagonal line is our model prediction, and the vertical lines represent the residual error for each observation.
+
+```{r, warning=FALSE, message=FALSE}
+# Make predictions from the model
+y_hat <- predict(fit_lm)
+
+
+ggplot(iris, aes(x = Petal.Length, y = Petal.Width, color = Species) ) +
+  geom_smooth(method = "lm", se = FALSE, color = "gray87") +
+  geom_point() +
+  geom_segment(aes(xend = Petal.Length, yend = y_hat),
+               alpha = .2) +
+  theme_bw() +
+  theme(panel.grid = element_blank())
+  
+```
+
+<br>
+
+So, now that we know what residuals *are* or at least what they *look like* we can talk about how they are used.
+
+We will keep making tweaks to our equation in [Chapter 10](#Chapter10) when we start to think of the linear model more accurately as $y = \beta X + \epsilon$ or $\sum_{k=1}^{K} \beta_k X_k + \epsilon$ to unify the t-test, ANOVA, linear regression, and ANCOVA into a single general framework (the general linear model you def read about in [Chapter 8](#Chapter8)).
+
+## The turtle problem
+Let's get some data to demonstrate these assumptions.
+
+These are data that were collected 2013-2015 for Kemp's Ridley sea turtles incidentally caught by anglers in the Gulf of Mexico. After being caught, the turtles were taken to a wildlife rehabilitation center so they could have fishing hooks removed and recover.
+```{r}
+# Read in the turtles data,
+# It's a bit messy, so we will read it
+# in with an extra option to strip white spaces.
+turtles = read.csv('data/turtles.txt', header = TRUE, strip.white = TRUE)
+```
+
+Here is a quick explanation of the variables (columns) in the dataframe:
+
+`ID`: turtle ID<br>
+`Year`: year of capture<br>
+`Gear`: the gear type with which the turtle was hooked<br>
+`Width`: the gape width of the hook<br>
+`Removed`: the location from which the hook was removed<br>
+`Status`: survived (1) or did not (0)<br>
+`Stay`: length of stay in the rehab facility<br>
+`nHooks`: Number of hooks in the turtle
+
+We will use `Stay` as the response variable here. This is a great data set because `Stay` has all kinds of problems related to assumptions of linear models that require analyzing it in a different framework than those we have discussed so far (or will for a few weeks!).
+
+
+## Data exploration
+
+### Independence of observations
+
+This assumption basically means that each row of your data was collected independently of all others. In other words, no two rows of your data are related to one another.
+
+We can relax this assumption by explicitly including variables and constructs within the models that actually account for these kinds of relationships. For example, in one-way ANOVA we include grouping (factor) variables to to account for non-independence of some observations. In fact, this lack of independence is often the very thing we are interested in testing! In ANOVA, we are interested in whether individuals from the same group respond in the same way. Note that this in turn places the assumption of independence on individual measurements within our groups. It's turtles all the way down. (I say this a lot. If you don't know what it means go Google it.)
+
+This assumption really should be be addressed within the context of experimental design. Violations generally require alternatives to the simple cases of one-way ANOVA, ANCOVA or simple linear regression that we will discuss in later chapters. We will discuss specific extensions of our basic linear models (ANOVA and regression) to relax more difficult violations such as repeated observations, and temporal or spatial autocorrelation among observations. Although we can't cover all of these extensions in one book or a single bottom-up biometry class, we can point you in the right direction for most of them.
+
+<br>
+
+**You:** *Get to the point, what are we looking for here*?
+
+**Me:** *Sorry*. [writes rest of chapter]
+
+<br>
+
+For linear models, we want data that were sampled randomly and independently from all other data points. For this information, we have to examine the actual experimental design. In a best case, an experiment is designed intentionally so that all groups get opposite treatments and those there is no correlation (relationship) between treatments ("orthogonal design"). This is easy to achieve with some thought in the design of controlled experiments, but can be difficult or impossible to do in semi-controlled experiments or observational studies. This is one reason why controlled experimentation has long been thought of as the gold standard in science.
+
+There is one obvious thing that is going to tell us that the observations in `turtles` are not collected independently, but there are a few others. What is it? You can probably infer the answer just from the variable names.
+
+```{r}
+head(turtles, 10)
+```
+
+If you look closely, you'll notice that we have repeated observations of individuals here. So, we already know that our data do not conform to the assumptions of ANOVA, linear regression, or ANCOVA - but let's keep using these data for the sake of demonstration. There is, of course another major violation of our assumptions that has to do with experimental design (that is commonly violated): these are **discrete** data! We'll pretend for now that we can think of `Stay` as a continuous variable, though.
+
+You can see how this could get tedious to do for every level of every grouping factor and then for each continuous variable. So, we can also take a "shotgun" approach and look at how variables are related to one another.
+
+This approach allows us to look at relationships between all variables at once. Note below that I am using all columns except `ID` because that graph would be a mess. You'll need to install the `GGally` package to run the following.
+```{r}
+# Load GGally package for ggpairs
+library(GGally)
+
+# Look at correlations between variables
+GGally::ggpairs(turtles[ , 2:ncol(turtles)])
+```
+
+But, for this data set this is really gross and difficult to interpret due to the nature of the variables. This should tell you that thinking about this stuff before you collect data is really important!
+
+It would make a lot more sense for something like the built-in `swiss` data because those variables are all continuous. You can check that out by running `r ggpairs(swiss)` in your code. Look at all of the related variables in the `swiss` data! This relatedness is called **collinearity** and can cause some issues if we are not careful about it.
+
+We'll talk about problems related to correlation between variables (e.g. temperature and photoperiod) in detail when we discuss model selection and collinearity. In the sections that follow, we'll just focus our efforts on diagnosing `Year` as a categorical explanatory variable and `Width` as a continuous explanatory variable.
+
+### Normality
+In all linear models we make the assumption that the residual error of our model is normally distributed with a mean of zero. This allows us to drop the error term, $\epsilon$ from computation in the model fitting and allows us to calculate an exact solution in the case of ANOVA and linear regression. (Technological advances have really made this unnecessary because we can solve everything through optimization now).
+
+There are a multitude of tools at our disposal for examining normality of the residuals for linear models. One option is to examine group-specific error structures as a surrogate for residual error prior to analysis. The other option is to examine diagnostic plots of residuals directly from a fitted model object in R or other software programs (this is actually the more appropriate tool).
+
+We are looking to see if the response variable within each group is normally distributed. To assess this, we need to think in terms of the moments of a normal distribution that we learned about earlier in the course, specifically skew and kurtosis. Here we are looking for outliers in the data, or sample distributions that are highly skewed.
+
+First, we could go level by level for all of our grouping variables and conduct Shapiro tests (not shown here). 
+
+We can look at a few different plots of our response to start teasing apart some of the potential violations of our assumptions.
+
+We know we will need to look at a year effect here because that is yet another form of non-independence (and potentially homogeneity) in our data. Let's start with a boxplot:
+
+```{r}
+ggplot(turtles, 
+       aes(x = factor(Year), y = Stay, group = Year), fill = 'gray87') +
+  geom_boxplot() +
+  xlab("Year")
+```
+
+Whoa! We have a couple of issues here.
+
+First of all: we have clearly identified a number of 'outliers' in our data. These are the circles that are outside the whiskers of our box plots.
+
+One way to address these outliers is by dropping them from the data. We only want to do this if we have a pretty good justification for this ahead of time ("*a priori*"). And, sometimes these can be some of the most interesting observations.
+
+Another way to deal with this is through data transformation. For example, we could use a log transformation in an attempt to normalize extreme values in our data. This certainly looks a little better, but may not get us all the way there...
+
+```{r}
+ggplot(turtles, 
+       aes(x = factor(Year), y = log(Stay), group = Year), 
+       fill = 'gray87') +
+  geom_boxplot() +
+  xlab("Year")
+```
+
+> NOTE: I will not cover variable transformation extensively in this class or text. The justification is: 1) you can Google it to learn more about what transformations are useful for what, and 2) I will argue that most of the time there are better methods for dealing with non-normal data and then I will show you how to use those methods as we go.
+
+We can also look at histograms to investigate normality within groups. We'll continue using log(Stay) for now.
+
+```{r}
+ggplot(turtles, aes(x = log(Stay))) +
+  geom_histogram() +
+  facet_wrap(~ Year)
+```  
+
+<br>
+
+Again, a little better, but perhaps not as good as we'd like.
+
+### Homogeneity of variances
+Finally, we assume in all of our linear models that variability in our residuals (which are really just part of our variances) are constant among groups or across the range of continuous variables $x$. This is the same assumption that we made for t-tests and tested with the F-test in [Chapter 6](#Chapter6). We'll now look at a few options for linear models in this chapter depending on how the data are structured.
+
+A quick check of variances in the `Stay` variable by `Year` will make it clear that we are also in violation of this assumption if we do not log-transform the data.
+
+```{r}
+turtles %>%
+  group_by(Year) %>%
+  summarize(var(Stay))
+```
+You can go ahead and conduct a few F-tests if you don't believe me that these are different, but I'm pretty sure you won't convince me that the ratios of any two of these variances are equal to 1.00!
+
+This, too, is made magically (A little) better when we log-transform `Stay`:
+```{r}
+turtles %>%
+  group_by(Year) %>%
+  summarize(var(log(Stay)))
+```
+
+## ANOVA Diagnostics
+The preferred method for examining the normality of residuals for us is going to be actually looking at the diagnostics from a fitted model object regardless of the models we choose. This same approach can be applied to t-tests, ANOVA, linear regression, and ANCOVA. We'll start with ANOVA and wrap up with linear regression.
+
+Here, we will conduct an ANOVA to test the null hypothesis that there is no difference in `Stay` between years (`Year`) assuming a Type-I error rate ($\alpha$) of 0.05.
+
+We are going to need to change `Year` to a factor for this analysis.
+```{r}
+turtles$Year <- factor(turtles$Year, levels = c(2013, 2014, 2015))
+
+```
+
+Fit the model.
+
+```{r}
+# First fit a model - the easy part
+turdel <- lm( Stay ~ Year, data = turtles) 
+
+```
+
+The `ggplot()` function knows just what to do with `lm()` objects!
+
+```{r}
+ggplot(turdel, aes(x = .fitted, y = .resid, color=Year)) + 
+  geom_jitter() +
+  scale_x_discrete() +
+  xlab("Year") + 
+  ylab(expression(paste(epsilon)))
+
+```
+
+<br>
+
+Cool! But...what the heck are we looking at here??
+
+We have pretty much everything we need here to understand whether we have violated the assumptions of linear models from this graph (other design issues notwithstanding).
+
+Remember, the mean of the residuals in each group is supposed to be **normally distributed with a mean of zero** and the **variance is equal between groups**. Now, I don't think we need a K-S test or an F-test to say that 1) these resids is def not normal and 2) no way the variances are equal. You can also see that `ggplot()` has nicely organized our groups in order of increasing magnitude of the residuals from left to right, and that `2013` and `2014` were more variable than `2015`.
+
+We can hit the data with a log transformation to see if it fixes any of our problems:
+
+```{r}
+# First fit a model
+log_turdel <- lm( log(Stay) ~ Year, data = turtles) 
+
+# Now plot the residuals
+ggplot(log_turdel, aes(x = .fitted, y = .resid, color=factor(Year))) + 
+  geom_jitter() +
+  scale_color_discrete(name = "Year") +
+  xlab("Year") + 
+  ylab(expression(paste(epsilon)))
+
+```  
+
+In fact, we see that the model fit has improved substantially, although the outliers in our data are still outliers and there is still some skew in the residuals. But, at least now all three years have residuals with a mean near zero and they're more symmetrical than they were before. You can also see that the groups are now placed more uniformly along the x axis.
+
+If we wanted to investigate further the extent of remaining issues, we could visualize this a little better using a violin plot of the residuals:
+
+```{r}
+# Now plot the residuals
+ggplot(log_turdel, aes(x = .fitted, y = .resid, color=factor(Year))) + 
+  geom_violin() +
+  geom_jitter() +
+  scale_color_discrete(name = "Year") +
+  xlab("Year") + 
+  ylab(expression(paste(epsilon)))
+
+```
+
+<br>
+
+This plot now shows pretty clearly that the variance in the residuals increases from 2013 to 2015, and that there are a lot more outliers in 2013. But, there aren't a ton of outliers, so maybe this is something we could accomodate with the right assumptions about our sampling distribution down the road.
+
+Notice that we still haven't looked at the model results yet? That's not just because this is The Worst Stats Text eveR.
+
+
+## Linear regression diagnostics
+
+Finally, what if we have a continuous explanatory variable and a continuous response that necessitates use of linear regression or ANCOVA?
+
+We use the same approach (whoa, that's sweet, huh?). Here, let's fit and assess a model that predicts the length of `Stay` in turtle rehab based on the hook `Width` that caught them in the first place.
+
+```{r eval=FALSE}
+# Fit the model
+fit_width <- lm( Stay ~ Width, data = turtles)
+
+# Now plot the residuals
+ggplot(fit_width, aes(x = .fitted, y = .resid, color = Width)) + 
+  geom_point() +
+  xlab("Hook width") + 
+  ylab(expression(paste(epsilon)))
+```
+
+<br>
+
+Bleh. As with our example above, we can see that we clearly fail the assumption that the residuals are normally distributed with a mean of zero! It also looks like the residual error increases with increasing hook width, which means our observations are also not independent. This specific type of non-independence is called *heteroscedasticity*. That's a real word. 
+
+Let's see if our new toy, the log-transformation can help us here:
+
+```{r eval=FALSE}
+# Fit the model
+log_fit_width <- lm( log(Stay) ~ Width, data = turtles)
+
+# Now plot the residuals
+ggplot(log_fit_width, aes(x = .fitted, y = .resid, color = Width)) + 
+  geom_point() +
+  xlab("Hook width") + 
+  ylab(expression(paste(epsilon)))
+```
+
+Wow, that actually looks a whole lot better! There are still a couple of data points flying high that we would want to investigate further in this data set, but the pukey feeling in my stomach is slowly subsiding here.
+
+And remember, if you *really* want to see how your model fits the data, you could always plot the predictions over the raw data:
+
+```{r}
+# Need to get rid of a couple NA values
+turts <- subset(turtles, !is.na(Width))
+
+log_fit_width <- lm( log(Stay) ~ Width, data = turts)
+turt_pred <- cbind(turts, predict(log_fit_width, interval = 'confidence'))
+
+ggplot(turt_pred, 
+       aes(x = Width, y = log(Stay), color = Year, fill = Year)) +
+  geom_point(alpha = 0.3, size = 2) +
+  geom_line(aes(y = fit), size = 1) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, color = NULL), alpha = .3) +
+  xlab("Hook width") +
+  ylab("log(Length of stay in days)")
+
+```
+
+Surely this plot alone is evidence enough that we need to investigate confounding between hook `Width` and `Year` in any further investigation into this data set! Maybe with an ANCOVA?
+
+```{r}
+# Need to get rid of a couple NA values
+turts <- subset(turtles, !is.na(Width))
+
+log_fit_width <- lm( log(Stay) ~ Year + Width, data = turts)
+turt_pred <- cbind(turts, predict(log_fit_width, interval = 'confidence'))
+
+ggplot(turt_pred, 
+       aes(x = Width, y = log(Stay), color = Year, fill = Year)) +
+  geom_point(alpha = 0.3, size = 2) +
+  geom_line(aes(y = fit), size = 1) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, color = NULL), alpha = .3) +
+  xlab("Hook width") +
+  ylab("log(Length of stay in days)")
+
+```
+
+Holy crap...**three lines**. Where did the other two come from? Keep reading to find out in [Chapter 10](#Chapter10).
+
+Notice that we still have not looked at the results of any of these models.
+
+
+## Next steps {#next9}
+
+This is a lot to take in. But this stuff is important for everything we do in statistics. Do this stuff **before** you start fitting all kinds of models because it is important to think about ahead of time! Examination of residual plots should become second nature to you in these analyses because it is the most powerful tool you have for testing assumptions. Don't freak out if things don't look perfect (they almost never will), and realize that there may be ways of dealing with violations within the context of linear models. If not, there certainly are other models designed specifically for this purpose. 
+
+In [Chapter 10](#Chapter10) we will continue to unpack the linear model as we talk about how to communicate the results of the models after we fit them and validate assumptions.

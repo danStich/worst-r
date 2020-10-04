@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10.6 Interactions | The Worst Stats Text eveR</title>
+  <meta name="description" content="10.6 Interactions | The Worst Stats Text eveR" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10.6 Interactions | The Worst Stats Text eveR" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10.6 Interactions | The Worst Stats Text eveR" />
+  
+  
+  
+
+<meta name="author" content="Dan Stich" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="10-5-multiple-regression.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Worst Stats Text eveR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-where-do-i-start.html"><a href="1-3-where-do-i-start.html"><i class="fa fa-check"></i><b>1.3</b> Where do I start?</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html"><i class="fa fa-check"></i><b>1.4</b> Programming conventions</a><ul>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#style"><i class="fa fa-check"></i>Style and organization</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#tips"><i class="fa fa-check"></i>Some handy coding tips</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#rules"><i class="fa fa-check"></i>Stricter R programming rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-5-next1.html"><a href="1-5-next1.html"><i class="fa fa-check"></i><b>1.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-Chapter2.html"><a href="2-Chapter2.html"><i class="fa fa-check"></i><b>2</b> Data structures</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-vectors.html"><a href="2-1-vectors.html"><i class="fa fa-check"></i><b>2.1</b> Vectors</a><ul>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#nums"><i class="fa fa-check"></i>Integers and numerics</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#strings"><i class="fa fa-check"></i>Characters and factors</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#logicals"><i class="fa fa-check"></i>Logical vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-operations.html"><a href="2-2-operations.html"><i class="fa fa-check"></i><b>2.2</b> Vector operations</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-matrices.html"><a href="2-3-matrices.html"><i class="fa fa-check"></i><b>2.3</b> Matrices</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-dataframes.html"><a href="2-4-dataframes.html"><i class="fa fa-check"></i><b>2.4</b> Dataframes</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-lists.html"><a href="2-5-lists.html"><i class="fa fa-check"></i><b>2.5</b> Lists</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-next2.html"><a href="2-6-next2.html"><i class="fa fa-check"></i><b>2.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-Chapter3.html"><a href="3-Chapter3.html"><i class="fa fa-check"></i><b>3</b> Working with data</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-data-read.html"><a href="3-1-data-read.html"><i class="fa fa-check"></i><b>3.1</b> Data read</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-quick-data-summaries.html"><a href="3-2-quick-data-summaries.html"><i class="fa fa-check"></i><b>3.2</b> Quick data summaries</a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html"><i class="fa fa-check"></i><b>3.3</b> Subsetting and selecting data</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#manual-subsets-and-selections"><i class="fa fa-check"></i><b>3.3.1</b> Manual subsets and selections</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#subsetting-and-summaries-in-base-r"><i class="fa fa-check"></i><b>3.3.2</b> Subsetting and summaries in base R</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#tidyverse"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting and summaries in the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-better-data-summaries.html"><a href="3-4-better-data-summaries.html"><i class="fa fa-check"></i><b>3.4</b> Better data summaries</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-creating-new-variables.html"><a href="3-5-creating-new-variables.html"><i class="fa fa-check"></i><b>3.5</b> Creating new variables</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html"><i class="fa fa-check"></i><b>3.6</b> Data simulation</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#random-sub-samples-from-a-dataset"><i class="fa fa-check"></i><b>3.6.1</b> Random sub-samples from a dataset</a></li>
+<li class="chapter" data-level="3.6.2" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#stochastic"><i class="fa fa-check"></i><b>3.6.2</b> Stochastic simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="3-7-next3.html"><a href="3-7-next3.html"><i class="fa fa-check"></i><b>3.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-Chapter4.html"><a href="4-Chapter4.html"><i class="fa fa-check"></i><b>4</b> Plotting and graphics</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-plots-matter-as-much-as-stats.html"><a href="4-1-plots-matter-as-much-as-stats.html"><i class="fa fa-check"></i><b>4.1</b> Plots matter as much as stats</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html"><i class="fa fa-check"></i><b>4.2</b> Plotting with base R</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#histograms"><i class="fa fa-check"></i><b>4.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#scatterplots"><i class="fa fa-check"></i><b>4.2.2</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#lines"><i class="fa fa-check"></i><b>4.2.3</b> Lines</a></li>
+<li class="chapter" data-level="4.2.4" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#boxplots"><i class="fa fa-check"></i><b>4.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>4.3</b> Plotting with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gghists"><i class="fa fa-check"></i><b>4.3.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggscatter"><i class="fa fa-check"></i><b>4.3.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gglines"><i class="fa fa-check"></i><b>4.3.3</b> Lines</a></li>
+<li class="chapter" data-level="4.3.4" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggboxplots"><i class="fa fa-check"></i><b>4.3.4</b> Boxplots and</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4-4-next4.html"><a href="4-4-next4.html"><i class="fa fa-check"></i><b>4.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-Chapter5.html"><a href="5-Chapter5.html"><i class="fa fa-check"></i><b>5</b> Sampling distributions in R</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-what-are-sampling-distributions.html"><a href="5-1-what-are-sampling-distributions.html"><i class="fa fa-check"></i><b>5.1</b> What are sampling distributions?</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-probability-distributions-in-r.html"><a href="5-2-probability-distributions-in-r.html"><i class="fa fa-check"></i><b>5.2</b> Probability distributions in R</a></li>
+<li class="chapter" data-level="5.3" data-path="5-3-exponential-family.html"><a href="5-3-exponential-family.html"><i class="fa fa-check"></i><b>5.3</b> Exponential family</a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html"><i class="fa fa-check"></i><b>5.4</b> Continuous distributions</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-lognormal-distribution"><i class="fa fa-check"></i><b>5.4.1</b> The lognormal distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-beta-distribution"><i class="fa fa-check"></i><b>5.4.2</b> The beta distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html"><i class="fa fa-check"></i><b>5.5</b> Discrete distributions</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#bernoulli"><i class="fa fa-check"></i><b>5.5.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="5.5.2" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#binomial"><i class="fa fa-check"></i><b>5.5.2</b> Binomial</a></li>
+<li class="chapter" data-level="5.5.3" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#multinomial"><i class="fa fa-check"></i><b>5.5.3</b> Multinomial</a></li>
+<li class="chapter" data-level="5.5.4" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#poisson"><i class="fa fa-check"></i><b>5.5.4</b> Poisson</a></li>
+<li class="chapter" data-level="5.5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#the-negative-binomial-distribution"><i class="fa fa-check"></i><b>5.5.5</b> The negative binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html"><i class="fa fa-check"></i><b>5.6</b> Sample statistics</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#moments-about-the-mean"><i class="fa fa-check"></i><b>5.6.1</b> Moments about the mean</a></li>
+<li class="chapter" data-level="5.6.2" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#estimating-parameters-of-the-normal-distribution-from-a-sample"><i class="fa fa-check"></i><b>5.6.2</b> Estimating parameters of the normal distribution from a sample</a></li>
+<li class="chapter" data-level="5.6.3" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#quantiles-and-other-descriptive-statistics"><i class="fa fa-check"></i><b>5.6.3</b> Quantiles and other descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="5-7-next5.html"><a href="5-7-next5.html"><i class="fa fa-check"></i><b>5.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-Chapter6.html"><a href="6-Chapter6.html"><i class="fa fa-check"></i><b>6</b> Inferential statistics</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html"><i class="fa fa-check"></i><b>6.1</b> One-sample tests</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html#one-sample-t-test"><i class="fa fa-check"></i><b>6.1.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html#wilcox-test"><i class="fa fa-check"></i><b>6.1.2</b> Wilcox test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html"><i class="fa fa-check"></i><b>6.2</b> Two-sample tests</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>6.2.1</b> The two-sample t-test</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#two-sample-wilcox-test"><i class="fa fa-check"></i><b>6.2.2</b> Two-sample Wilcox test</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#presenting-your-results"><i class="fa fa-check"></i><b>6.2.3</b> Presenting your results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-3-frequency-analysis.html"><a href="6-3-frequency-analysis.html"><i class="fa fa-check"></i><b>6.3</b> Frequency analysis</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="6-3-frequency-analysis.html"><a href="6-3-frequency-analysis.html#worked-example"><i class="fa fa-check"></i><b>6.3.1</b> Worked example</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="6-4-next6.html"><a href="6-4-next6.html"><i class="fa fa-check"></i><b>6.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-Chapter7.html"><a href="7-Chapter7.html"><i class="fa fa-check"></i><b>7</b> Linear models</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-anova.html"><a href="7-1-anova.html"><i class="fa fa-check"></i><b>7.1</b> Analysis of variance (ANOVA)</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-1-anova.html"><a href="7-1-anova.html#one-way"><i class="fa fa-check"></i><b>7.1.1</b> One-way analysis of variance</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-1-anova.html"><a href="7-1-anova.html#twon-way-anova"><i class="fa fa-check"></i><b>7.1.2</b> Two(<em>n</em>)-way ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-2-simple-linear-regression.html"><a href="7-2-simple-linear-regression.html"><i class="fa fa-check"></i><b>7.2</b> Simple linear regression</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-2-simple-linear-regression.html"><a href="7-2-simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>7.2.1</b> Simple linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7-3-multiple-linear-regression.html"><a href="7-3-multiple-linear-regression.html"><i class="fa fa-check"></i><b>7.3</b> Multiple linear regression</a></li>
+<li class="chapter" data-level="7.4" data-path="7-4-next7.html"><a href="7-4-next7.html"><i class="fa fa-check"></i><b>7.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-Chapter8.html"><a href="8-Chapter8.html"><i class="fa fa-check"></i><b>8</b> General linear models</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-1-analysis-of-covariance-ancova.html"><a href="8-1-analysis-of-covariance-ancova.html"><i class="fa fa-check"></i><b>8.1</b> Analysis of covariance (ANCOVA)</a></li>
+<li class="chapter" data-level="8.2" data-path="8-2-motivation.html"><a href="8-2-motivation.html"><i class="fa fa-check"></i><b>8.2</b> Motivation</a></li>
+<li class="chapter" data-level="8.3" data-path="8-3-data.html"><a href="8-3-data.html"><i class="fa fa-check"></i><b>8.3</b> Data</a></li>
+<li class="chapter" data-level="8.4" data-path="8-4-analysis.html"><a href="8-4-analysis.html"><i class="fa fa-check"></i><b>8.4</b> Analysis</a></li>
+<li class="chapter" data-level="8.5" data-path="8-5-predictions.html"><a href="8-5-predictions.html"><i class="fa fa-check"></i><b>8.5</b> Predictions</a></li>
+<li class="chapter" data-level="8.6" data-path="8-6-next8.html"><a href="8-6-next8.html"><i class="fa fa-check"></i><b>8.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-Chapter9.html"><a href="9-Chapter9.html"><i class="fa fa-check"></i><b>9</b> Assumptions of linear models</a><ul>
+<li class="chapter" data-level="9.1" data-path="9-1-intro9.html"><a href="9-1-intro9.html"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="9-2-assumptions-of-linear-models.html"><a href="9-2-assumptions-of-linear-models.html"><i class="fa fa-check"></i><b>9.2</b> Assumptions of linear models</a></li>
+<li class="chapter" data-level="9.3" data-path="9-3-ughmath.html"><a href="9-3-ughmath.html"><i class="fa fa-check"></i><b>9.3</b> WTF is a residuals?</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="9-3-ughmath.html"><a href="9-3-ughmath.html#residuals-in-anova"><i class="fa fa-check"></i><b>9.3.1</b> Residuals in ANOVA</a></li>
+<li class="chapter" data-level="9.3.2" data-path="9-3-ughmath.html"><a href="9-3-ughmath.html#residuals-in-linear-regression"><i class="fa fa-check"></i><b>9.3.2</b> Residuals in linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="9-4-the-turtle-problem.html"><a href="9-4-the-turtle-problem.html"><i class="fa fa-check"></i><b>9.4</b> The turtle problem</a></li>
+<li class="chapter" data-level="9.5" data-path="9-5-data-exploration.html"><a href="9-5-data-exploration.html"><i class="fa fa-check"></i><b>9.5</b> Data exploration</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="9-5-data-exploration.html"><a href="9-5-data-exploration.html#independence-of-observations"><i class="fa fa-check"></i><b>9.5.1</b> Independence of observations</a></li>
+<li class="chapter" data-level="9.5.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#normality"><i class="fa fa-check"></i><b>9.5.2</b> Normality</a></li>
+<li class="chapter" data-level="9.5.3" data-path="9-5-data-exploration.html"><a href="9-5-data-exploration.html#homogeneity-of-variances"><i class="fa fa-check"></i><b>9.5.3</b> Homogeneity of variances</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="9-6-anova-diagnostics.html"><a href="9-6-anova-diagnostics.html"><i class="fa fa-check"></i><b>9.6</b> ANOVA Diagnostics</a></li>
+<li class="chapter" data-level="9.7" data-path="9-7-linear-regression-diagnostics.html"><a href="9-7-linear-regression-diagnostics.html"><i class="fa fa-check"></i><b>9.7</b> Linear regression diagnostics</a></li>
+<li class="chapter" data-level="9.8" data-path="9-8-next9.html"><a href="9-8-next9.html"><i class="fa fa-check"></i><b>9.8</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-Chapter10.html"><a href="10-Chapter10.html"><i class="fa fa-check"></i><b>10</b> Communicating effect sizes</a><ul>
+<li class="chapter" data-level="10.1" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html"><i class="fa fa-check"></i><b>10.1</b> One-way ANOVA</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#calculations-and-numerical-representation"><i class="fa fa-check"></i><b>10.1.1</b> Calculations and numerical representation</a></li>
+<li class="chapter" data-level="10.1.2" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#the-model-matrix"><i class="fa fa-check"></i><b>10.1.2</b> The model matrix</a></li>
+<li class="chapter" data-level="10.1.3" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#graphical-representation"><i class="fa fa-check"></i><b>10.1.3</b> Graphical representation</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="10-2-linear-regression.html"><a href="10-2-linear-regression.html"><i class="fa fa-check"></i><b>10.2</b> Linear regression</a></li>
+<li class="chapter" data-level="10.3" data-path="10-3-ancova.html"><a href="10-3-ancova.html"><i class="fa fa-check"></i><b>10.3</b> ANCOVA</a></li>
+<li class="chapter" data-level="10.4" data-path="10-4-two-way-anova.html"><a href="10-4-two-way-anova.html"><i class="fa fa-check"></i><b>10.4</b> Two-way ANOVA</a></li>
+<li class="chapter" data-level="10.5" data-path="10-5-multiple-regression.html"><a href="10-5-multiple-regression.html"><i class="fa fa-check"></i><b>10.5</b> Multiple regression</a></li>
+<li class="chapter" data-level="10.6" data-path="10-6-interactions.html"><a href="10-6-interactions.html"><i class="fa fa-check"></i><b>10.6</b> Interactions</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="10-6-interactions.html"><a href="10-6-interactions.html#two-way-anova-1"><i class="fa fa-check"></i><b>10.6.1</b> Two-way ANOVA</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Worst Stats Text eveR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="interactions" class="section level2">
+<h2><span class="header-section-number">10.6</span> Interactions</h2>
+<p>Up to this point, we have only considered the ‘main effects’ of categorical and/or continuous explanatory variables on our response of interest. We are now going to extend this to include ‘interaction effects’ between variables.</p>
+<div id="two-way-anova-1" class="section level3">
+<h3><span class="header-section-number">10.6.1</span> Two-way ANOVA</h3>
+<p>Here are the data:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="10-6-interactions.html#cb60-1"></a><span class="co"># Here are the data:</span></span>
+<span id="cb60-2"><a href="10-6-interactions.html#cb60-2"></a>dental &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/dental.csv&#39;</span>)</span></code></pre></div>
+<p>Now, fit a model to the data.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="10-6-interactions.html#cb61-1"></a><span class="co"># To fit a model with an interaction,</span></span>
+<span id="cb61-2"><a href="10-6-interactions.html#cb61-2"></a><span class="co"># we are going to use a new notation in</span></span>
+<span id="cb61-3"><a href="10-6-interactions.html#cb61-3"></a><span class="co"># the model. So, pay attention to</span></span>
+<span id="cb61-4"><a href="10-6-interactions.html#cb61-4"></a><span class="co"># what is going on in this call:</span></span>
+<span id="cb61-5"><a href="10-6-interactions.html#cb61-5"></a>dental.mod &lt;-<span class="st"> </span><span class="kw">lm</span>(mpa<span class="op">~</span>lights<span class="op">*</span>resin, <span class="dt">data=</span>dental)</span>
+<span id="cb61-6"><a href="10-6-interactions.html#cb61-6"></a></span>
+<span id="cb61-7"><a href="10-6-interactions.html#cb61-7"></a><span class="co"># If we make an ANOVA table for</span></span>
+<span id="cb61-8"><a href="10-6-interactions.html#cb61-8"></a><span class="co"># this two-way ANOVA, we see that there are</span></span>
+<span id="cb61-9"><a href="10-6-interactions.html#cb61-9"></a><span class="co"># significant main effects of of resin type,</span></span>
+<span id="cb61-10"><a href="10-6-interactions.html#cb61-10"></a><span class="co"># but also a significant interaction</span></span>
+<span id="cb61-11"><a href="10-6-interactions.html#cb61-11"></a><span class="co"># between resin type and lights used for </span></span>
+<span id="cb61-12"><a href="10-6-interactions.html#cb61-12"></a><span class="co"># drying the resin on the response variable</span></span>
+<span id="cb61-13"><a href="10-6-interactions.html#cb61-13"></a><span class="co"># bonding strength. Cool!! What the hell</span></span>
+<span id="cb61-14"><a href="10-6-interactions.html#cb61-14"></a><span class="co"># does that mean?</span></span>
+<span id="cb61-15"><a href="10-6-interactions.html#cb61-15"></a><span class="kw">anova</span>(dental.mod)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: mpa
+##              Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## lights        1   34.72   34.72  1.1067    0.2963    
+## resin         3 1999.72  666.57 21.2499 5.792e-10 ***
+## lights:resin  3 1571.96  523.99 16.7043 2.457e-08 ***
+## Residuals    72 2258.52   31.37                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="10-6-interactions.html#cb63-1"></a><span class="co"># And, of course, we can also examine</span></span>
+<span id="cb63-2"><a href="10-6-interactions.html#cb63-2"></a><span class="co"># the model coefficients for a closer</span></span>
+<span id="cb63-3"><a href="10-6-interactions.html#cb63-3"></a><span class="co"># look at what this means.</span></span>
+<span id="cb63-4"><a href="10-6-interactions.html#cb63-4"></a><span class="kw">summary</span>(dental.mod)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = mpa ~ lights * resin, data = dental)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -11.760  -3.663  -0.320   3.697  11.250 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)        17.770      1.771  10.033 2.57e-15 ***
+## lightsLED           1.290      2.505   0.515   0.6081    
+## resinB              2.130      2.505   0.850   0.3979    
+## resinC              4.770      2.505   1.904   0.0609 .  
+## resinD             22.530      2.505   8.995 2.13e-13 ***
+## lightsLED:resinB    3.370      3.542   0.951   0.3446    
+## lightsLED:resinC    3.940      3.542   1.112   0.2697    
+## lightsLED:resinD  -17.740      3.542  -5.008 3.78e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 5.601 on 72 degrees of freedom
+## Multiple R-squared:  0.6149,	Adjusted R-squared:  0.5775 
+## F-statistic: 16.42 on 7 and 72 DF,  p-value: 9.801e-13</code></pre>
+<p>Let’s just use the built-in R functions to make predictions from our model. We will walk through the steps below. Make sure you dig through the comments to understand what is going on here.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="10-6-interactions.html#cb65-1"></a><span class="co"># Get all combinations of the unique</span></span>
+<span id="cb65-2"><a href="10-6-interactions.html#cb65-2"></a><span class="co"># values for light and resin types</span></span>
+<span id="cb65-3"><a href="10-6-interactions.html#cb65-3"></a><span class="co"># using the &#39;expand.grid&#39; function</span></span>
+<span id="cb65-4"><a href="10-6-interactions.html#cb65-4"></a>dnew &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb65-5"><a href="10-6-interactions.html#cb65-5"></a>  <span class="kw">expand.grid</span>(<span class="kw">unique</span>(dental<span class="op">$</span>lights), <span class="kw">unique</span>(dental<span class="op">$</span>resin))</span>
+<span id="cb65-6"><a href="10-6-interactions.html#cb65-6"></a>)</span>
+<span id="cb65-7"><a href="10-6-interactions.html#cb65-7"></a></span>
+<span id="cb65-8"><a href="10-6-interactions.html#cb65-8"></a><span class="co"># Give the new df names</span></span>
+<span id="cb65-9"><a href="10-6-interactions.html#cb65-9"></a><span class="kw">names</span>(dnew) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;lights&#39;</span>, <span class="st">&#39;resin&#39;</span>)</span>
+<span id="cb65-10"><a href="10-6-interactions.html#cb65-10"></a></span>
+<span id="cb65-11"><a href="10-6-interactions.html#cb65-11"></a><span class="co"># Sort the dataframe by lights for ease</span></span>
+<span id="cb65-12"><a href="10-6-interactions.html#cb65-12"></a>dnew &lt;-<span class="st"> </span>dnew[<span class="kw">with</span>(dnew, <span class="kw">order</span>(lights)), ]</span>
+<span id="cb65-13"><a href="10-6-interactions.html#cb65-13"></a></span>
+<span id="cb65-14"><a href="10-6-interactions.html#cb65-14"></a><span class="co"># Make predictions from these data</span></span>
+<span id="cb65-15"><a href="10-6-interactions.html#cb65-15"></a><span class="co"># Because we are interested in</span></span>
+<span id="cb65-16"><a href="10-6-interactions.html#cb65-16"></a><span class="co"># comparing the different levels here,</span></span>
+<span id="cb65-17"><a href="10-6-interactions.html#cb65-17"></a><span class="co"># we can look at 95% CIs instead</span></span>
+<span id="cb65-18"><a href="10-6-interactions.html#cb65-18"></a><span class="co"># of prediction intervals.</span></span>
+<span id="cb65-19"><a href="10-6-interactions.html#cb65-19"></a>dpreds &lt;-<span class="st"> </span><span class="kw">predict</span>(</span>
+<span id="cb65-20"><a href="10-6-interactions.html#cb65-20"></a>  <span class="dt">object =</span> dental.mod, <span class="dt">newdata =</span> dnew, <span class="dt">interval =</span> <span class="st">&#39;confidence&#39;</span></span>
+<span id="cb65-21"><a href="10-6-interactions.html#cb65-21"></a>)</span>
+<span id="cb65-22"><a href="10-6-interactions.html#cb65-22"></a><span class="co"># Get the observed means to go along</span></span>
+<span id="cb65-23"><a href="10-6-interactions.html#cb65-23"></a><span class="co"># with the predictions</span></span>
+<span id="cb65-24"><a href="10-6-interactions.html#cb65-24"></a><span class="kw">library</span>(plyr)</span>
+<span id="cb65-25"><a href="10-6-interactions.html#cb65-25"></a>mus =<span class="st"> </span><span class="kw">ddply</span>(dental, <span class="kw">c</span>(<span class="st">&#39;lights&#39;</span>, <span class="st">&#39;resin&#39;</span>), summarize, <span class="dt">mean=</span><span class="kw">mean</span>(mpa))</span>
+<span id="cb65-26"><a href="10-6-interactions.html#cb65-26"></a></span>
+<span id="cb65-27"><a href="10-6-interactions.html#cb65-27"></a><span class="co"># Now plot the predictions from this model</span></span>
+<span id="cb65-28"><a href="10-6-interactions.html#cb65-28"></a><span class="co"># Set graphical parameters</span></span>
+<span id="cb65-29"><a href="10-6-interactions.html#cb65-29"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb65-30"><a href="10-6-interactions.html#cb65-30"></a></span>
+<span id="cb65-31"><a href="10-6-interactions.html#cb65-31"></a><span class="co"># Plot the raw data by resin type and color code for lights</span></span>
+<span id="cb65-32"><a href="10-6-interactions.html#cb65-32"></a><span class="kw">plot</span>(<span class="dt">x=</span><span class="kw">as.numeric</span>(dental<span class="op">$</span>resin), <span class="dt">y=</span>dental<span class="op">$</span>mpa, <span class="dt">type=</span><span class="st">&#39;p&#39;</span>,</span>
+<span id="cb65-33"><a href="10-6-interactions.html#cb65-33"></a>    <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="kw">c</span>(<span class="st">&#39;blue&#39;</span>, <span class="st">&#39;red&#39;</span>)[<span class="kw">c</span>(dental<span class="op">$</span>lights)],</span>
+<span id="cb65-34"><a href="10-6-interactions.html#cb65-34"></a>    <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">50</span>), <span class="dt">ylab=</span><span class="st">&#39;&#39;</span>, <span class="dt">xlab=</span><span class="st">&#39;&#39;</span>, <span class="dt">yaxt=</span><span class="st">&#39;n&#39;</span>, <span class="dt">xaxt=</span><span class="st">&#39;n&#39;</span>)</span>
+<span id="cb65-35"><a href="10-6-interactions.html#cb65-35"></a></span>
+<span id="cb65-36"><a href="10-6-interactions.html#cb65-36"></a><span class="co"># Plot the means for Halogen lights by resin type</span></span>
+<span id="cb65-37"><a href="10-6-interactions.html#cb65-37"></a><span class="kw">par</span>(<span class="dt">new=</span><span class="ot">TRUE</span>)</span>
+<span id="cb65-38"><a href="10-6-interactions.html#cb65-38"></a><span class="kw">plot</span>(mus<span class="op">$</span>mean[mus<span class="op">$</span>lights<span class="op">==</span><span class="st">&#39;Halogen&#39;</span>], <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&#39;blue&#39;</span>,</span>
+<span id="cb65-39"><a href="10-6-interactions.html#cb65-39"></a>  <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">50</span>), <span class="dt">ylab=</span><span class="st">&#39;&#39;</span>, <span class="dt">xlab=</span><span class="st">&#39;&#39;</span>, <span class="dt">yaxt=</span><span class="st">&#39;n&#39;</span>, <span class="dt">xaxt=</span><span class="st">&#39;n&#39;</span>, <span class="dt">cex=</span><span class="fl">1.75</span>)</span>
+<span id="cb65-40"><a href="10-6-interactions.html#cb65-40"></a></span>
+<span id="cb65-41"><a href="10-6-interactions.html#cb65-41"></a><span class="co"># Plot the means for LED lights by resin type</span></span>
+<span id="cb65-42"><a href="10-6-interactions.html#cb65-42"></a><span class="kw">par</span>(<span class="dt">new=</span><span class="ot">TRUE</span>)</span>
+<span id="cb65-43"><a href="10-6-interactions.html#cb65-43"></a><span class="kw">plot</span>(mus<span class="op">$</span>mean[mus<span class="op">$</span>lights<span class="op">==</span><span class="st">&#39;LED&#39;</span>], <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&#39;red&#39;</span>,</span>
+<span id="cb65-44"><a href="10-6-interactions.html#cb65-44"></a>  <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">50</span>), <span class="dt">ylab=</span><span class="st">&#39;&#39;</span>, <span class="dt">xlab=</span><span class="st">&#39;&#39;</span>, <span class="dt">yaxt=</span><span class="st">&#39;n&#39;</span>, <span class="dt">xaxt=</span><span class="st">&#39;n&#39;</span>, <span class="dt">cex=</span><span class="fl">1.75</span>)</span>
+<span id="cb65-45"><a href="10-6-interactions.html#cb65-45"></a></span>
+<span id="cb65-46"><a href="10-6-interactions.html#cb65-46"></a><span class="co"># Add lines for the mean and prediction intervals for halogen</span></span>
+<span id="cb65-47"><a href="10-6-interactions.html#cb65-47"></a><span class="kw">lines</span>(dpreds[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,<span class="dv">1</span>], <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>, <span class="dt">lty=</span><span class="dv">1</span>)</span>
+<span id="cb65-48"><a href="10-6-interactions.html#cb65-48"></a><span class="kw">lines</span>(dpreds[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,<span class="dv">2</span>], <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>, <span class="dt">lty=</span><span class="dv">2</span>)</span>
+<span id="cb65-49"><a href="10-6-interactions.html#cb65-49"></a><span class="kw">lines</span>(dpreds[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,<span class="dv">3</span>], <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>, <span class="dt">lty=</span><span class="dv">2</span>)</span>
+<span id="cb65-50"><a href="10-6-interactions.html#cb65-50"></a></span>
+<span id="cb65-51"><a href="10-6-interactions.html#cb65-51"></a><span class="co"># Add lines for the mean and prediction intervals for LED</span></span>
+<span id="cb65-52"><a href="10-6-interactions.html#cb65-52"></a><span class="kw">lines</span>(dpreds[<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>,<span class="dv">1</span>], <span class="dt">col=</span><span class="st">&#39;red&#39;</span>, <span class="dt">lty=</span><span class="dv">1</span>)</span>
+<span id="cb65-53"><a href="10-6-interactions.html#cb65-53"></a><span class="kw">lines</span>(dpreds[<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>,<span class="dv">2</span>], <span class="dt">col=</span><span class="st">&#39;red&#39;</span>, <span class="dt">lty=</span><span class="dv">2</span>)</span>
+<span id="cb65-54"><a href="10-6-interactions.html#cb65-54"></a><span class="kw">lines</span>(dpreds[<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>,<span class="dv">3</span>], <span class="dt">col=</span><span class="st">&#39;red&#39;</span>, <span class="dt">lty=</span><span class="dv">2</span>)</span>
+<span id="cb65-55"><a href="10-6-interactions.html#cb65-55"></a></span>
+<span id="cb65-56"><a href="10-6-interactions.html#cb65-56"></a><span class="co"># Add x and y axes</span></span>
+<span id="cb65-57"><a href="10-6-interactions.html#cb65-57"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="dt">at=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>,<span class="st">&#39;B&#39;</span>,<span class="st">&#39;C&#39;</span>,<span class="st">&#39;D&#39;</span>))</span>
+<span id="cb65-58"><a href="10-6-interactions.html#cb65-58"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="dt">las=</span><span class="dv">2</span>)</span>
+<span id="cb65-59"><a href="10-6-interactions.html#cb65-59"></a></span>
+<span id="cb65-60"><a href="10-6-interactions.html#cb65-60"></a><span class="co"># Add labels</span></span>
+<span id="cb65-61"><a href="10-6-interactions.html#cb65-61"></a><span class="kw">mtext</span>(<span class="st">&#39;Resin type&#39;</span>, <span class="dt">side=</span><span class="dv">1</span>, <span class="dt">line=</span><span class="dv">3</span>, <span class="dt">cex=</span><span class="fl">1.25</span>)</span>
+<span id="cb65-62"><a href="10-6-interactions.html#cb65-62"></a><span class="kw">mtext</span>(<span class="st">&#39;Bond strength (mpa)&#39;</span>, <span class="dt">side=</span><span class="dv">2</span>, <span class="dt">line=</span><span class="dv">3</span>, <span class="dt">cex=</span><span class="fl">1.25</span>)</span>
+<span id="cb65-63"><a href="10-6-interactions.html#cb65-63"></a></span>
+<span id="cb65-64"><a href="10-6-interactions.html#cb65-64"></a><span class="co"># Let us have a legend</span></span>
+<span id="cb65-65"><a href="10-6-interactions.html#cb65-65"></a><span class="kw">legend</span>(<span class="dt">x=</span><span class="dv">1</span>, <span class="dt">y=</span><span class="dv">50</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&#39;Halogen&#39;</span>, <span class="st">&#39;LED&#39;</span>), <span class="dt">lty=</span><span class="dv">1</span>,</span>
+<span id="cb65-66"><a href="10-6-interactions.html#cb65-66"></a>  <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&#39;blue&#39;</span>, <span class="st">&#39;red&#39;</span>), <span class="dt">bty=</span><span class="st">&#39;n&#39;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p>Interactions between categorical variables generally are more complicated to deal with than interactions between categorical and continuous variables, because then we are only dealing with straight lines that differ by level. This does not, however, make it any less important for us to communicate how our models fit the observations we have collected. If you can get these tools under your belt, they will be extremely powerful for preparing journal articles, and perhaps more importantly, for communicating your results and the uncertainty surrounding them to stakeholders and public audiences.</p>
+
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="10-5-multiple-regression.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["worstr.pdf", "worstr.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

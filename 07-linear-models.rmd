@@ -215,7 +215,7 @@ Here, we will use a data set describing differences in the mass of belly- button
 lint <- read.csv('data/lint.txt')
 ```
 
-#### Main effects model
+#### Main effects model {#main-effects-7}
 Now we can fit a model to the data. This will work the same way as for the one-way ANOVA above, but this time we will add more terms on the right hand side of the equation. We will start by looking at the *main effects* model for this data set.
 
 What is a main-effects model? This model assumes that the response of interest, in this case the mass of belly button lint, `lintmass`, is affected by both `species` and `gender`, and that within species the effect of gender is the same. For example, the mass of belly button lint could be greater in one species compared to others, and if there is a difference between sexes we would expect that trend to be the same across species (e.g., boys always have more lint than girls - sorry guys, it's probably true!).

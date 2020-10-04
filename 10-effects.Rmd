@@ -1,0 +1,673 @@
+
+# Communicating effect sizes {#Chapter10}
+
+```{r, include = FALSE}
+library(tidyverse)
+```
+
+```{r, echo = FALSE, fig.height=3}
+turtles <- read.csv('data/turtles.txt')
+turtles$Year <- as.factor(turtles$Year)
+turts <- subset(turtles, !is.na(Width))
+
+log_fit_width <- lm( log(Stay) ~ Year + Width, data = turts)
+turt_pred <- cbind(turts, predict(log_fit_width, interval = 'confidence'))
+
+ggplot(turt_pred, 
+       aes(x = Width, y = log(Stay), color = Year, fill = Year)) +
+  geom_point(alpha = 0.3, size = 2) +
+  geom_line(aes(y = fit), size = 1) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, color = NULL), alpha = .3) +
+  xlab("Hook width") +
+  ylab("log(Length of stay in days)")
+
+```
+
+<p style="font-family: times, serif; font-size:.9em; font-style:italic">
+This is the graph showing how the amount of time spent in rehab by sea turtles changed with fishing hook size during three years. We made this in Chapter 3, but I never told you if the effect of hook width was significant because this is The Worst Stats Text eveR. It was not. But then again, you probably could have figured that out from the graph. That's why it's important to show your predictions.</p>
+
+Here's the bad news: add/drop is over and we're about to do some math. Here's the good news: the math will stay the same from now until the end of this book because it is the beautiful, unifying math behind most of the tools we've discussed so far and all the tools to come. Well, I don't know if that's actually good news, but it does sound nice when I say it like that.
+
+Now that we have a handle on interpreting the statistical results of linear models we need to think about how to communicate biological differences (effects) and the uncertainty associated with our predictions. This is a major short coming of many scientific studies, and has led to wide-spread reporting of statistically significant results that confer minimal biological meaning. On the other hand, if we do have really cool biological results, we want to be able to show those to people! A well designed graphic will tell most of your readers more than a parentheses-packed, numerically dense Results section - I don't care how well you write.
+
+How we approach communication of our results can range from summarizing and graphing raw data to plotting futuristic curves over raw data depending on the type of effect we are trying to communicate. That depends, of course, on the model that we fit, the data that we collected, and how they were collected. To do this well, we have to at least understand how R is using our data, and that requires at least a superficial understanding of the actual math we are doing. Sorry. We'll take it one step at a time and work through ANOVA (so hard), linear regressions (super easy), and ANCOVA (not that hard once you "get it").
+
+For this chapter, we will revisit some of the built-in data sets we've been using for hypothesis testing and linear models and introduce the `dental` data set. We'll also be working with a few packages in the `tidyverse` so you can go ahead and load that now if you want to.
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+## One-way ANOVA
+
+When we are working in the world of one-way ANOVA, or even more complex models that contain only "main effects" of categorical, explanatory variables, the interpretation of these effects is relatively straightforward. Let's use the `PlantGrowth` data as an example.
+
+```{r, warning=FALSE, message=FALSE}
+data("PlantGrowth")
+```
+
+We'll start here by fitting a one-way anova to test effects of treatment `group` on on plant `weight`.
+
+```{r}
+# Get the names of the df
+names(PlantGrowth)
+
+# Fit the model
+mod <- lm(weight~group, data = PlantGrowth)
+```
+
+We've seen these data and this model before. We know there was a significant effect of treatment on plant weight but only `trt1` and `trt2` were different when we checked with the Tukey test. So, for now we will ignore the ANOVA table and just look at the summary.
+
+```{r}
+summary(mod)
+```
+
+This summary gives us three coefficients corresponding to the coefficients of a linear model. Up until now, we've mostly ignored these for ANOVA and focused on hypothesis testing. But we need to use the coefficients to make predictions from our model and communicate biological results - which is why there is a history of people not doing this effectively. 
+
+If we wanted to write out that linear model, we could write it like this:
+
+$y = \beta_0 + \beta_1 X_1 + \beta_2 X_2$
+
+But this is confusing because we only gave R one variable for `X`! How did it get three? Plus, we've been thinking of ANOVA like t-tests. Much puzzlement.
+
+
+### Unifying the linear model
+To really get full control over making predictions from linear models and the models to come we need to understand a little bit more about what R is doing here. I mentioned in [Chapter 9.3](#Chapter9) that we would need to start thinking about the linear model as $y = \beta X + \epsilon$ or $\sum_{k=1}^{K} \beta_k X_k + \epsilon$ to unify the t-test, ANOVA, linear regression, and ANCOVA into a single general framework. The reason for this is that R (and the math) actually don't see `X` in our linear models the way we've been writing it in our code. The models we've talked about so far are solved through Least Squares estimation. This involves solving for however many $\beta$ we might have using linear algebra and a little calculus to minimize the sum of $\epsilon^2$, or our squared residuals. To do the math, `X` must be a matrix of values that can be multiplied by a vector coefficients ($\beta$) because as we now know, $y = \beta X + \epsilon$.
+
+So, how does this relate to $\beta_0$ and the fact that we supposedly have three `X` variables in the `PlantGrowth` ANOVA even though it is just one column?
+
+I've already told students in my class by this point in the semester, but I'll repeat here that $\beta_0$ has a special place in my heart. It is the thing that allows us to relate all of this crap back to $y = mx + b$ and makes me feel like I understand statistics a little bit. But, it is also the hard part behind understanding the predictions you make from linear models if you don't know or like (love) the algebra. Especially for ANVOA and ANCOVA-like models. And let's face it, most of us as biologists don't understand let alone love the algebra. We'll try to keep avoiding that here as long as we can.
+
+Up until now, we have thought of $\beta_0$ as our `(Intercept)` term in linear models, and that is both truthful and useful. But, it is just another $\beta$ in the matrix multiplication used to solve least-squares regression. 
+
+How, then, is the intercept represented mathematically in ANOVA?
+
+### The model matrix
+In order to understand how the intercept works in ANOVA, we must look at the model matrix.
+
+The **model matrix** or **design matrix** is `X` from the really gross equations that I started showing all of a sudden now that the Add/Drop period has ended. (Muahaha). It really isn't as sinister as it sounds though.
+
+For our plant model, we wrote `weight ~ group` in our call to `lm()` and didn't have to think twice about what was happening after that. In the meantime, R had re-written the equation as $y = \beta_i X_i$ or `y = (Intercept)*model.matrix$`(Intercept)` + grouptrt1*model.matix$grouptrt1 + grouptrt2*model.matix$grouptrt2`. To begin understanding that difference, we obviously need to see this `model.matrix` object. 
+
+First, look at the actual data used to fit the model:
+
+```{r}
+head(mod$model)
+```
+
+You can see that we have one column for our response, `weight`, and one column for our explanatory variable, `group`, just as you thought.
+
+Now here is the design matrix:
+
+```{r}
+# Extract design matrix from fitted
+# PlantGrowth model
+X <- model.matrix(mod)
+
+# Have a look
+head(X)
+```
+
+Okay, that's actually not so bad. So, this is how R sees our data now. What R has done is to **dummy code** our `group` variable from the `PlantGrowth` data for each row of the data. The first column, `(Intercept)` contains only `1`. You can think of this as `X_0` in our linear model. It is multiplied by $\beta_0$ in $y = \beta_0 + \beta_k X_k$. But, since it is always `1` we just don't write it when we write the formula for a line and $\beta_0$ is always in the model! OMG that is sooooo annoying. The second column is an indicator variable for whether `group` is equal to `trt1` for a given observation (row in `PlantGrowth`). If `group == trt1` for that row, then the column `grouptrt1` gets a `1`. If not, it gets a `0`. Same for `grouptrt2`. The columns `grouptrt1` and `grouptrt2` are each multiplied by their own $\beta$ in our formula:
+
+$y = \beta_{(Intercept)} X_{(Intercept)} + \beta_{grouptrt1} X_{grouptrt1} + \beta_{grouptrt1} X_{grouptrt1}$
+
+If the columns `grouptrt1` or `grouptrt2` have `0`, then $\beta_i X_i = 0$ and the term for that group falls out of the equation, leaving only `ctrl` or the `(Intercept)`. We can use this to make predictions directly from our model coefficients. 
+
+Before moving on to prediction, it is helpful if you think of the coefficients for ANOVA as being an intercept (mean of the alphabetically first group) and offsets, or adjustments, to that intercept for each subsequent group. That is, ANOVA is kind of like a linear model with multiple intercepts and no slopes. We are just estimating a bunch of points on the y-axis.
+
+### Prediction
+Now that we've seen what R is actually doing, it becomes pretty trivial to make predictions from one-way ANOVA by hand.
+
+We can get the model coefficients ($\beta$) like this:
+```{r}  
+# We can get the model coefficients like this:
+names(mod)
+coeffs <- data.frame(mod$coefficients)
+
+# And now we have a vector of beta
+betas <- coeffs$mod.coefficients
+
+```
+
+We can use `betas` to make predictions from the formula of our linear model for each group by taking advantage of the dummy coding that R uses.
+
+```{r}
+# From the model, we can estimate:
+
+# Mean of control
+y_control <- betas[1] + betas[2]*0 + betas[3]*0
+
+# Mean of trt1
+y_trt1 <- betas[1] + betas[2]*1 + betas[3]*0
+
+# Mean of trt2
+y_trt2 <- betas[1] + betas[2]*0 + betas[3]*1
+
+```
+
+**Or** if you wanted to get really fancy, you could do this with matrix math:
+
+```{r}
+# Get unique groups in dummy coded matrix
+X_pred <- as.matrix(unique(model.matrix(mod)))
+
+# Multiply betas by dummy coded
+# matrix using transpose of both
+# These are your predictions 
+# for ctrl, trt1, and trt2
+y_pred <- t(betas) %*% t(X_pred)
+
+```
+
+Of course, either of these approaches is super useful but R also has default `predict()` methods for most or all of the models we will work with in this book. We will use these for the most part, as will `ggplot()`, which is more convenient than you will ever be able to appreciate. 
+
+To make predictions of `y` from the original data that you used to fit the model (`mod`), you can just do this:
+```{r}
+# Get unique values of groups and put it in 
+# a data frame. The predict function expects 
+# original x variable as a vector or a named 
+# column in a data.frame
+groups <- data.frame(group = unique(PlantGrowth$group) )
+
+# Make the prediction
+y <- predict(mod, newdata = groups, interval = "confidence")
+
+# Add it to the data frame
+pred_plant <- data.frame(groups, y)
+
+```
+
+If we want `confidence` intervals for the predictions, we can add that, too:
+
+```{r}
+# Make the prediction with confidence
+yCI <- predict(mod, newdata = groups, interval = "confidence")
+
+# Add it to the data frame
+pred_plantCI <- data.frame(groups, yCI)
+
+```
+
+You could print this and get a nice clean table of estimated means and 95% confidence intervals for each group.
+
+```{r}
+print(pred_plantCI)
+```
+
+Now, let's compare our model predictions to the actual means.
+
+```{r, warning=FALSE, message=FALSE}
+# Calculate group means
+means <- PlantGrowth %>%
+  group_by(group) %>%
+  summarize(mean(weight))
+
+print(means)
+```
+
+<br> 
+
+Pretty much spot on!
+
+
+### Plotting
+
+We could use any number of graphical tools to represent these results. Given that we've met the assumptions of normality, and we've determined that statistical differences exist, the simplest (and most common) method for visualizing these results is to just show a box plot or a violin plot, or both, with the raw data. Hmmm...I never realized how small this data set was.
+
+```{r}
+ggplot(PlantGrowth, aes(x = group, y = weight)) +
+  geom_violin(aes(fill=group), alpha=0.2) +
+  geom_boxplot(aes(fill=group), width = 0.2, alpha = 0.5) +
+  geom_jitter(aes(color=group), width = 0.15, alpha=0.5) +
+  scale_fill_manual(values=c('black', 'gray30', 'gray60')) +
+  scale_color_manual(values=c('black', 'gray30', 'gray60')) +
+  xlab('Group') +
+  ylab('Weight (g)') + 
+  theme_bw() +
+  theme(axis.title.x = element_text(vjust = -1),
+        axis.title.y = element_text(vjust = 3),
+        panel.grid = element_blank()
+        )
+
+```      
+
+This plot is really cool, but it doesn't actually show us how our model predictions compare to the raw data!
+
+However, we could also think of our model predictions as just being different y-intercepts, which will be helpful when we start to work with ANCOVA. If we plotted them that way, they would look like this:
+
+```{r}
+ggplot(pred_plantCI, aes(x = 0, y = fit, color = group)) +
+  geom_point(size = 3) + 
+  scale_x_continuous(limits = c(-1,  1), expand=c(0,0)) +
+  geom_segment(aes(x = 0, xend = 0, y = lwr, yend = upr),
+               lwd = 1.5, alpha = 0.25) +
+  xlab("X") +
+  ylab("Weight (g)") + 
+  labs(color = "Predicted")
+```
+
+But this is really hard to see and understand. So, we usually look at it like this in keeping with the dummy coding that is used in the model matrix:
+
+```{r}
+ggplot(pred_plantCI, aes(x = 1:3, y = fit, color = group)) +
+  geom_point(size = 3) + 
+  scale_x_continuous(limits = c(0,  4), expand=c(0, 0)) +
+  geom_segment(aes(x = 1:3, xend = 1:3, y = lwr, yend = upr),
+               lwd = 1.5, alpha = 0.25) +
+  xlab("X[, i]") +
+  ylab("Weight (g)") +
+  labs(color = "Predicted")
+```
+
+Or, perhaps more mercifully:
+```{r}
+ggplot(pred_plantCI, aes(x = group, y = fit, color = group)) +
+  geom_point(size = 3) + 
+  geom_segment(aes(x = group, xend = group, y = lwr, yend = upr),
+               lwd = 1.5, alpha = 0.25) +
+  xlab("Treatment group") +
+  ylab("Weight (g)") +
+  labs(color = "Predicted")
+```
+
+Finally, we could put this right over the top of our raw data and/or violin to see how well the model predictions match up with the data:
+
+```{r}
+ggplot(PlantGrowth, aes(x = group, y = weight, color = group)) +
+  geom_violin(aes(fill = group), alpha = 0.05) +
+  geom_jitter(size = 1.5, width = 0.05) +
+  geom_point(mapping = aes(x = group, y = fit), 
+             data = pred_plantCI,
+             size = 4) +
+  geom_segment(aes(x = group, xend = group, y = lwr, yend = upr),
+               data = pred_plantCI, 
+               lwd = 1.5, 
+               alpha = 0.5) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab("Treatment group") +
+  ylab("Weight (g)") +
+  labs(fill = "Group", color = "Group")
+  
+```
+
+## Two-way ANOVA
+
+Two-way ANOVA works the same way as one-way ANOVA, except that now we have multiple dummy-coded variables tied up in the intercept. For this example, we will consider a new data set. These data are from an experiment in Restorative Dentistry and Endodontics that was published in 2014. The study examines effects of drying light and resin type on the strength of a bonding resin for teeth.
+
+The full citation for the paper is:
+
+Kim, H-Y. 2014. Statistical notes for clinical researchers: Two-way analysis of variance (ANOVA)-exploring possible interaction between factors. Restorative Dentistry and Endodontics 39(2):143-147.
+
+Here are the data:
+```{r}
+dental <- read.csv('data/dental.csv', stringsAsFactors = FALSE)
+
+```
+
+### Main effects model {#main-effects-10}
+
+We will start by fitting a linear model to the data that tests effects of `lights` and `resin` on adhesive strength `mpa`. Since both `lights` and `resin` are categorical, this is a two-way ANOVA. We use the `+` to imply additive, or main-effects only.
+
+```{r}
+# We are looking only at main effects for now
+dental.mod <- lm(mpa ~ lights + resin, data = dental)
+```
+
+If we make an ANOVA table for this two-way ANOVA, we see that there are significant main effects of resin type but not lights used for drying.
+
+```{r}
+anova(dental.mod)
+```   
+
+We can also examine the model coefficients for a closer look at what this means.
+```{r}
+summary(dental.mod)
+```    
+
+Remember, in our data we had 2 kinds of lights, and 4 kinds of resin. But, here we have one less of each! Why is this? It is because of the way categorical variables are dummy coded for linear models. But, now we have two separate sets of adjustments, so one level of each variable is wrapped up in the estimate for our intercept (`lightsHalogen` and `resinA`).
+
+When in doubt, have a look at the model matrix:
+
+```{r}
+X <- model.matrix(dental.mod)
+
+head(X)
+
+```
+
+Right now, you might be a little confused about how to calculate and show the effect size for these variables. If you are not, you should probably take a more advanced stats class and get a better book.
+
+One reasonable option might be to summarize the data by the means and plot the means, but we already decided that we are going to plot our model predictions against the raw data following the form of the statistical model. Rather than go throught the math again, let's just use the built-in `predict()` function that I know you now appreciate!
+
+First, we need to do a little magic to get the group combinations for `lights` and `resin` into a data.frame that we can use for prediction.
+```{r}
+groups <- data.frame(
+  with(dental, unique(cbind(lights, resin)))
+)
+
+```
+
+Now we can make our predictions:
+```{r}
+dental_y_pred <- predict(
+  dental.mod, newdata = groups, interval = "confidence"
+  )
+
+pred_dental <- data.frame(groups, dental_y_pred)
+
+```
+
+And now we can plot it just like we did for ANOVA:
+
+```{r}
+ggplot(dental, aes(x = lights, y = mpa, color = lights)) +
+  geom_violin(aes(fill=lights), alpha = 0.1) +
+  geom_jitter(size = 1, width = 0.05) +
+  geom_point(mapping = aes(x = lights, y = fit), 
+             data = pred_dental,
+             color = 'black',
+             size = 2) +
+  geom_segment(
+    aes(x = lights, xend = lights, y = lwr, yend = upr),
+    data = pred_dental,
+    color = 'black') +  
+  facet_wrap(~resin) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab("Treatment group") +
+  ylab("Weight (g)") +
+  labs(fill = "Group", color = "Group")
+```  
+
+Now, this looks really nice, but there is definitely something funky going on with `Halogen` in panel D in the figure above! We have clearly done a poor job of predicting this group. The reason for this, in this case, is because we need to include an **interaction** term in our model, which makes things even grosser in terms of the math, but is easy to do in R. Of course, if we had been doing a good job of data exploration and residual analysis, we would have noticed this before making predictive plots...
+
+### Interactions
+To make a model that includes an interaction between `lights` and `resin` in the `dental` data, we will need to go all the way back to our model fitting process.
+
+```{r}
+# The "*" operator is shorthand for what we want to do
+# here - more of an "advanced" stats topic
+dental_int <- lm(mpa ~ lights * resin, data = dental)
+```
+
+We just have three more columns in our model matrix to distinguish between coefficients for `resin` that correspond to `LED` and coefficients for `resin` that correspond to `Halogen`. It is at this point that not even I want to do the math by hand!
+
+```{r}
+# Have a look on your own:
+head(model.matrix(dental_int))
+```
+
+The process for making predictions, thankfully, is identical to two-way ANOVA in R.
+
+Using the groups we made for the main-effects model:
+```{r}
+int_y_pred <- predict(
+  dental_int, newdata = groups, interval = "confidence"
+  )
+
+int_pred <- data.frame(groups, int_y_pred)
+
+```
+
+And now we plot the predictions against the raw data changing only the name of the data containing our predictions, `int_pred`. 
+
+```{r}
+ggplot(dental, aes(x = lights, y = mpa, color = lights)) +
+  geom_violin(aes(fill=lights), alpha = 0.1) +
+  geom_jitter(size = 1, width = 0.05) +
+  geom_point(mapping = aes(x = lights, y = fit), 
+             data = int_pred,
+             color = 'black',
+             size = 2) +
+  geom_segment(
+    aes(x = lights, xend = lights, y = lwr, yend = upr),
+    data = int_pred,
+    color = 'black') +  
+  facet_wrap(~resin) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab("Treatment group") +
+  ylab("Weight (g)") +
+  labs(fill = "Group", color = "Group")
+```  
+
+You should see below that **all** of our means match up much better with the observed data in the violins. And, if you go back to the ANOVA output for this model you will see that the interaction term is significant even though `lights` still is not on it's own. In coming chapters, we'll talk about how to design and compare multiple models like these to compare meaningful biological hypotheses against one another.
+
+```{r}
+anova(dental_int)
+```
+
+Interactions between categorical variables generally are more complicated to deal with than interactions between categorical and continuous variables, because then we are only dealing with straight lines that differ by level. This does not, however, make it any less important for us to communicate how our models fit the observations we have collected. If you can get these tools under your belt, they will be extremely powerful for preparing journal articles, and perhaps more importantly, for communicating your results and the uncertainty surrounding them to stakeholders and public audiences.
+
+
+## Linear regression
+
+Compared to interpreting group effects from ANOVA, the interpretation of a single, continuous predictor in linear regression is pretty straightforward. Here, all we are doing is looking to use the equation for a line  $y = mx + b$ to predict the effects of one continuous variable on another. Most of us probably did this for the first time in middle school. But, if we look at the math in the same way that we did for ANOVA, it will make understanding ANCOVA a lot easier.
+
+Let's use the `swiss` data again for this like we did in [Chapter 8](#Chapter8). Remember that this data set compares fertility rates to a number of socio-economic indicators:
+
+```{r}
+data("swiss")
+```
+
+We'll make a model to predict the effect of education level on fertility:
+
+```{r}
+# Make the model and save it to a named object called 'swiss.mod'
+swiss.mod <- lm(Fertility ~ Education, data = swiss)
+
+```
+
+Have a look at the design matrix and you can see that R still includes a column for the intercept that is all `1`, so this is the same as ANOVA. But, instead of having dummy variables in columns representing groups, we just have our observed values of `Education`
+
+```{r}
+head( model.matrix(swiss.mod) )
+```
+
+Next, we can look at the coefficient estimates for `swiss.mod`. Remember that each of these coefficients corresponds to one and only one column in our design matrix `X`.
+
+```{r} 
+# Summarize the model
+summary(swiss.mod)
+```
+
+### Prediction
+
+As with the case of categorical explanatory variables, we are now interested in predicting the mean expected `Fertility` for any given value of `Education` based on our model coefficients. Recall from ANOVA that we can do this "by hand":
+
+```{r}
+betas <- swiss.mod$coefficients
+X_pred <- as.matrix(model.matrix(swiss.mod))
+
+# Multiply betas by dummy coded
+# matrix using transpose of both
+# These are your predictions 
+# for ctrl, trt1, and trt2
+y_pred <- as.vector( t(betas) %*% t(X_pred) )
+
+swiss_pred <- data.frame(swiss, y_pred)
+```
+
+**Or**, we can use the built-in `predict()` function to get confidence intervals on our predictions, too! That's a pain to do by hand every time, so we will use the `predict()` function from here out for linear regression! 
+
+Here I'll ask R for `"prediction"` intervals. To avoid warnings about predicting from the same data to which the model was fit, we need to either pass the `model` part of `swiss.mod` to the function as new data or we need to simulate new data. As models become increasingly complex, it becomes increasingly complicated to simulate data appropriately. Therefore, if I am just interested in communicating my results, I do so with the model data. 
+
+```{r}
+# Make predictions using the model data
+y_pred2 <- predict(swiss.mod, 
+                   newdata = swiss.mod$model, 
+                   interval = "prediction")
+
+# Combine with original data
+swiss_pred2 <- data.frame(swiss, y_pred2)
+  
+```   
+
+Whichever way you do this, you'll notice that we have a unique value of fit for every value of `Education` in the original data because `fit` is predicted as a continuous function of `Education` in this case:
+
+```{r}
+head( swiss_pred2)
+```
+
+We could also make predictions for specific values of `Education` by creating (simulating) new values of `Education`. Below, we make a sequence of new values for `Education` from the minimum to the maximum in 30 equal increments and then make predictions with that object instead of the model data. 
+
+```{r}
+new_ed <- data.frame(
+  Education = seq(from = min(swiss$Education),
+                  to = max(swiss$Education),
+                  length.out = 30
+                  )
+  )
+```
+
+Now make predictions across the range of observed data.
+```{r}
+new_y_preds <- predict(swiss.mod, newdata = new_ed, interval = "prediction")
+
+new_preds <- data.frame(new_ed, new_y_preds)
+
+```
+
+Or, you could make a prediction for a single value. Let's say I ask you to find the mean and 95% confidence interval for a specific value of `Education`. Usually we are interested in the maximum and minimum for communicating change in y across the range of x. To do this, you can just make some new data and print the predictions!
+
+```{r}
+# Make a data frame containing only the max and min values for Education
+point_ed = data.frame(Education = c(min(swiss$Education), max(swiss$Education)))
+
+# Predict new values of y from the model
+point_y_pred <- predict(swiss.mod, point_ed, interval = 'confidence')
+
+# Put the predictions in a data frame with 
+# the min and max values of Education
+point_preds <- data.frame(point_ed, point_y_pred)
+
+# Now you can see your predictions
+print(point_preds)
+
+```
+
+Now, it is really easy for us to say:
+
+> Fertility rate was inversely related to Education (t = 5.95m, p < 0.05), and Education explained about 44% of the variation in Fertility rate. Across the range of observed education values Fertility decreased from a maximum of 78 (95% CI 75 - 83) at Education of 1 to a minimum of 34 (95% CI 21 - 46) at Education of 53 (Figure 1).
+
+Where is Figure 1?
+
+
+### Plotting
+
+Once we are happy with our predictions, we can go ahead and plot them against the raw data to show how our model fit the data. Here is the code that we used to do this in [Chapter 7](#Chapter7) but a little more purpley.
+
+```{r}  
+# Make a pretty plot showing raw data and model predictions
+ggplot(swiss_pred2, aes(x = Education, y = Fertility)) +
+  geom_point(colour = 'plum3', fill = 'plum3', alpha = 0.75, size = 4) +
+  geom_line( aes(y = fit), size = 1, color='purple', alpha = .5) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr), 
+              color = 'purple4', 
+              fill = 'lavender', 
+              alpha = .4,
+              lty = 2,
+              lwd = .5) +
+  theme_bw() + 
+  theme(legend.position = "none", panel.grid = element_blank())
+
+```
+
+<br>
+
+Now that is a **money** figure that shows your raw data, the model predictions, and the uncertainty associated with both of these. That's what we want to go for every time - with or without the purpleyness.
+
+Multiple regression proceeds in much the same way. In most cases, it is easiest to make model predictions directly from the observed data because when we have multiple continuous `X` variables they are often correlated with one another. We will examine this in detail in [Chapter 11](#Chapter11) when we discuss model selection.
+
+
+## ANCOVA
+
+Now, we are going to step up the complexity a little bit and start to look at how to interpret linear models with more than one variable, and more than one variable type. Exciting, I know!
+
+Last week we worked with the `crickets` data to demonstrate ANCOVA. Let's keep working with that one. 
+
+```{r}
+# Read cricket data
+# This data set contains pulses of
+# 2 species of crickets collected under
+# varying temperatures
+  crickets <- read.csv('data/crickets.txt')
+```
+
+We investigated the additive effects of `Species` and temperature (`Temp`) on chirpy pulses of individual crickets and found significant evidence of both.
+
+```{r, warning=FALSE, message=FALSE}
+# Fit the model
+cricket.mod <- lm(Pulse~Species + Temp, data=crickets)
+```
+
+Here is the summary of the linear model:
+```{r}
+summary(cricket.mod)
+
+```
+
+And the model matrix:
+```{r}
+X <- model.matrix(cricket.mod)
+
+```
+
+You can see that the model matrix still has a column for the `(Intercept)` that represents `Species` `ex` and a dummy variable called `Speciesniv` to indicate rows in the `cricket` data where `Species == niv`. But, now we also have a column in the model matrix for a continuous variable. Not to fear, the math works exactly the same way as it did for ANOVA and for linear regression.
+
+### Prediction
+We could do this using linear algebra (matrix math). Note that the math has stayed the same for ANOVA, regression and ANCOVA. That is because they are all just different special cases of the same general model. 
+```{r}
+X_pred <- as.matrix(model.matrix(cricket.mod))
+betas <- cricket.mod$coefficients
+
+# Multiply betas by dummy coded
+# matrix using transpose of both
+# These are your predictions 
+# for ctrl, trt1, and trt2
+y_pred <- as.vector( t(betas) %*% t(X_pred) )
+
+cricket_pred <- data.frame(crickets, y_pred)
+```
+
+But since it is a pain to get prediction intervals like this, we'll use the default `predict()` function here as well. I am not going to lie, I am literally just copying and pasting code from ANOVA and regression here and changing the names. This is the power of understanding what actually goes on under the hood for us!
+
+```{r, warning = FALSE, message = FALSE}
+# Make predictions
+y_pred <- predict(cricket.mod, interval = "prediction")
+
+# Combine with original data
+cricket_pred <- data.frame(crickets, y_pred)
+
+```
+
+
+### Plotting
+
+Plot the predictions by species. Again, I am pretty much changing the names of the data and the colors at this point. Who'd have thought that fitting and and making predictions from scary ANCOVA models could be so easy!? Dangerously easy...
+
+In this case, though, we should expect to see two lines on our graph if I have not completely lied to you. This is because we have both categorical and continuous explanatory variables in `X`. **Remember that the $\beta$s for categorical variables are just adjustments or offsets to the intercept in linear models.** That means that we should have two parallel lines given that we had two groups (so one intercept + 1 offset) and a single slope. 
+
+```{r}
+# Make a pretty plot showing raw data and model predictions
+ggplot(cricket_pred, aes(x = Temp, y = Pulse, group = Species)) +
+  geom_point(aes(colour = Species, fill = Species), alpha = 0.75, size = 4) +
+  geom_line( aes(y = fit, color = Species), size = 1, alpha = .5) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, color = Species, fill = Species),
+              alpha = 0.25) +
+  scale_fill_manual(values = c('gray40', 'black')) +
+  scale_color_manual(values = c('gray40', 'black')) +
+  xlab(expression(paste("Temperature ( ", degree, "C)"))) +
+  theme_bw() + 
+  theme(panel.grid = element_blank())
+
+```  
+
+Ta-da!
+
+## Next steps {#next10}
+
+Here, we have demonstrated how to communicate the biological predictions of statistical models that we use to test hypotheses. These included most common frameworks for data analysis within the context of linear models. We will continue to apply these tools to as we extend our modeling framework to include non-normal response variables of interest in later chapters. First, in [Chapter 11](#Chapter11), we'll explore model selection as a way of choosing between hypotheses that are represented by all of these different models.
+
