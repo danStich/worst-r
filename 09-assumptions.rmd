@@ -240,18 +240,16 @@ If you look closely, you'll notice that we have repeated observations of individ
 
 You can see how this could get tedious to do for every level of every grouping factor and then for each continuous variable. So, we can also take a "shotgun" approach and look at how variables are related to one another.
 
-This approach allows us to look at relationships between all variables at once. Note below that I am using all columns except `ID` because that graph would be a mess. You'll need to install the `GGally` package to run the following.
-```{r}
-# Load GGally package for ggpairs
-library(GGally)
+This approach allows us to look at relationships between all variables at once. Note below that I am using all columns except `ID` because that graph would be a mess. 
 
+```{r}
 # Look at correlations between variables
-GGally::ggpairs(turtles[ , 2:ncol(turtles)])
+pairs(turtles[ , 2:ncol(turtles)])
 ```
 
 But, for this data set this is really gross and difficult to interpret due to the nature of the variables. This should tell you that thinking about this stuff before you collect data is really important!
 
-It would make a lot more sense for something like the built-in `swiss` data because those variables are all continuous. You can check that out by running `r ggpairs(swiss)` in your code. Look at all of the related variables in the `swiss` data! This relatedness is called **collinearity** and can cause some issues if we are not careful about it.
+It would make a lot more sense for something like the built-in `swiss` data because those variables are all continuous. You can check that out by running `pairs(swiss)` in your code. Look at all of the related variables in the `swiss` data! This relatedness is called **collinearity** and can cause some issues if we are not careful about it.
 
 We'll talk about problems related to correlation between variables (e.g. temperature and photoperiod) in detail when we discuss model selection and collinearity. In the sections that follow, we'll just focus our efforts on diagnosing `Year` as a categorical explanatory variable and `Width` as a continuous explanatory variable.
 
@@ -422,7 +420,7 @@ Bleh. As with our example above, we can see that we clearly fail the assumption 
 
 Let's see if our new toy, the log-transformation can help us here:
 
-```{r eval=FALSE}
+```{r}
 # Fit the model
 log_fit_width <- lm( log(Stay) ~ Width, data = turtles)
 
@@ -431,6 +429,7 @@ ggplot(log_fit_width, aes(x = .fitted, y = .resid, color = Width)) +
   geom_point() +
   xlab("Hook width") + 
   ylab(expression(paste(epsilon)))
+
 ```
 
 Wow, that actually looks a whole lot better! There are still a couple of data points flying high that we would want to investigate further in this data set, but the pukey feeling in my stomach is slowly subsiding here.
@@ -444,8 +443,7 @@ turts <- subset(turtles, !is.na(Width))
 log_fit_width <- lm( log(Stay) ~ Width, data = turts)
 turt_pred <- cbind(turts, predict(log_fit_width, interval = 'confidence'))
 
-ggplot(turt_pred, 
-       aes(x = Width, y = log(Stay), color = Year, fill = Year)) +
+ggplot(turt_pred, aes(x = Width, y = log(Stay), color = Year, fill = Year)) +
   geom_point(alpha = 0.3, size = 2) +
   geom_line(aes(y = fit), size = 1) +
   geom_ribbon(aes(ymin = lwr, ymax = upr, color = NULL), alpha = .3) +

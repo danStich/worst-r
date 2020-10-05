@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -281,6 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.4.1" data-path="10-4-ancova.html"><a href="10-4-ancova.html#prediction-2"><i class="fa fa-check"></i><b>10.4.1</b> Prediction</a></li>
 <li class="chapter" data-level="10.4.2" data-path="10-4-ancova.html"><a href="10-4-ancova.html#plotting-2"><i class="fa fa-check"></i><b>10.4.2</b> Plotting</a></li>
 </ul></li>
+<li class="chapter" data-level="10.5" data-path="10-5-next10.html"><a href="10-5-next10.html"><i class="fa fa-check"></i><b>10.5</b> Next steps</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -306,9 +309,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.3</span> Multiple linear regression</h2>
 <p>We can, of course, extend this to include multiple continuous explanatory variables of interest just as we did with ANOVA for multiple categorical explanatory variables!</p>
 <p>Here is an example to whet your appetite. Let’s say we want a multiple regression model that includes both <code>Education</code> and <code>Catholic</code>?</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="7-3-multiple-linear-regression.html#cb39-1"></a>multiple_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education <span class="op">+</span><span class="st"> </span>Catholic, <span class="dt">data =</span> swiss)</span>
-<span id="cb39-2"><a href="7-3-multiple-linear-regression.html#cb39-2"></a></span>
-<span id="cb39-3"><a href="7-3-multiple-linear-regression.html#cb39-3"></a><span class="kw">summary</span>(multiple_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="7-3-multiple-linear-regression.html#cb320-1"></a>multiple_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education <span class="op">+</span><span class="st"> </span>Catholic, <span class="dt">data =</span> swiss)</span>
+<span id="cb320-2"><a href="7-3-multiple-linear-regression.html#cb320-2"></a></span>
+<span id="cb320-3"><a href="7-3-multiple-linear-regression.html#cb320-3"></a><span class="kw">summary</span>(multiple_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Fertility ~ Education + Catholic, data = swiss)
@@ -329,12 +332,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.5745,	Adjusted R-squared:  0.5552 
 ## F-statistic:  29.7 on 2 and 44 DF,  p-value: 6.849e-09</code></pre>
 <p>Or if we really want to get crazy with the hot sauce:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="7-3-multiple-linear-regression.html#cb41-1"></a>full_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(</span>
-<span id="cb41-2"><a href="7-3-multiple-linear-regression.html#cb41-2"></a>  Fertility <span class="op">~</span><span class="st"> </span>Agriculture <span class="op">+</span><span class="st"> </span>Examination <span class="op">+</span><span class="st"> </span>Education <span class="op">+</span><span class="st"> </span>Catholic,</span>
-<span id="cb41-3"><a href="7-3-multiple-linear-regression.html#cb41-3"></a>  <span class="dt">data =</span> swiss</span>
-<span id="cb41-4"><a href="7-3-multiple-linear-regression.html#cb41-4"></a>  )</span>
-<span id="cb41-5"><a href="7-3-multiple-linear-regression.html#cb41-5"></a></span>
-<span id="cb41-6"><a href="7-3-multiple-linear-regression.html#cb41-6"></a><span class="kw">summary</span>(full_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="7-3-multiple-linear-regression.html#cb322-1"></a>full_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(</span>
+<span id="cb322-2"><a href="7-3-multiple-linear-regression.html#cb322-2"></a>  Fertility <span class="op">~</span><span class="st"> </span>Agriculture <span class="op">+</span><span class="st"> </span>Examination <span class="op">+</span><span class="st"> </span>Education <span class="op">+</span><span class="st"> </span>Catholic,</span>
+<span id="cb322-3"><a href="7-3-multiple-linear-regression.html#cb322-3"></a>  <span class="dt">data =</span> swiss</span>
+<span id="cb322-4"><a href="7-3-multiple-linear-regression.html#cb322-4"></a>  )</span>
+<span id="cb322-5"><a href="7-3-multiple-linear-regression.html#cb322-5"></a></span>
+<span id="cb322-6"><a href="7-3-multiple-linear-regression.html#cb322-6"></a><span class="kw">summary</span>(full_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Fertility ~ Agriculture + Examination + Education + 

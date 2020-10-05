@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -281,6 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.4.1" data-path="10-4-ancova.html"><a href="10-4-ancova.html#prediction-2"><i class="fa fa-check"></i><b>10.4.1</b> Prediction</a></li>
 <li class="chapter" data-level="10.4.2" data-path="10-4-ancova.html"><a href="10-4-ancova.html#plotting-2"><i class="fa fa-check"></i><b>10.4.2</b> Plotting</a></li>
 </ul></li>
+<li class="chapter" data-level="10.5" data-path="10-5-next10.html"><a href="10-5-next10.html"><i class="fa fa-check"></i><b>10.5</b> Next steps</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -316,17 +319,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.2.1</span> Simple linear regression</h3>
 <p>Since most folks are probably more familiar with linear regression than with ANOVA whether they know it or not, we’ll jump right into this one with an example using the <code>swiss</code> data.</p>
 <p>These data are for fertility and infant mortality rates as related to a number of socio-economic indicators. Take a moment to look at them:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="7-2-simple-linear-regression.html#cb33-1"></a><span class="kw">data</span>(swiss)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="7-2-simple-linear-regression.html#cb314-1"></a><span class="kw">data</span>(swiss)</span></code></pre></div>
 <p>You can see the description of these data by looking at the help file for the data set as always. Have look on your own:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="7-2-simple-linear-regression.html#cb34-1"></a>?swiss</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="7-2-simple-linear-regression.html#cb315-1"></a>?swiss</span></code></pre></div>
 <p>Now, let’s get cracking.</p>
 <p>We’ll start by fitting a simple model and then build complexity.</p>
 <p>Fit a model that relates fertility to education level. Notice that this looks exactly the same as the call to <code>lm</code> for the ANOVAs above? That’s because they are the same thing and people have been lying to you your whole life. Perhaps it took reading The Worst Stats Text eveR to learn it? If so, I aplogize for your misfortune.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="7-2-simple-linear-regression.html#cb35-1"></a><span class="co"># Fit the model and assign it to a named object</span></span>
-<span id="cb35-2"><a href="7-2-simple-linear-regression.html#cb35-2"></a>fert_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</span>
-<span id="cb35-3"><a href="7-2-simple-linear-regression.html#cb35-3"></a></span>
-<span id="cb35-4"><a href="7-2-simple-linear-regression.html#cb35-4"></a><span class="co"># Summarize the model</span></span>
-<span id="cb35-5"><a href="7-2-simple-linear-regression.html#cb35-5"></a><span class="kw">summary</span>(fert_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="7-2-simple-linear-regression.html#cb316-1"></a><span class="co"># Fit the model and assign it to a named object</span></span>
+<span id="cb316-2"><a href="7-2-simple-linear-regression.html#cb316-2"></a>fert_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</span>
+<span id="cb316-3"><a href="7-2-simple-linear-regression.html#cb316-3"></a></span>
+<span id="cb316-4"><a href="7-2-simple-linear-regression.html#cb316-4"></a><span class="co"># Summarize the model</span></span>
+<span id="cb316-5"><a href="7-2-simple-linear-regression.html#cb316-5"></a><span class="kw">summary</span>(fert_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Fertility ~ Education, data = swiss)
@@ -354,24 +357,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Let’s explain this by actually looking at the data and plotting our model over the top of it.</p>
 <p>First, we’ll use the built-in <code>predict()</code> function to create a trend line and a prediction interval. We’ll dig deeper into how to do this in <a href="10-Chapter10.html#Chapter10">Chapter 10</a>.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="7-2-simple-linear-regression.html#cb37-1"></a><span class="co"># Make predictions from the fitted model object using observed data</span></span>
-<span id="cb37-2"><a href="7-2-simple-linear-regression.html#cb37-2"></a>predicted_fertility =<span class="st"> </span><span class="kw">predict</span>(fert_mod, <span class="dt">interval =</span> <span class="st">&#39;confidence&#39;</span>)</span>
-<span id="cb37-3"><a href="7-2-simple-linear-regression.html#cb37-3"></a></span>
-<span id="cb37-4"><a href="7-2-simple-linear-regression.html#cb37-4"></a><span class="co"># Add these to the swiss data</span></span>
-<span id="cb37-5"><a href="7-2-simple-linear-regression.html#cb37-5"></a>swiss_pred &lt;-<span class="st"> </span><span class="kw">cbind</span>(swiss, predicted_fertility)</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="7-2-simple-linear-regression.html#cb318-1"></a><span class="co"># Make predictions from the fitted model object using observed data</span></span>
+<span id="cb318-2"><a href="7-2-simple-linear-regression.html#cb318-2"></a>predicted_fertility =<span class="st"> </span><span class="kw">predict</span>(fert_mod, <span class="dt">interval =</span> <span class="st">&#39;confidence&#39;</span>)</span>
+<span id="cb318-3"><a href="7-2-simple-linear-regression.html#cb318-3"></a></span>
+<span id="cb318-4"><a href="7-2-simple-linear-regression.html#cb318-4"></a><span class="co"># Add these to the swiss data</span></span>
+<span id="cb318-5"><a href="7-2-simple-linear-regression.html#cb318-5"></a>swiss_pred &lt;-<span class="st"> </span><span class="kw">cbind</span>(swiss, predicted_fertility)</span></code></pre></div>
 <p>Now, we can plot the raw data as a scatterplot and add our model estimates over the top. You should notice that the confidence interval is much wider at high values of <code>Education</code> because there are few data points and thus more uncertainty in that part of the data.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="7-2-simple-linear-regression.html#cb38-1"></a><span class="co"># Sets up data and aesthetics</span></span>
-<span id="cb38-2"><a href="7-2-simple-linear-regression.html#cb38-2"></a><span class="kw">ggplot</span>(swiss_pred, </span>
-<span id="cb38-3"><a href="7-2-simple-linear-regression.html#cb38-3"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Education, <span class="dt">y =</span> Fertility)) <span class="op">+</span></span>
-<span id="cb38-4"><a href="7-2-simple-linear-regression.html#cb38-4"></a><span class="st">  </span><span class="co"># Adds raw data as points</span></span>
-<span id="cb38-5"><a href="7-2-simple-linear-regression.html#cb38-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">colour =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">alpha =</span> <span class="fl">0.3</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb38-6"><a href="7-2-simple-linear-regression.html#cb38-6"></a><span class="st">  </span><span class="co"># Adds regression line</span></span>
-<span id="cb38-7"><a href="7-2-simple-linear-regression.html#cb38-7"></a><span class="st">  </span><span class="kw">geom_line</span>( <span class="kw">aes</span>(<span class="dt">y =</span> fit), <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb38-8"><a href="7-2-simple-linear-regression.html#cb38-8"></a><span class="st">  </span><span class="co"># Adds 95% confidence interval</span></span>
-<span id="cb38-9"><a href="7-2-simple-linear-regression.html#cb38-9"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr), <span class="dt">color =</span> <span class="st">&#39;purple&#39;</span>, <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span></span>
-<span id="cb38-10"><a href="7-2-simple-linear-regression.html#cb38-10"></a><span class="st">  </span><span class="co"># Adds sweet style tweaks of your choosing</span></span>
-<span id="cb38-11"><a href="7-2-simple-linear-regression.html#cb38-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="7-2-simple-linear-regression.html#cb319-1"></a><span class="co"># Sets up data and aesthetics</span></span>
+<span id="cb319-2"><a href="7-2-simple-linear-regression.html#cb319-2"></a><span class="kw">ggplot</span>(swiss_pred, </span>
+<span id="cb319-3"><a href="7-2-simple-linear-regression.html#cb319-3"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Education, <span class="dt">y =</span> Fertility)) <span class="op">+</span></span>
+<span id="cb319-4"><a href="7-2-simple-linear-regression.html#cb319-4"></a><span class="st">  </span><span class="co"># Adds raw data as points</span></span>
+<span id="cb319-5"><a href="7-2-simple-linear-regression.html#cb319-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">colour =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">alpha =</span> <span class="fl">0.3</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb319-6"><a href="7-2-simple-linear-regression.html#cb319-6"></a><span class="st">  </span><span class="co"># Adds regression line</span></span>
+<span id="cb319-7"><a href="7-2-simple-linear-regression.html#cb319-7"></a><span class="st">  </span><span class="kw">geom_line</span>( <span class="kw">aes</span>(<span class="dt">y =</span> fit), <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb319-8"><a href="7-2-simple-linear-regression.html#cb319-8"></a><span class="st">  </span><span class="co"># Adds 95% confidence interval</span></span>
+<span id="cb319-9"><a href="7-2-simple-linear-regression.html#cb319-9"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr), <span class="dt">color =</span> <span class="st">&#39;purple&#39;</span>, <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span></span>
+<span id="cb319-10"><a href="7-2-simple-linear-regression.html#cb319-10"></a><span class="st">  </span><span class="co"># Adds sweet style tweaks of your choosing</span></span>
+<span id="cb319-11"><a href="7-2-simple-linear-regression.html#cb319-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
 <p>Again, dangerously easy.</p>
 </div>
 </div>

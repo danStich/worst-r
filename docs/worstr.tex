@@ -2825,7 +2825,7 @@ Let's do it again with that function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0
+## [1] 1
 \end{verbatim}
 
 Or we could hatch a whole bunch of eggs:
@@ -2838,7 +2838,7 @@ Or we could hatch a whole bunch of eggs:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1 1 1 1 0 0 0 1 1 1
+##  [1] 1 0 0 1 0 0 1 1 0 0
 \end{verbatim}
 
 Then, we could even count how many of those were successful. Do you remember how to do that? There are several different ways. You'll have to come up with one for the homework assignment (hint: see \protect\hyperlink{Chapter2}{Chapter 2}).
@@ -2860,7 +2860,7 @@ To sample data from a binomial distribution, we can use \texttt{rbinom} from bas
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 4 5 5 6 6 3 6 2 6 7
+##  [1] 6 5 5 5 3 6 4 7 5 6
 \end{verbatim}
 
 Remember as you look through these that your numbers should look different than mine (at least most of the time) because these are being generated randomly.
@@ -2929,30 +2929,30 @@ Have a look:
 ##       [,1] [,2] [,3] [,4] [,5]
 ##  [1,]    0    0    0    0    0
 ##  [2,]    0    0    0    0    0
-##  [3,]    0    0    0    0    0
+##  [3,]    0    0    0    1    0
 ##  [4,]    0    0    0    0    0
 ##  [5,]    0    0    0    0    0
 ##  [6,]    0    0    0    0    0
 ##  [7,]    0    0    0    0    0
-##  [8,]    0    0    0    0    0
+##  [8,]    0    0    0    0    1
 ##  [9,]    0    0    0    0    0
-## [10,]    0    0    0    0    0
+## [10,]    1    0    0    0    0
 ## [11,]    0    0    0    0    0
-## [12,]    0    1    0    0    0
+## [12,]    0    0    0    0    0
 ## [13,]    0    0    0    0    0
 ## [14,]    0    0    0    0    0
 ## [15,]    0    0    0    0    0
-## [16,]    0    0    0    1    0
+## [16,]    0    0    0    0    0
 ## [17,]    0    0    0    0    0
 ## [18,]    0    0    0    0    0
 ## [19,]    0    0    0    0    0
-## [20,]    0    0    0    0    1
+## [20,]    0    0    1    0    0
 ## [21,]    0    0    0    0    0
 ## [22,]    0    0    0    0    0
-## [23,]    1    0    0    0    0
+## [23,]    0    0    0    0    0
 ## [24,]    0    0    0    0    0
-## [25,]    0    0    0    0    0
-## [26,]    0    0    1    0    0
+## [25,]    0    1    0    0    0
+## [26,]    0    0    0    0    0
 \end{verbatim}
 
 \textbf{WHOA} a matrix??!!! \textbf{What does it all mean}?
@@ -2983,14 +2983,14 @@ Take a step back, breathe, and think about this. The rows in this matrix are you
 ## [12,]    0
 ## [13,]    0
 ## [14,]    0
-## [15,]    1
+## [15,]    0
 ## [16,]    0
 ## [17,]    0
 ## [18,]    0
 ## [19,]    0
 ## [20,]    0
 ## [21,]    0
-## [22,]    0
+## [22,]    1
 ## [23,]    0
 ## [24,]    0
 ## [25,]    0
@@ -3014,9 +3014,9 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 ##  [5,] "Sarah"       "0"
 ##  [6,] "Shannon"     "0"
 ##  [7,] "Olivia"      "0"
-##  [8,] "Ebony"       "1"
+##  [8,] "Ebony"       "0"
 ##  [9,] "Julia"       "0"
-## [10,] "Davi"        "0"
+## [10,] "Davi"        "1"
 ## [11,] "Gabrielle"   "0"
 ## [12,] "Jordan"      "0"
 ## [13,] "Tayler"      "0"
@@ -3046,30 +3046,30 @@ Now, if I was calling on you randomly in class, after 10 questions, the spread o
 \begin{verbatim}
 ##       name                                                 
 ##  [1,] "Ava"         "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [2,] "Dillon"      "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [2,] "Dillon"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [3,] "Delaney"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [4,] "Manolo"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [5,] "Sarah"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [4,] "Manolo"      "0" "0" "0" "0" "0" "0" "0" "0" "1" "0"
+##  [5,] "Sarah"       "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
 ##  [6,] "Shannon"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [7,] "Olivia"      "1" "0" "1" "0" "0" "0" "0" "0" "0" "0"
-##  [8,] "Ebony"       "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
-##  [9,] "Julia"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [10,] "Davi"        "0" "0" "0" "0" "0" "0" "0" "0" "1" "0"
+##  [7,] "Olivia"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [8,] "Ebony"       "0" "0" "0" "0" "1" "0" "1" "0" "0" "0"
+##  [9,] "Julia"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "1"
+## [10,] "Davi"        "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [11,] "Gabrielle"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [12,] "Jordan"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [13,] "Tayler"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [14,] "Summer"      "0" "0" "0" "0" "1" "0" "0" "0" "0" "0"
-## [15,] "Leah"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [14,] "Summer"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [15,] "Leah"        "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
 ## [16,] "Christine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [17,] "Ashley"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [18,] "Katherine"   "0" "0" "0" "0" "0" "0" "1" "0" "0" "0"
-## [19,] "James"       "0" "0" "0" "0" "0" "0" "0" "1" "0" "0"
+## [18,] "Katherine"   "1" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [19,] "James"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [20,] "Emily"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [21,] "Cassidy"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "1"
-## [22,] "Maximillion" "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [21,] "Cassidy"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [22,] "Maximillion" "0" "0" "0" "0" "0" "0" "0" "1" "0" "0"
 ## [23,] "Sierra"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [24,] "Kyle"        "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
-## [25,] "Diana"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [24,] "Kyle"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [25,] "Diana"       "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
 ## [26,] "Amanda"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 \end{verbatim}
 
@@ -3082,7 +3082,7 @@ Taking this one step further, we could just draw a name and stop looking at thes
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Cassidy"
+## [1] "Olivia"
 \end{verbatim}
 
 And now we have a way to randomly select an individual based on a multinomial distribution. What fun!
@@ -3318,7 +3318,7 @@ First, we'll estimate it by making our own function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.976874  4.008235
+## [1] 19.996561  4.002806
 \end{verbatim}
 
 Because this one is so common, R has built-in estimators that rely on
@@ -3332,7 +3332,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.97687
+## [1] 19.99656
 \end{verbatim}
 
 \begin{Shaded}
@@ -3342,7 +3342,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.008636
+## [1] 4.003206
 \end{verbatim}
 
 Wow, that was a lot less code. That is the beauty of having these functions available. How do these compare to the answers returned by our function if you scroll back up?
@@ -3360,8 +3360,8 @@ R also has built-in \textbf{maximum likelihood} estimators that provide an exact
 
 \begin{verbatim}
 ##       mean           sd     
-##   19.97687446    2.00205773 
-##  ( 0.02002058) ( 0.01415669)
+##   19.99656131    2.00070135 
+##  ( 0.02000701) ( 0.01414709)
 \end{verbatim}
 
 Only one problem here: R doesn't report the second moment! It reports
@@ -3410,14 +3410,14 @@ To get started, we need to take a guess at what those parameters could be. (Yes,
 
 \begin{verbatim}
 ## $par
-## [1] 19.976970  4.007722
+## [1] 19.996224  4.003123
 ## 
 ## $value
-## [1] 21131.14
+## [1] 21124.36
 ## 
 ## $counts
 ## function gradient 
-##       51       NA 
+##       47       NA 
 ## 
 ## $convergence
 ## [1] 0
@@ -3462,9 +3462,9 @@ Look at the structure I'll be damned, it's a list! Hey, we learned about those!
 
 \begin{verbatim}
 ## List of 5
-##  $ par        : num [1:2] 19.97 4.01
-##  $ value      : num 21131
-##  $ counts     : Named int [1:2] 97 NA
+##  $ par        : num [1:2] 20 4
+##  $ value      : num 21124
+##  $ counts     : Named int [1:2] 103 NA
 ##   ..- attr(*, "names")= chr [1:2] "function" "gradient"
 ##  $ convergence: int 0
 ##  $ message    : NULL
@@ -3480,7 +3480,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.97423  4.01201
+## [1] 19.99900  4.00334
 \end{verbatim}
 
 \begin{Shaded}
@@ -3491,7 +3491,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.97423
+## [1] 19.999
 \end{verbatim}
 
 \begin{Shaded}
@@ -3502,7 +3502,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.01201
+## [1] 4.00334
 \end{verbatim}
 
 There you have it, a couple of different ways to calculate parameters of the normal distribution using a couple of different approaches each.
@@ -3520,7 +3520,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.99038
+## [1] 20.0087
 \end{verbatim}
 
 \begin{Shaded}
@@ -3532,7 +3532,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##     2.5%    97.5% 
-## 15.99838 23.87155
+## 16.15431 24.02822
 \end{verbatim}
 
 \begin{Shaded}
@@ -3544,7 +3544,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##      25%      75% 
-## 18.64695 21.30840
+## 18.62290 21.32559
 \end{verbatim}
 
 \begin{Shaded}
@@ -3555,7 +3555,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 12.49914 27.92930
+## [1] 12.17453 28.02906
 \end{verbatim}
 
 \hypertarget{next5}{%
@@ -4539,8 +4539,8 @@ Here, we will use a data set describing differences in the mass of belly- button
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{main-effects-model}{%
-\subsubsection{Main effects model}\label{main-effects-model}}
+\hypertarget{main-effects-7}{%
+\subsubsection{Main effects model}\label{main-effects-7}}
 
 Now we can fit a model to the data. This will work the same way as for the one-way ANOVA above, but this time we will add more terms on the right hand side of the equation. We will start by looking at the \emph{main effects} model for this data set.
 
@@ -4689,8 +4689,8 @@ Perhaps we hypothesize that lint accumulation in the belly buttons of females di
 
 Alas, in the case of the lint model, this interaction is not significant, so we lack the evidence we would need to say that lint accumulation changes differently between genders within species.
 
-\hypertarget{linear-regression}{%
-\section{Linear regression}\label{linear-regression}}
+\hypertarget{simple-linear-regression}{%
+\section{Simple linear regression}\label{simple-linear-regression}}
 
 We have now considered the case of what to do when we have a numerical response and categorical explanatory variable(s) with any number of groups or grouping variables. But, what if we have both a numerical response and numerical explanatory variables? Fear not, there is a stat for that! Now we are entering the realm of correlation and regression. Next week, we'll show that ANOVA is, in fact, just a special kind of regression.
 
@@ -4708,8 +4708,8 @@ In the case of statistics, we usually represent the formula for a line like this
 
 We are ignoring an important part of these statistical models for now. In most cases, though, we will be estimating a parameter for the intercept and one parameter for each explanatory variable of interest.
 
-\hypertarget{simple-linear-regression}{%
-\subsection{Simple linear regression}\label{simple-linear-regression}}
+\hypertarget{simple-linear-regression-1}{%
+\subsection{Simple linear regression}\label{simple-linear-regression-1}}
 
 Since most folks are probably more familiar with linear regression than with ANOVA whether they know it or not, we'll jump right into this one with an example using the \texttt{swiss} data.
 
@@ -4798,13 +4798,13 @@ Now, we can plot the raw data as a scatterplot and add our model estimates over 
 \begin{Highlighting}[]
 \CommentTok{# Sets up data and aesthetics}
 \KeywordTok{ggplot}\NormalTok{(swiss_pred, }
-       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Education, }\DataTypeTok{y =}\NormalTok{ Fertility, }\DataTypeTok{color =} \StringTok{'red'}\NormalTok{, }\DataTypeTok{fill =} \StringTok{'red'}\NormalTok{)) }\OperatorTok{+}
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Education, }\DataTypeTok{y =}\NormalTok{ Fertility)) }\OperatorTok{+}
 \StringTok{  }\CommentTok{# Adds raw data as points}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{colour =} \StringTok{'blue'}\NormalTok{, }\DataTypeTok{fill =} \StringTok{'blue'}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{, }\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\CommentTok{# Adds regression line}
 \StringTok{  }\KeywordTok{geom_line}\NormalTok{( }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ fit), }\DataTypeTok{size =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\CommentTok{# Adds 95% confidence interval}
-\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr, }\DataTypeTok{color =} \OtherTok{NULL}\NormalTok{), }\DataTypeTok{alpha =} \FloatTok{.2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr), }\DataTypeTok{color =} \StringTok{'purple'}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{.2}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\CommentTok{# Adds sweet style tweaks of your choosing}
 \StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
 \end{Highlighting}
@@ -4813,6 +4813,9 @@ Now, we can plot the raw data as a scatterplot and add our model estimates over 
 \includegraphics{worstr_files/figure-latex/unnamed-chunk-203-1.pdf}
 
 Again, dangerously easy.
+
+\hypertarget{multiple-linear-regression}{%
+\section{Multiple linear regression}\label{multiple-linear-regression}}
 
 We can, of course, extend this to include multiple continuous explanatory variables of interest just as we did with ANOVA for multiple categorical explanatory variables!
 
@@ -4894,6 +4897,10 @@ During the next couple of weeks, we'll try to figure out a way to deal with this
 \hypertarget{Chapter8}{%
 \chapter{General linear models}\label{Chapter8}}
 
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-206-1.pdf}
+
+This is not the picture from Chapter 4. It is a new picture but it looks just like that one. That's because they are both linear models. This one just has two intercepts!
+
 \hypertarget{analysis-of-covariance-ancova}{%
 \section{Analysis of covariance (ANCOVA)}\label{analysis-of-covariance-ancova}}
 
@@ -4960,7 +4967,7 @@ We use the \texttt{lm()} function to fit the model, and the formula looks identi
 \end{Highlighting}
 \end{Shaded}
 
-Install the \texttt{car} package. We need a function from this library for model summary because now we have a mix of categorical and continuous explanatory variables.
+Install the \texttt{car} package. We need a function from this package for model summary because now we have a mix of categorical and continuous explanatory variables. This means we want to calculate the sums of squared errors a little differently than we did before.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4969,11 +4976,11 @@ Install the \texttt{car} package. We need a function from this library for model
 \end{Highlighting}
 \end{Shaded}
 
-Now we create the anova table for our ancova model
+Now we create the ANVOA table for our ANCOVA model
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{Anova}\NormalTok{(cricket_mod, }\DataTypeTok{type=}\StringTok{'III'}\NormalTok{)}
+\NormalTok{car}\OperatorTok{::}\KeywordTok{Anova}\NormalTok{(cricket_mod, }\DataTypeTok{type=}\StringTok{'III'}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4990,7 +4997,7 @@ Now we create the anova table for our ancova model
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
-And we can look at the summary of the linear model
+And we can look at the summary:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5053,10 +5060,10 @@ Now, we can plot the raw data as a scatterplot and add our model estimates over 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{worstr_files/figure-latex/unnamed-chunk-213-1.pdf}
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-214-1.pdf}
 
-\hypertarget{next7}{%
-\section{Next steps}\label{next7}}
+\hypertarget{next8}{%
+\section{Next steps}\label{next8}}
 
 Now that you hold real power in your hands to do data analysis, we need to to have our first talk about due diligence and assumptions of the statistical models that we use.
 
@@ -5070,10 +5077,1610 @@ There are three fundamental assumptions that we either need to validate or addre
 \item
   Normality of residuals (with mean = 0)
 \item
-  Homogeneity of variances (i.e.~homoscedasticity)
+  Homogeneity of variances
 \end{enumerate}
 
 We will discuss what each of these means and how to assess them in \protect\hyperlink{Chapter9}{Chapter 9}. During remaining Chapters, we will continue to discuss methods for verifying or relaxing these assumptions to meet our needs through specific techniques.
+
+\hypertarget{Chapter9}{%
+\chapter{Assumptions of linear models}\label{Chapter9}}
+
+Statistics is like a fine-tuned machine that relies on many moving parts to work reliably, unlike the broken watch in the image above. What, you expected a working watch? Maybe you need to \textbf{check your assumptions}! This is The Worst Stats Text eveR. Just goes to show that even the fanciest model is useless if you don't validate that it works.
+
+\hypertarget{intro9}{%
+\section{Introduction}\label{intro9}}
+
+In this chapter, we will start by taking a step back for an in-depth look at the assumptions we make when we fit parametric models to data in an effort to explain the effects of explanatory variables on some response of interest, using linear models as the backdrop for our discussions. In previous chapters we learned how to fit linear models. The purpose of this chapter is to provide you with the tools you need on the front end and the back end of that process so we are surrounding linear models with the goodness they deserve.
+
+We will also continue to talk about linear models that include multiple explanatory variables. Specifically, we will discuss how relationships between these variables might influence which ones we include in a given model and how we make defensible decisions when it comes to these choices. We will further probe the concept of the R\textsuperscript{2} statistic as a measure of model fit, and how this is influenced by the inclusion of multiple explanatory variables.
+
+Finally, we will conclude our discussions this week with tools for communicating the results of our analyses once we have verified that we are not in major violation of assumptions in \protect\hyperlink{Chapter10}{Chapter 10}. To do this, we will need to look a little more closely at the math behind linear models (not too closely!) and what exactly we are doing when we fit a linear model. These discussions will include the essential concepts of main effects, interaction effects, and response `surfaces' for the case in which we include more than one explanatory variable. Please keep in mind that although we are using strictly linear models to introduce these concepts their application in the suite of models that we will discuss for the next several weeks is virtually identical, and we will discuss exactly why this is.
+
+We'll be working with the functions from various packages in the \texttt{tidyverse} and with the \texttt{turtles.txt} data file for this chapter. You'll also need to install the \texttt{GGally} package if you don't have it. Go ahead and load those in your code whenever you are ready to get started. I'll keep track of how long it takes on my broken watch.
+
+\hypertarget{assumptions-of-linear-models}{%
+\section{Assumptions of linear models}\label{assumptions-of-linear-models}}
+
+From last week:
+
+\begin{quote}
+Now that you hold real power in your hands to do data analysis, we need to to have our first talk about due diligence and assumptions of the statistical models that we use.
+There are three fundamental assumptions that we either need to validate or address through experimental design in this class of models.
+\end{quote}
+
+\begin{quote}
+\textbf{1.} Independence of observations.
+\textbf{2.} Normality of residuals (with mean=0)
+\textbf{3.} Homogeneity of variances (i.e.~homoscedasticity)
+\end{quote}
+
+We will discuss what each of these means in class this week, and during the next several weeks we will discuss methods for verifying these assumptions or relaxing the assumptions to meet our needs through specific techniques.
+
+\hypertarget{ughmath}{%
+\section{WTF is a residuals?}\label{ughmath}}
+
+Up until now, we've been talking about the formula of a line in geometric terms as \(y = mx + b\) or \(y = \beta_0 + \beta X\). In \protect\hyperlink{Chapter7}{Chapter 7} we extended this simple linear form to be:
+
+\[y = \beta_0 + \beta_1 X_1 ... + \beta_k X_k\]
+
+or
+
+\[\sum_{k=1}^{K} \beta_0 + \beta_k X_k\]
+
+for however many \emph{K} explanatory variables we may wish to include in a linear model. That's gross, but it's about to get grosser. (More gross? Who cares, this is The Worst Stats Text eveR - go Google it)
+
+In this chapter we are going to acknowledge for the first time that it has all been a lie even though those summation symbols really make this book look more official.
+
+From now on, we are going to think about linear models, and all their generalizations or specializations, like this:
+
+\[y = \beta_0 + \beta X + \epsilon\]
+
+or
+
+\[\sum_{k=1}^{K} \beta_0 + \beta_k X_k + \epsilon\]
+if you like that one better.
+
+\begin{quote}
+Don't freak out. The only thing that has changed is that we added an error term.
+\end{quote}
+
+The error term, \(\epsilon\), is called the \textbf{residual error}. For grouping variables, it is \textbf{the difference between each i\textsuperscript{th} observation \(x\) and the mean} (\(\bar{x}\)):
+
+\(\epsilon_i = x_i - \bar{x}\)
+
+This should look really familiar if you've seen the formula for the variance of a normal distribution (which you have because you definitely read and understood \protect\hyperlink{Chapter5}{Chapter 5}):
+
+\[\sigma^2 = \frac{ {\sum_{i=1}^{n} (x - \bar{x})^2}}{n - 1}\]
+
+\hypertarget{residuals-in-anova}{%
+\subsection{Residuals in ANOVA}\label{residuals-in-anova}}
+
+The error for each observation is calculated relative to both the grand mean and group-specific means for each observation (data point) in ANOVA. And, these errors are directly related to the calculation of the sum of squares calculations we talked about for t-tests in \protect\hyperlink{Chapter6}{Chapter 6} and ANOVA in \protect\hyperlink{Chapter7}{Chapter 7}. As an example of what this looks like, we can calculate the residual error (\(\epsilon\)) of \texttt{Petal.Length} for each \texttt{Species} in the \texttt{iris} data like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Load the iris data}
+\KeywordTok{data}\NormalTok{(iris)}
+
+\CommentTok{# Calculate mean of each group}
+\NormalTok{means <-}\StringTok{ }\NormalTok{iris }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Species) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{x_bar =} \KeywordTok{mean}\NormalTok{(Petal.Length))}
+
+\CommentTok{# Have a look}
+\NormalTok{means}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##   Species    x_bar
+##   <fct>      <dbl>
+## 1 setosa      1.46
+## 2 versicolor  4.26
+## 3 virginica   5.55
+\end{verbatim}
+
+If we merge these group \texttt{means} with the \texttt{iris} data, it is really easy to calculate the error for each observation in each \texttt{Species}, or group:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Merge them. R will use "Species"  in both by default}
+\NormalTok{resid_df <-}\StringTok{ }\KeywordTok{merge}\NormalTok{(iris, means)}
+
+\CommentTok{# Calculate residual error:}
+\NormalTok{resid_df}\OperatorTok{$}\NormalTok{epsilon <-}\StringTok{ }\NormalTok{resid_df}\OperatorTok{$}\NormalTok{Petal.Length }\OperatorTok{-}\StringTok{ }\NormalTok{resid_df}\OperatorTok{$}\NormalTok{x_bar}
+\end{Highlighting}
+\end{Shaded}
+
+We can make a histogram of the residuals to confirm the assumption that the residuals are normally distributed with a mean of zero. This assumption is important because it allows us to drop \(\epsilon\) from the equations above and fall back to our old friend \(y = mx + b\). As you can see below, the mean of our residuals is about zero, and the distribution of residuals also appears to be symmetrical (normal).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(resid_df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ epsilon)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-218-1.pdf}
+
+We could also examine residuals within \texttt{Species} using a box plot. Again, we should see that our residuals are normally distributed with a mean of zero within groups. However, you may notice that the variance of \(\epsilon\) is clearly not equal between groups.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(resid_df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Species, }\DataTypeTok{y =}\NormalTok{ epsilon)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-219-1.pdf}
+
+\hypertarget{residuals-in-linear-regression}{%
+\subsection{Residuals in linear regression}\label{residuals-in-linear-regression}}
+
+For linear regression (continuous \(X\)), the residuals are calculated as the difference between each data point (\(x\)) and the corresponding prediction of \(\hat{y}\) at that value of \(x\) from the line of best fit (\(\epsilon_i = x_i - \hat{y}\)). These are referred to as \texttt{fitted} (\(x\)) and \texttt{predicted} (\(\hat{y}\)) values in R.
+
+Here's some code in case the math isn't doing it for you. Don't worry, we'll make some graphs, too.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fit a linear regression to estimate change}
+\CommentTok{# in Petal.Width with Petal.Length}
+\NormalTok{fit_lm <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Petal.Width }\OperatorTok{~}\StringTok{ }\NormalTok{Petal.Length, }\DataTypeTok{data =}\NormalTok{ iris)}
+
+\CommentTok{# Now extract the residuals from}
+\CommentTok{# the fitted model object}
+\NormalTok{resids <-}\StringTok{ }\NormalTok{fit_lm}\OperatorTok{$}\NormalTok{residuals}
+\end{Highlighting}
+\end{Shaded}
+
+The order of values in the vector \texttt{resids} in the code above matches the order of the data in \texttt{iris}, so we can combine these as we did above:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris}\OperatorTok{$}\NormalTok{resids <-}\StringTok{ }\NormalTok{resids}
+\end{Highlighting}
+\end{Shaded}
+
+And now we can make a histogram to see if they are normal with a mean of zero.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(iris, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ resids)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-222-1.pdf}
+
+This also allows us to determine whether there are any changes in the residuals along the range of \(x\) values to assess whether we have satisfied the assumption of independence of observations. To do this, we just need to plot the residuals against the fitted values (the data in the \texttt{iris\$Petal.Length} column).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(iris, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Petal.Length, }\DataTypeTok{y =}\NormalTok{ resids)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-223-1.pdf}
+
+If we've met assumptions of independence of observations, the plot above should look like random scatter from left to right and top to bottom. Looks like that is not the case here because the group of data on the left have a much lower spread of residuals than the rest of the data. In fact, if you color by \texttt{Species} it becomes obvious that these are samples for \texttt{setosa}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(iris, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Petal.Length, }\DataTypeTok{y =}\NormalTok{ resids, }\DataTypeTok{color =}\NormalTok{ Species)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-224-1.pdf}
+
+Boo \texttt{setosa}!
+
+Finally, if the code doesn't do it for you, we can graph the regression to see what residuals actually look like for our model. It is the squared sum of these errors, specifically, which R is trying to minimize when it estimates the coefficients for the formula of our line. That is why we talk about ``sums of squares'' in ANOVA tables.
+
+Here is a visual representation of residuals. The points are our raw data, the diagonal line is our model prediction, and the vertical lines represent the residual error for each observation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make predictions from the model}
+\NormalTok{y_hat <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(fit_lm)}
+
+
+\KeywordTok{ggplot}\NormalTok{(iris, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Petal.Length, }\DataTypeTok{y =}\NormalTok{ Petal.Width, }\DataTypeTok{color =}\NormalTok{ Species) ) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{se =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{color =} \StringTok{"gray87"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{xend =}\NormalTok{ Petal.Length, }\DataTypeTok{yend =}\NormalTok{ y_hat),}
+               \DataTypeTok{alpha =} \FloatTok{.2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-225-1.pdf}
+
+So, now that we know what residuals \emph{are} or at least what they \emph{look like} we can talk about how they are used.
+
+We will keep making tweaks to our equation in \protect\hyperlink{Chapter10}{Chapter 10} when we start to think of the linear model more accurately as \(y = \beta X + \epsilon\) or \(\sum_{k=1}^{K} \beta_k X_k + \epsilon\) to unify the t-test, ANOVA, linear regression, and ANCOVA into a single general framework (the general linear model you def read about in \protect\hyperlink{Chapter8}{Chapter 8}).
+
+\hypertarget{the-turtle-problem}{%
+\section{The turtle problem}\label{the-turtle-problem}}
+
+Let's get some data to demonstrate these assumptions.
+
+These are data that were collected 2013-2015 for Kemp's Ridley sea turtles incidentally caught by anglers in the Gulf of Mexico. After being caught, the turtles were taken to a wildlife rehabilitation center so they could have fishing hooks removed and recover.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Read in the turtles data,}
+\CommentTok{# It's a bit messy, so we will read it}
+\CommentTok{# in with an extra option to strip white spaces.}
+\NormalTok{turtles =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'data/turtles.txt'}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{strip.white =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Here is a quick explanation of the variables (columns) in the dataframe:
+
+\texttt{ID}: turtle ID
+\texttt{Year}: year of capture
+\texttt{Gear}: the gear type with which the turtle was hooked
+\texttt{Width}: the gape width of the hook
+\texttt{Removed}: the location from which the hook was removed
+\texttt{Status}: survived (1) or did not (0)
+\texttt{Stay}: length of stay in the rehab facility
+\texttt{nHooks}: Number of hooks in the turtle
+
+We will use \texttt{Stay} as the response variable here. This is a great data set because \texttt{Stay} has all kinds of problems related to assumptions of linear models that require analyzing it in a different framework than those we have discussed so far (or will for a few weeks!).
+
+\hypertarget{data-exploration}{%
+\section{Data exploration}\label{data-exploration}}
+
+\hypertarget{independence-of-observations}{%
+\subsection{Independence of observations}\label{independence-of-observations}}
+
+This assumption basically means that each row of your data was collected independently of all others. In other words, no two rows of your data are related to one another.
+
+We can relax this assumption by explicitly including variables and constructs within the models that actually account for these kinds of relationships. For example, in one-way ANOVA we include grouping (factor) variables to to account for non-independence of some observations. In fact, this lack of independence is often the very thing we are interested in testing! In ANOVA, we are interested in whether individuals from the same group respond in the same way. Note that this in turn places the assumption of independence on individual measurements within our groups. It's turtles all the way down. (I say this a lot. If you don't know what it means go Google it.)
+
+This assumption really should be be addressed within the context of experimental design. Violations generally require alternatives to the simple cases of one-way ANOVA, ANCOVA or simple linear regression that we will discuss in later chapters. We will discuss specific extensions of our basic linear models (ANOVA and regression) to relax more difficult violations such as repeated observations, and temporal or spatial autocorrelation among observations. Although we can't cover all of these extensions in one book or a single bottom-up biometry class, we can point you in the right direction for most of them.
+
+\textbf{You:} \emph{Get to the point, what are we looking for here}?
+
+\textbf{Me:} \emph{Sorry}. {[}writes rest of chapter{]}
+
+For linear models, we want data that were sampled randomly and independently from all other data points. For this information, we have to examine the actual experimental design. In a best case, an experiment is designed intentionally so that all groups get opposite treatments and those there is no correlation (relationship) between treatments (``orthogonal design''). This is easy to achieve with some thought in the design of controlled experiments, but can be difficult or impossible to do in semi-controlled experiments or observational studies. This is one reason why controlled experimentation has long been thought of as the gold standard in science.
+
+There is one obvious thing that is going to tell us that the observations in \texttt{turtles} are not collected independently, but there are a few others. What is it? You can probably infer the answer just from the variable names.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(turtles, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             ID Year   Gear Width Removed Status Stay nHooks
+## 1       AL-002 2013      J  1.45      UE      1    9      1
+## 2  AL-LT14-001 2014      J  6.25      ME      0    4      1
+## 3  AL-LT14-003 2014      J  5.45     NaN      1   16      1
+## 4  AL-LT14-004 2014  Kahle  2.77       B      0    6      1
+## 5  AL-LT14-006 2014      J  4.75      ME      1   49      2
+## 6  AL-LT14-006 2014 Circle  2.92     NaN      1   49      2
+## 7     LT13-001 2013  Kahle  2.22      ME      1   29      1
+## 8     LT13-003 2013      J  1.34      ME      0    4      1
+## 9     LT13-004 2013      J  1.63      ME      1   33      1
+## 10    LT13-008 2013      J    NA      LE      1   26      2
+\end{verbatim}
+
+If you look closely, you'll notice that we have repeated observations of individuals here. So, we already know that our data do not conform to the assumptions of ANOVA, linear regression, or ANCOVA - but let's keep using these data for the sake of demonstration. There is, of course another major violation of our assumptions that has to do with experimental design (that is commonly violated): these are \textbf{discrete} data! We'll pretend for now that we can think of \texttt{Stay} as a continuous variable, though.
+
+You can see how this could get tedious to do for every level of every grouping factor and then for each continuous variable. So, we can also take a ``shotgun'' approach and look at how variables are related to one another.
+
+This approach allows us to look at relationships between all variables at once. Note below that I am using all columns except \texttt{ID} because that graph would be a mess.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Look at correlations between variables}
+\KeywordTok{pairs}\NormalTok{(turtles[ , }\DecValTok{2}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(turtles)])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-228-1.pdf}
+
+But, for this data set this is really gross and difficult to interpret due to the nature of the variables. This should tell you that thinking about this stuff before you collect data is really important!
+
+It would make a lot more sense for something like the built-in \texttt{swiss} data because those variables are all continuous. You can check that out by running \texttt{pairs(swiss)} in your code. Look at all of the related variables in the \texttt{swiss} data! This relatedness is called \textbf{collinearity} and can cause some issues if we are not careful about it.
+
+We'll talk about problems related to correlation between variables (e.g.~temperature and photoperiod) in detail when we discuss model selection and collinearity. In the sections that follow, we'll just focus our efforts on diagnosing \texttt{Year} as a categorical explanatory variable and \texttt{Width} as a continuous explanatory variable.
+
+\hypertarget{normality}{%
+\subsection{Normality}\label{normality}}
+
+In all linear models we make the assumption that the residual error of our model is normally distributed with a mean of zero. This allows us to drop the error term, \(\epsilon\) from computation in the model fitting and allows us to calculate an exact solution in the case of ANOVA and linear regression. (Technological advances have really made this unnecessary because we can solve everything through optimization now).
+
+There are a multitude of tools at our disposal for examining normality of the residuals for linear models. One option is to examine group-specific error structures as a surrogate for residual error prior to analysis. The other option is to examine diagnostic plots of residuals directly from a fitted model object in R or other software programs (this is actually the more appropriate tool).
+
+We are looking to see if the response variable within each group is normally distributed. To assess this, we need to think in terms of the moments of a normal distribution that we learned about earlier in the course, specifically skew and kurtosis. Here we are looking for outliers in the data, or sample distributions that are highly skewed.
+
+First, we could go level by level for all of our grouping variables and conduct Shapiro tests (not shown here).
+
+We can look at a few different plots of our response to start teasing apart some of the potential violations of our assumptions.
+
+We know we will need to look at a year effect here because that is yet another form of non-independence (and potentially homogeneity) in our data. Let's start with a boxplot:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(turtles, }
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{factor}\NormalTok{(Year), }\DataTypeTok{y =}\NormalTok{ Stay, }\DataTypeTok{group =}\NormalTok{ Year), }\DataTypeTok{fill =} \StringTok{'gray87'}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Year"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-229-1.pdf}
+
+Whoa! We have a couple of issues here.
+
+First of all: we have clearly identified a number of `outliers' in our data. These are the circles that are outside the whiskers of our box plots.
+
+One way to address these outliers is by dropping them from the data. We only want to do this if we have a pretty good justification for this ahead of time (``\emph{a priori}''). And, sometimes these can be some of the most interesting observations.
+
+Another way to deal with this is through data transformation. For example, we could use a log transformation in an attempt to normalize extreme values in our data. This certainly looks a little better, but may not get us all the way there\ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(turtles, }
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{factor}\NormalTok{(Year), }\DataTypeTok{y =} \KeywordTok{log}\NormalTok{(Stay), }\DataTypeTok{group =}\NormalTok{ Year), }
+       \DataTypeTok{fill =} \StringTok{'gray87'}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Year"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-230-1.pdf}
+
+\begin{quote}
+NOTE: I will not cover variable transformation extensively in this class or text. The justification is: 1) you can Google it to learn more about what transformations are useful for what, and 2) I will argue that most of the time there are better methods for dealing with non-normal data and then I will show you how to use those methods as we go.
+\end{quote}
+
+We can also look at histograms to investigate normality within groups. We'll continue using log(Stay) for now.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(turtles, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{log}\NormalTok{(Stay))) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{Year)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-231-1.pdf}
+
+Again, a little better, but perhaps not as good as we'd like.
+
+\hypertarget{homogeneity-of-variances}{%
+\subsection{Homogeneity of variances}\label{homogeneity-of-variances}}
+
+Finally, we assume in all of our linear models that variability in our residuals (which are really just part of our variances) are constant among groups or across the range of continuous variables \(x\). This is the same assumption that we made for t-tests and tested with the F-test in \protect\hyperlink{Chapter6}{Chapter 6}. We'll now look at a few options for linear models in this chapter depending on how the data are structured.
+
+A quick check of variances in the \texttt{Stay} variable by \texttt{Year} will make it clear that we are also in violation of this assumption if we do not log-transform the data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{turtles }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\KeywordTok{var}\NormalTok{(Stay))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##    Year `var(Stay)`
+##   <int>       <dbl>
+## 1  2013      1435. 
+## 2  2014       164. 
+## 3  2015        91.7
+\end{verbatim}
+
+You can go ahead and conduct a few F-tests if you don't believe me that these are different, but I'm pretty sure you won't convince me that the ratios of any two of these variances are equal to 1.00!
+
+This, too, is made magically (A little) better when we log-transform \texttt{Stay}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{turtles }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\KeywordTok{var}\NormalTok{(}\KeywordTok{log}\NormalTok{(Stay)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##    Year `var(log(Stay))`
+##   <int>            <dbl>
+## 1  2013            0.556
+## 2  2014            0.360
+## 3  2015            0.321
+\end{verbatim}
+
+\hypertarget{anova-diagnostics}{%
+\section{ANOVA Diagnostics}\label{anova-diagnostics}}
+
+The preferred method for examining the normality of residuals for us is going to be actually looking at the diagnostics from a fitted model object regardless of the models we choose. This same approach can be applied to t-tests, ANOVA, linear regression, and ANCOVA. We'll start with ANOVA and wrap up with linear regression.
+
+Here, we will conduct an ANOVA to test the null hypothesis that there is no difference in \texttt{Stay} between years (\texttt{Year}) assuming a Type-I error rate (\(\alpha\)) of 0.05.
+
+We are going to need to change \texttt{Year} to a factor for this analysis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{turtles}\OperatorTok{$}\NormalTok{Year <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(turtles}\OperatorTok{$}\NormalTok{Year, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\DecValTok{2013}\NormalTok{, }\DecValTok{2014}\NormalTok{, }\DecValTok{2015}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Fit the model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# First fit a model - the easy part}
+\NormalTok{turdel <-}\StringTok{ }\KeywordTok{lm}\NormalTok{( Stay }\OperatorTok{~}\StringTok{ }\NormalTok{Year, }\DataTypeTok{data =}\NormalTok{ turtles) }
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{ggplot()} function knows just what to do with \texttt{lm()} objects!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(turdel, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ .fitted, }\DataTypeTok{y =}\NormalTok{ .resid, }\DataTypeTok{color=}\NormalTok{Year)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_discrete}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Year"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(epsilon)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-236-1.pdf}
+
+Cool! But\ldots what the heck are we looking at here??
+
+We have pretty much everything we need here to understand whether we have violated the assumptions of linear models from this graph (other design issues notwithstanding).
+
+Remember, the mean of the residuals in each group is supposed to be \textbf{normally distributed with a mean of zero} and the \textbf{variance is equal between groups}. Now, I don't think we need a K-S test or an F-test to say that 1) these resids is def not normal and 2) no way the variances are equal. You can also see that \texttt{ggplot()} has nicely organized our groups in order of increasing magnitude of the residuals from left to right, and that \texttt{2013} and \texttt{2014} were more variable than \texttt{2015}.
+
+We can hit the data with a log transformation to see if it fixes any of our problems:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# First fit a model}
+\NormalTok{log_turdel <-}\StringTok{ }\KeywordTok{lm}\NormalTok{( }\KeywordTok{log}\NormalTok{(Stay) }\OperatorTok{~}\StringTok{ }\NormalTok{Year, }\DataTypeTok{data =}\NormalTok{ turtles) }
+
+\CommentTok{# Now plot the residuals}
+\KeywordTok{ggplot}\NormalTok{(log_turdel, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ .fitted, }\DataTypeTok{y =}\NormalTok{ .resid, }\DataTypeTok{color=}\KeywordTok{factor}\NormalTok{(Year))) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_color_discrete}\NormalTok{(}\DataTypeTok{name =} \StringTok{"Year"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Year"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(epsilon)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-237-1.pdf}
+
+In fact, we see that the model fit has improved substantially, although the outliers in our data are still outliers and there is still some skew in the residuals. But, at least now all three years have residuals with a mean near zero and they're more symmetrical than they were before. You can also see that the groups are now placed more uniformly along the x axis.
+
+If we wanted to investigate further the extent of remaining issues, we could visualize this a little better using a violin plot of the residuals:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Now plot the residuals}
+\KeywordTok{ggplot}\NormalTok{(log_turdel, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ .fitted, }\DataTypeTok{y =}\NormalTok{ .resid, }\DataTypeTok{color=}\KeywordTok{factor}\NormalTok{(Year))) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_violin}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_color_discrete}\NormalTok{(}\DataTypeTok{name =} \StringTok{"Year"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Year"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(epsilon)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-238-1.pdf}
+
+This plot now shows pretty clearly that the variance in the residuals increases from 2013 to 2015, and that there are a lot more outliers in 2013. But, there aren't a ton of outliers, so maybe this is something we could accomodate with the right assumptions about our sampling distribution down the road.
+
+Notice that we still haven't looked at the model results yet? That's not just because this is The Worst Stats Text eveR.
+
+\hypertarget{linear-regression-diagnostics}{%
+\section{Linear regression diagnostics}\label{linear-regression-diagnostics}}
+
+Finally, what if we have a continuous explanatory variable and a continuous response that necessitates use of linear regression or ANCOVA?
+
+We use the same approach (whoa, that's sweet, huh?). Here, let's fit and assess a model that predicts the length of \texttt{Stay} in turtle rehab based on the hook \texttt{Width} that caught them in the first place.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fit the model}
+\NormalTok{fit_width <-}\StringTok{ }\KeywordTok{lm}\NormalTok{( Stay }\OperatorTok{~}\StringTok{ }\NormalTok{Width, }\DataTypeTok{data =}\NormalTok{ turtles)}
+
+\CommentTok{# Now plot the residuals}
+\KeywordTok{ggplot}\NormalTok{(fit_width, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ .fitted, }\DataTypeTok{y =}\NormalTok{ .resid, }\DataTypeTok{color =}\NormalTok{ Width)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Hook width"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(epsilon)))}
+\end{Highlighting}
+\end{Shaded}
+
+Bleh. As with our example above, we can see that we clearly fail the assumption that the residuals are normally distributed with a mean of zero! It also looks like the residual error increases with increasing hook width, which means our observations are also not independent. This specific type of non-independence is called \emph{heteroscedasticity}. That's a real word.
+
+Let's see if our new toy, the log-transformation can help us here:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fit the model}
+\NormalTok{log_fit_width <-}\StringTok{ }\KeywordTok{lm}\NormalTok{( }\KeywordTok{log}\NormalTok{(Stay) }\OperatorTok{~}\StringTok{ }\NormalTok{Width, }\DataTypeTok{data =}\NormalTok{ turtles)}
+
+\CommentTok{# Now plot the residuals}
+\KeywordTok{ggplot}\NormalTok{(log_fit_width, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ .fitted, }\DataTypeTok{y =}\NormalTok{ .resid, }\DataTypeTok{color =}\NormalTok{ Width)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Hook width"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(epsilon)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-240-1.pdf}
+
+Wow, that actually looks a whole lot better! There are still a couple of data points flying high that we would want to investigate further in this data set, but the pukey feeling in my stomach is slowly subsiding here.
+
+And remember, if you \emph{really} want to see how your model fits the data, you could always plot the predictions over the raw data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Need to get rid of a couple NA values}
+\NormalTok{turts <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(turtles, }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(Width))}
+
+\NormalTok{log_fit_width <-}\StringTok{ }\KeywordTok{lm}\NormalTok{( }\KeywordTok{log}\NormalTok{(Stay) }\OperatorTok{~}\StringTok{ }\NormalTok{Width, }\DataTypeTok{data =}\NormalTok{ turts)}
+\NormalTok{turt_pred <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(turts, }\KeywordTok{predict}\NormalTok{(log_fit_width, }\DataTypeTok{interval =} \StringTok{'confidence'}\NormalTok{))}
+
+\KeywordTok{ggplot}\NormalTok{(turt_pred, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Width, }\DataTypeTok{y =} \KeywordTok{log}\NormalTok{(Stay), }\DataTypeTok{color =}\NormalTok{ Year, }\DataTypeTok{fill =}\NormalTok{ Year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{, }\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ fit), }\DataTypeTok{size =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr, }\DataTypeTok{color =} \OtherTok{NULL}\NormalTok{), }\DataTypeTok{alpha =} \FloatTok{.3}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Hook width"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"log(Length of stay in days)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-241-1.pdf}
+
+Surely this plot alone is evidence enough that we need to investigate confounding between hook \texttt{Width} and \texttt{Year} in any further investigation into this data set! Maybe with an ANCOVA?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Need to get rid of a couple NA values}
+\NormalTok{turts <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(turtles, }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(Width))}
+
+\NormalTok{log_fit_width <-}\StringTok{ }\KeywordTok{lm}\NormalTok{( }\KeywordTok{log}\NormalTok{(Stay) }\OperatorTok{~}\StringTok{ }\NormalTok{Year }\OperatorTok{+}\StringTok{ }\NormalTok{Width, }\DataTypeTok{data =}\NormalTok{ turts)}
+\NormalTok{turt_pred <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(turts, }\KeywordTok{predict}\NormalTok{(log_fit_width, }\DataTypeTok{interval =} \StringTok{'confidence'}\NormalTok{))}
+
+\KeywordTok{ggplot}\NormalTok{(turt_pred, }
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Width, }\DataTypeTok{y =} \KeywordTok{log}\NormalTok{(Stay), }\DataTypeTok{color =}\NormalTok{ Year, }\DataTypeTok{fill =}\NormalTok{ Year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{, }\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ fit), }\DataTypeTok{size =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr, }\DataTypeTok{color =} \OtherTok{NULL}\NormalTok{), }\DataTypeTok{alpha =} \FloatTok{.3}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Hook width"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"log(Length of stay in days)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-242-1.pdf}
+
+Holy crap\ldots{}\textbf{three lines}. Where did the other two come from? Keep reading to find out in \protect\hyperlink{Chapter10}{Chapter 10}.
+
+Notice that we still have not looked at the results of any of these models.
+
+\hypertarget{next9}{%
+\section{Next steps}\label{next9}}
+
+This is a lot to take in. But this stuff is important for everything we do in statistics. Do this stuff \textbf{before} you start fitting all kinds of models because it is important to think about ahead of time! Examination of residual plots should become second nature to you in these analyses because it is the most powerful tool you have for testing assumptions. Don't freak out if things don't look perfect (they almost never will), and realize that there may be ways of dealing with violations within the context of linear models. If not, there certainly are other models designed specifically for this purpose.
+
+In \protect\hyperlink{Chapter10}{Chapter 10} we will continue to unpack the linear model as we talk about how to communicate the results of the models after we fit them and validate assumptions.
+
+\hypertarget{Chapter10}{%
+\chapter{Communicating effect sizes}\label{Chapter10}}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-244-1.pdf}
+
+This is the graph showing how the amount of time spent in rehab by sea turtles changed with fishing hook size during three years. We made this in Chapter 3, but I never told you if the effect of hook width was significant because this is The Worst Stats Text eveR. It was not. But then again, you probably could have figured that out from the graph. That's why it's important to show your predictions.
+
+Here's the bad news: add/drop is over and we're about to do some math. Here's the good news: the math will stay the same from now until the end of this book because it is the beautiful, unifying math behind most of the tools we've discussed so far and all the tools to come. Well, I don't know if that's actually good news, but it does sound nice when I say it like that.
+
+Now that we have a handle on interpreting the statistical results of linear models we need to think about how to communicate biological differences (effects) and the uncertainty associated with our predictions. This is a major short coming of many scientific studies, and has led to wide-spread reporting of statistically significant results that confer minimal biological meaning. On the other hand, if we do have really cool biological results, we want to be able to show those to people! A well designed graphic will tell most of your readers more than a parentheses-packed, numerically dense Results section - I don't care how well you write.
+
+How we approach communication of our results can range from summarizing and graphing raw data to plotting futuristic curves over raw data depending on the type of effect we are trying to communicate. That depends, of course, on the model that we fit, the data that we collected, and how they were collected. To do this well, we have to at least understand how R is using our data, and that requires at least a superficial understanding of the actual math we are doing. Sorry. We'll take it one step at a time and work through ANOVA (so hard), linear regressions (super easy), and ANCOVA (not that hard once you ``get it'').
+
+For this chapter, we will revisit some of the built-in data sets we've been using for hypothesis testing and linear models and introduce the \texttt{dental} data set. We'll also be working with a few packages in the \texttt{tidyverse} so you can go ahead and load that now if you want to.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{one-way-anova}{%
+\section{One-way ANOVA}\label{one-way-anova}}
+
+When we are working in the world of one-way ANOVA, or even more complex models that contain only ``main effects'' of categorical, explanatory variables, the interpretation of these effects is relatively straightforward. Let's use the \texttt{PlantGrowth} data as an example.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(}\StringTok{"PlantGrowth"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We'll start here by fitting a one-way anova to test effects of treatment \texttt{group} on on plant \texttt{weight}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Get the names of the df}
+\KeywordTok{names}\NormalTok{(PlantGrowth)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "weight" "group"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fit the model}
+\NormalTok{mod <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(weight}\OperatorTok{~}\NormalTok{group, }\DataTypeTok{data =}\NormalTok{ PlantGrowth)}
+\end{Highlighting}
+\end{Shaded}
+
+We've seen these data and this model before. We know there was a significant effect of treatment on plant weight but only \texttt{trt1} and \texttt{trt2} were different when we checked with the Tukey test. So, for now we will ignore the ANOVA table and just look at the summary.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = weight ~ group, data = PlantGrowth)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.0710 -0.4180 -0.0060  0.2627  1.3690 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   5.0320     0.1971  25.527   <2e-16 ***
+## grouptrt1    -0.3710     0.2788  -1.331   0.1944    
+## grouptrt2     0.4940     0.2788   1.772   0.0877 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.6234 on 27 degrees of freedom
+## Multiple R-squared:  0.2641,	Adjusted R-squared:  0.2096 
+## F-statistic: 4.846 on 2 and 27 DF,  p-value: 0.01591
+\end{verbatim}
+
+This summary gives us three coefficients corresponding to the coefficients of a linear model. Up until now, we've mostly ignored these for ANOVA and focused on hypothesis testing. But we need to use the coefficients to make predictions from our model and communicate biological results - which is why there is a history of people not doing this effectively.
+
+If we wanted to write out that linear model, we could write it like this:
+
+\(y = \beta_0 + \beta_1 X_1 + \beta_2 X_2\)
+
+But this is confusing because we only gave R one variable for \texttt{X}! How did it get three? Plus, we've been thinking of ANOVA like t-tests. Much puzzlement.
+
+\hypertarget{unifying-the-linear-model}{%
+\subsection{Unifying the linear model}\label{unifying-the-linear-model}}
+
+To really get full control over making predictions from linear models and the models to come we need to understand a little bit more about what R is doing here. I mentioned in \protect\hyperlink{Chapter9}{Chapter 9.3} that we would need to start thinking about the linear model as \(y = \beta X + \epsilon\) or \(\sum_{k=1}^{K} \beta_k X_k + \epsilon\) to unify the t-test, ANOVA, linear regression, and ANCOVA into a single general framework. The reason for this is that R (and the math) actually don't see \texttt{X} in our linear models the way we've been writing it in our code. The models we've talked about so far are solved through Least Squares estimation. This involves solving for however many \(\beta\) we might have using linear algebra and a little calculus to minimize the sum of \(\epsilon^2\), or our squared residuals. To do the math, \texttt{X} must be a matrix of values that can be multiplied by a vector coefficients (\(\beta\)) because as we now know, \(y = \beta X + \epsilon\).
+
+So, how does this relate to \(\beta_0\) and the fact that we supposedly have three \texttt{X} variables in the \texttt{PlantGrowth} ANOVA even though it is just one column?
+
+I've already told students in my class by this point in the semester, but I'll repeat here that \(\beta_0\) has a special place in my heart. It is the thing that allows us to relate all of this crap back to \(y = mx + b\) and makes me feel like I understand statistics a little bit. But, it is also the hard part behind understanding the predictions you make from linear models if you don't know or like (love) the algebra. Especially for ANVOA and ANCOVA-like models. And let's face it, most of us as biologists don't understand let alone love the algebra. We'll try to keep avoiding that here as long as we can.
+
+Up until now, we have thought of \(\beta_0\) as our \texttt{(Intercept)} term in linear models, and that is both truthful and useful. But, it is just another \(\beta\) in the matrix multiplication used to solve least-squares regression.
+
+How, then, is the intercept represented mathematically in ANOVA?
+
+\hypertarget{the-model-matrix}{%
+\subsection{The model matrix}\label{the-model-matrix}}
+
+In order to understand how the intercept works in ANOVA, we must look at the model matrix.
+
+The \textbf{model matrix} or \textbf{design matrix} is \texttt{X} from the really gross equations that I started showing all of a sudden now that the Add/Drop period has ended. (Muahaha). It really isn't as sinister as it sounds though.
+
+For our plant model, we wrote \texttt{weight\ \textasciitilde{}\ group} in our call to \texttt{lm()} and didn't have to think twice about what was happening after that. In the meantime, R had re-written the equation as \(y = \beta_i X_i\) or \texttt{y\ =\ (Intercept)*model.matrix\$}(Intercept)\texttt{+\ grouptrt1*model.matix\$grouptrt1\ +\ grouptrt2*model.matix\$grouptrt2}. To begin understanding that difference, we obviously need to see this \texttt{model.matrix} object.
+
+First, look at the actual data used to fit the model:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(mod}\OperatorTok{$}\NormalTok{model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   weight group
+## 1   4.17  ctrl
+## 2   5.58  ctrl
+## 3   5.18  ctrl
+## 4   6.11  ctrl
+## 5   4.50  ctrl
+## 6   4.61  ctrl
+\end{verbatim}
+
+You can see that we have one column for our response, \texttt{weight}, and one column for our explanatory variable, \texttt{group}, just as you thought.
+
+Now here is the design matrix:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Extract design matrix from fitted}
+\CommentTok{# PlantGrowth model}
+\NormalTok{X <-}\StringTok{ }\KeywordTok{model.matrix}\NormalTok{(mod)}
+
+\CommentTok{# Have a look}
+\KeywordTok{head}\NormalTok{(X)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   (Intercept) grouptrt1 grouptrt2
+## 1           1         0         0
+## 2           1         0         0
+## 3           1         0         0
+## 4           1         0         0
+## 5           1         0         0
+## 6           1         0         0
+\end{verbatim}
+
+Okay, that's actually not so bad. So, this is how R sees our data now. What R has done is to \textbf{dummy code} our \texttt{group} variable from the \texttt{PlantGrowth} data for each row of the data. The first column, \texttt{(Intercept)} contains only \texttt{1}. You can think of this as \texttt{X\_0} in our linear model. It is multiplied by \(\beta_0\) in \(y = \beta_0 + \beta_k X_k\). But, since it is always \texttt{1} we just don't write it when we write the formula for a line and \(\beta_0\) is always in the model! OMG that is sooooo annoying. The second column is an indicator variable for whether \texttt{group} is equal to \texttt{trt1} for a given observation (row in \texttt{PlantGrowth}). If \texttt{group\ ==\ trt1} for that row, then the column \texttt{grouptrt1} gets a \texttt{1}. If not, it gets a \texttt{0}. Same for \texttt{grouptrt2}. The columns \texttt{grouptrt1} and \texttt{grouptrt2} are each multiplied by their own \(\beta\) in our formula:
+
+\(y = \beta_{(Intercept)} X_{(Intercept)} + \beta_{grouptrt1} X_{grouptrt1} + \beta_{grouptrt1} X_{grouptrt1}\)
+
+If the columns \texttt{grouptrt1} or \texttt{grouptrt2} have \texttt{0}, then \(\beta_i X_i = 0\) and the term for that group falls out of the equation, leaving only \texttt{ctrl} or the \texttt{(Intercept)}. We can use this to make predictions directly from our model coefficients.
+
+Before moving on to prediction, it is helpful if you think of the coefficients for ANOVA as being an intercept (mean of the alphabetically first group) and offsets, or adjustments, to that intercept for each subsequent group. That is, ANOVA is kind of like a linear model with multiple intercepts and no slopes. We are just estimating a bunch of points on the y-axis.
+
+\hypertarget{prediction}{%
+\subsection{Prediction}\label{prediction}}
+
+Now that we've seen what R is actually doing, it becomes pretty trivial to make predictions from one-way ANOVA by hand.
+
+We can get the model coefficients (\(\beta\)) like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# We can get the model coefficients like this:}
+\KeywordTok{names}\NormalTok{(mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "coefficients"  "residuals"     "effects"       "rank"         
+##  [5] "fitted.values" "assign"        "qr"            "df.residual"  
+##  [9] "contrasts"     "xlevels"       "call"          "terms"        
+## [13] "model"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coeffs <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(mod}\OperatorTok{$}\NormalTok{coefficients)}
+
+\CommentTok{# And now we have a vector of beta}
+\NormalTok{betas <-}\StringTok{ }\NormalTok{coeffs}\OperatorTok{$}\NormalTok{mod.coefficients}
+\end{Highlighting}
+\end{Shaded}
+
+We can use \texttt{betas} to make predictions from the formula of our linear model for each group by taking advantage of the dummy coding that R uses.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# From the model, we can estimate:}
+
+\CommentTok{# Mean of control}
+\NormalTok{y_control <-}\StringTok{ }\NormalTok{betas[}\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{betas[}\DecValTok{2}\NormalTok{]}\OperatorTok{*}\DecValTok{0} \OperatorTok{+}\StringTok{ }\NormalTok{betas[}\DecValTok{3}\NormalTok{]}\OperatorTok{*}\DecValTok{0}
+
+\CommentTok{# Mean of trt1}
+\NormalTok{y_trt1 <-}\StringTok{ }\NormalTok{betas[}\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{betas[}\DecValTok{2}\NormalTok{]}\OperatorTok{*}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{betas[}\DecValTok{3}\NormalTok{]}\OperatorTok{*}\DecValTok{0}
+
+\CommentTok{# Mean of trt2}
+\NormalTok{y_trt2 <-}\StringTok{ }\NormalTok{betas[}\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{betas[}\DecValTok{2}\NormalTok{]}\OperatorTok{*}\DecValTok{0} \OperatorTok{+}\StringTok{ }\NormalTok{betas[}\DecValTok{3}\NormalTok{]}\OperatorTok{*}\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Or} if you wanted to get really fancy, you could do this with matrix math:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Get unique groups in dummy coded matrix}
+\NormalTok{X_pred <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{model.matrix}\NormalTok{(mod)))}
+
+\CommentTok{# Multiply betas by dummy coded}
+\CommentTok{# matrix using transpose of both}
+\CommentTok{# These are your predictions }
+\CommentTok{# for ctrl, trt1, and trt2}
+\NormalTok{y_pred <-}\StringTok{ }\KeywordTok{t}\NormalTok{(betas) }\OperatorTok{%*%}\StringTok{ }\KeywordTok{t}\NormalTok{(X_pred)}
+\end{Highlighting}
+\end{Shaded}
+
+Of course, either of these approaches is super useful but R also has default \texttt{predict()} methods for most or all of the models we will work with in this book. We will use these for the most part, as will \texttt{ggplot()}, which is more convenient than you will ever be able to appreciate.
+
+To make predictions of \texttt{y} from the original data that you used to fit the model (\texttt{mod}), you can just do this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Get unique values of groups and put it in }
+\CommentTok{# a data frame. The predict function expects }
+\CommentTok{# original x variable as a vector or a named }
+\CommentTok{# column in a data.frame}
+\NormalTok{groups <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{group =} \KeywordTok{unique}\NormalTok{(PlantGrowth}\OperatorTok{$}\NormalTok{group) )}
+
+\CommentTok{# Make the prediction}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(mod, }\DataTypeTok{newdata =}\NormalTok{ groups, }\DataTypeTok{interval =} \StringTok{"confidence"}\NormalTok{)}
+
+\CommentTok{# Add it to the data frame}
+\NormalTok{pred_plant <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(groups, y)}
+\end{Highlighting}
+\end{Shaded}
+
+If we want \texttt{confidence} intervals for the predictions, we can add that, too:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make the prediction with confidence}
+\NormalTok{yCI <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(mod, }\DataTypeTok{newdata =}\NormalTok{ groups, }\DataTypeTok{interval =} \StringTok{"confidence"}\NormalTok{)}
+
+\CommentTok{# Add it to the data frame}
+\NormalTok{pred_plantCI <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(groups, yCI)}
+\end{Highlighting}
+\end{Shaded}
+
+You could print this and get a nice clean table of estimated means and 95\% confidence intervals for each group.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(pred_plantCI)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   group   fit      lwr      upr
+## 1  ctrl 5.032 4.627526 5.436474
+## 2  trt1 4.661 4.256526 5.065474
+## 3  trt2 5.526 5.121526 5.930474
+\end{verbatim}
+
+Now, let's compare our model predictions to the actual means.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Calculate group means}
+\NormalTok{means <-}\StringTok{ }\NormalTok{PlantGrowth }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(group) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\KeywordTok{mean}\NormalTok{(weight))}
+
+\KeywordTok{print}\NormalTok{(means)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##   group `mean(weight)`
+##   <fct>          <dbl>
+## 1 ctrl            5.03
+## 2 trt1            4.66
+## 3 trt2            5.53
+\end{verbatim}
+
+Pretty much spot on!
+
+\hypertarget{plotting}{%
+\subsection{Plotting}\label{plotting}}
+
+We could use any number of graphical tools to represent these results. Given that we've met the assumptions of normality, and we've determined that statistical differences exist, the simplest (and most common) method for visualizing these results is to just show a box plot or a violin plot, or both, with the raw data. Hmmm\ldots I never realized how small this data set was.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(PlantGrowth, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ group, }\DataTypeTok{y =}\NormalTok{ weight)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_violin}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill=}\NormalTok{group), }\DataTypeTok{alpha=}\FloatTok{0.2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill=}\NormalTok{group), }\DataTypeTok{width =} \FloatTok{0.2}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color=}\NormalTok{group), }\DataTypeTok{width =} \FloatTok{0.15}\NormalTok{, }\DataTypeTok{alpha=}\FloatTok{0.5}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\KeywordTok{c}\NormalTok{(}\StringTok{'black'}\NormalTok{, }\StringTok{'gray30'}\NormalTok{, }\StringTok{'gray60'}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_color_manual}\NormalTok{(}\DataTypeTok{values=}\KeywordTok{c}\NormalTok{(}\StringTok{'black'}\NormalTok{, }\StringTok{'gray30'}\NormalTok{, }\StringTok{'gray60'}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{'Group'}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{'Weight (g)'}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.title.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{-1}\NormalTok{),}
+        \DataTypeTok{axis.title.y =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{3}\NormalTok{),}
+        \DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{()}
+\NormalTok{        )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-258-1.pdf}
+
+This plot is really cool, but it doesn't actually show us how our model predictions compare to the raw data!
+
+However, we could also think of our model predictions as just being different y-intercepts, which will be helpful when we start to work with ANCOVA. If we plotted them that way, they would look like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(pred_plantCI, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\NormalTok{, }\DataTypeTok{y =}\NormalTok{ fit, }\DataTypeTok{color =}\NormalTok{ group)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \DecValTok{3}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{,  }\DecValTok{1}\NormalTok{), }\DataTypeTok{expand=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\NormalTok{, }\DataTypeTok{xend =} \DecValTok{0}\NormalTok{, }\DataTypeTok{y =}\NormalTok{ lwr, }\DataTypeTok{yend =}\NormalTok{ upr),}
+               \DataTypeTok{lwd =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.25}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"X"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Weight (g)"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Predicted"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-259-1.pdf}
+
+But this is really hard to see and understand. So, we usually look at it like this in keeping with the dummy coding that is used in the model matrix:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(pred_plantCI, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\DataTypeTok{y =}\NormalTok{ fit, }\DataTypeTok{color =}\NormalTok{ group)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \DecValTok{3}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,  }\DecValTok{4}\NormalTok{), }\DataTypeTok{expand=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\DataTypeTok{xend =} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\DataTypeTok{y =}\NormalTok{ lwr, }\DataTypeTok{yend =}\NormalTok{ upr),}
+               \DataTypeTok{lwd =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.25}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"X[, i]"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Weight (g)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Predicted"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-260-1.pdf}
+
+Or, perhaps more mercifully:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(pred_plantCI, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ group, }\DataTypeTok{y =}\NormalTok{ fit, }\DataTypeTok{color =}\NormalTok{ group)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \DecValTok{3}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ group, }\DataTypeTok{xend =}\NormalTok{ group, }\DataTypeTok{y =}\NormalTok{ lwr, }\DataTypeTok{yend =}\NormalTok{ upr),}
+               \DataTypeTok{lwd =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.25}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Treatment group"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Weight (g)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Predicted"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-261-1.pdf}
+
+Finally, we could put this right over the top of our raw data and/or violin to see how well the model predictions match up with the data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(PlantGrowth, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ group, }\DataTypeTok{y =}\NormalTok{ weight, }\DataTypeTok{color =}\NormalTok{ group)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_violin}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =}\NormalTok{ group), }\DataTypeTok{alpha =} \FloatTok{0.05}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{size =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.05}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ group, }\DataTypeTok{y =}\NormalTok{ fit), }
+             \DataTypeTok{data =}\NormalTok{ pred_plantCI,}
+             \DataTypeTok{size =} \DecValTok{4}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ group, }\DataTypeTok{xend =}\NormalTok{ group, }\DataTypeTok{y =}\NormalTok{ lwr, }\DataTypeTok{yend =}\NormalTok{ upr),}
+               \DataTypeTok{data =}\NormalTok{ pred_plantCI, }
+               \DataTypeTok{lwd =} \FloatTok{1.5}\NormalTok{, }
+               \DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{()) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Treatment group"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Weight (g)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"Group"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"Group"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-262-1.pdf}
+
+\hypertarget{two-way-anova}{%
+\section{Two-way ANOVA}\label{two-way-anova}}
+
+Two-way ANOVA works the same way as one-way ANOVA, except that now we have multiple dummy-coded variables tied up in the intercept. For this example, we will consider a new data set. These data are from an experiment in Restorative Dentistry and Endodontics that was published in 2014. The study examines effects of drying light and resin type on the strength of a bonding resin for teeth.
+
+The full citation for the paper is:
+
+Kim, H-Y. 2014. Statistical notes for clinical researchers: Two-way analysis of variance (ANOVA)-exploring possible interaction between factors. Restorative Dentistry and Endodontics 39(2):143-147.
+
+Here are the data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dental <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'data/dental.csv'}\NormalTok{, }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{main-effects-10}{%
+\subsection{Main effects model}\label{main-effects-10}}
+
+We will start by fitting a linear model to the data that tests effects of \texttt{lights} and \texttt{resin} on adhesive strength \texttt{mpa}. Since both \texttt{lights} and \texttt{resin} are categorical, this is a two-way ANOVA. We use the \texttt{+} to imply additive, or main-effects only.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# We are looking only at main effects for now}
+\NormalTok{dental.mod <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(mpa }\OperatorTok{~}\StringTok{ }\NormalTok{lights }\OperatorTok{+}\StringTok{ }\NormalTok{resin, }\DataTypeTok{data =}\NormalTok{ dental)}
+\end{Highlighting}
+\end{Shaded}
+
+If we make an ANOVA table for this two-way ANOVA, we see that there are significant main effects of resin type but not lights used for drying.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{anova}\NormalTok{(dental.mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: mpa
+##           Df Sum Sq Mean Sq F value    Pr(>F)    
+## lights     1   34.7   34.72  0.6797    0.4123    
+## resin      3 1999.7  666.57 13.0514 6.036e-07 ***
+## Residuals 75 3830.5   51.07                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+We can also examine the model coefficients for a closer look at what this means.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(dental.mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = mpa ~ lights + resin, data = dental)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -14.1162  -4.9531   0.1188   4.4613  14.4663 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   19.074      1.787  10.676  < 2e-16 ***
+## lightsLED     -1.318      1.598  -0.824  0.41229    
+## resinB         3.815      2.260   1.688  0.09555 .  
+## resinC         6.740      2.260   2.982  0.00386 ** 
+## resinD        13.660      2.260   6.044 5.39e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.147 on 75 degrees of freedom
+## Multiple R-squared:  0.3469,	Adjusted R-squared:  0.312 
+## F-statistic: 9.958 on 4 and 75 DF,  p-value: 1.616e-06
+\end{verbatim}
+
+Remember, in our data we had 2 kinds of lights, and 4 kinds of resin. But, here we have one less of each! Why is this? It is because of the way categorical variables are dummy coded for linear models. But, now we have two separate sets of adjustments, so one level of each variable is wrapped up in the estimate for our intercept (\texttt{lightsHalogen} and \texttt{resinA}).
+
+When in doubt, have a look at the model matrix:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X <-}\StringTok{ }\KeywordTok{model.matrix}\NormalTok{(dental.mod)}
+
+\KeywordTok{head}\NormalTok{(X)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   (Intercept) lightsLED resinB resinC resinD
+## 1           1         0      0      0      0
+## 2           1         0      0      0      0
+## 3           1         0      0      0      0
+## 4           1         0      0      0      0
+## 5           1         0      0      0      0
+## 6           1         0      0      0      0
+\end{verbatim}
+
+Right now, you might be a little confused about how to calculate and show the effect size for these variables. If you are not, you should probably take a more advanced stats class and get a better book.
+
+One reasonable option might be to summarize the data by the means and plot the means, but we already decided that we are going to plot our model predictions against the raw data following the form of the statistical model. Rather than go throught the math again, let's just use the built-in \texttt{predict()} function that I know you now appreciate!
+
+First, we need to do a little magic to get the group combinations for \texttt{lights} and \texttt{resin} into a data.frame that we can use for prediction.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groups <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \KeywordTok{with}\NormalTok{(dental, }\KeywordTok{unique}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(lights, resin)))}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can make our predictions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dental_y_pred <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(}
+\NormalTok{  dental.mod, }\DataTypeTok{newdata =}\NormalTok{ groups, }\DataTypeTok{interval =} \StringTok{"confidence"}
+\NormalTok{  )}
+
+\NormalTok{pred_dental <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(groups, dental_y_pred)}
+\end{Highlighting}
+\end{Shaded}
+
+And now we can plot it just like we did for ANOVA:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(dental, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lights, }\DataTypeTok{y =}\NormalTok{ mpa, }\DataTypeTok{color =}\NormalTok{ lights)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_violin}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill=}\NormalTok{lights), }\DataTypeTok{alpha =} \FloatTok{0.1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.05}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lights, }\DataTypeTok{y =}\NormalTok{ fit), }
+             \DataTypeTok{data =}\NormalTok{ pred_dental,}
+             \DataTypeTok{color =} \StringTok{'black'}\NormalTok{,}
+             \DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}
+    \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lights, }\DataTypeTok{xend =}\NormalTok{ lights, }\DataTypeTok{y =}\NormalTok{ lwr, }\DataTypeTok{yend =}\NormalTok{ upr),}
+    \DataTypeTok{data =}\NormalTok{ pred_dental,}
+    \DataTypeTok{color =} \StringTok{'black'}\NormalTok{) }\OperatorTok{+}\StringTok{  }
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{resin) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{()) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Treatment group"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Weight (g)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"Group"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"Group"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-270-1.pdf}
+
+Now, this looks really nice, but there is definitely something funky going on with \texttt{Halogen} in panel D in the figure above! We have clearly done a poor job of predicting this group. The reason for this, in this case, is because we need to include an \textbf{interaction} term in our model, which makes things even grosser in terms of the math, but is easy to do in R. Of course, if we had been doing a good job of data exploration and residual analysis, we would have noticed this before making predictive plots\ldots{}
+
+\hypertarget{interactions}{%
+\subsection{Interactions}\label{interactions}}
+
+To make a model that includes an interaction between \texttt{lights} and \texttt{resin} in the \texttt{dental} data, we will need to go all the way back to our model fitting process.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# The "*" operator is shorthand for what we want to do}
+\CommentTok{# here - more of an "advanced" stats topic}
+\NormalTok{dental_int <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(mpa }\OperatorTok{~}\StringTok{ }\NormalTok{lights }\OperatorTok{*}\StringTok{ }\NormalTok{resin, }\DataTypeTok{data =}\NormalTok{ dental)}
+\end{Highlighting}
+\end{Shaded}
+
+We just have three more columns in our model matrix to distinguish between coefficients for \texttt{resin} that correspond to \texttt{LED} and coefficients for \texttt{resin} that correspond to \texttt{Halogen}. It is at this point that not even I want to do the math by hand!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Have a look on your own:}
+\KeywordTok{head}\NormalTok{(}\KeywordTok{model.matrix}\NormalTok{(dental_int))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   (Intercept) lightsLED resinB resinC resinD lightsLED:resinB lightsLED:resinC
+## 1           1         0      0      0      0                0                0
+## 2           1         0      0      0      0                0                0
+## 3           1         0      0      0      0                0                0
+## 4           1         0      0      0      0                0                0
+## 5           1         0      0      0      0                0                0
+## 6           1         0      0      0      0                0                0
+##   lightsLED:resinD
+## 1                0
+## 2                0
+## 3                0
+## 4                0
+## 5                0
+## 6                0
+\end{verbatim}
+
+The process for making predictions, thankfully, is identical to two-way ANOVA in R.
+
+Using the groups we made for the main-effects model:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int_y_pred <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(}
+\NormalTok{  dental_int, }\DataTypeTok{newdata =}\NormalTok{ groups, }\DataTypeTok{interval =} \StringTok{"confidence"}
+\NormalTok{  )}
+
+\NormalTok{int_pred <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(groups, int_y_pred)}
+\end{Highlighting}
+\end{Shaded}
+
+And now we plot the predictions against the raw data changing only the name of the data containing our predictions, \texttt{int\_pred}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(dental, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lights, }\DataTypeTok{y =}\NormalTok{ mpa, }\DataTypeTok{color =}\NormalTok{ lights)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_violin}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill=}\NormalTok{lights), }\DataTypeTok{alpha =} \FloatTok{0.1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.05}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lights, }\DataTypeTok{y =}\NormalTok{ fit), }
+             \DataTypeTok{data =}\NormalTok{ int_pred,}
+             \DataTypeTok{color =} \StringTok{'black'}\NormalTok{,}
+             \DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}
+    \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lights, }\DataTypeTok{xend =}\NormalTok{ lights, }\DataTypeTok{y =}\NormalTok{ lwr, }\DataTypeTok{yend =}\NormalTok{ upr),}
+    \DataTypeTok{data =}\NormalTok{ int_pred,}
+    \DataTypeTok{color =} \StringTok{'black'}\NormalTok{) }\OperatorTok{+}\StringTok{  }
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{resin) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{()) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Treatment group"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Weight (g)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"Group"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"Group"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-274-1.pdf}
+
+You should see below that \textbf{all} of our means match up much better with the observed data in the violins. And, if you go back to the ANOVA output for this model you will see that the interaction term is significant even though \texttt{lights} still is not on it's own. In coming chapters, we'll talk about how to design and compare multiple models like these to compare meaningful biological hypotheses against one another.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{anova}\NormalTok{(dental_int)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: mpa
+##              Df  Sum Sq Mean Sq F value    Pr(>F)    
+## lights        1   34.72   34.72  1.1067    0.2963    
+## resin         3 1999.72  666.57 21.2499 5.792e-10 ***
+## lights:resin  3 1571.96  523.99 16.7043 2.457e-08 ***
+## Residuals    72 2258.52   31.37                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+Interactions between categorical variables generally are more complicated to deal with than interactions between categorical and continuous variables, because then we are only dealing with straight lines that differ by level. This does not, however, make it any less important for us to communicate how our models fit the observations we have collected. If you can get these tools under your belt, they will be extremely powerful for preparing journal articles, and perhaps more importantly, for communicating your results and the uncertainty surrounding them to stakeholders and public audiences.
+
+\hypertarget{linear-regression}{%
+\section{Linear regression}\label{linear-regression}}
+
+Compared to interpreting group effects from ANOVA, the interpretation of a single, continuous predictor in linear regression is pretty straightforward. Here, all we are doing is looking to use the equation for a line \(y = mx + b\) to predict the effects of one continuous variable on another. Most of us probably did this for the first time in middle school. But, if we look at the math in the same way that we did for ANOVA, it will make understanding ANCOVA a lot easier.
+
+Let's use the \texttt{swiss} data again for this like we did in \protect\hyperlink{Chapter8}{Chapter 8}. Remember that this data set compares fertility rates to a number of socio-economic indicators:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(}\StringTok{"swiss"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We'll make a model to predict the effect of education level on fertility:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make the model and save it to a named object called 'swiss.mod'}
+\NormalTok{swiss.mod <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility }\OperatorTok{~}\StringTok{ }\NormalTok{Education, }\DataTypeTok{data =}\NormalTok{ swiss)}
+\end{Highlighting}
+\end{Shaded}
+
+Have a look at the design matrix and you can see that R still includes a column for the intercept that is all \texttt{1}, so this is the same as ANOVA. But, instead of having dummy variables in columns representing groups, we just have our observed values of \texttt{Education}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{( }\KeywordTok{model.matrix}\NormalTok{(swiss.mod) )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              (Intercept) Education
+## Courtelary             1        12
+## Delemont               1         9
+## Franches-Mnt           1         5
+## Moutier                1         7
+## Neuveville             1        15
+## Porrentruy             1         7
+\end{verbatim}
+
+Next, we can look at the coefficient estimates for \texttt{swiss.mod}. Remember that each of these coefficients corresponds to one and only one column in our design matrix \texttt{X}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Summarize the model}
+\KeywordTok{summary}\NormalTok{(swiss.mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Fertility ~ Education, data = swiss)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -17.036  -6.711  -1.011   9.526  19.689 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  79.6101     2.1041  37.836  < 2e-16 ***
+## Education    -0.8624     0.1448  -5.954 3.66e-07 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 9.446 on 45 degrees of freedom
+## Multiple R-squared:  0.4406,	Adjusted R-squared:  0.4282 
+## F-statistic: 35.45 on 1 and 45 DF,  p-value: 3.659e-07
+\end{verbatim}
+
+\hypertarget{prediction-1}{%
+\subsection{Prediction}\label{prediction-1}}
+
+As with the case of categorical explanatory variables, we are now interested in predicting the mean expected \texttt{Fertility} for any given value of \texttt{Education} based on our model coefficients. Recall from ANOVA that we can do this ``by hand'':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{betas <-}\StringTok{ }\NormalTok{swiss.mod}\OperatorTok{$}\NormalTok{coefficients}
+\NormalTok{X_pred <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(}\KeywordTok{model.matrix}\NormalTok{(swiss.mod))}
+
+\CommentTok{# Multiply betas by dummy coded}
+\CommentTok{# matrix using transpose of both}
+\CommentTok{# These are your predictions }
+\CommentTok{# for ctrl, trt1, and trt2}
+\NormalTok{y_pred <-}\StringTok{ }\KeywordTok{as.vector}\NormalTok{( }\KeywordTok{t}\NormalTok{(betas) }\OperatorTok{%*%}\StringTok{ }\KeywordTok{t}\NormalTok{(X_pred) )}
+
+\NormalTok{swiss_pred <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(swiss, y_pred)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Or}, we can use the built-in \texttt{predict()} function to get confidence intervals on our predictions, too! That's a pain to do by hand every time, so we will use the \texttt{predict()} function from here out for linear regression!
+
+Here I'll ask R for \texttt{"prediction"} intervals. To avoid warnings about predicting from the same data to which the model was fit, we need to either pass the \texttt{model} part of \texttt{swiss.mod} to the function as new data or we need to simulate new data. As models become increasingly complex, it becomes increasingly complicated to simulate data appropriately. Therefore, if I am just interested in communicating my results, I do so with the model data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make predictions using the model data}
+\NormalTok{y_pred2 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(swiss.mod, }
+                   \DataTypeTok{newdata =}\NormalTok{ swiss.mod}\OperatorTok{$}\NormalTok{model, }
+                   \DataTypeTok{interval =} \StringTok{"prediction"}\NormalTok{)}
+
+\CommentTok{# Combine with original data}
+\NormalTok{swiss_pred2 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(swiss, y_pred2)}
+\end{Highlighting}
+\end{Shaded}
+
+Whichever way you do this, you'll notice that we have a unique value of fit for every value of \texttt{Education} in the original data because \texttt{fit} is predicted as a continuous function of \texttt{Education} in this case:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{( swiss_pred2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Fertility Agriculture Examination Education Catholic
+## Courtelary        80.2        17.0          15        12     9.96
+## Delemont          83.1        45.1           6         9    84.84
+## Franches-Mnt      92.5        39.7           5         5    93.40
+## Moutier           85.8        36.5          12         7    33.77
+## Neuveville        76.9        43.5          17        15     5.16
+## Porrentruy        76.1        35.3           9         7    90.57
+##              Infant.Mortality      fit      lwr      upr
+## Courtelary               22.2 69.26186 50.03294 88.49077
+## Delemont                 22.2 71.84891 52.61363 91.08418
+## Franches-Mnt             20.2 75.29831 55.99275 94.60387
+## Moutier                  20.3 73.57361 54.31199 92.83522
+## Neuveville               20.6 66.67480 47.41244 85.93717
+## Porrentruy               26.6 73.57361 54.31199 92.83522
+\end{verbatim}
+
+We could also make predictions for specific values of \texttt{Education} by creating (simulating) new values of \texttt{Education}. Below, we make a sequence of new values for \texttt{Education} from the minimum to the maximum in 30 equal increments and then make predictions with that object instead of the model data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{new_ed <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{Education =} \KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \KeywordTok{min}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{Education),}
+                  \DataTypeTok{to =} \KeywordTok{max}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{Education),}
+                  \DataTypeTok{length.out =} \DecValTok{30}
+\NormalTok{                  )}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+Now make predictions across the range of observed data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{new_y_preds <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(swiss.mod, }\DataTypeTok{newdata =}\NormalTok{ new_ed, }\DataTypeTok{interval =} \StringTok{"prediction"}\NormalTok{)}
+
+\NormalTok{new_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(new_ed, new_y_preds)}
+\end{Highlighting}
+\end{Shaded}
+
+Or, you could make a prediction for a single value. Let's say I ask you to find the mean and 95\% confidence interval for a specific value of \texttt{Education}. Usually we are interested in the maximum and minimum for communicating change in y across the range of x. To do this, you can just make some new data and print the predictions!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make a data frame containing only the max and min values for Education}
+\NormalTok{point_ed =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Education =} \KeywordTok{c}\NormalTok{(}\KeywordTok{min}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{Education), }\KeywordTok{max}\NormalTok{(swiss}\OperatorTok{$}\NormalTok{Education)))}
+
+\CommentTok{# Predict new values of y from the model}
+\NormalTok{point_y_pred <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(swiss.mod, point_ed, }\DataTypeTok{interval =} \StringTok{'confidence'}\NormalTok{)}
+
+\CommentTok{# Put the predictions in a data frame with }
+\CommentTok{# the min and max values of Education}
+\NormalTok{point_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(point_ed, point_y_pred)}
+
+\CommentTok{# Now you can see your predictions}
+\KeywordTok{print}\NormalTok{(point_preds)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Education      fit      lwr      upr
+## 1         1 78.74771 74.72578 82.76963
+## 2        53 33.90549 21.33635 46.47464
+\end{verbatim}
+
+Now, it is really easy for us to say:
+
+\begin{quote}
+Fertility rate was inversely related to Education (t = 5.95m, p \textless{} 0.05), and Education explained about 44\% of the variation in Fertility rate. Across the range of observed education values Fertility decreased from a maximum of 78 (95\% CI 75 - 83) at Education of 1 to a minimum of 34 (95\% CI 21 - 46) at Education of 53 (Figure 1).
+\end{quote}
+
+Where is Figure 1?
+
+\hypertarget{plotting-1}{%
+\subsection{Plotting}\label{plotting-1}}
+
+Once we are happy with our predictions, we can go ahead and plot them against the raw data to show how our model fit the data. Here is the code that we used to do this in \protect\hyperlink{Chapter7}{Chapter 7} but a little more purpley.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make a pretty plot showing raw data and model predictions}
+\KeywordTok{ggplot}\NormalTok{(swiss_pred2, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Education, }\DataTypeTok{y =}\NormalTok{ Fertility)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{colour =} \StringTok{'plum3'}\NormalTok{, }\DataTypeTok{fill =} \StringTok{'plum3'}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.75}\NormalTok{, }\DataTypeTok{size =} \DecValTok{4}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{( }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ fit), }\DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{color=}\StringTok{'purple'}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{.5}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr), }
+              \DataTypeTok{color =} \StringTok{'purple4'}\NormalTok{, }
+              \DataTypeTok{fill =} \StringTok{'lavender'}\NormalTok{, }
+              \DataTypeTok{alpha =} \FloatTok{.4}\NormalTok{,}
+              \DataTypeTok{lty =} \DecValTok{2}\NormalTok{,}
+              \DataTypeTok{lwd =} \FloatTok{.5}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{, }\DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-286-1.pdf}
+
+Now that is a \textbf{money} figure that shows your raw data, the model predictions, and the uncertainty associated with both of these. That's what we want to go for every time - with or without the purpleyness.
+
+Multiple regression proceeds in much the same way. In most cases, it is easiest to make model predictions directly from the observed data because when we have multiple continuous \texttt{X} variables they are often correlated with one another. We will examine this in detail in \protect\hyperlink{Chapter11}{Chapter 11} when we discuss model selection.
+
+\hypertarget{ancova}{%
+\section{ANCOVA}\label{ancova}}
+
+Now, we are going to step up the complexity a little bit and start to look at how to interpret linear models with more than one variable, and more than one variable type. Exciting, I know!
+
+Last week we worked with the \texttt{crickets} data to demonstrate ANCOVA. Let's keep working with that one.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Read cricket data}
+\CommentTok{# This data set contains pulses of}
+\CommentTok{# 2 species of crickets collected under}
+\CommentTok{# varying temperatures}
+\NormalTok{  crickets <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'data/crickets.txt'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We investigated the additive effects of \texttt{Species} and temperature (\texttt{Temp}) on chirpy pulses of individual crickets and found significant evidence of both.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fit the model}
+\NormalTok{cricket.mod <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Pulse}\OperatorTok{~}\NormalTok{Species }\OperatorTok{+}\StringTok{ }\NormalTok{Temp, }\DataTypeTok{data=}\NormalTok{crickets)}
+\end{Highlighting}
+\end{Shaded}
+
+Here is the summary of the linear model:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(cricket.mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Pulse ~ Species + Temp, data = crickets)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.0128 -1.1296 -0.3912  0.9650  3.7800 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  -7.21091    2.55094  -2.827  0.00858 ** 
+## Speciesniv  -10.06529    0.73526 -13.689 6.27e-14 ***
+## Temp          3.60275    0.09729  37.032  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.786 on 28 degrees of freedom
+## Multiple R-squared:  0.9896,	Adjusted R-squared:  0.9888 
+## F-statistic:  1331 on 2 and 28 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+And the model matrix:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X <-}\StringTok{ }\KeywordTok{model.matrix}\NormalTok{(cricket.mod)}
+\end{Highlighting}
+\end{Shaded}
+
+You can see that the model matrix still has a column for the \texttt{(Intercept)} that represents \texttt{Species} \texttt{ex} and a dummy variable called \texttt{Speciesniv} to indicate rows in the \texttt{cricket} data where \texttt{Species\ ==\ niv}. But, now we also have a column in the model matrix for a continuous variable. Not to fear, the math works exactly the same way as it did for ANOVA and for linear regression.
+
+\hypertarget{prediction-2}{%
+\subsection{Prediction}\label{prediction-2}}
+
+We could do this using linear algebra (matrix math). Note that the math has stayed the same for ANOVA, regression and ANCOVA. That is because they are all just different special cases of the same general model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X_pred <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(}\KeywordTok{model.matrix}\NormalTok{(cricket.mod))}
+\NormalTok{betas <-}\StringTok{ }\NormalTok{cricket.mod}\OperatorTok{$}\NormalTok{coefficients}
+
+\CommentTok{# Multiply betas by dummy coded}
+\CommentTok{# matrix using transpose of both}
+\CommentTok{# These are your predictions }
+\CommentTok{# for ctrl, trt1, and trt2}
+\NormalTok{y_pred <-}\StringTok{ }\KeywordTok{as.vector}\NormalTok{( }\KeywordTok{t}\NormalTok{(betas) }\OperatorTok{%*%}\StringTok{ }\KeywordTok{t}\NormalTok{(X_pred) )}
+
+\NormalTok{cricket_pred <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(crickets, y_pred)}
+\end{Highlighting}
+\end{Shaded}
+
+But since it is a pain to get prediction intervals like this, we'll use the default \texttt{predict()} function here as well. I am not going to lie, I am literally just copying and pasting code from ANOVA and regression here and changing the names. This is the power of understanding what actually goes on under the hood for us!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make predictions}
+\NormalTok{y_pred <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(cricket.mod, }\DataTypeTok{interval =} \StringTok{"prediction"}\NormalTok{)}
+
+\CommentTok{# Combine with original data}
+\NormalTok{cricket_pred <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(crickets, y_pred)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{plotting-2}{%
+\subsection{Plotting}\label{plotting-2}}
+
+Plot the predictions by species. Again, I am pretty much changing the names of the data and the colors at this point. Who'd have thought that fitting and and making predictions from scary ANCOVA models could be so easy!? Dangerously easy\ldots{}
+
+In this case, though, we should expect to see two lines on our graph if I have not completely lied to you. This is because we have both categorical and continuous explanatory variables in \texttt{X}. \textbf{Remember that the \(\beta\)s for categorical variables are just adjustments or offsets to the intercept in linear models.} That means that we should have two parallel lines given that we had two groups (so one intercept + 1 offset) and a single slope.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make a pretty plot showing raw data and model predictions}
+\KeywordTok{ggplot}\NormalTok{(cricket_pred, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Temp, }\DataTypeTok{y =}\NormalTok{ Pulse, }\DataTypeTok{group =}\NormalTok{ Species)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ Species, }\DataTypeTok{fill =}\NormalTok{ Species), }\DataTypeTok{alpha =} \FloatTok{0.75}\NormalTok{, }\DataTypeTok{size =} \DecValTok{4}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{( }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ fit, }\DataTypeTok{color =}\NormalTok{ Species), }\DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{.5}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr, }\DataTypeTok{color =}\NormalTok{ Species, }\DataTypeTok{fill =}\NormalTok{ Species),}
+              \DataTypeTok{alpha =} \FloatTok{0.25}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{'gray40'}\NormalTok{, }\StringTok{'black'}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_color_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{'gray40'}\NormalTok{, }\StringTok{'black'}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Temperature ( "}\NormalTok{, degree, }\StringTok{"C)"}\NormalTok{))) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-293-1.pdf}
+
+Ta-da!
+
+\hypertarget{next10}{%
+\section{Next steps}\label{next10}}
+
+Here, we have demonstrated how to communicate the biological predictions of statistical models that we use to test hypotheses. These included most common frameworks for data analysis within the context of linear models. We will continue to apply these tools to as we extend our modeling framework to include non-normal response variables of interest in later chapters. First, in \protect\hyperlink{Chapter11}{Chapter 11}, we'll explore model selection as a way of choosing between hypotheses that are represented by all of these different models.
 
   \bibliography{book.bib,packages.bib}
 

@@ -59,14 +59,14 @@ cricket_mod <- lm(Pulse ~ Species + Temp, data=crickets)
 ```
 
 Install the `car` package. We need a function from this package for model summary because now we have a mix of categorical and continuous explanatory variables. This means we want to calculate the sums of squared errors a little differently than we did before.
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
 # Load the package after it's installed
 library(car)
 ```
 
 Now we create the ANVOA table for our ANCOVA model
 ```{r}
-Anova(cricket_mod, type='III')
+car::Anova(cricket_mod, type='III')
 ```
 
 And we can look at the summary:
