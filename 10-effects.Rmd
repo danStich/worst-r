@@ -344,7 +344,7 @@ One reasonable option might be to summarize the data by the means and plot the m
 First, we need to do a little magic to get the group combinations for `lights` and `resin` into a data.frame that we can use for prediction.
 ```{r}
 groups <- data.frame(
-  with(dental, unique(cbind(lights, resin)))
+  with(dental, unique(data.frame(lights, resin)))
 )
 
 ```

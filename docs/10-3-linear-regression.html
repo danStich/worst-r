@@ -134,8 +134,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -309,12 +307,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.3</span> Linear regression</h2>
 <p>Compared to interpreting group effects from ANOVA, the interpretation of a single, continuous predictor in linear regression is pretty straightforward. Here, all we are doing is looking to use the equation for a line <span class="math inline">\(y = mx + b\)</span> to predict the effects of one continuous variable on another. Most of us probably did this for the first time in middle school. But, if we look at the math in the same way that we did for ANOVA, it will make understanding ANCOVA a lot easier.</p>
 <p>Let’s use the <code>swiss</code> data again for this like we did in <a href="8-Chapter8.html#Chapter8">Chapter 8</a>. Remember that this data set compares fertility rates to a number of socio-economic indicators:</p>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="10-3-linear-regression.html#cb411-1"></a><span class="kw">data</span>(<span class="st">&quot;swiss&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="10-3-linear-regression.html#cb46-1"></a><span class="kw">data</span>(<span class="st">&quot;swiss&quot;</span>)</span></code></pre></div>
 <p>We’ll make a model to predict the effect of education level on fertility:</p>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="10-3-linear-regression.html#cb412-1"></a><span class="co"># Make the model and save it to a named object called &#39;swiss.mod&#39;</span></span>
-<span id="cb412-2"><a href="10-3-linear-regression.html#cb412-2"></a>swiss.mod &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="10-3-linear-regression.html#cb47-1"></a><span class="co"># Make the model and save it to a named object called &#39;swiss.mod&#39;</span></span>
+<span id="cb47-2"><a href="10-3-linear-regression.html#cb47-2"></a>swiss.mod &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</span></code></pre></div>
 <p>Have a look at the design matrix and you can see that R still includes a column for the intercept that is all <code>1</code>, so this is the same as ANOVA. But, instead of having dummy variables in columns representing groups, we just have our observed values of <code>Education</code></p>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="10-3-linear-regression.html#cb413-1"></a><span class="kw">head</span>( <span class="kw">model.matrix</span>(swiss.mod) )</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="10-3-linear-regression.html#cb48-1"></a><span class="kw">head</span>( <span class="kw">model.matrix</span>(swiss.mod) )</span></code></pre></div>
 <pre><code>##              (Intercept) Education
 ## Courtelary             1        12
 ## Delemont               1         9
@@ -323,8 +321,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Neuveville             1        15
 ## Porrentruy             1         7</code></pre>
 <p>Next, we can look at the coefficient estimates for <code>swiss.mod</code>. Remember that each of these coefficients corresponds to one and only one column in our design matrix <code>X</code>.</p>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="10-3-linear-regression.html#cb415-1"></a><span class="co"># Summarize the model</span></span>
-<span id="cb415-2"><a href="10-3-linear-regression.html#cb415-2"></a><span class="kw">summary</span>(swiss.mod)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="10-3-linear-regression.html#cb50-1"></a><span class="co"># Summarize the model</span></span>
+<span id="cb50-2"><a href="10-3-linear-regression.html#cb50-2"></a><span class="kw">summary</span>(swiss.mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Fertility ~ Education, data = swiss)
@@ -346,27 +344,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="prediction-1" class="section level3">
 <h3><span class="header-section-number">10.3.1</span> Prediction</h3>
 <p>As with the case of categorical explanatory variables, we are now interested in predicting the mean expected <code>Fertility</code> for any given value of <code>Education</code> based on our model coefficients. Recall from ANOVA that we can do this “by hand”:</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="10-3-linear-regression.html#cb417-1"></a>betas &lt;-<span class="st"> </span>swiss.mod<span class="op">$</span>coefficients</span>
-<span id="cb417-2"><a href="10-3-linear-regression.html#cb417-2"></a>X_pred &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">model.matrix</span>(swiss.mod))</span>
-<span id="cb417-3"><a href="10-3-linear-regression.html#cb417-3"></a></span>
-<span id="cb417-4"><a href="10-3-linear-regression.html#cb417-4"></a><span class="co"># Multiply betas by dummy coded</span></span>
-<span id="cb417-5"><a href="10-3-linear-regression.html#cb417-5"></a><span class="co"># matrix using transpose of both</span></span>
-<span id="cb417-6"><a href="10-3-linear-regression.html#cb417-6"></a><span class="co"># These are your predictions </span></span>
-<span id="cb417-7"><a href="10-3-linear-regression.html#cb417-7"></a><span class="co"># for ctrl, trt1, and trt2</span></span>
-<span id="cb417-8"><a href="10-3-linear-regression.html#cb417-8"></a>y_pred &lt;-<span class="st"> </span><span class="kw">as.vector</span>( <span class="kw">t</span>(betas) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(X_pred) )</span>
-<span id="cb417-9"><a href="10-3-linear-regression.html#cb417-9"></a></span>
-<span id="cb417-10"><a href="10-3-linear-regression.html#cb417-10"></a>swiss_pred &lt;-<span class="st"> </span><span class="kw">data.frame</span>(swiss, y_pred)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="10-3-linear-regression.html#cb52-1"></a>betas &lt;-<span class="st"> </span>swiss.mod<span class="op">$</span>coefficients</span>
+<span id="cb52-2"><a href="10-3-linear-regression.html#cb52-2"></a>X_pred &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">model.matrix</span>(swiss.mod))</span>
+<span id="cb52-3"><a href="10-3-linear-regression.html#cb52-3"></a></span>
+<span id="cb52-4"><a href="10-3-linear-regression.html#cb52-4"></a><span class="co"># Multiply betas by dummy coded</span></span>
+<span id="cb52-5"><a href="10-3-linear-regression.html#cb52-5"></a><span class="co"># matrix using transpose of both</span></span>
+<span id="cb52-6"><a href="10-3-linear-regression.html#cb52-6"></a><span class="co"># These are your predictions </span></span>
+<span id="cb52-7"><a href="10-3-linear-regression.html#cb52-7"></a><span class="co"># for ctrl, trt1, and trt2</span></span>
+<span id="cb52-8"><a href="10-3-linear-regression.html#cb52-8"></a>y_pred &lt;-<span class="st"> </span><span class="kw">as.vector</span>( <span class="kw">t</span>(betas) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(X_pred) )</span>
+<span id="cb52-9"><a href="10-3-linear-regression.html#cb52-9"></a></span>
+<span id="cb52-10"><a href="10-3-linear-regression.html#cb52-10"></a>swiss_pred &lt;-<span class="st"> </span><span class="kw">data.frame</span>(swiss, y_pred)</span></code></pre></div>
 <p><strong>Or</strong>, we can use the built-in <code>predict()</code> function to get confidence intervals on our predictions, too! That’s a pain to do by hand every time, so we will use the <code>predict()</code> function from here out for linear regression!</p>
 <p>Here I’ll ask R for <code>"prediction"</code> intervals. To avoid warnings about predicting from the same data to which the model was fit, we need to either pass the <code>model</code> part of <code>swiss.mod</code> to the function as new data or we need to simulate new data. As models become increasingly complex, it becomes increasingly complicated to simulate data appropriately. Therefore, if I am just interested in communicating my results, I do so with the model data.</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="10-3-linear-regression.html#cb418-1"></a><span class="co"># Make predictions using the model data</span></span>
-<span id="cb418-2"><a href="10-3-linear-regression.html#cb418-2"></a>y_pred2 &lt;-<span class="st"> </span><span class="kw">predict</span>(swiss.mod, </span>
-<span id="cb418-3"><a href="10-3-linear-regression.html#cb418-3"></a>                   <span class="dt">newdata =</span> swiss.mod<span class="op">$</span>model, </span>
-<span id="cb418-4"><a href="10-3-linear-regression.html#cb418-4"></a>                   <span class="dt">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span>
-<span id="cb418-5"><a href="10-3-linear-regression.html#cb418-5"></a></span>
-<span id="cb418-6"><a href="10-3-linear-regression.html#cb418-6"></a><span class="co"># Combine with original data</span></span>
-<span id="cb418-7"><a href="10-3-linear-regression.html#cb418-7"></a>swiss_pred2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(swiss, y_pred2)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="10-3-linear-regression.html#cb53-1"></a><span class="co"># Make predictions using the model data</span></span>
+<span id="cb53-2"><a href="10-3-linear-regression.html#cb53-2"></a>y_pred2 &lt;-<span class="st"> </span><span class="kw">predict</span>(swiss.mod, </span>
+<span id="cb53-3"><a href="10-3-linear-regression.html#cb53-3"></a>                   <span class="dt">newdata =</span> swiss.mod<span class="op">$</span>model, </span>
+<span id="cb53-4"><a href="10-3-linear-regression.html#cb53-4"></a>                   <span class="dt">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span>
+<span id="cb53-5"><a href="10-3-linear-regression.html#cb53-5"></a></span>
+<span id="cb53-6"><a href="10-3-linear-regression.html#cb53-6"></a><span class="co"># Combine with original data</span></span>
+<span id="cb53-7"><a href="10-3-linear-regression.html#cb53-7"></a>swiss_pred2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(swiss, y_pred2)</span></code></pre></div>
 <p>Whichever way you do this, you’ll notice that we have a unique value of fit for every value of <code>Education</code> in the original data because <code>fit</code> is predicted as a continuous function of <code>Education</code> in this case:</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="10-3-linear-regression.html#cb419-1"></a><span class="kw">head</span>( swiss_pred2)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="10-3-linear-regression.html#cb54-1"></a><span class="kw">head</span>( swiss_pred2)</span></code></pre></div>
 <pre><code>##              Fertility Agriculture Examination Education Catholic
 ## Courtelary        80.2        17.0          15        12     9.96
 ## Delemont          83.1        45.1           6         9    84.84
@@ -382,29 +380,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Neuveville               20.6 66.67480 47.41244 85.93717
 ## Porrentruy               26.6 73.57361 54.31199 92.83522</code></pre>
 <p>We could also make predictions for specific values of <code>Education</code> by creating (simulating) new values of <code>Education</code>. Below, we make a sequence of new values for <code>Education</code> from the minimum to the maximum in 30 equal increments and then make predictions with that object instead of the model data.</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="10-3-linear-regression.html#cb421-1"></a>new_ed &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb421-2"><a href="10-3-linear-regression.html#cb421-2"></a>  <span class="dt">Education =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="kw">min</span>(swiss<span class="op">$</span>Education),</span>
-<span id="cb421-3"><a href="10-3-linear-regression.html#cb421-3"></a>                  <span class="dt">to =</span> <span class="kw">max</span>(swiss<span class="op">$</span>Education),</span>
-<span id="cb421-4"><a href="10-3-linear-regression.html#cb421-4"></a>                  <span class="dt">length.out =</span> <span class="dv">30</span></span>
-<span id="cb421-5"><a href="10-3-linear-regression.html#cb421-5"></a>                  )</span>
-<span id="cb421-6"><a href="10-3-linear-regression.html#cb421-6"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="10-3-linear-regression.html#cb56-1"></a>new_ed &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb56-2"><a href="10-3-linear-regression.html#cb56-2"></a>  <span class="dt">Education =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="kw">min</span>(swiss<span class="op">$</span>Education),</span>
+<span id="cb56-3"><a href="10-3-linear-regression.html#cb56-3"></a>                  <span class="dt">to =</span> <span class="kw">max</span>(swiss<span class="op">$</span>Education),</span>
+<span id="cb56-4"><a href="10-3-linear-regression.html#cb56-4"></a>                  <span class="dt">length.out =</span> <span class="dv">30</span></span>
+<span id="cb56-5"><a href="10-3-linear-regression.html#cb56-5"></a>                  )</span>
+<span id="cb56-6"><a href="10-3-linear-regression.html#cb56-6"></a>  )</span></code></pre></div>
 <p>Now make predictions across the range of observed data.</p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="10-3-linear-regression.html#cb422-1"></a>new_y_preds &lt;-<span class="st"> </span><span class="kw">predict</span>(swiss.mod, <span class="dt">newdata =</span> new_ed, <span class="dt">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span>
-<span id="cb422-2"><a href="10-3-linear-regression.html#cb422-2"></a></span>
-<span id="cb422-3"><a href="10-3-linear-regression.html#cb422-3"></a>new_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(new_ed, new_y_preds)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="10-3-linear-regression.html#cb57-1"></a>new_y_preds &lt;-<span class="st"> </span><span class="kw">predict</span>(swiss.mod, <span class="dt">newdata =</span> new_ed, <span class="dt">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span>
+<span id="cb57-2"><a href="10-3-linear-regression.html#cb57-2"></a></span>
+<span id="cb57-3"><a href="10-3-linear-regression.html#cb57-3"></a>new_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(new_ed, new_y_preds)</span></code></pre></div>
 <p>Or, you could make a prediction for a single value. Let’s say I ask you to find the mean and 95% confidence interval for a specific value of <code>Education</code>. Usually we are interested in the maximum and minimum for communicating change in y across the range of x. To do this, you can just make some new data and print the predictions!</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="10-3-linear-regression.html#cb423-1"></a><span class="co"># Make a data frame containing only the max and min values for Education</span></span>
-<span id="cb423-2"><a href="10-3-linear-regression.html#cb423-2"></a>point_ed =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Education =</span> <span class="kw">c</span>(<span class="kw">min</span>(swiss<span class="op">$</span>Education), <span class="kw">max</span>(swiss<span class="op">$</span>Education)))</span>
-<span id="cb423-3"><a href="10-3-linear-regression.html#cb423-3"></a></span>
-<span id="cb423-4"><a href="10-3-linear-regression.html#cb423-4"></a><span class="co"># Predict new values of y from the model</span></span>
-<span id="cb423-5"><a href="10-3-linear-regression.html#cb423-5"></a>point_y_pred &lt;-<span class="st"> </span><span class="kw">predict</span>(swiss.mod, point_ed, <span class="dt">interval =</span> <span class="st">&#39;confidence&#39;</span>)</span>
-<span id="cb423-6"><a href="10-3-linear-regression.html#cb423-6"></a></span>
-<span id="cb423-7"><a href="10-3-linear-regression.html#cb423-7"></a><span class="co"># Put the predictions in a data frame with </span></span>
-<span id="cb423-8"><a href="10-3-linear-regression.html#cb423-8"></a><span class="co"># the min and max values of Education</span></span>
-<span id="cb423-9"><a href="10-3-linear-regression.html#cb423-9"></a>point_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(point_ed, point_y_pred)</span>
-<span id="cb423-10"><a href="10-3-linear-regression.html#cb423-10"></a></span>
-<span id="cb423-11"><a href="10-3-linear-regression.html#cb423-11"></a><span class="co"># Now you can see your predictions</span></span>
-<span id="cb423-12"><a href="10-3-linear-regression.html#cb423-12"></a><span class="kw">print</span>(point_preds)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="10-3-linear-regression.html#cb58-1"></a><span class="co"># Make a data frame containing only the max and min values for Education</span></span>
+<span id="cb58-2"><a href="10-3-linear-regression.html#cb58-2"></a>point_ed =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Education =</span> <span class="kw">c</span>(<span class="kw">min</span>(swiss<span class="op">$</span>Education), <span class="kw">max</span>(swiss<span class="op">$</span>Education)))</span>
+<span id="cb58-3"><a href="10-3-linear-regression.html#cb58-3"></a></span>
+<span id="cb58-4"><a href="10-3-linear-regression.html#cb58-4"></a><span class="co"># Predict new values of y from the model</span></span>
+<span id="cb58-5"><a href="10-3-linear-regression.html#cb58-5"></a>point_y_pred &lt;-<span class="st"> </span><span class="kw">predict</span>(swiss.mod, point_ed, <span class="dt">interval =</span> <span class="st">&#39;confidence&#39;</span>)</span>
+<span id="cb58-6"><a href="10-3-linear-regression.html#cb58-6"></a></span>
+<span id="cb58-7"><a href="10-3-linear-regression.html#cb58-7"></a><span class="co"># Put the predictions in a data frame with </span></span>
+<span id="cb58-8"><a href="10-3-linear-regression.html#cb58-8"></a><span class="co"># the min and max values of Education</span></span>
+<span id="cb58-9"><a href="10-3-linear-regression.html#cb58-9"></a>point_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(point_ed, point_y_pred)</span>
+<span id="cb58-10"><a href="10-3-linear-regression.html#cb58-10"></a></span>
+<span id="cb58-11"><a href="10-3-linear-regression.html#cb58-11"></a><span class="co"># Now you can see your predictions</span></span>
+<span id="cb58-12"><a href="10-3-linear-regression.html#cb58-12"></a><span class="kw">print</span>(point_preds)</span></code></pre></div>
 <pre><code>##   Education      fit      lwr      upr
 ## 1         1 78.74771 74.72578 82.76963
 ## 2        53 33.90549 21.33635 46.47464</code></pre>
@@ -417,19 +415,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="plotting-1" class="section level3">
 <h3><span class="header-section-number">10.3.2</span> Plotting</h3>
 <p>Once we are happy with our predictions, we can go ahead and plot them against the raw data to show how our model fit the data. Here is the code that we used to do this in <a href="7-Chapter7.html#Chapter7">Chapter 7</a> but a little more purpley.</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="10-3-linear-regression.html#cb425-1"></a><span class="co"># Make a pretty plot showing raw data and model predictions</span></span>
-<span id="cb425-2"><a href="10-3-linear-regression.html#cb425-2"></a><span class="kw">ggplot</span>(swiss_pred2, <span class="kw">aes</span>(<span class="dt">x =</span> Education, <span class="dt">y =</span> Fertility)) <span class="op">+</span></span>
-<span id="cb425-3"><a href="10-3-linear-regression.html#cb425-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">colour =</span> <span class="st">&#39;plum3&#39;</span>, <span class="dt">fill =</span> <span class="st">&#39;plum3&#39;</span>, <span class="dt">alpha =</span> <span class="fl">0.75</span>, <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></span>
-<span id="cb425-4"><a href="10-3-linear-regression.html#cb425-4"></a><span class="st">  </span><span class="kw">geom_line</span>( <span class="kw">aes</span>(<span class="dt">y =</span> fit), <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">color=</span><span class="st">&#39;purple&#39;</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>) <span class="op">+</span></span>
-<span id="cb425-5"><a href="10-3-linear-regression.html#cb425-5"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr), </span>
-<span id="cb425-6"><a href="10-3-linear-regression.html#cb425-6"></a>              <span class="dt">color =</span> <span class="st">&#39;purple4&#39;</span>, </span>
-<span id="cb425-7"><a href="10-3-linear-regression.html#cb425-7"></a>              <span class="dt">fill =</span> <span class="st">&#39;lavender&#39;</span>, </span>
-<span id="cb425-8"><a href="10-3-linear-regression.html#cb425-8"></a>              <span class="dt">alpha =</span> <span class="fl">.4</span>,</span>
-<span id="cb425-9"><a href="10-3-linear-regression.html#cb425-9"></a>              <span class="dt">lty =</span> <span class="dv">2</span>,</span>
-<span id="cb425-10"><a href="10-3-linear-regression.html#cb425-10"></a>              <span class="dt">lwd =</span> <span class="fl">.5</span>) <span class="op">+</span></span>
-<span id="cb425-11"><a href="10-3-linear-regression.html#cb425-11"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb425-12"><a href="10-3-linear-regression.html#cb425-12"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>, <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-286-1.png" width="672" /></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="10-3-linear-regression.html#cb60-1"></a><span class="co"># Make a pretty plot showing raw data and model predictions</span></span>
+<span id="cb60-2"><a href="10-3-linear-regression.html#cb60-2"></a><span class="kw">ggplot</span>(swiss_pred2, <span class="kw">aes</span>(<span class="dt">x =</span> Education, <span class="dt">y =</span> Fertility)) <span class="op">+</span></span>
+<span id="cb60-3"><a href="10-3-linear-regression.html#cb60-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">colour =</span> <span class="st">&#39;plum3&#39;</span>, <span class="dt">fill =</span> <span class="st">&#39;plum3&#39;</span>, <span class="dt">alpha =</span> <span class="fl">0.75</span>, <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></span>
+<span id="cb60-4"><a href="10-3-linear-regression.html#cb60-4"></a><span class="st">  </span><span class="kw">geom_line</span>( <span class="kw">aes</span>(<span class="dt">y =</span> fit), <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">color=</span><span class="st">&#39;purple&#39;</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>) <span class="op">+</span></span>
+<span id="cb60-5"><a href="10-3-linear-regression.html#cb60-5"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr), </span>
+<span id="cb60-6"><a href="10-3-linear-regression.html#cb60-6"></a>              <span class="dt">color =</span> <span class="st">&#39;purple4&#39;</span>, </span>
+<span id="cb60-7"><a href="10-3-linear-regression.html#cb60-7"></a>              <span class="dt">fill =</span> <span class="st">&#39;lavender&#39;</span>, </span>
+<span id="cb60-8"><a href="10-3-linear-regression.html#cb60-8"></a>              <span class="dt">alpha =</span> <span class="fl">.4</span>,</span>
+<span id="cb60-9"><a href="10-3-linear-regression.html#cb60-9"></a>              <span class="dt">lty =</span> <span class="dv">2</span>,</span>
+<span id="cb60-10"><a href="10-3-linear-regression.html#cb60-10"></a>              <span class="dt">lwd =</span> <span class="fl">.5</span>) <span class="op">+</span></span>
+<span id="cb60-11"><a href="10-3-linear-regression.html#cb60-11"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb60-12"><a href="10-3-linear-regression.html#cb60-12"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>, <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 <p><br></p>
 <p>Now that is a <strong>money</strong> figure that shows your raw data, the model predictions, and the uncertainty associated with both of these. That’s what we want to go for every time - with or without the purpleyness.</p>
 <p>Multiple regression proceeds in much the same way. In most cases, it is easiest to make model predictions directly from the observed data because when we have multiple continuous <code>X</code> variables they are often correlated with one another. We will examine this in detail in <a href="#Chapter11">Chapter 11</a> when we discuss model selection.</p>
