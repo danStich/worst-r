@@ -134,8 +134,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -345,23 +343,23 @@ But make no mistake, you’re wall’s still covered in shit</p>
 <p>Let’s check some of these tools out!</p>
 </blockquote>
 <p>Start by fitting some models, we will use the <code>swiss</code> data again this week for the purpose of demonstrating selection tools because it is a noisy data set with lots of complexity and colinearity between variables.</p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="11-5-a-priori.html#cb441-1"></a><span class="kw">data</span>(<span class="st">&#39;swiss&#39;</span>)</span>
-<span id="cb441-2"><a href="11-5-a-priori.html#cb441-2"></a></span>
-<span id="cb441-3"><a href="11-5-a-priori.html#cb441-3"></a><span class="co"># Fit the model that tests the</span></span>
-<span id="cb441-4"><a href="11-5-a-priori.html#cb441-4"></a><span class="co"># effects of education on the fertility index</span></span>
-<span id="cb441-5"><a href="11-5-a-priori.html#cb441-5"></a>  mod_Ed =<span class="st"> </span><span class="kw">lm</span>(Fertility<span class="op">~</span>Education, <span class="dt">data=</span>swiss)</span>
-<span id="cb441-6"><a href="11-5-a-priori.html#cb441-6"></a>  </span>
-<span id="cb441-7"><a href="11-5-a-priori.html#cb441-7"></a><span class="co"># Fit another model that tests</span></span>
-<span id="cb441-8"><a href="11-5-a-priori.html#cb441-8"></a><span class="co"># effects of % Catholic on Fertility</span></span>
-<span id="cb441-9"><a href="11-5-a-priori.html#cb441-9"></a>  mod_Cath =<span class="st"> </span><span class="kw">lm</span>(Fertility<span class="op">~</span>Catholic, <span class="dt">data=</span>swiss)</span>
-<span id="cb441-10"><a href="11-5-a-priori.html#cb441-10"></a>  </span>
-<span id="cb441-11"><a href="11-5-a-priori.html#cb441-11"></a><span class="co"># Fit a model with additive effects</span></span>
-<span id="cb441-12"><a href="11-5-a-priori.html#cb441-12"></a><span class="co"># of both explanatory variables</span></span>
-<span id="cb441-13"><a href="11-5-a-priori.html#cb441-13"></a>  mod_EdCath =<span class="st"> </span><span class="kw">lm</span>(Fertility<span class="op">~</span>Education <span class="op">+</span><span class="st"> </span>Catholic, <span class="dt">data=</span>swiss)</span>
-<span id="cb441-14"><a href="11-5-a-priori.html#cb441-14"></a>  </span>
-<span id="cb441-15"><a href="11-5-a-priori.html#cb441-15"></a><span class="co"># Fit a model with multiplicative</span></span>
-<span id="cb441-16"><a href="11-5-a-priori.html#cb441-16"></a><span class="co"># effects of both explanatory variables</span></span>
-<span id="cb441-17"><a href="11-5-a-priori.html#cb441-17"></a>  mod_EdxCath =<span class="st"> </span><span class="kw">lm</span>(Fertility<span class="op">~</span>Education<span class="op">*</span>Catholic, <span class="dt">data=</span>swiss)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="11-5-a-priori.html#cb8-1"></a><span class="kw">data</span>(<span class="st">&quot;swiss&quot;</span>)</span>
+<span id="cb8-2"><a href="11-5-a-priori.html#cb8-2"></a></span>
+<span id="cb8-3"><a href="11-5-a-priori.html#cb8-3"></a><span class="co"># Fit the model that tests the</span></span>
+<span id="cb8-4"><a href="11-5-a-priori.html#cb8-4"></a><span class="co"># effects of education on the fertility index</span></span>
+<span id="cb8-5"><a href="11-5-a-priori.html#cb8-5"></a>mod_Ed &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</span>
+<span id="cb8-6"><a href="11-5-a-priori.html#cb8-6"></a></span>
+<span id="cb8-7"><a href="11-5-a-priori.html#cb8-7"></a><span class="co"># Fit another model that tests</span></span>
+<span id="cb8-8"><a href="11-5-a-priori.html#cb8-8"></a><span class="co"># effects of % Catholic on Fertility</span></span>
+<span id="cb8-9"><a href="11-5-a-priori.html#cb8-9"></a>mod_Cath &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Catholic, <span class="dt">data =</span> swiss)</span>
+<span id="cb8-10"><a href="11-5-a-priori.html#cb8-10"></a></span>
+<span id="cb8-11"><a href="11-5-a-priori.html#cb8-11"></a><span class="co"># Fit a model with additive effects</span></span>
+<span id="cb8-12"><a href="11-5-a-priori.html#cb8-12"></a><span class="co"># of both explanatory variables</span></span>
+<span id="cb8-13"><a href="11-5-a-priori.html#cb8-13"></a>mod_EdCath &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education <span class="op">+</span><span class="st"> </span>Catholic, <span class="dt">data =</span> swiss)</span>
+<span id="cb8-14"><a href="11-5-a-priori.html#cb8-14"></a></span>
+<span id="cb8-15"><a href="11-5-a-priori.html#cb8-15"></a><span class="co"># Fit a model with multiplicative</span></span>
+<span id="cb8-16"><a href="11-5-a-priori.html#cb8-16"></a><span class="co"># effects of both explanatory variables</span></span>
+<span id="cb8-17"><a href="11-5-a-priori.html#cb8-17"></a>mod_EdxCath &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education <span class="op">*</span><span class="st"> </span>Catholic, <span class="dt">data =</span> swiss)</span></code></pre></div>
 <p>We have four models that represent competing hypotheses:</p>
 <p>1.<code>Education</code> alone is the best explanation among those considered for variability in <code>fertility</code>.</p>
 <p>2.Percent <code>Catholic</code> alone is the best explanation among those considered for variability in <code>fertility</code>.</p>
@@ -369,41 +367,41 @@ But make no mistake, you’re wall’s still covered in shit</p>
 <p>4.The interactive effects of <code>Education</code> and percent <code>Catholic</code> are the best explanation among those considered for variability in <code>fertility</code>.</p>
 <p>Great, but how can we evaluate which of these hypotheses is best supported by our data?</p>
 <p>Have a look at the residuals of the most complex of these models to make sure we haven’t shattered the assumptions of linear models. In this case, “most complex” means the model with the most parameters, or <code>mod.EdxCath</code>. If you are still unsure as to why this model has more parameters than <code>mod.EdCath</code>, then have a look at the output of <code>model.matrix()</code> for each of them.</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="11-5-a-priori.html#cb442-1"></a><span class="co"># Extract the residuals from</span></span>
-<span id="cb442-2"><a href="11-5-a-priori.html#cb442-2"></a><span class="co"># the fitted model object</span></span>
-<span id="cb442-3"><a href="11-5-a-priori.html#cb442-3"></a>resids &lt;-<span class="st"> </span>mod_EdxCath<span class="op">$</span>residuals</span>
-<span id="cb442-4"><a href="11-5-a-priori.html#cb442-4"></a></span>
-<span id="cb442-5"><a href="11-5-a-priori.html#cb442-5"></a><span class="co"># Add the residuals to the swiss data</span></span>
-<span id="cb442-6"><a href="11-5-a-priori.html#cb442-6"></a>swiss_resids &lt;-<span class="st"> </span><span class="kw">data.frame</span>(swiss, resids)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="11-5-a-priori.html#cb9-1"></a><span class="co"># Extract the residuals from</span></span>
+<span id="cb9-2"><a href="11-5-a-priori.html#cb9-2"></a><span class="co"># the fitted model object</span></span>
+<span id="cb9-3"><a href="11-5-a-priori.html#cb9-3"></a>resids &lt;-<span class="st"> </span>mod_EdxCath<span class="op">$</span>residuals</span>
+<span id="cb9-4"><a href="11-5-a-priori.html#cb9-4"></a></span>
+<span id="cb9-5"><a href="11-5-a-priori.html#cb9-5"></a><span class="co"># Add the residuals to the swiss data</span></span>
+<span id="cb9-6"><a href="11-5-a-priori.html#cb9-6"></a>swiss_resids &lt;-<span class="st"> </span><span class="kw">data.frame</span>(swiss, resids)</span></code></pre></div>
 <p>They definitely look like they are normal with a mean of zero:</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="11-5-a-priori.html#cb443-1"></a><span class="kw">ggplot</span>(swiss_resids, <span class="kw">aes</span>(<span class="dt">x =</span> resids)) <span class="op">+</span></span>
-<span id="cb443-2"><a href="11-5-a-priori.html#cb443-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-301-1.png" width="672" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="11-5-a-priori.html#cb10-1"></a><span class="kw">ggplot</span>(swiss_resids, <span class="kw">aes</span>(<span class="dt">x =</span> resids)) <span class="op">+</span></span>
+<span id="cb10-2"><a href="11-5-a-priori.html#cb10-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>A glance at the residuals vs fitted seems to indicate that we don’t have any concerning patterns in the residuals with respect to the observed value of fertility, although we do see that one point all by itself over to the left that might make us want to puke a little.</p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="11-5-a-priori.html#cb444-1"></a><span class="co"># Make a pretty plot to make sure we haven&#39;t </span></span>
-<span id="cb444-2"><a href="11-5-a-priori.html#cb444-2"></a><span class="co"># completely forgotten about those pesky </span></span>
-<span id="cb444-3"><a href="11-5-a-priori.html#cb444-3"></a><span class="co"># assumptions from Chapter 9</span></span>
-<span id="cb444-4"><a href="11-5-a-priori.html#cb444-4"></a><span class="kw">ggplot</span>(mod_EdxCath, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb444-5"><a href="11-5-a-priori.html#cb444-5"></a><span class="st">  </span><span class="kw">geom_jitter</span>() <span class="op">+</span></span>
-<span id="cb444-6"><a href="11-5-a-priori.html#cb444-6"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">0</span>, <span class="dt">slope =</span> <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb444-7"><a href="11-5-a-priori.html#cb444-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fertility&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb444-8"><a href="11-5-a-priori.html#cb444-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon))) <span class="op">+</span></span>
-<span id="cb444-9"><a href="11-5-a-priori.html#cb444-9"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-302-1.png" width="672" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="11-5-a-priori.html#cb11-1"></a><span class="co"># Make a pretty plot to make sure we haven&#39;t</span></span>
+<span id="cb11-2"><a href="11-5-a-priori.html#cb11-2"></a><span class="co"># completely forgotten about those pesky</span></span>
+<span id="cb11-3"><a href="11-5-a-priori.html#cb11-3"></a><span class="co"># assumptions from Chapter 9</span></span>
+<span id="cb11-4"><a href="11-5-a-priori.html#cb11-4"></a><span class="kw">ggplot</span>(mod_EdxCath, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid)) <span class="op">+</span></span>
+<span id="cb11-5"><a href="11-5-a-priori.html#cb11-5"></a><span class="st">  </span><span class="kw">geom_jitter</span>() <span class="op">+</span></span>
+<span id="cb11-6"><a href="11-5-a-priori.html#cb11-6"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">0</span>, <span class="dt">slope =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb11-7"><a href="11-5-a-priori.html#cb11-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fertility&quot;</span>) <span class="op">+</span></span>
+<span id="cb11-8"><a href="11-5-a-priori.html#cb11-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon))) <span class="op">+</span></span>
+<span id="cb11-9"><a href="11-5-a-priori.html#cb11-9"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p><br></p>
 <p>Now that we have verified we are not in violation of assumptions we can apply model selection to find out if one is clearly better than the others and if so which. Then, we’ll use our best model to make predictions just like last week and next week and the week after that…and so on.</p>
 <p>Let’s start by making a list of our models and giving each element (model) in the list a name:</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="11-5-a-priori.html#cb445-1"></a><span class="co"># Making a list that holds are models inside it</span></span>
-<span id="cb445-2"><a href="11-5-a-priori.html#cb445-2"></a>  mods =<span class="st"> </span><span class="kw">list</span>(mod_Ed, mod_Cath, mod_EdCath, mod_EdxCath)</span>
-<span id="cb445-3"><a href="11-5-a-priori.html#cb445-3"></a></span>
-<span id="cb445-4"><a href="11-5-a-priori.html#cb445-4"></a><span class="co"># Give names to each element of the list (each model)</span></span>
-<span id="cb445-5"><a href="11-5-a-priori.html#cb445-5"></a>  <span class="kw">names</span>(mods) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Ed&#39;</span>, <span class="st">&#39;Cath&#39;</span>, <span class="st">&#39;EdCath&#39;</span>, <span class="st">&#39;EdxCath&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="11-5-a-priori.html#cb12-1"></a><span class="co"># Making a list that holds are models inside it</span></span>
+<span id="cb12-2"><a href="11-5-a-priori.html#cb12-2"></a>mods &lt;-<span class="st"> </span><span class="kw">list</span>(mod_Ed, mod_Cath, mod_EdCath, mod_EdxCath)</span>
+<span id="cb12-3"><a href="11-5-a-priori.html#cb12-3"></a></span>
+<span id="cb12-4"><a href="11-5-a-priori.html#cb12-4"></a><span class="co"># Give names to each element of the list (each model)</span></span>
+<span id="cb12-5"><a href="11-5-a-priori.html#cb12-5"></a><span class="kw">names</span>(mods) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ed&quot;</span>, <span class="st">&quot;Cath&quot;</span>, <span class="st">&quot;EdCath&quot;</span>, <span class="st">&quot;EdxCath&quot;</span>)</span></code></pre></div>
 <div id="adjusted-r2" class="section level4">
 <h4><span class="header-section-number">11.5.3.1</span> Adjusted R<sup>2</sup></h4>
 <p>The adjusted R<sup>2</sup> offers a relatively simple tool for model selection. It is superior to the multiple R<sup>2</sup> with which we have been working only because it balances the number of parameters in the model with the number of observations in our data.</p>
 <p>Just as before, we can look at the summary of our model objects that we have stored in this list.</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="11-5-a-priori.html#cb446-1"></a><span class="co"># Education only model, we can take a look, like this</span></span>
-<span id="cb446-2"><a href="11-5-a-priori.html#cb446-2"></a>  <span class="kw">summary</span>(mods<span class="op">$</span>Ed)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="11-5-a-priori.html#cb13-1"></a><span class="co"># Education only model, we can take a look, like this</span></span>
+<span id="cb13-2"><a href="11-5-a-priori.html#cb13-2"></a><span class="kw">summary</span>(mods<span class="op">$</span>Ed)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Fertility ~ Education, data = swiss)
@@ -422,24 +420,24 @@ But make no mistake, you’re wall’s still covered in shit</p>
 ## Residual standard error: 9.446 on 45 degrees of freedom
 ## Multiple R-squared:  0.4406,	Adjusted R-squared:  0.4282 
 ## F-statistic: 35.45 on 1 and 45 DF,  p-value: 3.659e-07</code></pre>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="11-5-a-priori.html#cb448-1"></a><span class="co"># REMEMBER: this model is an object stored in R,</span></span>
-<span id="cb448-2"><a href="11-5-a-priori.html#cb448-2"></a><span class="co"># so we can also look at the names of this summary,</span></span>
-<span id="cb448-3"><a href="11-5-a-priori.html#cb448-3"></a><span class="co"># like this</span></span>
-<span id="cb448-4"><a href="11-5-a-priori.html#cb448-4"></a>  <span class="kw">names</span>(<span class="kw">summary</span>(mods<span class="op">$</span>Ed))</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="11-5-a-priori.html#cb15-1"></a><span class="co"># REMEMBER: this model is an object stored in R,</span></span>
+<span id="cb15-2"><a href="11-5-a-priori.html#cb15-2"></a><span class="co"># so we can also look at the names of this summary,</span></span>
+<span id="cb15-3"><a href="11-5-a-priori.html#cb15-3"></a><span class="co"># like this</span></span>
+<span id="cb15-4"><a href="11-5-a-priori.html#cb15-4"></a><span class="kw">names</span>(<span class="kw">summary</span>(mods<span class="op">$</span>Ed))</span></code></pre></div>
 <pre><code>##  [1] &quot;call&quot;          &quot;terms&quot;         &quot;residuals&quot;     &quot;coefficients&quot; 
 ##  [5] &quot;aliased&quot;       &quot;sigma&quot;         &quot;df&quot;            &quot;r.squared&quot;    
 ##  [9] &quot;adj.r.squared&quot; &quot;fstatistic&quot;    &quot;cov.unscaled&quot;</code></pre>
 <p><em>Whoa</em>, this is some heavy stuff. To recap, we have made a list of models, each of which are actually lists themselves. Each model has lots of elements. The output of <code>summary()</code> for each model is also a list with and the elements have names of their own. Within that final list we can find the <code>Adusted R-squared</code> or what <code>summary()</code> calls the <code>adj.r.squared</code>. It’s turtles all the way down all over again.</p>
 <p>We can, of course, extract the adjusted R<sup>2</sup> value from the output of <code>summary()</code> by name:</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="11-5-a-priori.html#cb450-1"></a>ed_r &lt;-<span class="st"> </span><span class="kw">summary</span>(mods<span class="op">$</span>Ed)<span class="op">$</span>adj.r.squared</span>
-<span id="cb450-2"><a href="11-5-a-priori.html#cb450-2"></a>cath_r &lt;-<span class="st"> </span><span class="kw">summary</span>(mods<span class="op">$</span>Cath)<span class="op">$</span>adj.r.squared</span>
-<span id="cb450-3"><a href="11-5-a-priori.html#cb450-3"></a>EdCath_r &lt;-<span class="st"> </span><span class="kw">summary</span>(mods<span class="op">$</span>EdCath)<span class="op">$</span>adj.r.squared</span>
-<span id="cb450-4"><a href="11-5-a-priori.html#cb450-4"></a>EdxCath_r &lt;-<span class="st"> </span><span class="kw">summary</span>(mods<span class="op">$</span>EdxCath)<span class="op">$</span>adj.r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="11-5-a-priori.html#cb17-1"></a>ed_r &lt;-<span class="st"> </span><span class="kw">summary</span>(mods<span class="op">$</span>Ed)<span class="op">$</span>adj.r.squared</span>
+<span id="cb17-2"><a href="11-5-a-priori.html#cb17-2"></a>cath_r &lt;-<span class="st"> </span><span class="kw">summary</span>(mods<span class="op">$</span>Cath)<span class="op">$</span>adj.r.squared</span>
+<span id="cb17-3"><a href="11-5-a-priori.html#cb17-3"></a>EdCath_r &lt;-<span class="st"> </span><span class="kw">summary</span>(mods<span class="op">$</span>EdCath)<span class="op">$</span>adj.r.squared</span>
+<span id="cb17-4"><a href="11-5-a-priori.html#cb17-4"></a>EdxCath_r &lt;-<span class="st"> </span><span class="kw">summary</span>(mods<span class="op">$</span>EdxCath)<span class="op">$</span>adj.r.squared</span></code></pre></div>
 <p>And, we could even put them in a data frame with the original model names to compare the R<sup>2</sup> values.</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="11-5-a-priori.html#cb451-1"></a><span class="kw">data.frame</span>(</span>
-<span id="cb451-2"><a href="11-5-a-priori.html#cb451-2"></a>  <span class="dt">model =</span> <span class="kw">names</span>(mods), </span>
-<span id="cb451-3"><a href="11-5-a-priori.html#cb451-3"></a>  <span class="dt">adj_r_squared =</span> <span class="kw">c</span>(ed_r, cath_r, EdCath_r, EdxCath_r)</span>
-<span id="cb451-4"><a href="11-5-a-priori.html#cb451-4"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="11-5-a-priori.html#cb18-1"></a><span class="kw">data.frame</span>(</span>
+<span id="cb18-2"><a href="11-5-a-priori.html#cb18-2"></a>  <span class="dt">model =</span> <span class="kw">names</span>(mods),</span>
+<span id="cb18-3"><a href="11-5-a-priori.html#cb18-3"></a>  <span class="dt">adj_r_squared =</span> <span class="kw">c</span>(ed_r, cath_r, EdCath_r, EdxCath_r)</span>
+<span id="cb18-4"><a href="11-5-a-priori.html#cb18-4"></a>)</span></code></pre></div>
 <pre><code>##     model adj_r_squared
 ## 1      Ed     0.4281849
 ## 2    Cath     0.1975591
@@ -457,15 +455,15 @@ Akaike’s information criterion (AIC)
 <p>Information-theoretic approaches to model selection are based on the trade off in information gained through addition of parameters (explanatory variables and how they combine) and the added complexity of the models, with respect to sample size. I will hold off on a detailed explanation because you will learn more about this tool in your readings. So, let’s cut straight to the chase.</p>
 <p>Remember that we made a list of <em>a priori</em> models above that we would like to consider.</p>
 <p>Have a look at the names of those models just in case you’ve forgotten them.</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="11-5-a-priori.html#cb453-1"></a><span class="kw">names</span>(mods)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="11-5-a-priori.html#cb20-1"></a><span class="kw">names</span>(mods)</span></code></pre></div>
 <pre><code>## [1] &quot;Ed&quot;      &quot;Cath&quot;    &quot;EdCath&quot;  &quot;EdxCath&quot;</code></pre>
 <p>We can extract the AIC value for each model in our list by using the <code>lapply()</code> or <code>mapply</code> functions. These functions will split up the list and “apply” a function to each of the elements of that list. The primary difference is that <code>lapply()</code> returns a named list and <code>mapply()</code> returns an atomic vector with named elements (easier to work with if we want to combine results with model names).</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="11-5-a-priori.html#cb455-1"></a>mods_AIC &lt;-<span class="st"> </span><span class="kw">mapply</span>(<span class="dt">FUN =</span> <span class="st">&#39;AIC&#39;</span>, mods)</span>
-<span id="cb455-2"><a href="11-5-a-priori.html#cb455-2"></a></span>
-<span id="cb455-3"><a href="11-5-a-priori.html#cb455-3"></a><span class="kw">data.frame</span>(</span>
-<span id="cb455-4"><a href="11-5-a-priori.html#cb455-4"></a>  <span class="dt">Model =</span> <span class="kw">names</span>(mods),</span>
-<span id="cb455-5"><a href="11-5-a-priori.html#cb455-5"></a>  <span class="dt">AIC =</span> mods_AIC</span>
-<span id="cb455-6"><a href="11-5-a-priori.html#cb455-6"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="11-5-a-priori.html#cb22-1"></a>mods_AIC &lt;-<span class="st"> </span><span class="kw">mapply</span>(<span class="dt">FUN =</span> <span class="st">&quot;AIC&quot;</span>, mods)</span>
+<span id="cb22-2"><a href="11-5-a-priori.html#cb22-2"></a></span>
+<span id="cb22-3"><a href="11-5-a-priori.html#cb22-3"></a><span class="kw">data.frame</span>(</span>
+<span id="cb22-4"><a href="11-5-a-priori.html#cb22-4"></a>  <span class="dt">Model =</span> <span class="kw">names</span>(mods),</span>
+<span id="cb22-5"><a href="11-5-a-priori.html#cb22-5"></a>  <span class="dt">AIC =</span> mods_AIC</span>
+<span id="cb22-6"><a href="11-5-a-priori.html#cb22-6"></a>)</span></code></pre></div>
 <pre><code>##           Model      AIC
 ## Ed           Ed 348.4223
 ## Cath       Cath 364.3479
@@ -477,12 +475,12 @@ Akaike’s information criterion (AIC)
 <blockquote>
 <p>Open can of worms…</p>
 </blockquote>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="11-5-a-priori.html#cb457-1"></a><span class="co"># First, we need another library</span></span>
-<span id="cb457-2"><a href="11-5-a-priori.html#cb457-2"></a>  <span class="kw">library</span>(AICcmodavg)</span>
-<span id="cb457-3"><a href="11-5-a-priori.html#cb457-3"></a></span>
-<span id="cb457-4"><a href="11-5-a-priori.html#cb457-4"></a><span class="co"># Let&#39;s start digging into this stuff</span></span>
-<span id="cb457-5"><a href="11-5-a-priori.html#cb457-5"></a><span class="co"># by making a table that can help us along. </span></span>
-<span id="cb457-6"><a href="11-5-a-priori.html#cb457-6"></a>  <span class="kw">aictab</span>(<span class="dt">cand.set =</span> mods, <span class="dt">modnames =</span> <span class="kw">names</span>(mods))</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="11-5-a-priori.html#cb24-1"></a><span class="co"># First, we need another library</span></span>
+<span id="cb24-2"><a href="11-5-a-priori.html#cb24-2"></a><span class="kw">library</span>(AICcmodavg)</span>
+<span id="cb24-3"><a href="11-5-a-priori.html#cb24-3"></a></span>
+<span id="cb24-4"><a href="11-5-a-priori.html#cb24-4"></a><span class="co"># Let&#39;s start digging into this stuff</span></span>
+<span id="cb24-5"><a href="11-5-a-priori.html#cb24-5"></a><span class="co"># by making a table that can help us along.</span></span>
+<span id="cb24-6"><a href="11-5-a-priori.html#cb24-6"></a><span class="kw">aictab</span>(<span class="dt">cand.set =</span> mods, <span class="dt">modnames =</span> <span class="kw">names</span>(mods))</span></code></pre></div>
 <pre><code>## 
 ## Model selection based on AICc:
 ## 
@@ -512,8 +510,10 @@ Akaike’s information criterion (AIC)
 <div id="model-averaging" class="section level4">
 <h4><span class="header-section-number">11.5.3.4</span> Model averaging</h4>
 <p>Using model averaging to account for the model uncertainty, we can see that the unconditional confidence interval for <code>Education</code> is negative and does not overlap zero, and the opposite trend is evident in the trend for <code>Catholic</code>. We also find out that the interaction between <code>Education</code> and <code>Catholic</code> is actually not significant, which is probably why the main effects model had equivelant support in the candidate set.</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="11-5-a-priori.html#cb459-1"></a><span class="kw">modavg</span>(mods, <span class="dt">parm =</span> <span class="st">&#39;Education&#39;</span>, <span class="dt">modnames =</span> <span class="kw">names</span>(mods),</span>
-<span id="cb459-2"><a href="11-5-a-priori.html#cb459-2"></a>       <span class="dt">conf.level =</span> <span class="fl">.95</span>, <span class="dt">exclude =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="11-5-a-priori.html#cb26-1"></a><span class="kw">modavg</span>(mods,</span>
+<span id="cb26-2"><a href="11-5-a-priori.html#cb26-2"></a>  <span class="dt">parm =</span> <span class="st">&quot;Education&quot;</span>, <span class="dt">modnames =</span> <span class="kw">names</span>(mods),</span>
+<span id="cb26-3"><a href="11-5-a-priori.html#cb26-3"></a>  <span class="dt">conf.level =</span> <span class="fl">.95</span>, <span class="dt">exclude =</span> <span class="ot">TRUE</span></span>
+<span id="cb26-4"><a href="11-5-a-priori.html#cb26-4"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Multimodel inference on &quot;Education&quot; based on AICc
 ## 
@@ -527,8 +527,10 @@ Akaike’s information criterion (AIC)
 ## Model-averaged estimate: -0.6 
 ## Unconditional SE: 0.28 
 ## 95% Unconditional confidence interval: -1.14, -0.06</code></pre>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="11-5-a-priori.html#cb461-1"></a><span class="kw">modavg</span>(mods, <span class="dt">parm =</span> <span class="st">&#39;Catholic&#39;</span>, <span class="dt">modnames =</span> <span class="kw">names</span>(mods),</span>
-<span id="cb461-2"><a href="11-5-a-priori.html#cb461-2"></a>       <span class="dt">conf.level =</span> <span class="fl">.95</span>, <span class="dt">exclude =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="11-5-a-priori.html#cb28-1"></a><span class="kw">modavg</span>(mods,</span>
+<span id="cb28-2"><a href="11-5-a-priori.html#cb28-2"></a>  <span class="dt">parm =</span> <span class="st">&quot;Catholic&quot;</span>, <span class="dt">modnames =</span> <span class="kw">names</span>(mods),</span>
+<span id="cb28-3"><a href="11-5-a-priori.html#cb28-3"></a>  <span class="dt">conf.level =</span> <span class="fl">.95</span>, <span class="dt">exclude =</span> <span class="ot">TRUE</span></span>
+<span id="cb28-4"><a href="11-5-a-priori.html#cb28-4"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Multimodel inference on &quot;Catholic&quot; based on AICc
 ## 
@@ -542,8 +544,10 @@ Akaike’s information criterion (AIC)
 ## Model-averaged estimate: 0.15 
 ## Unconditional SE: 0.06 
 ## 95% Unconditional confidence interval: 0.04, 0.26</code></pre>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="11-5-a-priori.html#cb463-1"></a><span class="kw">modavg</span>(mods, <span class="dt">parm =</span> <span class="st">&#39;Education:Catholic&#39;</span>, <span class="dt">modnames =</span> <span class="kw">names</span>(mods),</span>
-<span id="cb463-2"><a href="11-5-a-priori.html#cb463-2"></a>       <span class="dt">conf.level =</span> <span class="fl">.95</span>, <span class="dt">exclude =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="11-5-a-priori.html#cb30-1"></a><span class="kw">modavg</span>(mods,</span>
+<span id="cb30-2"><a href="11-5-a-priori.html#cb30-2"></a>  <span class="dt">parm =</span> <span class="st">&quot;Education:Catholic&quot;</span>, <span class="dt">modnames =</span> <span class="kw">names</span>(mods),</span>
+<span id="cb30-3"><a href="11-5-a-priori.html#cb30-3"></a>  <span class="dt">conf.level =</span> <span class="fl">.95</span>, <span class="dt">exclude =</span> <span class="ot">TRUE</span></span>
+<span id="cb30-4"><a href="11-5-a-priori.html#cb30-4"></a>)</span></code></pre></div>
 <pre><code>## 
 ## Multimodel inference on &quot;Education:Catholic&quot; based on AICc
 ## 
