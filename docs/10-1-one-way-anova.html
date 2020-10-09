@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -283,6 +285,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="10-5-next10.html"><a href="10-5-next10.html"><i class="fa fa-check"></i><b>10.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="11" data-path="11-Chapter11.html"><a href="11-Chapter11.html"><i class="fa fa-check"></i><b>11</b> Model selection</a><ul>
+<li class="chapter" data-level="11.1" data-path="11-1-introduction.html"><a href="11-1-introduction.html"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
+<li class="chapter" data-level="11.2" data-path="11-2-model-selection-tools.html"><a href="11-2-model-selection-tools.html"><i class="fa fa-check"></i><b>11.2</b> Model selection tools</a></li>
+<li class="chapter" data-level="11.3" data-path="11-3-all-subsets.html"><a href="11-3-all-subsets.html"><i class="fa fa-check"></i><b>11.3</b> All subsets</a></li>
+<li class="chapter" data-level="11.4" data-path="11-4-stepwise.html"><a href="11-4-stepwise.html"><i class="fa fa-check"></i><b>11.4</b> Stepwise selection</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="11-4-stepwise.html"><a href="11-4-stepwise.html#forward-selection"><i class="fa fa-check"></i><b>11.4.1</b> Forward selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="11-5-a-priori.html"><a href="11-5-a-priori.html"><i class="fa fa-check"></i><b>11.5</b> <em>A priori</em> selection</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="11-5-a-priori.html"><a href="11-5-a-priori.html#multi-phase-heirarchical-selection"><i class="fa fa-check"></i><b>11.5.1</b> Multi-phase (heirarchical) selection</a></li>
+<li class="chapter" data-level="11.5.2" data-path="11-5-a-priori.html"><a href="11-5-a-priori.html#single-phase-selection"><i class="fa fa-check"></i><b>11.5.2</b> Single-phase selection</a></li>
+<li class="chapter" data-level="11.5.3" data-path="11-5-a-priori.html"><a href="11-5-a-priori.html#tools-for-a-priori-model-selection"><i class="fa fa-check"></i><b>11.5.3</b> Tools for <em>a priori</em> model selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="11-6-model-validation.html"><a href="11-6-model-validation.html"><i class="fa fa-check"></i><b>11.6</b> Model validation</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="11-6-model-validation.html"><a href="11-6-model-validation.html#leave-one-out-cross-validation"><i class="fa fa-check"></i><b>11.6.1</b> Leave-one-out cross validation</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="11-7-next11.html"><a href="11-7-next11.html"><i class="fa fa-check"></i><b>11.7</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -306,15 +325,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="one-way-anova" class="section level2">
 <h2><span class="header-section-number">10.1</span> One-way ANOVA</h2>
 <p>When we are working in the world of one-way ANOVA, or even more complex models that contain only “main effects” of categorical, explanatory variables, the interpretation of these effects is relatively straightforward. Let’s use the <code>PlantGrowth</code> data as an example.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="10-1-one-way-anova.html#cb2-1"></a><span class="kw">data</span>(<span class="st">&quot;PlantGrowth&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="10-1-one-way-anova.html#cb367-1"></a><span class="kw">data</span>(<span class="st">&quot;PlantGrowth&quot;</span>)</span></code></pre></div>
 <p>We’ll start here by fitting a one-way anova to test effects of treatment <code>group</code> on on plant <code>weight</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="10-1-one-way-anova.html#cb3-1"></a><span class="co"># Get the names of the df</span></span>
-<span id="cb3-2"><a href="10-1-one-way-anova.html#cb3-2"></a><span class="kw">names</span>(PlantGrowth)</span></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="10-1-one-way-anova.html#cb368-1"></a><span class="co"># Get the names of the df</span></span>
+<span id="cb368-2"><a href="10-1-one-way-anova.html#cb368-2"></a><span class="kw">names</span>(PlantGrowth)</span></code></pre></div>
 <pre><code>## [1] &quot;weight&quot; &quot;group&quot;</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="10-1-one-way-anova.html#cb5-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb5-2"><a href="10-1-one-way-anova.html#cb5-2"></a>mod &lt;-<span class="st"> </span><span class="kw">lm</span>(weight<span class="op">~</span>group, <span class="dt">data =</span> PlantGrowth)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="10-1-one-way-anova.html#cb370-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb370-2"><a href="10-1-one-way-anova.html#cb370-2"></a>mod &lt;-<span class="st"> </span><span class="kw">lm</span>(weight<span class="op">~</span>group, <span class="dt">data =</span> PlantGrowth)</span></code></pre></div>
 <p>We’ve seen these data and this model before. We know there was a significant effect of treatment on plant weight but only <code>trt1</code> and <code>trt2</code> were different when we checked with the Tukey test. So, for now we will ignore the ANOVA table and just look at the summary.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="10-1-one-way-anova.html#cb6-1"></a><span class="kw">summary</span>(mod)</span></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="10-1-one-way-anova.html#cb371-1"></a><span class="kw">summary</span>(mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = weight ~ group, data = PlantGrowth)
@@ -352,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <strong>model matrix</strong> or <strong>design matrix</strong> is <code>X</code> from the really gross equations that I started showing all of a sudden now that the Add/Drop period has ended. (Muahaha). It really isn’t as sinister as it sounds though.</p>
 <p>For our plant model, we wrote <code>weight ~ group</code> in our call to <code>lm()</code> and didn’t have to think twice about what was happening after that. In the meantime, R had re-written the equation as <span class="math inline">\(y = \beta_i X_i\)</span> or <code>y = (Intercept)*model.matrix$</code>(Intercept)<code>+ grouptrt1*model.matix$grouptrt1 + grouptrt2*model.matix$grouptrt2</code>. To begin understanding that difference, we obviously need to see this <code>model.matrix</code> object.</p>
 <p>First, look at the actual data used to fit the model:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="10-1-one-way-anova.html#cb8-1"></a><span class="kw">head</span>(mod<span class="op">$</span>model)</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="10-1-one-way-anova.html#cb373-1"></a><span class="kw">head</span>(mod<span class="op">$</span>model)</span></code></pre></div>
 <pre><code>##   weight group
 ## 1   4.17  ctrl
 ## 2   5.58  ctrl
@@ -362,12 +381,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6   4.61  ctrl</code></pre>
 <p>You can see that we have one column for our response, <code>weight</code>, and one column for our explanatory variable, <code>group</code>, just as you thought.</p>
 <p>Now here is the design matrix:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="10-1-one-way-anova.html#cb10-1"></a><span class="co"># Extract design matrix from fitted</span></span>
-<span id="cb10-2"><a href="10-1-one-way-anova.html#cb10-2"></a><span class="co"># PlantGrowth model</span></span>
-<span id="cb10-3"><a href="10-1-one-way-anova.html#cb10-3"></a>X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(mod)</span>
-<span id="cb10-4"><a href="10-1-one-way-anova.html#cb10-4"></a></span>
-<span id="cb10-5"><a href="10-1-one-way-anova.html#cb10-5"></a><span class="co"># Have a look</span></span>
-<span id="cb10-6"><a href="10-1-one-way-anova.html#cb10-6"></a><span class="kw">head</span>(X)</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="10-1-one-way-anova.html#cb375-1"></a><span class="co"># Extract design matrix from fitted</span></span>
+<span id="cb375-2"><a href="10-1-one-way-anova.html#cb375-2"></a><span class="co"># PlantGrowth model</span></span>
+<span id="cb375-3"><a href="10-1-one-way-anova.html#cb375-3"></a>X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(mod)</span>
+<span id="cb375-4"><a href="10-1-one-way-anova.html#cb375-4"></a></span>
+<span id="cb375-5"><a href="10-1-one-way-anova.html#cb375-5"></a><span class="co"># Have a look</span></span>
+<span id="cb375-6"><a href="10-1-one-way-anova.html#cb375-6"></a><span class="kw">head</span>(X)</span></code></pre></div>
 <pre><code>##   (Intercept) grouptrt1 grouptrt2
 ## 1           1         0         0
 ## 2           1         0         0
@@ -384,68 +403,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">10.1.3</span> Prediction</h3>
 <p>Now that we’ve seen what R is actually doing, it becomes pretty trivial to make predictions from one-way ANOVA by hand.</p>
 <p>We can get the model coefficients (<span class="math inline">\(\beta\)</span>) like this:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="10-1-one-way-anova.html#cb12-1"></a><span class="co"># We can get the model coefficients like this:</span></span>
-<span id="cb12-2"><a href="10-1-one-way-anova.html#cb12-2"></a><span class="kw">names</span>(mod)</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="10-1-one-way-anova.html#cb377-1"></a><span class="co"># We can get the model coefficients like this:</span></span>
+<span id="cb377-2"><a href="10-1-one-way-anova.html#cb377-2"></a><span class="kw">names</span>(mod)</span></code></pre></div>
 <pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
 ##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
 ##  [9] &quot;contrasts&quot;     &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;        
 ## [13] &quot;model&quot;</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="10-1-one-way-anova.html#cb14-1"></a>coeffs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(mod<span class="op">$</span>coefficients)</span>
-<span id="cb14-2"><a href="10-1-one-way-anova.html#cb14-2"></a></span>
-<span id="cb14-3"><a href="10-1-one-way-anova.html#cb14-3"></a><span class="co"># And now we have a vector of beta</span></span>
-<span id="cb14-4"><a href="10-1-one-way-anova.html#cb14-4"></a>betas &lt;-<span class="st"> </span>coeffs<span class="op">$</span>mod.coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="10-1-one-way-anova.html#cb379-1"></a>coeffs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(mod<span class="op">$</span>coefficients)</span>
+<span id="cb379-2"><a href="10-1-one-way-anova.html#cb379-2"></a></span>
+<span id="cb379-3"><a href="10-1-one-way-anova.html#cb379-3"></a><span class="co"># And now we have a vector of beta</span></span>
+<span id="cb379-4"><a href="10-1-one-way-anova.html#cb379-4"></a>betas &lt;-<span class="st"> </span>coeffs<span class="op">$</span>mod.coefficients</span></code></pre></div>
 <p>We can use <code>betas</code> to make predictions from the formula of our linear model for each group by taking advantage of the dummy coding that R uses.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="10-1-one-way-anova.html#cb15-1"></a><span class="co"># From the model, we can estimate:</span></span>
-<span id="cb15-2"><a href="10-1-one-way-anova.html#cb15-2"></a></span>
-<span id="cb15-3"><a href="10-1-one-way-anova.html#cb15-3"></a><span class="co"># Mean of control</span></span>
-<span id="cb15-4"><a href="10-1-one-way-anova.html#cb15-4"></a>y_control &lt;-<span class="st"> </span>betas[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>betas[<span class="dv">2</span>]<span class="op">*</span><span class="dv">0</span> <span class="op">+</span><span class="st"> </span>betas[<span class="dv">3</span>]<span class="op">*</span><span class="dv">0</span></span>
-<span id="cb15-5"><a href="10-1-one-way-anova.html#cb15-5"></a></span>
-<span id="cb15-6"><a href="10-1-one-way-anova.html#cb15-6"></a><span class="co"># Mean of trt1</span></span>
-<span id="cb15-7"><a href="10-1-one-way-anova.html#cb15-7"></a>y_trt1 &lt;-<span class="st"> </span>betas[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>betas[<span class="dv">2</span>]<span class="op">*</span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>betas[<span class="dv">3</span>]<span class="op">*</span><span class="dv">0</span></span>
-<span id="cb15-8"><a href="10-1-one-way-anova.html#cb15-8"></a></span>
-<span id="cb15-9"><a href="10-1-one-way-anova.html#cb15-9"></a><span class="co"># Mean of trt2</span></span>
-<span id="cb15-10"><a href="10-1-one-way-anova.html#cb15-10"></a>y_trt2 &lt;-<span class="st"> </span>betas[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>betas[<span class="dv">2</span>]<span class="op">*</span><span class="dv">0</span> <span class="op">+</span><span class="st"> </span>betas[<span class="dv">3</span>]<span class="op">*</span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="10-1-one-way-anova.html#cb380-1"></a><span class="co"># From the model, we can estimate:</span></span>
+<span id="cb380-2"><a href="10-1-one-way-anova.html#cb380-2"></a></span>
+<span id="cb380-3"><a href="10-1-one-way-anova.html#cb380-3"></a><span class="co"># Mean of control</span></span>
+<span id="cb380-4"><a href="10-1-one-way-anova.html#cb380-4"></a>y_control &lt;-<span class="st"> </span>betas[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>betas[<span class="dv">2</span>]<span class="op">*</span><span class="dv">0</span> <span class="op">+</span><span class="st"> </span>betas[<span class="dv">3</span>]<span class="op">*</span><span class="dv">0</span></span>
+<span id="cb380-5"><a href="10-1-one-way-anova.html#cb380-5"></a></span>
+<span id="cb380-6"><a href="10-1-one-way-anova.html#cb380-6"></a><span class="co"># Mean of trt1</span></span>
+<span id="cb380-7"><a href="10-1-one-way-anova.html#cb380-7"></a>y_trt1 &lt;-<span class="st"> </span>betas[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>betas[<span class="dv">2</span>]<span class="op">*</span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>betas[<span class="dv">3</span>]<span class="op">*</span><span class="dv">0</span></span>
+<span id="cb380-8"><a href="10-1-one-way-anova.html#cb380-8"></a></span>
+<span id="cb380-9"><a href="10-1-one-way-anova.html#cb380-9"></a><span class="co"># Mean of trt2</span></span>
+<span id="cb380-10"><a href="10-1-one-way-anova.html#cb380-10"></a>y_trt2 &lt;-<span class="st"> </span>betas[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>betas[<span class="dv">2</span>]<span class="op">*</span><span class="dv">0</span> <span class="op">+</span><span class="st"> </span>betas[<span class="dv">3</span>]<span class="op">*</span><span class="dv">1</span></span></code></pre></div>
 <p><strong>Or</strong> if you wanted to get really fancy, you could do this with matrix math:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="10-1-one-way-anova.html#cb16-1"></a><span class="co"># Get unique groups in dummy coded matrix</span></span>
-<span id="cb16-2"><a href="10-1-one-way-anova.html#cb16-2"></a>X_pred &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">unique</span>(<span class="kw">model.matrix</span>(mod)))</span>
-<span id="cb16-3"><a href="10-1-one-way-anova.html#cb16-3"></a></span>
-<span id="cb16-4"><a href="10-1-one-way-anova.html#cb16-4"></a><span class="co"># Multiply betas by dummy coded</span></span>
-<span id="cb16-5"><a href="10-1-one-way-anova.html#cb16-5"></a><span class="co"># matrix using transpose of both</span></span>
-<span id="cb16-6"><a href="10-1-one-way-anova.html#cb16-6"></a><span class="co"># These are your predictions </span></span>
-<span id="cb16-7"><a href="10-1-one-way-anova.html#cb16-7"></a><span class="co"># for ctrl, trt1, and trt2</span></span>
-<span id="cb16-8"><a href="10-1-one-way-anova.html#cb16-8"></a>y_pred &lt;-<span class="st"> </span><span class="kw">t</span>(betas) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(X_pred)</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="10-1-one-way-anova.html#cb381-1"></a><span class="co"># Get unique groups in dummy coded matrix</span></span>
+<span id="cb381-2"><a href="10-1-one-way-anova.html#cb381-2"></a>X_pred &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">unique</span>(<span class="kw">model.matrix</span>(mod)))</span>
+<span id="cb381-3"><a href="10-1-one-way-anova.html#cb381-3"></a></span>
+<span id="cb381-4"><a href="10-1-one-way-anova.html#cb381-4"></a><span class="co"># Multiply betas by dummy coded</span></span>
+<span id="cb381-5"><a href="10-1-one-way-anova.html#cb381-5"></a><span class="co"># matrix using transpose of both</span></span>
+<span id="cb381-6"><a href="10-1-one-way-anova.html#cb381-6"></a><span class="co"># These are your predictions </span></span>
+<span id="cb381-7"><a href="10-1-one-way-anova.html#cb381-7"></a><span class="co"># for ctrl, trt1, and trt2</span></span>
+<span id="cb381-8"><a href="10-1-one-way-anova.html#cb381-8"></a>y_pred &lt;-<span class="st"> </span><span class="kw">t</span>(betas) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(X_pred)</span></code></pre></div>
 <p>Of course, either of these approaches is super useful but R also has default <code>predict()</code> methods for most or all of the models we will work with in this book. We will use these for the most part, as will <code>ggplot()</code>, which is more convenient than you will ever be able to appreciate.</p>
 <p>To make predictions of <code>y</code> from the original data that you used to fit the model (<code>mod</code>), you can just do this:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="10-1-one-way-anova.html#cb17-1"></a><span class="co"># Get unique values of groups and put it in </span></span>
-<span id="cb17-2"><a href="10-1-one-way-anova.html#cb17-2"></a><span class="co"># a data frame. The predict function expects </span></span>
-<span id="cb17-3"><a href="10-1-one-way-anova.html#cb17-3"></a><span class="co"># original x variable as a vector or a named </span></span>
-<span id="cb17-4"><a href="10-1-one-way-anova.html#cb17-4"></a><span class="co"># column in a data.frame</span></span>
-<span id="cb17-5"><a href="10-1-one-way-anova.html#cb17-5"></a>groups &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">group =</span> <span class="kw">unique</span>(PlantGrowth<span class="op">$</span>group) )</span>
-<span id="cb17-6"><a href="10-1-one-way-anova.html#cb17-6"></a></span>
-<span id="cb17-7"><a href="10-1-one-way-anova.html#cb17-7"></a><span class="co"># Make the prediction</span></span>
-<span id="cb17-8"><a href="10-1-one-way-anova.html#cb17-8"></a>y &lt;-<span class="st"> </span><span class="kw">predict</span>(mod, <span class="dt">newdata =</span> groups, <span class="dt">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span>
-<span id="cb17-9"><a href="10-1-one-way-anova.html#cb17-9"></a></span>
-<span id="cb17-10"><a href="10-1-one-way-anova.html#cb17-10"></a><span class="co"># Add it to the data frame</span></span>
-<span id="cb17-11"><a href="10-1-one-way-anova.html#cb17-11"></a>pred_plant &lt;-<span class="st"> </span><span class="kw">data.frame</span>(groups, y)</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="10-1-one-way-anova.html#cb382-1"></a><span class="co"># Get unique values of groups and put it in </span></span>
+<span id="cb382-2"><a href="10-1-one-way-anova.html#cb382-2"></a><span class="co"># a data frame. The predict function expects </span></span>
+<span id="cb382-3"><a href="10-1-one-way-anova.html#cb382-3"></a><span class="co"># original x variable as a vector or a named </span></span>
+<span id="cb382-4"><a href="10-1-one-way-anova.html#cb382-4"></a><span class="co"># column in a data.frame</span></span>
+<span id="cb382-5"><a href="10-1-one-way-anova.html#cb382-5"></a>groups &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">group =</span> <span class="kw">unique</span>(PlantGrowth<span class="op">$</span>group) )</span>
+<span id="cb382-6"><a href="10-1-one-way-anova.html#cb382-6"></a></span>
+<span id="cb382-7"><a href="10-1-one-way-anova.html#cb382-7"></a><span class="co"># Make the prediction</span></span>
+<span id="cb382-8"><a href="10-1-one-way-anova.html#cb382-8"></a>y &lt;-<span class="st"> </span><span class="kw">predict</span>(mod, <span class="dt">newdata =</span> groups, <span class="dt">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span>
+<span id="cb382-9"><a href="10-1-one-way-anova.html#cb382-9"></a></span>
+<span id="cb382-10"><a href="10-1-one-way-anova.html#cb382-10"></a><span class="co"># Add it to the data frame</span></span>
+<span id="cb382-11"><a href="10-1-one-way-anova.html#cb382-11"></a>pred_plant &lt;-<span class="st"> </span><span class="kw">data.frame</span>(groups, y)</span></code></pre></div>
 <p>If we want <code>confidence</code> intervals for the predictions, we can add that, too:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="10-1-one-way-anova.html#cb18-1"></a><span class="co"># Make the prediction with confidence</span></span>
-<span id="cb18-2"><a href="10-1-one-way-anova.html#cb18-2"></a>yCI &lt;-<span class="st"> </span><span class="kw">predict</span>(mod, <span class="dt">newdata =</span> groups, <span class="dt">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span>
-<span id="cb18-3"><a href="10-1-one-way-anova.html#cb18-3"></a></span>
-<span id="cb18-4"><a href="10-1-one-way-anova.html#cb18-4"></a><span class="co"># Add it to the data frame</span></span>
-<span id="cb18-5"><a href="10-1-one-way-anova.html#cb18-5"></a>pred_plantCI &lt;-<span class="st"> </span><span class="kw">data.frame</span>(groups, yCI)</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="10-1-one-way-anova.html#cb383-1"></a><span class="co"># Make the prediction with confidence</span></span>
+<span id="cb383-2"><a href="10-1-one-way-anova.html#cb383-2"></a>yCI &lt;-<span class="st"> </span><span class="kw">predict</span>(mod, <span class="dt">newdata =</span> groups, <span class="dt">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span>
+<span id="cb383-3"><a href="10-1-one-way-anova.html#cb383-3"></a></span>
+<span id="cb383-4"><a href="10-1-one-way-anova.html#cb383-4"></a><span class="co"># Add it to the data frame</span></span>
+<span id="cb383-5"><a href="10-1-one-way-anova.html#cb383-5"></a>pred_plantCI &lt;-<span class="st"> </span><span class="kw">data.frame</span>(groups, yCI)</span></code></pre></div>
 <p>You could print this and get a nice clean table of estimated means and 95% confidence intervals for each group.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="10-1-one-way-anova.html#cb19-1"></a><span class="kw">print</span>(pred_plantCI)</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="10-1-one-way-anova.html#cb384-1"></a><span class="kw">print</span>(pred_plantCI)</span></code></pre></div>
 <pre><code>##   group   fit      lwr      upr
 ## 1  ctrl 5.032 4.627526 5.436474
 ## 2  trt1 4.661 4.256526 5.065474
 ## 3  trt2 5.526 5.121526 5.930474</code></pre>
 <p>Now, let’s compare our model predictions to the actual means.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="10-1-one-way-anova.html#cb21-1"></a><span class="co"># Calculate group means</span></span>
-<span id="cb21-2"><a href="10-1-one-way-anova.html#cb21-2"></a>means &lt;-<span class="st"> </span>PlantGrowth <span class="op">%&gt;%</span></span>
-<span id="cb21-3"><a href="10-1-one-way-anova.html#cb21-3"></a><span class="st">  </span><span class="kw">group_by</span>(group) <span class="op">%&gt;%</span></span>
-<span id="cb21-4"><a href="10-1-one-way-anova.html#cb21-4"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">mean</span>(weight))</span>
-<span id="cb21-5"><a href="10-1-one-way-anova.html#cb21-5"></a></span>
-<span id="cb21-6"><a href="10-1-one-way-anova.html#cb21-6"></a><span class="kw">print</span>(means)</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="10-1-one-way-anova.html#cb386-1"></a><span class="co"># Calculate group means</span></span>
+<span id="cb386-2"><a href="10-1-one-way-anova.html#cb386-2"></a>means &lt;-<span class="st"> </span>PlantGrowth <span class="op">%&gt;%</span></span>
+<span id="cb386-3"><a href="10-1-one-way-anova.html#cb386-3"></a><span class="st">  </span><span class="kw">group_by</span>(group) <span class="op">%&gt;%</span></span>
+<span id="cb386-4"><a href="10-1-one-way-anova.html#cb386-4"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">mean</span>(weight))</span>
+<span id="cb386-5"><a href="10-1-one-way-anova.html#cb386-5"></a></span>
+<span id="cb386-6"><a href="10-1-one-way-anova.html#cb386-6"></a><span class="kw">print</span>(means)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   group `mean(weight)`
 ##   &lt;fct&gt;          &lt;dbl&gt;
@@ -458,67 +477,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="plotting" class="section level3">
 <h3><span class="header-section-number">10.1.4</span> Plotting</h3>
 <p>We could use any number of graphical tools to represent these results. Given that we’ve met the assumptions of normality, and we’ve determined that statistical differences exist, the simplest (and most common) method for visualizing these results is to just show a box plot or a violin plot, or both, with the raw data. Hmmm…I never realized how small this data set was.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="10-1-one-way-anova.html#cb23-1"></a><span class="kw">ggplot</span>(PlantGrowth, <span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">y =</span> weight)) <span class="op">+</span></span>
-<span id="cb23-2"><a href="10-1-one-way-anova.html#cb23-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>group), <span class="dt">alpha=</span><span class="fl">0.2</span>) <span class="op">+</span></span>
-<span id="cb23-3"><a href="10-1-one-way-anova.html#cb23-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>group), <span class="dt">width =</span> <span class="fl">0.2</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
-<span id="cb23-4"><a href="10-1-one-way-anova.html#cb23-4"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">color=</span>group), <span class="dt">width =</span> <span class="fl">0.15</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span></span>
-<span id="cb23-5"><a href="10-1-one-way-anova.html#cb23-5"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;gray30&#39;</span>, <span class="st">&#39;gray60&#39;</span>)) <span class="op">+</span></span>
-<span id="cb23-6"><a href="10-1-one-way-anova.html#cb23-6"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;gray30&#39;</span>, <span class="st">&#39;gray60&#39;</span>)) <span class="op">+</span></span>
-<span id="cb23-7"><a href="10-1-one-way-anova.html#cb23-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Group&#39;</span>) <span class="op">+</span></span>
-<span id="cb23-8"><a href="10-1-one-way-anova.html#cb23-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Weight (g)&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb23-9"><a href="10-1-one-way-anova.html#cb23-9"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb23-10"><a href="10-1-one-way-anova.html#cb23-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">-1</span>),</span>
-<span id="cb23-11"><a href="10-1-one-way-anova.html#cb23-11"></a>        <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>),</span>
-<span id="cb23-12"><a href="10-1-one-way-anova.html#cb23-12"></a>        <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
-<span id="cb23-13"><a href="10-1-one-way-anova.html#cb23-13"></a>        )</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="10-1-one-way-anova.html#cb388-1"></a><span class="kw">ggplot</span>(PlantGrowth, <span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">y =</span> weight)) <span class="op">+</span></span>
+<span id="cb388-2"><a href="10-1-one-way-anova.html#cb388-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>group), <span class="dt">alpha=</span><span class="fl">0.2</span>) <span class="op">+</span></span>
+<span id="cb388-3"><a href="10-1-one-way-anova.html#cb388-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>group), <span class="dt">width =</span> <span class="fl">0.2</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
+<span id="cb388-4"><a href="10-1-one-way-anova.html#cb388-4"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">color=</span>group), <span class="dt">width =</span> <span class="fl">0.15</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span></span>
+<span id="cb388-5"><a href="10-1-one-way-anova.html#cb388-5"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;gray30&#39;</span>, <span class="st">&#39;gray60&#39;</span>)) <span class="op">+</span></span>
+<span id="cb388-6"><a href="10-1-one-way-anova.html#cb388-6"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;gray30&#39;</span>, <span class="st">&#39;gray60&#39;</span>)) <span class="op">+</span></span>
+<span id="cb388-7"><a href="10-1-one-way-anova.html#cb388-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Group&#39;</span>) <span class="op">+</span></span>
+<span id="cb388-8"><a href="10-1-one-way-anova.html#cb388-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Weight (g)&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb388-9"><a href="10-1-one-way-anova.html#cb388-9"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb388-10"><a href="10-1-one-way-anova.html#cb388-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">-1</span>),</span>
+<span id="cb388-11"><a href="10-1-one-way-anova.html#cb388-11"></a>        <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb388-12"><a href="10-1-one-way-anova.html#cb388-12"></a>        <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb388-13"><a href="10-1-one-way-anova.html#cb388-13"></a>        )</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
 <p>This plot is really cool, but it doesn’t actually show us how our model predictions compare to the raw data!</p>
 <p>However, we could also think of our model predictions as just being different y-intercepts, which will be helpful when we start to work with ANCOVA. If we plotted them that way, they would look like this:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="10-1-one-way-anova.html#cb24-1"></a><span class="kw">ggplot</span>(pred_plantCI, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> fit, <span class="dt">color =</span> group)) <span class="op">+</span></span>
-<span id="cb24-2"><a href="10-1-one-way-anova.html#cb24-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb24-3"><a href="10-1-one-way-anova.html#cb24-3"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,  <span class="dv">1</span>), <span class="dt">expand=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span></span>
-<span id="cb24-4"><a href="10-1-one-way-anova.html#cb24-4"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">xend =</span> <span class="dv">0</span>, <span class="dt">y =</span> lwr, <span class="dt">yend =</span> upr),</span>
-<span id="cb24-5"><a href="10-1-one-way-anova.html#cb24-5"></a>               <span class="dt">lwd =</span> <span class="fl">1.5</span>, <span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></span>
-<span id="cb24-6"><a href="10-1-one-way-anova.html#cb24-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;X&quot;</span>) <span class="op">+</span></span>
-<span id="cb24-7"><a href="10-1-one-way-anova.html#cb24-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb24-8"><a href="10-1-one-way-anova.html#cb24-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Predicted&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="10-1-one-way-anova.html#cb389-1"></a><span class="kw">ggplot</span>(pred_plantCI, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> fit, <span class="dt">color =</span> group)) <span class="op">+</span></span>
+<span id="cb389-2"><a href="10-1-one-way-anova.html#cb389-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb389-3"><a href="10-1-one-way-anova.html#cb389-3"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,  <span class="dv">1</span>), <span class="dt">expand=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb389-4"><a href="10-1-one-way-anova.html#cb389-4"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">xend =</span> <span class="dv">0</span>, <span class="dt">y =</span> lwr, <span class="dt">yend =</span> upr),</span>
+<span id="cb389-5"><a href="10-1-one-way-anova.html#cb389-5"></a>               <span class="dt">lwd =</span> <span class="fl">1.5</span>, <span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></span>
+<span id="cb389-6"><a href="10-1-one-way-anova.html#cb389-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;X&quot;</span>) <span class="op">+</span></span>
+<span id="cb389-7"><a href="10-1-one-way-anova.html#cb389-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb389-8"><a href="10-1-one-way-anova.html#cb389-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Predicted&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-259-1.png" width="672" /></p>
 <p>But this is really hard to see and understand. So, we usually look at it like this in keeping with the dummy coding that is used in the model matrix:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="10-1-one-way-anova.html#cb25-1"></a><span class="kw">ggplot</span>(pred_plantCI, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> fit, <span class="dt">color =</span> group)) <span class="op">+</span></span>
-<span id="cb25-2"><a href="10-1-one-way-anova.html#cb25-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb25-3"><a href="10-1-one-way-anova.html#cb25-3"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,  <span class="dv">4</span>), <span class="dt">expand=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
-<span id="cb25-4"><a href="10-1-one-way-anova.html#cb25-4"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">xend =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> lwr, <span class="dt">yend =</span> upr),</span>
-<span id="cb25-5"><a href="10-1-one-way-anova.html#cb25-5"></a>               <span class="dt">lwd =</span> <span class="fl">1.5</span>, <span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></span>
-<span id="cb25-6"><a href="10-1-one-way-anova.html#cb25-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;X[, i]&quot;</span>) <span class="op">+</span></span>
-<span id="cb25-7"><a href="10-1-one-way-anova.html#cb25-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb25-8"><a href="10-1-one-way-anova.html#cb25-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Predicted&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="10-1-one-way-anova.html#cb390-1"></a><span class="kw">ggplot</span>(pred_plantCI, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> fit, <span class="dt">color =</span> group)) <span class="op">+</span></span>
+<span id="cb390-2"><a href="10-1-one-way-anova.html#cb390-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb390-3"><a href="10-1-one-way-anova.html#cb390-3"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,  <span class="dv">4</span>), <span class="dt">expand=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb390-4"><a href="10-1-one-way-anova.html#cb390-4"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">xend =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> lwr, <span class="dt">yend =</span> upr),</span>
+<span id="cb390-5"><a href="10-1-one-way-anova.html#cb390-5"></a>               <span class="dt">lwd =</span> <span class="fl">1.5</span>, <span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></span>
+<span id="cb390-6"><a href="10-1-one-way-anova.html#cb390-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;X[, i]&quot;</span>) <span class="op">+</span></span>
+<span id="cb390-7"><a href="10-1-one-way-anova.html#cb390-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb390-8"><a href="10-1-one-way-anova.html#cb390-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Predicted&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-260-1.png" width="672" /></p>
 <p>Or, perhaps more mercifully:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="10-1-one-way-anova.html#cb26-1"></a><span class="kw">ggplot</span>(pred_plantCI, <span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">y =</span> fit, <span class="dt">color =</span> group)) <span class="op">+</span></span>
-<span id="cb26-2"><a href="10-1-one-way-anova.html#cb26-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb26-3"><a href="10-1-one-way-anova.html#cb26-3"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">xend =</span> group, <span class="dt">y =</span> lwr, <span class="dt">yend =</span> upr),</span>
-<span id="cb26-4"><a href="10-1-one-way-anova.html#cb26-4"></a>               <span class="dt">lwd =</span> <span class="fl">1.5</span>, <span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></span>
-<span id="cb26-5"><a href="10-1-one-way-anova.html#cb26-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Treatment group&quot;</span>) <span class="op">+</span></span>
-<span id="cb26-6"><a href="10-1-one-way-anova.html#cb26-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb26-7"><a href="10-1-one-way-anova.html#cb26-7"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Predicted&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="10-1-one-way-anova.html#cb391-1"></a><span class="kw">ggplot</span>(pred_plantCI, <span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">y =</span> fit, <span class="dt">color =</span> group)) <span class="op">+</span></span>
+<span id="cb391-2"><a href="10-1-one-way-anova.html#cb391-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb391-3"><a href="10-1-one-way-anova.html#cb391-3"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">xend =</span> group, <span class="dt">y =</span> lwr, <span class="dt">yend =</span> upr),</span>
+<span id="cb391-4"><a href="10-1-one-way-anova.html#cb391-4"></a>               <span class="dt">lwd =</span> <span class="fl">1.5</span>, <span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></span>
+<span id="cb391-5"><a href="10-1-one-way-anova.html#cb391-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Treatment group&quot;</span>) <span class="op">+</span></span>
+<span id="cb391-6"><a href="10-1-one-way-anova.html#cb391-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb391-7"><a href="10-1-one-way-anova.html#cb391-7"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Predicted&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-261-1.png" width="672" /></p>
 <p>Finally, we could put this right over the top of our raw data and/or violin to see how well the model predictions match up with the data:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="10-1-one-way-anova.html#cb27-1"></a><span class="kw">ggplot</span>(PlantGrowth, <span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">y =</span> weight, <span class="dt">color =</span> group)) <span class="op">+</span></span>
-<span id="cb27-2"><a href="10-1-one-way-anova.html#cb27-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> group), <span class="dt">alpha =</span> <span class="fl">0.05</span>) <span class="op">+</span></span>
-<span id="cb27-3"><a href="10-1-one-way-anova.html#cb27-3"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">size =</span> <span class="fl">1.5</span>, <span class="dt">width =</span> <span class="fl">0.05</span>) <span class="op">+</span></span>
-<span id="cb27-4"><a href="10-1-one-way-anova.html#cb27-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">y =</span> fit), </span>
-<span id="cb27-5"><a href="10-1-one-way-anova.html#cb27-5"></a>             <span class="dt">data =</span> pred_plantCI,</span>
-<span id="cb27-6"><a href="10-1-one-way-anova.html#cb27-6"></a>             <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></span>
-<span id="cb27-7"><a href="10-1-one-way-anova.html#cb27-7"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">xend =</span> group, <span class="dt">y =</span> lwr, <span class="dt">yend =</span> upr),</span>
-<span id="cb27-8"><a href="10-1-one-way-anova.html#cb27-8"></a>               <span class="dt">data =</span> pred_plantCI, </span>
-<span id="cb27-9"><a href="10-1-one-way-anova.html#cb27-9"></a>               <span class="dt">lwd =</span> <span class="fl">1.5</span>, </span>
-<span id="cb27-10"><a href="10-1-one-way-anova.html#cb27-10"></a>               <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
-<span id="cb27-11"><a href="10-1-one-way-anova.html#cb27-11"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb27-12"><a href="10-1-one-way-anova.html#cb27-12"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()) <span class="op">+</span></span>
-<span id="cb27-13"><a href="10-1-one-way-anova.html#cb27-13"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Treatment group&quot;</span>) <span class="op">+</span></span>
-<span id="cb27-14"><a href="10-1-one-way-anova.html#cb27-14"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb27-15"><a href="10-1-one-way-anova.html#cb27-15"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;Group&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="10-1-one-way-anova.html#cb392-1"></a><span class="kw">ggplot</span>(PlantGrowth, <span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">y =</span> weight, <span class="dt">color =</span> group)) <span class="op">+</span></span>
+<span id="cb392-2"><a href="10-1-one-way-anova.html#cb392-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> group), <span class="dt">alpha =</span> <span class="fl">0.05</span>) <span class="op">+</span></span>
+<span id="cb392-3"><a href="10-1-one-way-anova.html#cb392-3"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">size =</span> <span class="fl">1.5</span>, <span class="dt">width =</span> <span class="fl">0.05</span>) <span class="op">+</span></span>
+<span id="cb392-4"><a href="10-1-one-way-anova.html#cb392-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">y =</span> fit), </span>
+<span id="cb392-5"><a href="10-1-one-way-anova.html#cb392-5"></a>             <span class="dt">data =</span> pred_plantCI,</span>
+<span id="cb392-6"><a href="10-1-one-way-anova.html#cb392-6"></a>             <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></span>
+<span id="cb392-7"><a href="10-1-one-way-anova.html#cb392-7"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">xend =</span> group, <span class="dt">y =</span> lwr, <span class="dt">yend =</span> upr),</span>
+<span id="cb392-8"><a href="10-1-one-way-anova.html#cb392-8"></a>               <span class="dt">data =</span> pred_plantCI, </span>
+<span id="cb392-9"><a href="10-1-one-way-anova.html#cb392-9"></a>               <span class="dt">lwd =</span> <span class="fl">1.5</span>, </span>
+<span id="cb392-10"><a href="10-1-one-way-anova.html#cb392-10"></a>               <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
+<span id="cb392-11"><a href="10-1-one-way-anova.html#cb392-11"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb392-12"><a href="10-1-one-way-anova.html#cb392-12"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()) <span class="op">+</span></span>
+<span id="cb392-13"><a href="10-1-one-way-anova.html#cb392-13"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Treatment group&quot;</span>) <span class="op">+</span></span>
+<span id="cb392-14"><a href="10-1-one-way-anova.html#cb392-14"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb392-15"><a href="10-1-one-way-anova.html#cb392-15"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;Group&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-262-1.png" width="672" /></p>
 </div>
 </div>
             </section>

@@ -172,8 +172,7 @@ y_hat <- predict(fit_lm)
 ggplot(iris, aes(x = Petal.Length, y = Petal.Width, color = Species) ) +
   geom_smooth(method = "lm", se = FALSE, color = "gray87") +
   geom_point() +
-  geom_segment(aes(xend = Petal.Length, yend = y_hat),
-               alpha = .2) +
+  geom_segment(aes(xend = Petal.Length, yend = y_hat), alpha = .2) +
   theme_bw() +
   theme(panel.grid = element_blank())
   

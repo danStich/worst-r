@@ -1,0 +1,440 @@
+```{r, include = FALSE}
+library(tidyverse)
+```
+
+# Model selection {#Chapter11}
+
+<img src="images/glass.jpg">
+<p style="font-family: times, serif; font-size:.9em; font-style:italic">
+Sometimes it can be difficult to see the forest for the trees (or anything at all if you spend all your time looking through the bottom of a wine glass). When faced with multiple competing explanations for observed phenomena we may represent these by multiple competing models. Model selection helps us see through the fog to tell us which is best supported. But, it doesn't tell you whether any of your models is good. The wine was good.</p>
+
+## Introduction
+
+As we have learned in the past couple weeks, we often encounter situations for which there are multiple, competing hypotheses about what factors, or combinations of factors, best explain the observed patterns in our response of interest. This uncertainty arises for two primary reasons:
+
+**1. Complexity of the study system**
+
+Biological systems are complex, and often we are interested in which factor, or set of factors, best predict the patterns we observe in the natural world. In carefully designed experiments, we might be interested in evaluating competing hypotheses about mechanistic drivers of biological phenomena. In complex observational studies, we might simply wish to know what factor or subset of possible factors best predicts the patterns we observe, with the understanding that these findings cannot be used to infer causality (or 'mechanism') although they can help us better design studies that do.
+
+**2. Collinearity**
+
+Oh, snap! What did he just say? **Collinearity** is the idea that certain explanatory variables are related to one another. I know, I know; last week I told you that *independence of observations* was one of the fundamental assumptions that we make about linear models. That is, all observations (rows of data) are sampled independently from one another. This is a nice ideal, and in certain experimental designs that are "orthogonal", we can ensure that variables are not collinear. But, in the real world, this is almost never the case. 
+
+Model selection offers a means for us to weigh effects of collinearity against the information that is gained as a result of including explanatory variables that are related to one another. In real-world cases, our best model will almost always fall somewhere between a model that contains all of the variables we want to include, and a model that contains only one of those variables. 
+
+**However**, model selection is just as useful for testing hypotheses of rigorously designed, controlled experiments. And as we'll see it can often help to provide more meaningful interpretation of those hypotheses than do p-values alone.
+
+We will be working out of the `tidyverse` as usual for this chapter. We will also be working with functions from the `AICcmodavg` package. You will need to install `AICcmodavg` if you do not already have it installed.
+
+
+## Model selection tools
+
+Here, we discuss a few different approaches to model selection. As always, I know it is hard to believe, but there is some controversy as to which method of model selection is best for a given situation. We'll cover three types of model selection: stepwise selection, all possible subsets, and *a priori* subsets. While *a priori* model selection is generally preferred for most applications in biology and ecology, step-wise selection is widely used for phylogenetic analyses and all subsets regressions may be useful for some exploratory studies sometimes if that is really the only choice you have you can tell I don't like this one. Therefore, we will briefly discuss all subsets before demonstrating stepwise selection and moving with commonly used *a priori* tools for the rest of the semester.
+
+## All subsets
+
+Just as the name states - compare all possible combinations of variables and pick the one that gives the most information with the least collinearity between predictors. This is largely an exploratory approach or is reserved for cases in which we care solely about prediction. There are a number of R packages that implement all subsets with varying utility and efficiency. These approaches historically relied on Mallow's Cp, but most are now updated to use Akaike's information criterion (see [Chapter 11.4](#a-priori))
+
+We will not discuss these techniques in this class because 1) they are usually not needed 2) they can lead to laziness in formulation of hypotheses and in a worst case data dredging, and 3) plain and simple: there are just better tools available for these purposes now (e.g. GAMM, CART, and network analysis).
+
+Now can you tell I am not a fan?
+
+
+## Stepwise selection {#stepwise}
+
+The basic idea behind stepwise model selection is that we wish to create and test models in a variable-by-variable manner until only "important" (say "well supported") variables are left in the model. The support for each variable is evaluated in turn relative to some pre-determined criterion and an arbitrary (or not) starting point. 
+
+While convenient, this approach has some well-known pitfalls. First, this generally is not a useful way to construct biological hypotheses for experiments or for observational studies. Second, it is easy to miss out on important relationships that are not considered because of the automated inclusion or exclusion of 'significant' explanatory variables and the order in which they are entered or dropped. For example, in most readily accessible applications, this tool also does not include interaction terms that might be of biological interest by default. Therefore, regardless of the method used, careful thought is warranted regarding the variables included and their potential mathematical combinations. For most purely predictive situations better tools now exist since the advent of machine learning algorithms.
+
+
+### Forward selection
+
+We start by making a "null" model that includes no explanatory variables. This model is simply a least-squares estimate of the mean. If we think about it in terms of a linear model, the only parameter is the intercept $Y = \beta_0$, so the estimate of `(Intercept)` that R reports from the model is simply the mean of `y` in the data. Let's demonstrate with the `swiss` data.
+
+We write the **null model** like this. 
+
+```{r}      
+data(swiss)
+null = lm(Fertility ~ 1, data = swiss)
+```
+
+Mathemetically, the `1` just tells R to make a model matrix with a single column of `1`s called `(Intercept)`. Have a look:
+
+```{r}
+head( model.matrix(null) )
+```
+
+Now that we have a `null` model, we need to make a full model. The **full model** is the model that includes all the variables we want to consider in different combinations. In phylogenetics, these would be different trees that consider varying numbers of splits and different groupings. We can write out the formula for the full model by hand in the `lm()` function, or we can use `.` to tell R that we want it to consider *additive* combinations of all columns other than `Fertility`.
+
+
+```{r}
+full=lm(Fertility~., data=swiss)
+```        
+
+Now we perform the forward selection using the `step()` function. Watch them fly by in real time! Here we are telling R to start with the `null` model we created above using `object = null`, but we could actually specify any other model between the `null` and `full` if we wanted to. Next, we tell R that the `scope` of models to consider should include all combinations of explanatory variables (`Education`, `Catholic`, `Infant.Mortality`, and `Agriculture`), including none of them (`null`) and all of them (`full`). Then, we tell R what direction to build models in, either `forward`, `backward`, or `both`.
+
+```{r}
+step(object = null, scope=list(lower=null, upper=full), direction ='forward')
+```
+
+Here, we see that the best model is that which includes the additive effects of `Education`, `Catholic`, `Infant.Mortality`, and `Agriculture`, or our `full` model. Go ahead and try it with a different starting `object` or `direction` to see if this changes the result.
+
+
+## _A priori_ selection {#a-priori}
+
+The most widely perpetuated approach to model selection is probably *a prior* model selection. This means consideration of only those models for which we have _a priori_ reasons for inclusion. These are usually models that are designed to represent competing [biological] hypotheses or to balance those hypotheses within a framework for testing. In simple situations, we compare all the models in which we are interested through a single phase of model selection. Will stick to this approach for class. But, in more complex situations we might apply a hierarchical (multi-phase) approach to reduce complexity and test hypotheses about specific groups of parameters one at a time to avoid inflated type-I error rates (yup, that's still a thing!) when we have lots and lots of models.
+
+### Multi-phase (heirarchical) selection
+
+Hierarchical model selection is widely used for complex models that have different underlying processes (and often "likelihoods") within. A great example of these kinds of models are occupancy and mark-recapture models that incorporate "sub-models" for estimating detection probabilities and other "sub-models" for estimating things like presence-absence, survival, or abundance. These methods are widely used in studies of fish and wildlife populations, and are also a cornerstone in modern epidemiology when we want to account for false positives or false negatives.
+
+Essentially, multi-phase model selection means that we impose some kind of hierarchy on the steps we take to test competing hypotheses. For instance, we might first wish to compare hypotheses about factors influencing detection probabilities in our examples above. Then, we could use the best model(s) from that set of hypotheses as the basis for testing hypotheses about factors that influence processes such as survival or breeding probability.
+
+
+### Single-phase selection
+
+This is where we'll spend the majority of our time for the rest of the chapter and the rest of the book. Single-phase selection means that we want to set up an compare a single group of models that each represent a distinct hypothesis (or set of hypotheses in the case of n-way ANOVA, ANCOVA, and multiple regression).
+
+
+### Tools for _a priori_ model selection
+
+Here, we will focus on a few common approaches to model selection that can be useful in different situations. We will also discuss the importance of thinking about the hypotheses that are represented by our models and how model selection results are interpreted as we go. In this realm of model selection, it is important that we limit the number of models considered to avoid introducing spurious hypotheses and drawing junk conclusions. Remember, now matter what model we choose as best, it can't represent a good hypothesis if we don't know what it means. And, no matter what, we will always have a best model even if the best model is a shitty one. 
+
+In the words of the great Scroobius Pip in his *Death of the journalist*:
+> Throw enough shit at the wall and some of it will stick
+But make no mistake, you’re wall's still covered in shit
+
+To ensure that our walls don't get covered in excrement at all, we will examine the historical application of and difficulties of the Adjusted R^2^ statistic, and then we will dig into information-theoretic approaches using the Akaike information criterion (AIC) as this, along with other information criteria, is now the primary method used for model selection.
+
+> Let's check some of these tools out!
+
+Start by fitting some models, we will use the `swiss` data again this week for the purpose of demonstrating selection tools because it is a noisy data set with lots of complexity and colinearity between variables.
+
+```{r}
+data('swiss')
+
+# Fit the model that tests the
+# effects of education on the fertility index
+  mod_Ed = lm(Fertility~Education, data=swiss)
+  
+# Fit another model that tests
+# effects of % Catholic on Fertility
+  mod_Cath = lm(Fertility~Catholic, data=swiss)
+  
+# Fit a model with additive effects
+# of both explanatory variables
+  mod_EdCath = lm(Fertility~Education + Catholic, data=swiss)
+  
+# Fit a model with multiplicative
+# effects of both explanatory variables
+  mod_EdxCath = lm(Fertility~Education*Catholic, data=swiss)
+```
+
+
+We have four models that represent competing hypotheses:
+
+1.`Education` alone is the best explanation among those considered for variability in `fertility`.
+
+2.Percent `Catholic` alone is the best explanation among those considered for variability in `fertility`.
+
+3.The additive effects of `Education` and percent `Catholic` are the best explanation among those considered for variability in `fertility`.
+
+4.The interactive effects of `Education` and percent `Catholic` are the best explanation among those considered for variability in `fertility`.
+
+Great, but how can we evaluate which of these hypotheses is best supported by our data?
+
+Have a look at the residuals of the most complex of these models to make sure we haven't shattered the assumptions of linear models. In this case, "most complex" means the model with the most parameters, or `mod.EdxCath`. If you are still unsure as to why this model has more parameters than `mod.EdCath`, then have a look at the output of `model.matrix()` for each of them. 
+
+```{r}
+# Extract the residuals from
+# the fitted model object
+resids <- mod_EdxCath$residuals
+
+# Add the residuals to the swiss data
+swiss_resids <- data.frame(swiss, resids)
+```
+
+They definitely look like they are normal with a mean of zero:
+```{r, warning = FALSE, message = FALSE}
+ggplot(swiss_resids, aes(x = resids)) +
+  geom_histogram(bins = 5)
+```
+
+A glance at the residuals vs fitted seems to indicate that we don't have any concerning patterns in the residuals with respect to the observed value of fertility, although we do see that one point all by itself over to the left that might make us want to puke a little.
+
+```{r}
+# Make a pretty plot to make sure we haven't 
+# completely forgotten about those pesky 
+# assumptions from Chapter 9
+ggplot(mod_EdxCath, aes(x = .fitted, y = .resid)) + 
+  geom_jitter() +
+  geom_abline(intercept = 0, slope = 0) +
+  xlab("Fertility") + 
+  ylab(expression(paste(epsilon))) +
+  theme_bw()
+```
+
+<br>
+
+Now that we have verified we are not in violation of assumptions we can apply model selection to find out if one is clearly better than the others and if so which. Then, we'll use our best model to make predictions just like last week and next week and the week after that...and so on. 
+
+Let's start by making a list of our models and giving each element (model) in the list a name:
+
+```{r}
+# Making a list that holds are models inside it
+  mods = list(mod_Ed, mod_Cath, mod_EdCath, mod_EdxCath)
+
+# Give names to each element of the list (each model)
+  names(mods) = c('Ed', 'Cath', 'EdCath', 'EdxCath')
+  
+```
+
+
+#### Adjusted R^2^
+
+The adjusted R^2^ offers a relatively simple tool for model selection. It is superior to the multiple R^2^ with which we have been working only because it balances the number of parameters in the model with the number of observations in our data.
+
+Just as before, we can look at the summary of our model objects that we have stored in this list.
+
+```{r}
+# Education only model, we can take a look, like this
+  summary(mods$Ed)
+
+# REMEMBER: this model is an object stored in R,
+# so we can also look at the names of this summary,
+# like this
+  names(summary(mods$Ed))
+  
+```
+
+_Whoa_, this is some heavy stuff. To recap, we have made a list of models, each of which are actually lists themselves. Each model has lots of elements. The output of `summary()` for each model is also a list with and the elements have names of their own. Within that final list we can find the `Adusted R-squared` or what `summary()` calls the `adj.r.squared`. It's turtles all the way down all over again.
+
+We can, of course, extract the adjusted R^2^ value from the output of `summary()` by name:
+```{r}
+ed_r <- summary(mods$Ed)$adj.r.squared
+cath_r <- summary(mods$Cath)$adj.r.squared
+EdCath_r <- summary(mods$EdCath)$adj.r.squared
+EdxCath_r <- summary(mods$EdxCath)$adj.r.squared
+```
+
+And, we could even put them in a data frame with the original model names to compare the R^2^ values.
+```{r}
+data.frame(
+  model = names(mods), 
+  adj_r_squared = c(ed_r, cath_r, EdCath_r, EdxCath_r)
+  )
+```
+
+When we compare adjusted R^2^, **the model with the highest R^2^ is the "best model"**. So, in this case, we would conclude that `EdxCath` is the best model. But, we have two problems. First, how do we tell if an R^2^ value of 0.57 is meaningfully better than an R^2^ value of 0.57 statistically? Second, we know we have more parameters in `EdxCath` than in `EdCath`. Are these extra parameters worth the small increase in R^2^?. Although we won't dive into statistics like the PRESS statistic, this and other traditional model-selection statistics suffer the same two deficiencies. Finally, the R^2^ is a statistic derived from the sum of squared errors in least-squares estimation so we won't be able to use it starting in [Chapter 12](#Chapter12) when we start to estimate regression coefficients using maximum likelihood estimation from now on.
+
+So, how to life?
+
+
+#### Information theoretic approaches
+
+<h5 id="multi"> Akaike's information criterion (AIC) </h5>
+
+This tool (or the popular alternatives BIC, DIC, and WAIC) will be more useful for us during the next several weeks than any of the methods we've discussed so far because it allows us to draw inference based on the likelihood of the model rather than the sum of squared errors, which we will learn that GLMs and other generalizations do not have!
+
+Information-theoretic approaches to model selection are based on the trade off in information gained through addition of parameters (explanatory variables and how they combine) and the added complexity of the models, with respect to sample size. I will hold off on a detailed  explanation because you will learn more about this tool in your readings. So, let's cut straight to the chase.
+
+Remember that we made a list of _a priori_ models above that we would like to consider.
+
+
+Have a look at the names of those models just in case you've forgotten them.
+```{r} 
+names(mods)
+```
+
+We can extract the AIC value for each model in our list by using the `lapply()` or `mapply` functions. These functions will split up the list and "apply" a function to each of the elements of that list. The primary difference is that `lapply()` returns a named list and `mapply()` returns an atomic vector with named elements (easier to work with if we want to combine results with model names).
+
+```{r}
+mods_AIC <- mapply(FUN = 'AIC', mods)
+
+data.frame(
+  Model = names(mods),
+  AIC = mods_AIC
+)
+```  
+
+Now we have printed a dataframe holding with the names of our models in one column and their AIC values in another. Unlike the R^2^ statistic, smaller is better when it comes to AIC (and other I-T approaches), even if the values are negative. **The actual value of AIC for any given model has no interpretation other than relative to the remaining three**. To clarify: if I have a single AIC value for one model, it is meaningless. I must have another model with the same response (and data!!) to compare with. There is no such think as an inherently "good" or "bad" AIC. They are only interpreted relative to other models in the same candidate set. This is fundamentally different than the R^2^ statistic.
+
+At a glance, we can see that our model with the interaction is the 'best' model in the set as indicated by our other statistics, but this time it is only better by less than 1 AIC (**lower AIC is better**). Can we say anything about that?
+
+Funny you should ask. Yes, we can. We have a few general rules of thumb for interpreting the AIC statistic, and we can actually derive a whole set of statistics based on these rankings. 
+
+> Open can of worms...
+
+```{r, warning=FALSE, message=FALSE}
+# First, we need another library
+  library(AICcmodavg)
+
+# Let's start digging into this stuff
+# by making a table that can help us along. 
+  aictab(cand.set = mods, modnames = names(mods))
+  
+```
+
+Lots going on here...**What does it all mean**?
+
+We'll walk through the table From left to right. First, notice that the `row.names()` are actually our model names, which is nice. Next, you should take note that the models are ranked in order of increasing AIC. With some context in-hand we can look at each column as follows:
+
+__`K`__ is the number of parameters in each of the models
+
+__`AICc`__ is the AIC score, but it is corrected for sample size. Generally speaking, this means models with many parameters and small number of observations are penalized for potential instability in the likelihood. In general, using the AIC~c~ is almost always a practical approach because it is conservative when we don't have much data and the effect of the penalty goes away with sufficiently large sample sizes (so it becomes equivelant to AIC).
+
+__`Delta_AICc`__ is the difference in AIC~c~ between the best model and each of the other models.
+
+__`AICcWt`__ is the probability that a given model is the best model in the candidate set.
+  
+__`Cum.Wt`__ is the cumulative weights represented by each of the models from best to last. This can be used to create a 95% confidence set of models.
+  
+__`LL`__ is the log likelihood of each model, the very same discussed at the beginning of our discussions about probability distributions!
+
+ 
+#### Interpreting AIC statistics
+
+**In general**:
+
+A lower AIC is better.
+
+Models with $\Delta$AIC~c~ of less than 2.0 are considered to have similar support as the best model. Models with $\Delta$AIC~c~ from 2 to 4 have some support in the data, but not as much. Models with $\Delta$AIC~c~ > 4 have virtually no support.
+
+The ratio of AIC weights (w~i~)can be used to interpret the improvement between the best model and each subsequent model. In this example, the best model is only $\frac{0.52}{0.48} = 1.08 \times$ better supported than the next best model, but the best two models have all of the support.
+
+Our results suggest that `Education` and `Catholic` are the both important in explaining the variation in `Fertility`, because both are included in any model receiving any support in the candidate set. 
+
+Unlike our previous results, we have no clear winner in this case, and we are left wondering whether it is the additive effects or the multiplicative effects of `Education` and  `Catholic` that are important. But, we still may want to get estimates for our main effects, at least, so we can make some good solid inference on the effect sizes. If only we had a method for dealing with this uncertainty now...Oh wait, we do!
+
+
+#### Model averaging
+Using model averaging to account for the model uncertainty, we can see that the unconditional confidence interval for `Education` is negative and does not overlap zero, and the opposite trend is evident in the trend for `Catholic`. We also find out that the interaction between `Education` and `Catholic` is actually not significant, which is probably why the main effects model had equivelant support in the candidate set.
+
+```{r}
+modavg(mods, parm = 'Education', modnames = names(mods),
+       conf.level = .95, exclude = TRUE)
+modavg(mods, parm = 'Catholic', modnames = names(mods),
+       conf.level = .95, exclude = TRUE)
+modavg(mods, parm = 'Education:Catholic', modnames = names(mods),
+       conf.level = .95, exclude = TRUE)
+```          
+          
+Isn't that fantastic? From here we could move on to make predictions based on the model-averaged parameter estimates using what you learned last week. But...what if we weren't convinced so easily and wanted a reliable means of seeing how well our model actually performs now that we've selected one (or more)?
+
+The simple fact of the matter is that we have selected a "best" model, but that doesn't mean our model is necessarily a "good" model.
+
+
+## Model validation
+
+Once we have selected a best model, or a set of explanatory variables that we want to consider in our analysis, it is important that we validate that model when possible. In truth, comparison of the validity of multiple models can even be a gold-standard method for model selection in itself (e.g. LOO-IC), but we are not going to go there this semester because it would require a much richer understanding of programming than we can achieve in a week.
+
+Model validation is the use of external data, or subsets of data that we have set aside to assess the predictive ability of our models with data that were not used to estimate the parameters. That is, we can use new data to test how well our model works for making predictions about the phenomenon of interest. Pretty cool, I know!
+
+There are lots of different methods for model validation, most of which use some of your data for fitting (or **training**) the model and then saves some of the data for predicting new observations based on your model parameters (**testing**). The most common form of model validation is called cross-validation.
+
+Very generally speaking, there are a large (near-infinite) number of ways to do model validation based on how you split up your data set and how you choose to evaluate predictions. This [blog](http://machinelearningmastery.com/how-to-estimate-model-accuracy-in-r-using-the-caret-package/) gives a nice overview of these methods with the `iris` data set in R using the `caret` package. We'll write a little code so you can see how it works, though.
+
+### Leave-one-out cross validation
+
+We will do some manual cross validation here to demonstrate the general procedure. In order to do that, we will use a "loop" to repeat the process over and over again. For each iteration (`i`), we will choose a subset of the `swiss` data to use for training and set the rest aside for comparing to our predictions. Then, we will fit the education model and store the result. Finally, in each iteration, we will store the training data and the predictions in separate lists that we can then use to visualize the results of our model validation. For this example, we will use leave-one-out (LOO) cross validation, but other methods such as "k-fold" that use specified chunks of data are also common. I just prefer LOO, especially because you are likely to run into this one in the near future as it becomes increasingly easy to use and increasingly useful for model comparison via LOO-IC in Bayesian statistics.
+
+First, we need to make a couple of empty vectors to hold our training data and our predictions for each iteration of our cross-validation loop. We define `n` as the number of rows in the data and will use this as the total number of iterations so that each data point gets left out of the data set exactly once in the process. 
+
+```{r}
+# Number of rows in the data set
+# Also the number of times the for loop will run
+n <- nrow(swiss)
+
+# Will hold observation of Fertility withheld for each iteration
+fert_obs <- vector(mode = 'numeric', length = n)  
+
+# Will hold observation of Education withheld for each iteration
+ed_obs <- vector(mode = 'numeric', length = n)  
+
+# Will hold our prediction for each iteration
+fert_pred <- vector(mode = 'numeric', length = n) 
+
+```
+
+Now, drop one data point, fit the model, and predict the missing data point one row at a time until you have done them all.
+
+```{r} 
+# Repeat this for each row of the data set
+# from 1 to n until we have left each row out
+  for(i in 1:n){
+
+# Sample the data, leaving out the ith row
+# These will be our 'training data'
+  data_train <- swiss[-i, ]
+  
+# These will be the data we use for prediction
+# We are just dropping the rows that were used for training
+  data_pred <- swiss[i, ]
+
+# Fit the model that tests the effects of Education
+# on the Fertility
+  mod_ed <- lm(Fertility ~ Education, data = data_train)
+
+# Predict Fertility from the fitted model and store it
+# Along with values of Fertility and Education
+  fert_obs[i] <- swiss$Fertility[i]
+  ed_obs[i] <- swiss$Education[i]
+  fert_pred[i] <- predict(mod_ed, data_pred)
+  
+}
+```
+
+Let's put our observed (left-out) data and our predictions for each iteration in a dataframe that we can use for plotting the results of model validation.
+
+```{r}
+loo_df <- data.frame(fert_obs, ed_obs, fert_pred)
+  
+```
+
+Now, We can look at a plot of our predicted values for each iteration against the data point that was withheld for making the prediction.
+
+```{r}
+ggplot(loo_df, aes(x = fert_obs, y = fert_pred)) +
+  geom_point()
+
+```
+
+We can add a regression line to the plot to see whether we are over or under predicting `Fertility` from our model in a systematic way:
+
+```{r}
+# Fit the model
+pred_line = lm(fert_pred ~ fert_obs, data = loo_df)
+
+# Make predictions
+loo_pred <- predict(pred_line, loo_df)
+  
+# Add them to the loo_df
+loo_df_pred <- data.frame(loo_df, loo_pred)
+  
+# Plot the line against the observed and predicted Fertility  
+ggplot(loo_df_pred, aes(x = fert_obs, y = fert_pred)) +
+  geom_point() +
+  geom_line(aes(y = loo_pred))
+
+```
+
+<br>
+
+You can see that we are generally okay, but tend to under-predict at both low and high values of `Fertility` because the points on either end of the line fall mostly below the line. This is due either to a lack of data at extremes or some overlooked non-linearity in the relationship between X (`Education`) and Y (`Fertility`). If we intentionally collected more data at the extremes of `Education` that could resolve which is the case (because we would either improve prediction at extremes or see the non-linearity in the relationship more clearly). We will use log-transformations to deal help linearize these relationships in some future examples.
+
+We could also look at the summary of our observed vs predicted regression to see how good we are (how much variance in prediction is explained by the model). In this case, it is not great. If we were going to use this for model prediction, we might want there to be a stronger correlation between the observed and predicted values. In that case, it might just mean collecting more or better data or it could mean re-thinking what is being measured and how.
+
+```{r}      
+# Extract the R-squared for observed vs predicted
+  summary(pred_line)$r.squared
+```
+
+There are lots of other takes on cross-validation, including popular approaches such as k-fold cross-validation, and a number of simulation-based tools:  many of which can be implemented in wrappers available through various R packages. I will leave you to explore these in your leisure time. In general, the more data that are set aside, the more robust the validation is, but we usually don't want to set aside so much of our data that the training model isn't representative of the data we've collected.
+
+If we are happy enough with our cross-validation results at this point we can go ahead and make predictions from our model.
+
+
+## Next steps {#next11}
+
+OMG there's more?? I know, right, you're so lucky. In the first 11 chapters of this book we focused on learning how to use R, how to fit statistical models that represent biological hypotheses, how to assess whether those methods are valid for the data collected, how to make predictions about phenomena of interest from our models, and now how to choose between multiple competing models. All of this has relied heavily on assumptions of linear models. Fundamental among those assumptions is that our response variables of interest (and their residuals) conform to the normal distribution. In [Chapter 12](#Chapter12), we will free ourselves of those shackles by stepping into the world of generalized linear models.
+

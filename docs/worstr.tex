@@ -2810,7 +2810,7 @@ We'll start with one chicken egg that has a 50\% chance of successfully hatching
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1
+## [1] 0
 \end{verbatim}
 
 There is also a function called \texttt{rbern} in the \texttt{Rlab} package that simplifies this for the specific case of a Bernoulli.
@@ -2825,7 +2825,7 @@ Let's do it again with that function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1
+## [1] 0
 \end{verbatim}
 
 Or we could hatch a whole bunch of eggs:
@@ -2838,7 +2838,7 @@ Or we could hatch a whole bunch of eggs:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1 0 0 1 0 0 1 1 0 0
+##  [1] 1 0 0 0 0 0 0 1 1 0
 \end{verbatim}
 
 Then, we could even count how many of those were successful. Do you remember how to do that? There are several different ways. You'll have to come up with one for the homework assignment (hint: see \protect\hyperlink{Chapter2}{Chapter 2}).
@@ -2860,7 +2860,7 @@ To sample data from a binomial distribution, we can use \texttt{rbinom} from bas
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 6 5 5 5 3 6 4 7 5 6
+##  [1] 5 4 2 6 4 2 6 5 6 5
 \end{verbatim}
 
 Remember as you look through these that your numbers should look different than mine (at least most of the time) because these are being generated randomly.
@@ -2928,30 +2928,30 @@ Have a look:
 \begin{verbatim}
 ##       [,1] [,2] [,3] [,4] [,5]
 ##  [1,]    0    0    0    0    0
-##  [2,]    0    0    0    0    0
-##  [3,]    0    0    0    1    0
+##  [2,]    0    0    0    1    0
+##  [3,]    0    0    0    0    0
 ##  [4,]    0    0    0    0    0
 ##  [5,]    0    0    0    0    0
 ##  [6,]    0    0    0    0    0
 ##  [7,]    0    0    0    0    0
-##  [8,]    0    0    0    0    1
+##  [8,]    0    0    0    0    0
 ##  [9,]    0    0    0    0    0
-## [10,]    1    0    0    0    0
+## [10,]    0    0    0    0    0
 ## [11,]    0    0    0    0    0
 ## [12,]    0    0    0    0    0
-## [13,]    0    0    0    0    0
+## [13,]    1    0    0    0    0
 ## [14,]    0    0    0    0    0
 ## [15,]    0    0    0    0    0
-## [16,]    0    0    0    0    0
+## [16,]    0    0    0    0    1
 ## [17,]    0    0    0    0    0
-## [18,]    0    0    0    0    0
-## [19,]    0    0    0    0    0
-## [20,]    0    0    1    0    0
+## [18,]    0    1    0    0    0
+## [19,]    0    0    1    0    0
+## [20,]    0    0    0    0    0
 ## [21,]    0    0    0    0    0
 ## [22,]    0    0    0    0    0
 ## [23,]    0    0    0    0    0
 ## [24,]    0    0    0    0    0
-## [25,]    0    1    0    0    0
+## [25,]    0    0    0    0    0
 ## [26,]    0    0    0    0    0
 \end{verbatim}
 
@@ -2983,14 +2983,14 @@ Take a step back, breathe, and think about this. The rows in this matrix are you
 ## [12,]    0
 ## [13,]    0
 ## [14,]    0
-## [15,]    0
+## [15,]    1
 ## [16,]    0
 ## [17,]    0
 ## [18,]    0
 ## [19,]    0
 ## [20,]    0
 ## [21,]    0
-## [22,]    1
+## [22,]    0
 ## [23,]    0
 ## [24,]    0
 ## [25,]    0
@@ -3008,7 +3008,7 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 \begin{verbatim}
 ##       name             
 ##  [1,] "Ava"         "0"
-##  [2,] "Dillon"      "0"
+##  [2,] "Dillon"      "1"
 ##  [3,] "Delaney"     "0"
 ##  [4,] "Manolo"      "0"
 ##  [5,] "Sarah"       "0"
@@ -3016,7 +3016,7 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 ##  [7,] "Olivia"      "0"
 ##  [8,] "Ebony"       "0"
 ##  [9,] "Julia"       "0"
-## [10,] "Davi"        "1"
+## [10,] "Davi"        "0"
 ## [11,] "Gabrielle"   "0"
 ## [12,] "Jordan"      "0"
 ## [13,] "Tayler"      "0"
@@ -3045,32 +3045,32 @@ Now, if I was calling on you randomly in class, after 10 questions, the spread o
 
 \begin{verbatim}
 ##       name                                                 
-##  [1,] "Ava"         "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [2,] "Dillon"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [1,] "Ava"         "0" "0" "0" "1" "0" "0" "1" "0" "0" "0"
+##  [2,] "Dillon"      "0" "0" "0" "0" "0" "0" "0" "0" "1" "0"
 ##  [3,] "Delaney"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [4,] "Manolo"      "0" "0" "0" "0" "0" "0" "0" "0" "1" "0"
-##  [5,] "Sarah"       "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
-##  [6,] "Shannon"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [7,] "Olivia"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [8,] "Ebony"       "0" "0" "0" "0" "1" "0" "1" "0" "0" "0"
-##  [9,] "Julia"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "1"
-## [10,] "Davi"        "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [4,] "Manolo"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [5,] "Sarah"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [6,] "Shannon"     "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
+##  [7,] "Olivia"      "1" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [8,] "Ebony"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [9,] "Julia"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [10,] "Davi"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [11,] "Gabrielle"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [12,] "Jordan"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [13,] "Tayler"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [14,] "Summer"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [15,] "Leah"        "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
-## [16,] "Christine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [15,] "Leah"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [16,] "Christine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "1"
 ## [17,] "Ashley"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [18,] "Katherine"   "1" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [19,] "James"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [18,] "Katherine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [19,] "James"       "0" "0" "0" "0" "1" "0" "0" "0" "0" "0"
 ## [20,] "Emily"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [21,] "Cassidy"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [22,] "Maximillion" "0" "0" "0" "0" "0" "0" "0" "1" "0" "0"
 ## [23,] "Sierra"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [24,] "Kyle"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [25,] "Diana"       "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
-## [26,] "Amanda"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [25,] "Diana"       "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
+## [26,] "Amanda"      "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
 \end{verbatim}
 
 Taking this one step further, we could just draw a name and stop looking at these ugly (no but really they are \textbf{awesome}!) matrices:
@@ -3082,7 +3082,7 @@ Taking this one step further, we could just draw a name and stop looking at thes
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Olivia"
+## [1] "Delaney"
 \end{verbatim}
 
 And now we have a way to randomly select an individual based on a multinomial distribution. What fun!
@@ -3318,7 +3318,7 @@ First, we'll estimate it by making our own function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.996561  4.002806
+## [1] 19.97631  4.07563
 \end{verbatim}
 
 Because this one is so common, R has built-in estimators that rely on
@@ -3332,7 +3332,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.99656
+## [1] 19.97631
 \end{verbatim}
 
 \begin{Shaded}
@@ -3342,7 +3342,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.003206
+## [1] 4.076038
 \end{verbatim}
 
 Wow, that was a lot less code. That is the beauty of having these functions available. How do these compare to the answers returned by our function if you scroll back up?
@@ -3360,8 +3360,8 @@ R also has built-in \textbf{maximum likelihood} estimators that provide an exact
 
 \begin{verbatim}
 ##       mean           sd     
-##   19.99656131    2.00070135 
-##  ( 0.02000701) ( 0.01414709)
+##   19.97631239    2.01881895 
+##  ( 0.02018819) ( 0.01427521)
 \end{verbatim}
 
 Only one problem here: R doesn't report the second moment! It reports
@@ -3410,14 +3410,14 @@ To get started, we need to take a guess at what those parameters could be. (Yes,
 
 \begin{verbatim}
 ## $par
-## [1] 19.996224  4.003123
+## [1] 19.976100  4.074998
 ## 
 ## $value
-## [1] 21124.36
+## [1] 21214.51
 ## 
 ## $counts
 ## function gradient 
-##       47       NA 
+##       49       NA 
 ## 
 ## $convergence
 ## [1] 0
@@ -3462,9 +3462,9 @@ Look at the structure I'll be damned, it's a list! Hey, we learned about those!
 
 \begin{verbatim}
 ## List of 5
-##  $ par        : num [1:2] 20 4
-##  $ value      : num 21124
-##  $ counts     : Named int [1:2] 103 NA
+##  $ par        : num [1:2] 19.98 4.07
+##  $ value      : num 21215
+##  $ counts     : Named int [1:2] 99 NA
 ##   ..- attr(*, "names")= chr [1:2] "function" "gradient"
 ##  $ convergence: int 0
 ##  $ message    : NULL
@@ -3480,7 +3480,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.99900  4.00334
+## [1] 19.975793  4.071458
 \end{verbatim}
 
 \begin{Shaded}
@@ -3491,7 +3491,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.999
+## [1] 19.97579
 \end{verbatim}
 
 \begin{Shaded}
@@ -3502,7 +3502,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.00334
+## [1] 4.071458
 \end{verbatim}
 
 There you have it, a couple of different ways to calculate parameters of the normal distribution using a couple of different approaches each.
@@ -3520,7 +3520,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 20.0087
+## [1] 19.96641
 \end{verbatim}
 
 \begin{Shaded}
@@ -3532,7 +3532,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##     2.5%    97.5% 
-## 16.15431 24.02822
+## 16.06509 23.95483
 \end{verbatim}
 
 \begin{Shaded}
@@ -3544,7 +3544,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##      25%      75% 
-## 18.62290 21.32559
+## 18.60817 21.31751
 \end{verbatim}
 
 \begin{Shaded}
@@ -3555,7 +3555,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 12.17453 28.02906
+## [1] 11.68006 28.63840
 \end{verbatim}
 
 \hypertarget{next5}{%
@@ -5290,8 +5290,7 @@ Here is a visual representation of residuals. The points are our raw data, the d
 \KeywordTok{ggplot}\NormalTok{(iris, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Petal.Length, }\DataTypeTok{y =}\NormalTok{ Petal.Width, }\DataTypeTok{color =}\NormalTok{ Species) ) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{se =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{color =} \StringTok{"gray87"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{xend =}\NormalTok{ Petal.Length, }\DataTypeTok{yend =}\NormalTok{ y_hat),}
-               \DataTypeTok{alpha =} \FloatTok{.2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{xend =}\NormalTok{ Petal.Length, }\DataTypeTok{yend =}\NormalTok{ y_hat), }\DataTypeTok{alpha =} \FloatTok{.2}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{())}
 \end{Highlighting}
@@ -6190,7 +6189,7 @@ First, we need to do a little magic to get the group combinations for \texttt{li
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{groups <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
-  \KeywordTok{with}\NormalTok{(dental, }\KeywordTok{unique}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(lights, resin)))}
+  \KeywordTok{with}\NormalTok{(dental, }\KeywordTok{unique}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(lights, resin)))}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -6681,6 +6680,684 @@ Ta-da!
 \section{Next steps}\label{next10}}
 
 Here, we have demonstrated how to communicate the biological predictions of statistical models that we use to test hypotheses. These included most common frameworks for data analysis within the context of linear models. We will continue to apply these tools to as we extend our modeling framework to include non-normal response variables of interest in later chapters. First, in \protect\hyperlink{Chapter11}{Chapter 11}, we'll explore model selection as a way of choosing between hypotheses that are represented by all of these different models.
+
+\hypertarget{Chapter11}{%
+\chapter{Model selection}\label{Chapter11}}
+
+Sometimes it can be difficult to see the forest for the trees (or anything at all if you spend all your time looking through the bottom of a wine glass). When faced with multiple competing explanations for observed phenomena we may represent these by multiple competing models. Model selection helps us see through the fog to tell us which is best supported. But, it doesn't tell you whether any of your models is good. The wine was good.
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+As we have learned in the past couple weeks, we often encounter situations for which there are multiple, competing hypotheses about what factors, or combinations of factors, best explain the observed patterns in our response of interest. This uncertainty arises for two primary reasons:
+
+\textbf{1. Complexity of the study system}
+
+Biological systems are complex, and often we are interested in which factor, or set of factors, best predict the patterns we observe in the natural world. In carefully designed experiments, we might be interested in evaluating competing hypotheses about mechanistic drivers of biological phenomena. In complex observational studies, we might simply wish to know what factor or subset of possible factors best predicts the patterns we observe, with the understanding that these findings cannot be used to infer causality (or `mechanism') although they can help us better design studies that do.
+
+\textbf{2. Collinearity}
+
+Oh, snap! What did he just say? \textbf{Collinearity} is the idea that certain explanatory variables are related to one another. I know, I know; last week I told you that \emph{independence of observations} was one of the fundamental assumptions that we make about linear models. That is, all observations (rows of data) are sampled independently from one another. This is a nice ideal, and in certain experimental designs that are ``orthogonal'', we can ensure that variables are not collinear. But, in the real world, this is almost never the case.
+
+Model selection offers a means for us to weigh effects of collinearity against the information that is gained as a result of including explanatory variables that are related to one another. In real-world cases, our best model will almost always fall somewhere between a model that contains all of the variables we want to include, and a model that contains only one of those variables.
+
+\textbf{However}, model selection is just as useful for testing hypotheses of rigorously designed, controlled experiments. And as we'll see it can often help to provide more meaningful interpretation of those hypotheses than do p-values alone.
+
+We will be working out of the \texttt{tidyverse} as usual for this chapter. We will also be working with functions from the \texttt{AICcmodavg} package. You will need to install \texttt{AICcmodavg} if you do not already have it installed.
+
+\hypertarget{model-selection-tools}{%
+\section{Model selection tools}\label{model-selection-tools}}
+
+Here, we discuss a few different approaches to model selection. As always, I know it is hard to believe, but there is some controversy as to which method of model selection is best for a given situation. We'll cover three types of model selection: stepwise selection, all possible subsets, and \emph{a priori} subsets. While \emph{a priori} model selection is generally preferred for most applications in biology and ecology, step-wise selection is widely used for phylogenetic analyses and all subsets regressions may be useful for some exploratory studies sometimes if that is really the only choice you have you can tell I don't like this one. Therefore, we will briefly discuss all subsets before demonstrating stepwise selection and moving with commonly used \emph{a priori} tools for the rest of the semester.
+
+\hypertarget{all-subsets}{%
+\section{All subsets}\label{all-subsets}}
+
+Just as the name states - compare all possible combinations of variables and pick the one that gives the most information with the least collinearity between predictors. This is largely an exploratory approach or is reserved for cases in which we care solely about prediction. There are a number of R packages that implement all subsets with varying utility and efficiency. These approaches historically relied on Mallow's Cp, but most are now updated to use Akaike's information criterion (see \protect\hyperlink{a-priori}{Chapter 11.4})
+
+We will not discuss these techniques in this class because 1) they are usually not needed 2) they can lead to laziness in formulation of hypotheses and in a worst case data dredging, and 3) plain and simple: there are just better tools available for these purposes now (e.g.~GAMM, CART, and network analysis).
+
+Now can you tell I am not a fan?
+
+\hypertarget{stepwise}{%
+\section{Stepwise selection}\label{stepwise}}
+
+The basic idea behind stepwise model selection is that we wish to create and test models in a variable-by-variable manner until only ``important'' (say ``well supported'') variables are left in the model. The support for each variable is evaluated in turn relative to some pre-determined criterion and an arbitrary (or not) starting point.
+
+While convenient, this approach has some well-known pitfalls. First, this generally is not a useful way to construct biological hypotheses for experiments or for observational studies. Second, it is easy to miss out on important relationships that are not considered because of the automated inclusion or exclusion of `significant' explanatory variables and the order in which they are entered or dropped. For example, in most readily accessible applications, this tool also does not include interaction terms that might be of biological interest by default. Therefore, regardless of the method used, careful thought is warranted regarding the variables included and their potential mathematical combinations. For most purely predictive situations better tools now exist since the advent of machine learning algorithms.
+
+\hypertarget{forward-selection}{%
+\subsection{Forward selection}\label{forward-selection}}
+
+We start by making a ``null'' model that includes no explanatory variables. This model is simply a least-squares estimate of the mean. If we think about it in terms of a linear model, the only parameter is the intercept \(Y = \beta_0\), so the estimate of \texttt{(Intercept)} that R reports from the model is simply the mean of \texttt{y} in the data. Let's demonstrate with the \texttt{swiss} data.
+
+We write the \textbf{null model} like this.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(swiss)}
+\NormalTok{null =}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility }\OperatorTok{~}\StringTok{ }\DecValTok{1}\NormalTok{, }\DataTypeTok{data =}\NormalTok{ swiss)}
+\end{Highlighting}
+\end{Shaded}
+
+Mathemetically, the \texttt{1} just tells R to make a model matrix with a single column of \texttt{1}s called \texttt{(Intercept)}. Have a look:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{( }\KeywordTok{model.matrix}\NormalTok{(null) )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              (Intercept)
+## Courtelary             1
+## Delemont               1
+## Franches-Mnt           1
+## Moutier                1
+## Neuveville             1
+## Porrentruy             1
+\end{verbatim}
+
+Now that we have a \texttt{null} model, we need to make a full model. The \textbf{full model} is the model that includes all the variables we want to consider in different combinations. In phylogenetics, these would be different trees that consider varying numbers of splits and different groupings. We can write out the formula for the full model by hand in the \texttt{lm()} function, or we can use \texttt{.} to tell R that we want it to consider \emph{additive} combinations of all columns other than \texttt{Fertility}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{full=}\KeywordTok{lm}\NormalTok{(Fertility}\OperatorTok{~}\NormalTok{., }\DataTypeTok{data=}\NormalTok{swiss)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we perform the forward selection using the \texttt{step()} function. Watch them fly by in real time! Here we are telling R to start with the \texttt{null} model we created above using \texttt{object\ =\ null}, but we could actually specify any other model between the \texttt{null} and \texttt{full} if we wanted to. Next, we tell R that the \texttt{scope} of models to consider should include all combinations of explanatory variables (\texttt{Education}, \texttt{Catholic}, \texttt{Infant.Mortality}, and \texttt{Agriculture}), including none of them (\texttt{null}) and all of them (\texttt{full}). Then, we tell R what direction to build models in, either \texttt{forward}, \texttt{backward}, or \texttt{both}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{step}\NormalTok{(}\DataTypeTok{object =}\NormalTok{ null, }\DataTypeTok{scope=}\KeywordTok{list}\NormalTok{(}\DataTypeTok{lower=}\NormalTok{null, }\DataTypeTok{upper=}\NormalTok{full), }\DataTypeTok{direction =}\StringTok{'forward'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Start:  AIC=238.35
+## Fertility ~ 1
+## 
+##                    Df Sum of Sq    RSS    AIC
+## + Education         1    3162.7 4015.2 213.04
+## + Examination       1    2994.4 4183.6 214.97
+## + Catholic          1    1543.3 5634.7 228.97
+## + Infant.Mortality  1    1245.5 5932.4 231.39
+## + Agriculture       1     894.8 6283.1 234.09
+## <none>                          7178.0 238.34
+## 
+## Step:  AIC=213.04
+## Fertility ~ Education
+## 
+##                    Df Sum of Sq    RSS    AIC
+## + Catholic          1    961.07 3054.2 202.18
+## + Infant.Mortality  1    891.25 3124.0 203.25
+## + Examination       1    465.63 3549.6 209.25
+## <none>                          4015.2 213.04
+## + Agriculture       1     61.97 3953.3 214.31
+## 
+## Step:  AIC=202.18
+## Fertility ~ Education + Catholic
+## 
+##                    Df Sum of Sq    RSS    AIC
+## + Infant.Mortality  1    631.92 2422.2 193.29
+## + Agriculture       1    486.28 2567.9 196.03
+## <none>                          3054.2 202.18
+## + Examination       1      2.46 3051.7 204.15
+## 
+## Step:  AIC=193.29
+## Fertility ~ Education + Catholic + Infant.Mortality
+## 
+##               Df Sum of Sq    RSS    AIC
+## + Agriculture  1   264.176 2158.1 189.86
+## <none>                     2422.2 193.29
+## + Examination  1     9.486 2412.8 195.10
+## 
+## Step:  AIC=189.86
+## Fertility ~ Education + Catholic + Infant.Mortality + Agriculture
+## 
+##               Df Sum of Sq    RSS    AIC
+## <none>                     2158.1 189.86
+## + Examination  1    53.027 2105.0 190.69
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Fertility ~ Education + Catholic + Infant.Mortality + 
+##     Agriculture, data = swiss)
+## 
+## Coefficients:
+##      (Intercept)         Education          Catholic  Infant.Mortality  
+##          62.1013           -0.9803            0.1247            1.0784  
+##      Agriculture  
+##          -0.1546
+\end{verbatim}
+
+Here, we see that the best model is that which includes the additive effects of \texttt{Education}, \texttt{Catholic}, \texttt{Infant.Mortality}, and \texttt{Agriculture}, or our \texttt{full} model. Go ahead and try it with a different starting \texttt{object} or \texttt{direction} to see if this changes the result.
+
+\hypertarget{a-priori}{%
+\section{\texorpdfstring{\emph{A priori} selection}{A priori selection}}\label{a-priori}}
+
+The most widely perpetuated approach to model selection is probably \emph{a prior} model selection. This means consideration of only those models for which we have \emph{a priori} reasons for inclusion. These are usually models that are designed to represent competing {[}biological{]} hypotheses or to balance those hypotheses within a framework for testing. In simple situations, we compare all the models in which we are interested through a single phase of model selection. Will stick to this approach for class. But, in more complex situations we might apply a hierarchical (multi-phase) approach to reduce complexity and test hypotheses about specific groups of parameters one at a time to avoid inflated type-I error rates (yup, that's still a thing!) when we have lots and lots of models.
+
+\hypertarget{multi-phase-heirarchical-selection}{%
+\subsection{Multi-phase (heirarchical) selection}\label{multi-phase-heirarchical-selection}}
+
+Hierarchical model selection is widely used for complex models that have different underlying processes (and often ``likelihoods'') within. A great example of these kinds of models are occupancy and mark-recapture models that incorporate ``sub-models'' for estimating detection probabilities and other ``sub-models'' for estimating things like presence-absence, survival, or abundance. These methods are widely used in studies of fish and wildlife populations, and are also a cornerstone in modern epidemiology when we want to account for false positives or false negatives.
+
+Essentially, multi-phase model selection means that we impose some kind of hierarchy on the steps we take to test competing hypotheses. For instance, we might first wish to compare hypotheses about factors influencing detection probabilities in our examples above. Then, we could use the best model(s) from that set of hypotheses as the basis for testing hypotheses about factors that influence processes such as survival or breeding probability.
+
+\hypertarget{single-phase-selection}{%
+\subsection{Single-phase selection}\label{single-phase-selection}}
+
+This is where we'll spend the majority of our time for the rest of the chapter and the rest of the book. Single-phase selection means that we want to set up an compare a single group of models that each represent a distinct hypothesis (or set of hypotheses in the case of n-way ANOVA, ANCOVA, and multiple regression).
+
+\hypertarget{tools-for-a-priori-model-selection}{%
+\subsection{\texorpdfstring{Tools for \emph{a priori} model selection}{Tools for a priori model selection}}\label{tools-for-a-priori-model-selection}}
+
+Here, we will focus on a few common approaches to model selection that can be useful in different situations. We will also discuss the importance of thinking about the hypotheses that are represented by our models and how model selection results are interpreted as we go. In this realm of model selection, it is important that we limit the number of models considered to avoid introducing spurious hypotheses and drawing junk conclusions. Remember, now matter what model we choose as best, it can't represent a good hypothesis if we don't know what it means. And, no matter what, we will always have a best model even if the best model is a shitty one.
+
+In the words of the great Scroobius Pip in his \emph{Death of the journalist}:
+\textgreater{} Throw enough shit at the wall and some of it will stick
+But make no mistake, you're wall's still covered in shit
+
+To ensure that our walls don't get covered in excrement at all, we will examine the historical application of and difficulties of the Adjusted R\textsuperscript{2} statistic, and then we will dig into information-theoretic approaches using the Akaike information criterion (AIC) as this, along with other information criteria, is now the primary method used for model selection.
+
+\begin{quote}
+Let's check some of these tools out!
+\end{quote}
+
+Start by fitting some models, we will use the \texttt{swiss} data again this week for the purpose of demonstrating selection tools because it is a noisy data set with lots of complexity and colinearity between variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(}\StringTok{'swiss'}\NormalTok{)}
+
+\CommentTok{# Fit the model that tests the}
+\CommentTok{# effects of education on the fertility index}
+\NormalTok{  mod_Ed =}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility}\OperatorTok{~}\NormalTok{Education, }\DataTypeTok{data=}\NormalTok{swiss)}
+  
+\CommentTok{# Fit another model that tests}
+\CommentTok{# effects of % Catholic on Fertility}
+\NormalTok{  mod_Cath =}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility}\OperatorTok{~}\NormalTok{Catholic, }\DataTypeTok{data=}\NormalTok{swiss)}
+  
+\CommentTok{# Fit a model with additive effects}
+\CommentTok{# of both explanatory variables}
+\NormalTok{  mod_EdCath =}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility}\OperatorTok{~}\NormalTok{Education }\OperatorTok{+}\StringTok{ }\NormalTok{Catholic, }\DataTypeTok{data=}\NormalTok{swiss)}
+  
+\CommentTok{# Fit a model with multiplicative}
+\CommentTok{# effects of both explanatory variables}
+\NormalTok{  mod_EdxCath =}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility}\OperatorTok{~}\NormalTok{Education}\OperatorTok{*}\NormalTok{Catholic, }\DataTypeTok{data=}\NormalTok{swiss)}
+\end{Highlighting}
+\end{Shaded}
+
+We have four models that represent competing hypotheses:
+
+1.\texttt{Education} alone is the best explanation among those considered for variability in \texttt{fertility}.
+
+2.Percent \texttt{Catholic} alone is the best explanation among those considered for variability in \texttt{fertility}.
+
+3.The additive effects of \texttt{Education} and percent \texttt{Catholic} are the best explanation among those considered for variability in \texttt{fertility}.
+
+4.The interactive effects of \texttt{Education} and percent \texttt{Catholic} are the best explanation among those considered for variability in \texttt{fertility}.
+
+Great, but how can we evaluate which of these hypotheses is best supported by our data?
+
+Have a look at the residuals of the most complex of these models to make sure we haven't shattered the assumptions of linear models. In this case, ``most complex'' means the model with the most parameters, or \texttt{mod.EdxCath}. If you are still unsure as to why this model has more parameters than \texttt{mod.EdCath}, then have a look at the output of \texttt{model.matrix()} for each of them.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Extract the residuals from}
+\CommentTok{# the fitted model object}
+\NormalTok{resids <-}\StringTok{ }\NormalTok{mod_EdxCath}\OperatorTok{$}\NormalTok{residuals}
+
+\CommentTok{# Add the residuals to the swiss data}
+\NormalTok{swiss_resids <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(swiss, resids)}
+\end{Highlighting}
+\end{Shaded}
+
+They definitely look like they are normal with a mean of zero:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(swiss_resids, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ resids)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-301-1.pdf}
+
+A glance at the residuals vs fitted seems to indicate that we don't have any concerning patterns in the residuals with respect to the observed value of fertility, although we do see that one point all by itself over to the left that might make us want to puke a little.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make a pretty plot to make sure we haven't }
+\CommentTok{# completely forgotten about those pesky }
+\CommentTok{# assumptions from Chapter 9}
+\KeywordTok{ggplot}\NormalTok{(mod_EdxCath, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ .fitted, }\DataTypeTok{y =}\NormalTok{ .resid)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_abline}\NormalTok{(}\DataTypeTok{intercept =} \DecValTok{0}\NormalTok{, }\DataTypeTok{slope =} \DecValTok{0}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Fertility"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(epsilon))) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-302-1.pdf}
+
+Now that we have verified we are not in violation of assumptions we can apply model selection to find out if one is clearly better than the others and if so which. Then, we'll use our best model to make predictions just like last week and next week and the week after that\ldots and so on.
+
+Let's start by making a list of our models and giving each element (model) in the list a name:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Making a list that holds are models inside it}
+\NormalTok{  mods =}\StringTok{ }\KeywordTok{list}\NormalTok{(mod_Ed, mod_Cath, mod_EdCath, mod_EdxCath)}
+
+\CommentTok{# Give names to each element of the list (each model)}
+  \KeywordTok{names}\NormalTok{(mods) =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'Ed'}\NormalTok{, }\StringTok{'Cath'}\NormalTok{, }\StringTok{'EdCath'}\NormalTok{, }\StringTok{'EdxCath'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{adjusted-r2}{%
+\subsubsection{\texorpdfstring{Adjusted R\textsuperscript{2}}{Adjusted R2}}\label{adjusted-r2}}
+
+The adjusted R\textsuperscript{2} offers a relatively simple tool for model selection. It is superior to the multiple R\textsuperscript{2} with which we have been working only because it balances the number of parameters in the model with the number of observations in our data.
+
+Just as before, we can look at the summary of our model objects that we have stored in this list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Education only model, we can take a look, like this}
+  \KeywordTok{summary}\NormalTok{(mods}\OperatorTok{$}\NormalTok{Ed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Fertility ~ Education, data = swiss)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -17.036  -6.711  -1.011   9.526  19.689 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  79.6101     2.1041  37.836  < 2e-16 ***
+## Education    -0.8624     0.1448  -5.954 3.66e-07 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 9.446 on 45 degrees of freedom
+## Multiple R-squared:  0.4406,	Adjusted R-squared:  0.4282 
+## F-statistic: 35.45 on 1 and 45 DF,  p-value: 3.659e-07
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# REMEMBER: this model is an object stored in R,}
+\CommentTok{# so we can also look at the names of this summary,}
+\CommentTok{# like this}
+  \KeywordTok{names}\NormalTok{(}\KeywordTok{summary}\NormalTok{(mods}\OperatorTok{$}\NormalTok{Ed))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "call"          "terms"         "residuals"     "coefficients" 
+##  [5] "aliased"       "sigma"         "df"            "r.squared"    
+##  [9] "adj.r.squared" "fstatistic"    "cov.unscaled"
+\end{verbatim}
+
+\emph{Whoa}, this is some heavy stuff. To recap, we have made a list of models, each of which are actually lists themselves. Each model has lots of elements. The output of \texttt{summary()} for each model is also a list with and the elements have names of their own. Within that final list we can find the \texttt{Adusted\ R-squared} or what \texttt{summary()} calls the \texttt{adj.r.squared}. It's turtles all the way down all over again.
+
+We can, of course, extract the adjusted R\textsuperscript{2} value from the output of \texttt{summary()} by name:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ed_r <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(mods}\OperatorTok{$}\NormalTok{Ed)}\OperatorTok{$}\NormalTok{adj.r.squared}
+\NormalTok{cath_r <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(mods}\OperatorTok{$}\NormalTok{Cath)}\OperatorTok{$}\NormalTok{adj.r.squared}
+\NormalTok{EdCath_r <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(mods}\OperatorTok{$}\NormalTok{EdCath)}\OperatorTok{$}\NormalTok{adj.r.squared}
+\NormalTok{EdxCath_r <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(mods}\OperatorTok{$}\NormalTok{EdxCath)}\OperatorTok{$}\NormalTok{adj.r.squared}
+\end{Highlighting}
+\end{Shaded}
+
+And, we could even put them in a data frame with the original model names to compare the R\textsuperscript{2} values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{model =} \KeywordTok{names}\NormalTok{(mods), }
+  \DataTypeTok{adj_r_squared =} \KeywordTok{c}\NormalTok{(ed_r, cath_r, EdCath_r, EdxCath_r)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     model adj_r_squared
+## 1      Ed     0.4281849
+## 2    Cath     0.1975591
+## 3  EdCath     0.5551665
+## 4 EdxCath     0.5700628
+\end{verbatim}
+
+When we compare adjusted R\textsuperscript{2}, \textbf{the model with the highest R\textsuperscript{2} is the ``best model''}. So, in this case, we would conclude that \texttt{EdxCath} is the best model. But, we have two problems. First, how do we tell if an R\textsuperscript{2} value of 0.57 is meaningfully better than an R\textsuperscript{2} value of 0.57 statistically? Second, we know we have more parameters in \texttt{EdxCath} than in \texttt{EdCath}. Are these extra parameters worth the small increase in R\textsuperscript{2}?. Although we won't dive into statistics like the PRESS statistic, this and other traditional model-selection statistics suffer the same two deficiencies. Finally, the R\textsuperscript{2} is a statistic derived from the sum of squared errors in least-squares estimation so we won't be able to use it starting in \protect\hyperlink{Chapter12}{Chapter 12} when we start to estimate regression coefficients using maximum likelihood estimation from now on.
+
+So, how to life?
+
+\hypertarget{information-theoretic-approaches}{%
+\subsubsection{Information theoretic approaches}\label{information-theoretic-approaches}}
+
+Akaike's information criterion (AIC)
+
+This tool (or the popular alternatives BIC, DIC, and WAIC) will be more useful for us during the next several weeks than any of the methods we've discussed so far because it allows us to draw inference based on the likelihood of the model rather than the sum of squared errors, which we will learn that GLMs and other generalizations do not have!
+
+Information-theoretic approaches to model selection are based on the trade off in information gained through addition of parameters (explanatory variables and how they combine) and the added complexity of the models, with respect to sample size. I will hold off on a detailed explanation because you will learn more about this tool in your readings. So, let's cut straight to the chase.
+
+Remember that we made a list of \emph{a priori} models above that we would like to consider.
+
+Have a look at the names of those models just in case you've forgotten them.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(mods)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Ed"      "Cath"    "EdCath"  "EdxCath"
+\end{verbatim}
+
+We can extract the AIC value for each model in our list by using the \texttt{lapply()} or \texttt{mapply} functions. These functions will split up the list and ``apply'' a function to each of the elements of that list. The primary difference is that \texttt{lapply()} returns a named list and \texttt{mapply()} returns an atomic vector with named elements (easier to work with if we want to combine results with model names).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mods_AIC <-}\StringTok{ }\KeywordTok{mapply}\NormalTok{(}\DataTypeTok{FUN =} \StringTok{'AIC'}\NormalTok{, mods)}
+
+\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{Model =} \KeywordTok{names}\NormalTok{(mods),}
+  \DataTypeTok{AIC =}\NormalTok{ mods_AIC}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Model      AIC
+## Ed           Ed 348.4223
+## Cath       Cath 364.3479
+## EdCath   EdCath 337.5636
+## EdxCath EdxCath 336.8823
+\end{verbatim}
+
+Now we have printed a dataframe holding with the names of our models in one column and their AIC values in another. Unlike the R\textsuperscript{2} statistic, smaller is better when it comes to AIC (and other I-T approaches), even if the values are negative. \textbf{The actual value of AIC for any given model has no interpretation other than relative to the remaining three}. To clarify: if I have a single AIC value for one model, it is meaningless. I must have another model with the same response (and data!!) to compare with. There is no such think as an inherently ``good'' or ``bad'' AIC. They are only interpreted relative to other models in the same candidate set. This is fundamentally different than the R\textsuperscript{2} statistic.
+
+At a glance, we can see that our model with the interaction is the `best' model in the set as indicated by our other statistics, but this time it is only better by less than 1 AIC (\textbf{lower AIC is better}). Can we say anything about that?
+
+Funny you should ask. Yes, we can. We have a few general rules of thumb for interpreting the AIC statistic, and we can actually derive a whole set of statistics based on these rankings.
+
+\begin{quote}
+Open can of worms\ldots{}
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# First, we need another library}
+  \KeywordTok{library}\NormalTok{(AICcmodavg)}
+
+\CommentTok{# Let's start digging into this stuff}
+\CommentTok{# by making a table that can help us along. }
+  \KeywordTok{aictab}\NormalTok{(}\DataTypeTok{cand.set =}\NormalTok{ mods, }\DataTypeTok{modnames =} \KeywordTok{names}\NormalTok{(mods))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Model selection based on AICc:
+## 
+##         K   AICc Delta_AICc AICcWt Cum.Wt      LL
+## EdxCath 5 338.35       0.00   0.52   0.52 -163.44
+## EdCath  4 338.52       0.17   0.48   1.00 -164.78
+## Ed      3 348.98      10.63   0.00   1.00 -171.21
+## Cath    3 364.91      26.56   0.00   1.00 -179.17
+\end{verbatim}
+
+Lots going on here\ldots{}\textbf{What does it all mean}?
+
+We'll walk through the table From left to right. First, notice that the \texttt{row.names()} are actually our model names, which is nice. Next, you should take note that the models are ranked in order of increasing AIC. With some context in-hand we can look at each column as follows:
+
+\textbf{\texttt{K}} is the number of parameters in each of the models
+
+\textbf{\texttt{AICc}} is the AIC score, but it is corrected for sample size. Generally speaking, this means models with many parameters and small number of observations are penalized for potential instability in the likelihood. In general, using the AIC\textsubscript{c} is almost always a practical approach because it is conservative when we don't have much data and the effect of the penalty goes away with sufficiently large sample sizes (so it becomes equivelant to AIC).
+
+\textbf{\texttt{Delta\_AICc}} is the difference in AIC\textsubscript{c} between the best model and each of the other models.
+
+\textbf{\texttt{AICcWt}} is the probability that a given model is the best model in the candidate set.
+
+\textbf{\texttt{Cum.Wt}} is the cumulative weights represented by each of the models from best to last. This can be used to create a 95\% confidence set of models.
+
+\textbf{\texttt{LL}} is the log likelihood of each model, the very same discussed at the beginning of our discussions about probability distributions!
+
+\hypertarget{interpreting-aic-statistics}{%
+\subsubsection{Interpreting AIC statistics}\label{interpreting-aic-statistics}}
+
+\textbf{In general}:
+
+A lower AIC is better.
+
+Models with \(\Delta\)AIC\textsubscript{c} of less than 2.0 are considered to have similar support as the best model. Models with \(\Delta\)AIC\textsubscript{c} from 2 to 4 have some support in the data, but not as much. Models with \(\Delta\)AIC\textsubscript{c} \textgreater{} 4 have virtually no support.
+
+The ratio of AIC weights (w\textsubscript{i})can be used to interpret the improvement between the best model and each subsequent model. In this example, the best model is only \(\frac{0.52}{0.48} = 1.08 \times\) better supported than the next best model, but the best two models have all of the support.
+
+Our results suggest that \texttt{Education} and \texttt{Catholic} are the both important in explaining the variation in \texttt{Fertility}, because both are included in any model receiving any support in the candidate set.
+
+Unlike our previous results, we have no clear winner in this case, and we are left wondering whether it is the additive effects or the multiplicative effects of \texttt{Education} and \texttt{Catholic} that are important. But, we still may want to get estimates for our main effects, at least, so we can make some good solid inference on the effect sizes. If only we had a method for dealing with this uncertainty now\ldots Oh wait, we do!
+
+\hypertarget{model-averaging}{%
+\subsubsection{Model averaging}\label{model-averaging}}
+
+Using model averaging to account for the model uncertainty, we can see that the unconditional confidence interval for \texttt{Education} is negative and does not overlap zero, and the opposite trend is evident in the trend for \texttt{Catholic}. We also find out that the interaction between \texttt{Education} and \texttt{Catholic} is actually not significant, which is probably why the main effects model had equivelant support in the candidate set.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{modavg}\NormalTok{(mods, }\DataTypeTok{parm =} \StringTok{'Education'}\NormalTok{, }\DataTypeTok{modnames =} \KeywordTok{names}\NormalTok{(mods),}
+       \DataTypeTok{conf.level =} \FloatTok{.95}\NormalTok{, }\DataTypeTok{exclude =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Multimodel inference on "Education" based on AICc
+## 
+## AICc table used to obtain model-averaged estimate:
+## 
+##         K   AICc Delta_AICc AICcWt Estimate   SE
+## Ed      3 348.98      10.63   0.00    -0.86 0.14
+## EdCath  4 338.52       0.17   0.48    -0.79 0.13
+## EdxCath 5 338.35       0.00   0.52    -0.43 0.26
+## 
+## Model-averaged estimate: -0.6 
+## Unconditional SE: 0.28 
+## 95% Unconditional confidence interval: -1.14, -0.06
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{modavg}\NormalTok{(mods, }\DataTypeTok{parm =} \StringTok{'Catholic'}\NormalTok{, }\DataTypeTok{modnames =} \KeywordTok{names}\NormalTok{(mods),}
+       \DataTypeTok{conf.level =} \FloatTok{.95}\NormalTok{, }\DataTypeTok{exclude =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Multimodel inference on "Catholic" based on AICc
+## 
+## AICc table used to obtain model-averaged estimate:
+## 
+##         K   AICc Delta_AICc AICcWt Estimate   SE
+## Cath    3 364.91      26.56   0.00     0.14 0.04
+## EdCath  4 338.52       0.17   0.48     0.11 0.03
+## EdxCath 5 338.35       0.00   0.52     0.18 0.05
+## 
+## Model-averaged estimate: 0.15 
+## Unconditional SE: 0.06 
+## 95% Unconditional confidence interval: 0.04, 0.26
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{modavg}\NormalTok{(mods, }\DataTypeTok{parm =} \StringTok{'Education:Catholic'}\NormalTok{, }\DataTypeTok{modnames =} \KeywordTok{names}\NormalTok{(mods),}
+       \DataTypeTok{conf.level =} \FloatTok{.95}\NormalTok{, }\DataTypeTok{exclude =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Multimodel inference on "Education:Catholic" based on AICc
+## 
+## AICc table used to obtain model-averaged estimate:
+## 
+##         K   AICc Delta_AICc AICcWt Estimate   SE
+## EdxCath 5 338.35          0      1    -0.01 0.01
+## 
+## Model-averaged estimate: -0.01 
+## Unconditional SE: 0.01 
+## 95% Unconditional confidence interval: -0.02, 0
+\end{verbatim}
+
+Isn't that fantastic? From here we could move on to make predictions based on the model-averaged parameter estimates using what you learned last week. But\ldots what if we weren't convinced so easily and wanted a reliable means of seeing how well our model actually performs now that we've selected one (or more)?
+
+The simple fact of the matter is that we have selected a ``best'' model, but that doesn't mean our model is necessarily a ``good'' model.
+
+\hypertarget{model-validation}{%
+\section{Model validation}\label{model-validation}}
+
+Once we have selected a best model, or a set of explanatory variables that we want to consider in our analysis, it is important that we validate that model when possible. In truth, comparison of the validity of multiple models can even be a gold-standard method for model selection in itself (e.g.~LOO-IC), but we are not going to go there this semester because it would require a much richer understanding of programming than we can achieve in a week.
+
+Model validation is the use of external data, or subsets of data that we have set aside to assess the predictive ability of our models with data that were not used to estimate the parameters. That is, we can use new data to test how well our model works for making predictions about the phenomenon of interest. Pretty cool, I know!
+
+There are lots of different methods for model validation, most of which use some of your data for fitting (or \textbf{training}) the model and then saves some of the data for predicting new observations based on your model parameters (\textbf{testing}). The most common form of model validation is called cross-validation.
+
+Very generally speaking, there are a large (near-infinite) number of ways to do model validation based on how you split up your data set and how you choose to evaluate predictions. This \href{http://machinelearningmastery.com/how-to-estimate-model-accuracy-in-r-using-the-caret-package/}{blog} gives a nice overview of these methods with the \texttt{iris} data set in R using the \texttt{caret} package. We'll write a little code so you can see how it works, though.
+
+\hypertarget{leave-one-out-cross-validation}{%
+\subsection{Leave-one-out cross validation}\label{leave-one-out-cross-validation}}
+
+We will do some manual cross validation here to demonstrate the general procedure. In order to do that, we will use a ``loop'' to repeat the process over and over again. For each iteration (\texttt{i}), we will choose a subset of the \texttt{swiss} data to use for training and set the rest aside for comparing to our predictions. Then, we will fit the education model and store the result. Finally, in each iteration, we will store the training data and the predictions in separate lists that we can then use to visualize the results of our model validation. For this example, we will use leave-one-out (LOO) cross validation, but other methods such as ``k-fold'' that use specified chunks of data are also common. I just prefer LOO, especially because you are likely to run into this one in the near future as it becomes increasingly easy to use and increasingly useful for model comparison via LOO-IC in Bayesian statistics.
+
+First, we need to make a couple of empty vectors to hold our training data and our predictions for each iteration of our cross-validation loop. We define \texttt{n} as the number of rows in the data and will use this as the total number of iterations so that each data point gets left out of the data set exactly once in the process.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Number of rows in the data set}
+\CommentTok{# Also the number of times the for loop will run}
+\NormalTok{n <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{(swiss)}
+
+\CommentTok{# Will hold observation of Fertility withheld for each iteration}
+\NormalTok{fert_obs <-}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{'numeric'}\NormalTok{, }\DataTypeTok{length =}\NormalTok{ n)  }
+
+\CommentTok{# Will hold observation of Education withheld for each iteration}
+\NormalTok{ed_obs <-}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{'numeric'}\NormalTok{, }\DataTypeTok{length =}\NormalTok{ n)  }
+
+\CommentTok{# Will hold our prediction for each iteration}
+\NormalTok{fert_pred <-}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{'numeric'}\NormalTok{, }\DataTypeTok{length =}\NormalTok{ n) }
+\end{Highlighting}
+\end{Shaded}
+
+Now, drop one data point, fit the model, and predict the missing data point one row at a time until you have done them all.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Repeat this for each row of the data set}
+\CommentTok{# from 1 to n until we have left each row out}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{n)\{}
+
+\CommentTok{# Sample the data, leaving out the ith row}
+\CommentTok{# These will be our 'training data'}
+\NormalTok{  data_train <-}\StringTok{ }\NormalTok{swiss[}\OperatorTok{-}\NormalTok{i, ]}
+  
+\CommentTok{# These will be the data we use for prediction}
+\CommentTok{# We are just dropping the rows that were used for training}
+\NormalTok{  data_pred <-}\StringTok{ }\NormalTok{swiss[i, ]}
+
+\CommentTok{# Fit the model that tests the effects of Education}
+\CommentTok{# on the Fertility}
+\NormalTok{  mod_ed <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility }\OperatorTok{~}\StringTok{ }\NormalTok{Education, }\DataTypeTok{data =}\NormalTok{ data_train)}
+
+\CommentTok{# Predict Fertility from the fitted model and store it}
+\CommentTok{# Along with values of Fertility and Education}
+\NormalTok{  fert_obs[i] <-}\StringTok{ }\NormalTok{swiss}\OperatorTok{$}\NormalTok{Fertility[i]}
+\NormalTok{  ed_obs[i] <-}\StringTok{ }\NormalTok{swiss}\OperatorTok{$}\NormalTok{Education[i]}
+\NormalTok{  fert_pred[i] <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(mod_ed, data_pred)}
+  
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Let's put our observed (left-out) data and our predictions for each iteration in a dataframe that we can use for plotting the results of model validation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loo_df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(fert_obs, ed_obs, fert_pred)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, We can look at a plot of our predicted values for each iteration against the data point that was withheld for making the prediction.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(loo_df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ fert_obs, }\DataTypeTok{y =}\NormalTok{ fert_pred)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-314-1.pdf}
+
+We can add a regression line to the plot to see whether we are over or under predicting \texttt{Fertility} from our model in a systematic way:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fit the model}
+\NormalTok{pred_line =}\StringTok{ }\KeywordTok{lm}\NormalTok{(fert_pred }\OperatorTok{~}\StringTok{ }\NormalTok{fert_obs, }\DataTypeTok{data =}\NormalTok{ loo_df)}
+
+\CommentTok{# Make predictions}
+\NormalTok{loo_pred <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(pred_line, loo_df)}
+  
+\CommentTok{# Add them to the loo_df}
+\NormalTok{loo_df_pred <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(loo_df, loo_pred)}
+  
+\CommentTok{# Plot the line against the observed and predicted Fertility  }
+\KeywordTok{ggplot}\NormalTok{(loo_df_pred, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ fert_obs, }\DataTypeTok{y =}\NormalTok{ fert_pred)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ loo_pred))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-315-1.pdf}
+
+You can see that we are generally okay, but tend to under-predict at both low and high values of \texttt{Fertility} because the points on either end of the line fall mostly below the line. This is due either to a lack of data at extremes or some overlooked non-linearity in the relationship between X (\texttt{Education}) and Y (\texttt{Fertility}). If we intentionally collected more data at the extremes of \texttt{Education} that could resolve which is the case (because we would either improve prediction at extremes or see the non-linearity in the relationship more clearly). We will use log-transformations to deal help linearize these relationships in some future examples.
+
+We could also look at the summary of our observed vs predicted regression to see how good we are (how much variance in prediction is explained by the model). In this case, it is not great. If we were going to use this for model prediction, we might want there to be a stronger correlation between the observed and predicted values. In that case, it might just mean collecting more or better data or it could mean re-thinking what is being measured and how.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Extract the R-squared for observed vs predicted}
+  \KeywordTok{summary}\NormalTok{(pred_line)}\OperatorTok{$}\NormalTok{r.squared}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3991715
+\end{verbatim}
+
+There are lots of other takes on cross-validation, including popular approaches such as k-fold cross-validation, and a number of simulation-based tools: many of which can be implemented in wrappers available through various R packages. I will leave you to explore these in your leisure time. In general, the more data that are set aside, the more robust the validation is, but we usually don't want to set aside so much of our data that the training model isn't representative of the data we've collected.
+
+If we are happy enough with our cross-validation results at this point we can go ahead and make predictions from our model.
+
+\hypertarget{next11}{%
+\section{Next steps}\label{next11}}
+
+OMG there's more?? I know, right, you're so lucky. In the first 11 chapters of this book we focused on learning how to use R, how to fit statistical models that represent biological hypotheses, how to assess whether those methods are valid for the data collected, how to make predictions about phenomena of interest from our models, and now how to choose between multiple competing models. All of this has relied heavily on assumptions of linear models. Fundamental among those assumptions is that our response variables of interest (and their residuals) conform to the normal distribution. In \protect\hyperlink{Chapter12}{Chapter 12}, we will free ourselves of those shackles by stepping into the world of generalized linear models.
 
   \bibliography{book.bib,packages.bib}
 

@@ -285,6 +285,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="10-5-next10.html"><a href="10-5-next10.html"><i class="fa fa-check"></i><b>10.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="11" data-path="11-Chapter11.html"><a href="11-Chapter11.html"><i class="fa fa-check"></i><b>11</b> Model selection</a><ul>
+<li class="chapter" data-level="11.1" data-path="11-1-introduction.html"><a href="11-1-introduction.html"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
+<li class="chapter" data-level="11.2" data-path="11-2-model-selection-tools.html"><a href="11-2-model-selection-tools.html"><i class="fa fa-check"></i><b>11.2</b> Model selection tools</a></li>
+<li class="chapter" data-level="11.3" data-path="11-3-all-subsets.html"><a href="11-3-all-subsets.html"><i class="fa fa-check"></i><b>11.3</b> All subsets</a></li>
+<li class="chapter" data-level="11.4" data-path="11-4-stepwise.html"><a href="11-4-stepwise.html"><i class="fa fa-check"></i><b>11.4</b> Stepwise selection</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="11-4-stepwise.html"><a href="11-4-stepwise.html#forward-selection"><i class="fa fa-check"></i><b>11.4.1</b> Forward selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="11-5-a-priori.html"><a href="11-5-a-priori.html"><i class="fa fa-check"></i><b>11.5</b> <em>A priori</em> selection</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="11-5-a-priori.html"><a href="11-5-a-priori.html#multi-phase-heirarchical-selection"><i class="fa fa-check"></i><b>11.5.1</b> Multi-phase (heirarchical) selection</a></li>
+<li class="chapter" data-level="11.5.2" data-path="11-5-a-priori.html"><a href="11-5-a-priori.html#single-phase-selection"><i class="fa fa-check"></i><b>11.5.2</b> Single-phase selection</a></li>
+<li class="chapter" data-level="11.5.3" data-path="11-5-a-priori.html"><a href="11-5-a-priori.html#tools-for-a-priori-model-selection"><i class="fa fa-check"></i><b>11.5.3</b> Tools for <em>a priori</em> model selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="11-6-model-validation.html"><a href="11-6-model-validation.html"><i class="fa fa-check"></i><b>11.6</b> Model validation</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="11-6-model-validation.html"><a href="11-6-model-validation.html#leave-one-out-cross-validation"><i class="fa fa-check"></i><b>11.6.1</b> Leave-one-out cross validation</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="11-7-next11.html"><a href="11-7-next11.html"><i class="fa fa-check"></i><b>11.7</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -395,10 +412,9 @@ if you like that one better.</p>
 <span id="cb345-5"><a href="9-3-ughmath.html#cb345-5"></a><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Petal.Length, <span class="dt">y =</span> Petal.Width, <span class="dt">color =</span> Species) ) <span class="op">+</span></span>
 <span id="cb345-6"><a href="9-3-ughmath.html#cb345-6"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">color =</span> <span class="st">&quot;gray87&quot;</span>) <span class="op">+</span></span>
 <span id="cb345-7"><a href="9-3-ughmath.html#cb345-7"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb345-8"><a href="9-3-ughmath.html#cb345-8"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> Petal.Length, <span class="dt">yend =</span> y_hat),</span>
-<span id="cb345-9"><a href="9-3-ughmath.html#cb345-9"></a>               <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span></span>
-<span id="cb345-10"><a href="9-3-ughmath.html#cb345-10"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb345-11"><a href="9-3-ughmath.html#cb345-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
+<span id="cb345-8"><a href="9-3-ughmath.html#cb345-8"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> Petal.Length, <span class="dt">yend =</span> y_hat), <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span></span>
+<span id="cb345-9"><a href="9-3-ughmath.html#cb345-9"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb345-10"><a href="9-3-ughmath.html#cb345-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
 <p><br></p>
 <p>So, now that we know what residuals <em>are</em> or at least what they <em>look like</em> we can talk about how they are used.</p>

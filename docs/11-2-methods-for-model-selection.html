@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11.2 Methods for model selection | The Worst Stats Text eveR</title>
+  <meta name="description" content="11.2 Methods for model selection | The Worst Stats Text eveR" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11.2 Methods for model selection | The Worst Stats Text eveR" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11.2 Methods for model selection | The Worst Stats Text eveR" />
+  
+  
+  
+
+<meta name="author" content="Dan Stich" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="11-1-introduction.html"/>
+<link rel="next" href="11-3-model-validation.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Worst Stats Text eveR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-where-do-i-start.html"><a href="1-3-where-do-i-start.html"><i class="fa fa-check"></i><b>1.3</b> Where do I start?</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html"><i class="fa fa-check"></i><b>1.4</b> Programming conventions</a><ul>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#style"><i class="fa fa-check"></i>Style and organization</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#tips"><i class="fa fa-check"></i>Some handy coding tips</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#rules"><i class="fa fa-check"></i>Stricter R programming rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-5-next1.html"><a href="1-5-next1.html"><i class="fa fa-check"></i><b>1.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-Chapter2.html"><a href="2-Chapter2.html"><i class="fa fa-check"></i><b>2</b> Data structures</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-vectors.html"><a href="2-1-vectors.html"><i class="fa fa-check"></i><b>2.1</b> Vectors</a><ul>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#nums"><i class="fa fa-check"></i>Integers and numerics</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#strings"><i class="fa fa-check"></i>Characters and factors</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#logicals"><i class="fa fa-check"></i>Logical vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-operations.html"><a href="2-2-operations.html"><i class="fa fa-check"></i><b>2.2</b> Vector operations</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-matrices.html"><a href="2-3-matrices.html"><i class="fa fa-check"></i><b>2.3</b> Matrices</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-dataframes.html"><a href="2-4-dataframes.html"><i class="fa fa-check"></i><b>2.4</b> Dataframes</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-lists.html"><a href="2-5-lists.html"><i class="fa fa-check"></i><b>2.5</b> Lists</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-next2.html"><a href="2-6-next2.html"><i class="fa fa-check"></i><b>2.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-Chapter3.html"><a href="3-Chapter3.html"><i class="fa fa-check"></i><b>3</b> Working with data</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-data-read.html"><a href="3-1-data-read.html"><i class="fa fa-check"></i><b>3.1</b> Data read</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-quick-data-summaries.html"><a href="3-2-quick-data-summaries.html"><i class="fa fa-check"></i><b>3.2</b> Quick data summaries</a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html"><i class="fa fa-check"></i><b>3.3</b> Subsetting and selecting data</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#manual-subsets-and-selections"><i class="fa fa-check"></i><b>3.3.1</b> Manual subsets and selections</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#subsetting-and-summaries-in-base-r"><i class="fa fa-check"></i><b>3.3.2</b> Subsetting and summaries in base R</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#tidyverse"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting and summaries in the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-better-data-summaries.html"><a href="3-4-better-data-summaries.html"><i class="fa fa-check"></i><b>3.4</b> Better data summaries</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-creating-new-variables.html"><a href="3-5-creating-new-variables.html"><i class="fa fa-check"></i><b>3.5</b> Creating new variables</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html"><i class="fa fa-check"></i><b>3.6</b> Data simulation</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#random-sub-samples-from-a-dataset"><i class="fa fa-check"></i><b>3.6.1</b> Random sub-samples from a dataset</a></li>
+<li class="chapter" data-level="3.6.2" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#stochastic"><i class="fa fa-check"></i><b>3.6.2</b> Stochastic simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="3-7-next3.html"><a href="3-7-next3.html"><i class="fa fa-check"></i><b>3.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-Chapter4.html"><a href="4-Chapter4.html"><i class="fa fa-check"></i><b>4</b> Plotting and graphics</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-plots-matter-as-much-as-stats.html"><a href="4-1-plots-matter-as-much-as-stats.html"><i class="fa fa-check"></i><b>4.1</b> Plots matter as much as stats</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html"><i class="fa fa-check"></i><b>4.2</b> Plotting with base R</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#histograms"><i class="fa fa-check"></i><b>4.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#scatterplots"><i class="fa fa-check"></i><b>4.2.2</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#lines"><i class="fa fa-check"></i><b>4.2.3</b> Lines</a></li>
+<li class="chapter" data-level="4.2.4" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#boxplots"><i class="fa fa-check"></i><b>4.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>4.3</b> Plotting with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gghists"><i class="fa fa-check"></i><b>4.3.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggscatter"><i class="fa fa-check"></i><b>4.3.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gglines"><i class="fa fa-check"></i><b>4.3.3</b> Lines</a></li>
+<li class="chapter" data-level="4.3.4" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggboxplots"><i class="fa fa-check"></i><b>4.3.4</b> Boxplots and</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4-4-next4.html"><a href="4-4-next4.html"><i class="fa fa-check"></i><b>4.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-Chapter5.html"><a href="5-Chapter5.html"><i class="fa fa-check"></i><b>5</b> Sampling distributions in R</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-what-are-sampling-distributions.html"><a href="5-1-what-are-sampling-distributions.html"><i class="fa fa-check"></i><b>5.1</b> What are sampling distributions?</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-probability-distributions-in-r.html"><a href="5-2-probability-distributions-in-r.html"><i class="fa fa-check"></i><b>5.2</b> Probability distributions in R</a></li>
+<li class="chapter" data-level="5.3" data-path="5-3-exponential-family.html"><a href="5-3-exponential-family.html"><i class="fa fa-check"></i><b>5.3</b> Exponential family</a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html"><i class="fa fa-check"></i><b>5.4</b> Continuous distributions</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-lognormal-distribution"><i class="fa fa-check"></i><b>5.4.1</b> The lognormal distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-beta-distribution"><i class="fa fa-check"></i><b>5.4.2</b> The beta distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html"><i class="fa fa-check"></i><b>5.5</b> Discrete distributions</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#bernoulli"><i class="fa fa-check"></i><b>5.5.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="5.5.2" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#binomial"><i class="fa fa-check"></i><b>5.5.2</b> Binomial</a></li>
+<li class="chapter" data-level="5.5.3" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#multinomial"><i class="fa fa-check"></i><b>5.5.3</b> Multinomial</a></li>
+<li class="chapter" data-level="5.5.4" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#poisson"><i class="fa fa-check"></i><b>5.5.4</b> Poisson</a></li>
+<li class="chapter" data-level="5.5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#the-negative-binomial-distribution"><i class="fa fa-check"></i><b>5.5.5</b> The negative binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html"><i class="fa fa-check"></i><b>5.6</b> Sample statistics</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#moments-about-the-mean"><i class="fa fa-check"></i><b>5.6.1</b> Moments about the mean</a></li>
+<li class="chapter" data-level="5.6.2" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#estimating-parameters-of-the-normal-distribution-from-a-sample"><i class="fa fa-check"></i><b>5.6.2</b> Estimating parameters of the normal distribution from a sample</a></li>
+<li class="chapter" data-level="5.6.3" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#quantiles-and-other-descriptive-statistics"><i class="fa fa-check"></i><b>5.6.3</b> Quantiles and other descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="5-7-next5.html"><a href="5-7-next5.html"><i class="fa fa-check"></i><b>5.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-Chapter6.html"><a href="6-Chapter6.html"><i class="fa fa-check"></i><b>6</b> Inferential statistics</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html"><i class="fa fa-check"></i><b>6.1</b> One-sample tests</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html#one-sample-t-test"><i class="fa fa-check"></i><b>6.1.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html#wilcox-test"><i class="fa fa-check"></i><b>6.1.2</b> Wilcox test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html"><i class="fa fa-check"></i><b>6.2</b> Two-sample tests</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>6.2.1</b> The two-sample t-test</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#two-sample-wilcox-test"><i class="fa fa-check"></i><b>6.2.2</b> Two-sample Wilcox test</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#presenting-your-results"><i class="fa fa-check"></i><b>6.2.3</b> Presenting your results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-3-frequency-analysis.html"><a href="6-3-frequency-analysis.html"><i class="fa fa-check"></i><b>6.3</b> Frequency analysis</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="6-3-frequency-analysis.html"><a href="6-3-frequency-analysis.html#worked-example"><i class="fa fa-check"></i><b>6.3.1</b> Worked example</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="6-4-next6.html"><a href="6-4-next6.html"><i class="fa fa-check"></i><b>6.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-Chapter7.html"><a href="7-Chapter7.html"><i class="fa fa-check"></i><b>7</b> Linear models</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-anova.html"><a href="7-1-anova.html"><i class="fa fa-check"></i><b>7.1</b> Analysis of variance (ANOVA)</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-1-anova.html"><a href="7-1-anova.html#one-way"><i class="fa fa-check"></i><b>7.1.1</b> One-way analysis of variance</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-1-anova.html"><a href="7-1-anova.html#twon-way-anova"><i class="fa fa-check"></i><b>7.1.2</b> Two(<em>n</em>)-way ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-2-simple-linear-regression.html"><a href="7-2-simple-linear-regression.html"><i class="fa fa-check"></i><b>7.2</b> Simple linear regression</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-2-simple-linear-regression.html"><a href="7-2-simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>7.2.1</b> Simple linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7-3-multiple-linear-regression.html"><a href="7-3-multiple-linear-regression.html"><i class="fa fa-check"></i><b>7.3</b> Multiple linear regression</a></li>
+<li class="chapter" data-level="7.4" data-path="7-4-next7.html"><a href="7-4-next7.html"><i class="fa fa-check"></i><b>7.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-Chapter8.html"><a href="8-Chapter8.html"><i class="fa fa-check"></i><b>8</b> General linear models</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-1-analysis-of-covariance-ancova.html"><a href="8-1-analysis-of-covariance-ancova.html"><i class="fa fa-check"></i><b>8.1</b> Analysis of covariance (ANCOVA)</a></li>
+<li class="chapter" data-level="8.2" data-path="8-2-motivation.html"><a href="8-2-motivation.html"><i class="fa fa-check"></i><b>8.2</b> Motivation</a></li>
+<li class="chapter" data-level="8.3" data-path="8-3-data.html"><a href="8-3-data.html"><i class="fa fa-check"></i><b>8.3</b> Data</a></li>
+<li class="chapter" data-level="8.4" data-path="8-4-analysis.html"><a href="8-4-analysis.html"><i class="fa fa-check"></i><b>8.4</b> Analysis</a></li>
+<li class="chapter" data-level="8.5" data-path="8-5-predictions.html"><a href="8-5-predictions.html"><i class="fa fa-check"></i><b>8.5</b> Predictions</a></li>
+<li class="chapter" data-level="8.6" data-path="8-6-next8.html"><a href="8-6-next8.html"><i class="fa fa-check"></i><b>8.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-Chapter9.html"><a href="9-Chapter9.html"><i class="fa fa-check"></i><b>9</b> Assumptions of linear models</a><ul>
+<li class="chapter" data-level="9.1" data-path="9-1-intro9.html"><a href="9-1-intro9.html"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="9-2-assumptions-of-linear-models.html"><a href="9-2-assumptions-of-linear-models.html"><i class="fa fa-check"></i><b>9.2</b> Assumptions of linear models</a></li>
+<li class="chapter" data-level="9.3" data-path="9-3-ughmath.html"><a href="9-3-ughmath.html"><i class="fa fa-check"></i><b>9.3</b> WTF is a residuals?</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="9-3-ughmath.html"><a href="9-3-ughmath.html#residuals-in-anova"><i class="fa fa-check"></i><b>9.3.1</b> Residuals in ANOVA</a></li>
+<li class="chapter" data-level="9.3.2" data-path="9-3-ughmath.html"><a href="9-3-ughmath.html#residuals-in-linear-regression"><i class="fa fa-check"></i><b>9.3.2</b> Residuals in linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="9-4-the-turtle-problem.html"><a href="9-4-the-turtle-problem.html"><i class="fa fa-check"></i><b>9.4</b> The turtle problem</a></li>
+<li class="chapter" data-level="9.5" data-path="9-5-data-exploration.html"><a href="9-5-data-exploration.html"><i class="fa fa-check"></i><b>9.5</b> Data exploration</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="9-5-data-exploration.html"><a href="9-5-data-exploration.html#independence-of-observations"><i class="fa fa-check"></i><b>9.5.1</b> Independence of observations</a></li>
+<li class="chapter" data-level="9.5.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#normality"><i class="fa fa-check"></i><b>9.5.2</b> Normality</a></li>
+<li class="chapter" data-level="9.5.3" data-path="9-5-data-exploration.html"><a href="9-5-data-exploration.html#homogeneity-of-variances"><i class="fa fa-check"></i><b>9.5.3</b> Homogeneity of variances</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="9-6-anova-diagnostics.html"><a href="9-6-anova-diagnostics.html"><i class="fa fa-check"></i><b>9.6</b> ANOVA Diagnostics</a></li>
+<li class="chapter" data-level="9.7" data-path="9-7-linear-regression-diagnostics.html"><a href="9-7-linear-regression-diagnostics.html"><i class="fa fa-check"></i><b>9.7</b> Linear regression diagnostics</a></li>
+<li class="chapter" data-level="9.8" data-path="9-8-next9.html"><a href="9-8-next9.html"><i class="fa fa-check"></i><b>9.8</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-Chapter10.html"><a href="10-Chapter10.html"><i class="fa fa-check"></i><b>10</b> Communicating effect sizes</a><ul>
+<li class="chapter" data-level="10.1" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html"><i class="fa fa-check"></i><b>10.1</b> One-way ANOVA</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#unifying-the-linear-model"><i class="fa fa-check"></i><b>10.1.1</b> Unifying the linear model</a></li>
+<li class="chapter" data-level="10.1.2" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#the-model-matrix"><i class="fa fa-check"></i><b>10.1.2</b> The model matrix</a></li>
+<li class="chapter" data-level="10.1.3" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#prediction"><i class="fa fa-check"></i><b>10.1.3</b> Prediction</a></li>
+<li class="chapter" data-level="10.1.4" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#plotting"><i class="fa fa-check"></i><b>10.1.4</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="10-2-two-way-anova.html"><a href="10-2-two-way-anova.html"><i class="fa fa-check"></i><b>10.2</b> Two-way ANOVA</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="10-2-two-way-anova.html"><a href="10-2-two-way-anova.html#main-effects-10"><i class="fa fa-check"></i><b>10.2.1</b> Main effects model</a></li>
+<li class="chapter" data-level="10.2.2" data-path="10-2-two-way-anova.html"><a href="10-2-two-way-anova.html#interactions"><i class="fa fa-check"></i><b>10.2.2</b> Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="10-3-linear-regression.html"><a href="10-3-linear-regression.html"><i class="fa fa-check"></i><b>10.3</b> Linear regression</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="10-3-linear-regression.html"><a href="10-3-linear-regression.html#prediction-1"><i class="fa fa-check"></i><b>10.3.1</b> Prediction</a></li>
+<li class="chapter" data-level="10.3.2" data-path="10-3-linear-regression.html"><a href="10-3-linear-regression.html#plotting-1"><i class="fa fa-check"></i><b>10.3.2</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="10-4-ancova.html"><a href="10-4-ancova.html"><i class="fa fa-check"></i><b>10.4</b> ANCOVA</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="10-4-ancova.html"><a href="10-4-ancova.html#prediction-2"><i class="fa fa-check"></i><b>10.4.1</b> Prediction</a></li>
+<li class="chapter" data-level="10.4.2" data-path="10-4-ancova.html"><a href="10-4-ancova.html#plotting-2"><i class="fa fa-check"></i><b>10.4.2</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="10-5-next10.html"><a href="10-5-next10.html"><i class="fa fa-check"></i><b>10.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-model-selection.html"><a href="11-model-selection.html"><i class="fa fa-check"></i><b>11</b> Model selection</a><ul>
+<li class="chapter" data-level="11.1" data-path="11-1-introduction.html"><a href="11-1-introduction.html"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
+<li class="chapter" data-level="11.2" data-path="11-2-methods-for-model-selection.html"><a href="11-2-methods-for-model-selection.html"><i class="fa fa-check"></i><b>11.2</b> Methods for model selection</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="11-2-methods-for-model-selection.html"><a href="11-2-methods-for-model-selection.html#stepwise-selection--a-limited-treatment"><i class="fa fa-check"></i><b>11.2.1</b> Stepwise selection- a limited treatment</a></li>
+<li class="chapter" data-level="11.2.2" data-path="11-2-methods-for-model-selection.html"><a href="11-2-methods-for-model-selection.html#all-possible-models-all-subsets"><i class="fa fa-check"></i><b>11.2.2</b> All possible models (all subsets)</a></li>
+<li class="chapter" data-level="11.2.3" data-path="11-2-methods-for-model-selection.html"><a href="11-2-methods-for-model-selection.html#a-priori-model-subsets"><i class="fa fa-check"></i><b>11.2.3</b> <em>A priori</em> model subsets</a></li>
+<li class="chapter" data-level="11.2.4" data-path="11-2-methods-for-model-selection.html"><a href="11-2-methods-for-model-selection.html#tools-for-a-priori-model-selection"><i class="fa fa-check"></i><b>11.2.4</b> Tools for <em>a priori</em> model selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="11-3-model-validation.html"><a href="11-3-model-validation.html"><i class="fa fa-check"></i><b>11.3</b> Model validation</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="11-3-model-validation.html"><a href="11-3-model-validation.html#what-is-model-validation"><i class="fa fa-check"></i><b>11.3.1</b> What is model validation?</a></li>
+<li class="chapter" data-level="11.3.2" data-path="6-3-frequency-analysis.html"><a href="6-3-frequency-analysis.html#worked-example"><i class="fa fa-check"></i><b>11.3.2</b> Worked example</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Worst Stats Text eveR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="methods-for-model-selection" class="section level2">
+<h2><span class="header-section-number">11.2</span> Methods for model selection</h2>
+<p>Here, we discuss approaches for applying our model selection tool of choice. As always, I know it is hard to believe, but there is some controversy as to which method of model selection is best for a given situation. Generally speaking, there are 3 major classes of methods for model selection: step-wise selection, all possible subsets, and <em>a priori</em> subsets.</p>
+<div id="stepwise-selection--a-limited-treatment" class="section level3">
+<h3><span class="header-section-number">11.2.1</span> Stepwise selection- a limited treatment</h3>
+<p>The basic idea behind stepwise selection is that we wish to create and test models in a variable-by-variable manner until only relevant variables are left in the model. The relevance of each variable is evaluated in turn relative to some pre-determined criterion.</p>
+<p>While convenient, this approach has some well-known pitfalls. For example, it is easy to miss out on important relationships that are not considered because of the automated inclusion or exclusion of ‘significant’ explanatory variables and the order in which they are entered or dropped. This tool also does not include interaction terms that might be of biological interest by default.</p>
+<div id="forward-selection" class="section level4">
+<h4><span class="header-section-number">11.2.1.1</span> Forward selection</h4>
+<p>We start by making a “null” model with none of our variables (a model of the mean) and a full model with all of our explanatory variables.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="11-2-methods-for-model-selection.html#cb1-1"></a>null=<span class="kw">lm</span>(Fertility<span class="op">~</span><span class="dv">1</span>, <span class="dt">data=</span>swiss) <span class="co"># 1 means include no x&#39;s</span></span>
+<span id="cb1-2"><a href="11-2-methods-for-model-selection.html#cb1-2"></a>full=<span class="kw">lm</span>(Fertility<span class="op">~</span>., <span class="dt">data=</span>swiss) <span class="co"># Dot means include all x&#39;s</span></span></code></pre></div>
+<p>Now we perform the forward selection.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="11-2-methods-for-model-selection.html#cb2-1"></a><span class="kw">step</span>(null, <span class="dt">scope=</span><span class="kw">list</span>(<span class="dt">lower=</span>null, <span class="dt">upper=</span>full), <span class="dt">direction =</span><span class="st">&#39;forward&#39;</span>)</span></code></pre></div>
+<pre><code>## Start:  AIC=238.35
+## Fertility ~ 1
+## 
+##                    Df Sum of Sq    RSS    AIC
+## + Education         1    3162.7 4015.2 213.04
+## + Examination       1    2994.4 4183.6 214.97
+## + Catholic          1    1543.3 5634.7 228.97
+## + Infant.Mortality  1    1245.5 5932.4 231.39
+## + Agriculture       1     894.8 6283.1 234.09
+## &lt;none&gt;                          7178.0 238.34
+## 
+## Step:  AIC=213.04
+## Fertility ~ Education
+## 
+##                    Df Sum of Sq    RSS    AIC
+## + Catholic          1    961.07 3054.2 202.18
+## + Infant.Mortality  1    891.25 3124.0 203.25
+## + Examination       1    465.63 3549.6 209.25
+## &lt;none&gt;                          4015.2 213.04
+## + Agriculture       1     61.97 3953.3 214.31
+## 
+## Step:  AIC=202.18
+## Fertility ~ Education + Catholic
+## 
+##                    Df Sum of Sq    RSS    AIC
+## + Infant.Mortality  1    631.92 2422.2 193.29
+## + Agriculture       1    486.28 2567.9 196.03
+## &lt;none&gt;                          3054.2 202.18
+## + Examination       1      2.46 3051.7 204.15
+## 
+## Step:  AIC=193.29
+## Fertility ~ Education + Catholic + Infant.Mortality
+## 
+##               Df Sum of Sq    RSS    AIC
+## + Agriculture  1   264.176 2158.1 189.86
+## &lt;none&gt;                     2422.2 193.29
+## + Examination  1     9.486 2412.8 195.10
+## 
+## Step:  AIC=189.86
+## Fertility ~ Education + Catholic + Infant.Mortality + Agriculture
+## 
+##               Df Sum of Sq    RSS    AIC
+## &lt;none&gt;                     2158.1 189.86
+## + Examination  1    53.027 2105.0 190.69</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Fertility ~ Education + Catholic + Infant.Mortality + 
+##     Agriculture, data = swiss)
+## 
+## Coefficients:
+##      (Intercept)         Education          Catholic  Infant.Mortality  
+##          62.1013           -0.9803            0.1247            1.0784  
+##      Agriculture  
+##          -0.1546</code></pre>
+<p>Here, we see that the best model is that which includes the additive effects of <code>Education</code>, <code>Catholic</code>, <code>Infant.Mortality</code>, and <code>Agriculture</code>.</p>
+</div>
+<div id="backward-selection" class="section level4">
+<h4><span class="header-section-number">11.2.1.2</span> Backward selection</h4>
+<p>We can do backward selection using just the full model.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="11-2-methods-for-model-selection.html#cb5-1"></a>  <span class="kw">step</span>(full, <span class="dt">data=</span>swiss, <span class="dt">direction =</span> <span class="st">&#39;backward&#39;</span>)</span></code></pre></div>
+<pre><code>## Start:  AIC=190.69
+## Fertility ~ Agriculture + Examination + Education + Catholic + 
+##     Infant.Mortality
+## 
+##                    Df Sum of Sq    RSS    AIC
+## - Examination       1     53.03 2158.1 189.86
+## &lt;none&gt;                          2105.0 190.69
+## - Agriculture       1    307.72 2412.8 195.10
+## - Infant.Mortality  1    408.75 2513.8 197.03
+## - Catholic          1    447.71 2552.8 197.75
+## - Education         1   1162.56 3267.6 209.36
+## 
+## Step:  AIC=189.86
+## Fertility ~ Agriculture + Education + Catholic + Infant.Mortality
+## 
+##                    Df Sum of Sq    RSS    AIC
+## &lt;none&gt;                          2158.1 189.86
+## - Agriculture       1    264.18 2422.2 193.29
+## - Infant.Mortality  1    409.81 2567.9 196.03
+## - Catholic          1    956.57 3114.6 205.10
+## - Education         1   2249.97 4408.0 221.43</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Fertility ~ Agriculture + Education + Catholic + 
+##     Infant.Mortality, data = swiss)
+## 
+## Coefficients:
+##      (Intercept)       Agriculture         Education          Catholic  
+##          62.1013           -0.1546           -0.9803            0.1247  
+## Infant.Mortality  
+##           1.0784</code></pre>
+<p>In this case we end up with the same model. Note that this is not always the case.</p>
+</div>
+</div>
+<div id="all-possible-models-all-subsets" class="section level3">
+<h3><span class="header-section-number">11.2.2</span> All possible models (all subsets)</h3>
+<p>Just as the name states- compare all possible combinations of variables. This is largely an exploratory approach or is reserved for cases in which we care solely about prediction.</p>
+<p>We will not discuss these techniques in this class because 1) they are usually not needed 2) they can lead to laziness in formulation of hypotheses and in a worst case data dredging, and 3) plain and simple: there are just better tools available for these purposes now (e.g. GAMM, CART, and network analysis).</p>
+</div>
+<div id="a-priori-model-subsets" class="section level3">
+<h3><span class="header-section-number">11.2.3</span> <em>A priori</em> model subsets</h3>
+<p>Consideration of only those models for which we have <em>a priori</em> reasons for inclusion. These are usually models that are designed to represented competing [biological] hypotheses or to balance those hypotheses within a framework for testing.</p>
+<div id="multi-phase-heirarchical-selection" class="section level4">
+<h4><span class="header-section-number">11.2.3.1</span> Multi-phase (heirarchical) selection</h4>
+<p>More later in the course…maybe</p>
+<p>Essentially, this means that we impose some kind of hierarchy on the steps we take to test competing hypotheses. For instance, we might first wish to compare hypotheses about some process that we think is of greatest relevance, or some kind of underlying phenomenon that must be accounted for prior to investigating biological questions (e.g., detection probabilities in mark-recapture models). Then, we can use the best model(s) from that set of hypotheses as the basis for testing hypotheses about other processes of interest, taking into account previous findings. This becomes important if we are thinking about collinear effects of different explanatory variables on multiple (usually categorical) outcomes.</p>
+</div>
+<div id="single-phase-selection" class="section level4">
+<h4><span class="header-section-number">11.2.3.2</span> Single-phase selection</h4>
+<p>We will discuss this in detail below.</p>
+</div>
+</div>
+<div id="tools-for-a-priori-model-selection" class="section level3">
+<h3><span class="header-section-number">11.2.4</span> Tools for <em>a priori</em> model selection</h3>
+<p>Here, we will focus on a few common approaches to model selection that can be useful in different situations. Although it is a popular alternative, we will not discuss Mallow’s Cp because it involves ‘all subset’ regression and we don’t want to get into that if we can help it. In truth, there are a limited number of exploratory purposes for which this selection method is useful, and in those cases thoughtful study design and alternative statistical approaches are often superior than throwing spaghetti at the wall and looking to see what sticks.</p>
+<p>We <em>will</em> examine:</p>
+<ul>
+<li><p>Adjusted R<sup>2</sup></p></li>
+<li><p>PRESS statistic</p></li>
+<li><p>AIC</p></li>
+</ul>
+<blockquote>
+<p>Let’s check some of these tools out!</p>
+</blockquote>
+<p>Start by fitting some models, we will use the <code>swiss</code> data again this week for the purpose of demonstrating selection tools because it is a noisy data set with lots of complexity.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="11-2-methods-for-model-selection.html#cb8-1"></a><span class="kw">data</span>(<span class="st">&#39;swiss&#39;</span>)</span>
+<span id="cb8-2"><a href="11-2-methods-for-model-selection.html#cb8-2"></a></span>
+<span id="cb8-3"><a href="11-2-methods-for-model-selection.html#cb8-3"></a><span class="co"># Fit the model that tests the</span></span>
+<span id="cb8-4"><a href="11-2-methods-for-model-selection.html#cb8-4"></a><span class="co"># effects of education on the fertility index</span></span>
+<span id="cb8-5"><a href="11-2-methods-for-model-selection.html#cb8-5"></a>  mod.Ed =<span class="st"> </span><span class="kw">lm</span>(Fertility<span class="op">~</span>Education, <span class="dt">data=</span>swiss)</span>
+<span id="cb8-6"><a href="11-2-methods-for-model-selection.html#cb8-6"></a>  </span>
+<span id="cb8-7"><a href="11-2-methods-for-model-selection.html#cb8-7"></a><span class="co"># Fit another model that tests</span></span>
+<span id="cb8-8"><a href="11-2-methods-for-model-selection.html#cb8-8"></a><span class="co"># effects of % Catholic on Fertility</span></span>
+<span id="cb8-9"><a href="11-2-methods-for-model-selection.html#cb8-9"></a>  mod.Cath =<span class="st"> </span><span class="kw">lm</span>(Fertility<span class="op">~</span>Catholic, <span class="dt">data=</span>swiss)</span>
+<span id="cb8-10"><a href="11-2-methods-for-model-selection.html#cb8-10"></a>  </span>
+<span id="cb8-11"><a href="11-2-methods-for-model-selection.html#cb8-11"></a><span class="co"># Fit a model with additive effects</span></span>
+<span id="cb8-12"><a href="11-2-methods-for-model-selection.html#cb8-12"></a><span class="co"># of both explanatory variables</span></span>
+<span id="cb8-13"><a href="11-2-methods-for-model-selection.html#cb8-13"></a>  mod.EdCath =<span class="st"> </span><span class="kw">lm</span>(Fertility<span class="op">~</span>Education <span class="op">+</span><span class="st"> </span>Catholic, <span class="dt">data=</span>swiss)</span>
+<span id="cb8-14"><a href="11-2-methods-for-model-selection.html#cb8-14"></a>  </span>
+<span id="cb8-15"><a href="11-2-methods-for-model-selection.html#cb8-15"></a><span class="co"># Fit a model with multiplicative</span></span>
+<span id="cb8-16"><a href="11-2-methods-for-model-selection.html#cb8-16"></a><span class="co"># effects of both explanatory variables</span></span>
+<span id="cb8-17"><a href="11-2-methods-for-model-selection.html#cb8-17"></a>  mod.EdxCath =<span class="st"> </span><span class="kw">lm</span>(Fertility<span class="op">~</span>Education<span class="op">*</span>Catholic, <span class="dt">data=</span>swiss)</span></code></pre></div>
+<p>Now we have four models that represent competing hypotheses:</p>
+<p>1.<code>Education</code> alone is the best explanation among those considered for variability in <code>fertility</code>.</p>
+<p>2.Percent <code>Catholic</code> alone is the best explanation among those considered for variability in <code>fertility</code>.</p>
+<p>3.The additive effects of <code>Education</code> and percent <code>Catholic</code> are the best explanation among those considered for variability in <code>fertility</code>.</p>
+<p>4.The interactive effects of <code>Education</code> and percent <code>Catholic</code> are the best explanation among those considered for variability in <code>fertility</code>.</p>
+<p>Great, but how can we evaluate which of these hypotheses is best supported by our data?</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="11-2-methods-for-model-selection.html#cb9-1"></a><span class="co"># Let&#39;s start by making all of our models into a list</span></span>
+<span id="cb9-2"><a href="11-2-methods-for-model-selection.html#cb9-2"></a>  mods =<span class="st"> </span><span class="kw">list</span>(mod.Ed, mod.Cath, mod.EdCath, mod.EdxCath)</span>
+<span id="cb9-3"><a href="11-2-methods-for-model-selection.html#cb9-3"></a></span>
+<span id="cb9-4"><a href="11-2-methods-for-model-selection.html#cb9-4"></a><span class="co"># We&#39;ll give the list some names, too</span></span>
+<span id="cb9-5"><a href="11-2-methods-for-model-selection.html#cb9-5"></a>  <span class="kw">names</span>(mods) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Ed&#39;</span>, <span class="st">&#39;Cath&#39;</span>, <span class="st">&#39;EdCath&#39;</span>, <span class="st">&#39;EdxCath&#39;</span>)</span></code></pre></div>
+<div id="adjusted-r2" class="section level4">
+<h4><span class="header-section-number">11.2.4.1</span> Adjusted R<sup>2</sup></h4>
+<p>This offers a relatively simple tool for model selection, and balances the number of parameters in the model with the number of observations in our data.</p>
+<p>Just as before, we can look at the summary of our model objects that we have stored in this list.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="11-2-methods-for-model-selection.html#cb10-1"></a><span class="co"># Education only model, we can take a look, like this</span></span>
+<span id="cb10-2"><a href="11-2-methods-for-model-selection.html#cb10-2"></a>  <span class="kw">summary</span>(mods<span class="op">$</span>Ed)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Fertility ~ Education, data = swiss)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -17.036  -6.711  -1.011   9.526  19.689 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  79.6101     2.1041  37.836  &lt; 2e-16 ***
+## Education    -0.8624     0.1448  -5.954 3.66e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 9.446 on 45 degrees of freedom
+## Multiple R-squared:  0.4406,	Adjusted R-squared:  0.4282 
+## F-statistic: 35.45 on 1 and 45 DF,  p-value: 3.659e-07</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="11-2-methods-for-model-selection.html#cb12-1"></a><span class="co"># REMEMBER: this model is an object stored in R,</span></span>
+<span id="cb12-2"><a href="11-2-methods-for-model-selection.html#cb12-2"></a><span class="co"># so we can also look at the names of this summary,</span></span>
+<span id="cb12-3"><a href="11-2-methods-for-model-selection.html#cb12-3"></a><span class="co"># like this</span></span>
+<span id="cb12-4"><a href="11-2-methods-for-model-selection.html#cb12-4"></a>  <span class="kw">names</span>(<span class="kw">summary</span>(mods<span class="op">$</span>Ed))</span></code></pre></div>
+<pre><code>##  [1] &quot;call&quot;          &quot;terms&quot;         &quot;residuals&quot;     &quot;coefficients&quot; 
+##  [5] &quot;aliased&quot;       &quot;sigma&quot;         &quot;df&quot;            &quot;r.squared&quot;    
+##  [9] &quot;adj.r.squared&quot; &quot;fstatistic&quot;    &quot;cov.unscaled&quot;</code></pre>
+<p><em>Whoa</em>, this is some heavy stuff. To recap, we have made a list of models, each of which are stored in R as lists. Each model has lots of elements, one of which is the summary of the model, which has its own elements that are named.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="11-2-methods-for-model-selection.html#cb14-1"></a><span class="co"># Here, we see that we can extract the adjusted </span></span>
+<span id="cb14-2"><a href="11-2-methods-for-model-selection.html#cb14-2"></a><span class="co"># R-squared directly from the model summary</span></span>
+<span id="cb14-3"><a href="11-2-methods-for-model-selection.html#cb14-3"></a>  <span class="kw">summary</span>(mods<span class="op">$</span>Ed)<span class="op">$</span>adj.r.squared</span></code></pre></div>
+<pre><code>## [1] 0.4281849</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="11-2-methods-for-model-selection.html#cb16-1"></a>  <span class="kw">summary</span>(mods<span class="op">$</span>Cath)<span class="op">$</span>adj.r.squared</span></code></pre></div>
+<pre><code>## [1] 0.1975591</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="11-2-methods-for-model-selection.html#cb18-1"></a>  <span class="kw">summary</span>(mods<span class="op">$</span>EdCath)<span class="op">$</span>adj.r.squared</span></code></pre></div>
+<pre><code>## [1] 0.5551665</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="11-2-methods-for-model-selection.html#cb20-1"></a>  <span class="kw">summary</span>(mods<span class="op">$</span>EdxCath)<span class="op">$</span>adj.r.squared</span></code></pre></div>
+<pre><code>## [1] 0.5700628</code></pre>
+<p>When we compare adjusted R<sup>2</sup>, <strong>the model with the highest R<sup>2</sup> is the “best model”</strong>. So, in this case, we would conclude that <code>EdxCath</code> is the best model.</p>
+</div>
+<div id="press-statistic-predicted-sum-of-squares" class="section level4">
+<h4><span class="header-section-number">11.2.4.2</span> PRESS statistic (Predicted sum of squares)</h4>
+<p>To use the PRESS statistic in R, we need to load a new package. Yay!</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="11-2-methods-for-model-selection.html#cb22-1"></a><span class="co">#install.packages(&#39;qpcR&#39;)</span></span>
+<span id="cb22-2"><a href="11-2-methods-for-model-selection.html#cb22-2"></a> <span class="kw">library</span>(qpcR)</span>
+<span id="cb22-3"><a href="11-2-methods-for-model-selection.html#cb22-3"></a></span>
+<span id="cb22-4"><a href="11-2-methods-for-model-selection.html#cb22-4"></a><span class="co"># Let&#39;s start with a single example. </span></span>
+<span id="cb22-5"><a href="11-2-methods-for-model-selection.html#cb22-5"></a><span class="co"># Here, we are given three things in the</span></span>
+<span id="cb22-6"><a href="11-2-methods-for-model-selection.html#cb22-6"></a><span class="co"># output from the &#39;PRESS&#39; function.</span></span>
+<span id="cb22-7"><a href="11-2-methods-for-model-selection.html#cb22-7"></a>  <span class="kw">PRESS</span>(mods<span class="op">$</span>Ed)</span></code></pre></div>
+<pre><code>## .........10.........20.........30.........40.......</code></pre>
+<pre><code>## $stat
+## [1] 4323.733
+## 
+## $residuals
+##  [1]  11.1787318  11.5065064  17.7278799  12.5398747  10.4882280   2.5911695
+##  [7]  10.4885953  20.1597326   9.0526997  14.8302796  13.0168641  -5.2753911
+## [13]  -6.8447158  -0.3698141 -14.0142691  -9.9871628  -1.0354472   0.2588946
+## [19]  -8.4026213  -6.9021136  -5.6071189 -12.4751694 -12.9403552 -17.5105794
+## [25]  -6.5399771   1.5243571  -5.2119131 -10.7169905  -5.1114868  -7.4861541
+## [31]  -2.4853488  -5.2790448  -0.6098953  -4.0456127   2.4663864  -7.0043837
+## [37]  15.7477692  11.1484049   1.1631787  -4.5203842   4.3983013  14.1573518
+## [43]   4.1296291  -6.1267680   1.9422167 -10.9733208 -13.0789076
+## 
+## $P.square
+## [1] 0.3976372</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="11-2-methods-for-model-selection.html#cb25-1"></a><span class="co"># What we are really interested in here is the</span></span>
+<span id="cb25-2"><a href="11-2-methods-for-model-selection.html#cb25-2"></a><span class="co"># first element in this list, the PRESS statistic.</span></span>
+<span id="cb25-3"><a href="11-2-methods-for-model-selection.html#cb25-3"></a><span class="co"># We can call this statistic out by name</span></span>
+<span id="cb25-4"><a href="11-2-methods-for-model-selection.html#cb25-4"></a>  <span class="kw">PRESS</span>(mods<span class="op">$</span>Ed)<span class="op">$</span>stat</span></code></pre></div>
+<pre><code>## .........10.........20.........30.........40.......</code></pre>
+<pre><code>## [1] 4323.733</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="11-2-methods-for-model-selection.html#cb28-1"></a>  <span class="kw">PRESS</span>(mods<span class="op">$</span>Cath)<span class="op">$</span>stat</span></code></pre></div>
+<pre><code>## .........10.........20.........30.........40.......</code></pre>
+<pre><code>## [1] 6036.623</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="11-2-methods-for-model-selection.html#cb31-1"></a>  <span class="kw">PRESS</span>(mods<span class="op">$</span>EdCath)<span class="op">$</span>stat</span></code></pre></div>
+<pre><code>## .........10.........20.........30.........40.......</code></pre>
+<pre><code>## [1] 3490.614</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="11-2-methods-for-model-selection.html#cb34-1"></a>  <span class="kw">PRESS</span>(mods<span class="op">$</span>EdxCath)<span class="op">$</span>stat</span></code></pre></div>
+<pre><code>## .........10.........20.........30.........40.......</code></pre>
+<pre><code>## [1] 3455.346</code></pre>
+<p><strong>The model with the lowest PRESS statistic is the best model</strong>. The meaning of this statistic is that the model is not “internally” sensitive the the data points. We can draw this interpretation because PRESS is a form of cross validation (which we will discuss later this week).</p>
+<p>So, these are nice tools, but they are based almost exclusively on the sums of squares for our regressions, so they don’t take much into account redundancy in the parameters of the regression, and they don’t apply to models that can’t be fit with least squares estimation. This leads to some problems…</p>
+<ol style="list-style-type: decimal">
+<li><p>Most of the time we are using maximum likelihood estimation for these techniques, and it would be nice to have a tool that takes into account the actual likelihood of the models.</p></li>
+<li><p>These tools don’t allow us to determine <em>how much</em> better one model is than another.</p></li>
+<li><p>We have no way to communicate the uncertainty in model selection, nor any simple method for incorporating this uncertainty into our model predictions.</p></li>
+</ol>
+</div>
+<div id="information-theoretic-approaches" class="section level4">
+<h4><span class="header-section-number">11.2.4.3</span> Information theoretic approaches</h4>
+<h5 id="multi">
+Akaike’s information criterion (AIC)
+</h5>
+<p>This tool (or the popular alternative, BIC) will be more useful for us during the next several weeks than any of the previous methods because it allows us to draw inference based on the likelihood of the model rather than the sums of squares, which we will learn that GLMs and other generalizations do not have!</p>
+<p>Information-theoretic approaches to model selection are based on the trade off in information gained through addition of parameters and the added complexity of the models, with respect to sample size. I will hold off on a detailed explanation because you will learn more about this tool in your readings. So, let’s cut straight to the chase.</p>
+<p>Remember that we made a list of <em>a priori</em> models above that we would like to consider.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="11-2-methods-for-model-selection.html#cb37-1"></a><span class="co"># Get the names of those models</span></span>
+<span id="cb37-2"><a href="11-2-methods-for-model-selection.html#cb37-2"></a>  <span class="kw">names</span>(mods)</span></code></pre></div>
+<pre><code>## [1] &quot;Ed&quot;      &quot;Cath&quot;    &quot;EdCath&quot;  &quot;EdxCath&quot;</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="11-2-methods-for-model-selection.html#cb39-1"></a><span class="co"># We can strip the AIC values from each</span></span>
+<span id="cb39-2"><a href="11-2-methods-for-model-selection.html#cb39-2"></a><span class="co"># of the model objects using a</span></span>
+<span id="cb39-3"><a href="11-2-methods-for-model-selection.html#cb39-3"></a><span class="co"># function from the apply family:</span></span>
+<span id="cb39-4"><a href="11-2-methods-for-model-selection.html#cb39-4"></a>  <span class="kw">mapply</span>(<span class="dt">FUN =</span> <span class="st">&#39;AIC&#39;</span>, mods)</span></code></pre></div>
+<pre><code>##       Ed     Cath   EdCath  EdxCath 
+## 348.4223 364.3479 337.5636 336.8823</code></pre>
+<p>Now we have a named vector holding AIC values for each of our named models. At a glance, we can see that our model with the interaction is the ‘best’ model in the set as indicated by our other statistics, but this time it is only better by less than 1 AIC (<strong>lower AIC is better</strong>). Can we say anything about that?</p>
+<p>Funny you should ask. Yes, we can. We have a few general rules of thumb for interpreting the AIC statistic, and we can actually derive a whole set of statistics based on these rankings.</p>
+<blockquote>
+<p>Open can of worms…</p>
+</blockquote>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="11-2-methods-for-model-selection.html#cb41-1"></a><span class="co"># First, we need another library</span></span>
+<span id="cb41-2"><a href="11-2-methods-for-model-selection.html#cb41-2"></a>  <span class="co">#install.packages(&#39;AICcmodavg&#39;)</span></span>
+<span id="cb41-3"><a href="11-2-methods-for-model-selection.html#cb41-3"></a>  <span class="kw">library</span>(AICcmodavg)</span>
+<span id="cb41-4"><a href="11-2-methods-for-model-selection.html#cb41-4"></a></span>
+<span id="cb41-5"><a href="11-2-methods-for-model-selection.html#cb41-5"></a><span class="co"># Let&#39;s start digging into this stuff</span></span>
+<span id="cb41-6"><a href="11-2-methods-for-model-selection.html#cb41-6"></a><span class="co"># by making a table that can help us along. </span></span>
+<span id="cb41-7"><a href="11-2-methods-for-model-selection.html#cb41-7"></a>  <span class="kw">aictab</span>(<span class="dt">cand.set =</span> mods, <span class="dt">modnames =</span> <span class="kw">names</span>(mods))</span></code></pre></div>
+<pre><code>## 
+## Model selection based on AICc:
+## 
+##         K   AICc Delta_AICc AICcWt Cum.Wt      LL
+## EdxCath 5 338.35       0.00   0.52   0.52 -163.44
+## EdCath  4 338.52       0.17   0.48   1.00 -164.78
+## Ed      3 348.98      10.63   0.00   1.00 -171.21
+## Cath    3 364.91      26.56   0.00   1.00 -179.17</code></pre>
+<p>Lots going on here…What does it all mean?</p>
+<p>From left to right</p>
+<p>First, notice that the rownames are actually our model names</p>
+<p><strong><code>K</code></strong> is the number of parameters in each of the models</p>
+<p><strong><code>AICc</code></strong> is the AIC score, but it is corrected for sample size. Generally speaking, this means models with many parameters and small number of observations are penalized for potential instability in the likelihood. In general, using the AIC<sub>c</sub> is almost always a practical approach because it is conservative and the effect of the penalty goes away with sufficiently large sample sizes.</p>
+<p><strong><code>Delta_AICc</code></strong> is the difference in AIC<sub>c</sub> between the best model and each of the other models.</p>
+<p><strong><code>AICcWt</code></strong> is the probability that a given model is the best model in the candidate set.</p>
+<p><strong><code>Cum.Wt</code></strong> is the cumulative weights represented by each of the models from best to last. This can be used to create a 95% confidence set of models.</p>
+<p><strong><code>LL</code></strong> is the log likelihood of each model, the very same discussed at the beginning of our discussions about probability distributions!</p>
+<div id="interpreting-the-model-selection-table" class="section level5">
+<h5><span class="header-section-number">11.2.4.3.1</span> Interpreting the model selection table</h5>
+<p><strong>In general</strong>:</p>
+<p>A lower AIC is better.</p>
+<p>Models with <span class="math inline">\(\Delta\)</span>AIC<sub>c</sub> of less than 2.0 are considered to have similar support as the best model. Models with <span class="math inline">\(\Delta\)</span>AIC<sub>c</sub> from 2 to 4 have some support in the data, but not as much. Models with <span class="math inline">\(\Delta\)</span>AIC<sub>c</sub> &gt; 4 have virtually no support.</p>
+<p>The ratio of AIC weights (w<sub>i</sub>)can be used to interpret the improvement between the best model and each subsequent model. In this example, the best model is only <span class="math inline">\(\frac{0.52}{0.48} = 1.08 \times\)</span> better supported than the next best model, but the best two models have all of the support.</p>
+<p>Our results suggest that <code>Education</code> and <code>Catholic</code> are the both important in explaining the variation in <code>Fertility</code>, because both are included in any model receiving any support in the candidate set.</p>
+<p>Unlike our previous results, we have no clear winner in this case, and we are left wondering whether it is the additive effects or the multiplicative effects of <code>Education</code> and <code>Catholic</code> that are important. But, we still may want to get estimates for our main effects, at least, so we can make some good solid inference on the effect sizes. If only we had a method for dealing with this uncertainty now…Oh wait, we do!</p>
+<p>Using model averaging to account for the model uncertainty, we can see that the unconditional confidence interval for <code>Education</code> is negative and does not overlap zero, and the opposite trend is evident in the trend for <code>Catholic</code>. We also find out that the interaction between <code>Education</code> and <code>Catholic</code> is actually not significant, which is probably why the main effects model had equivelent support in the candidate set.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="11-2-methods-for-model-selection.html#cb43-1"></a><span class="kw">modavg</span>(mods, <span class="dt">parm =</span> <span class="st">&#39;Education&#39;</span>, <span class="dt">modnames =</span> <span class="kw">names</span>(mods),</span>
+<span id="cb43-2"><a href="11-2-methods-for-model-selection.html#cb43-2"></a>       <span class="dt">conf.level =</span> <span class="fl">.95</span>, <span class="dt">exclude =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+## Multimodel inference on &quot;Education&quot; based on AICc
+## 
+## AICc table used to obtain model-averaged estimate:
+## 
+##         K   AICc Delta_AICc AICcWt Estimate   SE
+## Ed      3 348.98      10.63   0.00    -0.86 0.14
+## EdCath  4 338.52       0.17   0.48    -0.79 0.13
+## EdxCath 5 338.35       0.00   0.52    -0.43 0.26
+## 
+## Model-averaged estimate: -0.6 
+## Unconditional SE: 0.28 
+## 95% Unconditional confidence interval: -1.14, -0.06</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="11-2-methods-for-model-selection.html#cb45-1"></a><span class="kw">modavg</span>(mods, <span class="dt">parm =</span> <span class="st">&#39;Catholic&#39;</span>, <span class="dt">modnames =</span> <span class="kw">names</span>(mods),</span>
+<span id="cb45-2"><a href="11-2-methods-for-model-selection.html#cb45-2"></a>       <span class="dt">conf.level =</span> <span class="fl">.95</span>, <span class="dt">exclude =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+## Multimodel inference on &quot;Catholic&quot; based on AICc
+## 
+## AICc table used to obtain model-averaged estimate:
+## 
+##         K   AICc Delta_AICc AICcWt Estimate   SE
+## Cath    3 364.91      26.56   0.00     0.14 0.04
+## EdCath  4 338.52       0.17   0.48     0.11 0.03
+## EdxCath 5 338.35       0.00   0.52     0.18 0.05
+## 
+## Model-averaged estimate: 0.15 
+## Unconditional SE: 0.06 
+## 95% Unconditional confidence interval: 0.04, 0.26</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="11-2-methods-for-model-selection.html#cb47-1"></a><span class="kw">modavg</span>(mods, <span class="dt">parm =</span> <span class="st">&#39;Education:Catholic&#39;</span>, <span class="dt">modnames =</span> <span class="kw">names</span>(mods),</span>
+<span id="cb47-2"><a href="11-2-methods-for-model-selection.html#cb47-2"></a>       <span class="dt">conf.level =</span> <span class="fl">.95</span>, <span class="dt">exclude =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+## Multimodel inference on &quot;Education:Catholic&quot; based on AICc
+## 
+## AICc table used to obtain model-averaged estimate:
+## 
+##         K   AICc Delta_AICc AICcWt Estimate   SE
+## EdxCath 5 338.35          0      1    -0.01 0.01
+## 
+## Model-averaged estimate: -0.01 
+## Unconditional SE: 0.01 
+## 95% Unconditional confidence interval: -0.02, 0</code></pre>
+<p>Isn’t that fantastic? From here we could move on to make predictions based on the model-averaged parameter estimates using what you learned last week. But…what if we weren’t convinced so easily and wanted a reliable means of seeing how well our model actually performs now that we’ve selected one (or more)? More on this below…</p>
+<p>The simple fact of the matter is that we have selected a “best” model, but that doesn’t mean our model is necessarily a “good” model.</p>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="11-1-introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="11-3-model-validation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["worstr.pdf", "worstr.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

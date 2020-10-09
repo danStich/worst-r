@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11.3 Model validation | The Worst Stats Text eveR</title>
+  <meta name="description" content="11.3 Model validation | The Worst Stats Text eveR" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11.3 Model validation | The Worst Stats Text eveR" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11.3 Model validation | The Worst Stats Text eveR" />
+  
+  
+  
+
+<meta name="author" content="Dan Stich" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="11-2-methods-for-model-selection.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Worst Stats Text eveR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-where-do-i-start.html"><a href="1-3-where-do-i-start.html"><i class="fa fa-check"></i><b>1.3</b> Where do I start?</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html"><i class="fa fa-check"></i><b>1.4</b> Programming conventions</a><ul>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#style"><i class="fa fa-check"></i>Style and organization</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#tips"><i class="fa fa-check"></i>Some handy coding tips</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#rules"><i class="fa fa-check"></i>Stricter R programming rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-5-next1.html"><a href="1-5-next1.html"><i class="fa fa-check"></i><b>1.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-Chapter2.html"><a href="2-Chapter2.html"><i class="fa fa-check"></i><b>2</b> Data structures</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-vectors.html"><a href="2-1-vectors.html"><i class="fa fa-check"></i><b>2.1</b> Vectors</a><ul>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#nums"><i class="fa fa-check"></i>Integers and numerics</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#strings"><i class="fa fa-check"></i>Characters and factors</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#logicals"><i class="fa fa-check"></i>Logical vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-operations.html"><a href="2-2-operations.html"><i class="fa fa-check"></i><b>2.2</b> Vector operations</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-matrices.html"><a href="2-3-matrices.html"><i class="fa fa-check"></i><b>2.3</b> Matrices</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-dataframes.html"><a href="2-4-dataframes.html"><i class="fa fa-check"></i><b>2.4</b> Dataframes</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-lists.html"><a href="2-5-lists.html"><i class="fa fa-check"></i><b>2.5</b> Lists</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-next2.html"><a href="2-6-next2.html"><i class="fa fa-check"></i><b>2.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-Chapter3.html"><a href="3-Chapter3.html"><i class="fa fa-check"></i><b>3</b> Working with data</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-data-read.html"><a href="3-1-data-read.html"><i class="fa fa-check"></i><b>3.1</b> Data read</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-quick-data-summaries.html"><a href="3-2-quick-data-summaries.html"><i class="fa fa-check"></i><b>3.2</b> Quick data summaries</a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html"><i class="fa fa-check"></i><b>3.3</b> Subsetting and selecting data</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#manual-subsets-and-selections"><i class="fa fa-check"></i><b>3.3.1</b> Manual subsets and selections</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#subsetting-and-summaries-in-base-r"><i class="fa fa-check"></i><b>3.3.2</b> Subsetting and summaries in base R</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#tidyverse"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting and summaries in the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-better-data-summaries.html"><a href="3-4-better-data-summaries.html"><i class="fa fa-check"></i><b>3.4</b> Better data summaries</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-creating-new-variables.html"><a href="3-5-creating-new-variables.html"><i class="fa fa-check"></i><b>3.5</b> Creating new variables</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html"><i class="fa fa-check"></i><b>3.6</b> Data simulation</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#random-sub-samples-from-a-dataset"><i class="fa fa-check"></i><b>3.6.1</b> Random sub-samples from a dataset</a></li>
+<li class="chapter" data-level="3.6.2" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#stochastic"><i class="fa fa-check"></i><b>3.6.2</b> Stochastic simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="3-7-next3.html"><a href="3-7-next3.html"><i class="fa fa-check"></i><b>3.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-Chapter4.html"><a href="4-Chapter4.html"><i class="fa fa-check"></i><b>4</b> Plotting and graphics</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-plots-matter-as-much-as-stats.html"><a href="4-1-plots-matter-as-much-as-stats.html"><i class="fa fa-check"></i><b>4.1</b> Plots matter as much as stats</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html"><i class="fa fa-check"></i><b>4.2</b> Plotting with base R</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#histograms"><i class="fa fa-check"></i><b>4.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#scatterplots"><i class="fa fa-check"></i><b>4.2.2</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#lines"><i class="fa fa-check"></i><b>4.2.3</b> Lines</a></li>
+<li class="chapter" data-level="4.2.4" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#boxplots"><i class="fa fa-check"></i><b>4.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>4.3</b> Plotting with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gghists"><i class="fa fa-check"></i><b>4.3.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggscatter"><i class="fa fa-check"></i><b>4.3.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gglines"><i class="fa fa-check"></i><b>4.3.3</b> Lines</a></li>
+<li class="chapter" data-level="4.3.4" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggboxplots"><i class="fa fa-check"></i><b>4.3.4</b> Boxplots and</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4-4-next4.html"><a href="4-4-next4.html"><i class="fa fa-check"></i><b>4.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-Chapter5.html"><a href="5-Chapter5.html"><i class="fa fa-check"></i><b>5</b> Sampling distributions in R</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-what-are-sampling-distributions.html"><a href="5-1-what-are-sampling-distributions.html"><i class="fa fa-check"></i><b>5.1</b> What are sampling distributions?</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-probability-distributions-in-r.html"><a href="5-2-probability-distributions-in-r.html"><i class="fa fa-check"></i><b>5.2</b> Probability distributions in R</a></li>
+<li class="chapter" data-level="5.3" data-path="5-3-exponential-family.html"><a href="5-3-exponential-family.html"><i class="fa fa-check"></i><b>5.3</b> Exponential family</a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html"><i class="fa fa-check"></i><b>5.4</b> Continuous distributions</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-lognormal-distribution"><i class="fa fa-check"></i><b>5.4.1</b> The lognormal distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-beta-distribution"><i class="fa fa-check"></i><b>5.4.2</b> The beta distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html"><i class="fa fa-check"></i><b>5.5</b> Discrete distributions</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#bernoulli"><i class="fa fa-check"></i><b>5.5.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="5.5.2" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#binomial"><i class="fa fa-check"></i><b>5.5.2</b> Binomial</a></li>
+<li class="chapter" data-level="5.5.3" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#multinomial"><i class="fa fa-check"></i><b>5.5.3</b> Multinomial</a></li>
+<li class="chapter" data-level="5.5.4" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#poisson"><i class="fa fa-check"></i><b>5.5.4</b> Poisson</a></li>
+<li class="chapter" data-level="5.5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#the-negative-binomial-distribution"><i class="fa fa-check"></i><b>5.5.5</b> The negative binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html"><i class="fa fa-check"></i><b>5.6</b> Sample statistics</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#moments-about-the-mean"><i class="fa fa-check"></i><b>5.6.1</b> Moments about the mean</a></li>
+<li class="chapter" data-level="5.6.2" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#estimating-parameters-of-the-normal-distribution-from-a-sample"><i class="fa fa-check"></i><b>5.6.2</b> Estimating parameters of the normal distribution from a sample</a></li>
+<li class="chapter" data-level="5.6.3" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#quantiles-and-other-descriptive-statistics"><i class="fa fa-check"></i><b>5.6.3</b> Quantiles and other descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="5-7-next5.html"><a href="5-7-next5.html"><i class="fa fa-check"></i><b>5.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-Chapter6.html"><a href="6-Chapter6.html"><i class="fa fa-check"></i><b>6</b> Inferential statistics</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html"><i class="fa fa-check"></i><b>6.1</b> One-sample tests</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html#one-sample-t-test"><i class="fa fa-check"></i><b>6.1.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html#wilcox-test"><i class="fa fa-check"></i><b>6.1.2</b> Wilcox test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html"><i class="fa fa-check"></i><b>6.2</b> Two-sample tests</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>6.2.1</b> The two-sample t-test</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#two-sample-wilcox-test"><i class="fa fa-check"></i><b>6.2.2</b> Two-sample Wilcox test</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#presenting-your-results"><i class="fa fa-check"></i><b>6.2.3</b> Presenting your results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-3-frequency-analysis.html"><a href="6-3-frequency-analysis.html"><i class="fa fa-check"></i><b>6.3</b> Frequency analysis</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="6-3-frequency-analysis.html"><a href="6-3-frequency-analysis.html#worked-example"><i class="fa fa-check"></i><b>6.3.1</b> Worked example</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="6-4-next6.html"><a href="6-4-next6.html"><i class="fa fa-check"></i><b>6.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-Chapter7.html"><a href="7-Chapter7.html"><i class="fa fa-check"></i><b>7</b> Linear models</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-anova.html"><a href="7-1-anova.html"><i class="fa fa-check"></i><b>7.1</b> Analysis of variance (ANOVA)</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-1-anova.html"><a href="7-1-anova.html#one-way"><i class="fa fa-check"></i><b>7.1.1</b> One-way analysis of variance</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-1-anova.html"><a href="7-1-anova.html#twon-way-anova"><i class="fa fa-check"></i><b>7.1.2</b> Two(<em>n</em>)-way ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-2-simple-linear-regression.html"><a href="7-2-simple-linear-regression.html"><i class="fa fa-check"></i><b>7.2</b> Simple linear regression</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-2-simple-linear-regression.html"><a href="7-2-simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>7.2.1</b> Simple linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7-3-multiple-linear-regression.html"><a href="7-3-multiple-linear-regression.html"><i class="fa fa-check"></i><b>7.3</b> Multiple linear regression</a></li>
+<li class="chapter" data-level="7.4" data-path="7-4-next7.html"><a href="7-4-next7.html"><i class="fa fa-check"></i><b>7.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-Chapter8.html"><a href="8-Chapter8.html"><i class="fa fa-check"></i><b>8</b> General linear models</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-1-analysis-of-covariance-ancova.html"><a href="8-1-analysis-of-covariance-ancova.html"><i class="fa fa-check"></i><b>8.1</b> Analysis of covariance (ANCOVA)</a></li>
+<li class="chapter" data-level="8.2" data-path="8-2-motivation.html"><a href="8-2-motivation.html"><i class="fa fa-check"></i><b>8.2</b> Motivation</a></li>
+<li class="chapter" data-level="8.3" data-path="8-3-data.html"><a href="8-3-data.html"><i class="fa fa-check"></i><b>8.3</b> Data</a></li>
+<li class="chapter" data-level="8.4" data-path="8-4-analysis.html"><a href="8-4-analysis.html"><i class="fa fa-check"></i><b>8.4</b> Analysis</a></li>
+<li class="chapter" data-level="8.5" data-path="8-5-predictions.html"><a href="8-5-predictions.html"><i class="fa fa-check"></i><b>8.5</b> Predictions</a></li>
+<li class="chapter" data-level="8.6" data-path="8-6-next8.html"><a href="8-6-next8.html"><i class="fa fa-check"></i><b>8.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-Chapter9.html"><a href="9-Chapter9.html"><i class="fa fa-check"></i><b>9</b> Assumptions of linear models</a><ul>
+<li class="chapter" data-level="9.1" data-path="9-1-intro9.html"><a href="9-1-intro9.html"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="9-2-assumptions-of-linear-models.html"><a href="9-2-assumptions-of-linear-models.html"><i class="fa fa-check"></i><b>9.2</b> Assumptions of linear models</a></li>
+<li class="chapter" data-level="9.3" data-path="9-3-ughmath.html"><a href="9-3-ughmath.html"><i class="fa fa-check"></i><b>9.3</b> WTF is a residuals?</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="9-3-ughmath.html"><a href="9-3-ughmath.html#residuals-in-anova"><i class="fa fa-check"></i><b>9.3.1</b> Residuals in ANOVA</a></li>
+<li class="chapter" data-level="9.3.2" data-path="9-3-ughmath.html"><a href="9-3-ughmath.html#residuals-in-linear-regression"><i class="fa fa-check"></i><b>9.3.2</b> Residuals in linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="9-4-the-turtle-problem.html"><a href="9-4-the-turtle-problem.html"><i class="fa fa-check"></i><b>9.4</b> The turtle problem</a></li>
+<li class="chapter" data-level="9.5" data-path="9-5-data-exploration.html"><a href="9-5-data-exploration.html"><i class="fa fa-check"></i><b>9.5</b> Data exploration</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="9-5-data-exploration.html"><a href="9-5-data-exploration.html#independence-of-observations"><i class="fa fa-check"></i><b>9.5.1</b> Independence of observations</a></li>
+<li class="chapter" data-level="9.5.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#normality"><i class="fa fa-check"></i><b>9.5.2</b> Normality</a></li>
+<li class="chapter" data-level="9.5.3" data-path="9-5-data-exploration.html"><a href="9-5-data-exploration.html#homogeneity-of-variances"><i class="fa fa-check"></i><b>9.5.3</b> Homogeneity of variances</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="9-6-anova-diagnostics.html"><a href="9-6-anova-diagnostics.html"><i class="fa fa-check"></i><b>9.6</b> ANOVA Diagnostics</a></li>
+<li class="chapter" data-level="9.7" data-path="9-7-linear-regression-diagnostics.html"><a href="9-7-linear-regression-diagnostics.html"><i class="fa fa-check"></i><b>9.7</b> Linear regression diagnostics</a></li>
+<li class="chapter" data-level="9.8" data-path="9-8-next9.html"><a href="9-8-next9.html"><i class="fa fa-check"></i><b>9.8</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-Chapter10.html"><a href="10-Chapter10.html"><i class="fa fa-check"></i><b>10</b> Communicating effect sizes</a><ul>
+<li class="chapter" data-level="10.1" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html"><i class="fa fa-check"></i><b>10.1</b> One-way ANOVA</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#unifying-the-linear-model"><i class="fa fa-check"></i><b>10.1.1</b> Unifying the linear model</a></li>
+<li class="chapter" data-level="10.1.2" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#the-model-matrix"><i class="fa fa-check"></i><b>10.1.2</b> The model matrix</a></li>
+<li class="chapter" data-level="10.1.3" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#prediction"><i class="fa fa-check"></i><b>10.1.3</b> Prediction</a></li>
+<li class="chapter" data-level="10.1.4" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#plotting"><i class="fa fa-check"></i><b>10.1.4</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="10-2-two-way-anova.html"><a href="10-2-two-way-anova.html"><i class="fa fa-check"></i><b>10.2</b> Two-way ANOVA</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="10-2-two-way-anova.html"><a href="10-2-two-way-anova.html#main-effects-10"><i class="fa fa-check"></i><b>10.2.1</b> Main effects model</a></li>
+<li class="chapter" data-level="10.2.2" data-path="10-2-two-way-anova.html"><a href="10-2-two-way-anova.html#interactions"><i class="fa fa-check"></i><b>10.2.2</b> Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="10-3-linear-regression.html"><a href="10-3-linear-regression.html"><i class="fa fa-check"></i><b>10.3</b> Linear regression</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="10-3-linear-regression.html"><a href="10-3-linear-regression.html#prediction-1"><i class="fa fa-check"></i><b>10.3.1</b> Prediction</a></li>
+<li class="chapter" data-level="10.3.2" data-path="10-3-linear-regression.html"><a href="10-3-linear-regression.html#plotting-1"><i class="fa fa-check"></i><b>10.3.2</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="10-4-ancova.html"><a href="10-4-ancova.html"><i class="fa fa-check"></i><b>10.4</b> ANCOVA</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="10-4-ancova.html"><a href="10-4-ancova.html#prediction-2"><i class="fa fa-check"></i><b>10.4.1</b> Prediction</a></li>
+<li class="chapter" data-level="10.4.2" data-path="10-4-ancova.html"><a href="10-4-ancova.html#plotting-2"><i class="fa fa-check"></i><b>10.4.2</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="10-5-next10.html"><a href="10-5-next10.html"><i class="fa fa-check"></i><b>10.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-model-selection.html"><a href="11-model-selection.html"><i class="fa fa-check"></i><b>11</b> Model selection</a><ul>
+<li class="chapter" data-level="11.1" data-path="11-1-introduction.html"><a href="11-1-introduction.html"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
+<li class="chapter" data-level="11.2" data-path="11-2-methods-for-model-selection.html"><a href="11-2-methods-for-model-selection.html"><i class="fa fa-check"></i><b>11.2</b> Methods for model selection</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="11-2-methods-for-model-selection.html"><a href="11-2-methods-for-model-selection.html#stepwise-selection--a-limited-treatment"><i class="fa fa-check"></i><b>11.2.1</b> Stepwise selection- a limited treatment</a></li>
+<li class="chapter" data-level="11.2.2" data-path="11-2-methods-for-model-selection.html"><a href="11-2-methods-for-model-selection.html#all-possible-models-all-subsets"><i class="fa fa-check"></i><b>11.2.2</b> All possible models (all subsets)</a></li>
+<li class="chapter" data-level="11.2.3" data-path="11-2-methods-for-model-selection.html"><a href="11-2-methods-for-model-selection.html#a-priori-model-subsets"><i class="fa fa-check"></i><b>11.2.3</b> <em>A priori</em> model subsets</a></li>
+<li class="chapter" data-level="11.2.4" data-path="11-2-methods-for-model-selection.html"><a href="11-2-methods-for-model-selection.html#tools-for-a-priori-model-selection"><i class="fa fa-check"></i><b>11.2.4</b> Tools for <em>a priori</em> model selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="11-3-model-validation.html"><a href="11-3-model-validation.html"><i class="fa fa-check"></i><b>11.3</b> Model validation</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="11-3-model-validation.html"><a href="11-3-model-validation.html#what-is-model-validation"><i class="fa fa-check"></i><b>11.3.1</b> What is model validation?</a></li>
+<li class="chapter" data-level="11.3.2" data-path="6-3-frequency-analysis.html"><a href="6-3-frequency-analysis.html#worked-example"><i class="fa fa-check"></i><b>11.3.2</b> Worked example</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Worst Stats Text eveR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="model-validation" class="section level2">
+<h2><span class="header-section-number">11.3</span> Model validation</h2>
+<p>Once we have selected a best model, or a set of explanatory variables that we want to consider in our analysis, it is important that we validate that model when possible. In truth, comparison of the validity of multiple models can even be a method for model selection in itself, but we are not going to go there this semester because it would require a much richer understanding of programming than we can achieve in a week.</p>
+<div id="what-is-model-validation" class="section level3">
+<h3><span class="header-section-number">11.3.1</span> What is model validation?</h3>
+<p>Model validation is the use of external data, or subsets of data that we have set aside for use in assessing the predictive ability of our models. That is, we can use new data to test how well our model works for making predictions about the system of interest. Pretty cool, I know!</p>
+<p>There are lots of different methods for model validation, each of which uses some of your data for fitting (or <strong>training</strong>) the model and then saves some of the data for predicting new observations based on your model parameters (<strong>testing</strong>). We can do this by hand if we want to, but for the sake of this course, let’s avoid the extraneous programming knowledge required for this and just use some of the built-in functions in readily available R packages.</p>
+<p>Very generally speaking, there are a large (near-infinite) number of ways to do model validation based on how you split up your data set and how you choose to evaluate predictions. This <a href="http://machinelearningmastery.com/how-to-estimate-model-accuracy-in-r-using-the-caret-package/">blog</a> gives a nice overview of these methods with the <code>iris</code> data set in R using the <code>caret</code> package.</p>
+</div>
+<div id="worked-example" class="section level3">
+<h3><span class="header-section-number">11.3.2</span> Worked example</h3>
+<p>Let’s work an example for the models we built for the swiss data above. We do this ‘by hand’ to show how this works:</p>
+<div id="leave-one-out-cross-validation" class="section level4">
+<h4><span class="header-section-number">11.3.2.1</span> Leave-one-out cross validation</h4>
+<p>First, make a couple of empty vectors to hold our training data and our predictions.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="11-3-model-validation.html#cb49-1"></a>  ed.obs =<span class="st"> </span><span class="kw">c</span>()  <span class="co"># Will hold observation witheld for each iteration</span></span>
+<span id="cb49-2"><a href="11-3-model-validation.html#cb49-2"></a>  ed.pred =<span class="st"> </span><span class="kw">c</span>() <span class="co"># Will hold our prediction for each iteration</span></span></code></pre></div>
+<p>Now, drop one data point, fit the model, and predict the missing data point one row at a time until you have done them all.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="11-3-model-validation.html#cb50-1"></a><span class="co"># Repeat this for each row of the data set</span></span>
+<span id="cb50-2"><a href="11-3-model-validation.html#cb50-2"></a><span class="co"># until we have left each out</span></span>
+<span id="cb50-3"><a href="11-3-model-validation.html#cb50-3"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(swiss)){</span>
+<span id="cb50-4"><a href="11-3-model-validation.html#cb50-4"></a></span>
+<span id="cb50-5"><a href="11-3-model-validation.html#cb50-5"></a><span class="co"># Sample the data, leaving out one row</span></span>
+<span id="cb50-6"><a href="11-3-model-validation.html#cb50-6"></a>  <span class="co"># These will be our &#39;training data&#39;</span></span>
+<span id="cb50-7"><a href="11-3-model-validation.html#cb50-7"></a>    data.train =<span class="st"> </span>swiss[<span class="op">-</span>i, ]</span>
+<span id="cb50-8"><a href="11-3-model-validation.html#cb50-8"></a>  <span class="co"># These will be the data we use for prediction</span></span>
+<span id="cb50-9"><a href="11-3-model-validation.html#cb50-9"></a>    data.pred =<span class="st"> </span>swiss[(<span class="kw">rownames</span>(swiss) <span class="op">%in%</span></span>
+<span id="cb50-10"><a href="11-3-model-validation.html#cb50-10"></a><span class="st">                       </span><span class="kw">rownames</span>(data.train))<span class="op">==</span><span class="ot">FALSE</span>,]</span>
+<span id="cb50-11"><a href="11-3-model-validation.html#cb50-11"></a></span>
+<span id="cb50-12"><a href="11-3-model-validation.html#cb50-12"></a><span class="co"># Fit the model that tests the effects of Education</span></span>
+<span id="cb50-13"><a href="11-3-model-validation.html#cb50-13"></a><span class="co"># on the Fertility</span></span>
+<span id="cb50-14"><a href="11-3-model-validation.html#cb50-14"></a>  mod.Ed =<span class="st"> </span><span class="kw">lm</span>(Fertility<span class="op">~</span>Education, <span class="dt">data=</span>data.train)</span>
+<span id="cb50-15"><a href="11-3-model-validation.html#cb50-15"></a></span>
+<span id="cb50-16"><a href="11-3-model-validation.html#cb50-16"></a><span class="co"># Predict Fertility from the fitted model and store</span></span>
+<span id="cb50-17"><a href="11-3-model-validation.html#cb50-17"></a>  ed.pred[i] =<span class="st"> </span><span class="kw">predict</span>(mod.Ed, data.pred)</span>
+<span id="cb50-18"><a href="11-3-model-validation.html#cb50-18"></a>  ed.obs[i] =<span class="st"> </span>data.pred<span class="op">$</span>Fertility</span>
+<span id="cb50-19"><a href="11-3-model-validation.html#cb50-19"></a>}</span></code></pre></div>
+<p>Now, We can look at a plot to subjectively judge the fit.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="11-3-model-validation.html#cb51-1"></a><span class="co"># Set plot margins</span></span>
+<span id="cb51-2"><a href="11-3-model-validation.html#cb51-2"></a>  <span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb51-3"><a href="11-3-model-validation.html#cb51-3"></a></span>
+<span id="cb51-4"><a href="11-3-model-validation.html#cb51-4"></a><span class="co"># Plot the predictions against the observed value</span></span>
+<span id="cb51-5"><a href="11-3-model-validation.html#cb51-5"></a><span class="co"># that we left out, do for each iteration.</span></span>
+<span id="cb51-6"><a href="11-3-model-validation.html#cb51-6"></a>  <span class="kw">plot</span>(ed.obs, ed.pred, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&#39;black&#39;</span>,</span>
+<span id="cb51-7"><a href="11-3-model-validation.html#cb51-7"></a>       <span class="dt">col=</span><span class="st">&#39;black&#39;</span>, <span class="dt">yaxt=</span><span class="st">&#39;n&#39;</span>, <span class="dt">cex=</span><span class="dv">2</span>, <span class="dt">cex.axis=</span><span class="fl">1.1</span>,</span>
+<span id="cb51-8"><a href="11-3-model-validation.html#cb51-8"></a>       <span class="dt">cex.lab=</span><span class="fl">1.15</span>, <span class="dt">ylab=</span><span class="st">&#39;Predicted&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Observed&#39;</span>)</span>
+<span id="cb51-9"><a href="11-3-model-validation.html#cb51-9"></a>  </span>
+<span id="cb51-10"><a href="11-3-model-validation.html#cb51-10"></a><span class="co"># Add the rotated y-axis</span></span>
+<span id="cb51-11"><a href="11-3-model-validation.html#cb51-11"></a>  <span class="kw">axis</span>(<span class="dv">2</span>, <span class="dt">las=</span><span class="dv">2</span>, <span class="dt">cex.axis=</span><span class="fl">1.1</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>We could also look at a regression of our predictions on the observed data used for predictions to see how good we are. In this case, not great!</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="11-3-model-validation.html#cb52-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb52-2"><a href="11-3-model-validation.html#cb52-2"></a>  pred.line =<span class="st"> </span><span class="kw">lm</span>(ed.obs<span class="op">~</span>ed.pred)</span>
+<span id="cb52-3"><a href="11-3-model-validation.html#cb52-3"></a><span class="co"># Summarize the model</span></span>
+<span id="cb52-4"><a href="11-3-model-validation.html#cb52-4"></a>  <span class="kw">summary</span>(pred.line)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = ed.obs ~ ed.pred)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -17.2315  -6.7132  -0.8833   9.7559  20.2830 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   4.0940    12.1637   0.337    0.738    
+## ed.pred       0.9416     0.1722   5.468 1.91e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 9.79 on 45 degrees of freedom
+## Multiple R-squared:  0.3992,	Adjusted R-squared:  0.3858 
+## F-statistic:  29.9 on 1 and 45 DF,  p-value: 1.911e-06</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="11-3-model-validation.html#cb54-1"></a><span class="co"># Extract the R-squared for observed vs predicted</span></span>
+<span id="cb54-2"><a href="11-3-model-validation.html#cb54-2"></a>  <span class="kw">summary</span>(pred.line)<span class="op">$</span>r.squared</span></code></pre></div>
+<pre><code>## [1] 0.3991715</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="11-3-model-validation.html#cb56-1"></a><span class="co"># Plot predictive line</span></span>
+<span id="cb56-2"><a href="11-3-model-validation.html#cb56-2"></a><span class="co"># Get coefficients</span></span>
+<span id="cb56-3"><a href="11-3-model-validation.html#cb56-3"></a>  <span class="kw">summary</span>(pred.line)<span class="op">$</span>coefficients</span></code></pre></div>
+<pre><code>##              Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) 4.0939788 12.1637145 0.3365731 7.380034e-01
+## ed.pred     0.9416226  0.1722131 5.4677763 1.910958e-06</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="11-3-model-validation.html#cb58-1"></a><span class="co"># Use sequence of new data</span></span>
+<span id="cb58-2"><a href="11-3-model-validation.html#cb58-2"></a>  pred.pts =<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">seq</span>(<span class="kw">min</span>(ed.obs), <span class="kw">max</span>(ed.obs), <span class="dv">1</span>))</span>
+<span id="cb58-3"><a href="11-3-model-validation.html#cb58-3"></a>  <span class="kw">names</span>(pred.pts) =<span class="st"> &#39;ed.pred&#39;</span></span>
+<span id="cb58-4"><a href="11-3-model-validation.html#cb58-4"></a><span class="co"># Make predictions using coefficients from regression</span></span>
+<span id="cb58-5"><a href="11-3-model-validation.html#cb58-5"></a>  pred=<span class="st"> </span><span class="kw">predict</span>(pred.line, pred.pts, <span class="dt">interval=</span><span class="st">&#39;prediction&#39;</span>)</span>
+<span id="cb58-6"><a href="11-3-model-validation.html#cb58-6"></a></span>
+<span id="cb58-7"><a href="11-3-model-validation.html#cb58-7"></a><span class="co"># Plot the data again (same as above)</span></span>
+<span id="cb58-8"><a href="11-3-model-validation.html#cb58-8"></a>  <span class="kw">plot</span>(ed.obs, ed.pred, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&#39;black&#39;</span>,</span>
+<span id="cb58-9"><a href="11-3-model-validation.html#cb58-9"></a>       <span class="dt">col=</span><span class="st">&#39;gray87&#39;</span>, <span class="dt">yaxt=</span><span class="st">&#39;n&#39;</span>, <span class="dt">cex=</span><span class="dv">2</span>, <span class="dt">cex.axis=</span><span class="fl">1.1</span>,</span>
+<span id="cb58-10"><a href="11-3-model-validation.html#cb58-10"></a>       <span class="dt">cex.lab=</span><span class="fl">1.15</span>, <span class="dt">ylab=</span><span class="st">&#39;Predicted&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Observed&#39;</span>)</span>
+<span id="cb58-11"><a href="11-3-model-validation.html#cb58-11"></a>  <span class="kw">axis</span>(<span class="dv">2</span>, <span class="dt">las=</span><span class="dv">2</span>, <span class="dt">cex.axis=</span><span class="fl">1.1</span>)  </span>
+<span id="cb58-12"><a href="11-3-model-validation.html#cb58-12"></a>  </span>
+<span id="cb58-13"><a href="11-3-model-validation.html#cb58-13"></a><span class="co"># Plot the lines</span></span>
+<span id="cb58-14"><a href="11-3-model-validation.html#cb58-14"></a>  <span class="kw">lines</span>(pred.pts[,<span class="dv">1</span>], pred[,<span class="dv">1</span>], <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb58-15"><a href="11-3-model-validation.html#cb58-15"></a>  <span class="kw">lines</span>(pred.pts[,<span class="dv">1</span>], pred[,<span class="dv">2</span>], <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb58-16"><a href="11-3-model-validation.html#cb58-16"></a>  <span class="kw">lines</span>(pred.pts[,<span class="dv">1</span>], pred[,<span class="dv">3</span>], <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>There are lots of other takes on cross-validation, including popular approaches such as k-fold cross-validation, and a number of simulation-based tools: many of which can be implemented in wrappers available through various R packages. I will leave you to explore these in your leisure time. In general, the more data that are set aside, the more robust the validation is, but we usually don’t want to set aside so much of our data that the training model isn’t representative of the data we’ve collected.</p>
+</div>
+<div id="boot-strapping-method" class="section level4">
+<h4><span class="header-section-number">11.3.2.2</span> Boot-strapping method</h4>
+<p>Boot strapping (or “jack-knifing”) is similar to cross validation in that we leave out some chunk of data and fit a model. The only difference here is that we are randomly selecting the training data each time, rather than working our way through the data systematically. The only difficulty now becomes choosing the appropriate amount of data to leave out for this validation tool…</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="11-3-model-validation.html#cb59-1"></a><span class="co"># First, make an empty vector to</span></span>
+<span id="cb59-2"><a href="11-3-model-validation.html#cb59-2"></a><span class="co"># hold our training and predicting data</span></span>
+<span id="cb59-3"><a href="11-3-model-validation.html#cb59-3"></a>  p.Rsquare =<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb59-4"><a href="11-3-model-validation.html#cb59-4"></a></span>
+<span id="cb59-5"><a href="11-3-model-validation.html#cb59-5"></a><span class="co"># We will randomly sample our data 1,000 times</span></span>
+<span id="cb59-6"><a href="11-3-model-validation.html#cb59-6"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>){</span>
+<span id="cb59-7"><a href="11-3-model-validation.html#cb59-7"></a></span>
+<span id="cb59-8"><a href="11-3-model-validation.html#cb59-8"></a><span class="co"># Sample the data, taking only 22 </span></span>
+<span id="cb59-9"><a href="11-3-model-validation.html#cb59-9"></a><span class="co"># data points (about half the data).</span></span>
+<span id="cb59-10"><a href="11-3-model-validation.html#cb59-10"></a><span class="co"># These will be our &#39;training data&#39;</span></span>
+<span id="cb59-11"><a href="11-3-model-validation.html#cb59-11"></a>  data.train=swiss[<span class="kw">sample</span>(<span class="kw">nrow</span>(swiss), <span class="dv">22</span>, <span class="dt">replace=</span><span class="ot">FALSE</span>) , ]</span>
+<span id="cb59-12"><a href="11-3-model-validation.html#cb59-12"></a>  </span>
+<span id="cb59-13"><a href="11-3-model-validation.html#cb59-13"></a><span class="co"># These will be the data we use for prediction:</span></span>
+<span id="cb59-14"><a href="11-3-model-validation.html#cb59-14"></a>  data.pred=swiss[(<span class="kw">rownames</span>(swiss) <span class="op">%in%</span><span class="st"> </span></span>
+<span id="cb59-15"><a href="11-3-model-validation.html#cb59-15"></a><span class="st">                   </span><span class="kw">rownames</span>(data.train))<span class="op">==</span><span class="ot">FALSE</span>,]</span>
+<span id="cb59-16"><a href="11-3-model-validation.html#cb59-16"></a></span>
+<span id="cb59-17"><a href="11-3-model-validation.html#cb59-17"></a><span class="co"># Fit the model that tests the </span></span>
+<span id="cb59-18"><a href="11-3-model-validation.html#cb59-18"></a><span class="co"># effects of education on the fertility index</span></span>
+<span id="cb59-19"><a href="11-3-model-validation.html#cb59-19"></a>  mod.Ed =<span class="st"> </span><span class="kw">lm</span>(Fertility<span class="op">~</span>Education, <span class="dt">data=</span>data.train)</span>
+<span id="cb59-20"><a href="11-3-model-validation.html#cb59-20"></a></span>
+<span id="cb59-21"><a href="11-3-model-validation.html#cb59-21"></a><span class="co"># Predict fertility from the fitted</span></span>
+<span id="cb59-22"><a href="11-3-model-validation.html#cb59-22"></a><span class="co"># model and store the result</span></span>
+<span id="cb59-23"><a href="11-3-model-validation.html#cb59-23"></a>  ed.pred =<span class="st"> </span><span class="kw">predict</span>(mod.Ed, data.pred)</span>
+<span id="cb59-24"><a href="11-3-model-validation.html#cb59-24"></a>  ed.obs =<span class="st"> </span>data.pred<span class="op">$</span>Fertility</span>
+<span id="cb59-25"><a href="11-3-model-validation.html#cb59-25"></a></span>
+<span id="cb59-26"><a href="11-3-model-validation.html#cb59-26"></a><span class="co"># Get predictive R-squared</span></span>
+<span id="cb59-27"><a href="11-3-model-validation.html#cb59-27"></a>  p.Rsquare[i] =<span class="st"> </span><span class="kw">summary</span>(<span class="kw">lm</span>(ed.pred<span class="op">~</span>ed.obs))<span class="op">$</span>r.squared</span>
+<span id="cb59-28"><a href="11-3-model-validation.html#cb59-28"></a></span>
+<span id="cb59-29"><a href="11-3-model-validation.html#cb59-29"></a>}</span></code></pre></div>
+<p>We can now calculate the median predicted R-squared and the 95% CI on this test statistic</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="11-3-model-validation.html#cb60-1"></a>  <span class="kw">median</span>(p.Rsquare)</span></code></pre></div>
+<pre><code>## [1] 0.4559255</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="11-3-model-validation.html#cb62-1"></a>  <span class="kw">quantile</span>(p.Rsquare, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div>
+<pre><code>##      2.5%     97.5% 
+## 0.1016256 0.6171446</code></pre>
+<p>We can look at the distribution of our r-squared values for regressions that measure the fit between our predictions and our observations.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="11-3-model-validation.html#cb64-1"></a><span class="co"># Plot the histogram</span></span>
+<span id="cb64-2"><a href="11-3-model-validation.html#cb64-2"></a>  <span class="kw">hist</span>(p.Rsquare, <span class="dt">breaks=</span><span class="dv">100</span>, <span class="dt">yaxt=</span><span class="st">&#39;n&#39;</span>, <span class="dt">xaxt=</span><span class="st">&#39;n&#39;</span>,</span>
+<span id="cb64-3"><a href="11-3-model-validation.html#cb64-3"></a>       <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">5e2</span>), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">75</span>), <span class="dt">col=</span><span class="st">&#39;gray87&#39;</span>,</span>
+<span id="cb64-4"><a href="11-3-model-validation.html#cb64-4"></a>       <span class="dt">xlab =</span> <span class="kw">expression</span>(<span class="st">&#39;Predicted R&#39;</span><span class="op">^</span><span class="st">&#39;2&#39;</span>),</span>
+<span id="cb64-5"><a href="11-3-model-validation.html#cb64-5"></a>       <span class="dt">main=</span><span class="st">&#39;&#39;</span>, <span class="dt">cex.lab=</span><span class="fl">1.3</span>)</span>
+<span id="cb64-6"><a href="11-3-model-validation.html#cb64-6"></a></span>
+<span id="cb64-7"><a href="11-3-model-validation.html#cb64-7"></a>  <span class="co"># Add some axis labels in position them</span></span>
+<span id="cb64-8"><a href="11-3-model-validation.html#cb64-8"></a>  <span class="co"># in the correct spot</span></span>
+<span id="cb64-9"><a href="11-3-model-validation.html#cb64-9"></a>    <span class="kw">axis</span>(<span class="dv">1</span>, <span class="dt">cex.axis=</span><span class="fl">1.1</span>, <span class="dt">pos=</span><span class="dv">0</span>)</span>
+<span id="cb64-10"><a href="11-3-model-validation.html#cb64-10"></a>    <span class="kw">axis</span>(<span class="dv">2</span>, <span class="dt">las=</span><span class="dv">2</span>, <span class="dt">cex.axis=</span><span class="fl">1.1</span>, <span class="dt">pos=</span><span class="dv">0</span>)</span>
+<span id="cb64-11"><a href="11-3-model-validation.html#cb64-11"></a>    </span>
+<span id="cb64-12"><a href="11-3-model-validation.html#cb64-12"></a>  <span class="co"># Add a blue vertical line for the median</span></span>
+<span id="cb64-13"><a href="11-3-model-validation.html#cb64-13"></a>  <span class="co"># of our predicted R-squared</span></span>
+<span id="cb64-14"><a href="11-3-model-validation.html#cb64-14"></a>    <span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">median</span>(p.Rsquare),</span>
+<span id="cb64-15"><a href="11-3-model-validation.html#cb64-15"></a>           <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>, <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb64-16"><a href="11-3-model-validation.html#cb64-16"></a>    <span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">quantile</span>(p.Rsquare, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)),</span>
+<span id="cb64-17"><a href="11-3-model-validation.html#cb64-17"></a>           <span class="dt">col=</span><span class="st">&#39;red&#39;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">2</span>)    </span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>This approach is not only useful for cross-validation, but can also be a good tool for assessing a priori statistical power based on some estimates of variance, effect sizes, and variable sample sizes. We recently used the approach to do this for <a href="https://www.sciencedirect.com/science/article/pii/S1470160X19300731?utm_campaign=STMJ_75273_AUTH_SERV_PPUB&utm_medium=email&utm_dgroup=Email1Publishing&utm_acid=252084706&SIS_ID=-1&dgcid=STMJ_75273_AUTH_SERV_PPUB&CMX_ID=&utm_in=DM461565&utm_source=AC_30">community metrics in brook trout streams</a> in NY so we could determine what sampling intensity was needed to detect biologically meaningful responses to acid rain recovery. Such investigations allow us to plan our studies ahead of time and potentially save time and money, in addition to serving as validation tools.</p>
+
+</div>
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="11-2-methods-for-model-selection.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["worstr.pdf", "worstr.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
