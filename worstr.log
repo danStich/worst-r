@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.10.17)  17 OCT 2020 13:18
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.10.17)  17 OCT 2020 13:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1793,38 +1793,11 @@ Underfull \hbox (badness 1067) in paragraph at lines 7377--7378
 se \TU/lmr/m/n/10 and we’ll use the
  []
 
-
-Underfull \vbox (badness 2452) has occurred while \output is active []
-
 [231
 
-]
-Overfull \hbox (25.15672pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 232 \TU/lmr/m/sl/10 CHAPTER 12.  GENERALIZED LINEAR MODELS: LOGI
-STIC REGRESSION
- []
-
-[232] [233]
-Overfull \hbox (25.15672pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 234 \TU/lmr/m/sl/10 CHAPTER 12.  GENERALIZED LINEAR MODELS: LOGI
-STIC REGRESSION
- []
-
-[234] [235]
+] [232] [233] [234] [235]
 Missing character: There is no 𝜇 in font [lmroman10-regular]:mapping=tex-text;!
-
-Overfull \hbox (25.15672pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 236 \TU/lmr/m/sl/10 CHAPTER 12.  GENERALIZED LINEAR MODELS: LOGI
-STIC REGRESSION
- []
-
-[236] [237]
-Overfull \hbox (25.15672pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 238 \TU/lmr/m/sl/10 CHAPTER 12.  GENERALIZED LINEAR MODELS: LOGI
-STIC REGRESSION
- []
-
-[238]
+[236] [237] [238]
 Overfull \hbox (54.0pt too wide) in paragraph at lines 7682--7682
 []\TU/lmtt/m/n/10 ##                                 K   AICc Delta_AICc AICcWt
  Cum.Wt      LL[] 
@@ -1902,12 +1875,6 @@ Overfull \hbox (22.5pt too wide) in paragraph at lines 7774--7774
 = choice)[] 
  []
 
-
-Overfull \hbox (25.15672pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 240 \TU/lmr/m/sl/10 CHAPTER 12.  GENERALIZED LINEAR MODELS: LOGI
-STIC REGRESSION
- []
-
 [240]
 Overfull \hbox (22.5pt too wide) in paragraph at lines 7812--7812
 []\TU/lmtt/m/n/10 ## glm(formula = path ~ year + flow, family = binomial, data 
@@ -1920,41 +1887,23 @@ Overfull \hbox (22.5pt too wide) in paragraph at lines 7855--7855
 = choice)[] 
  []
 
-
-Overfull \hbox (25.15672pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 242 \TU/lmr/m/sl/10 CHAPTER 12.  GENERALIZED LINEAR MODELS: LOGI
-STIC REGRESSION
- []
-
-[242] [243]
-Overfull \hbox (25.15672pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 244 \TU/lmr/m/sl/10 CHAPTER 12.  GENERALIZED LINEAR MODELS: LOGI
-STIC REGRESSION
- []
-
-[244]
+[242] [243] [244]
 File: worstr_files/figure-latex/unnamed-chunk-344-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-344-1.pdf>
 [245]
 No file worstr.bbl.
-
-Overfull \hbox (25.15672pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 246 \TU/lmr/m/sl/10 CHAPTER 12.  GENERALIZED LINEAR MODELS: LOGI
-STIC REGRESSION
- []
-
 [246] (./worstr.aux)
 Package rerunfilecheck Info: File `worstr.out' has not changed.
-(rerunfilecheck)             Checksum: FE3C3EAFC4BD737121D53AF984891D80;12128.
+(rerunfilecheck)             Checksum: 044C9EECA808C4A5C5FCC4398866375E;11984.
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
  17670 strings out of 479466
- 325541 string characters out of 5880414
- 761918 words of memory out of 5000000
+ 325505 string characters out of 5880414
+ 761747 words of memory out of 5000000
  36665 multiletter control sequences out of 15000+600000
  541619 words of font info for 92 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191

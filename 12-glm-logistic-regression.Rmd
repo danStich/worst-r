@@ -1,5 +1,5 @@
 
-# Generalized linear models: logistic regression
+# Logistic regression {#Chapter12}
 
 <img src="images/veligers.jpg" alt="">
 <p style="font-family: times, serif; font-size:.9em; font-style:italic">
@@ -55,7 +55,6 @@ We've already looked at a couple of ways to deal with violations of these two as
 
 ## Introducing the GLM
 There are a number of situations that should just scream "**GLM!!!**" at you. The majority of these are easy to identify because you will know right away that the response variable in which you are interested is clearly not a continuous or normally distributed variable. This is the number one reason for moving into the GLM framework for most people. These include response variables such as counts (integers) and binary (1 or 0) or categorical variables ("Jane", "Bill", "Tracy"), and even probabilities or proportions.
-
 
 The standard GLM consists of three major components:
 

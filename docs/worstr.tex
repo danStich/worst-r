@@ -2838,7 +2838,7 @@ Or we could hatch a whole bunch of eggs:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1 0 1 1 1 1 1 1 0 0
+##  [1] 1 0 0 0 1 1 0 1 1 1
 \end{verbatim}
 
 Then, we could even count how many of those were successful. Do you remember how to do that? There are several different ways. You'll have to come up with one for the homework assignment (hint: see \protect\hyperlink{Chapter2}{Chapter 2}).
@@ -2860,7 +2860,7 @@ To sample data from a binomial distribution, we can use \texttt{rbinom} from bas
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 7 7 6 8 4 4 2 7 7 6
+##  [1] 6 4 3 5 5 3 7 5 6 4
 \end{verbatim}
 
 Remember as you look through these that your numbers should look different than mine (at least most of the time) because these are being generated randomly.
@@ -2927,13 +2927,13 @@ Have a look:
 
 \begin{verbatim}
 ##       [,1] [,2] [,3] [,4] [,5]
-##  [1,]    0    0    0    0    1
+##  [1,]    0    0    0    0    0
 ##  [2,]    0    0    0    0    0
-##  [3,]    0    0    1    0    0
+##  [3,]    0    0    0    0    0
 ##  [4,]    0    0    0    0    0
-##  [5,]    0    0    0    0    0
+##  [5,]    0    1    0    0    0
 ##  [6,]    0    0    0    0    0
-##  [7,]    0    0    0    1    0
+##  [7,]    0    0    0    0    0
 ##  [8,]    0    0    0    0    0
 ##  [9,]    0    0    0    0    0
 ## [10,]    0    0    0    0    0
@@ -2942,16 +2942,16 @@ Have a look:
 ## [13,]    0    0    0    0    0
 ## [14,]    0    0    0    0    0
 ## [15,]    0    0    0    0    0
-## [16,]    1    1    0    0    0
+## [16,]    1    0    0    0    0
 ## [17,]    0    0    0    0    0
 ## [18,]    0    0    0    0    0
-## [19,]    0    0    0    0    0
+## [19,]    0    0    0    1    0
 ## [20,]    0    0    0    0    0
 ## [21,]    0    0    0    0    0
-## [22,]    0    0    0    0    0
+## [22,]    0    0    1    0    0
 ## [23,]    0    0    0    0    0
 ## [24,]    0    0    0    0    0
-## [25,]    0    0    0    0    0
+## [25,]    0    0    0    0    1
 ## [26,]    0    0    0    0    0
 \end{verbatim}
 
@@ -2985,7 +2985,7 @@ Take a step back, breathe, and think about this. The rows in this matrix are you
 ## [14,]    0
 ## [15,]    0
 ## [16,]    0
-## [17,]    1
+## [17,]    0
 ## [18,]    0
 ## [19,]    0
 ## [20,]    0
@@ -2993,7 +2993,7 @@ Take a step back, breathe, and think about this. The rows in this matrix are you
 ## [22,]    0
 ## [23,]    0
 ## [24,]    0
-## [25,]    0
+## [25,]    1
 ## [26,]    0
 \end{verbatim}
 
@@ -3023,7 +3023,7 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 ## [14,] "Summer"      "0"
 ## [15,] "Leah"        "0"
 ## [16,] "Christine"   "0"
-## [17,] "Ashley"      "1"
+## [17,] "Ashley"      "0"
 ## [18,] "Katherine"   "0"
 ## [19,] "James"       "0"
 ## [20,] "Emily"       "0"
@@ -3032,7 +3032,7 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 ## [23,] "Sierra"      "0"
 ## [24,] "Kyle"        "0"
 ## [25,] "Diana"       "0"
-## [26,] "Amanda"      "0"
+## [26,] "Amanda"      "1"
 \end{verbatim}
 
 Now, if I was calling on you randomly in class, after 10 questions, the spread of people who would have participated in class might look like this (or whatever you got - remember, it is random):
@@ -3045,31 +3045,31 @@ Now, if I was calling on you randomly in class, after 10 questions, the spread o
 
 \begin{verbatim}
 ##       name                                                 
-##  [1,] "Ava"         "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
-##  [2,] "Dillon"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [1,] "Ava"         "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [2,] "Dillon"      "0" "0" "0" "0" "1" "0" "0" "0" "0" "0"
 ##  [3,] "Delaney"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [4,] "Manolo"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [5,] "Sarah"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [5,] "Sarah"       "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
 ##  [6,] "Shannon"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [7,] "Olivia"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [8,] "Ebony"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [9,] "Julia"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [9,] "Julia"       "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [10,] "Davi"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [11,] "Gabrielle"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [12,] "Jordan"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [13,] "Tayler"      "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
-## [14,] "Summer"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [13,] "Tayler"      "0" "0" "0" "0" "0" "0" "0" "1" "0" "0"
+## [14,] "Summer"      "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
 ## [15,] "Leah"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [16,] "Christine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [17,] "Ashley"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [18,] "Katherine"   "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
+## [17,] "Ashley"      "0" "0" "0" "0" "0" "0" "1" "0" "0" "0"
+## [18,] "Katherine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [19,] "James"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [20,] "Emily"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [21,] "Cassidy"     "0" "1" "0" "0" "1" "0" "0" "0" "0" "0"
+## [20,] "Emily"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "1"
+## [21,] "Cassidy"     "0" "0" "0" "0" "0" "1" "0" "0" "1" "0"
 ## [22,] "Maximillion" "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [23,] "Sierra"      "0" "0" "0" "0" "0" "0" "0" "1" "1" "0"
-## [24,] "Kyle"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "1"
-## [25,] "Diana"       "1" "0" "0" "0" "0" "0" "1" "0" "0" "0"
+## [23,] "Sierra"      "1" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [24,] "Kyle"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [25,] "Diana"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [26,] "Amanda"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 \end{verbatim}
 
@@ -3082,7 +3082,7 @@ Taking this one step further, we could just draw a name and stop looking at thes
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Christine"
+## [1] "Katherine"
 \end{verbatim}
 
 And now we have a way to randomly select an individual based on a multinomial distribution. What fun!
@@ -3318,7 +3318,7 @@ First, we'll estimate it by making our own function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.987443  4.054351
+## [1] 19.957726  3.959789
 \end{verbatim}
 
 Because this one is so common, R has built-in estimators that rely on
@@ -3332,7 +3332,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.98744
+## [1] 19.95773
 \end{verbatim}
 
 \begin{Shaded}
@@ -3342,7 +3342,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.054756
+## [1] 3.960185
 \end{verbatim}
 
 Wow, that was a lot less code. That is the beauty of having these functions available. How do these compare to the answers returned by our function if you scroll back up?
@@ -3360,8 +3360,8 @@ R also has built-in \textbf{maximum likelihood} estimators that provide an exact
 
 \begin{verbatim}
 ##       mean           sd     
-##   19.98744254    2.01354180 
-##  ( 0.02013542) ( 0.01423789)
+##   19.95772619    1.98992180 
+##  ( 0.01989922) ( 0.01407087)
 \end{verbatim}
 
 Only one problem here: R doesn't report the second moment! It reports
@@ -3410,10 +3410,10 @@ To get started, we need to take a guess at what those parameters could be. (Yes,
 
 \begin{verbatim}
 ## $par
-## [1] 19.987126  4.054514
+## [1] 19.958018  3.959389
 ## 
 ## $value
-## [1] 21188.34
+## [1] 21070.34
 ## 
 ## $counts
 ## function gradient 
@@ -3462,9 +3462,9 @@ Look at the structure I'll be damned, it's a list! Hey, we learned about those!
 
 \begin{verbatim}
 ## List of 5
-##  $ par        : num [1:2] 19.99 4.05
-##  $ value      : num 21188
-##  $ counts     : Named int [1:2] 101 NA
+##  $ par        : num [1:2] 19.96 3.96
+##  $ value      : num 21070
+##  $ counts     : Named int [1:2] 99 NA
 ##   ..- attr(*, "names")= chr [1:2] "function" "gradient"
 ##  $ convergence: int 0
 ##  $ message    : NULL
@@ -3480,7 +3480,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.989372  4.052015
+## [1] 19.959742  3.960639
 \end{verbatim}
 
 \begin{Shaded}
@@ -3491,7 +3491,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.98937
+## [1] 19.95974
 \end{verbatim}
 
 \begin{Shaded}
@@ -3502,7 +3502,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.052015
+## [1] 3.960639
 \end{verbatim}
 
 There you have it, a couple of different ways to calculate parameters of the normal distribution using a couple of different approaches each.
@@ -3520,7 +3520,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.98252
+## [1] 19.94549
 \end{verbatim}
 
 \begin{Shaded}
@@ -3532,7 +3532,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##     2.5%    97.5% 
-## 16.02497 23.97047
+## 16.03954 23.78894
 \end{verbatim}
 
 \begin{Shaded}
@@ -3544,7 +3544,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##      25%      75% 
-## 18.65352 21.34224
+## 18.62058 21.34748
 \end{verbatim}
 
 \begin{Shaded}
@@ -3555,7 +3555,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 11.93960 27.95324
+## [1] 12.71994 28.71003
 \end{verbatim}
 
 \hypertarget{next5}{%
@@ -7364,8 +7364,8 @@ If we are happy enough with our cross-validation results at this point we can go
 
 OMG there's more?? I know, right, you're so lucky. In the first 11 chapters of this book we focused on learning how to use R, how to fit statistical models that represent biological hypotheses, how to assess whether those methods are valid for the data collected, how to make predictions about phenomena of interest from our models, and now how to choose between multiple competing models. All of this has relied heavily on assumptions of linear models. Fundamental among those assumptions is that our response variables of interest (and their residuals) conform to the normal distribution. In \protect\hyperlink{Chapter12}{Chapter 12}, we will free ourselves of those shackles by stepping into the world of generalized linear models.
 
-\hypertarget{generalized-linear-models-logistic-regression}{%
-\chapter{Generalized linear models: logistic regression}\label{generalized-linear-models-logistic-regression}}
+\hypertarget{Chapter12}{%
+\chapter{Logistic regression}\label{Chapter12}}
 
 ``Life or death'' is a phrase we reserve for situations that are not normal. Coincidentally, life or death is also a binary variable, and therefore it's residuals are also not normal. Will these zebra mussels live or die? That will be our next adventure, but for that we need the generalized linear model (GLM).
 

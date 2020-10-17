@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.5 Data exploration | The Worst Stats Text eveR</title>
-  <meta name="description" content="9.5 Data exploration | The Worst Stats Text eveR" />
+  <title>12 Logistic regression | The Worst Stats Text eveR</title>
+  <meta name="description" content="12 Logistic regression | The Worst Stats Text eveR" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.5 Data exploration | The Worst Stats Text eveR" />
+  <meta property="og:title" content="12 Logistic regression | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.5 Data exploration | The Worst Stats Text eveR" />
+  <meta name="twitter:title" content="12 Logistic regression | The Worst Stats Text eveR" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="9-4-the-turtle-problem.html"/>
-<link rel="next" href="9-6-anova-diagnostics.html"/>
+<link rel="prev" href="11-7-next11.html"/>
+<link rel="next" href="12-1-intro12.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -339,108 +339,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-exploration" class="section level2">
-<h2><span class="header-section-number">9.5</span> Data exploration</h2>
-<div id="independence-of-observations" class="section level3">
-<h3><span class="header-section-number">9.5.1</span> Independence of observations</h3>
-<p>This assumption basically means that each row of your data was collected independently of all others. In other words, no two rows of your data are related to one another.</p>
-<p>We can relax this assumption by explicitly including variables and constructs within the models that actually account for these kinds of relationships. For example, in one-way ANOVA we include grouping (factor) variables to to account for non-independence of some observations. In fact, this lack of independence is often the very thing we are interested in testing! In ANOVA, we are interested in whether individuals from the same group respond in the same way. Note that this in turn places the assumption of independence on individual measurements within our groups. It’s turtles all the way down. (I say this a lot. If you don’t know what it means go Google it.)</p>
-<p>This assumption really should be be addressed within the context of experimental design. Violations generally require alternatives to the simple cases of one-way ANOVA, ANCOVA or simple linear regression that we will discuss in later chapters. We will discuss specific extensions of our basic linear models (ANOVA and regression) to relax more difficult violations such as repeated observations, and temporal or spatial autocorrelation among observations. Although we can’t cover all of these extensions in one book or a single bottom-up biometry class, we can point you in the right direction for most of them.</p>
-<p><br></p>
-<p><strong>You:</strong> <em>Get to the point, what are we looking for here</em>?</p>
-<p><strong>Me:</strong> <em>Sorry</em>. [writes rest of chapter]</p>
-<p><br></p>
-<p>For linear models, we want data that were sampled randomly and independently from all other data points. For this information, we have to examine the actual experimental design. In a best case, an experiment is designed intentionally so that all groups get opposite treatments and those there is no correlation (relationship) between treatments (“orthogonal design”). This is easy to achieve with some thought in the design of controlled experiments, but can be difficult or impossible to do in semi-controlled experiments or observational studies. This is one reason why controlled experimentation has long been thought of as the gold standard in science.</p>
-<p>There is one obvious thing that is going to tell us that the observations in <code>turtles</code> are not collected independently, but there are a few others. What is it? You can probably infer the answer just from the variable names.</p>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="9-5-data-exploration.html#cb347-1"></a><span class="kw">head</span>(turtles, <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##             ID Year   Gear Width Removed Status Stay nHooks
-## 1       AL-002 2013      J  1.45      UE      1    9      1
-## 2  AL-LT14-001 2014      J  6.25      ME      0    4      1
-## 3  AL-LT14-003 2014      J  5.45     NaN      1   16      1
-## 4  AL-LT14-004 2014  Kahle  2.77       B      0    6      1
-## 5  AL-LT14-006 2014      J  4.75      ME      1   49      2
-## 6  AL-LT14-006 2014 Circle  2.92     NaN      1   49      2
-## 7     LT13-001 2013  Kahle  2.22      ME      1   29      1
-## 8     LT13-003 2013      J  1.34      ME      0    4      1
-## 9     LT13-004 2013      J  1.63      ME      1   33      1
-## 10    LT13-008 2013      J    NA      LE      1   26      2</code></pre>
-<p>If you look closely, you’ll notice that we have repeated observations of individuals here. So, we already know that our data do not conform to the assumptions of ANOVA, linear regression, or ANCOVA - but let’s keep using these data for the sake of demonstration. There is, of course another major violation of our assumptions that has to do with experimental design (that is commonly violated): these are <strong>discrete</strong> data! We’ll pretend for now that we can think of <code>Stay</code> as a continuous variable, though.</p>
-<p>You can see how this could get tedious to do for every level of every grouping factor and then for each continuous variable. So, we can also take a “shotgun” approach and look at how variables are related to one another.</p>
-<p>This approach allows us to look at relationships between all variables at once. Note below that I am using all columns except <code>ID</code> because that graph would be a mess.</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="9-5-data-exploration.html#cb349-1"></a><span class="co"># Look at correlations between variables</span></span>
-<span id="cb349-2"><a href="9-5-data-exploration.html#cb349-2"></a><span class="kw">pairs</span>(turtles[ , <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(turtles)])</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
-<p>But, for this data set this is really gross and difficult to interpret due to the nature of the variables. This should tell you that thinking about this stuff before you collect data is really important!</p>
-<p>It would make a lot more sense for something like the built-in <code>swiss</code> data because those variables are all continuous. You can check that out by running <code>pairs(swiss)</code> in your code. Look at all of the related variables in the <code>swiss</code> data! This relatedness is called <strong>collinearity</strong> and can cause some issues if we are not careful about it.</p>
-<p>We’ll talk about problems related to correlation between variables (e.g. temperature and photoperiod) in detail when we discuss model selection and collinearity. In the sections that follow, we’ll just focus our efforts on diagnosing <code>Year</code> as a categorical explanatory variable and <code>Width</code> as a continuous explanatory variable.</p>
-</div>
-<div id="normality" class="section level3">
-<h3><span class="header-section-number">9.5.2</span> Normality</h3>
-<p>In all linear models we make the assumption that the residual error of our model is normally distributed with a mean of zero. This allows us to drop the error term, <span class="math inline">\(\epsilon\)</span> from computation in the model fitting and allows us to calculate an exact solution in the case of ANOVA and linear regression. (Technological advances have really made this unnecessary because we can solve everything through optimization now).</p>
-<p>There are a multitude of tools at our disposal for examining normality of the residuals for linear models. One option is to examine group-specific error structures as a surrogate for residual error prior to analysis. The other option is to examine diagnostic plots of residuals directly from a fitted model object in R or other software programs (this is actually the more appropriate tool).</p>
-<p>We are looking to see if the response variable within each group is normally distributed. To assess this, we need to think in terms of the moments of a normal distribution that we learned about earlier in the course, specifically skew and kurtosis. Here we are looking for outliers in the data, or sample distributions that are highly skewed.</p>
-<p>First, we could go level by level for all of our grouping variables and conduct Shapiro tests (not shown here).</p>
-<p>We can look at a few different plots of our response to start teasing apart some of the potential violations of our assumptions.</p>
-<p>We know we will need to look at a year effect here because that is yet another form of non-independence (and potentially homogeneity) in our data. Let’s start with a boxplot:</p>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="9-5-data-exploration.html#cb350-1"></a><span class="kw">ggplot</span>(turtles, </span>
-<span id="cb350-2"><a href="9-5-data-exploration.html#cb350-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(Year), <span class="dt">y =</span> Stay, <span class="dt">group =</span> Year), <span class="dt">fill =</span> <span class="st">&#39;gray87&#39;</span>) <span class="op">+</span></span>
-<span id="cb350-3"><a href="9-5-data-exploration.html#cb350-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
-<span id="cb350-4"><a href="9-5-data-exploration.html#cb350-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
-<p>Whoa! We have a couple of issues here.</p>
-<p>First of all: we have clearly identified a number of ‘outliers’ in our data. These are the circles that are outside the whiskers of our box plots.</p>
-<p>One way to address these outliers is by dropping them from the data. We only want to do this if we have a pretty good justification for this ahead of time (“<em>a priori</em>”). And, sometimes these can be some of the most interesting observations.</p>
-<p>Another way to deal with this is through data transformation. For example, we could use a log transformation in an attempt to normalize extreme values in our data. This certainly looks a little better, but may not get us all the way there…</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="9-5-data-exploration.html#cb351-1"></a><span class="kw">ggplot</span>(turtles, </span>
-<span id="cb351-2"><a href="9-5-data-exploration.html#cb351-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(Year), <span class="dt">y =</span> <span class="kw">log</span>(Stay), <span class="dt">group =</span> Year), </span>
-<span id="cb351-3"><a href="9-5-data-exploration.html#cb351-3"></a>       <span class="dt">fill =</span> <span class="st">&#39;gray87&#39;</span>) <span class="op">+</span></span>
-<span id="cb351-4"><a href="9-5-data-exploration.html#cb351-4"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
-<span id="cb351-5"><a href="9-5-data-exploration.html#cb351-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
-<blockquote>
-<p>NOTE: I will not cover variable transformation extensively in this class or text. The justification is: 1) you can Google it to learn more about what transformations are useful for what, and 2) I will argue that most of the time there are better methods for dealing with non-normal data and then I will show you how to use those methods as we go.</p>
-</blockquote>
-<p>We can also look at histograms to investigate normality within groups. We’ll continue using log(Stay) for now.</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="9-5-data-exploration.html#cb352-1"></a><span class="kw">ggplot</span>(turtles, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">log</span>(Stay))) <span class="op">+</span></span>
-<span id="cb352-2"><a href="9-5-data-exploration.html#cb352-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></span>
-<span id="cb352-3"><a href="9-5-data-exploration.html#cb352-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>Year)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-231-1.png" width="672" /></p>
-<p><br></p>
-<p>Again, a little better, but perhaps not as good as we’d like.</p>
-</div>
-<div id="homogeneity-of-variances" class="section level3">
-<h3><span class="header-section-number">9.5.3</span> Homogeneity of variances</h3>
-<p>Finally, we assume in all of our linear models that variability in our residuals (which are really just part of our variances) are constant among groups or across the range of continuous variables <span class="math inline">\(x\)</span>. This is the same assumption that we made for t-tests and tested with the F-test in <a href="6-Chapter6.html#Chapter6">Chapter 6</a>. We’ll now look at a few options for linear models in this chapter depending on how the data are structured.</p>
-<p>A quick check of variances in the <code>Stay</code> variable by <code>Year</code> will make it clear that we are also in violation of this assumption if we do not log-transform the data.</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="9-5-data-exploration.html#cb353-1"></a>turtles <span class="op">%&gt;%</span></span>
-<span id="cb353-2"><a href="9-5-data-exploration.html#cb353-2"></a><span class="st">  </span><span class="kw">group_by</span>(Year) <span class="op">%&gt;%</span></span>
-<span id="cb353-3"><a href="9-5-data-exploration.html#cb353-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">var</span>(Stay))</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 2
-##    Year `var(Stay)`
-##   &lt;int&gt;       &lt;dbl&gt;
-## 1  2013      1435. 
-## 2  2014       164. 
-## 3  2015        91.7</code></pre>
-<p>You can go ahead and conduct a few F-tests if you don’t believe me that these are different, but I’m pretty sure you won’t convince me that the ratios of any two of these variances are equal to 1.00!</p>
-<p>This, too, is made magically (A little) better when we log-transform <code>Stay</code>:</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="9-5-data-exploration.html#cb355-1"></a>turtles <span class="op">%&gt;%</span></span>
-<span id="cb355-2"><a href="9-5-data-exploration.html#cb355-2"></a><span class="st">  </span><span class="kw">group_by</span>(Year) <span class="op">%&gt;%</span></span>
-<span id="cb355-3"><a href="9-5-data-exploration.html#cb355-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">var</span>(<span class="kw">log</span>(Stay)))</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 2
-##    Year `var(log(Stay))`
-##   &lt;int&gt;            &lt;dbl&gt;
-## 1  2013            0.556
-## 2  2014            0.360
-## 3  2015            0.321</code></pre>
-</div>
+<div id="Chapter12" class="section level1">
+<h1><span class="header-section-number">12</span> Logistic regression</h1>
+<img src="images/veligers.jpg" alt="">
+<p style="font-family: times, serif; font-size:.9em; font-style:italic">
+“Life or death” is a phrase we reserve for situations that are not normal. Coincidentally, life or death is also a binary variable, and therefore it’s residuals are also not normal. Will these zebra mussels live or die? That will be our next adventure, but for that we need the generalized linear model (GLM).
+</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="9-4-the-turtle-problem.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="9-6-anova-diagnostics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="11-7-next11.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="12-1-intro12.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
