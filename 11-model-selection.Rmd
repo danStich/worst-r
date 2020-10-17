@@ -8,7 +8,7 @@ library(tidyverse)
 <p style="font-family: times, serif; font-size:.9em; font-style:italic">
 Sometimes it can be difficult to see the forest for the trees (or anything at all if you spend all your time looking through the bottom of a wine glass). When faced with multiple competing explanations for observed phenomena we may represent these by multiple competing models. Model selection helps us see through the fog to tell us which is best supported. But, it doesn't tell you whether any of your models is good. The wine was good.</p>
 
-## Introduction
+## Introduction {#intro11}
 
 As we have learned in the past couple weeks, we often encounter situations for which there are multiple, competing hypotheses about what factors, or combinations of factors, best explain the observed patterns in our response of interest. This uncertainty arises for two primary reasons:
 

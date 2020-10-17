@@ -2825,7 +2825,7 @@ Let's do it again with that function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0
+## [1] 1
 \end{verbatim}
 
 Or we could hatch a whole bunch of eggs:
@@ -2838,7 +2838,7 @@ Or we could hatch a whole bunch of eggs:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1 0 0 0 0 0 0 1 1 0
+##  [1] 1 0 1 1 1 1 1 1 0 0
 \end{verbatim}
 
 Then, we could even count how many of those were successful. Do you remember how to do that? There are several different ways. You'll have to come up with one for the homework assignment (hint: see \protect\hyperlink{Chapter2}{Chapter 2}).
@@ -2860,7 +2860,7 @@ To sample data from a binomial distribution, we can use \texttt{rbinom} from bas
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 5 4 2 6 4 2 6 5 6 5
+##  [1] 7 7 6 8 4 4 2 7 7 6
 \end{verbatim}
 
 Remember as you look through these that your numbers should look different than mine (at least most of the time) because these are being generated randomly.
@@ -2927,25 +2927,25 @@ Have a look:
 
 \begin{verbatim}
 ##       [,1] [,2] [,3] [,4] [,5]
-##  [1,]    0    0    0    0    0
-##  [2,]    0    0    0    1    0
-##  [3,]    0    0    0    0    0
+##  [1,]    0    0    0    0    1
+##  [2,]    0    0    0    0    0
+##  [3,]    0    0    1    0    0
 ##  [4,]    0    0    0    0    0
 ##  [5,]    0    0    0    0    0
 ##  [6,]    0    0    0    0    0
-##  [7,]    0    0    0    0    0
+##  [7,]    0    0    0    1    0
 ##  [8,]    0    0    0    0    0
 ##  [9,]    0    0    0    0    0
 ## [10,]    0    0    0    0    0
 ## [11,]    0    0    0    0    0
 ## [12,]    0    0    0    0    0
-## [13,]    1    0    0    0    0
+## [13,]    0    0    0    0    0
 ## [14,]    0    0    0    0    0
 ## [15,]    0    0    0    0    0
-## [16,]    0    0    0    0    1
+## [16,]    1    1    0    0    0
 ## [17,]    0    0    0    0    0
-## [18,]    0    1    0    0    0
-## [19,]    0    0    1    0    0
+## [18,]    0    0    0    0    0
+## [19,]    0    0    0    0    0
 ## [20,]    0    0    0    0    0
 ## [21,]    0    0    0    0    0
 ## [22,]    0    0    0    0    0
@@ -2983,9 +2983,9 @@ Take a step back, breathe, and think about this. The rows in this matrix are you
 ## [12,]    0
 ## [13,]    0
 ## [14,]    0
-## [15,]    1
+## [15,]    0
 ## [16,]    0
-## [17,]    0
+## [17,]    1
 ## [18,]    0
 ## [19,]    0
 ## [20,]    0
@@ -3008,7 +3008,7 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 \begin{verbatim}
 ##       name             
 ##  [1,] "Ava"         "0"
-##  [2,] "Dillon"      "1"
+##  [2,] "Dillon"      "0"
 ##  [3,] "Delaney"     "0"
 ##  [4,] "Manolo"      "0"
 ##  [5,] "Sarah"       "0"
@@ -3023,7 +3023,7 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 ## [14,] "Summer"      "0"
 ## [15,] "Leah"        "0"
 ## [16,] "Christine"   "0"
-## [17,] "Ashley"      "0"
+## [17,] "Ashley"      "1"
 ## [18,] "Katherine"   "0"
 ## [19,] "James"       "0"
 ## [20,] "Emily"       "0"
@@ -3045,32 +3045,32 @@ Now, if I was calling on you randomly in class, after 10 questions, the spread o
 
 \begin{verbatim}
 ##       name                                                 
-##  [1,] "Ava"         "0" "0" "0" "1" "0" "0" "1" "0" "0" "0"
-##  [2,] "Dillon"      "0" "0" "0" "0" "0" "0" "0" "0" "1" "0"
+##  [1,] "Ava"         "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
+##  [2,] "Dillon"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [3,] "Delaney"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [4,] "Manolo"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [5,] "Sarah"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [6,] "Shannon"     "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
-##  [7,] "Olivia"      "1" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [6,] "Shannon"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [7,] "Olivia"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [8,] "Ebony"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [9,] "Julia"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [10,] "Davi"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [11,] "Gabrielle"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [12,] "Jordan"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [13,] "Tayler"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [13,] "Tayler"      "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
 ## [14,] "Summer"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [15,] "Leah"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [16,] "Christine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "1"
+## [16,] "Christine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [17,] "Ashley"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [18,] "Katherine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [19,] "James"       "0" "0" "0" "0" "1" "0" "0" "0" "0" "0"
+## [18,] "Katherine"   "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
+## [19,] "James"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [20,] "Emily"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [21,] "Cassidy"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [22,] "Maximillion" "0" "0" "0" "0" "0" "0" "0" "1" "0" "0"
-## [23,] "Sierra"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [24,] "Kyle"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [25,] "Diana"       "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
-## [26,] "Amanda"      "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
+## [21,] "Cassidy"     "0" "1" "0" "0" "1" "0" "0" "0" "0" "0"
+## [22,] "Maximillion" "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [23,] "Sierra"      "0" "0" "0" "0" "0" "0" "0" "1" "1" "0"
+## [24,] "Kyle"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "1"
+## [25,] "Diana"       "1" "0" "0" "0" "0" "0" "1" "0" "0" "0"
+## [26,] "Amanda"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 \end{verbatim}
 
 Taking this one step further, we could just draw a name and stop looking at these ugly (no but really they are \textbf{awesome}!) matrices:
@@ -3082,7 +3082,7 @@ Taking this one step further, we could just draw a name and stop looking at thes
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Delaney"
+## [1] "Christine"
 \end{verbatim}
 
 And now we have a way to randomly select an individual based on a multinomial distribution. What fun!
@@ -3318,7 +3318,7 @@ First, we'll estimate it by making our own function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.97631  4.07563
+## [1] 19.987443  4.054351
 \end{verbatim}
 
 Because this one is so common, R has built-in estimators that rely on
@@ -3332,7 +3332,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.97631
+## [1] 19.98744
 \end{verbatim}
 
 \begin{Shaded}
@@ -3342,7 +3342,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.076038
+## [1] 4.054756
 \end{verbatim}
 
 Wow, that was a lot less code. That is the beauty of having these functions available. How do these compare to the answers returned by our function if you scroll back up?
@@ -3360,8 +3360,8 @@ R also has built-in \textbf{maximum likelihood} estimators that provide an exact
 
 \begin{verbatim}
 ##       mean           sd     
-##   19.97631239    2.01881895 
-##  ( 0.02018819) ( 0.01427521)
+##   19.98744254    2.01354180 
+##  ( 0.02013542) ( 0.01423789)
 \end{verbatim}
 
 Only one problem here: R doesn't report the second moment! It reports
@@ -3410,10 +3410,10 @@ To get started, we need to take a guess at what those parameters could be. (Yes,
 
 \begin{verbatim}
 ## $par
-## [1] 19.976100  4.074998
+## [1] 19.987126  4.054514
 ## 
 ## $value
-## [1] 21214.51
+## [1] 21188.34
 ## 
 ## $counts
 ## function gradient 
@@ -3462,9 +3462,9 @@ Look at the structure I'll be damned, it's a list! Hey, we learned about those!
 
 \begin{verbatim}
 ## List of 5
-##  $ par        : num [1:2] 19.98 4.07
-##  $ value      : num 21215
-##  $ counts     : Named int [1:2] 99 NA
+##  $ par        : num [1:2] 19.99 4.05
+##  $ value      : num 21188
+##  $ counts     : Named int [1:2] 101 NA
 ##   ..- attr(*, "names")= chr [1:2] "function" "gradient"
 ##  $ convergence: int 0
 ##  $ message    : NULL
@@ -3480,7 +3480,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.975793  4.071458
+## [1] 19.989372  4.052015
 \end{verbatim}
 
 \begin{Shaded}
@@ -3491,7 +3491,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.97579
+## [1] 19.98937
 \end{verbatim}
 
 \begin{Shaded}
@@ -3502,7 +3502,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.071458
+## [1] 4.052015
 \end{verbatim}
 
 There you have it, a couple of different ways to calculate parameters of the normal distribution using a couple of different approaches each.
@@ -3520,7 +3520,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.96641
+## [1] 19.98252
 \end{verbatim}
 
 \begin{Shaded}
@@ -3532,7 +3532,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##     2.5%    97.5% 
-## 16.06509 23.95483
+## 16.02497 23.97047
 \end{verbatim}
 
 \begin{Shaded}
@@ -3544,7 +3544,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##      25%      75% 
-## 18.60817 21.31751
+## 18.65352 21.34224
 \end{verbatim}
 
 \begin{Shaded}
@@ -3555,7 +3555,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 11.68006 28.63840
+## [1] 11.93960 27.95324
 \end{verbatim}
 
 \hypertarget{next5}{%
@@ -6686,8 +6686,8 @@ Here, we have demonstrated how to communicate the biological predictions of stat
 
 Sometimes it can be difficult to see the forest for the trees (or anything at all if you spend all your time looking through the bottom of a wine glass). When faced with multiple competing explanations for observed phenomena we may represent these by multiple competing models. Model selection helps us see through the fog to tell us which is best supported. But, it doesn't tell you whether any of your models is good. The wine was good.
 
-\hypertarget{introduction}{%
-\section{Introduction}\label{introduction}}
+\hypertarget{intro11}{%
+\section{Introduction}\label{intro11}}
 
 As we have learned in the past couple weeks, we often encounter situations for which there are multiple, competing hypotheses about what factors, or combinations of factors, best explain the observed patterns in our response of interest. This uncertainty arises for two primary reasons:
 
@@ -6736,7 +6736,7 @@ We write the \textbf{null model} like this.
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{data}\NormalTok{(swiss)}
-\NormalTok{null =}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility }\OperatorTok{~}\StringTok{ }\DecValTok{1}\NormalTok{, }\DataTypeTok{data =}\NormalTok{ swiss)}
+\NormalTok{null <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility }\OperatorTok{~}\StringTok{ }\DecValTok{1}\NormalTok{, }\DataTypeTok{data =}\NormalTok{ swiss)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6744,7 +6744,7 @@ Mathemetically, the \texttt{1} just tells R to make a model matrix with a single
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{head}\NormalTok{( }\KeywordTok{model.matrix}\NormalTok{(null) )}
+\KeywordTok{head}\NormalTok{(}\KeywordTok{model.matrix}\NormalTok{(null))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6762,7 +6762,7 @@ Now that we have a \texttt{null} model, we need to make a full model. The \textb
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{full=}\KeywordTok{lm}\NormalTok{(Fertility}\OperatorTok{~}\NormalTok{., }\DataTypeTok{data=}\NormalTok{swiss)}
+\NormalTok{full <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility }\OperatorTok{~}\StringTok{ }\NormalTok{., }\DataTypeTok{data =}\NormalTok{ swiss)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6770,7 +6770,7 @@ Now we perform the forward selection using the \texttt{step()} function. Watch t
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{step}\NormalTok{(}\DataTypeTok{object =}\NormalTok{ null, }\DataTypeTok{scope=}\KeywordTok{list}\NormalTok{(}\DataTypeTok{lower=}\NormalTok{null, }\DataTypeTok{upper=}\NormalTok{full), }\DataTypeTok{direction =}\StringTok{'forward'}\NormalTok{)}
+\KeywordTok{step}\NormalTok{(}\DataTypeTok{object =}\NormalTok{ null, }\DataTypeTok{scope =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{lower =}\NormalTok{ null, }\DataTypeTok{upper =}\NormalTok{ full), }\DataTypeTok{direction =} \StringTok{"forward"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6872,23 +6872,23 @@ Start by fitting some models, we will use the \texttt{swiss} data again this wee
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{data}\NormalTok{(}\StringTok{'swiss'}\NormalTok{)}
+\KeywordTok{data}\NormalTok{(}\StringTok{"swiss"}\NormalTok{)}
 
 \CommentTok{# Fit the model that tests the}
 \CommentTok{# effects of education on the fertility index}
-\NormalTok{  mod_Ed =}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility}\OperatorTok{~}\NormalTok{Education, }\DataTypeTok{data=}\NormalTok{swiss)}
-  
+\NormalTok{mod_Ed <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility }\OperatorTok{~}\StringTok{ }\NormalTok{Education, }\DataTypeTok{data =}\NormalTok{ swiss)}
+
 \CommentTok{# Fit another model that tests}
 \CommentTok{# effects of % Catholic on Fertility}
-\NormalTok{  mod_Cath =}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility}\OperatorTok{~}\NormalTok{Catholic, }\DataTypeTok{data=}\NormalTok{swiss)}
-  
+\NormalTok{mod_Cath <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility }\OperatorTok{~}\StringTok{ }\NormalTok{Catholic, }\DataTypeTok{data =}\NormalTok{ swiss)}
+
 \CommentTok{# Fit a model with additive effects}
 \CommentTok{# of both explanatory variables}
-\NormalTok{  mod_EdCath =}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility}\OperatorTok{~}\NormalTok{Education }\OperatorTok{+}\StringTok{ }\NormalTok{Catholic, }\DataTypeTok{data=}\NormalTok{swiss)}
-  
+\NormalTok{mod_EdCath <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility }\OperatorTok{~}\StringTok{ }\NormalTok{Education }\OperatorTok{+}\StringTok{ }\NormalTok{Catholic, }\DataTypeTok{data =}\NormalTok{ swiss)}
+
 \CommentTok{# Fit a model with multiplicative}
 \CommentTok{# effects of both explanatory variables}
-\NormalTok{  mod_EdxCath =}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility}\OperatorTok{~}\NormalTok{Education}\OperatorTok{*}\NormalTok{Catholic, }\DataTypeTok{data=}\NormalTok{swiss)}
+\NormalTok{mod_EdxCath <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility }\OperatorTok{~}\StringTok{ }\NormalTok{Education }\OperatorTok{*}\StringTok{ }\NormalTok{Catholic, }\DataTypeTok{data =}\NormalTok{ swiss)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6932,13 +6932,13 @@ A glance at the residuals vs fitted seems to indicate that we don't have any con
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Make a pretty plot to make sure we haven't }
-\CommentTok{# completely forgotten about those pesky }
+\CommentTok{# Make a pretty plot to make sure we haven't}
+\CommentTok{# completely forgotten about those pesky}
 \CommentTok{# assumptions from Chapter 9}
-\KeywordTok{ggplot}\NormalTok{(mod_EdxCath, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ .fitted, }\DataTypeTok{y =}\NormalTok{ .resid)) }\OperatorTok{+}\StringTok{ }
+\KeywordTok{ggplot}\NormalTok{(mod_EdxCath, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ .fitted, }\DataTypeTok{y =}\NormalTok{ .resid)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_abline}\NormalTok{(}\DataTypeTok{intercept =} \DecValTok{0}\NormalTok{, }\DataTypeTok{slope =} \DecValTok{0}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Fertility"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Fertility"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(epsilon))) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
 \end{Highlighting}
@@ -6953,10 +6953,10 @@ Let's start by making a list of our models and giving each element (model) in th
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Making a list that holds are models inside it}
-\NormalTok{  mods =}\StringTok{ }\KeywordTok{list}\NormalTok{(mod_Ed, mod_Cath, mod_EdCath, mod_EdxCath)}
+\NormalTok{mods <-}\StringTok{ }\KeywordTok{list}\NormalTok{(mod_Ed, mod_Cath, mod_EdCath, mod_EdxCath)}
 
 \CommentTok{# Give names to each element of the list (each model)}
-  \KeywordTok{names}\NormalTok{(mods) =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'Ed'}\NormalTok{, }\StringTok{'Cath'}\NormalTok{, }\StringTok{'EdCath'}\NormalTok{, }\StringTok{'EdxCath'}\NormalTok{)}
+\KeywordTok{names}\NormalTok{(mods) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Ed"}\NormalTok{, }\StringTok{"Cath"}\NormalTok{, }\StringTok{"EdCath"}\NormalTok{, }\StringTok{"EdxCath"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6970,7 +6970,7 @@ Just as before, we can look at the summary of our model objects that we have sto
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Education only model, we can take a look, like this}
-  \KeywordTok{summary}\NormalTok{(mods}\OperatorTok{$}\NormalTok{Ed)}
+\KeywordTok{summary}\NormalTok{(mods}\OperatorTok{$}\NormalTok{Ed)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7000,7 +7000,7 @@ Just as before, we can look at the summary of our model objects that we have sto
 \CommentTok{# REMEMBER: this model is an object stored in R,}
 \CommentTok{# so we can also look at the names of this summary,}
 \CommentTok{# like this}
-  \KeywordTok{names}\NormalTok{(}\KeywordTok{summary}\NormalTok{(mods}\OperatorTok{$}\NormalTok{Ed))}
+\KeywordTok{names}\NormalTok{(}\KeywordTok{summary}\NormalTok{(mods}\OperatorTok{$}\NormalTok{Ed))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7028,9 +7028,9 @@ And, we could even put them in a data frame with the original model names to com
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{data.frame}\NormalTok{(}
-  \DataTypeTok{model =} \KeywordTok{names}\NormalTok{(mods), }
+  \DataTypeTok{model =} \KeywordTok{names}\NormalTok{(mods),}
   \DataTypeTok{adj_r_squared =} \KeywordTok{c}\NormalTok{(ed_r, cath_r, EdCath_r, EdxCath_r)}
-\NormalTok{  )}
+\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7073,7 +7073,7 @@ We can extract the AIC value for each model in our list by using the \texttt{lap
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mods_AIC <-}\StringTok{ }\KeywordTok{mapply}\NormalTok{(}\DataTypeTok{FUN =} \StringTok{'AIC'}\NormalTok{, mods)}
+\NormalTok{mods_AIC <-}\StringTok{ }\KeywordTok{mapply}\NormalTok{(}\DataTypeTok{FUN =} \StringTok{"AIC"}\NormalTok{, mods)}
 
 \KeywordTok{data.frame}\NormalTok{(}
   \DataTypeTok{Model =} \KeywordTok{names}\NormalTok{(mods),}
@@ -7103,11 +7103,11 @@ Open can of worms\ldots{}
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# First, we need another library}
-  \KeywordTok{library}\NormalTok{(AICcmodavg)}
+\KeywordTok{library}\NormalTok{(AICcmodavg)}
 
 \CommentTok{# Let's start digging into this stuff}
-\CommentTok{# by making a table that can help us along. }
-  \KeywordTok{aictab}\NormalTok{(}\DataTypeTok{cand.set =}\NormalTok{ mods, }\DataTypeTok{modnames =} \KeywordTok{names}\NormalTok{(mods))}
+\CommentTok{# by making a table that can help us along.}
+\KeywordTok{aictab}\NormalTok{(}\DataTypeTok{cand.set =}\NormalTok{ mods, }\DataTypeTok{modnames =} \KeywordTok{names}\NormalTok{(mods))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7160,8 +7160,10 @@ Using model averaging to account for the model uncertainty, we can see that the 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{modavg}\NormalTok{(mods, }\DataTypeTok{parm =} \StringTok{'Education'}\NormalTok{, }\DataTypeTok{modnames =} \KeywordTok{names}\NormalTok{(mods),}
-       \DataTypeTok{conf.level =} \FloatTok{.95}\NormalTok{, }\DataTypeTok{exclude =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{modavg}\NormalTok{(mods,}
+  \DataTypeTok{parm =} \StringTok{"Education"}\NormalTok{, }\DataTypeTok{modnames =} \KeywordTok{names}\NormalTok{(mods),}
+  \DataTypeTok{conf.level =} \FloatTok{.95}\NormalTok{, }\DataTypeTok{exclude =} \OtherTok{TRUE}
+\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7183,8 +7185,10 @@ Using model averaging to account for the model uncertainty, we can see that the 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{modavg}\NormalTok{(mods, }\DataTypeTok{parm =} \StringTok{'Catholic'}\NormalTok{, }\DataTypeTok{modnames =} \KeywordTok{names}\NormalTok{(mods),}
-       \DataTypeTok{conf.level =} \FloatTok{.95}\NormalTok{, }\DataTypeTok{exclude =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{modavg}\NormalTok{(mods,}
+  \DataTypeTok{parm =} \StringTok{"Catholic"}\NormalTok{, }\DataTypeTok{modnames =} \KeywordTok{names}\NormalTok{(mods),}
+  \DataTypeTok{conf.level =} \FloatTok{.95}\NormalTok{, }\DataTypeTok{exclude =} \OtherTok{TRUE}
+\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7206,8 +7210,10 @@ Using model averaging to account for the model uncertainty, we can see that the 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{modavg}\NormalTok{(mods, }\DataTypeTok{parm =} \StringTok{'Education:Catholic'}\NormalTok{, }\DataTypeTok{modnames =} \KeywordTok{names}\NormalTok{(mods),}
-       \DataTypeTok{conf.level =} \FloatTok{.95}\NormalTok{, }\DataTypeTok{exclude =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{modavg}\NormalTok{(mods,}
+  \DataTypeTok{parm =} \StringTok{"Education:Catholic"}\NormalTok{, }\DataTypeTok{modnames =} \KeywordTok{names}\NormalTok{(mods),}
+  \DataTypeTok{conf.level =} \FloatTok{.95}\NormalTok{, }\DataTypeTok{exclude =} \OtherTok{TRUE}
+\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7254,13 +7260,13 @@ First, we need to make a couple of empty vectors to hold our training data and o
 \NormalTok{n <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{(swiss)}
 
 \CommentTok{# Will hold observation of Fertility withheld for each iteration}
-\NormalTok{fert_obs <-}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{'numeric'}\NormalTok{, }\DataTypeTok{length =}\NormalTok{ n)  }
+\NormalTok{fert_obs <-}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{"numeric"}\NormalTok{, }\DataTypeTok{length =}\NormalTok{ n)}
 
 \CommentTok{# Will hold observation of Education withheld for each iteration}
-\NormalTok{ed_obs <-}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{'numeric'}\NormalTok{, }\DataTypeTok{length =}\NormalTok{ n)  }
+\NormalTok{ed_obs <-}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{"numeric"}\NormalTok{, }\DataTypeTok{length =}\NormalTok{ n)}
 
 \CommentTok{# Will hold our prediction for each iteration}
-\NormalTok{fert_pred <-}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{'numeric'}\NormalTok{, }\DataTypeTok{length =}\NormalTok{ n) }
+\NormalTok{fert_pred <-}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{"numeric"}\NormalTok{, }\DataTypeTok{length =}\NormalTok{ n)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7270,26 +7276,25 @@ Now, drop one data point, fit the model, and predict the missing data point one 
 \begin{Highlighting}[]
 \CommentTok{# Repeat this for each row of the data set}
 \CommentTok{# from 1 to n until we have left each row out}
-  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{n)\{}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{n) \{}
 
-\CommentTok{# Sample the data, leaving out the ith row}
-\CommentTok{# These will be our 'training data'}
+  \CommentTok{# Sample the data, leaving out the ith row}
+  \CommentTok{# These will be our 'training data'}
 \NormalTok{  data_train <-}\StringTok{ }\NormalTok{swiss[}\OperatorTok{-}\NormalTok{i, ]}
-  
-\CommentTok{# These will be the data we use for prediction}
-\CommentTok{# We are just dropping the rows that were used for training}
+
+  \CommentTok{# These will be the data we use for prediction}
+  \CommentTok{# We are just dropping the rows that were used for training}
 \NormalTok{  data_pred <-}\StringTok{ }\NormalTok{swiss[i, ]}
 
-\CommentTok{# Fit the model that tests the effects of Education}
-\CommentTok{# on the Fertility}
+  \CommentTok{# Fit the model that tests the effects of Education}
+  \CommentTok{# on the Fertility}
 \NormalTok{  mod_ed <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Fertility }\OperatorTok{~}\StringTok{ }\NormalTok{Education, }\DataTypeTok{data =}\NormalTok{ data_train)}
 
-\CommentTok{# Predict Fertility from the fitted model and store it}
-\CommentTok{# Along with values of Fertility and Education}
+  \CommentTok{# Predict Fertility from the fitted model and store it}
+  \CommentTok{# Along with values of Fertility and Education}
 \NormalTok{  fert_obs[i] <-}\StringTok{ }\NormalTok{swiss}\OperatorTok{$}\NormalTok{Fertility[i]}
 \NormalTok{  ed_obs[i] <-}\StringTok{ }\NormalTok{swiss}\OperatorTok{$}\NormalTok{Education[i]}
 \NormalTok{  fert_pred[i] <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(mod_ed, data_pred)}
-  
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -7318,15 +7323,15 @@ We can add a regression line to the plot to see whether we are over or under pre
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Fit the model}
-\NormalTok{pred_line =}\StringTok{ }\KeywordTok{lm}\NormalTok{(fert_pred }\OperatorTok{~}\StringTok{ }\NormalTok{fert_obs, }\DataTypeTok{data =}\NormalTok{ loo_df)}
+\NormalTok{pred_line <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(fert_pred }\OperatorTok{~}\StringTok{ }\NormalTok{fert_obs, }\DataTypeTok{data =}\NormalTok{ loo_df)}
 
 \CommentTok{# Make predictions}
 \NormalTok{loo_pred <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(pred_line, loo_df)}
-  
+
 \CommentTok{# Add them to the loo_df}
 \NormalTok{loo_df_pred <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(loo_df, loo_pred)}
-  
-\CommentTok{# Plot the line against the observed and predicted Fertility  }
+
+\CommentTok{# Plot the line against the observed and predicted Fertility}
 \KeywordTok{ggplot}\NormalTok{(loo_df_pred, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ fert_obs, }\DataTypeTok{y =}\NormalTok{ fert_pred)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ loo_pred))}
@@ -7342,7 +7347,7 @@ We could also look at the summary of our observed vs predicted regression to see
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Extract the R-squared for observed vs predicted}
-  \KeywordTok{summary}\NormalTok{(pred_line)}\OperatorTok{$}\NormalTok{r.squared}
+\KeywordTok{summary}\NormalTok{(pred_line)}\OperatorTok{$}\NormalTok{r.squared}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7358,6 +7363,632 @@ If we are happy enough with our cross-validation results at this point we can go
 \section{Next steps}\label{next11}}
 
 OMG there's more?? I know, right, you're so lucky. In the first 11 chapters of this book we focused on learning how to use R, how to fit statistical models that represent biological hypotheses, how to assess whether those methods are valid for the data collected, how to make predictions about phenomena of interest from our models, and now how to choose between multiple competing models. All of this has relied heavily on assumptions of linear models. Fundamental among those assumptions is that our response variables of interest (and their residuals) conform to the normal distribution. In \protect\hyperlink{Chapter12}{Chapter 12}, we will free ourselves of those shackles by stepping into the world of generalized linear models.
+
+\hypertarget{generalized-linear-models-logistic-regression}{%
+\chapter{Generalized linear models: logistic regression}\label{generalized-linear-models-logistic-regression}}
+
+``Life or death'' is a phrase we reserve for situations that are not normal. Coincidentally, life or death is also a binary variable, and therefore it's residuals are also not normal. Will these zebra mussels live or die? That will be our next adventure, but for that we need the generalized linear model (GLM).
+
+\hypertarget{intro12}{%
+\section{Introduction}\label{intro12}}
+
+This week we will start to dive into the world of generalized linear models and their implementation and interpretation in R. Before we can do that, we will talk about why we might like to use these methods, and the fact that the GLM actually represents a broad class of models that are highly flexible and incredibly useful. By the end of this week, we want you to be thinking of this as a kind of ``go-to'' tool for modeling complex, real-world data. Then, we will continue to layer complexity on this framework to extend it further over the next couple of chapters.
+
+We'll work with some packages from the \texttt{tidyverse} and we'll use the \texttt{StillwaterChoice} data from the class data folder. You can go ahead and load those whenever you are ready to get started.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{Assumptions12}{%
+\section{Assumptions of linear models}\label{Assumptions12}}
+
+Wait, what? I thought we were talking about GLMs in this chapter? We are. The first thing you need to know is that linear models are just a special case of the GLM. That is, the linear model assumes a certain error distribution (the normal) that helps things work smoothly and correctly. The next few weeks of class are all about relaxing the assumptions of linear models so we can actually use them in the real world.
+
+Let's take another look at the assumptions of linear models:
+
+Here are the basic assumptions that we explicitly make when we use linear models, just in case you've forgotten them:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Residuals are normally distributed with a mean of zero
+\item
+  Independence of observations (residuals)
+\item
+  Homogeneity of variances
+\item
+  Linear(izeable) relationship between X and Y
+\end{enumerate}
+
+\hypertarget{assumption-1-normality-of-residuals}{%
+\subsection{Assumption 1: normality of residuals}\label{assumption-1-normality-of-residuals}}
+
+We've seen these before, but let's recap. For assumption 1, we are assuming a couple of implicit things: 1. The variable is \emph{continuous} (it must be if it's error structure is normal), and 2. The error in our model is normally distributed. In reality, this is probably the least important assumption of linear models, and really only matters if we are trying to make predictions from the models that we make. Of course, we are often concerned with making predictions from the models that we make, so we can see why this might be important. However, more often we are in extreme violation of this assumption in some combination with assumption 4 above to such a degree that it actually does matter. For example, a response variable that is binomial (1 or zero) or multinomial in nature cannot possibly have normally distributed errors with respect to x unless there is absolutely no relationship between X and Y, right? So, if we wanted to predict the probability of patients dying from some medical treatment, or the presence/absence of species across a landscape then we \emph{can't} use the linear models we've been using up until now.
+
+\hypertarget{assumption-2-independence-of-observations}{%
+\subsection{Assumption 2: independence of observations}\label{assumption-2-independence-of-observations}}
+
+This time we'll separate assumption 2 into two components: collinearity and autocorrelation of errors. Remember that the manifestation of these problems is in the precision of our coefficient estimates, and this has the potential to change the Type-I/II error rates in our models, causing us to draw false conclusions about which variables are important. As we discussed earlier in the course we expect to see some collinearity between observations, and we can deal with balancing this in our modeling through the use of model selection techniques to reduce Type-I and Type-II error. In the next couple of weeks, we will examine tools that will help us determine whether or not collinearity is actually causing problems in our models that go beyond minor nuisances. As for the second part, autocorrelation, we can actually use formulations of the GLM that use `generalized least squares' to include auto-regressive correlation matrices in our analysis that will allow us to relax this assumption of linear models and improve the precision of our parameter estimates. Well, we \emph{could}, we won't do that here.
+
+\hypertarget{assumption-3-homogeneity-of-variances}{%
+\subsection{Assumption 3: homogeneity of variances}\label{assumption-3-homogeneity-of-variances}}
+
+Previously, we looked at ways to reduce this issue by introducing categorical explanatory variables to our models. During the coming weeks, we will look at models that allow us to relax this assumption further through the use of weighted least squares and random effects, which can be applied to a wide range of regression methods from linear models to GLMs and GLMMs in \protect\hyperlink{Chapter14}{Chapter 14} and \protect\hyperlink{Chapter15}{Chapter 15}.
+
+\hypertarget{assumption-4-linearity-and-additivity}{%
+\subsection{Assumption 4: linearity and additivity}\label{assumption-4-linearity-and-additivity}}
+
+We've already looked at a couple of ways to deal with violations of these two assumptions such as data transformation and/or polynomial formulations of the linear model. We will continue to apply these concepts during the next several weeks.
+
+\hypertarget{introducing-the-glm}{%
+\section{Introducing the GLM}\label{introducing-the-glm}}
+
+There are a number of situations that should just scream ``\textbf{GLM!!!}'' at you. The majority of these are easy to identify because you will know right away that the response variable in which you are interested is clearly not a continuous or normally distributed variable. This is the number one reason for moving into the GLM framework for most people. These include response variables such as counts (integers) and binary (1 or 0) or categorical variables (``Jane'', ``Bill'', ``Tracy''), and even probabilities or proportions.
+
+The standard GLM consists of three major components:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  A random variable (Y) that is our response of interest,
+\item
+  Linear predictor(s) of Y, called X, and
+\item
+  A invertible ``link function'' that projects the expectation of Y onto some space based on assumptions about the distributional family of Y.
+\end{enumerate}
+
+The first two components are familiar to us. They are the \textbf{exact same} basic components of \textbf{any} regression formula that takes the following form:
+
+\(Y_{i,j} = \beta_0 + \beta_j \cdot X_{i,j}\),
+
+or
+
+\(Y = mX + b\),
+
+if you prefer.
+
+So, this much should be familiar. The major change from the linear models with which we have been working is the addition of this invertible link function, and it is the component from which the GLM inherits its name. The link function is just a way for us to put the expectation of the response within the context of an asymptotically normal distribution so that we can relax the assumptions of the linear model to accommodate new data types. In essence, it is very similar to the kinds of transformations that we talked about earlier in the semester, but is used during estimation rather than before hand.
+
+To solve for the coefficients (betas) of a GLM, we move fully into the realm of maximum likelihood, with which you are all undoubtedly still familiar thanks to your close reading of \protect\hyperlink{Chapter5}{Chapter 5}. A given link function is used for the corresponding distribution that we assume for our data set, and a likelihood for that distribution can be defined such that we can calculate the likelihood of the data given our parameter estimates in a manner similar to the method we used for the standard normal distribution earlier this semester. Within this framework, we input different values (or guesses) about the parameter values that maximize the likelihood of our data one step at a time. Once the change in likelihood becomes sufficiently small derivative of y with respect to x = 0), we accept that the algorithm has `converged' on the optimal estimates for our model parameters (our \(\beta_{i,j}\)), and the algorithm stops. This all assumes that the parameters follow defined sampling distributions - you guessed it, the normal! You do not need to be able to do this by hand (thank goodness for R!), but you do need to understand what is going on so you can troubleshoot when R says that the model failed to converge\ldots{}
+
+Let's take a look at a few variable types that we might consider to be common applications for GLM in biology and ecology. We will cover each of these below in detail, here is a list so you know what is coming:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Binary response (\protect\hyperlink{logistic}{Chapter 12.4})
+\item
+  Count data (Poisson) (\protect\hyperlink{Chapter13}{Chapter 13})
+\item
+  Overdispersed count data (negative binomial, also \protect\hyperlink{Chapter13}{Chapter 13})
+\end{enumerate}
+
+\hypertarget{logistic}{%
+\section{Binary (logistic) regression}\label{logistic}}
+
+Logistic regression generally is reserved for the case in which we have a binary response that, by definition, can take on values of either 1 or 0. These values can be expressed as outcomes of individual trials (Bernoulli) or as outcomes of some number of trials (Binomial). These data types are common in biological and ecological data analyses, and thus it is important that you understand how to analyze these data when you encounter them because \textbf{linear models will not accommodate this data type}. The easiest way to look at what is going on is to use a worked example.
+
+Let's read in another smolt data set that we have not yet played with (it's the last new fish data set for the course, so soak it all up!).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{choice <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/StillwaterChoiceData.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Look at the first few rows of data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(choice)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   path year hatchery length mass date flow
+## 1    0 2010        1    176   57  118  345
+## 2    0 2005        1    205  101  128 1093
+## 3    0 2010        1    180   56  118  345
+## 4    0 2010        1    193   74  118  345
+## 5    0 2005        1    189   76  128 1093
+## 6    0 2010        1    180   65  118  345
+\end{verbatim}
+
+\hypertarget{data-explanation}{%
+\subsection{Data Explanation}\label{data-explanation}}
+
+These data are from a study that examined factors affecting path choice by wild and hatchery-reared endangered Atlantic salmon smolts during seaward migration in the Penobscot River, Maine. State, local, and federal fishery managers were interested in understanding what factors affected migratory routing through the lower river because there were different numbers of dams, with different estimated smolt mortality rates, on either side of a large island hydropower project in this system. If managers could understand factors influencing migratory route, they might be able to manipulate flows, stocking dates, and dam operation to improve survival of these endangered fish. Furthermore, the results of the study were used to predict the effects of dam removal, and hydropower re-allocation in the lower river on population-level consequences for these fish. These data were part of a larger analysis:
+
+Stich, D. S., M. M. Bailey, and J. D. Zydlewski. 2014. Survival of Atlantic salmon (\emph{Salmo salar}) smolts through a hydropower complex. Journal of Fish Biology 85:1074-1096.
+
+The data consist of the following variables:
+
+\texttt{path}: The migratory route used by individual fish. The choices were main-stem of the river (0) or the Stillwater Branch (1) around the island.
+
+\texttt{year}: The year in which individual fish were tagged and relocated using acoustic telemetry.
+
+\texttt{hatchery}: An indicator describing if fish were reared in the wild (0) or in the federal conservation hatchery (1)
+
+\texttt{length}: Fish length (in mm)
+
+\texttt{mass}: Fish mass (in grams)
+
+\texttt{date}: Ordinal date on which the fish entered the hydrocomplex determined from time-stamps on acoustic receivers
+
+\texttt{flow}: Discharge recorded at the USGS gauge in the headpond of the dam several kilometers upstream of the hydropower complex.
+
+\textbf{NOTE:} the results of this analysis won't look like the results from the paper just yet. We will talk about why in a couple of weeks when we introduce generalized linear mixed models.
+
+\hypertarget{data-analysis}{%
+\subsection{Data analysis}\label{data-analysis}}
+
+We are going to use the 1/0 binary data to estimate the effects of a number of covariates of interest on the probability that an individual fish used the Stillwater Branch for migration in each year of this study using logistic regression.
+
+In order to do this, we will use the `logit' link function, which can be defined as:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{logit <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+  \KeywordTok{log}\NormalTok{(x }\OperatorTok{/}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{x))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+The inverse of the logit function is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{invlogit <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+  \KeywordTok{exp}\NormalTok{(x) }\OperatorTok{/}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\KeywordTok{exp}\NormalTok{(x))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+We will use this function to transform the probability of using the Stillwater Branch (0 - 1) onto an asymptotically normal x-y space. So, logit( p(Stillwater) ) is ``normal'' way down on the inside of our models.
+
+If our response, \texttt{path} is a binary variable where 1 = Stillwater and 0 = mainstem for each fish 1 to \emph{n}, we can think of p(Stillwater Branch) as:
+
+\(p(Stillwater) = \frac{\sum{path}}{n}\)
+
+and the logit of p(Stillwater Branch) can assumed to be normally distributed with a mean of \mu.
+
+\(logit(p) ~ Normal(\mu, \sigma^{2})\)
+
+Now that we know we are doing \emph{more or less} the same thing let's move on with fitting the model.
+
+First, since we are interested in the fixed effects of year, and not the linear trend through time, we need to convert year to factor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{choice}\OperatorTok{$}\NormalTok{year <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(choice}\OperatorTok{$}\NormalTok{year)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, if we want to test hypotheses about the influences of explanatory variables on the probability of using the Stillwater Branch, we could make models to represent those hypotheses. For example, if we wanted to test whether \texttt{flow} had a significant influence on \texttt{path} across \texttt{year}s, then we could build a model that looks like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flow_mod <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{flow, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\end{Highlighting}
+\end{Shaded}
+
+This is the GLM analogue to ANCOVA and it should look pretty much identical except that we now use \texttt{glm()} and we have to specify the \texttt{family} for the sampling distribution depending on what type of data we have. You can see what families are implemented by running \texttt{?glm} and scrolling down to the \texttt{family} argument in the help file. If you don't see the one you are looking for, don't worry - it has probably been implented in another package somewhere!
+
+We could make another model that investigates effects of \texttt{length} instead of flow:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{len_mod <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{length, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\end{Highlighting}
+\end{Shaded}
+
+Or a model that includes both with an annoying name:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flow_len_mod <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{flow }\OperatorTok{+}\StringTok{ }\NormalTok{length, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\end{Highlighting}
+\end{Shaded}
+
+We could look at these individually to determine variable-level significance using p-values, or compare them as competing explanations using Akaike information criterion (AIC), which we discussed last week.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{AIC}\NormalTok{(flow_mod, len_mod, flow_len_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              df      AIC
+## flow_mod      7 565.0131
+## len_mod       7 570.6512
+## flow_len_mod  8 565.7209
+\end{verbatim}
+
+But, we can also streamline this to get other information about the models. To do this:
+
+\textbf{First}, let's define a slightly more complex set of models based on \emph{a priori} combinations of explanatory variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make an empty list to hold the models}
+\NormalTok{mods <-}\StringTok{ }\KeywordTok{list}\NormalTok{()}
+
+\CommentTok{# Now, add models to the list. Stop and think about what each one means.}
+\NormalTok{mods[[}\DecValTok{1}\NormalTok{]] <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{hatchery }\OperatorTok{+}\StringTok{ }\NormalTok{length }\OperatorTok{+}\StringTok{ }\NormalTok{flow, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{2}\NormalTok{]] <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{flow, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{3}\NormalTok{]] <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{hatchery, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{4}\NormalTok{]] <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{length, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{5}\NormalTok{]] <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{length }\OperatorTok{+}\StringTok{ }\NormalTok{hatchery, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{6}\NormalTok{]] <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{length }\OperatorTok{+}\StringTok{ }\NormalTok{flow, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{7}\NormalTok{]] <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{hatchery }\OperatorTok{+}\StringTok{ }\NormalTok{flow, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Next}, give the models some names using the formulas for each of the models. \emph{Remember}: models are stored as list objects in R, and each of those list objects (models) has names. We can reference those names using the \texttt{\$} notation, and from there we can access the actual model \texttt{formula} from the \texttt{call}. The third element of this \texttt{formula} object contains the explanatory variables!! Whoa!
+
+We can extract the \texttt{formula} for each model (which is an element in the \texttt{mods} list) using a \texttt{for} loop to assign them one at a time. Here, we are assigning the i\textsuperscript{th} formula to be the name of the i\textsuperscript{th} element in the list \texttt{mods}. Nifty.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Assign the formula for each of the models as the name}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(mods)) \{}
+  \KeywordTok{names}\NormalTok{(mods)[i] <-}\StringTok{ }\KeywordTok{as.character}\NormalTok{(mods[[i]]}\OperatorTok{$}\NormalTok{call}\OperatorTok{$}\NormalTok{formula)[}\DecValTok{3}\NormalTok{]}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we use the \texttt{AICcmodavg} package to make a model selection table like we did in \protect\hyperlink{a-prior}{Chapter 11.4}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Load the library}
+\KeywordTok{library}\NormalTok{(AICcmodavg)}
+
+\CommentTok{# Make the model selection table}
+\NormalTok{mod_table <-}\StringTok{ }\KeywordTok{aictab}\NormalTok{(}\DataTypeTok{cand.set =}\NormalTok{ mods, }\DataTypeTok{modnames =} \KeywordTok{names}\NormalTok{(mods))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{interpreting-the-results}{%
+\subsection{Interpreting the results}\label{interpreting-the-results}}
+
+This pretty much proceeds the same way for GLM as it does for linear models until we get to making predictions of the response based on our best model.
+
+Our model selection table is an object in R (\emph{right}?), and we can reference that object using \texttt{\$} notation, matrix notation \texttt{{[}\ ,\ {]}}, or by calling rownames to get the index for each of the models. Let's use this approach to get the best model from our candidate set. Here is a worked example in the code that follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Print the table}
+\NormalTok{mod_table}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Model selection based on AICc:
+## 
+##                                 K   AICc Delta_AICc AICcWt Cum.Wt      LL
+## year + flow                     7 565.16       0.00   0.31   0.31 -275.51
+## year + hatchery + flow          8 565.23       0.07   0.30   0.61 -274.52
+## year + length + flow            8 565.91       0.75   0.21   0.82 -274.86
+## year + hatchery + length + flow 9 567.12       1.96   0.12   0.93 -274.44
+## year + hatchery                 7 569.50       4.34   0.04   0.97 -277.68
+## year + length                   7 570.80       5.64   0.02   0.99 -278.33
+## year + length + hatchery        8 571.37       6.21   0.01   1.00 -277.59
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Look at the structure just to show that it is, indeed, an object:}
+\KeywordTok{str}\NormalTok{(mod_table)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Classes 'aictab' and 'data.frame':	7 obs. of  8 variables:
+##  $ Modnames  : Factor w/ 7 levels "year + flow",..: 1 3 6 4 2 5 7
+##  $ K         : num  7 8 8 9 7 7 8
+##  $ AICc      : num  565 565 566 567 570 ...
+##  $ Delta_AICc: num  0 0.0674 0.7506 1.9557 4.3408 ...
+##  $ ModelLik  : num  1 0.967 0.687 0.376 0.114 ...
+##  $ AICcWt    : num  0.3078 0.2976 0.2115 0.1158 0.0351 ...
+##  $ LL        : num  -276 -275 -275 -274 -278 ...
+##  $ Cum.Wt    : num  0.308 0.605 0.817 0.933 0.968 ...
+\end{verbatim}
+
+Look at the \texttt{rownames} of the table. These \texttt{rownames} are the index for each of our models as they appear in the \texttt{mods} object, and we can use the index to reference objects inside of the \texttt{mods} list\ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rownames}\NormalTok{(mod_table)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "2" "7" "6" "1" "3" "4" "5"
+\end{verbatim}
+
+This tells us that the rowname for the best model (the one at the top of the table) is . That means that our best model is stored in position 2 of our model list that we named `mods'. Let's double check it to make sure:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mods[[}\DecValTok{2}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:  glm(formula = path ~ year + flow, family = binomial, data = choice)
+## 
+## Coefficients:
+## (Intercept)     year2006     year2009     year2010     year2011     year2012  
+##   -2.911624    -0.518632     0.243194    -0.043979    -0.814334    -0.764289  
+##        flow  
+##    0.001642  
+## 
+## Degrees of Freedom: 758 Total (i.e. Null);  752 Residual
+## Null Deviance:	    580.2 
+## Residual Deviance: 551 	AIC: 565
+\end{verbatim}
+
+This looks pretty darn good! We could also do a summary of the model to get the coefficient estimates and the significance codes for the estimated coefficients:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(mods[[}\DecValTok{2}\NormalTok{]])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = path ~ year + flow, family = binomial, data = choice)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.2183  -0.5757  -0.4401  -0.3564   2.4577  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(>|z|)    
+## (Intercept) -2.9116243  0.7981931  -3.648 0.000265 ***
+## year2006    -0.5186319  0.6237029  -0.832 0.405671    
+## year2009     0.2431939  0.4615202   0.527 0.598235    
+## year2010    -0.0439789  0.6525993  -0.067 0.946271    
+## year2011    -0.8143343  0.4029438  -2.021 0.043284 *  
+## year2012    -0.7642890  0.5137641  -1.488 0.136849    
+## flow         0.0016416  0.0006195   2.650 0.008052 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 580.15  on 758  degrees of freedom
+## Residual deviance: 551.01  on 752  degrees of freedom
+## AIC: 565.01
+## 
+## Number of Fisher Scoring iterations: 5
+\end{verbatim}
+
+Cool!! But, what if we wanted the script to always grab the summary of the top model in our model selection table no matter what the \texttt{rowname} was? Well, in that case, we could do this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(mods[[}\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{rownames}\NormalTok{(mod_table[}\DecValTok{1}\NormalTok{, ]))]])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = path ~ year + flow, family = binomial, data = choice)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.2183  -0.5757  -0.4401  -0.3564   2.4577  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(>|z|)    
+## (Intercept) -2.9116243  0.7981931  -3.648 0.000265 ***
+## year2006    -0.5186319  0.6237029  -0.832 0.405671    
+## year2009     0.2431939  0.4615202   0.527 0.598235    
+## year2010    -0.0439789  0.6525993  -0.067 0.946271    
+## year2011    -0.8143343  0.4029438  -2.021 0.043284 *  
+## year2012    -0.7642890  0.5137641  -1.488 0.136849    
+## flow         0.0016416  0.0006195   2.650 0.008052 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 580.15  on 758  degrees of freedom
+## Residual deviance: 551.01  on 752  degrees of freedom
+## AIC: 565.01
+## 
+## Number of Fisher Scoring iterations: 5
+\end{verbatim}
+
+Here we are asking for the \texttt{rowname} of the first row in our model selection table. We have to convert that to a number from a character string to reference the index in the \texttt{mods} list, and then we can summarize the best model. Another way to do this is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# First, get the number corresponding to the list index for the best}
+\CommentTok{# model in the candidate set}
+\NormalTok{best <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{rownames}\NormalTok{(mod_table[}\DecValTok{1}\NormalTok{, ]))}
+
+\CommentTok{# Now, get the summary for the model in mods that was the best}
+\KeywordTok{summary}\NormalTok{(mods[[best]])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = path ~ year + flow, family = binomial, data = choice)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.2183  -0.5757  -0.4401  -0.3564   2.4577  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(>|z|)    
+## (Intercept) -2.9116243  0.7981931  -3.648 0.000265 ***
+## year2006    -0.5186319  0.6237029  -0.832 0.405671    
+## year2009     0.2431939  0.4615202   0.527 0.598235    
+## year2010    -0.0439789  0.6525993  -0.067 0.946271    
+## year2011    -0.8143343  0.4029438  -2.021 0.043284 *  
+## year2012    -0.7642890  0.5137641  -1.488 0.136849    
+## flow         0.0016416  0.0006195   2.650 0.008052 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 580.15  on 758  degrees of freedom
+## Residual deviance: 551.01  on 752  degrees of freedom
+## AIC: 565.01
+## 
+## Number of Fisher Scoring iterations: 5
+\end{verbatim}
+
+Since this is really the same thing as ANCOVA we can use the \texttt{Anova()} function from the \texttt{car} package to get an ANCOVA-like summary for the model to look at significance of our main effects in an Analysis of Deviance table:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(car)}
+\KeywordTok{Anova}\NormalTok{(mods[[best]])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Deviance Table (Type II tests)
+## 
+## Response: path
+##      LR Chisq Df Pr(>Chisq)   
+## year  12.8043  5   0.025283 * 
+## flow   7.4471  1   0.006354 **
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+Here, we see that there are significant effects of both \texttt{year} and \texttt{flow} on our response, \texttt{path}. But, how on Earth do we communicate these effects?
+
+\hypertarget{making-predictions}{%
+\subsection{Making predictions}\label{making-predictions}}
+
+The first thing to remember here is that we have used a link function to estimate this model, so we cannot use the same method as before to make predictions about our response from the model coefficients.
+
+The second thing to remember here is that by definition we have used an \emph{invertible} link function to estimate this model so the previous statement is a lie and we actually can use the same method as before to make predictions about our response from the model coefficients. We just need to add an extra step so that we can invert our predictions about the expected value of Y with respect to X.
+
+Confused? Yeah, it's a little confusing. As always an example always goes a long way\ldots{}
+
+Let's start by grabbing the summary for our \texttt{best} model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{c.res <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{summary}\NormalTok{(mods[[best]])}\OperatorTok{$}\NormalTok{coefficients)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can look at the coefficient estimates. These estimates may not make a lot of intuitive sense at first. That is because they are on the \textbf{logit} scale.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{c.res}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 Estimate   Std..Error     z.value     Pr...z..
+## (Intercept) -2.911624325 0.7981931477 -3.64776913 0.0002645272
+## year2006    -0.518631856 0.6237029032 -0.83153670 0.4056705026
+## year2009     0.243193850 0.4615202282  0.52694083 0.5982346820
+## year2010    -0.043978930 0.6525992875 -0.06739041 0.9462709073
+## year2011    -0.814334317 0.4029437518 -2.02096276 0.0432836201
+## year2012    -0.764288967 0.5137640800 -1.48762632 0.1368494687
+## flow         0.001641583 0.0006194926  2.64988401 0.0080519409
+\end{verbatim}
+
+If it helps, we can make some predictions. Let's say we want to ask \textbf{what was the mean probability of using the Stillwater Branch in 2006 under average flow?}. To answer that question, we would do:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Remember:  y = mx + b}
+\NormalTok{logit_pred2006 <-}\StringTok{ }\FloatTok{-2.91162} \OperatorTok{+}\StringTok{ }\FloatTok{0.00164} \OperatorTok{*}\StringTok{ }\KeywordTok{mean}\NormalTok{(choice}\OperatorTok{$}\NormalTok{flow)}
+\end{Highlighting}
+\end{Shaded}
+
+This is the prediction on the logit scale that we used to fit the model:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(logit_pred2006)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.721732
+\end{verbatim}
+
+And here it is on the real (probability) scale:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{invlogit}\NormalTok{(logit_pred2006)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1516482
+\end{verbatim}
+
+So, we would predict that about 15\% of the fish used the Stillwater Branch during average flow periods in 2006. But what if we wanted to see the range of responses to flows across all years so we could compare years?
+
+We can do this the same way we did in \protect\hyperlink{Chapter10}{Chapter 10} with linear models! Now, instead of the \texttt{interval}, we need to tell R whether we want the predictions on the \texttt{link} scale or the \texttt{real} scale, and if it is on the \texttt{link} scale, we'll want to tell R that we need the estimated standard errors (\texttt{se.fit\ =\ TRUE}) so we can derive 95\% confidence intervals on the logit scale before we convert them back into probabilities. Finally, we will convert the predictions to the real scale using the \texttt{invlogit()} function we wrote inside a call to \texttt{apply()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make predictions from the best model}
+\NormalTok{logit_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{predict}\NormalTok{(mods[[best]], }\DataTypeTok{type =} \StringTok{"link"}\NormalTok{, }\DataTypeTok{se.fit =} \OtherTok{TRUE}\NormalTok{))}
+
+\CommentTok{# Calculate confidence intervals as 1.96 * standard error}
+\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{lwr <-}\StringTok{ }\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{fit }\OperatorTok{+}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{se.fit}
+\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{upr <-}\StringTok{ }\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{fit }\OperatorTok{-}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{se.fit}
+
+\CommentTok{# Invert the link function}
+\NormalTok{real_preds <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(logit_preds, }\DecValTok{2}\NormalTok{, invlogit)}
+
+\CommentTok{# Combine the predictions with the original data}
+\NormalTok{choice_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(choice, real_preds)}
+\end{Highlighting}
+\end{Shaded}
+
+Go ahead and have a look at the \texttt{logit\_preds} and \texttt{real\_preds} objects to make sure you understand what we just did.
+
+Now, we can finish by plotting our predictions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(choice_preds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ flow, }\DataTypeTok{y =}\NormalTok{ fit, }\DataTypeTok{fill =}\NormalTok{ year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr, }\DataTypeTok{fill =}\NormalTok{ year), }\DataTypeTok{alpha =} \FloatTok{0.25}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Flow ( "}\NormalTok{, m}\OperatorTok{^}\DecValTok{3}\NormalTok{, }\StringTok{"\textbackslash{}u00b7"}\NormalTok{, s}\OperatorTok{^-}\DecValTok{1}\NormalTok{, }\StringTok{")"}\NormalTok{))) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-344-1.pdf}
+
+You can see that, in general, there is a relatively low probability of an individual fish using the Stillwater Branch, but we see increasing probability of using that route with increasing \texttt{flow}.
+
+\hypertarget{next12}{%
+\section{Next steps}\label{next12}}
+
+Here we have demonstrated similarities between the GLM and the models with which we have worked previously. You should realize now that the linear models we've been using are really just a special kind of GLM that uses a ``normal'' or ``Gaussian'' error distribution. If we think about what kind of data we actually have, this can open up lots of other ``non-normal'' options without scaring the life out of us! Hopefully, logistic regression is now a useful tool in your statistical hardware box. Next, we'll look at how to keep extending this GLM framework for analysis of \textbf{count} data in \protect\hyperlink{Chapter13}{Chapter 13}.
 
   \bibliography{book.bib,packages.bib}
 

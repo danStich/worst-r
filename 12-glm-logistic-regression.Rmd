@@ -1,0 +1,368 @@
+
+# Generalized linear models: logistic regression
+
+<img src="images/veligers.jpg" alt="">
+<p style="font-family: times, serif; font-size:.9em; font-style:italic">
+"Life or death" is a phrase we reserve for situations that are not normal. Coincidentally, life or death is also a binary variable, and therefore it's residuals are also not normal. Will these zebra mussels live or die? That will be our next adventure, but for that we need the generalized linear model (GLM).</p>
+
+
+## Introduction {#intro12}
+
+This week we will start to dive into the world of generalized linear models and their implementation and interpretation in R. Before we can do that, we will talk about why we might like to use these methods, and the fact that the GLM actually represents a broad class of models that are highly flexible and incredibly useful. By the end of this week, we want you to be thinking of this as a kind of "go-to" tool for modeling complex, real-world data. Then, we will continue to layer complexity on this framework to extend it further over the next couple of chapters.
+
+We'll work with some packages from the `tidyverse` and we'll use the `StillwaterChoice` data from the class data folder. You can go ahead and load those whenever you are ready to get started.
+
+```{r, warning = FALSE, message = FALSE}
+library(tidyverse)
+
+```
+
+## Assumptions of linear models {#Assumptions12}
+
+Wait, what? I thought we were talking about GLMs in this chapter? We are. The first thing you need to know is that linear models are just a special case of the GLM. That is, the linear model assumes a certain error distribution (the normal) that helps things work smoothly and correctly. The next few weeks of class are all about relaxing the assumptions of linear models so we can actually use them in the real world.
+
+Let's take another look at the assumptions of linear models:
+
+Here are the basic assumptions that we explicitly make when we use linear models, just in case you've forgotten them:
+
+ 
+1. Residuals are normally distributed with a mean of zero
+
+2. Independence of observations (residuals)
+   
+3. Homogeneity of variances
+
+4. Linear(izeable) relationship between X and Y
+
+
+### Assumption 1: normality of residuals
+
+We've seen these before, but let's recap. For assumption 1, we are assuming a couple of implicit things: 1. The variable is *continuous* (it must be if it's error structure is normal), and 2. The error in our model is normally distributed. In reality, this is probably the least important assumption of linear models, and really only matters if we are trying to make predictions from the models that we make. Of course, we are often concerned with making predictions from the models that we make, so we can see why this might be important. However, more often we are in extreme violation of this assumption in some combination with assumption 4 above to such a degree that it actually does matter. For example, a response variable that is binomial (1 or zero) or multinomial in nature cannot possibly have normally distributed errors with respect to x unless there is absolutely no relationship between X and Y, right? So, if we wanted to predict the probability of patients dying from some medical treatment, or the presence/absence of species across a landscape then we *can't* use the linear models we've been using up until now.
+
+
+### Assumption 2: independence of observations
+
+This time we'll separate assumption 2 into two components: collinearity and autocorrelation of errors. Remember that the manifestation of these problems is in the precision of our coefficient estimates, and this has the potential to change the Type-I/II error rates in our models, causing us to draw false conclusions about which variables are important. As we discussed earlier in the course we expect to see some collinearity between observations, and we can deal with balancing this in our modeling through the use of model selection techniques to reduce Type-I and Type-II error. In the next couple of weeks, we will examine tools that will help us determine whether or not collinearity is actually causing problems in our models that go beyond minor nuisances. As for the second part, autocorrelation, we can actually use formulations of the GLM that use 'generalized least squares' to include auto-regressive correlation matrices in our analysis that will allow us to relax this assumption of linear models and improve the precision of our parameter estimates. Well, we *could*, we won't do that here.
+
+
+### Assumption 3: homogeneity of variances
+Previously, we looked at ways to reduce this issue by introducing  categorical explanatory variables to our models. During the coming weeks, we will look at models that allow us to relax this assumption further through the use of weighted least squares and random effects, which can be applied to a wide range of regression methods from linear models to GLMs and GLMMs in [Chapter 14](#Chapter14) and [Chapter 15](#Chapter15).
+
+
+### Assumption 4: linearity and additivity
+We've already looked at a couple of ways to deal with violations of these two assumptions such as data transformation and/or polynomial formulations of the linear model. We will continue to apply these concepts during the next several weeks.
+
+
+## Introducing the GLM
+There are a number of situations that should just scream "**GLM!!!**" at you. The majority of these are easy to identify because you will know right away that the response variable in which you are interested is clearly not a continuous or normally distributed variable. This is the number one reason for moving into the GLM framework for most people. These include response variables such as counts (integers) and binary (1 or 0) or categorical variables ("Jane", "Bill", "Tracy"), and even probabilities or proportions.
+
+
+The standard GLM consists of three major components:
+
+1. A random variable (Y) that is our response of interest,
+
+2. Linear predictor(s) of Y, called X, and
+
+3. A invertible "link function" that projects the expectation of Y onto some space based on assumptions about the distributional family of Y.
+
+The first two components are familiar to us. They are the **exact same** basic components of **any** regression formula that takes the following form:
+
+$Y_{i,j} = \beta_0 + \beta_j \cdot X_{i,j}$, 
+
+or
+
+$Y = mX + b$, 
+
+if you prefer.
+
+So, this much should be familiar. The major change from the linear models with which we have been working is the addition of this invertible link function, and it is the component from which the GLM inherits its name. The link function is just a way for us to put the expectation of the response within the context of an asymptotically normal distribution so that we can relax the assumptions of the linear model to accommodate new data types. In essence, it is very similar to the kinds of transformations that we talked about earlier in the semester, but is used during estimation rather than before hand.
+
+To solve for the coefficients (betas) of a GLM, we move fully into the realm of maximum likelihood, with which you are all undoubtedly still familiar thanks to your close reading of [Chapter 5](#Chapter5). A given link function is used for the corresponding distribution that we assume for our data set, and a likelihood for that distribution can be defined such that we can calculate the likelihood of the data given our parameter estimates in a manner similar to the method we used for the standard normal distribution earlier this semester. Within this framework, we input different values (or guesses) about the parameter values that maximize the likelihood of our data one step at a time. Once the change in likelihood becomes sufficiently small derivative of y with respect to x = 0), we accept that the algorithm has 'converged' on the optimal estimates for our model parameters (our $\beta_{i,j}$), and the algorithm stops. This all assumes that the parameters follow defined sampling distributions - you guessed it, the normal! You do not need to be able to do this by hand (thank goodness for R!), but you do need to understand what is going on so you can troubleshoot when R says that the model failed to converge...
+
+Let's take a look at a few variable types that we might consider to be common applications for GLM in biology and ecology. We will cover each of these below in detail, here is a list so you know what is coming:
+
+
+1. Binary response ([Chapter 12.4](#logistic))
+
+2. Count data (Poisson) ([Chapter 13](#Chapter13))
+
+3. Overdispersed count data (negative binomial, also [Chapter 13](#Chapter13))
+
+
+## Binary (logistic) regression {#logistic}
+
+Logistic regression generally is reserved for the case in which we have a binary response that, by definition, can take on values of either 1 or 0. These values can be expressed as outcomes of individual trials (Bernoulli) or as outcomes of some number of trials (Binomial). These data types are common in biological and ecological data analyses, and thus it is important that you understand how to analyze these data when you encounter them because **linear models will not accommodate this data type**. The easiest way to look at what is going on is to use a worked example.
+
+Let's read in another smolt data set that we have not yet played with (it's the last new fish data set for the course, so soak it all up!).
+ 
+```{r}
+choice <- read.csv("data/StillwaterChoiceData.csv")
+```
+
+Look at the first few rows of data:
+
+```{r}
+head(choice)
+```
+
+
+### Data Explanation
+
+These data are from a study that examined factors affecting path choice by wild and hatchery-reared endangered Atlantic salmon smolts during seaward migration in the Penobscot River, Maine. State, local, and federal fishery managers were interested in understanding what factors affected migratory routing through the lower river because there were different numbers of dams, with different estimated smolt mortality rates, on either side of a large island hydropower project in this system. If managers could understand factors influencing migratory route, they might be able to manipulate flows, stocking dates, and dam operation to improve survival of these endangered fish. Furthermore, the results of the study were used to predict the effects of dam removal, and hydropower re-allocation in the lower river on population-level consequences for these fish. These data were part of a larger analysis:
+
+Stich, D. S., M. M. Bailey, and J. D. Zydlewski. 2014. Survival of Atlantic salmon (*Salmo salar*) smolts through a hydropower complex. Journal of Fish Biology 85:1074-1096.
+
+The data consist of the following variables:
+
+
+`path`: The migratory route used by individual fish. The choices were main-stem of the river (0) or the Stillwater Branch (1) around the island.
+
+`year`: The year in which individual fish were tagged and relocated using acoustic telemetry.
+
+`hatchery`: An indicator describing if fish were reared in the wild (0) or in the federal conservation hatchery (1)
+
+`length`: Fish length (in mm)
+
+`mass`: Fish mass (in grams)
+
+`date`: Ordinal date on which the fish entered the hydrocomplex determined from time-stamps on acoustic receivers
+
+`flow`: Discharge recorded at the USGS gauge in the headpond of the dam several kilometers upstream of the hydropower complex.
+
+**NOTE:** the results of this analysis won't look like the results from the paper just yet. We will talk about why in a couple of weeks when we introduce generalized linear mixed models.
+
+
+### Data analysis
+
+We are going to use the 1/0 binary data to estimate the effects of a number of covariates of interest on the probability that an individual fish used the Stillwater Branch for migration in each year of this study using logistic regression. 
+  
+In order to do this, we will use the 'logit' link function, which can be defined as:
+
+```{r}
+logit <- function(x) {
+  log(x / (1 - x))
+}
+```
+
+The inverse of the logit function is:
+
+```{r}
+invlogit <- function(x) {
+  exp(x) / (1 + exp(x))
+}
+```
+
+We will use this function to transform the probability of using the Stillwater Branch (0 - 1) onto an asymptotically normal x-y space. So, logit( p(Stillwater) ) is "normal" way down on the inside of our models. 
+
+If our response, `path` is a binary variable where 1 = Stillwater and 0 = mainstem for each fish 1 to *n*, we can think of p(Stillwater Branch) as:
+
+$p(Stillwater) = \frac{\sum{path}}{n}$
+
+and the logit of p(Stillwater Branch) can assumed to be normally distributed with a mean of \mu.
+
+$logit(p) ~ Normal(\mu, \sigma^{2})$
+
+Now that we know we are doing *more or less* the same thing let's move on with fitting the model.
+
+First, since we are interested in the fixed effects of year, and not the linear trend through time, we need to convert year to factor.
+
+```{r}
+choice$year <- as.factor(choice$year)
+```
+
+Now, if we want to test hypotheses about the influences of explanatory variables on the probability of using the Stillwater Branch, we could make models to represent those hypotheses. For example, if we wanted to test whether `flow` had a significant influence on `path` across `year`s, then we could build a model that looks like this:
+
+```{r}
+flow_mod <- glm(path ~ year + flow, family = binomial, data = choice)
+```
+
+This is the GLM analogue to ANCOVA and it should look pretty much identical except that we now use `glm()` and we have to specify the `family` for the sampling distribution depending on what type of data we have. You can see what families are implemented by running `?glm` and scrolling down to the `family` argument in the help file. If you don't see the one you are looking for, don't worry - it has probably been implented in another package somewhere!
+
+We could make another model that investigates effects of `length` instead of flow:
+```{r}
+len_mod <- glm(path ~ year + length, family = binomial, data = choice)
+```
+
+Or a model that includes both with an annoying name:
+
+```{r}
+flow_len_mod <- glm(path ~ year + flow + length, family = binomial, data = choice)
+```
+
+We could look at these individually to determine variable-level significance using p-values, or compare them as competing explanations using Akaike information criterion (AIC), which we discussed last week.
+
+```{r}
+AIC(flow_mod, len_mod, flow_len_mod)
+```
+
+But, we can also streamline this to get other information about the models. To do this:
+
+**First**, let's define a slightly more complex set of models based on *a priori* combinations of explanatory variables.
+
+```{r}  
+# Make an empty list to hold the models
+mods <- list()
+
+# Now, add models to the list. Stop and think about what each one means.
+mods[[1]] <- glm(path ~ year + hatchery + length + flow, family = binomial, data = choice)
+mods[[2]] <- glm(path ~ year + flow, family = binomial, data = choice)
+mods[[3]] <- glm(path ~ year + hatchery, family = binomial, data = choice)
+mods[[4]] <- glm(path ~ year + length, family = binomial, data = choice)
+mods[[5]] <- glm(path ~ year + length + hatchery, family = binomial, data = choice)
+mods[[6]] <- glm(path ~ year + length + flow, family = binomial, data = choice)
+mods[[7]] <- glm(path ~ year + hatchery + flow, family = binomial, data = choice)
+```
+
+**Next**, give the models some names using the formulas for each of the models. *Remember*: models are stored as list objects in R, and each of those list objects (models) has names. We can reference those names using the `$` notation, and from there we can access the actual model `formula` from the `call`. The third element of this `formula` object contains the explanatory variables!! Whoa!
+
+We can extract the `formula` for each model (which is an element in the `mods` list) using a `for` loop to assign them one at a time. Here, we are assigning the i^th^ formula to be the name of the i^th^ element in the list `mods`. Nifty.
+```{r}
+# Assign the formula for each of the models as the name
+for (i in 1:length(mods)) {
+  names(mods)[i] <- as.character(mods[[i]]$call$formula)[3]
+}
+
+```
+
+Now, we use the `AICcmodavg` package to make a model selection table like we did in [Chapter 11.4](#a-prior):  
+
+```{r, message=FALSE, warning=FALSE}
+# Load the library
+library(AICcmodavg)
+
+# Make the model selection table
+mod_table <- aictab(cand.set = mods, modnames = names(mods))
+```
+
+
+### Interpreting the results
+This pretty much proceeds the same way for GLM as it does for linear models until we get to making predictions of the response based on our best model.
+
+Our model selection table is an object in R (*right*?), and we can reference that object using `$` notation, matrix notation `[ , ]`, or by calling rownames to get the index for each of the models. Let's use this approach to get the best model from our candidate set. Here is a worked example in the code that follows:
+```{r, message=FALSE, warning=FALSE}  
+# Print the table
+mod_table
+```
+
+```{r}
+# Look at the structure just to show that it is, indeed, an object:
+str(mod_table)
+```
+
+Look at the `rownames` of the table. These `rownames` are the index for each of our models as they appear in the `mods` object, and we can use the index to reference objects inside of the `mods` list...
+```{r}
+rownames(mod_table)
+```
+
+This tells us that the rowname for the best model (the one at the top of the table) is `r rownames(table)[1]`. That means that our best model is stored in position 2 of our model list that we named 'mods'. Let's double check it to make sure:
+
+```{r}
+mods[[2]]
+```
+
+This looks pretty darn good! We could also do a summary of the model to get the coefficient estimates and the significance codes for the estimated coefficients:
+```{r}
+summary(mods[[2]])
+```
+
+Cool!! But, what if we wanted the script to always grab the summary of the top model in our model selection table no matter what the `rowname` was? Well, in that case, we could do this:
+
+```{r}
+summary(mods[[as.numeric(rownames(mod_table[1, ]))]])
+```
+
+Here we are asking for the `rowname` of the first row in our model selection table. We have to convert that to a number from a character string to reference the index in the `mods` list, and then we can summarize the best model. Another way to do this is:
+
+```{r}
+# First, get the number corresponding to the list index for the best
+# model in the candidate set
+best <- as.numeric(rownames(mod_table[1, ]))
+
+# Now, get the summary for the model in mods that was the best
+summary(mods[[best]])
+```
+
+
+Since this is really the same thing as ANCOVA we can use the `Anova()` function from the `car` package to get an ANCOVA-like summary for the model to look at significance of our main effects in an Analysis of Deviance table:
+```{r, message=FALSE, warning=FALSE}
+library(car)
+Anova(mods[[best]])
+```    
+
+Here, we see that there are significant effects of both `year` and `flow` on our response, `path`. But, how on Earth do we communicate these effects?
+
+
+### Making predictions
+The first thing to remember here is that we have used a link function to estimate this model, so we cannot use the same method as before to make predictions about our response from the model coefficients.
+
+The second thing to remember here is that by definition we have used an *invertible* link function to estimate this model so the previous statement is a lie and we actually can use the same method as before to make predictions about our response from the model coefficients. We just need to add an extra step so that we can invert our predictions about the expected value of Y with respect to X.
+
+Confused? Yeah, it's a little confusing. As always an example always goes a long way...
+
+Let's start by grabbing the summary for our `best` model.
+```{r}
+c.res <- data.frame(summary(mods[[best]])$coefficients)
+```
+
+Now we can look at the coefficient estimates. These estimates may not make a lot of intuitive sense at first. That is because they are on the **logit** scale.
+```{r}
+c.res
+
+```
+
+If it helps, we can make some predictions. Let's say we want to ask **what was the mean probability of using the Stillwater Branch in 2006 under average flow?**. To answer that question, we would do:
+
+```{r}
+# Remember:  y = mx + b
+logit_pred2006 <- -2.91162 + 0.00164 * mean(choice$flow)
+```
+
+This is the prediction on the logit scale that we used to fit the model:
+
+```{r}
+print(logit_pred2006)
+```
+
+And here it is on the real (probability) scale:
+
+```{r}
+invlogit(logit_pred2006)
+```
+
+So, we would predict that about 15% of the fish used the Stillwater Branch during average flow periods in 2006. But what if we wanted to see the range of responses to flows across all years so we could compare years?
+
+We can do this the same way we did in [Chapter 10](#Chapter10) with linear models! Now, instead of the `interval`, we need to tell R whether we want the predictions on the `link` scale or the `real` scale, and if it is on the `link` scale, we'll want to tell R that we need the estimated standard errors (`se.fit = TRUE`) so we can derive 95% confidence intervals on the logit scale before we convert them back into probabilities. Finally, we will convert the predictions to the real scale using the `invlogit()` function we wrote inside a call to `apply()`.
+```{r}
+# Make predictions from the best model
+logit_preds <- data.frame(predict(mods[[best]], type = "link", se.fit = TRUE))
+
+# Calculate confidence intervals as 1.96 * standard error
+logit_preds$lwr <- logit_preds$fit + 1.96 * logit_preds$se.fit
+logit_preds$upr <- logit_preds$fit - 1.96 * logit_preds$se.fit
+
+# Invert the link function
+real_preds <- apply(logit_preds, 2, invlogit)
+
+# Combine the predictions with the original data
+choice_preds <- data.frame(choice, real_preds)
+```
+
+Go ahead and have a look at the `logit_preds` and `real_preds` objects to make sure you understand what we just did.
+
+Now, we can finish by plotting our predictions:
+
+```{r}
+ggplot(choice_preds, aes(x = flow, y = fit, fill = year)) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, fill = year), alpha = 0.25) +
+  geom_line(aes(color = year)) +
+  xlab(expression(paste("Flow ( ", m^3, "\u00b7", s^-1, ")"))) +
+  theme_bw() +
+  theme(panel.grid = element_blank())
+```
+<br>
+
+You can see that, in general, there is a relatively low probability of an individual fish using the Stillwater Branch, but we see increasing probability of using that route with increasing `flow`. 
+
+## Next steps {#next12}
+
+Here we have demonstrated similarities between the GLM and the models with which we have worked previously. You should realize now that the linear models we've been using are really just a special kind of GLM that uses a "normal" or "Gaussian" error distribution. If we think about what kind of data we actually have, this can open up lots of other "non-normal" options without scaring the life out of us! Hopefully, logistic regression is now a useful tool in your statistical hardware box. Next, we'll look at how to keep extending this GLM framework for analysis of **count** data in [Chapter 13](#Chapter13).
