@@ -168,7 +168,6 @@ Here is a visual representation of residuals. The points are our raw data, the d
 # Make predictions from the model
 y_hat <- predict(fit_lm)
 
-
 ggplot(iris, aes(x = Petal.Length, y = Petal.Width, color = Species) ) +
   geom_smooth(method = "lm", se = FALSE, color = "gray87") +
   geom_point() +
