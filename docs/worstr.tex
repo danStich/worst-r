@@ -2810,7 +2810,7 @@ We'll start with one chicken egg that has a 50\% chance of successfully hatching
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0
+## [1] 1
 \end{verbatim}
 
 There is also a function called \texttt{rbern} in the \texttt{Rlab} package that simplifies this for the specific case of a Bernoulli.
@@ -2838,7 +2838,7 @@ Or we could hatch a whole bunch of eggs:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1 0 0 0 1 1 0 1 1 1
+##  [1] 1 1 1 0 0 0 0 0 0 1
 \end{verbatim}
 
 Then, we could even count how many of those were successful. Do you remember how to do that? There are several different ways. You'll have to come up with one for the homework assignment (hint: see \protect\hyperlink{Chapter2}{Chapter 2}).
@@ -2860,7 +2860,7 @@ To sample data from a binomial distribution, we can use \texttt{rbinom} from bas
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 6 4 3 5 5 3 7 5 6 4
+##  [1] 5 5 5 4 7 6 4 5 3 8
 \end{verbatim}
 
 Remember as you look through these that your numbers should look different than mine (at least most of the time) because these are being generated randomly.
@@ -2928,10 +2928,10 @@ Have a look:
 \begin{verbatim}
 ##       [,1] [,2] [,3] [,4] [,5]
 ##  [1,]    0    0    0    0    0
-##  [2,]    0    0    0    0    0
-##  [3,]    0    0    0    0    0
+##  [2,]    1    0    0    0    0
+##  [3,]    0    0    0    0    1
 ##  [4,]    0    0    0    0    0
-##  [5,]    0    1    0    0    0
+##  [5,]    0    0    0    0    0
 ##  [6,]    0    0    0    0    0
 ##  [7,]    0    0    0    0    0
 ##  [8,]    0    0    0    0    0
@@ -2941,17 +2941,17 @@ Have a look:
 ## [12,]    0    0    0    0    0
 ## [13,]    0    0    0    0    0
 ## [14,]    0    0    0    0    0
-## [15,]    0    0    0    0    0
-## [16,]    1    0    0    0    0
-## [17,]    0    0    0    0    0
-## [18,]    0    0    0    0    0
-## [19,]    0    0    0    1    0
+## [15,]    0    0    1    0    0
+## [16,]    0    0    0    0    0
+## [17,]    0    1    0    0    0
+## [18,]    0    0    0    1    0
+## [19,]    0    0    0    0    0
 ## [20,]    0    0    0    0    0
 ## [21,]    0    0    0    0    0
-## [22,]    0    0    1    0    0
+## [22,]    0    0    0    0    0
 ## [23,]    0    0    0    0    0
 ## [24,]    0    0    0    0    0
-## [25,]    0    0    0    0    1
+## [25,]    0    0    0    0    0
 ## [26,]    0    0    0    0    0
 \end{verbatim}
 
@@ -2992,8 +2992,8 @@ Take a step back, breathe, and think about this. The rows in this matrix are you
 ## [21,]    0
 ## [22,]    0
 ## [23,]    0
-## [24,]    0
-## [25,]    1
+## [24,]    1
+## [25,]    0
 ## [26,]    0
 \end{verbatim}
 
@@ -3031,8 +3031,8 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 ## [22,] "Maximillion" "0"
 ## [23,] "Sierra"      "0"
 ## [24,] "Kyle"        "0"
-## [25,] "Diana"       "0"
-## [26,] "Amanda"      "1"
+## [25,] "Diana"       "1"
+## [26,] "Amanda"      "0"
 \end{verbatim}
 
 Now, if I was calling on you randomly in class, after 10 questions, the spread of people who would have participated in class might look like this (or whatever you got - remember, it is random):
@@ -3046,29 +3046,29 @@ Now, if I was calling on you randomly in class, after 10 questions, the spread o
 \begin{verbatim}
 ##       name                                                 
 ##  [1,] "Ava"         "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [2,] "Dillon"      "0" "0" "0" "0" "1" "0" "0" "0" "0" "0"
+##  [2,] "Dillon"      "0" "0" "0" "0" "0" "0" "0" "0" "1" "0"
 ##  [3,] "Delaney"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [4,] "Manolo"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [5,] "Sarah"       "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
-##  [6,] "Shannon"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [5,] "Sarah"       "0" "0" "0" "0" "1" "0" "0" "0" "0" "1"
+##  [6,] "Shannon"     "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
 ##  [7,] "Olivia"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [8,] "Ebony"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [9,] "Julia"       "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [9,] "Julia"       "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
 ## [10,] "Davi"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [11,] "Gabrielle"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [11,] "Gabrielle"   "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [12,] "Jordan"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [13,] "Tayler"      "0" "0" "0" "0" "0" "0" "0" "1" "0" "0"
-## [14,] "Summer"      "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
+## [13,] "Tayler"      "1" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [14,] "Summer"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [15,] "Leah"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [16,] "Christine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [17,] "Ashley"      "0" "0" "0" "0" "0" "0" "1" "0" "0" "0"
-## [18,] "Katherine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [17,] "Ashley"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [18,] "Katherine"   "0" "0" "0" "0" "0" "0" "0" "1" "0" "0"
 ## [19,] "James"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [20,] "Emily"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "1"
-## [21,] "Cassidy"     "0" "0" "0" "0" "0" "1" "0" "0" "1" "0"
+## [20,] "Emily"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [21,] "Cassidy"     "0" "0" "0" "0" "0" "0" "1" "0" "0" "0"
 ## [22,] "Maximillion" "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [23,] "Sierra"      "1" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [24,] "Kyle"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [23,] "Sierra"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [24,] "Kyle"        "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
 ## [25,] "Diana"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [26,] "Amanda"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 \end{verbatim}
@@ -3082,7 +3082,7 @@ Taking this one step further, we could just draw a name and stop looking at thes
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Katherine"
+## [1] "Christine"
 \end{verbatim}
 
 And now we have a way to randomly select an individual based on a multinomial distribution. What fun!
@@ -3318,7 +3318,7 @@ First, we'll estimate it by making our own function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.957726  3.959789
+## [1] 19.975688  4.017443
 \end{verbatim}
 
 Because this one is so common, R has built-in estimators that rely on
@@ -3332,7 +3332,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.95773
+## [1] 19.97569
 \end{verbatim}
 
 \begin{Shaded}
@@ -3342,7 +3342,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.960185
+## [1] 4.017845
 \end{verbatim}
 
 Wow, that was a lot less code. That is the beauty of having these functions available. How do these compare to the answers returned by our function if you scroll back up?
@@ -3360,8 +3360,8 @@ R also has built-in \textbf{maximum likelihood} estimators that provide an exact
 
 \begin{verbatim}
 ##       mean           sd     
-##   19.95772619    1.98992180 
-##  ( 0.01989922) ( 0.01407087)
+##   19.97568847    2.00435612 
+##  ( 0.02004356) ( 0.01417294)
 \end{verbatim}
 
 Only one problem here: R doesn't report the second moment! It reports
@@ -3410,10 +3410,10 @@ To get started, we need to take a guess at what those parameters could be. (Yes,
 
 \begin{verbatim}
 ## $par
-## [1] 19.958018  3.959389
+## [1] 19.975735  4.016827
 ## 
 ## $value
-## [1] 21070.34
+## [1] 21142.61
 ## 
 ## $counts
 ## function gradient 
@@ -3462,9 +3462,9 @@ Look at the structure I'll be damned, it's a list! Hey, we learned about those!
 
 \begin{verbatim}
 ## List of 5
-##  $ par        : num [1:2] 19.96 3.96
-##  $ value      : num 21070
-##  $ counts     : Named int [1:2] 99 NA
+##  $ par        : num [1:2] 19.98 4.02
+##  $ value      : num 21143
+##  $ counts     : Named int [1:2] 97 NA
 ##   ..- attr(*, "names")= chr [1:2] "function" "gradient"
 ##  $ convergence: int 0
 ##  $ message    : NULL
@@ -3480,7 +3480,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.959742  3.960639
+## [1] 19.977955  4.019973
 \end{verbatim}
 
 \begin{Shaded}
@@ -3491,7 +3491,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.95974
+## [1] 19.97796
 \end{verbatim}
 
 \begin{Shaded}
@@ -3502,7 +3502,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.960639
+## [1] 4.019973
 \end{verbatim}
 
 There you have it, a couple of different ways to calculate parameters of the normal distribution using a couple of different approaches each.
@@ -3520,7 +3520,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.94549
+## [1] 19.95321
 \end{verbatim}
 
 \begin{Shaded}
@@ -3532,7 +3532,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##     2.5%    97.5% 
-## 16.03954 23.78894
+## 16.05628 23.93365
 \end{verbatim}
 
 \begin{Shaded}
@@ -3544,7 +3544,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##      25%      75% 
-## 18.62058 21.34748
+## 18.62750 21.32331
 \end{verbatim}
 
 \begin{Shaded}
@@ -3555,7 +3555,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 12.71994 28.71003
+## [1] 12.86480 27.12729
 \end{verbatim}
 
 \hypertarget{next5}{%
@@ -5285,7 +5285,6 @@ Here is a visual representation of residuals. The points are our raw data, the d
 \begin{Highlighting}[]
 \CommentTok{# Make predictions from the model}
 \NormalTok{y_hat <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(fit_lm)}
-
 
 \KeywordTok{ggplot}\NormalTok{(iris, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Petal.Length, }\DataTypeTok{y =}\NormalTok{ Petal.Width, }\DataTypeTok{color =}\NormalTok{ Species) ) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{se =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{color =} \StringTok{"gray87"}\NormalTok{) }\OperatorTok{+}
@@ -7989,6 +7988,464 @@ You can see that, in general, there is a relatively low probability of an indivi
 \section{Next steps}\label{next12}}
 
 Here we have demonstrated similarities between the GLM and the models with which we have worked previously. You should realize now that the linear models we've been using are really just a special kind of GLM that uses a ``normal'' or ``Gaussian'' error distribution. If we think about what kind of data we actually have, this can open up lots of other ``non-normal'' options without scaring the life out of us! Hopefully, logistic regression is now a useful tool in your statistical hardware box. Next, we'll look at how to keep extending this GLM framework for analysis of \textbf{count} data in \protect\hyperlink{Chapter13}{Chapter 13}.
+
+\hypertarget{Chapter13}{%
+\chapter{GLM: Count models}\label{Chapter13}}
+
+\hypertarget{intro13}{%
+\section{Introduction}\label{intro13}}
+
+This week we continue our exploration of generalized linear models and their implementation and interpretation in R. We will continue to investigate the flexible formulation of GLM for use with count models. By the end of this week, you should have a reasonable understanding of why we might use different kinds of count models, how to use them, and what the results mean. We will dive back into the world of residual diagnostics again this week to look at a few different tools that we have at our disposal for GLM.
+
+We'll keep working with the \texttt{tidyverse} this week. But, we'll also check out some utilities from the \texttt{MASS} and \texttt{boot}, packages to demonstrate new techniques. You'll probably need to install \texttt{boot} before you can load it, but we've worked with the others already. Go ahead and load them all when you're ready.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse) }\CommentTok{# For all the good stuff in life}
+\KeywordTok{library}\NormalTok{(boot) }\CommentTok{# For inv.logit() function}
+\KeywordTok{library}\NormalTok{(MASS) }\CommentTok{# For negative.binomial family in glm()}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{poisson-regression}{%
+\section{Poisson regression}\label{poisson-regression}}
+
+Poisson regression is useful for situations in which we have a response (independent variable) that is a count. These are discrete data that cannot be considered continuous because it is impossible for them to take on non-integer or non-negative values. Common examples of these types of responses include species count data in ecology, cell or colony counts in biology, and the number of respondents or patients reporting a side-effect or symptom of interest in health care studies.
+
+For the Poisson family, the link function that we will use is the ``log'' link function. This one is exactly what it sounds like. This link function allows us to work with data that are constrained to be non-negative, a desirable property when we are working with count data.
+
+Let's use the \texttt{crab} data set to demonstrate the GLM with Poisson data. We will walk through this data set for both the Poisson and negative binomial examples, addressing some distributional assumptions and model fit along the way.
+
+\begin{verbatim}
+##   color spine width mass satellites
+## 1     2     3  28.3 3.05          8
+## 2     3     3  26.0 2.60          4
+## 3     3     3  25.6 2.15          0
+## 4     4     2  21.0 1.85          0
+## 5     2     3  29.0 3.00          1
+## 6     1     2  25.0 2.30          3
+\end{verbatim}
+
+\begin{verbatim}
+## 'data.frame':	173 obs. of  5 variables:
+##  $ color     : int  2 3 3 4 2 1 4 2 2 2 ...
+##  $ spine     : int  3 3 3 2 3 2 3 3 1 3 ...
+##  $ width     : num  28.3 26 25.6 21 29 25 26.2 24.9 25.7 27.5 ...
+##  $ mass      : num  3.05 2.6 2.15 1.85 3 2.3 1.3 2.1 2 3.15 ...
+##  $ satellites: int  8 4 0 0 1 3 0 0 8 6 ...
+\end{verbatim}
+
+\hypertarget{data-explanation}{%
+\subsection{Data explanation}\label{data-explanation}}
+
+These data represent the number of satellite male horseshoe crabs per female (rows) in relation to a number of characteristics of the females. Here, our response of interest is \texttt{satellites} and the female characteristics are our explanatory (independent) variables. These include female color, spine condition, carapace width, and mass (g).
+
+The full citation for the paper on which this data set is based is here:
+
+H. J. Brockmann. 1996. Satellite male groups in horseshoe crabs, \emph{Limulus polyphemus}. Ethology 102:1-21. \href{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1439-0310.1996.tb01099.x}{doi:10.1111/j.1439-0310.1996.tb01099.x}
+
+We are going to convert color to a \texttt{factor} to start because it is currently stored as a numeric variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# We want to convert color to}
+\CommentTok{# a factor right off the bat}
+\NormalTok{crabs}\OperatorTok{$}\NormalTok{color <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(crabs}\OperatorTok{$}\NormalTok{color)}
+\end{Highlighting}
+\end{Shaded}
+
+Next, we'll fit a ``full'' model that assumes the number of \texttt{satellites} is a function of width, mass, spine condition, and color.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fit a model}
+\NormalTok{count_mod <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(}
+\NormalTok{  satellites }\OperatorTok{~}\StringTok{ }\NormalTok{width }\OperatorTok{+}\StringTok{ }\NormalTok{mass }\OperatorTok{+}\StringTok{ }\NormalTok{spine }\OperatorTok{+}\StringTok{ }\NormalTok{color,}
+  \DataTypeTok{data =}\NormalTok{ crabs,}
+  \DataTypeTok{family =} \StringTok{"poisson"}\NormalTok{(}\DataTypeTok{link =}\NormalTok{ log)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Before we go any further, let's have a quick look at the model diagnostics using the methods we applied to linear models in \protect\hyperlink{Chapter9}{Chapter 9}. Right away, we can see that this model is not a very good fit to the data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(count_mod, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ .fitted, }\DataTypeTok{y =}\NormalTok{ .resid)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Fitted values"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(epsilon)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-349-1.pdf}
+
+This brings us to the next important point we need to make about GLMS\ldots{}
+
+\begin{quote}
+Even though we are relaxing the assumptions of linear models, we still need to check to make sure the models we use are valid with respect to our assumptions.
+\end{quote}
+
+This will become considerably more complicated as we begin to move into distributions other than the binomial and the Poisson, as our standard methods become less and less applicable and in-depth model validation becomes more obscure and more involved.
+
+So, what is going on here? At this point a few things should jump out at you from this plot. First, there is some kind of trend happening at the bottom of our plot where the residuals slant downward from left to right. That's something that should scream ``not good!'' at you, even if you don't know why. Second, this plot doesn't really make it look like our residuals are symmetrically distributed with a mean of zero. But, it is really hard to tell from this graph, especially because of the weird patterns at the bottom of the scatter plot.
+
+We can check this second concern using a histogram if we want to see if it ``looks normal'' like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(count_mod, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ .resid)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{25}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(epsilon)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-350-1.pdf}
+
+Now that we see it presented this way, it is pretty clear that our residuals are not symmetrically distributed around zero even if the mean is about zero. We could also calculate some descriptive statistics for the residuals to really nail this down.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(count_mod}\OperatorTok{$}\NormalTok{residuals)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.01809651
+\end{verbatim}
+
+Hmmm\ldots the mean is fairly close to zero here, but we've already talked about the fact that the mean isn't a very good descriptive statistic for distributions that we suspect or know are not normal. What about the median as a measure of central tendency?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{median}\NormalTok{(count_mod}\OperatorTok{$}\NormalTok{residuals)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.281012
+\end{verbatim}
+
+Wow, okay, that is a bit more negative than the mean, and at this point we may start to question whether we can say that the residuals are normally distributed with a mean of zero. If we are uncomfortable coming right out and saying that the residuals are not normal, we could always use a Shapiro-Wilk normality test to check (see \protect\hyperlink{Chapter6}{Chapter 6} if you've forgotten what this one is).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{shapiro.test}\NormalTok{(count_mod}\OperatorTok{$}\NormalTok{residuals)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  count_mod$residuals
+## W = 0.82351, p-value = 3.419e-13
+\end{verbatim}
+
+Remember that the null hypothesis here is that the sampling distribution of our residuals is normal, so a \texttt{p-value} of \textless{} 0.05 tells us to reject the null and now our residuals are officially not normal! Crap, wasn't the whole point of using GLM supposed to be so we could keep meeting this assumption?
+
+So, why has this happened to us? Recall that the Poisson distribution is controlled by a single parameter, \(\lambda\), that is both the mean and the variance of the distribution. If we had started by doing data exploration we would have, of course, noticed that even though the data represent counts, they are pretty clearly over-dispersed (variance is much larger than mean) and are indicative of a negative binomial sampling distribution.
+
+For now, we won't bother to look at these results from this model because the link function is the same, so we can get the results from the negative binomial regression in the same way. Plus, if our model is in violation of assumptions then the results will be unreliable anyway.
+
+\hypertarget{negbin}{%
+\section{Negative binomial regression}\label{negbin}}
+
+Okay, moving on with life, let's take a look at the negative binomial regression model as an alternative to Poisson regression. Truthfully, this is usually where I start these days, and then I might consider backing down to use of Poisson if all assumptions are actually verified (but, \textbf{this has literally never happened for me}).
+
+We will start this time by actually doing some data exploration before our analysis. This is really how we should have started above, but that would have ruined all the fun.
+
+First, look at the distribution of the data. Here, it should be pretty obvious to you by now that these are count data for which the mean is not equal to the variance\ldots right?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(crabs}\OperatorTok{$}\NormalTok{satellites)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-354-1.pdf}
+
+If you think back to a couple of weeks ago, you'll remember this is a pretty typical example of the negative binomial distribution.
+
+We can take a look at how this shakes out between our groups (\texttt{color}) as well.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(satellites }\OperatorTok{~}\StringTok{ }\NormalTok{color, }\DataTypeTok{data =}\NormalTok{ crabs, }\DataTypeTok{boxwex =} \FloatTok{0.3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-355-1.pdf}
+
+And, you can see here that even within groups the distributions do not look like they are normal or like they have equal variances, so we will fit a GLM that assumes the response is drawn from a negative binomial distribution.
+
+For this example, we will use a function called \texttt{glm.nb}. This function allows us to estimate a GLM for lets us estimate parameters for a GLM that uses the negative binomial error distribution and estimates the ``overdispersion parameter'' for the negative binomial distribution. You, of course, remember this parameter and know it as \texttt{theta} or \texttt{size} from our discussions about sampling distributions.
+
+We can fit it with the GLM function like this as long as we have the \texttt{Mass} package loaded:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{neg_mod <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(satellites }\OperatorTok{~}\StringTok{ }\NormalTok{width }\OperatorTok{+}\StringTok{ }\NormalTok{mass }\OperatorTok{+}\StringTok{ }\NormalTok{color,}
+  \DataTypeTok{data =}\NormalTok{ crabs,}
+  \DataTypeTok{family =} \StringTok{"negative.binomial"}\NormalTok{(}\DataTypeTok{theta =} \DecValTok{1}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Play around with the two formulations above and see if there's a difference. \emph{Clue}: there's not, really. Just two different ways to do the same thing. The functionality in the \texttt{glm} function only came around recently, that's all.
+
+Now, let's take a look at the distribution of the residuals. I am going to work with the object I fit using the \texttt{glm()} function. This time, we'll split our residuals out by \texttt{color} group so we can see where the problems are
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(neg_mod, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ color, }\DataTypeTok{y =}\NormalTok{ .resid, }\DataTypeTok{fill =} \KeywordTok{factor}\NormalTok{(color))) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_violin}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.1}\NormalTok{, }\DataTypeTok{trim =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \KeywordTok{factor}\NormalTok{(color)), }\DataTypeTok{width =} \FloatTok{.1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Fitted values"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(epsilon)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-357-1.pdf}
+
+Now we are starting to look a lot more ``normal'' within groups, and we are getting more symmetrical in our residual sampling distributions. If we had to move forward with this model we could probably do so with a straight face at this point. However, it looks like most of the area of each violin above is below zero (so the mean of our residuals is also negative and non-zero), so we may have some issues going on here that could make this model bad for prediction.
+
+\textbf{But}, how does this compare to the Poisson model for count data? We can use model selection to compare the Poisson model to the negative binomial model, since the response is the same in both cases.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{AIC}\NormalTok{(count_mod, neg_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           df      AIC
+## count_mod  7 919.8796
+## neg_mod    6 757.9566
+\end{verbatim}
+
+Clearly the negative binomial model is far superior to the Poisson model here. Now, with a reasonable model in hand we could proceed with data visualization, but we might also rather have a ``good'' model to work with instead of just one that is ``good enough''. It turns out that the really problem behind the weirdness in our residuals is actually due to an excess number of zero counts of \texttt{satellite} males on a lot of our females. This is actually really common in count data, where we might observe a lot of zeros before actually counting a success. And, once we have one success (e.g.~a parasite infection or illness), we often have extreme events with lots of successes. For example, it might take a while to find a fish with a parasite, or a human with a specific illness, but then that individual could have dozens or hundreds of parasites, or the illness might pop up in a cluster of hundreds of individuals in one location depending on the intensity of the infection. For these cases, we'll need to deal with the issue these excessive zeros (``zero inflation'') directly.
+
+\hypertarget{zero-inflation}{%
+\section{Zero inflation}\label{zero-inflation}}
+
+The fits of these two models, in reality, suggest the need to for what is becoming an increasingly common statistical tool: the zero inflated count model. Zero inflation (excess zeroes in count data) can arise by one of two mechanisms: true (``process'') zeros and observational zeros that result from imperfect detection.
+
+One approach to dealing with this is to use a \textbf{hurdle model}. The idea is to make two separate models: 1) a logistic regression model to help us determine which factors influence whether the phenomenon of interest even occurred (0 or 1), and 2) a count model to help us determine what factors influence with the frequency of occurrence given that it occurred in the first place.
+
+When these models are linked mathematically, we call it a ``mixture model'' - an approach that has become very popular for accounting for imperfect detection when estimating abundance of organisms. For now, let's just look at the hurdle model for our crab data as the n-mixture approach falls solidly in the realm of ``advanced'' methods we'll not discuss in this book.
+
+First, we need to make a binary indicator variable to represent whether or not any satellites were present:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make a new column for count}
+\CommentTok{# and absence (of satellite males)}
+\CommentTok{# and initialize to zero}
+\NormalTok{crabs}\OperatorTok{$}\NormalTok{present <-}\StringTok{ }\DecValTok{0}
+
+\CommentTok{# Assign a '1' if any satellites were}
+\CommentTok{# observed}
+\NormalTok{crabs}\OperatorTok{$}\NormalTok{present[crabs}\OperatorTok{$}\NormalTok{satellites }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+Now, the first step in the hurdle model is to fit a logistic regression model to predict how our response is affected by some combination of explanatory variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{step1 <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(present }\OperatorTok{~}\StringTok{ }\NormalTok{mass, }\DataTypeTok{data =}\NormalTok{ crabs, }\DataTypeTok{family =} \StringTok{"binomial"}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(step1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = present ~ mass, family = "binomial", data = crabs)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.1106  -1.0750   0.5427   0.9122   1.6323  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)  -3.6933     0.8799  -4.197 2.70e-05 ***
+## mass          1.8145     0.3766   4.818 1.45e-06 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 225.76  on 172  degrees of freedom
+## Residual deviance: 195.74  on 171  degrees of freedom
+## AIC: 199.74
+## 
+## Number of Fisher Scoring iterations: 4
+\end{verbatim}
+
+Here we see that mass has a significant effect on whether or not \emph{any} satellite males are present. You could imagine fitting any number of plausible biological models for comparison using AIC at this point.
+
+Step 2 is to fit a count model to explain the effects of some combination of explanatory variables on the frequency with which the phenomenon occurs given that it ever occurred in the first place. \textbf{Note}: This does not have to be the same combination of explanatory variables. In fact, it is always conceivable that different processes influence these two distinct phenomena. As with the count-absence model, you could even fit a candidate set of models and proceed with model comparisons using AIC.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make a model relating the number}
+\CommentTok{# of satellite males to the mass}
+\CommentTok{# of female crabs}
+\NormalTok{step2 <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(}
+\NormalTok{  satellites }\OperatorTok{~}\StringTok{ }\NormalTok{mass,}
+  \DataTypeTok{data =}\NormalTok{ crabs[crabs}\OperatorTok{$}\NormalTok{satellites }\OperatorTok{!=}\StringTok{ }\DecValTok{0}\NormalTok{, ],}
+  \DataTypeTok{family =} \StringTok{"negative.binomial"}\NormalTok{(}\DataTypeTok{theta =} \DecValTok{1}\NormalTok{)}
+\NormalTok{)}
+
+\CommentTok{# Print a summary of the model}
+\KeywordTok{summary}\NormalTok{(step2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = satellites ~ mass, family = negative.binomial(theta = 1), 
+##     data = crabs[crabs$satellites != 0, ])
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -1.08178  -0.43875  -0.09937   0.26840   1.36868  
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   1.0036     0.2726   3.681 0.000363 ***
+## mass          0.1941     0.1018   1.907 0.059190 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for Negative Binomial(1) family taken to be 0.3128844)
+## 
+##     Null deviance: 35.931  on 110  degrees of freedom
+## Residual deviance: 34.849  on 109  degrees of freedom
+## AIC: 584.04
+## 
+## Number of Fisher Scoring iterations: 4
+\end{verbatim}
+
+From these results, we can see that our count models in the previous sections were really just picking up on the large number of zeroes in our data set. We know this because of the differences in the results between the models \texttt{step1} and \texttt{step2}.
+
+Likewise, we can take another look at our model diagnostics for \texttt{step2} to see if our diagnostic plots look more reasonable now
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(step2, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ .fitted, }\DataTypeTok{y =}\NormalTok{ .resid)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Fitted values"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(epsilon)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-362-1.pdf}
+
+Here, we can see that our residual plots indicate a pretty drastic improvement.
+
+\hypertarget{predictions}{%
+\subsection{Predictions}\label{predictions}}
+
+Now that we are finally happy with our residual plots (wow, that took a lot longer than fitting any of the models!) we can make a plot of our predictions against the raw data to see how we did.
+
+Let's start with the count/absence component that we fit in \texttt{step1}:
+
+Make some predictions from the model using a sequence of new values of \texttt{mass} based on what we observed in our data set:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Sequences of new masses based on the min and max observed}
+\CommentTok{# in our data}
+\NormalTok{new_mass <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{mass =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{min}\NormalTok{(crabs}\OperatorTok{$}\NormalTok{mass), }\KeywordTok{max}\NormalTok{(crabs}\OperatorTok{$}\NormalTok{mass), }\FloatTok{.1}\NormalTok{))}
+
+\CommentTok{# Make predictions using step1 model and the new_mass df}
+\NormalTok{count_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \KeywordTok{predict}\NormalTok{(step1, }\DataTypeTok{newdata =}\NormalTok{ new_mass, }\DataTypeTok{type =} \StringTok{"link"}\NormalTok{, }\DataTypeTok{se.fit =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{)}
+
+\CommentTok{# Get 95% confidence intervals}
+\NormalTok{count_preds}\OperatorTok{$}\NormalTok{lwr <-}\StringTok{ }\NormalTok{count_preds}\OperatorTok{$}\NormalTok{fit }\OperatorTok{+}\StringTok{ }\NormalTok{count_preds}\OperatorTok{$}\NormalTok{se.fit }\OperatorTok{*}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.025}\NormalTok{)}
+\NormalTok{count_preds}\OperatorTok{$}\NormalTok{upr <-}\StringTok{ }\NormalTok{count_preds}\OperatorTok{$}\NormalTok{fit }\OperatorTok{+}\StringTok{ }\NormalTok{count_preds}\OperatorTok{$}\NormalTok{se.fit }\OperatorTok{*}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{)}
+
+\CommentTok{# Invert the logit-link function}
+\NormalTok{count_preds <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(count_preds, }\DecValTok{2}\NormalTok{, boot}\OperatorTok{::}\NormalTok{inv.logit)}
+
+\CommentTok{# Combine the new masses and the predictions with which}
+\CommentTok{# they are associated}
+\NormalTok{pres_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(new_mass, count_preds)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Important:} Our hurdle model actually contains two models (\texttt{step1} and \texttt{step2}). The \texttt{step1} component is actually \textbf{logistic regression} and therefore uses the \textbf{logit} link function that we introduced in \protect\hyperlink{Chapter12}{Chapter 12}, so we need to invert the logit to get the probability of a female having any \texttt{satellite} males as a function of \texttt{mass}. This is done in the code above. Make sure you understand how and why we do this!
+
+Once you've got that down, it's all over but the plotting. Here is how predicted probability of \texttt{satellite} male crab count changes across the range of observed female \texttt{mass}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(pres_preds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mass, }\DataTypeTok{y =}\NormalTok{ fit)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr, }\DataTypeTok{color =} \OtherTok{NULL}\NormalTok{), }\DataTypeTok{alpha =} \FloatTok{.3}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Mass of female crab (g)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Probability of satellite male"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-364-1.pdf}
+
+Finally, we can make a plot of the number of \texttt{satellite} males we would expect to see on a female crab given that she had attracted any males in the first place.
+
+\textbf{Also important:} We need to remember here that we have two different models. The first model \texttt{step1} was a binary logistic regression, so it used the logit link. The second model \texttt{step2} was a count model and used the log link. That means we need to invert the log link to get our predicted counts back on the real scale.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Sequences of new masses based on the min and max observed}
+\CommentTok{# in our data}
+\NormalTok{new_mass <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{mass =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{min}\NormalTok{(crabs}\OperatorTok{$}\NormalTok{mass), }\KeywordTok{max}\NormalTok{(crabs}\OperatorTok{$}\NormalTok{mass), }\FloatTok{.1}\NormalTok{))}
+
+\CommentTok{# Make predictions using step2 model and the new_mass df}
+\NormalTok{count_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \KeywordTok{predict}\NormalTok{(step2, }\DataTypeTok{newdata =}\NormalTok{ new_mass, }\DataTypeTok{type =} \StringTok{"link"}\NormalTok{, }\DataTypeTok{se.fit =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{)}
+
+\CommentTok{# Get 95% confidence intervals}
+\NormalTok{count_preds}\OperatorTok{$}\NormalTok{lwr <-}\StringTok{ }\NormalTok{count_preds}\OperatorTok{$}\NormalTok{fit }\OperatorTok{+}\StringTok{ }\NormalTok{count_preds}\OperatorTok{$}\NormalTok{se.fit }\OperatorTok{*}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.025}\NormalTok{)}
+\NormalTok{count_preds}\OperatorTok{$}\NormalTok{upr <-}\StringTok{ }\NormalTok{count_preds}\OperatorTok{$}\NormalTok{fit }\OperatorTok{+}\StringTok{ }\NormalTok{count_preds}\OperatorTok{$}\NormalTok{se.fit }\OperatorTok{*}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{)}
+
+\CommentTok{# Invert the log link function}
+\NormalTok{count_preds <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(count_preds, }\DecValTok{2}\NormalTok{, exp)}
+
+\CommentTok{# Combine the new masses and the predictions with which}
+\CommentTok{# they are associated - overwriting on the fly - yuck!!}
+\NormalTok{count_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(new_mass, count_preds)}
+\end{Highlighting}
+\end{Shaded}
+
+Here is a plot showing how the number of \texttt{satellite} males observed changes with the \texttt{mass} of female horseshoe crabs:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(count_preds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mass, }\DataTypeTok{y =}\NormalTok{ fit)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mass, }\DataTypeTok{y =}\NormalTok{ satellites), }\DataTypeTok{data =}\NormalTok{ crabs[crabs}\OperatorTok{$}\NormalTok{satellites }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{, ]) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr, }\DataTypeTok{color =} \OtherTok{NULL}\NormalTok{), }\DataTypeTok{alpha =} \FloatTok{.3}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Mass of female crab (kg)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Number of satellite males"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-366-1.pdf}
+
+Well, it doesn't exactly inspire great confidence in the biological relationship between female horseshoe crab mass and the number of satellite males she attracts, but that is exactly why it is so important to communicate these effects
+
+\hypertarget{next-steps}{%
+\section{Next steps}\label{next-steps}}
+
+This chapter has provided an overview of GLMs that we can use for count data, and demonstrates one way to handle cases of skewed counts or (more extreme case) zero-inflated counts. These are common ``problems'' in biological and ecological data that are easily resolved within the flexible framework of GLM, which includes all of the other models we've looked at since \protect\hyperlink{Chapter6}{Chapter 6}. In \protect\hyperlink{Chapter14}{Chapter 14} and \protect\hyperlink{Chapter15}{Chapter 15} we'll look at how to extend this framework even further (another umbrella) to include repeated observations and relatedness between groups when we introduce mixed effects models.
 
   \bibliography{book.bib,packages.bib}
 

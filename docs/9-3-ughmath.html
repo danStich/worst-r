@@ -319,6 +319,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.5" data-path="12-5-next12.html"><a href="12-5-next12.html"><i class="fa fa-check"></i><b>12.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="13" data-path="13-Chapter13.html"><a href="13-Chapter13.html"><i class="fa fa-check"></i><b>13</b> GLM: Count models</a><ul>
+<li class="chapter" data-level="13.1" data-path="13-1-intro13.html"><a href="13-1-intro13.html"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="13-2-poisson-regression.html"><a href="13-2-poisson-regression.html"><i class="fa fa-check"></i><b>13.2</b> Poisson regression</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-explanation"><i class="fa fa-check"></i><b>13.2.1</b> Data explanation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="13-3-negbin.html"><a href="13-3-negbin.html"><i class="fa fa-check"></i><b>13.3</b> Negative binomial regression</a></li>
+<li class="chapter" data-level="13.4" data-path="13-4-zero-inflation.html"><a href="13-4-zero-inflation.html"><i class="fa fa-check"></i><b>13.4</b> Zero inflation</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="8-5-predictions.html"><a href="8-5-predictions.html#predictions"><i class="fa fa-check"></i><b>13.4.1</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="13-5-next-steps.html"><a href="13-5-next-steps.html"><i class="fa fa-check"></i><b>13.5</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -425,13 +436,12 @@ if you like that one better.</p>
 <div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="9-3-ughmath.html#cb345-1"></a><span class="co"># Make predictions from the model</span></span>
 <span id="cb345-2"><a href="9-3-ughmath.html#cb345-2"></a>y_hat &lt;-<span class="st"> </span><span class="kw">predict</span>(fit_lm)</span>
 <span id="cb345-3"><a href="9-3-ughmath.html#cb345-3"></a></span>
-<span id="cb345-4"><a href="9-3-ughmath.html#cb345-4"></a></span>
-<span id="cb345-5"><a href="9-3-ughmath.html#cb345-5"></a><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Petal.Length, <span class="dt">y =</span> Petal.Width, <span class="dt">color =</span> Species) ) <span class="op">+</span></span>
-<span id="cb345-6"><a href="9-3-ughmath.html#cb345-6"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">color =</span> <span class="st">&quot;gray87&quot;</span>) <span class="op">+</span></span>
-<span id="cb345-7"><a href="9-3-ughmath.html#cb345-7"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb345-8"><a href="9-3-ughmath.html#cb345-8"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> Petal.Length, <span class="dt">yend =</span> y_hat), <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span></span>
-<span id="cb345-9"><a href="9-3-ughmath.html#cb345-9"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb345-10"><a href="9-3-ughmath.html#cb345-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
+<span id="cb345-4"><a href="9-3-ughmath.html#cb345-4"></a><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Petal.Length, <span class="dt">y =</span> Petal.Width, <span class="dt">color =</span> Species) ) <span class="op">+</span></span>
+<span id="cb345-5"><a href="9-3-ughmath.html#cb345-5"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">color =</span> <span class="st">&quot;gray87&quot;</span>) <span class="op">+</span></span>
+<span id="cb345-6"><a href="9-3-ughmath.html#cb345-6"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb345-7"><a href="9-3-ughmath.html#cb345-7"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> Petal.Length, <span class="dt">yend =</span> y_hat), <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span></span>
+<span id="cb345-8"><a href="9-3-ughmath.html#cb345-8"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb345-9"><a href="9-3-ughmath.html#cb345-9"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
 <p><br></p>
 <p>So, now that we know what residuals <em>are</em> or at least what they <em>look like</em> we can talk about how they are used.</p>

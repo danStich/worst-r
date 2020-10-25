@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.10.17)  17 OCT 2020 13:31
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.10.17)  25 OCT 2020 15:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -510,6 +510,12 @@ LaTeX Info: Redefining \cite on input line 694.
 ) (./worstr.aux
 
 LaTeX Warning: Label `normality' multiply defined.
+
+
+LaTeX Warning: Label `data-explanation' multiply defined.
+
+
+LaTeX Warning: Label `predictions' multiply defined.
 
 )
 \openout1 = `worstr.aux'.
@@ -1568,25 +1574,25 @@ File: worstr_files/figure-latex/unnamed-chunk-244-1.pdf Graphic file (type pdf)
 [183
 
 ] [184] [185]
-Underfull \hbox (badness 1960) in paragraph at lines 5793--5794
+Underfull \hbox (badness 1960) in paragraph at lines 5792--5793
 []\TU/lmr/m/n/10 For our plant model, we wrote \TU/lmtt/m/n/10 weight ~ group \
 TU/lmr/m/n/10 in our call to \TU/lmtt/m/n/10 lm()
  []
 
 
-Underfull \hbox (badness 1237) in paragraph at lines 5793--5794
+Underfull \hbox (badness 1237) in paragraph at lines 5792--5793
 \TU/lmr/m/n/10 and didn’t have to think twice about what was happening after th
 at.
  []
 
 
-Overfull \hbox (6.75pt too wide) in paragraph at lines 5793--5794
+Overfull \hbox (6.75pt too wide) in paragraph at lines 5792--5793
 \TU/lmtt/m/n/10 (Intercept)*model.matrix$\TU/lmr/m/n/10 (Intercept)\TU/lmtt/m/n
 /10 + grouptrt1*model.matix$grouptrt1
  []
 
 [186] [187]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 5865--5865
+Overfull \hbox (17.25pt too wide) in paragraph at lines 5864--5864
 []\TU/lmtt/m/n/10 ##  [5] "fitted.values" "assign"        "qr"            "df.r
 esidual"[] 
  []
@@ -1631,43 +1637,43 @@ File: worstr_files/figure-latex/unnamed-chunk-270-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-270-1.pdf>
 [198]
-Overfull \hbox (80.25pt too wide) in paragraph at lines 6274--6274
+Overfull \hbox (80.25pt too wide) in paragraph at lines 6273--6273
 []\TU/lmtt/m/n/10 ##   (Intercept) lightsLED resinB resinC resinD lightsLED:res
 inB lightsLED:resinC[] 
  []
 
 
-Overfull \hbox (80.25pt too wide) in paragraph at lines 6274--6274
+Overfull \hbox (80.25pt too wide) in paragraph at lines 6273--6273
 []\TU/lmtt/m/n/10 ## 1           1         0      0      0      0              
   0                0[] 
  []
 
 
-Overfull \hbox (80.25pt too wide) in paragraph at lines 6274--6274
+Overfull \hbox (80.25pt too wide) in paragraph at lines 6273--6273
 []\TU/lmtt/m/n/10 ## 2           1         0      0      0      0              
   0                0[] 
  []
 
 
-Overfull \hbox (80.25pt too wide) in paragraph at lines 6274--6274
+Overfull \hbox (80.25pt too wide) in paragraph at lines 6273--6273
 []\TU/lmtt/m/n/10 ## 3           1         0      0      0      0              
   0                0[] 
  []
 
 
-Overfull \hbox (80.25pt too wide) in paragraph at lines 6274--6274
+Overfull \hbox (80.25pt too wide) in paragraph at lines 6273--6273
 []\TU/lmtt/m/n/10 ## 4           1         0      0      0      0              
   0                0[] 
  []
 
 
-Overfull \hbox (80.25pt too wide) in paragraph at lines 6274--6274
+Overfull \hbox (80.25pt too wide) in paragraph at lines 6273--6273
 []\TU/lmtt/m/n/10 ## 5           1         0      0      0      0              
   0                0[] 
  []
 
 
-Overfull \hbox (80.25pt too wide) in paragraph at lines 6274--6274
+Overfull \hbox (80.25pt too wide) in paragraph at lines 6273--6273
 []\TU/lmtt/m/n/10 ## 6           1         0      0      0      0              
   0                0[] 
  []
@@ -1677,43 +1683,43 @@ File: worstr_files/figure-latex/unnamed-chunk-274-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-274-1.pdf>
 [200] [201] [202]
-Overfull \hbox (12.0pt too wide) in paragraph at lines 6468--6468
+Overfull \hbox (12.0pt too wide) in paragraph at lines 6467--6467
 []\TU/lmtt/m/n/10 ##              Fertility Agriculture Examination Education C
 atholic[] 
  []
 
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 6468--6468
+Overfull \hbox (12.0pt too wide) in paragraph at lines 6467--6467
 []\TU/lmtt/m/n/10 ## Courtelary        80.2        17.0          15        12  
    9.96[] 
  []
 
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 6468--6468
+Overfull \hbox (12.0pt too wide) in paragraph at lines 6467--6467
 []\TU/lmtt/m/n/10 ## Delemont          83.1        45.1           6         9  
   84.84[] 
  []
 
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 6468--6468
+Overfull \hbox (12.0pt too wide) in paragraph at lines 6467--6467
 []\TU/lmtt/m/n/10 ## Franches-Mnt      92.5        39.7           5         5  
   93.40[] 
  []
 
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 6468--6468
+Overfull \hbox (12.0pt too wide) in paragraph at lines 6467--6467
 []\TU/lmtt/m/n/10 ## Moutier           85.8        36.5          12         7  
   33.77[] 
  []
 
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 6468--6468
+Overfull \hbox (12.0pt too wide) in paragraph at lines 6467--6467
 []\TU/lmtt/m/n/10 ## Neuveville        76.9        43.5          17        15  
    5.16[] 
  []
 
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 6468--6468
+Overfull \hbox (12.0pt too wide) in paragraph at lines 6467--6467
 []\TU/lmtt/m/n/10 ## Porrentruy        76.1        35.3           9         7  
   90.57[] 
  []
@@ -1734,25 +1740,25 @@ File: worstr_files/figure-latex/unnamed-chunk-293-1.pdf Graphic file (type pdf)
 ]
 Chapter 11.
 [211] [212] [213] [214]
-Overfull \hbox (12.0pt too wide) in paragraph at lines 6822--6822
+Overfull \hbox (12.0pt too wide) in paragraph at lines 6821--6821
 []\TU/lmtt/m/n/10 ## Fertility ~ Education + Catholic + Infant.Mortality + Agri
 culture[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 6835--6835
+Overfull \hbox (17.25pt too wide) in paragraph at lines 6834--6834
 []\TU/lmtt/m/n/10 ## lm(formula = Fertility ~ Education + Catholic + Infant.Mor
 tality +[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 6835--6835
+Overfull \hbox (38.25pt too wide) in paragraph at lines 6834--6834
 []\TU/lmtt/m/n/10 ##      (Intercept)         Education          Catholic  Infa
 nt.Mortality[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 6835--6835
+Overfull \hbox (38.25pt too wide) in paragraph at lines 6834--6834
 []\TU/lmtt/m/n/10 ##          62.1013           -0.9803            0.1247      
       1.0784[] 
  []
@@ -1766,13 +1772,13 @@ File: worstr_files/figure-latex/unnamed-chunk-302-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-302-1.pdf>
 [219]
-Overfull \hbox (22.5pt too wide) in paragraph at lines 7011--7011
+Overfull \hbox (22.5pt too wide) in paragraph at lines 7010--7010
 []\TU/lmtt/m/n/10 ##  [1] "call"          "terms"         "residuals"     "coef
 ficients"[] 
  []
 
 
-Overfull \hbox (6.75pt too wide) in paragraph at lines 7011--7011
+Overfull \hbox (6.75pt too wide) in paragraph at lines 7010--7010
 []\TU/lmtt/m/n/10 ##  [5] "aliased"       "sigma"         "df"            "r.sq
 uared"[] 
  []
@@ -1788,7 +1794,7 @@ File: worstr_files/figure-latex/unnamed-chunk-315-1.pdf Graphic file (type pdf)
 [229] [230]
 Chapter 12.
 
-Underfull \hbox (badness 1067) in paragraph at lines 7377--7378
+Underfull \hbox (badness 1067) in paragraph at lines 7376--7377
 []\TU/lmr/m/n/10 We’ll work with some packages from the \TU/lmtt/m/n/10 tidyver
 se \TU/lmr/m/n/10 and we’ll use the
  []
@@ -1798,91 +1804,91 @@ se \TU/lmr/m/n/10 and we’ll use the
 ] [232] [233] [234] [235]
 Missing character: There is no 𝜇 in font [lmroman10-regular]:mapping=tex-text;!
 [236] [237] [238]
-Overfull \hbox (54.0pt too wide) in paragraph at lines 7682--7682
+Overfull \hbox (54.0pt too wide) in paragraph at lines 7681--7681
 []\TU/lmtt/m/n/10 ##                                 K   AICc Delta_AICc AICcWt
  Cum.Wt      LL[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 7682--7682
+Overfull \hbox (54.0pt too wide) in paragraph at lines 7681--7681
 []\TU/lmtt/m/n/10 ## year + flow                     7 565.16       0.00   0.31
    0.31 -275.51[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 7682--7682
+Overfull \hbox (54.0pt too wide) in paragraph at lines 7681--7681
 []\TU/lmtt/m/n/10 ## year + hatchery + flow          8 565.23       0.07   0.30
    0.61 -274.52[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 7682--7682
+Overfull \hbox (54.0pt too wide) in paragraph at lines 7681--7681
 []\TU/lmtt/m/n/10 ## year + length + flow            8 565.91       0.75   0.21
    0.82 -274.86[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 7682--7682
+Overfull \hbox (54.0pt too wide) in paragraph at lines 7681--7681
 []\TU/lmtt/m/n/10 ## year + hatchery + length + flow 9 567.12       1.96   0.12
    0.93 -274.44[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 7682--7682
+Overfull \hbox (54.0pt too wide) in paragraph at lines 7681--7681
 []\TU/lmtt/m/n/10 ## year + hatchery                 7 569.50       4.34   0.04
    0.97 -277.68[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 7682--7682
+Overfull \hbox (54.0pt too wide) in paragraph at lines 7681--7681
 []\TU/lmtt/m/n/10 ## year + length                   7 570.80       5.64   0.02
    0.99 -278.33[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 7682--7682
+Overfull \hbox (54.0pt too wide) in paragraph at lines 7681--7681
 []\TU/lmtt/m/n/10 ## year + length + hatchery        8 571.37       6.21   0.01
    1.00 -277.59[] 
  []
 
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 7701--7701
+Overfull \hbox (12.0pt too wide) in paragraph at lines 7700--7700
 []\TU/lmtt/m/n/10 ##  $ Modnames  : Factor w/ 7 levels "year + flow",..: 1 3 6 
 4 2 5 7[] 
  []
 
 [239]
-Overfull \hbox (59.25pt too wide) in paragraph at lines 7736--7736
+Overfull \hbox (59.25pt too wide) in paragraph at lines 7735--7735
 []\TU/lmtt/m/n/10 ## Call:  glm(formula = path ~ year + flow, family = binomial
 , data = choice)[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 7736--7736
+Overfull \hbox (69.75pt too wide) in paragraph at lines 7735--7735
 []\TU/lmtt/m/n/10 ## (Intercept)     year2006     year2009     year2010     yea
 r2011     year2012[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 7736--7736
+Overfull \hbox (69.75pt too wide) in paragraph at lines 7735--7735
 []\TU/lmtt/m/n/10 ##   -2.911624    -0.518632     0.243194    -0.043979    -0.8
 14334    -0.764289[] 
  []
 
 
-Overfull \hbox (22.5pt too wide) in paragraph at lines 7774--7774
+Overfull \hbox (22.5pt too wide) in paragraph at lines 7773--7773
 []\TU/lmtt/m/n/10 ## glm(formula = path ~ year + flow, family = binomial, data 
 = choice)[] 
  []
 
 [240]
-Overfull \hbox (22.5pt too wide) in paragraph at lines 7812--7812
+Overfull \hbox (22.5pt too wide) in paragraph at lines 7811--7811
 []\TU/lmtt/m/n/10 ## glm(formula = path ~ year + flow, family = binomial, data 
 = choice)[] 
  []
 
 [241]
-Overfull \hbox (22.5pt too wide) in paragraph at lines 7855--7855
+Overfull \hbox (22.5pt too wide) in paragraph at lines 7854--7854
 []\TU/lmtt/m/n/10 ## glm(formula = path ~ year + flow, family = binomial, data 
 = choice)[] 
  []
@@ -1891,22 +1897,92 @@ Overfull \hbox (22.5pt too wide) in paragraph at lines 7855--7855
 File: worstr_files/figure-latex/unnamed-chunk-344-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-344-1.pdf>
-[245]
+[245] [246]
+Chapter 13.
+[247
+
+]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 8036--8036
+[]\TU/lmtt/m/n/10 ##  $ width     : num  28.3 26 25.6 21 29 25 26.2 24.9 25.7 2
+7.5 ...[] 
+ []
+
+
+Overfull \hbox (1.5pt too wide) in paragraph at lines 8036--8036
+[]\TU/lmtt/m/n/10 ##  $ mass      : num  3.05 2.6 2.15 1.85 3 2.3 1.3 2.1 2 3.1
+5 ...[] 
+ []
+
+[248]
+File: worstr_files/figure-latex/unnamed-chunk-349-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-349-1.pdf>
+[249]
+File: worstr_files/figure-latex/unnamed-chunk-350-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-350-1.pdf>
+[250] [251]
+File: worstr_files/figure-latex/unnamed-chunk-354-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-354-1.pdf>
+File: worstr_files/figure-latex/unnamed-chunk-355-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-355-1.pdf>
+
+Underfull \vbox (badness 7925) has occurred while \output is active []
+
+[252] [253]
+File: worstr_files/figure-latex/unnamed-chunk-357-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-357-1.pdf>
+[254] [255]
+Overfull \hbox (6.75pt too wide) in paragraph at lines 8285--8285
+[]\TU/lmtt/m/n/10 ## glm(formula = present ~ mass, family = "binomial", data = 
+crabs)[] 
+ []
+
+[256]
+Overfull \hbox (43.5pt too wide) in paragraph at lines 8331--8331
+[]\TU/lmtt/m/n/10 ## glm(formula = satellites ~ mass, family = negative.binomia
+l(theta = 1),[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 8331--8331
+[]\TU/lmtt/m/n/10 ## (Dispersion parameter for Negative Binomial(1) family take
+n to be 0.3128844)[] 
+ []
+
+File: worstr_files/figure-latex/unnamed-chunk-362-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-362-1.pdf>
+[257] [258]
+File: worstr_files/figure-latex/unnamed-chunk-364-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-364-1.pdf>
+[259]
+File: worstr_files/figure-latex/unnamed-chunk-366-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-366-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[260]
 No file worstr.bbl.
-[246] (./worstr.aux)
+[261] (./worstr.aux)
 Package rerunfilecheck Info: File `worstr.out' has not changed.
-(rerunfilecheck)             Checksum: 044C9EECA808C4A5C5FCC4398866375E;11984.
+(rerunfilecheck)             Checksum: 0D8373660C1C9C31AB4576F87D83BB4E;12830.
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 17670 strings out of 479466
- 325505 string characters out of 5880414
- 761747 words of memory out of 5000000
- 36665 multiletter control sequences out of 15000+600000
+ 17725 strings out of 479466
+ 327961 string characters out of 5880414
+ 762956 words of memory out of 5000000
+ 36712 multiletter control sequences out of 15000+600000
  541619 words of font info for 92 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  84i,6n,118p,1283b,466s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on worstr.pdf (246 pages).
+Output written on worstr.pdf (261 pages).

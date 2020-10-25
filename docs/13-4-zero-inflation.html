@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>13.4 Zero inflation | The Worst Stats Text eveR</title>
+  <meta name="description" content="13.4 Zero inflation | The Worst Stats Text eveR" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="13.4 Zero inflation | The Worst Stats Text eveR" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="13.4 Zero inflation | The Worst Stats Text eveR" />
+  
+  
+  
+
+<meta name="author" content="Dan Stich" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="13-3-negbin.html"/>
+<link rel="next" href="13-5-next-steps.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Worst Stats Text eveR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
+<li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-where-do-i-start.html"><a href="1-3-where-do-i-start.html"><i class="fa fa-check"></i><b>1.3</b> Where do I start?</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html"><i class="fa fa-check"></i><b>1.4</b> Programming conventions</a><ul>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#style"><i class="fa fa-check"></i>Style and organization</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#tips"><i class="fa fa-check"></i>Some handy coding tips</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#rules"><i class="fa fa-check"></i>Stricter R programming rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-5-next1.html"><a href="1-5-next1.html"><i class="fa fa-check"></i><b>1.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-Chapter2.html"><a href="2-Chapter2.html"><i class="fa fa-check"></i><b>2</b> Data structures</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-vectors.html"><a href="2-1-vectors.html"><i class="fa fa-check"></i><b>2.1</b> Vectors</a><ul>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#nums"><i class="fa fa-check"></i>Integers and numerics</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#strings"><i class="fa fa-check"></i>Characters and factors</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#logicals"><i class="fa fa-check"></i>Logical vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-operations.html"><a href="2-2-operations.html"><i class="fa fa-check"></i><b>2.2</b> Vector operations</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-matrices.html"><a href="2-3-matrices.html"><i class="fa fa-check"></i><b>2.3</b> Matrices</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-dataframes.html"><a href="2-4-dataframes.html"><i class="fa fa-check"></i><b>2.4</b> Dataframes</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-lists.html"><a href="2-5-lists.html"><i class="fa fa-check"></i><b>2.5</b> Lists</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-next2.html"><a href="2-6-next2.html"><i class="fa fa-check"></i><b>2.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-Chapter3.html"><a href="3-Chapter3.html"><i class="fa fa-check"></i><b>3</b> Working with data</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-data-read.html"><a href="3-1-data-read.html"><i class="fa fa-check"></i><b>3.1</b> Data read</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-quick-data-summaries.html"><a href="3-2-quick-data-summaries.html"><i class="fa fa-check"></i><b>3.2</b> Quick data summaries</a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html"><i class="fa fa-check"></i><b>3.3</b> Subsetting and selecting data</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#manual-subsets-and-selections"><i class="fa fa-check"></i><b>3.3.1</b> Manual subsets and selections</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#subsetting-and-summaries-in-base-r"><i class="fa fa-check"></i><b>3.3.2</b> Subsetting and summaries in base R</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#tidyverse"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting and summaries in the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-better-data-summaries.html"><a href="3-4-better-data-summaries.html"><i class="fa fa-check"></i><b>3.4</b> Better data summaries</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-creating-new-variables.html"><a href="3-5-creating-new-variables.html"><i class="fa fa-check"></i><b>3.5</b> Creating new variables</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html"><i class="fa fa-check"></i><b>3.6</b> Data simulation</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#random-sub-samples-from-a-dataset"><i class="fa fa-check"></i><b>3.6.1</b> Random sub-samples from a dataset</a></li>
+<li class="chapter" data-level="3.6.2" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#stochastic"><i class="fa fa-check"></i><b>3.6.2</b> Stochastic simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="3-7-next3.html"><a href="3-7-next3.html"><i class="fa fa-check"></i><b>3.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-Chapter4.html"><a href="4-Chapter4.html"><i class="fa fa-check"></i><b>4</b> Plotting and graphics</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-plots-matter-as-much-as-stats.html"><a href="4-1-plots-matter-as-much-as-stats.html"><i class="fa fa-check"></i><b>4.1</b> Plots matter as much as stats</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html"><i class="fa fa-check"></i><b>4.2</b> Plotting with base R</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#histograms"><i class="fa fa-check"></i><b>4.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#scatterplots"><i class="fa fa-check"></i><b>4.2.2</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#lines"><i class="fa fa-check"></i><b>4.2.3</b> Lines</a></li>
+<li class="chapter" data-level="4.2.4" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#boxplots"><i class="fa fa-check"></i><b>4.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>4.3</b> Plotting with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gghists"><i class="fa fa-check"></i><b>4.3.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggscatter"><i class="fa fa-check"></i><b>4.3.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gglines"><i class="fa fa-check"></i><b>4.3.3</b> Lines</a></li>
+<li class="chapter" data-level="4.3.4" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggboxplots"><i class="fa fa-check"></i><b>4.3.4</b> Boxplots and</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4-4-next4.html"><a href="4-4-next4.html"><i class="fa fa-check"></i><b>4.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-Chapter5.html"><a href="5-Chapter5.html"><i class="fa fa-check"></i><b>5</b> Sampling distributions in R</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-what-are-sampling-distributions.html"><a href="5-1-what-are-sampling-distributions.html"><i class="fa fa-check"></i><b>5.1</b> What are sampling distributions?</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-probability-distributions-in-r.html"><a href="5-2-probability-distributions-in-r.html"><i class="fa fa-check"></i><b>5.2</b> Probability distributions in R</a></li>
+<li class="chapter" data-level="5.3" data-path="5-3-exponential-family.html"><a href="5-3-exponential-family.html"><i class="fa fa-check"></i><b>5.3</b> Exponential family</a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html"><i class="fa fa-check"></i><b>5.4</b> Continuous distributions</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-lognormal-distribution"><i class="fa fa-check"></i><b>5.4.1</b> The lognormal distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-beta-distribution"><i class="fa fa-check"></i><b>5.4.2</b> The beta distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html"><i class="fa fa-check"></i><b>5.5</b> Discrete distributions</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#bernoulli"><i class="fa fa-check"></i><b>5.5.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="5.5.2" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#binomial"><i class="fa fa-check"></i><b>5.5.2</b> Binomial</a></li>
+<li class="chapter" data-level="5.5.3" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#multinomial"><i class="fa fa-check"></i><b>5.5.3</b> Multinomial</a></li>
+<li class="chapter" data-level="5.5.4" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#poisson"><i class="fa fa-check"></i><b>5.5.4</b> Poisson</a></li>
+<li class="chapter" data-level="5.5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#the-negative-binomial-distribution"><i class="fa fa-check"></i><b>5.5.5</b> The negative binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html"><i class="fa fa-check"></i><b>5.6</b> Sample statistics</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#moments-about-the-mean"><i class="fa fa-check"></i><b>5.6.1</b> Moments about the mean</a></li>
+<li class="chapter" data-level="5.6.2" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#estimating-parameters-of-the-normal-distribution-from-a-sample"><i class="fa fa-check"></i><b>5.6.2</b> Estimating parameters of the normal distribution from a sample</a></li>
+<li class="chapter" data-level="5.6.3" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#quantiles-and-other-descriptive-statistics"><i class="fa fa-check"></i><b>5.6.3</b> Quantiles and other descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="5-7-next5.html"><a href="5-7-next5.html"><i class="fa fa-check"></i><b>5.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-Chapter6.html"><a href="6-Chapter6.html"><i class="fa fa-check"></i><b>6</b> Inferential statistics</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html"><i class="fa fa-check"></i><b>6.1</b> One-sample tests</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html#one-sample-t-test"><i class="fa fa-check"></i><b>6.1.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html#wilcox-test"><i class="fa fa-check"></i><b>6.1.2</b> Wilcox test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html"><i class="fa fa-check"></i><b>6.2</b> Two-sample tests</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>6.2.1</b> The two-sample t-test</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#two-sample-wilcox-test"><i class="fa fa-check"></i><b>6.2.2</b> Two-sample Wilcox test</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#presenting-your-results"><i class="fa fa-check"></i><b>6.2.3</b> Presenting your results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-3-frequency-analysis.html"><a href="6-3-frequency-analysis.html"><i class="fa fa-check"></i><b>6.3</b> Frequency analysis</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="6-3-frequency-analysis.html"><a href="6-3-frequency-analysis.html#worked-example"><i class="fa fa-check"></i><b>6.3.1</b> Worked example</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="6-4-next6.html"><a href="6-4-next6.html"><i class="fa fa-check"></i><b>6.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-Chapter7.html"><a href="7-Chapter7.html"><i class="fa fa-check"></i><b>7</b> Linear models</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-anova.html"><a href="7-1-anova.html"><i class="fa fa-check"></i><b>7.1</b> Analysis of variance (ANOVA)</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-1-anova.html"><a href="7-1-anova.html#one-way"><i class="fa fa-check"></i><b>7.1.1</b> One-way analysis of variance</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-1-anova.html"><a href="7-1-anova.html#twon-way-anova"><i class="fa fa-check"></i><b>7.1.2</b> Two(<em>n</em>)-way ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-2-simple-linear-regression.html"><a href="7-2-simple-linear-regression.html"><i class="fa fa-check"></i><b>7.2</b> Simple linear regression</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-2-simple-linear-regression.html"><a href="7-2-simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>7.2.1</b> Simple linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7-3-multiple-linear-regression.html"><a href="7-3-multiple-linear-regression.html"><i class="fa fa-check"></i><b>7.3</b> Multiple linear regression</a></li>
+<li class="chapter" data-level="7.4" data-path="7-4-next7.html"><a href="7-4-next7.html"><i class="fa fa-check"></i><b>7.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-Chapter8.html"><a href="8-Chapter8.html"><i class="fa fa-check"></i><b>8</b> General linear models</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-1-analysis-of-covariance-ancova.html"><a href="8-1-analysis-of-covariance-ancova.html"><i class="fa fa-check"></i><b>8.1</b> Analysis of covariance (ANCOVA)</a></li>
+<li class="chapter" data-level="8.2" data-path="8-2-motivation.html"><a href="8-2-motivation.html"><i class="fa fa-check"></i><b>8.2</b> Motivation</a></li>
+<li class="chapter" data-level="8.3" data-path="8-3-data.html"><a href="8-3-data.html"><i class="fa fa-check"></i><b>8.3</b> Data</a></li>
+<li class="chapter" data-level="8.4" data-path="8-4-analysis.html"><a href="8-4-analysis.html"><i class="fa fa-check"></i><b>8.4</b> Analysis</a></li>
+<li class="chapter" data-level="8.5" data-path="8-5-predictions.html"><a href="8-5-predictions.html"><i class="fa fa-check"></i><b>8.5</b> Predictions</a></li>
+<li class="chapter" data-level="8.6" data-path="8-6-next8.html"><a href="8-6-next8.html"><i class="fa fa-check"></i><b>8.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-Chapter9.html"><a href="9-Chapter9.html"><i class="fa fa-check"></i><b>9</b> Assumptions of linear models</a><ul>
+<li class="chapter" data-level="9.1" data-path="9-1-intro9.html"><a href="9-1-intro9.html"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="9-2-assumptions-of-linear-models.html"><a href="9-2-assumptions-of-linear-models.html"><i class="fa fa-check"></i><b>9.2</b> Assumptions of linear models</a></li>
+<li class="chapter" data-level="9.3" data-path="9-3-ughmath.html"><a href="9-3-ughmath.html"><i class="fa fa-check"></i><b>9.3</b> WTF is a residuals?</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="9-3-ughmath.html"><a href="9-3-ughmath.html#residuals-in-anova"><i class="fa fa-check"></i><b>9.3.1</b> Residuals in ANOVA</a></li>
+<li class="chapter" data-level="9.3.2" data-path="9-3-ughmath.html"><a href="9-3-ughmath.html#residuals-in-linear-regression"><i class="fa fa-check"></i><b>9.3.2</b> Residuals in linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="9-4-the-turtle-problem.html"><a href="9-4-the-turtle-problem.html"><i class="fa fa-check"></i><b>9.4</b> The turtle problem</a></li>
+<li class="chapter" data-level="9.5" data-path="9-5-data-exploration.html"><a href="9-5-data-exploration.html"><i class="fa fa-check"></i><b>9.5</b> Data exploration</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="9-5-data-exploration.html"><a href="9-5-data-exploration.html#independence-of-observations"><i class="fa fa-check"></i><b>9.5.1</b> Independence of observations</a></li>
+<li class="chapter" data-level="9.5.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#normality"><i class="fa fa-check"></i><b>9.5.2</b> Normality</a></li>
+<li class="chapter" data-level="9.5.3" data-path="9-5-data-exploration.html"><a href="9-5-data-exploration.html#homogeneity-of-variances"><i class="fa fa-check"></i><b>9.5.3</b> Homogeneity of variances</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="9-6-anova-diagnostics.html"><a href="9-6-anova-diagnostics.html"><i class="fa fa-check"></i><b>9.6</b> ANOVA Diagnostics</a></li>
+<li class="chapter" data-level="9.7" data-path="9-7-linear-regression-diagnostics.html"><a href="9-7-linear-regression-diagnostics.html"><i class="fa fa-check"></i><b>9.7</b> Linear regression diagnostics</a></li>
+<li class="chapter" data-level="9.8" data-path="9-8-next9.html"><a href="9-8-next9.html"><i class="fa fa-check"></i><b>9.8</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-Chapter10.html"><a href="10-Chapter10.html"><i class="fa fa-check"></i><b>10</b> Communicating effect sizes</a><ul>
+<li class="chapter" data-level="10.1" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html"><i class="fa fa-check"></i><b>10.1</b> One-way ANOVA</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#unifying-the-linear-model"><i class="fa fa-check"></i><b>10.1.1</b> Unifying the linear model</a></li>
+<li class="chapter" data-level="10.1.2" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#the-model-matrix"><i class="fa fa-check"></i><b>10.1.2</b> The model matrix</a></li>
+<li class="chapter" data-level="10.1.3" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#prediction"><i class="fa fa-check"></i><b>10.1.3</b> Prediction</a></li>
+<li class="chapter" data-level="10.1.4" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#plotting"><i class="fa fa-check"></i><b>10.1.4</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="10-2-two-way-anova.html"><a href="10-2-two-way-anova.html"><i class="fa fa-check"></i><b>10.2</b> Two-way ANOVA</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="10-2-two-way-anova.html"><a href="10-2-two-way-anova.html#main-effects-10"><i class="fa fa-check"></i><b>10.2.1</b> Main effects model</a></li>
+<li class="chapter" data-level="10.2.2" data-path="10-2-two-way-anova.html"><a href="10-2-two-way-anova.html#interactions"><i class="fa fa-check"></i><b>10.2.2</b> Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="10-3-linear-regression.html"><a href="10-3-linear-regression.html"><i class="fa fa-check"></i><b>10.3</b> Linear regression</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="10-3-linear-regression.html"><a href="10-3-linear-regression.html#prediction-1"><i class="fa fa-check"></i><b>10.3.1</b> Prediction</a></li>
+<li class="chapter" data-level="10.3.2" data-path="10-3-linear-regression.html"><a href="10-3-linear-regression.html#plotting-1"><i class="fa fa-check"></i><b>10.3.2</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="10-4-ancova.html"><a href="10-4-ancova.html"><i class="fa fa-check"></i><b>10.4</b> ANCOVA</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="10-4-ancova.html"><a href="10-4-ancova.html#prediction-2"><i class="fa fa-check"></i><b>10.4.1</b> Prediction</a></li>
+<li class="chapter" data-level="10.4.2" data-path="10-4-ancova.html"><a href="10-4-ancova.html#plotting-2"><i class="fa fa-check"></i><b>10.4.2</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="10-5-next10.html"><a href="10-5-next10.html"><i class="fa fa-check"></i><b>10.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-Chapter11.html"><a href="11-Chapter11.html"><i class="fa fa-check"></i><b>11</b> Model selection</a><ul>
+<li class="chapter" data-level="11.1" data-path="11-1-intro11.html"><a href="11-1-intro11.html"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
+<li class="chapter" data-level="11.2" data-path="11-2-model-selection-tools.html"><a href="11-2-model-selection-tools.html"><i class="fa fa-check"></i><b>11.2</b> Model selection tools</a></li>
+<li class="chapter" data-level="11.3" data-path="11-3-all-subsets.html"><a href="11-3-all-subsets.html"><i class="fa fa-check"></i><b>11.3</b> All subsets</a></li>
+<li class="chapter" data-level="11.4" data-path="11-4-stepwise.html"><a href="11-4-stepwise.html"><i class="fa fa-check"></i><b>11.4</b> Stepwise selection</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="11-4-stepwise.html"><a href="11-4-stepwise.html#forward-selection"><i class="fa fa-check"></i><b>11.4.1</b> Forward selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="11-5-a-priori.html"><a href="11-5-a-priori.html"><i class="fa fa-check"></i><b>11.5</b> <em>A priori</em> selection</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="11-5-a-priori.html"><a href="11-5-a-priori.html#multi-phase-heirarchical-selection"><i class="fa fa-check"></i><b>11.5.1</b> Multi-phase (heirarchical) selection</a></li>
+<li class="chapter" data-level="11.5.2" data-path="11-5-a-priori.html"><a href="11-5-a-priori.html#single-phase-selection"><i class="fa fa-check"></i><b>11.5.2</b> Single-phase selection</a></li>
+<li class="chapter" data-level="11.5.3" data-path="11-5-a-priori.html"><a href="11-5-a-priori.html#tools-for-a-priori-model-selection"><i class="fa fa-check"></i><b>11.5.3</b> Tools for <em>a priori</em> model selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="11-6-model-validation.html"><a href="11-6-model-validation.html"><i class="fa fa-check"></i><b>11.6</b> Model validation</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="11-6-model-validation.html"><a href="11-6-model-validation.html#leave-one-out-cross-validation"><i class="fa fa-check"></i><b>11.6.1</b> Leave-one-out cross validation</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="11-7-next11.html"><a href="11-7-next11.html"><i class="fa fa-check"></i><b>11.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="12-Chapter12.html"><a href="12-Chapter12.html"><i class="fa fa-check"></i><b>12</b> Logistic regression</a><ul>
+<li class="chapter" data-level="12.1" data-path="12-1-intro12.html"><a href="12-1-intro12.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="12-2-Assumptions12.html"><a href="12-2-Assumptions12.html"><i class="fa fa-check"></i><b>12.2</b> Assumptions of linear models</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="12-2-Assumptions12.html"><a href="12-2-Assumptions12.html#assumption-1-normality-of-residuals"><i class="fa fa-check"></i><b>12.2.1</b> Assumption 1: normality of residuals</a></li>
+<li class="chapter" data-level="12.2.2" data-path="12-2-Assumptions12.html"><a href="12-2-Assumptions12.html#assumption-2-independence-of-observations"><i class="fa fa-check"></i><b>12.2.2</b> Assumption 2: independence of observations</a></li>
+<li class="chapter" data-level="12.2.3" data-path="12-2-Assumptions12.html"><a href="12-2-Assumptions12.html#assumption-3-homogeneity-of-variances"><i class="fa fa-check"></i><b>12.2.3</b> Assumption 3: homogeneity of variances</a></li>
+<li class="chapter" data-level="12.2.4" data-path="12-2-Assumptions12.html"><a href="12-2-Assumptions12.html#assumption-4-linearity-and-additivity"><i class="fa fa-check"></i><b>12.2.4</b> Assumption 4: linearity and additivity</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="12-3-introducing-the-glm.html"><a href="12-3-introducing-the-glm.html"><i class="fa fa-check"></i><b>12.3</b> Introducing the GLM</a></li>
+<li class="chapter" data-level="12.4" data-path="12-4-logistic.html"><a href="12-4-logistic.html"><i class="fa fa-check"></i><b>12.4</b> Binary (logistic) regression</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-explanation"><i class="fa fa-check"></i><b>12.4.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="12.4.2" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-analysis"><i class="fa fa-check"></i><b>12.4.2</b> Data analysis</a></li>
+<li class="chapter" data-level="12.4.3" data-path="12-4-logistic.html"><a href="12-4-logistic.html#interpreting-the-results"><i class="fa fa-check"></i><b>12.4.3</b> Interpreting the results</a></li>
+<li class="chapter" data-level="12.4.4" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>12.4.4</b> Making predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="12-5-next12.html"><a href="12-5-next12.html"><i class="fa fa-check"></i><b>12.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="13-Chapter13.html"><a href="13-Chapter13.html"><i class="fa fa-check"></i><b>13</b> GLM: Count models</a><ul>
+<li class="chapter" data-level="13.1" data-path="13-1-intro13.html"><a href="13-1-intro13.html"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="13-2-poisson-regression.html"><a href="13-2-poisson-regression.html"><i class="fa fa-check"></i><b>13.2</b> Poisson regression</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-explanation"><i class="fa fa-check"></i><b>13.2.1</b> Data explanation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="13-3-negbin.html"><a href="13-3-negbin.html"><i class="fa fa-check"></i><b>13.3</b> Negative binomial regression</a></li>
+<li class="chapter" data-level="13.4" data-path="13-4-zero-inflation.html"><a href="13-4-zero-inflation.html"><i class="fa fa-check"></i><b>13.4</b> Zero inflation</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="8-5-predictions.html"><a href="8-5-predictions.html#predictions"><i class="fa fa-check"></i><b>13.4.1</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="13-5-next-steps.html"><a href="13-5-next-steps.html"><i class="fa fa-check"></i><b>13.5</b> Next steps</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Worst Stats Text eveR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="zero-inflation" class="section level2">
+<h2><span class="header-section-number">13.4</span> Zero inflation</h2>
+<p>The fits of these two models, in reality, suggest the need to for what is becoming an increasingly common statistical tool: the zero inflated count model. Zero inflation (excess zeroes in count data) can arise by one of two mechanisms: true (“process”) zeros and observational zeros that result from imperfect detection.</p>
+<p>One approach to dealing with this is to use a <strong>hurdle model</strong>. The idea is to make two separate models: 1) a logistic regression model to help us determine which factors influence whether the phenomenon of interest even occurred (0 or 1), and 2) a count model to help us determine what factors influence with the frequency of occurrence given that it occurred in the first place.</p>
+<p>When these models are linked mathematically, we call it a “mixture model” - an approach that has become very popular for accounting for imperfect detection when estimating abundance of organisms. For now, let’s just look at the hurdle model for our crab data as the n-mixture approach falls solidly in the realm of “advanced” methods we’ll not discuss in this book.</p>
+<p>First, we need to make a binary indicator variable to represent whether or not any satellites were present:</p>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="13-4-zero-inflation.html#cb532-1"></a><span class="co"># Make a new column for count</span></span>
+<span id="cb532-2"><a href="13-4-zero-inflation.html#cb532-2"></a><span class="co"># and absence (of satellite males)</span></span>
+<span id="cb532-3"><a href="13-4-zero-inflation.html#cb532-3"></a><span class="co"># and initialize to zero</span></span>
+<span id="cb532-4"><a href="13-4-zero-inflation.html#cb532-4"></a>crabs<span class="op">$</span>present &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb532-5"><a href="13-4-zero-inflation.html#cb532-5"></a></span>
+<span id="cb532-6"><a href="13-4-zero-inflation.html#cb532-6"></a><span class="co"># Assign a &#39;1&#39; if any satellites were</span></span>
+<span id="cb532-7"><a href="13-4-zero-inflation.html#cb532-7"></a><span class="co"># observed</span></span>
+<span id="cb532-8"><a href="13-4-zero-inflation.html#cb532-8"></a>crabs<span class="op">$</span>present[crabs<span class="op">$</span>satellites <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<p>Now, the first step in the hurdle model is to fit a logistic regression model to predict how our response is affected by some combination of explanatory variables.</p>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="13-4-zero-inflation.html#cb533-1"></a>step1 &lt;-<span class="st"> </span><span class="kw">glm</span>(present <span class="op">~</span><span class="st"> </span>mass, <span class="dt">data =</span> crabs, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb533-2"><a href="13-4-zero-inflation.html#cb533-2"></a><span class="kw">summary</span>(step1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = present ~ mass, family = &quot;binomial&quot;, data = crabs)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.1106  -1.0750   0.5427   0.9122   1.6323  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)  -3.6933     0.8799  -4.197 2.70e-05 ***
+## mass          1.8145     0.3766   4.818 1.45e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 225.76  on 172  degrees of freedom
+## Residual deviance: 195.74  on 171  degrees of freedom
+## AIC: 199.74
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<p>Here we see that mass has a significant effect on whether or not <em>any</em> satellite males are present. You could imagine fitting any number of plausible biological models for comparison using AIC at this point.</p>
+<p>Step 2 is to fit a count model to explain the effects of some combination of explanatory variables on the frequency with which the phenomenon occurs given that it ever occurred in the first place. <strong>Note</strong>: This does not have to be the same combination of explanatory variables. In fact, it is always conceivable that different processes influence these two distinct phenomena. As with the count-absence model, you could even fit a candidate set of models and proceed with model comparisons using AIC.</p>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="13-4-zero-inflation.html#cb535-1"></a><span class="co"># Make a model relating the number</span></span>
+<span id="cb535-2"><a href="13-4-zero-inflation.html#cb535-2"></a><span class="co"># of satellite males to the mass</span></span>
+<span id="cb535-3"><a href="13-4-zero-inflation.html#cb535-3"></a><span class="co"># of female crabs</span></span>
+<span id="cb535-4"><a href="13-4-zero-inflation.html#cb535-4"></a>step2 &lt;-<span class="st"> </span><span class="kw">glm</span>(</span>
+<span id="cb535-5"><a href="13-4-zero-inflation.html#cb535-5"></a>  satellites <span class="op">~</span><span class="st"> </span>mass,</span>
+<span id="cb535-6"><a href="13-4-zero-inflation.html#cb535-6"></a>  <span class="dt">data =</span> crabs[crabs<span class="op">$</span>satellites <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>, ],</span>
+<span id="cb535-7"><a href="13-4-zero-inflation.html#cb535-7"></a>  <span class="dt">family =</span> <span class="st">&quot;negative.binomial&quot;</span>(<span class="dt">theta =</span> <span class="dv">1</span>)</span>
+<span id="cb535-8"><a href="13-4-zero-inflation.html#cb535-8"></a>)</span>
+<span id="cb535-9"><a href="13-4-zero-inflation.html#cb535-9"></a></span>
+<span id="cb535-10"><a href="13-4-zero-inflation.html#cb535-10"></a><span class="co"># Print a summary of the model</span></span>
+<span id="cb535-11"><a href="13-4-zero-inflation.html#cb535-11"></a><span class="kw">summary</span>(step2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = satellites ~ mass, family = negative.binomial(theta = 1), 
+##     data = crabs[crabs$satellites != 0, ])
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -1.08178  -0.43875  -0.09937   0.26840   1.36868  
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   1.0036     0.2726   3.681 0.000363 ***
+## mass          0.1941     0.1018   1.907 0.059190 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for Negative Binomial(1) family taken to be 0.3128844)
+## 
+##     Null deviance: 35.931  on 110  degrees of freedom
+## Residual deviance: 34.849  on 109  degrees of freedom
+## AIC: 584.04
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<p>From these results, we can see that our count models in the previous sections were really just picking up on the large number of zeroes in our data set. We know this because of the differences in the results between the models <code>step1</code> and <code>step2</code>.</p>
+<p>Likewise, we can take another look at our model diagnostics for <code>step2</code> to see if our diagnostic plots look more reasonable now</p>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="13-4-zero-inflation.html#cb537-1"></a><span class="kw">ggplot</span>(step2, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid)) <span class="op">+</span></span>
+<span id="cb537-2"><a href="13-4-zero-inflation.html#cb537-2"></a><span class="st">  </span><span class="kw">geom_jitter</span>() <span class="op">+</span></span>
+<span id="cb537-3"><a href="13-4-zero-inflation.html#cb537-3"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fitted values&quot;</span>) <span class="op">+</span></span>
+<span id="cb537-4"><a href="13-4-zero-inflation.html#cb537-4"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon)))</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-362-1.png" width="672" /></p>
+<p>Here, we can see that our residual plots indicate a pretty drastic improvement.</p>
+<div id="predictions" class="section level3">
+<h3><span class="header-section-number">13.4.1</span> Predictions</h3>
+<p>Now that we are finally happy with our residual plots (wow, that took a lot longer than fitting any of the models!) we can make a plot of our predictions against the raw data to see how we did.</p>
+<p>Let’s start with the count/absence component that we fit in <code>step1</code>:</p>
+<p>Make some predictions from the model using a sequence of new values of <code>mass</code> based on what we observed in our data set:</p>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="13-4-zero-inflation.html#cb538-1"></a><span class="co"># Sequences of new masses based on the min and max observed</span></span>
+<span id="cb538-2"><a href="13-4-zero-inflation.html#cb538-2"></a><span class="co"># in our data</span></span>
+<span id="cb538-3"><a href="13-4-zero-inflation.html#cb538-3"></a>new_mass &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mass =</span> <span class="kw">seq</span>(<span class="kw">min</span>(crabs<span class="op">$</span>mass), <span class="kw">max</span>(crabs<span class="op">$</span>mass), <span class="fl">.1</span>))</span>
+<span id="cb538-4"><a href="13-4-zero-inflation.html#cb538-4"></a></span>
+<span id="cb538-5"><a href="13-4-zero-inflation.html#cb538-5"></a><span class="co"># Make predictions using step1 model and the new_mass df</span></span>
+<span id="cb538-6"><a href="13-4-zero-inflation.html#cb538-6"></a>count_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb538-7"><a href="13-4-zero-inflation.html#cb538-7"></a>  <span class="kw">predict</span>(step1, <span class="dt">newdata =</span> new_mass, <span class="dt">type =</span> <span class="st">&quot;link&quot;</span>, <span class="dt">se.fit =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb538-8"><a href="13-4-zero-inflation.html#cb538-8"></a>)</span>
+<span id="cb538-9"><a href="13-4-zero-inflation.html#cb538-9"></a></span>
+<span id="cb538-10"><a href="13-4-zero-inflation.html#cb538-10"></a><span class="co"># Get 95% confidence intervals</span></span>
+<span id="cb538-11"><a href="13-4-zero-inflation.html#cb538-11"></a>count_preds<span class="op">$</span>lwr &lt;-<span class="st"> </span>count_preds<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span>count_preds<span class="op">$</span>se.fit <span class="op">*</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.025</span>)</span>
+<span id="cb538-12"><a href="13-4-zero-inflation.html#cb538-12"></a>count_preds<span class="op">$</span>upr &lt;-<span class="st"> </span>count_preds<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span>count_preds<span class="op">$</span>se.fit <span class="op">*</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="cb538-13"><a href="13-4-zero-inflation.html#cb538-13"></a></span>
+<span id="cb538-14"><a href="13-4-zero-inflation.html#cb538-14"></a><span class="co"># Invert the logit-link function</span></span>
+<span id="cb538-15"><a href="13-4-zero-inflation.html#cb538-15"></a>count_preds &lt;-<span class="st"> </span><span class="kw">apply</span>(count_preds, <span class="dv">2</span>, boot<span class="op">::</span>inv.logit)</span>
+<span id="cb538-16"><a href="13-4-zero-inflation.html#cb538-16"></a></span>
+<span id="cb538-17"><a href="13-4-zero-inflation.html#cb538-17"></a><span class="co"># Combine the new masses and the predictions with which</span></span>
+<span id="cb538-18"><a href="13-4-zero-inflation.html#cb538-18"></a><span class="co"># they are associated</span></span>
+<span id="cb538-19"><a href="13-4-zero-inflation.html#cb538-19"></a>pres_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(new_mass, count_preds)</span></code></pre></div>
+<p><strong>Important:</strong> Our hurdle model actually contains two models (<code>step1</code> and <code>step2</code>). The <code>step1</code> component is actually <strong>logistic regression</strong> and therefore uses the <strong>logit</strong> link function that we introduced in <a href="12-Chapter12.html#Chapter12">Chapter 12</a>, so we need to invert the logit to get the probability of a female having any <code>satellite</code> males as a function of <code>mass</code>. This is done in the code above. Make sure you understand how and why we do this!</p>
+<p>Once you’ve got that down, it’s all over but the plotting. Here is how predicted probability of <code>satellite</code> male crab count changes across the range of observed female <code>mass</code>:</p>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="13-4-zero-inflation.html#cb539-1"></a><span class="kw">ggplot</span>(pres_preds, <span class="kw">aes</span>(<span class="dt">x =</span> mass, <span class="dt">y =</span> fit)) <span class="op">+</span></span>
+<span id="cb539-2"><a href="13-4-zero-inflation.html#cb539-2"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb539-3"><a href="13-4-zero-inflation.html#cb539-3"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr, <span class="dt">color =</span> <span class="ot">NULL</span>), <span class="dt">alpha =</span> <span class="fl">.3</span>) <span class="op">+</span></span>
+<span id="cb539-4"><a href="13-4-zero-inflation.html#cb539-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb539-5"><a href="13-4-zero-inflation.html#cb539-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Mass of female crab (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb539-6"><a href="13-4-zero-inflation.html#cb539-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability of satellite male&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-364-1.png" width="672" /></p>
+<p>Finally, we can make a plot of the number of <code>satellite</code> males we would expect to see on a female crab given that she had attracted any males in the first place.</p>
+<p><strong>Also important:</strong> We need to remember here that we have two different models. The first model <code>step1</code> was a binary logistic regression, so it used the logit link. The second model <code>step2</code> was a count model and used the log link. That means we need to invert the log link to get our predicted counts back on the real scale.</p>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="13-4-zero-inflation.html#cb540-1"></a><span class="co"># Sequences of new masses based on the min and max observed</span></span>
+<span id="cb540-2"><a href="13-4-zero-inflation.html#cb540-2"></a><span class="co"># in our data</span></span>
+<span id="cb540-3"><a href="13-4-zero-inflation.html#cb540-3"></a>new_mass &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mass =</span> <span class="kw">seq</span>(<span class="kw">min</span>(crabs<span class="op">$</span>mass), <span class="kw">max</span>(crabs<span class="op">$</span>mass), <span class="fl">.1</span>))</span>
+<span id="cb540-4"><a href="13-4-zero-inflation.html#cb540-4"></a></span>
+<span id="cb540-5"><a href="13-4-zero-inflation.html#cb540-5"></a><span class="co"># Make predictions using step2 model and the new_mass df</span></span>
+<span id="cb540-6"><a href="13-4-zero-inflation.html#cb540-6"></a>count_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb540-7"><a href="13-4-zero-inflation.html#cb540-7"></a>  <span class="kw">predict</span>(step2, <span class="dt">newdata =</span> new_mass, <span class="dt">type =</span> <span class="st">&quot;link&quot;</span>, <span class="dt">se.fit =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb540-8"><a href="13-4-zero-inflation.html#cb540-8"></a>)</span>
+<span id="cb540-9"><a href="13-4-zero-inflation.html#cb540-9"></a></span>
+<span id="cb540-10"><a href="13-4-zero-inflation.html#cb540-10"></a><span class="co"># Get 95% confidence intervals</span></span>
+<span id="cb540-11"><a href="13-4-zero-inflation.html#cb540-11"></a>count_preds<span class="op">$</span>lwr &lt;-<span class="st"> </span>count_preds<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span>count_preds<span class="op">$</span>se.fit <span class="op">*</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.025</span>)</span>
+<span id="cb540-12"><a href="13-4-zero-inflation.html#cb540-12"></a>count_preds<span class="op">$</span>upr &lt;-<span class="st"> </span>count_preds<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span>count_preds<span class="op">$</span>se.fit <span class="op">*</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="cb540-13"><a href="13-4-zero-inflation.html#cb540-13"></a></span>
+<span id="cb540-14"><a href="13-4-zero-inflation.html#cb540-14"></a><span class="co"># Invert the log link function</span></span>
+<span id="cb540-15"><a href="13-4-zero-inflation.html#cb540-15"></a>count_preds &lt;-<span class="st"> </span><span class="kw">apply</span>(count_preds, <span class="dv">2</span>, exp)</span>
+<span id="cb540-16"><a href="13-4-zero-inflation.html#cb540-16"></a></span>
+<span id="cb540-17"><a href="13-4-zero-inflation.html#cb540-17"></a><span class="co"># Combine the new masses and the predictions with which</span></span>
+<span id="cb540-18"><a href="13-4-zero-inflation.html#cb540-18"></a><span class="co"># they are associated - overwriting on the fly - yuck!!</span></span>
+<span id="cb540-19"><a href="13-4-zero-inflation.html#cb540-19"></a>count_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(new_mass, count_preds)</span></code></pre></div>
+<p>Here is a plot showing how the number of <code>satellite</code> males observed changes with the <code>mass</code> of female horseshoe crabs:</p>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="13-4-zero-inflation.html#cb541-1"></a><span class="kw">ggplot</span>(count_preds, <span class="kw">aes</span>(<span class="dt">x =</span> mass, <span class="dt">y =</span> fit)) <span class="op">+</span></span>
+<span id="cb541-2"><a href="13-4-zero-inflation.html#cb541-2"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb541-3"><a href="13-4-zero-inflation.html#cb541-3"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">x =</span> mass, <span class="dt">y =</span> satellites), <span class="dt">data =</span> crabs[crabs<span class="op">$</span>satellites <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, ]) <span class="op">+</span></span>
+<span id="cb541-4"><a href="13-4-zero-inflation.html#cb541-4"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr, <span class="dt">color =</span> <span class="ot">NULL</span>), <span class="dt">alpha =</span> <span class="fl">.3</span>) <span class="op">+</span></span>
+<span id="cb541-5"><a href="13-4-zero-inflation.html#cb541-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Mass of female crab (kg)&quot;</span>) <span class="op">+</span></span>
+<span id="cb541-6"><a href="13-4-zero-inflation.html#cb541-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Number of satellite males&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-366-1.png" width="672" /></p>
+<p>Well, it doesn’t exactly inspire great confidence in the biological relationship between female horseshoe crab mass and the number of satellite males she attracts, but that is exactly why it is so important to communicate these effects</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="13-3-negbin.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="13-5-next-steps.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["worstr.pdf", "worstr.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
