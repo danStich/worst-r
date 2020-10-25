@@ -326,7 +326,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13.3" data-path="13-3-negbin.html"><a href="13-3-negbin.html"><i class="fa fa-check"></i><b>13.3</b> Negative binomial regression</a></li>
 <li class="chapter" data-level="13.4" data-path="13-4-zero-inflation.html"><a href="13-4-zero-inflation.html"><i class="fa fa-check"></i><b>13.4</b> Zero inflation</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="8-5-predictions.html"><a href="8-5-predictions.html#predictions"><i class="fa fa-check"></i><b>13.4.1</b> Predictions</a></li>
+<li class="chapter" data-level="13.4.1" data-path="13-4-zero-inflation.html"><a href="13-4-zero-inflation.html#predict-counts"><i class="fa fa-check"></i><b>13.4.1</b> Predictions</a></li>
 </ul></li>
 <li class="chapter" data-level="13.5" data-path="13-5-next-steps.html"><a href="13-5-next-steps.html"><i class="fa fa-check"></i><b>13.5</b> Next steps</a></li>
 </ul></li>
@@ -426,14 +426,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>From these results, we can see that our count models in the previous sections were really just picking up on the large number of zeroes in our data set. We know this because of the differences in the results between the models <code>step1</code> and <code>step2</code>.</p>
-<p>Likewise, we can take another look at our model diagnostics for <code>step2</code> to see if our diagnostic plots look more reasonable now</p>
+<p>Likewise, we can take another look at our model diagnostics for <code>step2</code> to see if our diagnostic plots look more reasonable now.</p>
 <div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="13-4-zero-inflation.html#cb537-1"></a><span class="kw">ggplot</span>(step2, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid)) <span class="op">+</span></span>
 <span id="cb537-2"><a href="13-4-zero-inflation.html#cb537-2"></a><span class="st">  </span><span class="kw">geom_jitter</span>() <span class="op">+</span></span>
 <span id="cb537-3"><a href="13-4-zero-inflation.html#cb537-3"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fitted values&quot;</span>) <span class="op">+</span></span>
 <span id="cb537-4"><a href="13-4-zero-inflation.html#cb537-4"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon)))</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-362-1.png" width="672" /></p>
 <p>Here, we can see that our residual plots indicate a pretty drastic improvement.</p>
-<div id="predictions" class="section level3">
+<div id="predict-counts" class="section level3">
 <h3><span class="header-section-number">13.4.1</span> Predictions</h3>
 <p>Now that we are finally happy with our residual plots (wow, that took a lot longer than fitting any of the models!) we can make a plot of our predictions against the raw data to see how we did.</p>
 <p>Let’s start with the count/absence component that we fit in <code>step1</code>:</p>

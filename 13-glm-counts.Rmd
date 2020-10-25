@@ -207,7 +207,7 @@ summary(step2)
 
 From these results, we can see that our count models in the previous sections were really just picking up on the large number of zeroes in our data set. We know this because of the differences in the results between the models `step1` and `step2`. 
 
-Likewise, we can take another look at our model diagnostics for `step2` to see if our diagnostic plots look more reasonable now
+Likewise, we can take another look at our model diagnostics for `step2` to see if our diagnostic plots look more reasonable now.
 
 ```{r}
 ggplot(step2, aes(x = .fitted, y = .resid)) +
@@ -218,7 +218,7 @@ ggplot(step2, aes(x = .fitted, y = .resid)) +
 
 Here, we can see that our residual plots indicate a pretty drastic improvement.
 
-### Predictions
+### Predictions {#predict-counts}
 
 Now that we are finally happy with our residual plots (wow, that took a lot longer than fitting any of the models!) we can make a plot of our predictions against the raw data to see how we did.
 

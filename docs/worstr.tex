@@ -2810,7 +2810,7 @@ We'll start with one chicken egg that has a 50\% chance of successfully hatching
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1
+## [1] 0
 \end{verbatim}
 
 There is also a function called \texttt{rbern} in the \texttt{Rlab} package that simplifies this for the specific case of a Bernoulli.
@@ -2838,7 +2838,7 @@ Or we could hatch a whole bunch of eggs:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1 1 1 0 0 0 0 0 0 1
+##  [1] 0 1 0 1 0 0 1 1 0 0
 \end{verbatim}
 
 Then, we could even count how many of those were successful. Do you remember how to do that? There are several different ways. You'll have to come up with one for the homework assignment (hint: see \protect\hyperlink{Chapter2}{Chapter 2}).
@@ -2860,7 +2860,7 @@ To sample data from a binomial distribution, we can use \texttt{rbinom} from bas
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 5 5 5 4 7 6 4 5 3 8
+##  [1] 4 5 5 1 5 3 4 6 4 5
 \end{verbatim}
 
 Remember as you look through these that your numbers should look different than mine (at least most of the time) because these are being generated randomly.
@@ -2928,23 +2928,23 @@ Have a look:
 \begin{verbatim}
 ##       [,1] [,2] [,3] [,4] [,5]
 ##  [1,]    0    0    0    0    0
-##  [2,]    1    0    0    0    0
-##  [3,]    0    0    0    0    1
+##  [2,]    0    0    0    0    0
+##  [3,]    1    0    0    0    0
 ##  [4,]    0    0    0    0    0
-##  [5,]    0    0    0    0    0
-##  [6,]    0    0    0    0    0
+##  [5,]    0    0    0    0    1
+##  [6,]    0    0    1    0    0
 ##  [7,]    0    0    0    0    0
 ##  [8,]    0    0    0    0    0
 ##  [9,]    0    0    0    0    0
-## [10,]    0    0    0    0    0
+## [10,]    0    0    0    1    0
 ## [11,]    0    0    0    0    0
 ## [12,]    0    0    0    0    0
-## [13,]    0    0    0    0    0
+## [13,]    0    1    0    0    0
 ## [14,]    0    0    0    0    0
-## [15,]    0    0    1    0    0
+## [15,]    0    0    0    0    0
 ## [16,]    0    0    0    0    0
-## [17,]    0    1    0    0    0
-## [18,]    0    0    0    1    0
+## [17,]    0    0    0    0    0
+## [18,]    0    0    0    0    0
 ## [19,]    0    0    0    0    0
 ## [20,]    0    0    0    0    0
 ## [21,]    0    0    0    0    0
@@ -2992,9 +2992,9 @@ Take a step back, breathe, and think about this. The rows in this matrix are you
 ## [21,]    0
 ## [22,]    0
 ## [23,]    0
-## [24,]    1
+## [24,]    0
 ## [25,]    0
-## [26,]    0
+## [26,]    1
 \end{verbatim}
 
 Here, we pulled a single sample from the distribution, and probability of sampling a given individual was 0.04 (1/26). If it makes it easier, we can put your names next to it:
@@ -3013,7 +3013,7 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 ##  [4,] "Manolo"      "0"
 ##  [5,] "Sarah"       "0"
 ##  [6,] "Shannon"     "0"
-##  [7,] "Olivia"      "0"
+##  [7,] "Olivia"      "1"
 ##  [8,] "Ebony"       "0"
 ##  [9,] "Julia"       "0"
 ## [10,] "Davi"        "0"
@@ -3031,7 +3031,7 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 ## [22,] "Maximillion" "0"
 ## [23,] "Sierra"      "0"
 ## [24,] "Kyle"        "0"
-## [25,] "Diana"       "1"
+## [25,] "Diana"       "0"
 ## [26,] "Amanda"      "0"
 \end{verbatim}
 
@@ -3046,30 +3046,30 @@ Now, if I was calling on you randomly in class, after 10 questions, the spread o
 \begin{verbatim}
 ##       name                                                 
 ##  [1,] "Ava"         "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [2,] "Dillon"      "0" "0" "0" "0" "0" "0" "0" "0" "1" "0"
+##  [2,] "Dillon"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [3,] "Delaney"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [4,] "Manolo"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [5,] "Sarah"       "0" "0" "0" "0" "1" "0" "0" "0" "0" "1"
-##  [6,] "Shannon"     "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
+##  [5,] "Sarah"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [6,] "Shannon"     "0" "0" "0" "0" "0" "0" "0" "1" "0" "0"
 ##  [7,] "Olivia"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [8,] "Ebony"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [9,] "Julia"       "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
-## [10,] "Davi"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [11,] "Gabrielle"   "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [9,] "Julia"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [10,] "Davi"        "0" "0" "0" "0" "0" "0" "0" "0" "1" "0"
+## [11,] "Gabrielle"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [12,] "Jordan"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [13,] "Tayler"      "1" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [13,] "Tayler"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [14,] "Summer"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [15,] "Leah"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [15,] "Leah"        "1" "0" "0" "1" "0" "0" "0" "0" "0" "0"
 ## [16,] "Christine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [17,] "Ashley"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [18,] "Katherine"   "0" "0" "0" "0" "0" "0" "0" "1" "0" "0"
+## [18,] "Katherine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [19,] "James"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [20,] "Emily"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [20,] "Emily"       "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
 ## [21,] "Cassidy"     "0" "0" "0" "0" "0" "0" "1" "0" "0" "0"
 ## [22,] "Maximillion" "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [23,] "Sierra"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [24,] "Kyle"        "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
-## [25,] "Diana"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [23,] "Sierra"      "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
+## [24,] "Kyle"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "1"
+## [25,] "Diana"       "0" "0" "0" "0" "1" "1" "0" "0" "0" "0"
 ## [26,] "Amanda"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 \end{verbatim}
 
@@ -3082,7 +3082,7 @@ Taking this one step further, we could just draw a name and stop looking at thes
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Christine"
+## [1] "Leah"
 \end{verbatim}
 
 And now we have a way to randomly select an individual based on a multinomial distribution. What fun!
@@ -3318,7 +3318,7 @@ First, we'll estimate it by making our own function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.975688  4.017443
+## [1] 19.985945  4.012118
 \end{verbatim}
 
 Because this one is so common, R has built-in estimators that rely on
@@ -3332,7 +3332,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.97569
+## [1] 19.98595
 \end{verbatim}
 
 \begin{Shaded}
@@ -3342,7 +3342,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.017845
+## [1] 4.01252
 \end{verbatim}
 
 Wow, that was a lot less code. That is the beauty of having these functions available. How do these compare to the answers returned by our function if you scroll back up?
@@ -3360,8 +3360,8 @@ R also has built-in \textbf{maximum likelihood} estimators that provide an exact
 
 \begin{verbatim}
 ##       mean           sd     
-##   19.97568847    2.00435612 
-##  ( 0.02004356) ( 0.01417294)
+##   19.98594529    2.00302732 
+##  ( 0.02003027) ( 0.01416354)
 \end{verbatim}
 
 Only one problem here: R doesn't report the second moment! It reports
@@ -3410,14 +3410,14 @@ To get started, we need to take a guess at what those parameters could be. (Yes,
 
 \begin{verbatim}
 ## $par
-## [1] 19.975735  4.016827
+## [1] 19.986180  4.011951
 ## 
 ## $value
-## [1] 21142.61
+## [1] 21135.98
 ## 
 ## $counts
 ## function gradient 
-##       49       NA 
+##       51       NA 
 ## 
 ## $convergence
 ## [1] 0
@@ -3462,8 +3462,8 @@ Look at the structure I'll be damned, it's a list! Hey, we learned about those!
 
 \begin{verbatim}
 ## List of 5
-##  $ par        : num [1:2] 19.98 4.02
-##  $ value      : num 21143
+##  $ par        : num [1:2] 19.99 4.01
+##  $ value      : num 21136
 ##  $ counts     : Named int [1:2] 97 NA
 ##   ..- attr(*, "names")= chr [1:2] "function" "gradient"
 ##  $ convergence: int 0
@@ -3480,7 +3480,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.977955  4.019973
+## [1] 19.989124  4.008137
 \end{verbatim}
 
 \begin{Shaded}
@@ -3491,7 +3491,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.97796
+## [1] 19.98912
 \end{verbatim}
 
 \begin{Shaded}
@@ -3502,7 +3502,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.019973
+## [1] 4.008137
 \end{verbatim}
 
 There you have it, a couple of different ways to calculate parameters of the normal distribution using a couple of different approaches each.
@@ -3520,7 +3520,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.95321
+## [1] 19.99395
 \end{verbatim}
 
 \begin{Shaded}
@@ -3532,7 +3532,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##     2.5%    97.5% 
-## 16.05628 23.93365
+## 16.05456 23.88411
 \end{verbatim}
 
 \begin{Shaded}
@@ -3544,7 +3544,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##      25%      75% 
-## 18.62750 21.32331
+## 18.64747 21.34906
 \end{verbatim}
 
 \begin{Shaded}
@@ -3555,7 +3555,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 12.86480 27.12729
+## [1] 13.16800 28.31646
 \end{verbatim}
 
 \hypertarget{next5}{%
@@ -8332,7 +8332,7 @@ Step 2 is to fit a count model to explain the effects of some combination of exp
 
 From these results, we can see that our count models in the previous sections were really just picking up on the large number of zeroes in our data set. We know this because of the differences in the results between the models \texttt{step1} and \texttt{step2}.
 
-Likewise, we can take another look at our model diagnostics for \texttt{step2} to see if our diagnostic plots look more reasonable now
+Likewise, we can take another look at our model diagnostics for \texttt{step2} to see if our diagnostic plots look more reasonable now.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8347,8 +8347,8 @@ Likewise, we can take another look at our model diagnostics for \texttt{step2} t
 
 Here, we can see that our residual plots indicate a pretty drastic improvement.
 
-\hypertarget{predictions}{%
-\subsection{Predictions}\label{predictions}}
+\hypertarget{predict-counts}{%
+\subsection{Predictions}\label{predict-counts}}
 
 Now that we are finally happy with our residual plots (wow, that took a lot longer than fitting any of the models!) we can make a plot of our predictions against the raw data to see how we did.
 
