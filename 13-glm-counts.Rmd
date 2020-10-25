@@ -2,6 +2,9 @@
 
 <img src="images/crabs.jpg" alt="">
 
+<p style="font-family: times, serif; font-size:.9em; font-style:italic">
+The majestic female horseshoe crab. Once she has one mate she might attract any number of other "satellite" males. How many? Let's find out, but first we'll need a good count model. </p>
+
 ## Introduction {#intro13}
 
 This week we continue our exploration of generalized linear models and their implementation and interpretation in R. We will continue to investigate the flexible formulation of GLM for use with count models. By the end of this week, you should have a reasonable understanding of why we might use different kinds of count models, how to use them, and what the results mean. We will dive back into the world of residual diagnostics again this week to look at a few different tools that we have at our disposal for GLM.
