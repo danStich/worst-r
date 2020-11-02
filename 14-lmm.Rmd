@@ -55,12 +55,6 @@ In past weeks, we looked at ways to reduce this issue by introducing blocking (c
 We've already looked at a couple of ways to deal with violations of these assumptions such as data transformation and/or polynomial formulations of the linear model. We will continue to apply these concepts this week as we begin to investigate the GLMM as robust framework for analysis.
 
 
-## Introducing the GLMM
-
-The first thing you should understand about GLMMs is that they are useful for analyzing data from a large number of distributions (basically, you can use them for any underlying error structure). But, when we use specific error structures, or make certain assumptions about the manner in which the heterogeneity of variances is structured with respect to specific factors, this model is often given specific names. For example, repeated measures ANOVA (or ANCOVA), nested ANOVA (or ANCOVA), factorial ANOVA (or ANCOVA), linear mixed models, linear mixed effects models, and generalized linear mixed effects models are all just different formulations of the GLMM with different names. It sounds confusing, but just remember this: any linear model with combinations of fixed and random effects is, at it's core, just another GLMM! If you can convince yourself of this, you will improve your ability to understand a wide range of experimental designs and accompanying statistical models by understanding this one model type.
-
-The second thing you should understand to "get" GLMMs is what exactly is meant by a "random effect". So far in this course we have only dealt with "fixed" effects. The fixed effect is a categorical variable that is used to explain some variation in our response of interest. When we use a fixed effect in a statistical model, we are making the assumption that the categories for this effect are "fixed". In other words, we have assigned the the levels, or categories, based on some *a priori* knowledge that the levels themselves represent all possible groups that can be used to describe the data. Because of this definition, fixed effects are usually 1) things that we manipulate directly (like dosage or some other treatment), or 2) relatively simple grouping variables such as sex. By contrast, a "random effect" is an effect that we do not generally set ahead of time or manipulate, but rather one which is considered to be a sample from a population of potential categories that we cannot census or (often) control. Please note that there is not a single, widely accepted definition for either of these things in applied statistics and the definition can be context-specific. It becomes all the more confusing when we switch between maximum likelihood estimation and Bayesian inference. Don't take it from me, though. Ask one of the world's leading experts on the matter [here](http://andrewgelman.com/2005/01/25/why_i_dont_use/).
-
 ## Linear mixed models
 
 We will start our explorations into GLMM by looking at the somewhat familiar case of "normal" data, whatever mythical meaning it may have. As with the relationship between ANOVA and GLM, we can say that the linear mixed model (LMM) is just a special case of the GLMM (hence the name), both of which belong to the group of multi-level or hierarchical models that house basically every kind of model we have looked at this semester.
@@ -267,6 +261,7 @@ real_preds <- apply(log_preds, 2, exp)
 
 # Combine predictions with the original data
 mer_preds <- data.frame(cray, real_preds)
+
 ```
  
 Finally, let's add that beautiful uncertainty to our site-specific predictive plots that we made above!

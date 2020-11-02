@@ -2825,7 +2825,7 @@ Let's do it again with that function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0
+## [1] 1
 \end{verbatim}
 
 Or we could hatch a whole bunch of eggs:
@@ -2838,7 +2838,7 @@ Or we could hatch a whole bunch of eggs:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1 0 0 1 1 1 0 1 0 0
+##  [1] 1 1 0 0 1 0 1 0 0 0
 \end{verbatim}
 
 Then, we could even count how many of those were successful. Do you remember how to do that? There are several different ways. You'll have to come up with one for the homework assignment (hint: see \protect\hyperlink{Chapter2}{Chapter 2}).
@@ -2860,7 +2860,7 @@ To sample data from a binomial distribution, we can use \texttt{rbinom} from bas
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 3 8 6 5 4 3 5 6 4 5
+##  [1] 3 5 6 6 3 5 4 7 4 2
 \end{verbatim}
 
 Remember as you look through these that your numbers should look different than mine (at least most of the time) because these are being generated randomly.
@@ -2929,28 +2929,28 @@ Have a look:
 ##       [,1] [,2] [,3] [,4] [,5]
 ##  [1,]    0    0    0    0    0
 ##  [2,]    0    0    0    0    0
-##  [3,]    0    0    0    0    1
+##  [3,]    0    0    0    0    0
 ##  [4,]    0    0    0    0    0
 ##  [5,]    0    0    0    0    0
 ##  [6,]    0    0    0    0    0
-##  [7,]    0    1    1    0    0
+##  [7,]    0    0    0    0    0
 ##  [8,]    0    0    0    0    0
 ##  [9,]    0    0    0    0    0
-## [10,]    0    0    0    0    0
+## [10,]    0    0    0    0    1
 ## [11,]    0    0    0    0    0
 ## [12,]    0    0    0    0    0
-## [13,]    0    0    0    0    0
+## [13,]    0    0    1    0    0
 ## [14,]    0    0    0    0    0
-## [15,]    0    0    0    0    0
+## [15,]    0    0    0    1    0
 ## [16,]    0    0    0    0    0
 ## [17,]    0    0    0    0    0
 ## [18,]    0    0    0    0    0
 ## [19,]    0    0    0    0    0
 ## [20,]    0    0    0    0    0
-## [21,]    1    0    0    0    0
-## [22,]    0    0    0    1    0
-## [23,]    0    0    0    0    0
-## [24,]    0    0    0    0    0
+## [21,]    0    0    0    0    0
+## [22,]    0    0    0    0    0
+## [23,]    0    1    0    0    0
+## [24,]    1    0    0    0    0
 ## [25,]    0    0    0    0    0
 ## [26,]    0    0    0    0    0
 \end{verbatim}
@@ -3010,7 +3010,7 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 ##  [1,] "Ava"         "0"
 ##  [2,] "Dillon"      "0"
 ##  [3,] "Delaney"     "0"
-##  [4,] "Manolo"      "0"
+##  [4,] "Manolo"      "1"
 ##  [5,] "Sarah"       "0"
 ##  [6,] "Shannon"     "0"
 ##  [7,] "Olivia"      "0"
@@ -3020,7 +3020,7 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 ## [11,] "Gabrielle"   "0"
 ## [12,] "Jordan"      "0"
 ## [13,] "Tayler"      "0"
-## [14,] "Summer"      "1"
+## [14,] "Summer"      "0"
 ## [15,] "Leah"        "0"
 ## [16,] "Christine"   "0"
 ## [17,] "Ashley"      "0"
@@ -3046,31 +3046,31 @@ Now, if I was calling on you randomly in class, after 10 questions, the spread o
 \begin{verbatim}
 ##       name                                                 
 ##  [1,] "Ava"         "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [2,] "Dillon"      "0" "0" "0" "0" "0" "0" "0" "1" "0" "0"
-##  [3,] "Delaney"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [2,] "Dillon"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [3,] "Delaney"     "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [4,] "Manolo"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [5,] "Sarah"       "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
-##  [6,] "Shannon"     "0" "0" "0" "0" "0" "0" "1" "0" "0" "0"
+##  [5,] "Sarah"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [6,] "Shannon"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [7,] "Olivia"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [8,] "Ebony"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [9,] "Julia"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [10,] "Davi"        "0" "0" "0" "0" "0" "0" "0" "0" "1" "0"
-## [11,] "Gabrielle"   "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
+##  [9,] "Julia"       "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
+## [10,] "Davi"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [11,] "Gabrielle"   "0" "0" "0" "0" "1" "0" "0" "0" "0" "0"
 ## [12,] "Jordan"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [13,] "Tayler"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [14,] "Summer"      "0" "0" "0" "0" "1" "0" "0" "0" "0" "1"
-## [15,] "Leah"        "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
-## [16,] "Christine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [17,] "Ashley"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [14,] "Summer"      "1" "0" "0" "0" "0" "0" "1" "0" "0" "0"
+## [15,] "Leah"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [16,] "Christine"   "0" "0" "0" "0" "0" "0" "0" "1" "0" "0"
+## [17,] "Ashley"      "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
 ## [18,] "Katherine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [19,] "James"       "1" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [19,] "James"       "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
 ## [20,] "Emily"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [21,] "Cassidy"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [22,] "Maximillion" "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [22,] "Maximillion" "0" "0" "0" "0" "0" "0" "0" "0" "1" "1"
 ## [23,] "Sierra"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [24,] "Kyle"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [25,] "Diana"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [26,] "Amanda"      "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
+## [26,] "Amanda"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 \end{verbatim}
 
 Taking this one step further, we could just draw a name and stop looking at these ugly (no but really they are \textbf{awesome}!) matrices:
@@ -3082,7 +3082,7 @@ Taking this one step further, we could just draw a name and stop looking at thes
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Leah"
+## [1] "Summer"
 \end{verbatim}
 
 And now we have a way to randomly select an individual based on a multinomial distribution. What fun!
@@ -3318,7 +3318,7 @@ First, we'll estimate it by making our own function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 20.003106  4.006177
+## [1] 19.989760  4.026802
 \end{verbatim}
 
 Because this one is so common, R has built-in estimators that rely on
@@ -3332,7 +3332,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 20.00311
+## [1] 19.98976
 \end{verbatim}
 
 \begin{Shaded}
@@ -3342,7 +3342,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.006578
+## [1] 4.027205
 \end{verbatim}
 
 Wow, that was a lot less code. That is the beauty of having these functions available. How do these compare to the answers returned by our function if you scroll back up?
@@ -3360,8 +3360,8 @@ R also has built-in \textbf{maximum likelihood} estimators that provide an exact
 
 \begin{verbatim}
 ##       mean           sd     
-##   20.00310647    2.00154368 
-##  ( 0.02001544) ( 0.01415305)
+##   19.98975968    2.00668934 
+##  ( 0.02006689) ( 0.01418944)
 \end{verbatim}
 
 Only one problem here: R doesn't report the second moment! It reports
@@ -3410,14 +3410,14 @@ To get started, we need to take a guess at what those parameters could be. (Yes,
 
 \begin{verbatim}
 ## $par
-## [1] 20.002959  4.006004
+## [1] 19.989732  4.027285
 ## 
 ## $value
-## [1] 21128.57
+## [1] 21154.25
 ## 
 ## $counts
 ## function gradient 
-##       51       NA 
+##       49       NA 
 ## 
 ## $convergence
 ## [1] 0
@@ -3462,9 +3462,9 @@ Look at the structure I'll be damned, it's a list! Hey, we learned about those!
 
 \begin{verbatim}
 ## List of 5
-##  $ par        : num [1:2] 20 3.99
-##  $ value      : num 21129
-##  $ counts     : Named int [1:2] 101 NA
+##  $ par        : num [1:2] 20 4.05
+##  $ value      : num 21154
+##  $ counts     : Named int [1:2] 91 NA
 ##   ..- attr(*, "names")= chr [1:2] "function" "gradient"
 ##  $ convergence: int 0
 ##  $ message    : NULL
@@ -3480,7 +3480,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 20.004369  3.994985
+## [1] 19.997021  4.047637
 \end{verbatim}
 
 \begin{Shaded}
@@ -3491,7 +3491,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 20.00437
+## [1] 19.99702
 \end{verbatim}
 
 \begin{Shaded}
@@ -3502,7 +3502,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.994985
+## [1] 4.047637
 \end{verbatim}
 
 There you have it, a couple of different ways to calculate parameters of the normal distribution using a couple of different approaches each.
@@ -3520,7 +3520,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 20.02269
+## [1] 19.99596
 \end{verbatim}
 
 \begin{Shaded}
@@ -3532,7 +3532,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##     2.5%    97.5% 
-## 16.02376 23.88307
+## 16.02124 23.95039
 \end{verbatim}
 
 \begin{Shaded}
@@ -3544,7 +3544,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##      25%      75% 
-## 18.65362 21.35612
+## 18.67208 21.32131
 \end{verbatim}
 
 \begin{Shaded}
@@ -3555,7 +3555,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 12.56947 27.94925
+## [1] 11.78336 27.41013
 \end{verbatim}
 
 \hypertarget{next5}{%
@@ -8520,13 +8520,6 @@ In past weeks, we looked at ways to reduce this issue by introducing blocking (c
 
 We've already looked at a couple of ways to deal with violations of these assumptions such as data transformation and/or polynomial formulations of the linear model. We will continue to apply these concepts this week as we begin to investigate the GLMM as robust framework for analysis.
 
-\hypertarget{introducing-the-glmm}{%
-\section{Introducing the GLMM}\label{introducing-the-glmm}}
-
-The first thing you should understand about GLMMs is that they are useful for analyzing data from a large number of distributions (basically, you can use them for any underlying error structure). But, when we use specific error structures, or make certain assumptions about the manner in which the heterogeneity of variances is structured with respect to specific factors, this model is often given specific names. For example, repeated measures ANOVA (or ANCOVA), nested ANOVA (or ANCOVA), factorial ANOVA (or ANCOVA), linear mixed models, linear mixed effects models, and generalized linear mixed effects models are all just different formulations of the GLMM with different names. It sounds confusing, but just remember this: any linear model with combinations of fixed and random effects is, at it's core, just another GLMM! If you can convince yourself of this, you will improve your ability to understand a wide range of experimental designs and accompanying statistical models by understanding this one model type.
-
-The second thing you should understand to ``get'' GLMMs is what exactly is meant by a ``random effect''. So far in this course we have only dealt with ``fixed'' effects. The fixed effect is a categorical variable that is used to explain some variation in our response of interest. When we use a fixed effect in a statistical model, we are making the assumption that the categories for this effect are ``fixed''. In other words, we have assigned the the levels, or categories, based on some \emph{a priori} knowledge that the levels themselves represent all possible groups that can be used to describe the data. Because of this definition, fixed effects are usually 1) things that we manipulate directly (like dosage or some other treatment), or 2) relatively simple grouping variables such as sex. By contrast, a ``random effect'' is an effect that we do not generally set ahead of time or manipulate, but rather one which is considered to be a sample from a population of potential categories that we cannot census or (often) control. Please note that there is not a single, widely accepted definition for either of these things in applied statistics and the definition can be context-specific. It becomes all the more confusing when we switch between maximum likelihood estimation and Bayesian inference. Don't take it from me, though. Ask one of the world's leading experts on the matter \href{http://andrewgelman.com/2005/01/25/why_i_dont_use/}{here}.
-
 \hypertarget{linear-mixed-models}{%
 \section{Linear mixed models}\label{linear-mixed-models}}
 
@@ -8853,6 +8846,379 @@ This may seem like a lot of work at first glance, but hopefully you do realize t
 \section{Next steps}\label{next-14}}
 
 This chapter provided a basic overview of why to use mixed models, how to analyze them, and how to use predictions and plots to determine what the results mean. These models are a potentially powerful tool that arguably are still under-utilized in biology and ecology. To crank up the power even more, we will generalize these models to include tools like logistic regression and count models in \protect\hyperlink{Chapter15}{Chapter 15}.
+
+\hypertarget{Chapter15}{%
+\chapter{Generalized linear mixed models}\label{Chapter15}}
+
+This is a big, fat walleye. It is closely related to the yellow perch from Chapter 14, but it is a bigger, better tasting version. Likewise, GLMM is just a bigger, better tasting version of LMM. Okay, this one is definitely the last new fish data set for the book\ldots I think.
+
+\hypertarget{intro-15}{%
+\section{Introduction}\label{intro-15}}
+
+In \protect\hyperlink{Chapter14}{Chapter 14} we introduced the generalized linear mixed model (GLMM) through the lens of the linear mixed model (LMM). The first thing you should understand about GLMMs is that they are useful for analyzing data from a large number of distributions (basically, you can use them for any underlying error structure). They are just like GLM is to LM but with an extra ``M'' for our ``mix'' of fixed and random effects. When we use specific error structures, or make certain assumptions about the manner in which the heterogeneity of variances is structured with respect to specific factors, this model is often given specific names. For example, repeated measures ANOVA (or ANCOVA), nested ANOVA (or ANCOVA), factorial ANOVA (or ANCOVA), linear mixed models, linear mixed effects models, and generalized linear mixed effects models are all just different formulations of the GLMM with different names. It sounds confusing, but just remember this: any linear model with combinations of fixed and random effects is, at it's core, just another GLMM! If you can convince yourself of this, you will improve your ability to understand a wide range of experimental designs and accompanying statistical models by understanding this one model type.
+
+The second thing you should understand to ``get'' GLMMs is what exactly is meant by a ``random effect''. So far in this course we have only dealt with ``fixed'' effects. The fixed effect is a categorical variable that is used to explain some variation in our response of interest. When we use a fixed effect in a statistical model, we are making the assumption that the categories for this effect are ``fixed''. In other words, we have assigned the the levels, or categories, based on some \emph{a priori} knowledge that the levels themselves represent all possible groups that can be used to describe the data. Because of this definition, fixed effects are usually 1) things that we manipulate directly (like dosage or some other treatment), or 2) relatively simple grouping variables such as sex. By contrast, a ``random effect'' is an effect that we do not generally set ahead of time or manipulate, but rather one which is considered to be a sample from a population of potential categories that we cannot census or (often) control. Please note that there is not a single, widely accepted definition for either of these things in applied statistics and the definition can be context-specific. It becomes all the more confusing when we switch between maximum likelihood estimation and Bayesian inference. Don't take it from me, though. Ask one of the world's leading experts on the matter \href{http://andrewgelman.com/2005/01/25/why_i_dont_use/}{here}.
+
+We will use examples of logistic regression and count models to investigate GLMM in this chapter and round out our discussions from \protect\hyperlink{Chapter14}{Chapter 14}. To do this, we will need our usual faves from the \texttt{tidyverse} and \texttt{lme4}. You know the drill:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(lme4)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{glmm-logistic}{%
+\section{Logistic regression}\label{glmm-logistic}}
+
+For our first example this week, we will use the \texttt{choice} data from a couple weeks ago that we used to demonstrate binomial logistic regression. This time, we will add in a random intercept term that will allow us to account for repeated observations within a year. This has two implications: 1) it accounts for the fact that the years in which we conducted this study are random samples from a larger, unobserved population, and 2) it accounts for the heterogeneity of variance that theoretically might occur as a result of taking multiple, and variable, numbers of measurements within a given year- thereby reducing the overall error of the model and our associated parameter estimates (in theory).
+
+\begin{verbatim}
+##   path year hatchery length mass date flow
+## 1    0 2010        1    176   57  118  345
+## 2    0 2005        1    205  101  128 1093
+## 3    0 2010        1    180   56  118  345
+## 4    0 2010        1    193   74  118  345
+## 5    0 2005        1    189   76  128 1093
+## 6    0 2010        1    180   65  118  345
+\end{verbatim}
+
+\hypertarget{glmm-logistic-data}{%
+\subsection{Data Explanation}\label{glmm-logistic-data}}
+
+These data are from a study that examined factors affecting path choice by wild and hatchery-reared endangered Atlantic salmon smolts during seaward migration in the Penobscot River, Maine. State, local, and federal fishery managers were interested in understanding what factors affected migratory routing through the lower river because there were different numbers of dams, with different estimated smolt mortality rates, on either side of a large island hydropower project in this system. If managers could understand factors influencing migratory route, they might be able to manipulate flows, stocking dates, and dam operation to improve survival of these endangered fish. Furthermore, the results of the study were used to predict the effects of dam removal, and hydropower re-allocation in the lower river on population-level consequences for these fish. Please see the \textless08\_glm\_logisticRegression\textgreater logistic regression module for a complete explanation of the data.
+
+\hypertarget{glmm-logistic-analysis}{%
+\subsection{Data analysis}\label{glmm-logistic-analysis}}
+
+We are going to use the 1/0 binary data to estimate the effects of a number of covariates of interest on the probability that an individual fish used the Stillwater Branch for migration in each year of this study using logistic regression. In order to do this, we will use the `logit' link function, which can be defined as:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{logit <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+  \KeywordTok{log}\NormalTok{(x }\OperatorTok{/}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{x))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+The inverse of the logit function is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{invlogit <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+  \KeywordTok{exp}\NormalTok{(x) }\OperatorTok{/}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\KeywordTok{exp}\NormalTok{(x))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Since we are not interested in the linear trend in the use of the Stillwater Branch through time, we need to convert \texttt{year} to factor. This is the same as if we wanted to use this as a fixed effect in the model as we did in \href{https://danstich.github.io/worst-r/12-4-logistic.html}{Chapter 12.4} when we last worked with these data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{choice}\OperatorTok{$}\NormalTok{year <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(choice}\OperatorTok{$}\NormalTok{year)}
+\end{Highlighting}
+\end{Shaded}
+
+Next, define a set of models based on a priori combinations of explanatory variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# First, make an empty list to hold the models}
+\NormalTok{mods <-}\StringTok{ }\KeywordTok{list}\NormalTok{()}
+
+\CommentTok{# Now, fill the list with several a priori models}
+\CommentTok{# Need to load the `lme4` package for the `glmer` function}
+
+\KeywordTok{library}\NormalTok{(lme4)}
+\CommentTok{# Here is the list}
+\NormalTok{mods[[}\DecValTok{1}\NormalTok{]] <-}\StringTok{ }\KeywordTok{glmer}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{year) }\OperatorTok{+}\StringTok{ }\NormalTok{hatchery }\OperatorTok{+}\StringTok{ }\NormalTok{length }\OperatorTok{+}\StringTok{ }\NormalTok{flow, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{2}\NormalTok{]] <-}\StringTok{ }\KeywordTok{glmer}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{year) }\OperatorTok{+}\StringTok{ }\NormalTok{flow, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{3}\NormalTok{]] <-}\StringTok{ }\KeywordTok{glmer}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{year) }\OperatorTok{+}\StringTok{ }\NormalTok{hatchery, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{4}\NormalTok{]] <-}\StringTok{ }\KeywordTok{glmer}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{year) }\OperatorTok{+}\StringTok{ }\NormalTok{length, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{5}\NormalTok{]] <-}\StringTok{ }\KeywordTok{glmer}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{year) }\OperatorTok{+}\StringTok{ }\NormalTok{length }\OperatorTok{+}\StringTok{ }\NormalTok{hatchery, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{6}\NormalTok{]] <-}\StringTok{ }\KeywordTok{glmer}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{year) }\OperatorTok{+}\StringTok{ }\NormalTok{length }\OperatorTok{+}\StringTok{ }\NormalTok{flow, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{7}\NormalTok{]] <-}\StringTok{ }\KeywordTok{glmer}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{year) }\OperatorTok{+}\StringTok{ }\NormalTok{hatchery }\OperatorTok{+}\StringTok{ }\NormalTok{flow, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\end{Highlighting}
+\end{Shaded}
+
+Give the models some names using the formulas for each of the models. \textbf{Remember}: models are stored as list objects in R, and each of those list objects (models) has names. We can reference those names using the \texttt{\$} notation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(mods)) \{}
+  \KeywordTok{names}\NormalTok{(mods)[i] <-}\StringTok{ }\KeywordTok{as.character}\NormalTok{(}\KeywordTok{summary}\NormalTok{(mods[[i]])}\OperatorTok{$}\NormalTok{call}\OperatorTok{$}\NormalTok{formula)[}\DecValTok{3}\NormalTok{]}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we use the \texttt{AICcmodavg} package to make a model selection table like we did last week:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Load the package and make the table}
+\KeywordTok{library}\NormalTok{(AICcmodavg)}
+\NormalTok{modtable <-}\StringTok{ }\KeywordTok{aictab}\NormalTok{(}\DataTypeTok{cand.set =}\NormalTok{ mods, }\DataTypeTok{modnames =} \KeywordTok{names}\NormalTok{(mods))}
+\end{Highlighting}
+\end{Shaded}
+
+Here, we see the best model is the one that incorporates only flow, and that the addition of \texttt{length} or \texttt{hatchery} or both doesn't really improve the fit of our model. Therefore, we'll go ahead and make predictions from the simplest (best) model alone.
+
+Let's re-name that model really quick to make things easier to remember:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{best_mod <-}\StringTok{ }\KeywordTok{glmer}\NormalTok{(}
+\NormalTok{  path }\OperatorTok{~}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{year) }\OperatorTok{+}\StringTok{ }\NormalTok{flow,}
+  \DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{glmm-logistic-preds}{%
+\subsection{Predictions}\label{glmm-logistic-preds}}
+
+Finally, we can use these models to make predictions about the relationships in our models the same way we have done previously with linear models and GLMs.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Load the merTools package}
+\KeywordTok{library}\NormalTok{(merTools)}
+
+\CommentTok{# Simulate predictions from the relationship}
+\CommentTok{# stored in the model fit using our original data}
+\NormalTok{logit_preds <-}\StringTok{ }\KeywordTok{predictInterval}\NormalTok{(}
+  \DataTypeTok{merMod =}\NormalTok{ best_mod,}
+  \DataTypeTok{level =} \FloatTok{0.95}\NormalTok{, }\DataTypeTok{n.sims =} \DecValTok{10000}\NormalTok{,}
+  \DataTypeTok{stat =} \StringTok{"median"}\NormalTok{, }\DataTypeTok{type =} \StringTok{"linear.prediction"}
+\NormalTok{)}
+
+\CommentTok{# Convert them to the real scale for plotting}
+\NormalTok{real_preds <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(logit_preds, }\DecValTok{2}\NormalTok{, invlogit)}
+
+\CommentTok{# Combine predictions with the original data}
+\NormalTok{mer_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(choice, real_preds)}
+
+\CommentTok{# Plot the predictions}
+\KeywordTok{ggplot}\NormalTok{(mer_preds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ flow, }\DataTypeTok{y =}\NormalTok{ fit, }\DataTypeTok{color =}\NormalTok{ year, }\DataTypeTok{fill =}\NormalTok{ year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.10}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr, }\DataTypeTok{color =} \OtherTok{NULL}\NormalTok{), }\DataTypeTok{alpha =} \FloatTok{.3}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ fit), }\DataTypeTok{lwd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.50}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Discharge"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Probability of using Stillwater Branch"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-394-1.pdf}
+
+\hypertarget{glmm-count}{%
+\section{Count models}\label{glmm-count}}
+
+\hypertarget{data-explanation-glmm-count-data}{%
+\subsection{Data explanation \{glmm-count-data\}}\label{data-explanation-glmm-count-data}}
+
+We will wrap up our discussions about GLMM with a worked example of count models. For this one, we will attempt to predict counts of walleye, \emph{Sander vitreus}, in spawning streams of Otsego Lake based on historical counts and climate data.
+
+We begin by reading in the data set:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Read in the walleye data}
+\NormalTok{eyes <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/walleye.csv"}\NormalTok{, }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Have a look at the first ten lines of the data set:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(eyes, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+And check out the data structure:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(eyes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':	71 obs. of  15 variables:
+##  $ date     : chr  "2009-04-01" "2009-04-01" "2009-04-01" "2009-04-05" ...
+##  $ site     : chr  "Cripple Creek" "Hayden Creek" "Shadow Brook" "Cripple Creek" ...
+##  $ counts   : int  1 1 1 4 61 17 50 10 1 35 ...
+##  $ high_f   : num  48 48 48 52 52 52 NA NA 39 39 ...
+##  $ low_f    : num  34 34 34 32 32 32 NA NA 28 28 ...
+##  $ high_c   : num  8.89 8.89 8.89 11.11 11.11 ...
+##  $ low_c    : num  1.11 1.11 1.11 0 0 ...
+##  $ mean_c   : num  5 5 5 5.56 5.56 ...
+##  $ ddPrep   : num  5 5 5 5.56 5.56 ...
+##  $ day      : int  91 91 91 95 95 95 97 97 99 99 ...
+##  $ year     : int  2009 2009 2009 2009 2009 2009 2009 2009 2009 2009 ...
+##  $ dd       : num  72.4 72.4 72.4 109.3 109.3 ...
+##  $ dd2      : num  5240 5240 5240 11954 11954 ...
+##  $ daylight : num  12.7 12.7 12.7 12.9 12.9 ...
+##  $ daylight2: num  161 161 161 166 166 ...
+\end{verbatim}
+
+These data are counts of walleye that were captured in spawning tributaries of Otsego Lake during the 2009, 2013, 2017,and 2018 spawning season. These measurements are accompanied by various environmental indicators that include high and low flows, precipitation (rain and snow), high, low, mean temperatures (c) and degree days (dd), and photoperiod (daylight) on each day of the year.
+
+We will use the data to predict number of walleye we expect to see each day in the spawning tribs based on historical counts and some explanatory variables of interest.
+
+\hypertarget{glmm-count-analysis}{%
+\subsection{Data analysis}\label{glmm-count-analysis}}
+
+We start by estimating a model using the \texttt{glmer()} function. Let's say for the sake of argument that we are simply interested in the lake-wide mean of our counts so that we know when students should, for example, be heading out to tributaries to look for walleyes in streams.
+
+For now, we will model walleye count as a function of photoperiod, with a random effect of site on the intercepts. This model assumes that there is variability in counts of spawning individuals between sites, but that the relationship between photoperiod and count is the same across all sites. In this case, we will specify a quadratic relationship between counts and dates because we expect the number of fish to increase to some point in the run before it decreases. We are not interested in the individual sites in this case, but need to account for repeated observations within spawning locations.
+
+In the \texttt{lme4} package, the model might look something like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Load the package}
+\KeywordTok{library}\NormalTok{(lme4)}
+
+\CommentTok{# Make the model}
+\NormalTok{waeMod1 <-}\StringTok{ }\KeywordTok{glmer}\NormalTok{(counts }\OperatorTok{~}\StringTok{ }\NormalTok{dd }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(dd}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{site), }\DataTypeTok{data =}\NormalTok{ eyes, }\DataTypeTok{family =}\NormalTok{ poisson)}
+
+\CommentTok{# Have a look-see at the results}
+\KeywordTok{summary}\NormalTok{(waeMod1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Generalized linear mixed model fit by maximum likelihood (Laplace
+##   Approximation) [glmerMod]
+##  Family: poisson  ( log )
+## Formula: counts ~ dd + I(dd^2) + (1 | site)
+##    Data: eyes
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##   1440.0   1449.1   -716.0   1432.0       67 
+## 
+## Scaled residuals: 
+##    Min     1Q Median     3Q    Max 
+## -6.150 -2.289 -1.159  1.948 12.425 
+## 
+## Random effects:
+##  Groups Name        Variance Std.Dev.
+##  site   (Intercept) 0.01095  0.1047  
+## Number of obs: 71, groups:  site, 3
+## 
+## Fixed effects:
+##               Estimate Std. Error z value Pr(>|z|)    
+## (Intercept) -4.087e+00  4.066e-01  -10.05   <2e-16 ***
+## dd           9.275e-02  5.248e-03   17.67   <2e-16 ***
+## I(dd^2)     -2.795e-04  1.666e-05  -16.78   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Correlation of Fixed Effects:
+##         (Intr) dd    
+## dd      -0.975       
+## I(dd^2)  0.945 -0.990
+## fit warnings:
+## Some predictor variables are on very different scales: consider rescaling
+## convergence code: 0
+## unable to evaluate scaled gradient
+## Model failed to converge: degenerate  Hessian with 1 negative eigenvalues
+\end{verbatim}
+
+As we look through these results, we can see that we have a significant effect of degree days on spawning behavior. What's more is that our count of spawning fish appears to increase during the year to a point before it starts to decrease.
+
+\textbf{But} we've got what appear to be some major issues related to convergence at the bottom of this output! {[}dun, dun, dun{]}
+
+Luckily, we can fix all of these issues by simply standardizing the covariate (\texttt{dd}) as discussed previously. This helps keep things on a unit scale for model estimation, and prevents wacky estimates like negative variances (!). You can think of this as calculating z-scores for each observation of a given variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Standardize the covariate}
+\NormalTok{eyes}\OperatorTok{$}\NormalTok{sdd <-}\StringTok{ }\KeywordTok{as.vector}\NormalTok{(}\KeywordTok{scale}\NormalTok{(eyes}\OperatorTok{$}\NormalTok{dd))}
+
+\CommentTok{# Make the model}
+\NormalTok{waeMod2 <-}\StringTok{ }\KeywordTok{glmer}\NormalTok{(counts }\OperatorTok{~}\StringTok{ }\NormalTok{sdd }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(sdd}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{site),}
+  \DataTypeTok{data =}\NormalTok{ eyes, }\DataTypeTok{family =}\NormalTok{ poisson}
+\NormalTok{)}
+
+\CommentTok{# Have a look-see at the results}
+\KeywordTok{summary}\NormalTok{(waeMod2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Generalized linear mixed model fit by maximum likelihood (Laplace
+##   Approximation) [glmerMod]
+##  Family: poisson  ( log )
+## Formula: counts ~ sdd + I(sdd^2) + (1 | site)
+##    Data: eyes
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##   1440.0   1449.1   -716.0   1432.0       67 
+## 
+## Scaled residuals: 
+##    Min     1Q Median     3Q    Max 
+## -6.150 -2.289 -1.159  1.948 12.425 
+## 
+## Random effects:
+##  Groups Name        Variance Std.Dev.
+##  site   (Intercept) 0.01095  0.1047  
+## Number of obs: 71, groups:  site, 3
+## 
+## Fixed effects:
+##             Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)  3.52854    0.07123   49.54   <2e-16 ***
+## sdd          0.45898    0.03737   12.28   <2e-16 ***
+## I(sdd^2)    -0.67374    0.04018  -16.77   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Correlation of Fixed Effects:
+##          (Intr) sdd   
+## sdd      -0.001       
+## I(sdd^2) -0.292 -0.297
+\end{verbatim}
+
+\hypertarget{glmm-count-preds}{%
+\subsection{Predictions}\label{glmm-count-preds}}
+
+Now, if we want, we can make a graph to show these predictions. Here, we make predictions for all years, and plot by site.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Simulate predictions from the relationship}
+\CommentTok{# stored in the model fit using our original data}
+\NormalTok{log_preds <-}\StringTok{ }\KeywordTok{predictInterval}\NormalTok{(}
+  \DataTypeTok{merMod =}\NormalTok{ waeMod2,}
+  \DataTypeTok{level =} \FloatTok{0.95}\NormalTok{, }\DataTypeTok{n.sims =} \DecValTok{10000}\NormalTok{,}
+  \DataTypeTok{stat =} \StringTok{"median"}\NormalTok{, }\DataTypeTok{type =} \StringTok{"linear.prediction"}
+\NormalTok{)}
+
+\CommentTok{# Convert them to the real scale for plotting}
+\NormalTok{real_preds <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(log_preds, }\DecValTok{2}\NormalTok{, exp)}
+
+\CommentTok{# Combine predictions with the original data}
+\NormalTok{mer_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(eyes, real_preds)}
+
+\CommentTok{# Plot the predictions}
+\KeywordTok{ggplot}\NormalTok{(mer_preds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dd, }\DataTypeTok{y =}\NormalTok{ counts, }\DataTypeTok{color =}\NormalTok{ site, }\DataTypeTok{fill =}\NormalTok{ site)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.10}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr, }\DataTypeTok{color =} \OtherTok{NULL}\NormalTok{), }\DataTypeTok{alpha =} \FloatTok{.3}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ fit), }\DataTypeTok{lwd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.50}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Growing degree days"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Number of walleye in stream"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-400-1.pdf}
+
+We can see that our mean predictions aren't terrible, but there is quite a bit of uncertainty here, as above. In this case, it may behoove us to look at this within the context of negative binomial GLMMs, but that is a story for another day (and class!!).
+
+\hypertarget{next-15}{%
+\section{Next steps}\label{next-15}}
+
+This chapter completes our investigations into linear models and their extensions. Not to fear, there is a whole wide world of statistics still out there for you to explore. In the final chapters of this text book, we will look at what to do when we have multiple correlated response variables (multivariate statistics in \protect\hyperlink{Chapter16}{Chapter 16}) and what to do when we have tons of explanatory variables but no idea how to meet assumptions of linear models we've discussed so far (classification and regression trees in \protect\hyperlink{Chapter17}{Chapter 17}). To make it all better, we'll see that all of the linear models we've used so far can just be represented as special cases of multivariate statistics where we have only a single response, and we'll see that machine learning is really just a fancy application of linear models!
 
   \bibliography{book.bib,packages.bib}
 

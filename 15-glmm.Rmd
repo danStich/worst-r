@@ -1,0 +1,241 @@
+
+# Generalized linear mixed models {#Chapter15}
+
+<img src="images/walleye.jpg" alt="">
+
+<p style="font-family: times, serif; font-size:.9em; font-style:italic"> This is a big, fat walleye. It is closely related to the yellow perch from Chapter 14, but it is a bigger, better tasting version. Likewise, GLMM is just a bigger, better tasting version of LMM. Okay, this one is definitely the last new fish data set for the book...I think.</p>
+
+## Introduction {#intro-15}
+
+In [Chapter 14](#Chapter14) we introduced the generalized linear mixed model (GLMM) through the lens of the linear mixed model (LMM). The first thing you should understand about GLMMs is that they are useful for analyzing data from a large number of distributions (basically, you can use them for any underlying error structure). They are just like GLM is to LM but with an extra "M" for our "mix" of fixed and random effects. When we use specific error structures, or make certain assumptions about the manner in which the heterogeneity of variances is structured with respect to specific factors, this model is often given specific names. For example, repeated measures ANOVA (or ANCOVA), nested ANOVA (or ANCOVA), factorial ANOVA (or ANCOVA), linear mixed models, linear mixed effects models, and generalized linear mixed effects models are all just different formulations of the GLMM with different names. It sounds confusing, but just remember this: any linear model with combinations of fixed and random effects is, at it's core, just another GLMM! If you can convince yourself of this, you will improve your ability to understand a wide range of experimental designs and accompanying statistical models by understanding this one model type.
+
+The second thing you should understand to "get" GLMMs is what exactly is meant by a "random effect". So far in this course we have only dealt with "fixed" effects. The fixed effect is a categorical variable that is used to explain some variation in our response of interest. When we use a fixed effect in a statistical model, we are making the assumption that the categories for this effect are "fixed". In other words, we have assigned the the levels, or categories, based on some *a priori* knowledge that the levels themselves represent all possible groups that can be used to describe the data. Because of this definition, fixed effects are usually 1) things that we manipulate directly (like dosage or some other treatment), or 2) relatively simple grouping variables such as sex. By contrast, a "random effect" is an effect that we do not generally set ahead of time or manipulate, but rather one which is considered to be a sample from a population of potential categories that we cannot census or (often) control. Please note that there is not a single, widely accepted definition for either of these things in applied statistics and the definition can be context-specific. It becomes all the more confusing when we switch between maximum likelihood estimation and Bayesian inference. Don't take it from me, though. Ask one of the world's leading experts on the matter [here](http://andrewgelman.com/2005/01/25/why_i_dont_use/).
+
+We will use examples of logistic regression and count models to investigate GLMM in this chapter and round out our discussions from [Chapter 14](#Chapter14). To do this, we will need our usual faves from the `tidyverse` and `lme4`. You know the drill:
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(lme4)
+```
+
+
+## Logistic regression {#glmm-logistic}
+
+For our first example this week, we will use the `choice` data from a couple weeks ago that we used to demonstrate binomial logistic regression. This time, we will add in a random intercept term that will allow us to account for repeated observations within a year. This has two implications: 1) it accounts for the fact that the years in which we conducted this study are random samples from a larger, unobserved population, and 2) it accounts for the heterogeneity of variance that theoretically might occur as a result of taking multiple, and variable, numbers of measurements within a given year- thereby reducing the overall error of the model and our associated parameter estimates (in theory).
+
+```{r, eval=TRUE, echo=FALSE}
+# Let's read in the smolt data set that we used last time
+choice <- read.csv("data/StillwaterChoiceData.csv")
+
+# Look at the first few rows of data
+head(choice)
+```
+
+ 
+### Data Explanation {#glmm-logistic-data}
+
+These data are from a study that examined factors affecting path choice by wild and hatchery-reared endangered Atlantic salmon smolts during seaward migration in the Penobscot River, Maine. State, local, and federal fishery managers were interested in understanding what factors affected migratory routing through the lower river because there were different numbers of dams, with different estimated smolt mortality rates, on either side of a large island hydropower project in this system. If managers could understand factors influencing migratory route, they might be able to manipulate flows, stocking dates, and dam operation to improve survival of these endangered fish. Furthermore, the results of the study were used to predict the effects of dam removal, and hydropower re-allocation in the lower river on population-level consequences for these fish. Please see the <08_glm_logisticRegression>logistic regression module</a> for a complete explanation of the data.
+
+ 
+### Data analysis {#glmm-logistic-analysis}
+
+We are going to use the 1/0 binary data to estimate the effects of a number of covariates of interest on the probability that an individual fish used the Stillwater Branch for migration in each year of this study using logistic regression. In order to do this, we will use the 'logit' link function, which can be defined as:
+   
+```{r}  
+logit <- function(x) {
+  log(x / (1 - x))
+}
+```
+
+The inverse of the logit function is:
+ 
+```{r}
+invlogit <- function(x) {
+  exp(x) / (1 + exp(x))
+}
+```
+
+Since we are not interested in the linear trend in the use of the Stillwater Branch through time, we need to convert `year` to factor. This is the same as if we wanted to use this as a fixed effect in the model as we did in [Chapter 12.4](https://danstich.github.io/worst-r/12-4-logistic.html) when we last worked with these data.
+
+```{r}
+choice$year <- as.factor(choice$year)
+```
+
+Next, define a set of models based on a priori combinations of explanatory variables.
+```{r, warning=FALSE, message=FALSE}  
+# First, make an empty list to hold the models
+mods <- list()
+
+# Now, fill the list with several a priori models
+# Need to load the `lme4` package for the `glmer` function
+
+library(lme4)
+# Here is the list
+mods[[1]] <- glmer(path ~ (1 | year) + hatchery + length + flow, family = binomial, data = choice)
+mods[[2]] <- glmer(path ~ (1 | year) + flow, family = binomial, data = choice)
+mods[[3]] <- glmer(path ~ (1 | year) + hatchery, family = binomial, data = choice)
+mods[[4]] <- glmer(path ~ (1 | year) + length, family = binomial, data = choice)
+mods[[5]] <- glmer(path ~ (1 | year) + length + hatchery, family = binomial, data = choice)
+mods[[6]] <- glmer(path ~ (1 | year) + length + flow, family = binomial, data = choice)
+mods[[7]] <- glmer(path ~ (1 | year) + hatchery + flow, family = binomial, data = choice)
+```
+
+Give the models some names using the formulas for each of the models. **Remember**: models are stored as list objects in R, and each of those list objects (models) has names. We can reference those names using the `$` notation:
+
+```{r}
+for (i in 1:length(mods)) {
+  names(mods)[i] <- as.character(summary(mods[[i]])$call$formula)[3]
+}
+```
+
+Now, we use the `AICcmodavg` package to make a model selection table like we did last week:
+
+```{r, warning=FALSE, message=FALSE}  
+# Load the package and make the table
+library(AICcmodavg)
+modtable <- aictab(cand.set = mods, modnames = names(mods))
+
+```
+
+Here, we see the best model is the one that incorporates only flow, and that the addition of `length` or `hatchery` or both doesn't really improve the fit of our model. Therefore, we'll go ahead and make predictions from the simplest (best) model alone.
+
+Let's re-name that model really quick to make things easier to remember:
+```{r, warning = FALSE, message = FALSE}
+best_mod <- glmer(
+  path ~ (1 | year) + flow,
+  family = binomial, data = choice
+)
+```
+
+### Predictions {#glmm-logistic-preds}
+
+Finally, we can use these models to make predictions about the relationships in our models the same way we have done previously with linear models and GLMs.
+
+```{r, warning=FALSE, message=FALSE}
+# Load the merTools package
+library(merTools)
+
+# Simulate predictions from the relationship
+# stored in the model fit using our original data
+logit_preds <- predictInterval(
+  merMod = best_mod,
+  level = 0.95, n.sims = 10000,
+  stat = "median", type = "linear.prediction"
+)
+
+# Convert them to the real scale for plotting
+real_preds <- apply(logit_preds, 2, invlogit)
+
+# Combine predictions with the original data
+mer_preds <- data.frame(choice, real_preds)
+
+# Plot the predictions
+ggplot(mer_preds, aes(x = flow, y = fit, color = year, fill = year)) +
+  geom_line(alpha = 0.10) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, color = NULL), alpha = .3) +
+  geom_line(aes(y = fit), lwd = 1, alpha = 0.50) +
+  xlab("Discharge") +
+  ylab("Probability of using Stillwater Branch")
+```
+
+## Count models {#glmm-count}
+
+### Data explanation {glmm-count-data}
+We will wrap up our discussions about GLMM with a worked example of count models. For this one, we will attempt to predict counts of walleye, *Sander vitreus*, in spawning streams of Otsego Lake based on historical counts and climate data.
+
+We begin by reading in the data set:
+
+```{r}
+# Read in the walleye data
+eyes <- read.csv("data/walleye.csv", stringsAsFactors = FALSE)
+```
+
+Have a look at the first ten lines of the data set:
+
+```{r, eval=FALSE}
+head(eyes, 10)
+```
+
+And check out the data structure:   
+
+```{r}  
+str(eyes)
+```
+
+These data are counts of walleye that were captured in spawning tributaries of Otsego Lake during the 2009, 2013, 2017,and 2018 spawning season. These measurements are accompanied by various environmental indicators that include high and low flows, precipitation (rain and snow), high, low, mean temperatures (c) and degree days (dd), and photoperiod (daylight) on each day of the year.
+
+We will use the data to predict number of walleye we expect to see each day in the spawning tribs based on historical counts and some explanatory variables of interest.
+
+### Data analysis {#glmm-count-analysis} 
+
+We start by estimating a model using the `glmer()` function. Let's say for the sake of argument that we are simply interested in the lake-wide mean of our counts so that we know when students should, for example, be heading out to tributaries to look for walleyes in streams. 
+
+For now, we will model walleye count as a function of photoperiod, with a random effect of site on the intercepts. This model assumes that there is variability in counts of spawning individuals between sites, but that the relationship between photoperiod and count is the same across all sites. In this case, we will specify a quadratic relationship between counts and dates because we expect the number of fish to increase to some point in the run before it decreases. We are not interested in the individual sites in this case, but need to account for repeated observations within spawning locations.
+
+In the `lme4` package, the model might look something like this:
+
+```{r, warning=FALSE, message=FALSE}
+# Load the package
+library(lme4)
+
+# Make the model
+waeMod1 <- glmer(counts ~ dd + I(dd^2) + (1 | site), data = eyes, family = poisson)
+
+# Have a look-see at the results
+summary(waeMod1)
+
+```
+
+As we look through these results, we can see that we have a significant effect of degree days on spawning behavior. What's more is that our count of spawning fish appears to increase during the year to a point before it starts to decrease.
+
+**But** we've got what appear to be some major issues related to convergence at the bottom of this output! [dun, dun, dun]
+
+Luckily, we can fix all of these issues by simply standardizing the covariate (`dd`) as discussed previously. This helps keep things on a unit scale for model estimation, and prevents wacky estimates like negative variances (!). You can think of this as calculating z-scores for each observation of a given variable.
+
+```{r}
+# Standardize the covariate
+eyes$sdd <- as.vector(scale(eyes$dd))
+
+# Make the model
+waeMod2 <- glmer(counts ~ sdd + I(sdd^2) + (1 | site),
+  data = eyes, family = poisson
+)
+
+# Have a look-see at the results
+summary(waeMod2)
+
+```
+
+
+### Predictions {#glmm-count-preds}
+Now, if we want, we can make a graph to show these predictions. Here, we make predictions for all years, and plot by site.
+
+```{r, warning=FALSE, message=FALSE}
+# Simulate predictions from the relationship
+# stored in the model fit using our original data
+log_preds <- predictInterval(
+  merMod = waeMod2,
+  level = 0.95, n.sims = 10000,
+  stat = "median", type = "linear.prediction"
+)
+
+# Convert them to the real scale for plotting
+real_preds <- apply(log_preds, 2, exp)
+
+# Combine predictions with the original data
+mer_preds <- data.frame(eyes, real_preds)
+
+# Plot the predictions
+ggplot(mer_preds, aes(x = dd, y = counts, color = site, fill = site)) +
+  geom_point(alpha = 0.10) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, color = NULL), alpha = .3) +
+  geom_line(aes(y = fit), lwd = 1, alpha = 0.50) +
+  xlab("Growing degree days") +
+  ylab("Number of walleye in stream")
+```
+
+We can see that our mean predictions aren't terrible, but there is quite a bit of uncertainty here, as above. In this case, it may behoove us to look at this within the context of negative binomial GLMMs, but that is a story for another day (and class!!).
+ 
+## Next steps {#next-15}
+
+This chapter completes our investigations into linear models and their extensions. Not to fear, there is a whole wide world of statistics still out there for you to explore. In the final chapters of this text book, we will look at what to do when we have multiple correlated response variables (multivariate statistics in [Chapter 16](#Chapter16)) and what to do when we have tons of explanatory variables but no idea how to meet assumptions of linear models we've discussed so far (classification and regression trees in [Chapter 17](#Chapter17)). To make it all better, we'll see that all of the linear models we've used so far can just be represented as special cases of multivariate statistics where we have only a single response, and we'll see that machine learning is really just a fancy application of linear models!

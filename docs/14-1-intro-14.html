@@ -338,12 +338,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2.3" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html#homogeneity-14"><i class="fa fa-check"></i><b>14.2.3</b> Assumption 3: Homogeneity of variances</a></li>
 <li class="chapter" data-level="14.2.4" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html#linearity-14"><i class="fa fa-check"></i><b>14.2.4</b> Assumption 4: Linearity and additivity</a></li>
 </ul></li>
-<li class="chapter" data-level="14.3" data-path="14-3-introducing-the-glmm.html"><a href="14-3-introducing-the-glmm.html"><i class="fa fa-check"></i><b>14.3</b> Introducing the GLMM</a></li>
-<li class="chapter" data-level="14.4" data-path="14-4-linear-mixed-models.html"><a href="14-4-linear-mixed-models.html"><i class="fa fa-check"></i><b>14.4</b> Linear mixed models</a></li>
-<li class="chapter" data-level="14.5" data-path="14-5-lmm-worked.html"><a href="14-5-lmm-worked.html"><i class="fa fa-check"></i><b>14.5</b> Worked example</a><ul>
-<li class="chapter" data-level="14.5.1" data-path="14-5-lmm-worked.html"><a href="14-5-lmm-worked.html#random-intercepts-model"><i class="fa fa-check"></i><b>14.5.1</b> Random-intercepts model</a></li>
+<li class="chapter" data-level="14.3" data-path="14-3-linear-mixed-models.html"><a href="14-3-linear-mixed-models.html"><i class="fa fa-check"></i><b>14.3</b> Linear mixed models</a></li>
+<li class="chapter" data-level="14.4" data-path="14-4-lmm-worked.html"><a href="14-4-lmm-worked.html"><i class="fa fa-check"></i><b>14.4</b> Worked example</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="14-4-lmm-worked.html"><a href="14-4-lmm-worked.html#random-intercepts-model"><i class="fa fa-check"></i><b>14.4.1</b> Random-intercepts model</a></li>
 </ul></li>
-<li class="chapter" data-level="14.6" data-path="14-6-next-14.html"><a href="14-6-next-14.html"><i class="fa fa-check"></i><b>14.6</b> Next steps</a></li>
+<li class="chapter" data-level="14.5" data-path="14-5-next-14.html"><a href="14-5-next-14.html"><i class="fa fa-check"></i><b>14.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="15-Chapter15.html"><a href="15-Chapter15.html"><i class="fa fa-check"></i><b>15</b> Generalized linear mixed models</a><ul>
+<li class="chapter" data-level="15.1" data-path="15-1-intro-15.html"><a href="15-1-intro-15.html"><i class="fa fa-check"></i><b>15.1</b> Introduction</a></li>
+<li class="chapter" data-level="15.2" data-path="15-2-glmm-logistic.html"><a href="15-2-glmm-logistic.html"><i class="fa fa-check"></i><b>15.2</b> Logistic regression</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="15-2-glmm-logistic.html"><a href="15-2-glmm-logistic.html#glmm-logistic-data"><i class="fa fa-check"></i><b>15.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="15.2.2" data-path="15-2-glmm-logistic.html"><a href="15-2-glmm-logistic.html#glmm-logistic-analysis"><i class="fa fa-check"></i><b>15.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="15.2.3" data-path="15-2-glmm-logistic.html"><a href="15-2-glmm-logistic.html#glmm-logistic-preds"><i class="fa fa-check"></i><b>15.2.3</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="15-3-glmm-count.html"><a href="15-3-glmm-count.html"><i class="fa fa-check"></i><b>15.3</b> Count models</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="15-3-glmm-count.html"><a href="15-3-glmm-count.html#data-explanation-glmm-count-data"><i class="fa fa-check"></i><b>15.3.1</b> Data explanation {glmm-count-data}</a></li>
+<li class="chapter" data-level="15.3.2" data-path="15-3-glmm-count.html"><a href="15-3-glmm-count.html#glmm-count-analysis"><i class="fa fa-check"></i><b>15.3.2</b> Data analysis</a></li>
+<li class="chapter" data-level="15.3.3" data-path="15-3-glmm-count.html"><a href="15-3-glmm-count.html#glmm-count-preds"><i class="fa fa-check"></i><b>15.3.3</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="15-4-next-15.html"><a href="15-4-next-15.html"><i class="fa fa-check"></i><b>15.4</b> Next steps</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -367,7 +380,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="intro-14" class="section level2">
 <h2><span class="header-section-number">14.1</span> Introduction</h2>
-<p>This week we will talk about extending linear models and generalized linear models to include “random effects” in the model, thus resulting in the “generalized linear mixed model” or GLMM. The GLMM is actually the most generalized formulation of the linear models that we have been discussing now for the past several weeks. All linear models (GLM, ANCOVA, ANOVA, regression, t-tests, etc.) are special cases of the GLMM. As such, we can think of the GLMM as the framework within which we have been working for weeks now! We will start with examples of the linear mixed model (LMM) in this Chapter and extend these to include non-normal data when we dig into the GLMM in <a href="#Chapter15">Chapter 15</a>.</p>
+<p>This week we will talk about extending linear models and generalized linear models to include “random effects” in the model, thus resulting in the “generalized linear mixed model” or GLMM. The GLMM is actually the most generalized formulation of the linear models that we have been discussing now for the past several weeks. All linear models (GLM, ANCOVA, ANOVA, regression, t-tests, etc.) are special cases of the GLMM. As such, we can think of the GLMM as the framework within which we have been working for weeks now! We will start with examples of the linear mixed model (LMM) in this Chapter and extend these to include non-normal data when we dig into the GLMM in <a href="15-Chapter15.html#Chapter15">Chapter 15</a>.</p>
 <p>In this chapter, we’ll introduce some tools from the <code>lme4</code> and <code>merTools</code> packages in addition to the usual suite of functions we need from the <code>tidyverse</code>. You’ll need to install these before you can use them. Then, go ahead and load them up when you are ready to get started:</p>
 <div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="14-1-intro-14.html#cb542-1"></a><span class="kw">library</span>(tidyverse)</span>
 <span id="cb542-2"><a href="14-1-intro-14.html#cb542-2"></a><span class="kw">library</span>(lme4)</span>

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.10.17)  2 NOV 2020 10:42
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.10.17)  2 NOV 2020 14:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1965,117 +1965,191 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 Chapter 14.
-[263] [264] [265] [266] [267]
-Overfull \hbox (38.25pt too wide) in paragraph at lines 8575--8575
+[263] [264] [265] [266]
+Overfull \hbox (38.25pt too wide) in paragraph at lines 8568--8568
 []\TU/lmtt/m/n/10 ##  $ date     : chr  "6/28/2018" "6/28/2018" "6/28/2018" "6/
 28/2018" ...[] 
  []
 
 
-Overfull \hbox (206.25pt too wide) in paragraph at lines 8575--8575
+Overfull \hbox (206.25pt too wide) in paragraph at lines 8568--8568
 []\TU/lmtt/m/n/10 ##  $ waterbody: chr  "Susquehanna River" "Susquehanna River"
  "Susquehanna River" "Susquehanna River" ...[] 
  []
 
 
-Overfull \hbox (164.25pt too wide) in paragraph at lines 8575--8575
+Overfull \hbox (164.25pt too wide) in paragraph at lines 8568--8568
 []\TU/lmtt/m/n/10 ##  $ site     : chr  "Cooperstown Dam" "Cooperstown Dam" "Co
 operstown Dam" "Cooperstown Dam" ...[] 
  []
 
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 8575--8575
+Overfull \hbox (48.75pt too wide) in paragraph at lines 8568--8568
 []\TU/lmtt/m/n/10 ##  $ mass     : num  7.18 6.85 6.75 6.46 6.14 5.99 5.58 4.95
  4.85 4.81 ...[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 8592--8592
+Overfull \hbox (69.75pt too wide) in paragraph at lines 8585--8585
 []\TU/lmtt/m/n/10 ##        date         waterbody            site length mass 
 loglength  logmass[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 8592--8592
+Overfull \hbox (69.75pt too wide) in paragraph at lines 8585--8585
 []\TU/lmtt/m/n/10 ## 1 6/28/2018 Susquehanna River Cooperstown Dam  30.88 7.18 
  3.430109 1.971299[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 8592--8592
+Overfull \hbox (69.75pt too wide) in paragraph at lines 8585--8585
 []\TU/lmtt/m/n/10 ## 2 6/28/2018 Susquehanna River Cooperstown Dam  31.18 6.85 
  3.439777 1.924249[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 8592--8592
+Overfull \hbox (69.75pt too wide) in paragraph at lines 8585--8585
 []\TU/lmtt/m/n/10 ## 3 6/28/2018 Susquehanna River Cooperstown Dam  31.15 6.75 
  3.438814 1.909543[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 8592--8592
+Overfull \hbox (69.75pt too wide) in paragraph at lines 8585--8585
 []\TU/lmtt/m/n/10 ## 4 6/28/2018 Susquehanna River Cooperstown Dam  29.28 6.46 
  3.376905 1.865629[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 8592--8592
+Overfull \hbox (69.75pt too wide) in paragraph at lines 8585--8585
 []\TU/lmtt/m/n/10 ## 5 6/28/2018 Susquehanna River Cooperstown Dam  28.31 6.14 
  3.343215 1.814825[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 8592--8592
+Overfull \hbox (69.75pt too wide) in paragraph at lines 8585--8585
 []\TU/lmtt/m/n/10 ## 6 6/28/2018 Susquehanna River Cooperstown Dam  30.55 5.99 
  3.419365 1.790091[] 
  []
 
-[268]
+[267]
 File: worstr_files/figure-latex/unnamed-chunk-371-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-371-1.pdf>
-[269] [270]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[268] [269]
 File: worstr_files/figure-latex/unnamed-chunk-373-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-373-1.pdf>
+[270]
 File: worstr_files/figure-latex/unnamed-chunk-375-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-375-1.pdf>
-
-Underfull \vbox (badness 1281) has occurred while \output is active []
-
-[271] [272]
+[271]
 File: worstr_files/figure-latex/unnamed-chunk-378-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-378-1.pdf>
-[273] [274]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[272] [273]
 File: worstr_files/figure-latex/unnamed-chunk-381-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-381-1.pdf>
+
+Underfull \vbox (badness 3623) has occurred while \output is active []
+
+[274]
 File: worstr_files/figure-latex/unnamed-chunk-382-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-382-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 [275] [276]
 File: worstr_files/figure-latex/unnamed-chunk-384-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-384-1.pdf>
-[277]
+[277] [278]
+Chapter 15.
+[279
+
+] [280] [281] [282]
+File: worstr_files/figure-latex/unnamed-chunk-394-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-394-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[283]
+Overfull \hbox (59.25pt too wide) in paragraph at lines 9063--9063
+[]\TU/lmtt/m/n/10 ##  $ date     : chr  "2009-04-01" "2009-04-01" "2009-04-01" 
+"2009-04-05" ...[] 
+ []
+
+
+Overfull \hbox (111.75pt too wide) in paragraph at lines 9063--9063
+[]\TU/lmtt/m/n/10 ##  $ site     : chr  "Cripple Creek" "Hayden Creek" "Shadow 
+Brook" "Cripple Creek" ...[] 
+ []
+
+[284]
+Overfull \hbox (48.75pt too wide) in paragraph at lines 9063--9063
+[]\TU/lmtt/m/n/10 ##  $ year     : int  2009 2009 2009 2009 2009 2009 2009 2009
+ 2009 2009 ...[] 
+ []
+
+[285]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 9127--9127
+[]\TU/lmtt/m/n/10 ## Generalized linear mixed model fit by maximum likelihood (
+Laplace[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 9127--9127
+[]\TU/lmtt/m/n/10 ## Some predictor variables are on very different scales: con
+sider rescaling[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 9127--9127
+[]\TU/lmtt/m/n/10 ## Model failed to converge: degenerate  Hessian with 1 negat
+ive eigenvalues[] 
+ []
+
+
+Underfull \vbox (badness 1248) has occurred while \output is active []
+
+[286]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 9181--9181
+[]\TU/lmtt/m/n/10 ## Generalized linear mixed model fit by maximum likelihood (
+Laplace[] 
+ []
+
+[287]
+File: worstr_files/figure-latex/unnamed-chunk-400-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-400-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[288]
 No file worstr.bbl.
-[278] (./worstr.aux)
+[289] (./worstr.aux)
 Package rerunfilecheck Info: File `worstr.out' has not changed.
-(rerunfilecheck)             Checksum: DF3CE1D53D109E41AA69913855640E2C;13860.
+(rerunfilecheck)             Checksum: FA610CFE7C46CAEF6FC3A1332360D16D;14409.
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 17781 strings out of 479466
- 330249 string characters out of 5880414
- 764811 words of memory out of 5000000
- 36761 multiletter control sequences out of 15000+600000
+ 17804 strings out of 479466
+ 331026 string characters out of 5880414
+ 765922 words of memory out of 5000000
+ 36782 multiletter control sequences out of 15000+600000
  541619 words of font info for 92 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  84i,6n,118p,1533b,466s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on worstr.pdf (278 pages).
+Output written on worstr.pdf (289 pages).
