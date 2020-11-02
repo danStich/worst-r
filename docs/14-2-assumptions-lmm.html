@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11.3 All subsets | The Worst Stats Text eveR</title>
-  <meta name="description" content="11.3 All subsets | The Worst Stats Text eveR" />
+  <title>14.2 Assumptions of linear models | The Worst Stats Text eveR</title>
+  <meta name="description" content="14.2 Assumptions of linear models | The Worst Stats Text eveR" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11.3 All subsets | The Worst Stats Text eveR" />
+  <meta property="og:title" content="14.2 Assumptions of linear models | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11.3 All subsets | The Worst Stats Text eveR" />
+  <meta name="twitter:title" content="14.2 Assumptions of linear models | The Worst Stats Text eveR" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="11-2-model-selection-tools.html"/>
-<link rel="next" href="11-4-stepwise.html"/>
+<link rel="prev" href="14-1-intro-14.html"/>
+<link rel="next" href="14-3-introducing-the-glmm.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -365,19 +365,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="all-subsets" class="section level2">
-<h2><span class="header-section-number">11.3</span> All subsets</h2>
-<p>Just as the name states - compare all possible combinations of variables and pick the one that gives the most information with the least collinearity between predictors. This is largely an exploratory approach or is reserved for cases in which we care solely about prediction. There are a number of R packages that implement all subsets with varying utility and efficiency. These approaches historically relied on Mallow’s Cp, but most are now updated to use Akaike’s information criterion (see <a href="11-5-a-priori.html#a-priori">Chapter 11.4</a>)</p>
-<p>We will not discuss these techniques in this class because 1) they are usually not needed 2) they can lead to laziness in formulation of hypotheses and in a worst case data dredging, and 3) plain and simple: there are just better tools available for these purposes now (e.g. GAMM, CART, and network analysis).</p>
-<p>Now can you tell I am not a fan?</p>
+<div id="assumptions-lmm" class="section level2">
+<h2><span class="header-section-number">14.2</span> Assumptions of linear models</h2>
+<p>OMG, why is this guy always talking about assumptions of linear models no matter what we do?!</p>
+<p>Just as we discussed last week, linear models are just a special case of the GLMM. That is, the linear model assumes a certain error distribution (the normal or Gaussian) that helps things work smoothly and correctly. During the last two weeks, we discussed how we can use link functions to relax the assumption of linear models with respect to normality of residuals and homogeneity of variances, as well as assumptions about the linearity of relationships between explanatory variables and responses of interest by using data transformation. This week, we continue to relax the underlying assumptions of linear models to unleash the true power of estimation in mixed effects models. This is essentially as far as the basic framework for linear modeling goes (with the exception of multivariate techniques), and all other cases (e.g. spatial and temporal autocorrelation regressions) are simply specialized instances of these models.</p>
+<p>Let’s take another look at the assumptions of linear models. We will repeat the same mantra from the past few weeks. Here are the three assumptions that we explicitly use when we use linear models (just in case you’ve forgotten them):</p>
+<ol style="list-style-type: decimal">
+<li><p>Residuals are normally distributed with a mean of zero</p></li>
+<li><p>Independence of observations (residuals)</p>
+<ul>
+<li>Colinearity</li>
+<li>Auto correlation of errors (e.g., spatial &amp; temporal)</li>
+</ul></li>
+<li><p>Homogeneity of variances</p></li>
+<li><p>Linear relationship between X and Y</p></li>
+</ol>
+<div id="normality-14" class="section level3">
+<h3><span class="header-section-number">14.2.1</span> Assumption 1: Normality of residuals</h3>
+<p>We’ve seen these before, but let’s recap. For assumption 1, we are assuming a couple of implicit things: 1) The variable is <em>continuous</em> (and it must be if it’s error structure is normal), and 2) The error in our model is normally distributed.</p>
+<p>In reality, this is probably the least important assumption of linear models, and really only matters if we are trying to make predictions from the models that we make, or when we are in gross violation of the assumption. Of course, we are often concerned with making predictions from the models that we make, so we can see why this might be important. However, more often we are in extreme violation of this assumption in some combination with assumption 4 above to such a degree that it actually does matter. For example, a response variable that is binomial (1 or zero) or multinomial in nature cannot possibly have normally distributed errors with respect to x unless there is absolutely no relationship between X and Y, right? So, if we wanted to predict the probability of patients dying from some medical treatment, or the presence/absence of species across a landscape then we can’t use linear models. This is where the link functions that we have been discussing really come into play. The purpose of the link function is to place our decidedly non-normal error structures into an asymptotically normal probability space. The other key characteristic of the link function is that it must be invertible, that way we can get back to the parameter scale that we want to use for making predictions and visualizing the results of our models.</p>
+</div>
+<div id="independence-14" class="section level3">
+<h3><span class="header-section-number">14.2.2</span> Assumption 2: Independence of observations</h3>
+<p>This time we’ve broken assumption 2 in two components: Colinearity and autocorrelation of errors. Remember that the manifestation of these problems has primarily been in the precision of our coefficient estimates so far. This leads to the potential for change in the Type-I/II error rates in our models, causing us to draw false conclusions about which variables are important. As we discussed earlier in the course we expect to see some colinearity between observations, and we can deal with balancing this in our modeling through the use of model selection techniques to reduce Type-I and Type-II error. During the past couple of weeks, we examined tools that help us determine whether or not colinearity is actually causing problems in our models that go beyond minor nuisances. As for the second part, autocorrelation, we briefly touched on formulations of the GLM in our readings that included auto-regressive correlation matrices to relax this assumption of linear models and improve the precision of parameter estimates. This week, we will further extend this to include random effects so we can account for non-independence in the observations, and correlation in the residual errors of explanatory variables that could otherwise cause issues with accuracy and precision of our estimates. We will continue to use model selection as a method for determining tradeoffs between information gain and parameter redundancy that results from colinearity between explanatory variables, as well as for hypothesis testing.</p>
+</div>
+<div id="homogeneity-14" class="section level3">
+<h3><span class="header-section-number">14.2.3</span> Assumption 3: Homogeneity of variances</h3>
+<p>In past weeks, we looked at ways to reduce this issue by introducing blocking (categorical) variables to our models. Last week, we noted that this could be further mitigated through the use of weighted least squares and MLE within the GLM framework, which can be applied to a wide range of regression methods from linear models to GLMs and GLMMs. This week we will examine how we can use various formulations of the GLMM to account for heteroscedasticity in residual errors directly by including the appropriate error terms in our models. This essentially means that we can start to account for things like repeated measures, nested effects, and various other violations through the use of one tool…<strong>nifty</strong>!!</p>
+</div>
+<div id="linearity-14" class="section level3">
+<h3><span class="header-section-number">14.2.4</span> Assumption 4: Linearity and additivity</h3>
+<p>We’ve already looked at a couple of ways to deal with violations of these assumptions such as data transformation and/or polynomial formulations of the linear model. We will continue to apply these concepts this week as we begin to investigate the GLMM as robust framework for analysis.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="11-2-model-selection-tools.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="11-4-stepwise.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="14-1-intro-14.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="14-3-introducing-the-glmm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

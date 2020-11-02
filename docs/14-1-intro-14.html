@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11.3 All subsets | The Worst Stats Text eveR</title>
-  <meta name="description" content="11.3 All subsets | The Worst Stats Text eveR" />
+  <title>14.1 Introduction | The Worst Stats Text eveR</title>
+  <meta name="description" content="14.1 Introduction | The Worst Stats Text eveR" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11.3 All subsets | The Worst Stats Text eveR" />
+  <meta property="og:title" content="14.1 Introduction | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11.3 All subsets | The Worst Stats Text eveR" />
+  <meta name="twitter:title" content="14.1 Introduction | The Worst Stats Text eveR" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="11-2-model-selection-tools.html"/>
-<link rel="next" href="11-4-stepwise.html"/>
+<link rel="prev" href="14-Chapter14.html"/>
+<link rel="next" href="14-2-assumptions-lmm.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -365,19 +365,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="all-subsets" class="section level2">
-<h2><span class="header-section-number">11.3</span> All subsets</h2>
-<p>Just as the name states - compare all possible combinations of variables and pick the one that gives the most information with the least collinearity between predictors. This is largely an exploratory approach or is reserved for cases in which we care solely about prediction. There are a number of R packages that implement all subsets with varying utility and efficiency. These approaches historically relied on Mallow’s Cp, but most are now updated to use Akaike’s information criterion (see <a href="11-5-a-priori.html#a-priori">Chapter 11.4</a>)</p>
-<p>We will not discuss these techniques in this class because 1) they are usually not needed 2) they can lead to laziness in formulation of hypotheses and in a worst case data dredging, and 3) plain and simple: there are just better tools available for these purposes now (e.g. GAMM, CART, and network analysis).</p>
-<p>Now can you tell I am not a fan?</p>
+<div id="intro-14" class="section level2">
+<h2><span class="header-section-number">14.1</span> Introduction</h2>
+<p>This week we will talk about extending linear models and generalized linear models to include “random effects” in the model, thus resulting in the “generalized linear mixed model” or GLMM. The GLMM is actually the most generalized formulation of the linear models that we have been discussing now for the past several weeks. All linear models (GLM, ANCOVA, ANOVA, regression, t-tests, etc.) are special cases of the GLMM. As such, we can think of the GLMM as the framework within which we have been working for weeks now! We will start with examples of the linear mixed model (LMM) in this Chapter and extend these to include non-normal data when we dig into the GLMM in <a href="#Chapter15">Chapter 15</a>.</p>
+<p>In this chapter, we’ll introduce some tools from the <code>lme4</code> and <code>merTools</code> packages in addition to the usual suite of functions we need from the <code>tidyverse</code>. You’ll need to install these before you can use them. Then, go ahead and load them up when you are ready to get started:</p>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="14-1-intro-14.html#cb542-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb542-2"><a href="14-1-intro-14.html#cb542-2"></a><span class="kw">library</span>(lme4)</span>
+<span id="cb542-3"><a href="14-1-intro-14.html#cb542-3"></a><span class="kw">library</span>(merTools)</span></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="11-2-model-selection-tools.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="11-4-stepwise.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="14-Chapter14.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="14-2-assumptions-lmm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

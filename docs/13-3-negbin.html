@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -328,6 +330,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13.5" data-path="13-5-next-steps.html"><a href="13-5-next-steps.html"><i class="fa fa-check"></i><b>13.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="14-Chapter14.html"><a href="14-Chapter14.html"><i class="fa fa-check"></i><b>14</b> Linear mixed models</a><ul>
+<li class="chapter" data-level="14.1" data-path="14-1-intro-14.html"><a href="14-1-intro-14.html"><i class="fa fa-check"></i><b>14.1</b> Introduction</a></li>
+<li class="chapter" data-level="14.2" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html"><i class="fa fa-check"></i><b>14.2</b> Assumptions of linear models</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html#normality-14"><i class="fa fa-check"></i><b>14.2.1</b> Assumption 1: Normality of residuals</a></li>
+<li class="chapter" data-level="14.2.2" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html#independence-14"><i class="fa fa-check"></i><b>14.2.2</b> Assumption 2: Independence of observations</a></li>
+<li class="chapter" data-level="14.2.3" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html#homogeneity-14"><i class="fa fa-check"></i><b>14.2.3</b> Assumption 3: Homogeneity of variances</a></li>
+<li class="chapter" data-level="14.2.4" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html#linearity-14"><i class="fa fa-check"></i><b>14.2.4</b> Assumption 4: Linearity and additivity</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="14-3-introducing-the-glmm.html"><a href="14-3-introducing-the-glmm.html"><i class="fa fa-check"></i><b>14.3</b> Introducing the GLMM</a></li>
+<li class="chapter" data-level="14.4" data-path="14-4-linear-mixed-models.html"><a href="14-4-linear-mixed-models.html"><i class="fa fa-check"></i><b>14.4</b> Linear mixed models</a></li>
+<li class="chapter" data-level="14.5" data-path="14-5-lmm-worked.html"><a href="14-5-lmm-worked.html"><i class="fa fa-check"></i><b>14.5</b> Worked example</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="14-5-lmm-worked.html"><a href="14-5-lmm-worked.html#random-intercepts-model"><i class="fa fa-check"></i><b>14.5.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="14-6-next-14.html"><a href="14-6-next-14.html"><i class="fa fa-check"></i><b>14.6</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -353,30 +370,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Okay, moving on with life, let’s take a look at the negative binomial regression model as an alternative to Poisson regression. Truthfully, this is usually where I start these days, and then I might consider backing down to use of Poisson if all assumptions are actually verified (but, <strong>this has literally never happened for me</strong>).</p>
 <p>We will start this time by actually doing some data exploration before our analysis. This is really how we should have started above, but that would have ruined all the fun.</p>
 <p>First, look at the distribution of the data. Here, it should be pretty obvious to you by now that these are count data for which the mean is not equal to the variance…right?</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="13-3-negbin.html#cb14-1"></a><span class="kw">hist</span>(crabs<span class="op">$</span>satellites)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="13-3-negbin.html#cb526-1"></a><span class="kw">hist</span>(crabs<span class="op">$</span>satellites)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-354-1.png" width="672" /></p>
 <p>If you think back to a couple of weeks ago, you’ll remember this is a pretty typical example of the negative binomial distribution.</p>
 <p>We can take a look at how this shakes out between our groups (<code>color</code>) as well.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="13-3-negbin.html#cb15-1"></a><span class="kw">boxplot</span>(satellites <span class="op">~</span><span class="st"> </span>color, <span class="dt">data =</span> crabs, <span class="dt">boxwex =</span> <span class="fl">0.3</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="13-3-negbin.html#cb527-1"></a><span class="kw">boxplot</span>(satellites <span class="op">~</span><span class="st"> </span>color, <span class="dt">data =</span> crabs, <span class="dt">boxwex =</span> <span class="fl">0.3</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-355-1.png" width="672" /></p>
 <p>And, you can see here that even within groups the distributions do not look like they are normal or like they have equal variances, so we will fit a GLM that assumes the response is drawn from a negative binomial distribution.</p>
 <p>For this example, we will use a function called <code>glm.nb</code>. This function allows us to estimate a GLM for lets us estimate parameters for a GLM that uses the negative binomial error distribution and estimates the “overdispersion parameter” for the negative binomial distribution. You, of course, remember this parameter and know it as <code>theta</code> or <code>size</code> from our discussions about sampling distributions.</p>
 <p>We can fit it with the GLM function like this as long as we have the <code>Mass</code> package loaded:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="13-3-negbin.html#cb16-1"></a>neg_mod &lt;-<span class="st"> </span><span class="kw">glm</span>(satellites <span class="op">~</span><span class="st"> </span>width <span class="op">+</span><span class="st"> </span>mass <span class="op">+</span><span class="st"> </span>color,</span>
-<span id="cb16-2"><a href="13-3-negbin.html#cb16-2"></a>  <span class="dt">data =</span> crabs,</span>
-<span id="cb16-3"><a href="13-3-negbin.html#cb16-3"></a>  <span class="dt">family =</span> <span class="st">&quot;negative.binomial&quot;</span>(<span class="dt">theta =</span> <span class="dv">1</span>)</span>
-<span id="cb16-4"><a href="13-3-negbin.html#cb16-4"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="13-3-negbin.html#cb528-1"></a>neg_mod &lt;-<span class="st"> </span><span class="kw">glm</span>(satellites <span class="op">~</span><span class="st"> </span>width <span class="op">+</span><span class="st"> </span>mass <span class="op">+</span><span class="st"> </span>color,</span>
+<span id="cb528-2"><a href="13-3-negbin.html#cb528-2"></a>  <span class="dt">data =</span> crabs,</span>
+<span id="cb528-3"><a href="13-3-negbin.html#cb528-3"></a>  <span class="dt">family =</span> <span class="st">&quot;negative.binomial&quot;</span>(<span class="dt">theta =</span> <span class="dv">1</span>)</span>
+<span id="cb528-4"><a href="13-3-negbin.html#cb528-4"></a>)</span></code></pre></div>
 <p>Play around with the two formulations above and see if there’s a difference. <em>Clue</em>: there’s not, really. Just two different ways to do the same thing. The functionality in the <code>glm</code> function only came around recently, that’s all.</p>
 <p>Now, let’s take a look at the distribution of the residuals. I am going to work with the object I fit using the <code>glm()</code> function. This time, we’ll split our residuals out by <code>color</code> group so we can see where the problems are</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="13-3-negbin.html#cb17-1"></a><span class="kw">ggplot</span>(neg_mod, <span class="kw">aes</span>(<span class="dt">x =</span> color, <span class="dt">y =</span> .resid, <span class="dt">fill =</span> <span class="kw">factor</span>(color))) <span class="op">+</span></span>
-<span id="cb17-2"><a href="13-3-negbin.html#cb17-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>, <span class="dt">trim =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb17-3"><a href="13-3-negbin.html#cb17-3"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">factor</span>(color)), <span class="dt">width =</span> <span class="fl">.1</span>) <span class="op">+</span></span>
-<span id="cb17-4"><a href="13-3-negbin.html#cb17-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fitted values&quot;</span>) <span class="op">+</span></span>
-<span id="cb17-5"><a href="13-3-negbin.html#cb17-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon)))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="13-3-negbin.html#cb529-1"></a><span class="kw">ggplot</span>(neg_mod, <span class="kw">aes</span>(<span class="dt">x =</span> color, <span class="dt">y =</span> .resid, <span class="dt">fill =</span> <span class="kw">factor</span>(color))) <span class="op">+</span></span>
+<span id="cb529-2"><a href="13-3-negbin.html#cb529-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>, <span class="dt">trim =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb529-3"><a href="13-3-negbin.html#cb529-3"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">factor</span>(color)), <span class="dt">width =</span> <span class="fl">.1</span>) <span class="op">+</span></span>
+<span id="cb529-4"><a href="13-3-negbin.html#cb529-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fitted values&quot;</span>) <span class="op">+</span></span>
+<span id="cb529-5"><a href="13-3-negbin.html#cb529-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon)))</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-357-1.png" width="672" /></p>
 <p>Now we are starting to look a lot more “normal” within groups, and we are getting more symmetrical in our residual sampling distributions. If we had to move forward with this model we could probably do so with a straight face at this point. However, it looks like most of the area of each violin above is below zero (so the mean of our residuals is also negative and non-zero), so we may have some issues going on here that could make this model bad for prediction.</p>
 <p><strong>But</strong>, how does this compare to the Poisson model for count data? We can use model selection to compare the Poisson model to the negative binomial model, since the response is the same in both cases.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="13-3-negbin.html#cb18-1"></a><span class="kw">AIC</span>(count_mod, neg_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="13-3-negbin.html#cb530-1"></a><span class="kw">AIC</span>(count_mod, neg_mod)</span></code></pre></div>
 <pre><code>##           df      AIC
 ## count_mod  7 919.8796
 ## neg_mod    6 757.9566</code></pre>

@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -328,6 +330,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13.5" data-path="13-5-next-steps.html"><a href="13-5-next-steps.html"><i class="fa fa-check"></i><b>13.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="14-Chapter14.html"><a href="14-Chapter14.html"><i class="fa fa-check"></i><b>14</b> Linear mixed models</a><ul>
+<li class="chapter" data-level="14.1" data-path="14-1-intro-14.html"><a href="14-1-intro-14.html"><i class="fa fa-check"></i><b>14.1</b> Introduction</a></li>
+<li class="chapter" data-level="14.2" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html"><i class="fa fa-check"></i><b>14.2</b> Assumptions of linear models</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html#normality-14"><i class="fa fa-check"></i><b>14.2.1</b> Assumption 1: Normality of residuals</a></li>
+<li class="chapter" data-level="14.2.2" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html#independence-14"><i class="fa fa-check"></i><b>14.2.2</b> Assumption 2: Independence of observations</a></li>
+<li class="chapter" data-level="14.2.3" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html#homogeneity-14"><i class="fa fa-check"></i><b>14.2.3</b> Assumption 3: Homogeneity of variances</a></li>
+<li class="chapter" data-level="14.2.4" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html#linearity-14"><i class="fa fa-check"></i><b>14.2.4</b> Assumption 4: Linearity and additivity</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="14-3-introducing-the-glmm.html"><a href="14-3-introducing-the-glmm.html"><i class="fa fa-check"></i><b>14.3</b> Introducing the GLMM</a></li>
+<li class="chapter" data-level="14.4" data-path="14-4-linear-mixed-models.html"><a href="14-4-linear-mixed-models.html"><i class="fa fa-check"></i><b>14.4</b> Linear mixed models</a></li>
+<li class="chapter" data-level="14.5" data-path="14-5-lmm-worked.html"><a href="14-5-lmm-worked.html"><i class="fa fa-check"></i><b>14.5</b> Worked example</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="14-5-lmm-worked.html"><a href="14-5-lmm-worked.html#random-intercepts-model"><i class="fa fa-check"></i><b>14.5.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="14-6-next-14.html"><a href="14-6-next-14.html"><i class="fa fa-check"></i><b>14.6</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -352,9 +369,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">13.1</span> Introduction</h2>
 <p>This week we continue our exploration of generalized linear models and their implementation and interpretation in R. We will continue to investigate the flexible formulation of GLM for use with count models. By the end of this week, you should have a reasonable understanding of why we might use different kinds of count models, how to use them, and what the results mean. We will dive back into the world of residual diagnostics again this week to look at a few different tools that we have at our disposal for GLM.</p>
 <p>We’ll keep working with the <code>tidyverse</code> this week. But, we’ll also check out some utilities from the <code>MASS</code> and <code>boot</code>, packages to demonstrate new techniques. You’ll probably need to install <code>boot</code> before you can load it, but we’ve worked with the others already. Go ahead and load them all when you’re ready.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="13-1-intro13.html#cb1-1"></a><span class="kw">library</span>(tidyverse) <span class="co"># For all the good stuff in life</span></span>
-<span id="cb1-2"><a href="13-1-intro13.html#cb1-2"></a><span class="kw">library</span>(boot) <span class="co"># For inv.logit() function</span></span>
-<span id="cb1-3"><a href="13-1-intro13.html#cb1-3"></a><span class="kw">library</span>(MASS) <span class="co"># For negative.binomial family in glm()</span></span></code></pre></div>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="13-1-intro13.html#cb513-1"></a><span class="kw">library</span>(tidyverse) <span class="co"># For all the good stuff in life</span></span>
+<span id="cb513-2"><a href="13-1-intro13.html#cb513-2"></a><span class="kw">library</span>(boot) <span class="co"># For inv.logit() function</span></span>
+<span id="cb513-3"><a href="13-1-intro13.html#cb513-3"></a><span class="kw">library</span>(MASS) <span class="co"># For negative.binomial family in glm()</span></span></code></pre></div>
 </div>
             </section>
 

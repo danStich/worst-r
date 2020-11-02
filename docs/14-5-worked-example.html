@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>14.5 Worked example | The Worst Stats Text eveR</title>
+  <meta name="description" content="14.5 Worked example | The Worst Stats Text eveR" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="14.5 Worked example | The Worst Stats Text eveR" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="14.5 Worked example | The Worst Stats Text eveR" />
+  
+  
+  
+
+<meta name="author" content="Dan Stich" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="14-4-linear-mixed-models.html"/>
+<link rel="next" href="14-6-next-14.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Worst Stats Text eveR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-where-do-i-start.html"><a href="1-3-where-do-i-start.html"><i class="fa fa-check"></i><b>1.3</b> Where do I start?</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html"><i class="fa fa-check"></i><b>1.4</b> Programming conventions</a><ul>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#style"><i class="fa fa-check"></i>Style and organization</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#tips"><i class="fa fa-check"></i>Some handy coding tips</a></li>
+<li class="chapter" data-level="" data-path="1-4-programming-conventions.html"><a href="1-4-programming-conventions.html#rules"><i class="fa fa-check"></i>Stricter R programming rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-5-next1.html"><a href="1-5-next1.html"><i class="fa fa-check"></i><b>1.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-Chapter2.html"><a href="2-Chapter2.html"><i class="fa fa-check"></i><b>2</b> Data structures</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-vectors.html"><a href="2-1-vectors.html"><i class="fa fa-check"></i><b>2.1</b> Vectors</a><ul>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#nums"><i class="fa fa-check"></i>Integers and numerics</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#strings"><i class="fa fa-check"></i>Characters and factors</a></li>
+<li class="chapter" data-level="" data-path="2-1-vectors.html"><a href="2-1-vectors.html#logicals"><i class="fa fa-check"></i>Logical vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-operations.html"><a href="2-2-operations.html"><i class="fa fa-check"></i><b>2.2</b> Vector operations</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-matrices.html"><a href="2-3-matrices.html"><i class="fa fa-check"></i><b>2.3</b> Matrices</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-dataframes.html"><a href="2-4-dataframes.html"><i class="fa fa-check"></i><b>2.4</b> Dataframes</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-lists.html"><a href="2-5-lists.html"><i class="fa fa-check"></i><b>2.5</b> Lists</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-next2.html"><a href="2-6-next2.html"><i class="fa fa-check"></i><b>2.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-Chapter3.html"><a href="3-Chapter3.html"><i class="fa fa-check"></i><b>3</b> Working with data</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-data-read.html"><a href="3-1-data-read.html"><i class="fa fa-check"></i><b>3.1</b> Data read</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-quick-data-summaries.html"><a href="3-2-quick-data-summaries.html"><i class="fa fa-check"></i><b>3.2</b> Quick data summaries</a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html"><i class="fa fa-check"></i><b>3.3</b> Subsetting and selecting data</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#manual-subsets-and-selections"><i class="fa fa-check"></i><b>3.3.1</b> Manual subsets and selections</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#subsetting-and-summaries-in-base-r"><i class="fa fa-check"></i><b>3.3.2</b> Subsetting and summaries in base R</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-3-subsetting-and-selecting-data.html"><a href="3-3-subsetting-and-selecting-data.html#tidyverse"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting and summaries in the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-better-data-summaries.html"><a href="3-4-better-data-summaries.html"><i class="fa fa-check"></i><b>3.4</b> Better data summaries</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-creating-new-variables.html"><a href="3-5-creating-new-variables.html"><i class="fa fa-check"></i><b>3.5</b> Creating new variables</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html"><i class="fa fa-check"></i><b>3.6</b> Data simulation</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#random-sub-samples-from-a-dataset"><i class="fa fa-check"></i><b>3.6.1</b> Random sub-samples from a dataset</a></li>
+<li class="chapter" data-level="3.6.2" data-path="3-6-data-simulation.html"><a href="3-6-data-simulation.html#stochastic"><i class="fa fa-check"></i><b>3.6.2</b> Stochastic simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="3-7-next3.html"><a href="3-7-next3.html"><i class="fa fa-check"></i><b>3.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-Chapter4.html"><a href="4-Chapter4.html"><i class="fa fa-check"></i><b>4</b> Plotting and graphics</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-plots-matter-as-much-as-stats.html"><a href="4-1-plots-matter-as-much-as-stats.html"><i class="fa fa-check"></i><b>4.1</b> Plots matter as much as stats</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html"><i class="fa fa-check"></i><b>4.2</b> Plotting with base R</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#histograms"><i class="fa fa-check"></i><b>4.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#scatterplots"><i class="fa fa-check"></i><b>4.2.2</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#lines"><i class="fa fa-check"></i><b>4.2.3</b> Lines</a></li>
+<li class="chapter" data-level="4.2.4" data-path="4-2-base-graphics.html"><a href="4-2-base-graphics.html#boxplots"><i class="fa fa-check"></i><b>4.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>4.3</b> Plotting with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gghists"><i class="fa fa-check"></i><b>4.3.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggscatter"><i class="fa fa-check"></i><b>4.3.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#gglines"><i class="fa fa-check"></i><b>4.3.3</b> Lines</a></li>
+<li class="chapter" data-level="4.3.4" data-path="4-3-plotting-with-ggplot2.html"><a href="4-3-plotting-with-ggplot2.html#ggboxplots"><i class="fa fa-check"></i><b>4.3.4</b> Boxplots and</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4-4-next4.html"><a href="4-4-next4.html"><i class="fa fa-check"></i><b>4.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-Chapter5.html"><a href="5-Chapter5.html"><i class="fa fa-check"></i><b>5</b> Sampling distributions in R</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-what-are-sampling-distributions.html"><a href="5-1-what-are-sampling-distributions.html"><i class="fa fa-check"></i><b>5.1</b> What are sampling distributions?</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-probability-distributions-in-r.html"><a href="5-2-probability-distributions-in-r.html"><i class="fa fa-check"></i><b>5.2</b> Probability distributions in R</a></li>
+<li class="chapter" data-level="5.3" data-path="5-3-exponential-family.html"><a href="5-3-exponential-family.html"><i class="fa fa-check"></i><b>5.3</b> Exponential family</a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html"><i class="fa fa-check"></i><b>5.4</b> Continuous distributions</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-lognormal-distribution"><i class="fa fa-check"></i><b>5.4.1</b> The lognormal distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5-4-continuous-distributions.html"><a href="5-4-continuous-distributions.html#the-beta-distribution"><i class="fa fa-check"></i><b>5.4.2</b> The beta distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html"><i class="fa fa-check"></i><b>5.5</b> Discrete distributions</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#bernoulli"><i class="fa fa-check"></i><b>5.5.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="5.5.2" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#binomial"><i class="fa fa-check"></i><b>5.5.2</b> Binomial</a></li>
+<li class="chapter" data-level="5.5.3" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#multinomial"><i class="fa fa-check"></i><b>5.5.3</b> Multinomial</a></li>
+<li class="chapter" data-level="5.5.4" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#poisson"><i class="fa fa-check"></i><b>5.5.4</b> Poisson</a></li>
+<li class="chapter" data-level="5.5.5" data-path="5-5-discrete-distributions.html"><a href="5-5-discrete-distributions.html#the-negative-binomial-distribution"><i class="fa fa-check"></i><b>5.5.5</b> The negative binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html"><i class="fa fa-check"></i><b>5.6</b> Sample statistics</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#moments-about-the-mean"><i class="fa fa-check"></i><b>5.6.1</b> Moments about the mean</a></li>
+<li class="chapter" data-level="5.6.2" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#estimating-parameters-of-the-normal-distribution-from-a-sample"><i class="fa fa-check"></i><b>5.6.2</b> Estimating parameters of the normal distribution from a sample</a></li>
+<li class="chapter" data-level="5.6.3" data-path="5-6-sample-statistics.html"><a href="5-6-sample-statistics.html#quantiles-and-other-descriptive-statistics"><i class="fa fa-check"></i><b>5.6.3</b> Quantiles and other descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="5-7-next5.html"><a href="5-7-next5.html"><i class="fa fa-check"></i><b>5.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-Chapter6.html"><a href="6-Chapter6.html"><i class="fa fa-check"></i><b>6</b> Inferential statistics</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html"><i class="fa fa-check"></i><b>6.1</b> One-sample tests</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html#one-sample-t-test"><i class="fa fa-check"></i><b>6.1.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-1-one-sample-tests.html"><a href="6-1-one-sample-tests.html#wilcox-test"><i class="fa fa-check"></i><b>6.1.2</b> Wilcox test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html"><i class="fa fa-check"></i><b>6.2</b> Two-sample tests</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>6.2.1</b> The two-sample t-test</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#two-sample-wilcox-test"><i class="fa fa-check"></i><b>6.2.2</b> Two-sample Wilcox test</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#presenting-your-results"><i class="fa fa-check"></i><b>6.2.3</b> Presenting your results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-3-frequency-analysis.html"><a href="6-3-frequency-analysis.html"><i class="fa fa-check"></i><b>6.3</b> Frequency analysis</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="6-3-frequency-analysis.html"><a href="6-3-frequency-analysis.html#worked-example"><i class="fa fa-check"></i><b>6.3.1</b> Worked example</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="6-4-next6.html"><a href="6-4-next6.html"><i class="fa fa-check"></i><b>6.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-Chapter7.html"><a href="7-Chapter7.html"><i class="fa fa-check"></i><b>7</b> Linear models</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-anova.html"><a href="7-1-anova.html"><i class="fa fa-check"></i><b>7.1</b> Analysis of variance (ANOVA)</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-1-anova.html"><a href="7-1-anova.html#one-way"><i class="fa fa-check"></i><b>7.1.1</b> One-way analysis of variance</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-1-anova.html"><a href="7-1-anova.html#twon-way-anova"><i class="fa fa-check"></i><b>7.1.2</b> Two(<em>n</em>)-way ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-2-simple-linear-regression.html"><a href="7-2-simple-linear-regression.html"><i class="fa fa-check"></i><b>7.2</b> Simple linear regression</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-2-simple-linear-regression.html"><a href="7-2-simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>7.2.1</b> Simple linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7-3-multiple-linear-regression.html"><a href="7-3-multiple-linear-regression.html"><i class="fa fa-check"></i><b>7.3</b> Multiple linear regression</a></li>
+<li class="chapter" data-level="7.4" data-path="7-4-next7.html"><a href="7-4-next7.html"><i class="fa fa-check"></i><b>7.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-Chapter8.html"><a href="8-Chapter8.html"><i class="fa fa-check"></i><b>8</b> General linear models</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-1-analysis-of-covariance-ancova.html"><a href="8-1-analysis-of-covariance-ancova.html"><i class="fa fa-check"></i><b>8.1</b> Analysis of covariance (ANCOVA)</a></li>
+<li class="chapter" data-level="8.2" data-path="8-2-motivation.html"><a href="8-2-motivation.html"><i class="fa fa-check"></i><b>8.2</b> Motivation</a></li>
+<li class="chapter" data-level="8.3" data-path="8-3-data.html"><a href="8-3-data.html"><i class="fa fa-check"></i><b>8.3</b> Data</a></li>
+<li class="chapter" data-level="8.4" data-path="8-4-analysis.html"><a href="8-4-analysis.html"><i class="fa fa-check"></i><b>8.4</b> Analysis</a></li>
+<li class="chapter" data-level="8.5" data-path="8-5-predictions.html"><a href="8-5-predictions.html"><i class="fa fa-check"></i><b>8.5</b> Predictions</a></li>
+<li class="chapter" data-level="8.6" data-path="8-6-next8.html"><a href="8-6-next8.html"><i class="fa fa-check"></i><b>8.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-Chapter9.html"><a href="9-Chapter9.html"><i class="fa fa-check"></i><b>9</b> Assumptions of linear models</a><ul>
+<li class="chapter" data-level="9.1" data-path="9-1-intro9.html"><a href="9-1-intro9.html"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="9-2-assumptions-of-linear-models.html"><a href="9-2-assumptions-of-linear-models.html"><i class="fa fa-check"></i><b>9.2</b> Assumptions of linear models</a></li>
+<li class="chapter" data-level="9.3" data-path="9-3-ughmath.html"><a href="9-3-ughmath.html"><i class="fa fa-check"></i><b>9.3</b> WTF is a residuals?</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="9-3-ughmath.html"><a href="9-3-ughmath.html#residuals-in-anova"><i class="fa fa-check"></i><b>9.3.1</b> Residuals in ANOVA</a></li>
+<li class="chapter" data-level="9.3.2" data-path="9-3-ughmath.html"><a href="9-3-ughmath.html#residuals-in-linear-regression"><i class="fa fa-check"></i><b>9.3.2</b> Residuals in linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="9-4-the-turtle-problem.html"><a href="9-4-the-turtle-problem.html"><i class="fa fa-check"></i><b>9.4</b> The turtle problem</a></li>
+<li class="chapter" data-level="9.5" data-path="9-5-data-exploration.html"><a href="9-5-data-exploration.html"><i class="fa fa-check"></i><b>9.5</b> Data exploration</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="9-5-data-exploration.html"><a href="9-5-data-exploration.html#independence-of-observations"><i class="fa fa-check"></i><b>9.5.1</b> Independence of observations</a></li>
+<li class="chapter" data-level="9.5.2" data-path="6-2-two-sample-tests.html"><a href="6-2-two-sample-tests.html#normality"><i class="fa fa-check"></i><b>9.5.2</b> Normality</a></li>
+<li class="chapter" data-level="9.5.3" data-path="9-5-data-exploration.html"><a href="9-5-data-exploration.html#homogeneity-of-variances"><i class="fa fa-check"></i><b>9.5.3</b> Homogeneity of variances</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="9-6-anova-diagnostics.html"><a href="9-6-anova-diagnostics.html"><i class="fa fa-check"></i><b>9.6</b> ANOVA Diagnostics</a></li>
+<li class="chapter" data-level="9.7" data-path="9-7-linear-regression-diagnostics.html"><a href="9-7-linear-regression-diagnostics.html"><i class="fa fa-check"></i><b>9.7</b> Linear regression diagnostics</a></li>
+<li class="chapter" data-level="9.8" data-path="9-8-next9.html"><a href="9-8-next9.html"><i class="fa fa-check"></i><b>9.8</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-Chapter10.html"><a href="10-Chapter10.html"><i class="fa fa-check"></i><b>10</b> Communicating effect sizes</a><ul>
+<li class="chapter" data-level="10.1" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html"><i class="fa fa-check"></i><b>10.1</b> One-way ANOVA</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#unifying-the-linear-model"><i class="fa fa-check"></i><b>10.1.1</b> Unifying the linear model</a></li>
+<li class="chapter" data-level="10.1.2" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#the-model-matrix"><i class="fa fa-check"></i><b>10.1.2</b> The model matrix</a></li>
+<li class="chapter" data-level="10.1.3" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#prediction"><i class="fa fa-check"></i><b>10.1.3</b> Prediction</a></li>
+<li class="chapter" data-level="10.1.4" data-path="10-1-one-way-anova.html"><a href="10-1-one-way-anova.html#plotting"><i class="fa fa-check"></i><b>10.1.4</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="10-2-two-way-anova.html"><a href="10-2-two-way-anova.html"><i class="fa fa-check"></i><b>10.2</b> Two-way ANOVA</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="10-2-two-way-anova.html"><a href="10-2-two-way-anova.html#main-effects-10"><i class="fa fa-check"></i><b>10.2.1</b> Main effects model</a></li>
+<li class="chapter" data-level="10.2.2" data-path="10-2-two-way-anova.html"><a href="10-2-two-way-anova.html#interactions"><i class="fa fa-check"></i><b>10.2.2</b> Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="10-3-linear-regression.html"><a href="10-3-linear-regression.html"><i class="fa fa-check"></i><b>10.3</b> Linear regression</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="10-3-linear-regression.html"><a href="10-3-linear-regression.html#prediction-1"><i class="fa fa-check"></i><b>10.3.1</b> Prediction</a></li>
+<li class="chapter" data-level="10.3.2" data-path="10-3-linear-regression.html"><a href="10-3-linear-regression.html#plotting-1"><i class="fa fa-check"></i><b>10.3.2</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="10-4-ancova.html"><a href="10-4-ancova.html"><i class="fa fa-check"></i><b>10.4</b> ANCOVA</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="10-4-ancova.html"><a href="10-4-ancova.html#prediction-2"><i class="fa fa-check"></i><b>10.4.1</b> Prediction</a></li>
+<li class="chapter" data-level="10.4.2" data-path="10-4-ancova.html"><a href="10-4-ancova.html#plotting-2"><i class="fa fa-check"></i><b>10.4.2</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="10-5-next10.html"><a href="10-5-next10.html"><i class="fa fa-check"></i><b>10.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-Chapter11.html"><a href="11-Chapter11.html"><i class="fa fa-check"></i><b>11</b> Model selection</a><ul>
+<li class="chapter" data-level="11.1" data-path="11-1-intro11.html"><a href="11-1-intro11.html"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
+<li class="chapter" data-level="11.2" data-path="11-2-model-selection-tools.html"><a href="11-2-model-selection-tools.html"><i class="fa fa-check"></i><b>11.2</b> Model selection tools</a></li>
+<li class="chapter" data-level="11.3" data-path="11-3-all-subsets.html"><a href="11-3-all-subsets.html"><i class="fa fa-check"></i><b>11.3</b> All subsets</a></li>
+<li class="chapter" data-level="11.4" data-path="11-4-stepwise.html"><a href="11-4-stepwise.html"><i class="fa fa-check"></i><b>11.4</b> Stepwise selection</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="11-4-stepwise.html"><a href="11-4-stepwise.html#forward-selection"><i class="fa fa-check"></i><b>11.4.1</b> Forward selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="11-5-a-priori.html"><a href="11-5-a-priori.html"><i class="fa fa-check"></i><b>11.5</b> <em>A priori</em> selection</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="11-5-a-priori.html"><a href="11-5-a-priori.html#multi-phase-heirarchical-selection"><i class="fa fa-check"></i><b>11.5.1</b> Multi-phase (heirarchical) selection</a></li>
+<li class="chapter" data-level="11.5.2" data-path="11-5-a-priori.html"><a href="11-5-a-priori.html#single-phase-selection"><i class="fa fa-check"></i><b>11.5.2</b> Single-phase selection</a></li>
+<li class="chapter" data-level="11.5.3" data-path="11-5-a-priori.html"><a href="11-5-a-priori.html#tools-for-a-priori-model-selection"><i class="fa fa-check"></i><b>11.5.3</b> Tools for <em>a priori</em> model selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="11-6-model-validation.html"><a href="11-6-model-validation.html"><i class="fa fa-check"></i><b>11.6</b> Model validation</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="11-6-model-validation.html"><a href="11-6-model-validation.html#leave-one-out-cross-validation"><i class="fa fa-check"></i><b>11.6.1</b> Leave-one-out cross validation</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="11-7-next11.html"><a href="11-7-next11.html"><i class="fa fa-check"></i><b>11.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="12-Chapter12.html"><a href="12-Chapter12.html"><i class="fa fa-check"></i><b>12</b> Logistic regression</a><ul>
+<li class="chapter" data-level="12.1" data-path="12-1-intro12.html"><a href="12-1-intro12.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="12-2-Assumptions12.html"><a href="12-2-Assumptions12.html"><i class="fa fa-check"></i><b>12.2</b> Assumptions of linear models</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="12-2-Assumptions12.html"><a href="12-2-Assumptions12.html#assumption-1-normality-of-residuals"><i class="fa fa-check"></i><b>12.2.1</b> Assumption 1: normality of residuals</a></li>
+<li class="chapter" data-level="12.2.2" data-path="12-2-Assumptions12.html"><a href="12-2-Assumptions12.html#assumption-2-independence-of-observations"><i class="fa fa-check"></i><b>12.2.2</b> Assumption 2: independence of observations</a></li>
+<li class="chapter" data-level="12.2.3" data-path="12-2-Assumptions12.html"><a href="12-2-Assumptions12.html#assumption-3-homogeneity-of-variances"><i class="fa fa-check"></i><b>12.2.3</b> Assumption 3: homogeneity of variances</a></li>
+<li class="chapter" data-level="12.2.4" data-path="12-2-Assumptions12.html"><a href="12-2-Assumptions12.html#assumption-4-linearity-and-additivity"><i class="fa fa-check"></i><b>12.2.4</b> Assumption 4: linearity and additivity</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="12-3-introducing-the-glm.html"><a href="12-3-introducing-the-glm.html"><i class="fa fa-check"></i><b>12.3</b> Introducing the GLM</a></li>
+<li class="chapter" data-level="12.4" data-path="12-4-logistic.html"><a href="12-4-logistic.html"><i class="fa fa-check"></i><b>12.4</b> Binary (logistic) regression</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-explanation"><i class="fa fa-check"></i><b>12.4.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="12.4.2" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-analysis"><i class="fa fa-check"></i><b>12.4.2</b> Data analysis</a></li>
+<li class="chapter" data-level="12.4.3" data-path="12-4-logistic.html"><a href="12-4-logistic.html#interpreting-the-results"><i class="fa fa-check"></i><b>12.4.3</b> Interpreting the results</a></li>
+<li class="chapter" data-level="12.4.4" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>12.4.4</b> Making predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="12-5-next12.html"><a href="12-5-next12.html"><i class="fa fa-check"></i><b>12.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="13-Chapter13.html"><a href="13-Chapter13.html"><i class="fa fa-check"></i><b>13</b> GLM: Count models</a><ul>
+<li class="chapter" data-level="13.1" data-path="13-1-intro13.html"><a href="13-1-intro13.html"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="13-2-poisson-regression.html"><a href="13-2-poisson-regression.html"><i class="fa fa-check"></i><b>13.2</b> Poisson regression</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-explanation"><i class="fa fa-check"></i><b>13.2.1</b> Data explanation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="13-3-negbin.html"><a href="13-3-negbin.html"><i class="fa fa-check"></i><b>13.3</b> Negative binomial regression</a></li>
+<li class="chapter" data-level="13.4" data-path="13-4-zero-inflation.html"><a href="13-4-zero-inflation.html"><i class="fa fa-check"></i><b>13.4</b> Zero inflation</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="13-4-zero-inflation.html"><a href="13-4-zero-inflation.html#predict-counts"><i class="fa fa-check"></i><b>13.4.1</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="13-5-next-steps.html"><a href="13-5-next-steps.html"><i class="fa fa-check"></i><b>13.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="14-Chapter14.html"><a href="14-Chapter14.html"><i class="fa fa-check"></i><b>14</b> Linear mixed models</a><ul>
+<li class="chapter" data-level="14.1" data-path="14-1-intro-14.html"><a href="14-1-intro-14.html"><i class="fa fa-check"></i><b>14.1</b> Introduction</a></li>
+<li class="chapter" data-level="14.2" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html"><i class="fa fa-check"></i><b>14.2</b> Assumptions of linear models</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html#resids-14"><i class="fa fa-check"></i><b>14.2.1</b> Assumption 1: Normality of residuals</a></li>
+<li class="chapter" data-level="14.2.2" data-path="12-2-Assumptions12.html"><a href="12-2-Assumptions12.html#assumption-2-independence-of-observations"><i class="fa fa-check"></i><b>14.2.2</b> Assumption 2: Independence of observations</a></li>
+<li class="chapter" data-level="14.2.3" data-path="12-2-Assumptions12.html"><a href="12-2-Assumptions12.html#assumption-3-homogeneity-of-variances"><i class="fa fa-check"></i><b>14.2.3</b> Assumption 3: Homogeneity of variances</a></li>
+<li class="chapter" data-level="14.2.4" data-path="12-2-Assumptions12.html"><a href="12-2-Assumptions12.html#assumption-4-linearity-and-additivity"><i class="fa fa-check"></i><b>14.2.4</b> Assumption 4: Linearity and additivity</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="14-3-introducing-the-glmm.html"><a href="14-3-introducing-the-glmm.html"><i class="fa fa-check"></i><b>14.3</b> Introducing the GLMM</a></li>
+<li class="chapter" data-level="14.4" data-path="14-4-linear-mixed-models.html"><a href="14-4-linear-mixed-models.html"><i class="fa fa-check"></i><b>14.4</b> Linear mixed models</a></li>
+<li class="chapter" data-level="14.5" data-path="6-3-frequency-analysis.html"><a href="6-3-frequency-analysis.html#worked-example"><i class="fa fa-check"></i><b>14.5</b> Worked example</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="14-5-worked-example.html"><a href="14-5-worked-example.html"><i class="fa fa-check"></i><b>14.5.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="14-6-next-14.html"><a href="14-6-next-14.html"><i class="fa fa-check"></i><b>14.6</b> Next steps</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Worst Stats Text eveR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="worked-example" class="section level2">
+<h2><span class="header-section-number">14.5</span> Worked example</h2>
+<p>Let’s start by loading in a new data set. These data come from a preliminary study of rusty crayfish <a href="https://academic.oup.com/jcb/article/37/5/615/4060680"> <em>Faxonius</em></a> <em>rusticus</em> density in various tributaries to the Susquehanna River. The data were collected as part of a summer research project by one of our former high-school interns at the SUNY Oneonta <a href="https://suny.oneonta.edu/biological-field-station"> Biological Field Station </a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="14-5-worked-example.html#cb1-1"></a><span class="co"># Look at the data structure</span></span>
+<span id="cb1-2"><a href="14-5-worked-example.html#cb1-2"></a>  <span class="kw">str</span>(cray)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	964 obs. of  7 variables:
+##  $ date     : chr  &quot;6/28/2018&quot; &quot;6/28/2018&quot; &quot;6/28/2018&quot; &quot;6/28/2018&quot; ...
+##  $ waterbody: chr  &quot;Susquehanna River&quot; &quot;Susquehanna River&quot; &quot;Susquehanna River&quot; &quot;Susquehanna River&quot; ...
+##  $ site     : chr  &quot;Cooperstown Dam&quot; &quot;Cooperstown Dam&quot; &quot;Cooperstown Dam&quot; &quot;Cooperstown Dam&quot; ...
+##  $ length   : num  30.9 31.2 31.1 29.3 28.3 ...
+##  $ mass     : num  7.18 6.85 6.75 6.46 6.14 5.99 5.58 4.95 4.85 4.81 ...
+##  $ loglength: num  3.43 3.44 3.44 3.38 3.34 ...
+##  $ logmass  : num  1.97 1.92 1.91 1.87 1.81 ...</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="14-5-worked-example.html#cb3-1"></a><span class="co"># And, have a look at the first few lines of data</span></span>
+<span id="cb3-2"><a href="14-5-worked-example.html#cb3-2"></a>  <span class="kw">head</span>(cray)</span></code></pre></div>
+<pre><code>##        date         waterbody            site length mass loglength  logmass
+## 1 6/28/2018 Susquehanna River Cooperstown Dam  30.88 7.18  3.430109 1.971299
+## 2 6/28/2018 Susquehanna River Cooperstown Dam  31.18 6.85  3.439777 1.924249
+## 3 6/28/2018 Susquehanna River Cooperstown Dam  31.15 6.75  3.438814 1.909543
+## 4 6/28/2018 Susquehanna River Cooperstown Dam  29.28 6.46  3.376905 1.865629
+## 5 6/28/2018 Susquehanna River Cooperstown Dam  28.31 6.14  3.343215 1.814825
+## 6 6/28/2018 Susquehanna River Cooperstown Dam  30.55 5.99  3.419365 1.790091</code></pre>
+<p>We have a fairly straightforward data set this week. There are 964 observations of 7 variables. Each of the observations (rows) corresponds to a rusty crayfish that was collected and measured (<code>length</code> in mm and <code>mass</code> in g) at one of several <code>site</code>s on a given <code>date</code>. The variable <code>catch</code> is the total number caught by electrobugging over a given <code>time</code> (minutes). To compare density between sites, <code>catch</code> was divided by (<code>time</code>/60) to calculate catch per unit effort (<code>cpue</code>) as number of crayfish per hour. Therefore, observations of <code>cpue</code>, <code>catch</code>, and <code>time</code> correspond to unique <code>date</code> and <code>site</code> combinations, but <code>length</code> and <code>mass</code> represent unique individuals within <code>site</code> and <code>date</code>.</p>
+<p>Our primary objective in this study was to collect baseline data. But curiousity led us to explore variation in the condition of crayfish when we thought we were noticing skinnier crayfish in sites of higher density. Length-weight regressions are one tool that is commonly used to investigate changes in volumetric growth with increasing length. In the absence of a standardized condition metric such as that widely applied in fish populations, relative weight (W<sub>r</sub>), we thought this might offer some insight into variability in condition.</p>
+<p>What follows is a steroid-injected version of the analysis we started with.</p>
+<p>Length-weight relationships in animals are generally parameterized by log-transforming length and mass. This is because the relationship between the two is exponential, or can be described using a power functino (ouch, think back to intro bio). For a given unit increase in length, we expect mass to increase as an approximately cubic function of length.</p>
+<p>We can see this in our un-transformed data pretty cleanly:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="14-5-worked-example.html#cb5-1"></a><span class="co"># Plot the raw data</span></span>
+<span id="cb5-2"><a href="14-5-worked-example.html#cb5-2"></a><span class="kw">plot</span>(<span class="dt">x =</span> cray<span class="op">$</span>length,</span>
+<span id="cb5-3"><a href="14-5-worked-example.html#cb5-3"></a>     <span class="dt">y =</span> cray<span class="op">$</span>mass,</span>
+<span id="cb5-4"><a href="14-5-worked-example.html#cb5-4"></a>     <span class="dt">pch =</span> <span class="dv">21</span>,</span>
+<span id="cb5-5"><a href="14-5-worked-example.html#cb5-5"></a>     <span class="dt">bg =</span> <span class="kw">rgb</span>(.<span class="dv">8</span>,.<span class="dv">8</span>,.<span class="dv">8</span>,.<span class="dv">35</span>),</span>
+<span id="cb5-6"><a href="14-5-worked-example.html#cb5-6"></a>     <span class="dt">col =</span> <span class="kw">rgb</span>(.<span class="dv">8</span>,.<span class="dv">8</span>,.<span class="dv">8</span>,.<span class="dv">05</span>),</span>
+<span id="cb5-7"><a href="14-5-worked-example.html#cb5-7"></a>     <span class="dt">xlab =</span> <span class="st">&#39;Length (mm)&#39;</span>,</span>
+<span id="cb5-8"><a href="14-5-worked-example.html#cb5-8"></a>     <span class="dt">ylab =</span> <span class="st">&#39;Mass (g)&#39;</span></span>
+<span id="cb5-9"><a href="14-5-worked-example.html#cb5-9"></a>     )</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>The relationship depicted above can be expressed mathematically as:</p>
+<p><span class="math display">\[W = aL^b,\]</span></p>
+<p>and statistically as:</p>
+<p><span class="math display">\[W_i = a {L_i}^b e^{\epsilon_i},\]</span></p>
+<p>where <span class="math inline">\(W_i\)</span> is mass (weight) of individual <span class="math inline">\(_i\)</span>, <span class="math inline">\(L_i\)</span> is length, <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are the coefficient and exponent describing change in mass as a power function of length, and <span class="math inline">\(\epsilon_i\)</span> is the multiplicative error term for each crayfish (residuals change with length). Here, <span class="math inline">\(b\)</span> also has interpretation relative to allometry in growth patterns, where values of 3.0 indicate isometry, values below 3 indicate negative allometry, and values above 3 indicate positive allometry in the length-weight relationship. This means that at values much above 3, we would expect individuals to get heavier faster relative to their length at large sizes.</p>
+<p>Now, we can certainly estimate this kind of relationship using nonlinear regression. But, nonlinear regression can get a little unstable due to inherent correlations between parameters, and the multiplicative error described above. So, it can be easier to log-transform both sides of the equation to make the relationship linear and achieve a constant error across the range of x (homoscedasticity). As a result, we generally linearize relationships like this to improve modeling whenever we can, in this case by taking the natural logarithm of both sides of the equation:</p>
+<p><span class="math display">\[log(W_i) = log(a) + b \cdot log(L_i) + \epsilon_i\]</span></p>
+<p>Now, that should look a whole lot like the linear models we have been talking about all semester. In fact, by substitution, we could say that:</p>
+<p><span class="math display">\[Y = \beta_0 + \beta_1 \cdot X_i + \epsilon_i\]</span></p>
+<p>where <span class="math inline">\(Y\)</span> is <code>log(mass)</code>, and <span class="math inline">\(X\)</span> is <code>log(length)</code>. Then, we just need to remember that <span class="math inline">\(\beta_0\)</span> is estimated on the log scale.</p>
+<p>We can take a look at how this looks in our data by plotting the transformed data.</p>
+<p>Start by log-transforming length and mass</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="14-5-worked-example.html#cb6-1"></a><span class="co"># Log transform length and mass</span></span>
+<span id="cb6-2"><a href="14-5-worked-example.html#cb6-2"></a>  cray<span class="op">$</span>loglength &lt;-<span class="st"> </span><span class="kw">log</span>(cray<span class="op">$</span>length)</span>
+<span id="cb6-3"><a href="14-5-worked-example.html#cb6-3"></a>  cray<span class="op">$</span>logmass &lt;-<span class="st"> </span><span class="kw">log</span>(cray<span class="op">$</span>mass)</span></code></pre></div>
+<p>Plot the relationship. Note that only the names have been changed</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="14-5-worked-example.html#cb7-1"></a><span class="co"># Plot the raw data</span></span>
+<span id="cb7-2"><a href="14-5-worked-example.html#cb7-2"></a><span class="kw">plot</span>(<span class="dt">x =</span> cray<span class="op">$</span>loglength,</span>
+<span id="cb7-3"><a href="14-5-worked-example.html#cb7-3"></a>     <span class="dt">y =</span> cray<span class="op">$</span>logmass,</span>
+<span id="cb7-4"><a href="14-5-worked-example.html#cb7-4"></a>     <span class="dt">pch =</span> <span class="dv">21</span>,</span>
+<span id="cb7-5"><a href="14-5-worked-example.html#cb7-5"></a>     <span class="dt">bg =</span> <span class="kw">rgb</span>(.<span class="dv">8</span>,.<span class="dv">8</span>,.<span class="dv">8</span>,.<span class="dv">35</span>),</span>
+<span id="cb7-6"><a href="14-5-worked-example.html#cb7-6"></a>     <span class="dt">col =</span> <span class="kw">rgb</span>(.<span class="dv">8</span>,.<span class="dv">8</span>,.<span class="dv">8</span>,.<span class="dv">05</span>),</span>
+<span id="cb7-7"><a href="14-5-worked-example.html#cb7-7"></a>     <span class="dt">xlab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&#39;log &#39;</span>[e],<span class="st">&#39;Length (mm)&#39;</span>)),</span>
+<span id="cb7-8"><a href="14-5-worked-example.html#cb7-8"></a>     <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&#39;log &#39;</span>[e],<span class="st">&#39;Mass (g)&#39;</span>))</span>
+<span id="cb7-9"><a href="14-5-worked-example.html#cb7-9"></a>     )</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>If nothing else, this tells me we need to go after more small cray this summer. For now, let’s get rid of all crayfish weighing less than 1 g because the data are sparse down there and a quick glance at our residuals withing groups will show that this results in non-normality in the residuals for the Butternut Creek site, specifically. Have a look:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="14-5-worked-example.html#cb8-1"></a><span class="co"># Boxplot of mass by site</span></span>
+<span id="cb8-2"><a href="14-5-worked-example.html#cb8-2"></a>  <span class="kw">boxplot</span>(logmass<span class="op">~</span>site, <span class="dt">data=</span>cray)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="14-5-worked-example.html#cb9-1"></a><span class="co"># Drop the measurements for crayfish &lt; 1 g</span></span>
+<span id="cb9-2"><a href="14-5-worked-example.html#cb9-2"></a>  cray &lt;-<span class="st"> </span>cray[cray<span class="op">$</span>mass <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>, ]</span>
+<span id="cb9-3"><a href="14-5-worked-example.html#cb9-3"></a>  <span class="kw">boxplot</span>(logmass<span class="op">~</span>site, <span class="dt">data=</span>cray)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Wow, what a mess. Much better now, at least. Moving on with the analysis…</p>
+<p>Next, we will take a look at a few different ways to analyze these data using maximum likelihood estimation and Bayesian inference. Our goal here is to estimate the relationship between length and mass while accounting for inherent variability between populations.</p>
+<div id="random-intercepts-model" class="section level3">
+<h3><span class="header-section-number">14.5.1</span> Random-intercepts model</h3>
+<p>First, we will analyze the data assuming that the intercepts for our linear model can vary between populations, but the relationship between length and mass is the same across all populations. This is a very common approach in many ecological and biological applications, as it often is the case that we are just trying to account for sampling design when we do this kind of analysis.</p>
+<p>This is really straightforward to do in R. First, we will load the <code>lme4</code> package.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="14-5-worked-example.html#cb10-1"></a><span class="co"># Load the package</span></span>
+<span id="cb10-2"><a href="14-5-worked-example.html#cb10-2"></a>  <span class="kw">library</span>(lme4)</span></code></pre></div>
+<p>Next, we fit the model. Notice that now we have to add an argument to speficy a random effect of <code>site</code> on the intercept <code>1</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="14-5-worked-example.html#cb11-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb11-2"><a href="14-5-worked-example.html#cb11-2"></a>  craymod &lt;-<span class="st"> </span><span class="kw">lmer</span>(logmass <span class="op">~</span><span class="st"> </span>loglength <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>site),</span>
+<span id="cb11-3"><a href="14-5-worked-example.html#cb11-3"></a>               <span class="dt">data=</span>cray</span>
+<span id="cb11-4"><a href="14-5-worked-example.html#cb11-4"></a>               )</span></code></pre></div>
+<p>Being responsible individuals, we now have a look at the residuals to make sure we’ve met assumptions of normality and homoscedasticity:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="14-5-worked-example.html#cb12-1"></a><span class="co"># Plot the residuals</span></span>
+<span id="cb12-2"><a href="14-5-worked-example.html#cb12-2"></a>  <span class="kw">plot</span>(craymod)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>That’s looking about as good as we could hope for, so now let’s go ahead and crack open the model summary.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="14-5-worked-example.html#cb13-1"></a><span class="co"># Print the summary</span></span>
+<span id="cb13-2"><a href="14-5-worked-example.html#cb13-2"></a>  <span class="kw">summary</span>(craymod)</span></code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: logmass ~ loglength + (1 | site)
+##    Data: cray
+## 
+## REML criterion at convergence: -979.9
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -8.0004 -0.5419 -0.0470  0.4757  6.2850 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  site     (Intercept) 0.001777 0.04216 
+##  Residual             0.018895 0.13746 
+## Number of obs: 889, groups:  site, 6
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept) -7.98470    0.08050  -99.19
+## loglength    2.88991    0.02423  119.25
+## 
+## Correlation of Fixed Effects:
+##           (Intr)
+## loglength -0.975</code></pre>
+<p>For now, we will skip the usual walkthrough of all the wonderful tidbits that R has to offer and cut right to the chase. We can see from the table for our fixed effects that we have successfully detected the relationship between length and mass (p &lt; 0.05), but this should come as no surprise based on the plot we saw.</p>
+<p>We can see that the estimated sd for our intercept is fairly low, so we may not need to specify this as a random effect were we concerned about model complexity. Given that we are interested in this random effect, and that we (in this case) want to think of streams having been sampled from a broader population of streams, we will retain it in our model. From here, we could go on to make predictions across populations using our fixed intercept and slope, or we could use the population specific intercepts and the shared slope.</p>
+<p>First, let’s plot using the shared intercept from our fixed effects table:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="14-5-worked-example.html#cb15-1"></a><span class="co"># Start by making a sequence of new lengths</span></span>
+<span id="cb15-2"><a href="14-5-worked-example.html#cb15-2"></a><span class="co"># on the log scale</span></span>
+<span id="cb15-3"><a href="14-5-worked-example.html#cb15-3"></a>  lens &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="kw">min</span>(cray<span class="op">$</span>loglength),</span>
+<span id="cb15-4"><a href="14-5-worked-example.html#cb15-4"></a>              <span class="dt">to =</span> <span class="kw">max</span>(cray<span class="op">$</span>loglength),</span>
+<span id="cb15-5"><a href="14-5-worked-example.html#cb15-5"></a>              <span class="dt">by =</span> <span class="fl">.1</span>)</span>
+<span id="cb15-6"><a href="14-5-worked-example.html#cb15-6"></a></span>
+<span id="cb15-7"><a href="14-5-worked-example.html#cb15-7"></a><span class="co"># Now, get the fixed effects</span></span>
+<span id="cb15-8"><a href="14-5-worked-example.html#cb15-8"></a><span class="co"># coefficients from the model</span></span>
+<span id="cb15-9"><a href="14-5-worked-example.html#cb15-9"></a>  fcoeffs &lt;-<span class="st"> </span><span class="kw">fixef</span>(craymod)</span>
+<span id="cb15-10"><a href="14-5-worked-example.html#cb15-10"></a></span>
+<span id="cb15-11"><a href="14-5-worked-example.html#cb15-11"></a><span class="co"># We can make the mean predictions</span></span>
+<span id="cb15-12"><a href="14-5-worked-example.html#cb15-12"></a><span class="co"># fairly easily here</span></span>
+<span id="cb15-13"><a href="14-5-worked-example.html#cb15-13"></a>  pred &lt;-<span class="st"> </span>fcoeffs[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>fcoeffs[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>lens</span>
+<span id="cb15-14"><a href="14-5-worked-example.html#cb15-14"></a>    </span>
+<span id="cb15-15"><a href="14-5-worked-example.html#cb15-15"></a><span class="co"># And we could plot them on the log scale</span></span>
+<span id="cb15-16"><a href="14-5-worked-example.html#cb15-16"></a><span class="co"># Plot the raw data</span></span>
+<span id="cb15-17"><a href="14-5-worked-example.html#cb15-17"></a><span class="kw">plot</span>(<span class="dt">x =</span> cray<span class="op">$</span>loglength,</span>
+<span id="cb15-18"><a href="14-5-worked-example.html#cb15-18"></a>     <span class="dt">y =</span> cray<span class="op">$</span>logmass,</span>
+<span id="cb15-19"><a href="14-5-worked-example.html#cb15-19"></a>     <span class="dt">pch =</span> <span class="dv">21</span>,</span>
+<span id="cb15-20"><a href="14-5-worked-example.html#cb15-20"></a>     <span class="dt">bg =</span> <span class="kw">rgb</span>(.<span class="dv">8</span>,.<span class="dv">8</span>,.<span class="dv">8</span>,.<span class="dv">35</span>),</span>
+<span id="cb15-21"><a href="14-5-worked-example.html#cb15-21"></a>     <span class="dt">col =</span> <span class="kw">rgb</span>(.<span class="dv">8</span>,.<span class="dv">8</span>,.<span class="dv">8</span>,.<span class="dv">05</span>),</span>
+<span id="cb15-22"><a href="14-5-worked-example.html#cb15-22"></a>     <span class="dt">xlab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&#39;log&#39;</span>[e],<span class="st">&#39;Length (mm)&#39;</span>)),</span>
+<span id="cb15-23"><a href="14-5-worked-example.html#cb15-23"></a>     <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&#39;log &#39;</span>[e],<span class="st">&#39;Mass (g)&#39;</span>))</span>
+<span id="cb15-24"><a href="14-5-worked-example.html#cb15-24"></a>     )</span>
+<span id="cb15-25"><a href="14-5-worked-example.html#cb15-25"></a> <span class="kw">lines</span>(<span class="dt">x=</span>lens, <span class="dt">y=</span>pred, <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Of course, we could also plot these data on the real scale if we were concerned about actually describing the trend of interest, and at the population level, we can use the diagonal element of the variance-covariance matrix to represent uncertainty in our predictions:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="14-5-worked-example.html#cb16-1"></a><span class="co"># We can make the mean predictions</span></span>
+<span id="cb16-2"><a href="14-5-worked-example.html#cb16-2"></a><span class="co"># fairly easily here</span></span>
+<span id="cb16-3"><a href="14-5-worked-example.html#cb16-3"></a>  pred &lt;-<span class="st"> </span>fcoeffs[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>fcoeffs[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>lens</span>
+<span id="cb16-4"><a href="14-5-worked-example.html#cb16-4"></a></span>
+<span id="cb16-5"><a href="14-5-worked-example.html#cb16-5"></a><span class="co"># Now add the upper and lower confidence</span></span>
+<span id="cb16-6"><a href="14-5-worked-example.html#cb16-6"></a><span class="co"># intervals for the relationship</span></span>
+<span id="cb16-7"><a href="14-5-worked-example.html#cb16-7"></a>  sds &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="kw">vcov</span>(craymod))</span>
+<span id="cb16-8"><a href="14-5-worked-example.html#cb16-8"></a>  lpred &lt;-<span class="st"> </span>(fcoeffs[<span class="dv">1</span>]<span class="op">-</span><span class="fl">1.96</span><span class="op">*</span>sds[<span class="dv">1</span>]) <span class="op">+</span><span class="st"> </span>(fcoeffs[<span class="dv">2</span>]<span class="op">-</span><span class="fl">1.96</span><span class="op">*</span>sds[<span class="dv">2</span>]) <span class="op">*</span><span class="st"> </span>lens</span>
+<span id="cb16-9"><a href="14-5-worked-example.html#cb16-9"></a>  upred &lt;-<span class="st"> </span>(fcoeffs[<span class="dv">1</span>]<span class="op">+</span><span class="fl">1.96</span><span class="op">*</span>sds[<span class="dv">1</span>]) <span class="op">+</span><span class="st"> </span>(fcoeffs[<span class="dv">2</span>]<span class="op">+</span><span class="fl">1.96</span><span class="op">*</span>sds[<span class="dv">2</span>]) <span class="op">*</span><span class="st"> </span>lens</span>
+<span id="cb16-10"><a href="14-5-worked-example.html#cb16-10"></a>    </span>
+<span id="cb16-11"><a href="14-5-worked-example.html#cb16-11"></a><span class="co"># Plot the raw data</span></span>
+<span id="cb16-12"><a href="14-5-worked-example.html#cb16-12"></a><span class="kw">plot</span>(<span class="dt">x =</span> cray<span class="op">$</span>length,</span>
+<span id="cb16-13"><a href="14-5-worked-example.html#cb16-13"></a>     <span class="dt">y =</span> cray<span class="op">$</span>mass,</span>
+<span id="cb16-14"><a href="14-5-worked-example.html#cb16-14"></a>     <span class="dt">pch =</span> <span class="dv">21</span>,</span>
+<span id="cb16-15"><a href="14-5-worked-example.html#cb16-15"></a>     <span class="dt">bg =</span> <span class="kw">rgb</span>(.<span class="dv">8</span>,.<span class="dv">8</span>,.<span class="dv">8</span>,.<span class="dv">35</span>),</span>
+<span id="cb16-16"><a href="14-5-worked-example.html#cb16-16"></a>     <span class="dt">col =</span> <span class="kw">rgb</span>(.<span class="dv">8</span>,.<span class="dv">8</span>,.<span class="dv">8</span>,.<span class="dv">05</span>),</span>
+<span id="cb16-17"><a href="14-5-worked-example.html#cb16-17"></a>     <span class="dt">xlab =</span> <span class="st">&#39;Carapace length (mm)&#39;</span>,</span>
+<span id="cb16-18"><a href="14-5-worked-example.html#cb16-18"></a>     <span class="dt">ylab =</span> <span class="st">&#39;Mass (g)&#39;</span></span>
+<span id="cb16-19"><a href="14-5-worked-example.html#cb16-19"></a>     )</span>
+<span id="cb16-20"><a href="14-5-worked-example.html#cb16-20"></a> <span class="kw">lines</span>(<span class="dt">x =</span> <span class="kw">exp</span>(lens), <span class="dt">y =</span> <span class="kw">exp</span>(pred), <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb16-21"><a href="14-5-worked-example.html#cb16-21"></a> <span class="kw">lines</span>(<span class="dt">x =</span> <span class="kw">exp</span>(lens), <span class="dt">y =</span> <span class="kw">exp</span>(lpred), <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb16-22"><a href="14-5-worked-example.html#cb16-22"></a> <span class="kw">lines</span>(<span class="dt">x =</span> <span class="kw">exp</span>(lens), <span class="dt">y =</span> <span class="kw">exp</span>(upred), <span class="dt">col=</span><span class="st">&#39;red&#39;</span>, <span class="dt">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>It is even simple enough for us to dig into the model and extract population-level intercepts here.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="14-5-worked-example.html#cb17-1"></a><span class="co"># Get population-level parameters</span></span>
+<span id="cb17-2"><a href="14-5-worked-example.html#cb17-2"></a>  rcoeff &lt;-<span class="st"> </span><span class="kw">coef</span>(craymod)<span class="op">$</span>site</span>
+<span id="cb17-3"><a href="14-5-worked-example.html#cb17-3"></a></span>
+<span id="cb17-4"><a href="14-5-worked-example.html#cb17-4"></a><span class="co"># Have a look</span></span>
+<span id="cb17-5"><a href="14-5-worked-example.html#cb17-5"></a>  rcoeff</span></code></pre></div>
+<pre><code>##                 (Intercept) loglength
+## Bailey Road       -8.015529   2.88991
+## Colliersville     -7.946428   2.88991
+## Cooperstown Dam   -8.038283   2.88991
+## Fortin Park       -7.951995   2.88991
+## Route 23          -8.007405   2.88991
+## Route 80          -7.948562   2.88991</code></pre>
+<p>We can then go on to use each set of parameters shown here to make mean predictions for each stream. If want to plot the results for population 3, for example, our code would look like this:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="14-5-worked-example.html#cb19-1"></a><span class="co"># Plot the raw data</span></span>
+<span id="cb19-2"><a href="14-5-worked-example.html#cb19-2"></a>  <span class="kw">plot</span>(cray<span class="op">$</span>loglength[cray<span class="op">$</span>site<span class="op">==</span><span class="st">&quot;Colliersville&quot;</span>],</span>
+<span id="cb19-3"><a href="14-5-worked-example.html#cb19-3"></a>       cray<span class="op">$</span>logmass[cray<span class="op">$</span>site<span class="op">==</span><span class="st">&quot;Colliersville&quot;</span>],</span>
+<span id="cb19-4"><a href="14-5-worked-example.html#cb19-4"></a>       <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&#39;gray87&#39;</span>,</span>
+<span id="cb19-5"><a href="14-5-worked-example.html#cb19-5"></a>       <span class="dt">cex=</span><span class="fl">1.25</span>,</span>
+<span id="cb19-6"><a href="14-5-worked-example.html#cb19-6"></a>       <span class="dt">xlab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&#39;log&#39;</span>[e],<span class="st">&#39;Length (mm)&#39;</span>)),</span>
+<span id="cb19-7"><a href="14-5-worked-example.html#cb19-7"></a>       <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&#39;log &#39;</span>[e],<span class="st">&#39;Mass (g)&#39;</span>))</span>
+<span id="cb19-8"><a href="14-5-worked-example.html#cb19-8"></a>       )</span>
+<span id="cb19-9"><a href="14-5-worked-example.html#cb19-9"></a><span class="co"># Make a sequence of new lengths</span></span>
+<span id="cb19-10"><a href="14-5-worked-example.html#cb19-10"></a>  lens =<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(cray<span class="op">$</span>loglength), <span class="kw">max</span>(cray<span class="op">$</span>loglength), <span class="dt">by=</span>.<span class="dv">01</span>)</span>
+<span id="cb19-11"><a href="14-5-worked-example.html#cb19-11"></a><span class="co"># Predict new values for mass from lens</span></span>
+<span id="cb19-12"><a href="14-5-worked-example.html#cb19-12"></a>  masses =<span class="st"> </span>rcoeff[<span class="dv">2</span>,<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>rcoeff[<span class="dv">2</span>,<span class="dv">2</span>]<span class="op">*</span>lens</span>
+<span id="cb19-13"><a href="14-5-worked-example.html#cb19-13"></a><span class="co"># Add lines to the plot</span></span>
+<span id="cb19-14"><a href="14-5-worked-example.html#cb19-14"></a>  <span class="kw">lines</span>(lens, masses, <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>But, we still don’t really have a great way of looking at differences between groups if we are interested in those. Why is this? We do not have the technology. Basically, computing group-specific variances is conceptually and programmatically challenging. But, we can use some simulation methods to do this, and some of these have been implemented in newer versions of the <code>lme4</code> package and related packages.</p>
+<p>IMO, if you are going to go through simulations just to approximate confidence intervals, you are probably interested in the group-level estimates as well, and you should really be thinking about Bayesian approaches at this point.</p>
+<p>The following method was released in December 2016 to meet the growing need for characterizing uncertainty in group-level predictions from mixed models. Let’s take a look at how to use some of these tools.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="14-5-worked-example.html#cb20-1"></a><span class="kw">library</span>(merTools)</span>
+<span id="cb20-2"><a href="14-5-worked-example.html#cb20-2"></a></span>
+<span id="cb20-3"><a href="14-5-worked-example.html#cb20-3"></a><span class="co"># Tell r which population we are </span></span>
+<span id="cb20-4"><a href="14-5-worked-example.html#cb20-4"></a><span class="co"># working with. We will store as a variable</span></span>
+<span id="cb20-5"><a href="14-5-worked-example.html#cb20-5"></a><span class="co"># upfront so we can easily change populations</span></span>
+<span id="cb20-6"><a href="14-5-worked-example.html#cb20-6"></a><span class="co"># by re-defining the variable, which I will</span></span>
+<span id="cb20-7"><a href="14-5-worked-example.html#cb20-7"></a><span class="co"># call `i`. We will Colliersville to stay</span></span>
+<span id="cb20-8"><a href="14-5-worked-example.html#cb20-8"></a><span class="co"># consistent with the example above</span></span>
+<span id="cb20-9"><a href="14-5-worked-example.html#cb20-9"></a>  i=<span class="st">&#39;Colliersville&#39;</span></span>
+<span id="cb20-10"><a href="14-5-worked-example.html#cb20-10"></a>  </span>
+<span id="cb20-11"><a href="14-5-worked-example.html#cb20-11"></a><span class="co"># Make a sequence of new lengths</span></span>
+<span id="cb20-12"><a href="14-5-worked-example.html#cb20-12"></a>  lens =<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(cray<span class="op">$</span>loglength),</span>
+<span id="cb20-13"><a href="14-5-worked-example.html#cb20-13"></a>             <span class="kw">max</span>(cray<span class="op">$</span>loglength),</span>
+<span id="cb20-14"><a href="14-5-worked-example.html#cb20-14"></a>             <span class="dt">by=</span>.<span class="dv">1</span>)</span>
+<span id="cb20-15"><a href="14-5-worked-example.html#cb20-15"></a>  </span>
+<span id="cb20-16"><a href="14-5-worked-example.html#cb20-16"></a><span class="co"># Make a df that contains lengths</span></span>
+<span id="cb20-17"><a href="14-5-worked-example.html#cb20-17"></a><span class="co"># and a label for population</span></span>
+<span id="cb20-18"><a href="14-5-worked-example.html#cb20-18"></a>  newd =<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb20-19"><a href="14-5-worked-example.html#cb20-19"></a>    <span class="dt">site =</span> <span class="kw">rep</span>(i, <span class="kw">length</span>(lens)),</span>
+<span id="cb20-20"><a href="14-5-worked-example.html#cb20-20"></a>    <span class="dt">loglength =</span> lens</span>
+<span id="cb20-21"><a href="14-5-worked-example.html#cb20-21"></a>  )</span>
+<span id="cb20-22"><a href="14-5-worked-example.html#cb20-22"></a></span>
+<span id="cb20-23"><a href="14-5-worked-example.html#cb20-23"></a><span class="co"># Simulate predictions from the relationship</span></span>
+<span id="cb20-24"><a href="14-5-worked-example.html#cb20-24"></a><span class="co"># stored in the model fit using our new data</span></span>
+<span id="cb20-25"><a href="14-5-worked-example.html#cb20-25"></a>  PI &lt;-<span class="st"> </span><span class="kw">predictInterval</span>(<span class="dt">merMod =</span> craymod, <span class="dt">newdata =</span> newd, </span>
+<span id="cb20-26"><a href="14-5-worked-example.html#cb20-26"></a>                        <span class="dt">level =</span> <span class="fl">0.95</span>, <span class="dt">n.sims =</span> <span class="dv">10000</span>,</span>
+<span id="cb20-27"><a href="14-5-worked-example.html#cb20-27"></a>                        <span class="dt">stat =</span> <span class="st">&quot;median&quot;</span>, <span class="dt">type=</span><span class="st">&quot;linear.prediction&quot;</span>,</span>
+<span id="cb20-28"><a href="14-5-worked-example.html#cb20-28"></a>                        <span class="dt">include.resid.var =</span> <span class="ot">TRUE</span></span>
+<span id="cb20-29"><a href="14-5-worked-example.html#cb20-29"></a>                        )</span>
+<span id="cb20-30"><a href="14-5-worked-example.html#cb20-30"></a></span>
+<span id="cb20-31"><a href="14-5-worked-example.html#cb20-31"></a><span class="co"># Plot the raw data for the population of interest, i</span></span>
+<span id="cb20-32"><a href="14-5-worked-example.html#cb20-32"></a>  <span class="kw">plot</span>(<span class="dt">x =</span> cray<span class="op">$</span>loglength[cray<span class="op">$</span>site<span class="op">==</span>i], </span>
+<span id="cb20-33"><a href="14-5-worked-example.html#cb20-33"></a>       <span class="dt">y =</span> cray<span class="op">$</span>logmass[cray<span class="op">$</span>site<span class="op">==</span>i],</span>
+<span id="cb20-34"><a href="14-5-worked-example.html#cb20-34"></a>       <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">3</span>), <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&#39;gray87&#39;</span>,</span>
+<span id="cb20-35"><a href="14-5-worked-example.html#cb20-35"></a>       <span class="dt">cex=</span><span class="fl">1.25</span>,</span>
+<span id="cb20-36"><a href="14-5-worked-example.html#cb20-36"></a>       <span class="dt">xlab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&#39;log&#39;</span>[e],<span class="st">&#39;Length (mm)&#39;</span>)),</span>
+<span id="cb20-37"><a href="14-5-worked-example.html#cb20-37"></a>       <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&#39;log &#39;</span>[e],<span class="st">&#39;Mass (g)&#39;</span>))</span>
+<span id="cb20-38"><a href="14-5-worked-example.html#cb20-38"></a>       )</span>
+<span id="cb20-39"><a href="14-5-worked-example.html#cb20-39"></a></span>
+<span id="cb20-40"><a href="14-5-worked-example.html#cb20-40"></a><span class="co"># Predict new values for mass from lens</span></span>
+<span id="cb20-41"><a href="14-5-worked-example.html#cb20-41"></a>  <span class="co">#masses = effs$pop[i,1] + effs$pop[i,2]*lens</span></span>
+<span id="cb20-42"><a href="14-5-worked-example.html#cb20-42"></a><span class="co"># Add lines to the plot</span></span>
+<span id="cb20-43"><a href="14-5-worked-example.html#cb20-43"></a>  <span class="kw">lines</span>(newd<span class="op">$</span>loglength, PI<span class="op">$</span>fit, <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>) <span class="co"># Mean</span></span>
+<span id="cb20-44"><a href="14-5-worked-example.html#cb20-44"></a>  <span class="kw">lines</span>(newd<span class="op">$</span>loglength, PI<span class="op">$</span>upr, <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&#39;red&#39;</span>)  <span class="co"># Upper CI</span></span>
+<span id="cb20-45"><a href="14-5-worked-example.html#cb20-45"></a>  <span class="kw">lines</span>(newd<span class="op">$</span>loglength, PI<span class="op">$</span>lwr, <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&#39;red&#39;</span>)  <span class="co"># Lower CI</span></span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>We could go through and do this for each site, and we would have a pretty nice (albeit slightly unwieldy) set of figures describing the relationship between length and mass. Alternatively, we could use the model coefficients to estimate the relationship across all populations, and to make predictions about unknown populations.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="14-4-linear-mixed-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="14-6-next-14.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["worstr.pdf", "worstr.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="13-4-zero-inflation.html"/>
-
+<link rel="next" href="14-Chapter14.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -328,6 +330,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13.5" data-path="13-5-next-steps.html"><a href="13-5-next-steps.html"><i class="fa fa-check"></i><b>13.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="14-Chapter14.html"><a href="14-Chapter14.html"><i class="fa fa-check"></i><b>14</b> Linear mixed models</a><ul>
+<li class="chapter" data-level="14.1" data-path="14-1-intro-14.html"><a href="14-1-intro-14.html"><i class="fa fa-check"></i><b>14.1</b> Introduction</a></li>
+<li class="chapter" data-level="14.2" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html"><i class="fa fa-check"></i><b>14.2</b> Assumptions of linear models</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html#normality-14"><i class="fa fa-check"></i><b>14.2.1</b> Assumption 1: Normality of residuals</a></li>
+<li class="chapter" data-level="14.2.2" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html#independence-14"><i class="fa fa-check"></i><b>14.2.2</b> Assumption 2: Independence of observations</a></li>
+<li class="chapter" data-level="14.2.3" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html#homogeneity-14"><i class="fa fa-check"></i><b>14.2.3</b> Assumption 3: Homogeneity of variances</a></li>
+<li class="chapter" data-level="14.2.4" data-path="14-2-assumptions-lmm.html"><a href="14-2-assumptions-lmm.html#linearity-14"><i class="fa fa-check"></i><b>14.2.4</b> Assumption 4: Linearity and additivity</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="14-3-introducing-the-glmm.html"><a href="14-3-introducing-the-glmm.html"><i class="fa fa-check"></i><b>14.3</b> Introducing the GLMM</a></li>
+<li class="chapter" data-level="14.4" data-path="14-4-linear-mixed-models.html"><a href="14-4-linear-mixed-models.html"><i class="fa fa-check"></i><b>14.4</b> Linear mixed models</a></li>
+<li class="chapter" data-level="14.5" data-path="14-5-lmm-worked.html"><a href="14-5-lmm-worked.html"><i class="fa fa-check"></i><b>14.5</b> Worked example</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="14-5-lmm-worked.html"><a href="14-5-lmm-worked.html#random-intercepts-model"><i class="fa fa-check"></i><b>14.5.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="14-6-next-14.html"><a href="14-6-next-14.html"><i class="fa fa-check"></i><b>14.6</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -350,7 +367,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="next-steps" class="section level2">
 <h2><span class="header-section-number">13.5</span> Next steps</h2>
-<p>This chapter has provided an overview of GLMs that we can use for count data, and demonstrates one way to handle cases of skewed counts or (more extreme case) zero-inflated counts. These are common “problems” in biological and ecological data that are easily resolved within the flexible framework of GLM, which includes all of the other models we’ve looked at since <a href="6-Chapter6.html#Chapter6">Chapter 6</a>. In <a href="#Chapter14">Chapter 14</a> and <a href="#Chapter15">Chapter 15</a> we’ll look at how to extend this framework even further (another umbrella) to include repeated observations and relatedness between groups when we introduce mixed effects models.</p>
+<p>This chapter has provided an overview of GLMs that we can use for count data, and demonstrates one way to handle cases of skewed counts or (more extreme case) zero-inflated counts. These are common “problems” in biological and ecological data that are easily resolved within the flexible framework of GLM, which includes all of the other models we’ve looked at since <a href="6-Chapter6.html#Chapter6">Chapter 6</a>. In <a href="14-Chapter14.html#Chapter14">Chapter 14</a> and <a href="#Chapter15">Chapter 15</a> we’ll look at how to extend this framework even further (another umbrella) to include repeated observations and relatedness between groups when we introduce mixed effects models.</p>
 
 </div>
 <!-- </div> -->
@@ -359,8 +376,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="13-4-zero-inflation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="13-4-zero-inflation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="14-Chapter14.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11.3 All subsets | The Worst Stats Text eveR</title>
-  <meta name="description" content="11.3 All subsets | The Worst Stats Text eveR" />
+  <title>14.3 Introducing the GLMM | The Worst Stats Text eveR</title>
+  <meta name="description" content="14.3 Introducing the GLMM | The Worst Stats Text eveR" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11.3 All subsets | The Worst Stats Text eveR" />
+  <meta property="og:title" content="14.3 Introducing the GLMM | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11.3 All subsets | The Worst Stats Text eveR" />
+  <meta name="twitter:title" content="14.3 Introducing the GLMM | The Worst Stats Text eveR" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="11-2-model-selection-tools.html"/>
-<link rel="next" href="11-4-stepwise.html"/>
+<link rel="prev" href="14-2-assumptions-lmm.html"/>
+<link rel="next" href="14-4-linear-mixed-models.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -365,19 +365,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="all-subsets" class="section level2">
-<h2><span class="header-section-number">11.3</span> All subsets</h2>
-<p>Just as the name states - compare all possible combinations of variables and pick the one that gives the most information with the least collinearity between predictors. This is largely an exploratory approach or is reserved for cases in which we care solely about prediction. There are a number of R packages that implement all subsets with varying utility and efficiency. These approaches historically relied on Mallow’s Cp, but most are now updated to use Akaike’s information criterion (see <a href="11-5-a-priori.html#a-priori">Chapter 11.4</a>)</p>
-<p>We will not discuss these techniques in this class because 1) they are usually not needed 2) they can lead to laziness in formulation of hypotheses and in a worst case data dredging, and 3) plain and simple: there are just better tools available for these purposes now (e.g. GAMM, CART, and network analysis).</p>
-<p>Now can you tell I am not a fan?</p>
+<div id="introducing-the-glmm" class="section level2">
+<h2><span class="header-section-number">14.3</span> Introducing the GLMM</h2>
+<p>The first thing you should understand about GLMMs is that they are useful for analyzing data from a large number of distributions (basically, you can use them for any underlying error structure). But, when we use specific error structures, or make certain assumptions about the manner in which the heterogeneity of variances is structured with respect to specific factors, this model is often given specific names. For example, repeated measures ANOVA (or ANCOVA), nested ANOVA (or ANCOVA), factorial ANOVA (or ANCOVA), linear mixed models, linear mixed effects models, and generalized linear mixed effects models are all just different formulations of the GLMM with different names. It sounds confusing, but just remember this: any linear model with combinations of fixed and random effects is, at it’s core, just another GLMM! If you can convince yourself of this, you will improve your ability to understand a wide range of experimental designs and accompanying statistical models by understanding this one model type.</p>
+<p>The second thing you should understand to “get” GLMMs is what exactly is meant by a “random effect”. So far in this course we have only dealt with “fixed” effects. The fixed effect is a categorical variable that is used to explain some variation in our response of interest. When we use a fixed effect in a statistical model, we are making the assumption that the categories for this effect are “fixed”. In other words, we have assigned the the levels, or categories, based on some <em>a priori</em> knowledge that the levels themselves represent all possible groups that can be used to describe the data. Because of this definition, fixed effects are usually 1) things that we manipulate directly (like dosage or some other treatment), or 2) relatively simple grouping variables such as sex. By contrast, a “random effect” is an effect that we do not generally set ahead of time or manipulate, but rather one which is considered to be a sample from a population of potential categories that we cannot census or (often) control. Please note that there is not a single, widely accepted definition for either of these things in applied statistics and the definition can be context-specific. It becomes all the more confusing when we switch between maximum likelihood estimation and Bayesian inference. Don’t take it from me, though. Ask one of the world’s leading experts on the matter <a href="http://andrewgelman.com/2005/01/25/why_i_dont_use/">here</a>.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="11-2-model-selection-tools.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="11-4-stepwise.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="14-2-assumptions-lmm.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="14-4-linear-mixed-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
