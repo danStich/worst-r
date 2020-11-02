@@ -2825,7 +2825,7 @@ Let's do it again with that function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1
+## [1] 0
 \end{verbatim}
 
 Or we could hatch a whole bunch of eggs:
@@ -2838,7 +2838,7 @@ Or we could hatch a whole bunch of eggs:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 0 1 0 1 0 0 1 1 0 0
+##  [1] 1 0 0 1 1 1 0 1 0 0
 \end{verbatim}
 
 Then, we could even count how many of those were successful. Do you remember how to do that? There are several different ways. You'll have to come up with one for the homework assignment (hint: see \protect\hyperlink{Chapter2}{Chapter 2}).
@@ -2860,7 +2860,7 @@ To sample data from a binomial distribution, we can use \texttt{rbinom} from bas
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 4 5 5 1 5 3 4 6 4 5
+##  [1] 3 8 6 5 4 3 5 6 4 5
 \end{verbatim}
 
 Remember as you look through these that your numbers should look different than mine (at least most of the time) because these are being generated randomly.
@@ -2929,17 +2929,17 @@ Have a look:
 ##       [,1] [,2] [,3] [,4] [,5]
 ##  [1,]    0    0    0    0    0
 ##  [2,]    0    0    0    0    0
-##  [3,]    1    0    0    0    0
+##  [3,]    0    0    0    0    1
 ##  [4,]    0    0    0    0    0
-##  [5,]    0    0    0    0    1
-##  [6,]    0    0    1    0    0
-##  [7,]    0    0    0    0    0
+##  [5,]    0    0    0    0    0
+##  [6,]    0    0    0    0    0
+##  [7,]    0    1    1    0    0
 ##  [8,]    0    0    0    0    0
 ##  [9,]    0    0    0    0    0
-## [10,]    0    0    0    1    0
+## [10,]    0    0    0    0    0
 ## [11,]    0    0    0    0    0
 ## [12,]    0    0    0    0    0
-## [13,]    0    1    0    0    0
+## [13,]    0    0    0    0    0
 ## [14,]    0    0    0    0    0
 ## [15,]    0    0    0    0    0
 ## [16,]    0    0    0    0    0
@@ -2947,8 +2947,8 @@ Have a look:
 ## [18,]    0    0    0    0    0
 ## [19,]    0    0    0    0    0
 ## [20,]    0    0    0    0    0
-## [21,]    0    0    0    0    0
-## [22,]    0    0    0    0    0
+## [21,]    1    0    0    0    0
+## [22,]    0    0    0    1    0
 ## [23,]    0    0    0    0    0
 ## [24,]    0    0    0    0    0
 ## [25,]    0    0    0    0    0
@@ -2979,7 +2979,7 @@ Take a step back, breathe, and think about this. The rows in this matrix are you
 ##  [8,]    0
 ##  [9,]    0
 ## [10,]    0
-## [11,]    0
+## [11,]    1
 ## [12,]    0
 ## [13,]    0
 ## [14,]    0
@@ -2994,7 +2994,7 @@ Take a step back, breathe, and think about this. The rows in this matrix are you
 ## [23,]    0
 ## [24,]    0
 ## [25,]    0
-## [26,]    1
+## [26,]    0
 \end{verbatim}
 
 Here, we pulled a single sample from the distribution, and probability of sampling a given individual was 0.04 (1/26). If it makes it easier, we can put your names next to it:
@@ -3013,14 +3013,14 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 ##  [4,] "Manolo"      "0"
 ##  [5,] "Sarah"       "0"
 ##  [6,] "Shannon"     "0"
-##  [7,] "Olivia"      "1"
+##  [7,] "Olivia"      "0"
 ##  [8,] "Ebony"       "0"
 ##  [9,] "Julia"       "0"
 ## [10,] "Davi"        "0"
 ## [11,] "Gabrielle"   "0"
 ## [12,] "Jordan"      "0"
 ## [13,] "Tayler"      "0"
-## [14,] "Summer"      "0"
+## [14,] "Summer"      "1"
 ## [15,] "Leah"        "0"
 ## [16,] "Christine"   "0"
 ## [17,] "Ashley"      "0"
@@ -3046,31 +3046,31 @@ Now, if I was calling on you randomly in class, after 10 questions, the spread o
 \begin{verbatim}
 ##       name                                                 
 ##  [1,] "Ava"         "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [2,] "Dillon"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [2,] "Dillon"      "0" "0" "0" "0" "0" "0" "0" "1" "0" "0"
 ##  [3,] "Delaney"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [4,] "Manolo"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [5,] "Sarah"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [6,] "Shannon"     "0" "0" "0" "0" "0" "0" "0" "1" "0" "0"
+##  [5,] "Sarah"       "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
+##  [6,] "Shannon"     "0" "0" "0" "0" "0" "0" "1" "0" "0" "0"
 ##  [7,] "Olivia"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [8,] "Ebony"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [9,] "Julia"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [10,] "Davi"        "0" "0" "0" "0" "0" "0" "0" "0" "1" "0"
-## [11,] "Gabrielle"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [11,] "Gabrielle"   "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
 ## [12,] "Jordan"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [13,] "Tayler"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [14,] "Summer"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [15,] "Leah"        "1" "0" "0" "1" "0" "0" "0" "0" "0" "0"
+## [14,] "Summer"      "0" "0" "0" "0" "1" "0" "0" "0" "0" "1"
+## [15,] "Leah"        "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [16,] "Christine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [17,] "Ashley"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [18,] "Katherine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [19,] "James"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [20,] "Emily"       "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
-## [21,] "Cassidy"     "0" "0" "0" "0" "0" "0" "1" "0" "0" "0"
+## [19,] "James"       "1" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [20,] "Emily"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [21,] "Cassidy"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [22,] "Maximillion" "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [23,] "Sierra"      "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
-## [24,] "Kyle"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "1"
-## [25,] "Diana"       "0" "0" "0" "0" "1" "1" "0" "0" "0" "0"
-## [26,] "Amanda"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [23,] "Sierra"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [24,] "Kyle"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [25,] "Diana"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [26,] "Amanda"      "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
 \end{verbatim}
 
 Taking this one step further, we could just draw a name and stop looking at these ugly (no but really they are \textbf{awesome}!) matrices:
@@ -3318,7 +3318,7 @@ First, we'll estimate it by making our own function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.985945  4.012118
+## [1] 20.003106  4.006177
 \end{verbatim}
 
 Because this one is so common, R has built-in estimators that rely on
@@ -3332,7 +3332,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.98595
+## [1] 20.00311
 \end{verbatim}
 
 \begin{Shaded}
@@ -3342,7 +3342,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.01252
+## [1] 4.006578
 \end{verbatim}
 
 Wow, that was a lot less code. That is the beauty of having these functions available. How do these compare to the answers returned by our function if you scroll back up?
@@ -3360,8 +3360,8 @@ R also has built-in \textbf{maximum likelihood} estimators that provide an exact
 
 \begin{verbatim}
 ##       mean           sd     
-##   19.98594529    2.00302732 
-##  ( 0.02003027) ( 0.01416354)
+##   20.00310647    2.00154368 
+##  ( 0.02001544) ( 0.01415305)
 \end{verbatim}
 
 Only one problem here: R doesn't report the second moment! It reports
@@ -3410,10 +3410,10 @@ To get started, we need to take a guess at what those parameters could be. (Yes,
 
 \begin{verbatim}
 ## $par
-## [1] 19.986180  4.011951
+## [1] 20.002959  4.006004
 ## 
 ## $value
-## [1] 21135.98
+## [1] 21128.57
 ## 
 ## $counts
 ## function gradient 
@@ -3462,9 +3462,9 @@ Look at the structure I'll be damned, it's a list! Hey, we learned about those!
 
 \begin{verbatim}
 ## List of 5
-##  $ par        : num [1:2] 19.99 4.01
-##  $ value      : num 21136
-##  $ counts     : Named int [1:2] 97 NA
+##  $ par        : num [1:2] 20 3.99
+##  $ value      : num 21129
+##  $ counts     : Named int [1:2] 101 NA
 ##   ..- attr(*, "names")= chr [1:2] "function" "gradient"
 ##  $ convergence: int 0
 ##  $ message    : NULL
@@ -3480,7 +3480,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.989124  4.008137
+## [1] 20.004369  3.994985
 \end{verbatim}
 
 \begin{Shaded}
@@ -3491,7 +3491,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.98912
+## [1] 20.00437
 \end{verbatim}
 
 \begin{Shaded}
@@ -3502,7 +3502,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.008137
+## [1] 3.994985
 \end{verbatim}
 
 There you have it, a couple of different ways to calculate parameters of the normal distribution using a couple of different approaches each.
@@ -3520,7 +3520,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.99395
+## [1] 20.02269
 \end{verbatim}
 
 \begin{Shaded}
@@ -3532,7 +3532,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##     2.5%    97.5% 
-## 16.05456 23.88411
+## 16.02376 23.88307
 \end{verbatim}
 
 \begin{Shaded}
@@ -3544,7 +3544,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##      25%      75% 
-## 18.64747 21.34906
+## 18.65362 21.35612
 \end{verbatim}
 
 \begin{Shaded}
@@ -3555,7 +3555,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 13.16800 28.31646
+## [1] 12.56947 27.94925
 \end{verbatim}
 
 \hypertarget{next5}{%
@@ -7992,6 +7992,8 @@ Here we have demonstrated similarities between the GLM and the models with which
 \hypertarget{Chapter13}{%
 \chapter{GLM: Count models}\label{Chapter13}}
 
+The majestic female horseshoe crab. Once she has one mate she might attract any number of other ``satellite'' males. How many? Let's find out, but first we'll need a good count model.
+
 \hypertarget{intro13}{%
 \section{Introduction}\label{intro13}}
 
@@ -8446,6 +8448,411 @@ Well, it doesn't exactly inspire great confidence in the biological relationship
 \section{Next steps}\label{next-steps}}
 
 This chapter has provided an overview of GLMs that we can use for count data, and demonstrates one way to handle cases of skewed counts or (more extreme case) zero-inflated counts. These are common ``problems'' in biological and ecological data that are easily resolved within the flexible framework of GLM, which includes all of the other models we've looked at since \protect\hyperlink{Chapter6}{Chapter 6}. In \protect\hyperlink{Chapter14}{Chapter 14} and \protect\hyperlink{Chapter15}{Chapter 15} we'll look at how to extend this framework even further (another umbrella) to include repeated observations and relatedness between groups when we introduce mixed effects models.
+
+\hypertarget{Chapter14}{%
+\chapter{Linear mixed models}\label{Chapter14}}
+
+This is a big, fat yellow perch . It has grown large by eating invasive rusty crayfish (I made that up - Worst Stats Text eveR). Those rusty crayfish have grown large by eating in our local streams. If we had samples of crayfish from lots of different streams we could find out which rusty crayfish grow the fattest and how this translates to where they are having the biggest impacts. It's crayfish all the way down this time.
+
+\hypertarget{intro-14}{%
+\section{Introduction}\label{intro-14}}
+
+This week we will talk about extending linear models and generalized linear models to include ``random effects'' in the model, thus resulting in the ``generalized linear mixed model'' or GLMM. The GLMM is actually the most generalized formulation of the linear models that we have been discussing now for the past several weeks. All linear models (GLM, ANCOVA, ANOVA, regression, t-tests, etc.) are special cases of the GLMM. As such, we can think of the GLMM as the framework within which we have been working for weeks now! We will start with examples of the linear mixed model (LMM) in this Chapter and extend these to include non-normal data when we dig into the GLMM in \protect\hyperlink{Chapter15}{Chapter 15}.
+
+In this chapter, we'll introduce some tools from the \texttt{lme4} and \texttt{merTools} packages in addition to the usual suite of functions we need from the \texttt{tidyverse}. You'll need to install these before you can use them. Then, go ahead and load them up when you are ready to get started:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(lme4)}
+\KeywordTok{library}\NormalTok{(merTools)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{assumptions-lmm}{%
+\section{Assumptions of linear models}\label{assumptions-lmm}}
+
+OMG, why is this guy always talking about assumptions of linear models no matter what we do?!
+
+Just as we discussed last week, linear models are just a special case of the GLMM. That is, the linear model assumes a certain error distribution (the normal or Gaussian) that helps things work smoothly and correctly. During the last two weeks, we discussed how we can use link functions to relax the assumption of linear models with respect to normality of residuals and homogeneity of variances, as well as assumptions about the linearity of relationships between explanatory variables and responses of interest by using data transformation. This week, we continue to relax the underlying assumptions of linear models to unleash the true power of estimation in mixed effects models. This is essentially as far as the basic framework for linear modeling goes (with the exception of multivariate techniques), and all other cases (e.g.~spatial and temporal autocorrelation regressions) are simply specialized instances of these models.
+
+Let's take another look at the assumptions of linear models. We will repeat the same mantra from the past few weeks. Here are the three assumptions that we explicitly use when we use linear models (just in case you've forgotten them):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Residuals are normally distributed with a mean of zero
+\item
+  Independence of observations (residuals)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Colinearity
+  \item
+    Auto correlation of errors (e.g., spatial \& temporal)
+  \end{itemize}
+\item
+  Homogeneity of variances
+\item
+  Linear relationship between X and Y
+\end{enumerate}
+
+\hypertarget{normality-14}{%
+\subsection{Assumption 1: Normality of residuals}\label{normality-14}}
+
+We've seen these before, but let's recap. For assumption 1, we are assuming a couple of implicit things: 1) The variable is \emph{continuous} (and it must be if it's error structure is normal), and 2) The error in our model is normally distributed.
+
+In reality, this is probably the least important assumption of linear models, and really only matters if we are trying to make predictions from the models that we make, or when we are in gross violation of the assumption. Of course, we are often concerned with making predictions from the models that we make, so we can see why this might be important. However, more often we are in extreme violation of this assumption in some combination with assumption 4 above to such a degree that it actually does matter. For example, a response variable that is binomial (1 or zero) or multinomial in nature cannot possibly have normally distributed errors with respect to x unless there is absolutely no relationship between X and Y, right? So, if we wanted to predict the probability of patients dying from some medical treatment, or the presence/absence of species across a landscape then we can't use linear models. This is where the link functions that we have been discussing really come into play. The purpose of the link function is to place our decidedly non-normal error structures into an asymptotically normal probability space. The other key characteristic of the link function is that it must be invertible, that way we can get back to the parameter scale that we want to use for making predictions and visualizing the results of our models.
+
+\hypertarget{independence-14}{%
+\subsection{Assumption 2: Independence of observations}\label{independence-14}}
+
+This time we've broken assumption 2 in two components: Colinearity and autocorrelation of errors. Remember that the manifestation of these problems has primarily been in the precision of our coefficient estimates so far. This leads to the potential for change in the Type-I/II error rates in our models, causing us to draw false conclusions about which variables are important. As we discussed earlier in the course we expect to see some colinearity between observations, and we can deal with balancing this in our modeling through the use of model selection techniques to reduce Type-I and Type-II error. During the past couple of weeks, we examined tools that help us determine whether or not colinearity is actually causing problems in our models that go beyond minor nuisances. As for the second part, autocorrelation, we briefly touched on formulations of the GLM in our readings that included auto-regressive correlation matrices to relax this assumption of linear models and improve the precision of parameter estimates. This week, we will further extend this to include random effects so we can account for non-independence in the observations, and correlation in the residual errors of explanatory variables that could otherwise cause issues with accuracy and precision of our estimates. We will continue to use model selection as a method for determining tradeoffs between information gain and parameter redundancy that results from colinearity between explanatory variables, as well as for hypothesis testing.
+
+\hypertarget{homogeneity-14}{%
+\subsection{Assumption 3: Homogeneity of variances}\label{homogeneity-14}}
+
+In past weeks, we looked at ways to reduce this issue by introducing blocking (categorical) variables to our models. Last week, we noted that this could be further mitigated through the use of weighted least squares and MLE within the GLM framework, which can be applied to a wide range of regression methods from linear models to GLMs and GLMMs. This week we will examine how we can use various formulations of the GLMM to account for heteroscedasticity in residual errors directly by including the appropriate error terms in our models. This essentially means that we can start to account for things like repeated measures, nested effects, and various other violations through the use of one tool\ldots{}\textbf{nifty}!!
+
+\hypertarget{linearity-14}{%
+\subsection{Assumption 4: Linearity and additivity}\label{linearity-14}}
+
+We've already looked at a couple of ways to deal with violations of these assumptions such as data transformation and/or polynomial formulations of the linear model. We will continue to apply these concepts this week as we begin to investigate the GLMM as robust framework for analysis.
+
+\hypertarget{introducing-the-glmm}{%
+\section{Introducing the GLMM}\label{introducing-the-glmm}}
+
+The first thing you should understand about GLMMs is that they are useful for analyzing data from a large number of distributions (basically, you can use them for any underlying error structure). But, when we use specific error structures, or make certain assumptions about the manner in which the heterogeneity of variances is structured with respect to specific factors, this model is often given specific names. For example, repeated measures ANOVA (or ANCOVA), nested ANOVA (or ANCOVA), factorial ANOVA (or ANCOVA), linear mixed models, linear mixed effects models, and generalized linear mixed effects models are all just different formulations of the GLMM with different names. It sounds confusing, but just remember this: any linear model with combinations of fixed and random effects is, at it's core, just another GLMM! If you can convince yourself of this, you will improve your ability to understand a wide range of experimental designs and accompanying statistical models by understanding this one model type.
+
+The second thing you should understand to ``get'' GLMMs is what exactly is meant by a ``random effect''. So far in this course we have only dealt with ``fixed'' effects. The fixed effect is a categorical variable that is used to explain some variation in our response of interest. When we use a fixed effect in a statistical model, we are making the assumption that the categories for this effect are ``fixed''. In other words, we have assigned the the levels, or categories, based on some \emph{a priori} knowledge that the levels themselves represent all possible groups that can be used to describe the data. Because of this definition, fixed effects are usually 1) things that we manipulate directly (like dosage or some other treatment), or 2) relatively simple grouping variables such as sex. By contrast, a ``random effect'' is an effect that we do not generally set ahead of time or manipulate, but rather one which is considered to be a sample from a population of potential categories that we cannot census or (often) control. Please note that there is not a single, widely accepted definition for either of these things in applied statistics and the definition can be context-specific. It becomes all the more confusing when we switch between maximum likelihood estimation and Bayesian inference. Don't take it from me, though. Ask one of the world's leading experts on the matter \href{http://andrewgelman.com/2005/01/25/why_i_dont_use/}{here}.
+
+\hypertarget{linear-mixed-models}{%
+\section{Linear mixed models}\label{linear-mixed-models}}
+
+We will start our explorations into GLMM by looking at the somewhat familiar case of ``normal'' data, whatever mythical meaning it may have. As with the relationship between ANOVA and GLM, we can say that the linear mixed model (LMM) is just a special case of the GLMM (hence the name), both of which belong to the group of multi-level or hierarchical models that house basically every kind of model we have looked at this semester.
+
+So, what is a mixed model? This is a model that, generally speaking, assumes at least one parameter of interest is drawn from a population of potential sample sets. We usually use these when we are dealing with repeated samples for some group or individual, or if we wish to account for some latent variable beyond our control (e.g., lake or year). The use of random effects allows us to remove extraneous noise (variance) from the study system by explicitlty accounting for it. This can improve both the accuracy and the precision of estimates to make hypothesis testing on other explanatory variables more robust. It also allows us to generalize our conclusions to a broader scope (e.g.~any lake instead of lakes X, Y, and Z).
+
+Beyond these mundane uses, a ``multi-level'' approach to modeling allows for a great deal of flexibility in assumptions we make about the effects and associated errors in our model. We might assume within our model that effects are different between populations by assigning random intercepts and/or slopes. We can specify whether we think the influence of a continuous covariate is correlated with the starting point (correlated random slopes and intercepts). There are even rare cases when we might wish to examine random slopes with shared intercepts or vice versa. In Bayesian inference we can use information at higher levels of organization, like the North American Range of a species, to inform parameter estimation at lower levels, such as individual populations.
+
+The point here is that random effects on a given parameter need not be a ``nuisance'' for which we wish to account: it may be the very thing we wish to harness for inference, estimation, or prediction.
+
+As with so many things, these tools are often best investigated through the use of a worked example. Generally speaking, we want the grouping variable we use to specify random effects to contain a relatively large number of potential levels (usually \textgreater{} 5, but often \textgreater{} 10) as this tends to result in more accurate, and more precise parameter estimates. We will look at a case to start in which we use fewer for the sake of demonstration.
+
+\hypertarget{lmm-worked}{%
+\section{Worked example}\label{lmm-worked}}
+
+Let's start by loading in a new data set. These data come from a preliminary study of rusty crayfish \emph{Faxonius} \emph{rusticus} density in various tributaries to the Susquehanna River. The data were collected as part of a summer research project by one of our former high-school interns at the SUNY Oneonta Biological Field Station .
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Read in the data file}
+\CommentTok{# We are reading it in with the optional}
+\CommentTok{# argument because we don't want to deal}
+\CommentTok{# with code relicts if we start}
+\CommentTok{# dropping factor levels}
+\NormalTok{cray <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/cray.csv"}\NormalTok{, }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Look at the data structure}
+\KeywordTok{str}\NormalTok{(cray)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':	964 obs. of  7 variables:
+##  $ date     : chr  "6/28/2018" "6/28/2018" "6/28/2018" "6/28/2018" ...
+##  $ waterbody: chr  "Susquehanna River" "Susquehanna River" "Susquehanna River" "Susquehanna River" ...
+##  $ site     : chr  "Cooperstown Dam" "Cooperstown Dam" "Cooperstown Dam" "Cooperstown Dam" ...
+##  $ length   : num  30.9 31.2 31.1 29.3 28.3 ...
+##  $ mass     : num  7.18 6.85 6.75 6.46 6.14 5.99 5.58 4.95 4.85 4.81 ...
+##  $ loglength: num  3.43 3.44 3.44 3.38 3.34 ...
+##  $ logmass  : num  1.97 1.92 1.91 1.87 1.81 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# And, have a look at the first few lines of data}
+\KeywordTok{head}\NormalTok{(cray)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        date         waterbody            site length mass loglength  logmass
+## 1 6/28/2018 Susquehanna River Cooperstown Dam  30.88 7.18  3.430109 1.971299
+## 2 6/28/2018 Susquehanna River Cooperstown Dam  31.18 6.85  3.439777 1.924249
+## 3 6/28/2018 Susquehanna River Cooperstown Dam  31.15 6.75  3.438814 1.909543
+## 4 6/28/2018 Susquehanna River Cooperstown Dam  29.28 6.46  3.376905 1.865629
+## 5 6/28/2018 Susquehanna River Cooperstown Dam  28.31 6.14  3.343215 1.814825
+## 6 6/28/2018 Susquehanna River Cooperstown Dam  30.55 5.99  3.419365 1.790091
+\end{verbatim}
+
+We have a fairly straightforward data set this week. There are 964 observations of 7 variables. Each of the observations (rows) corresponds to a rusty crayfish that was collected and measured (\texttt{length} in mm and \texttt{mass} in g) at one of several \texttt{site}s on a given \texttt{date}. The variable \texttt{catch} is the total number caught by electrobugging over a given \texttt{time} (minutes). To compare density between sites, \texttt{catch} was divided by (\texttt{time}/60) to calculate catch per unit effort (\texttt{cpue}) as number of crayfish per hour. Therefore, observations of \texttt{cpue}, \texttt{catch}, and \texttt{time} correspond to unique \texttt{date} and \texttt{site} combinations, but \texttt{length} and \texttt{mass} represent unique individuals within \texttt{site} and \texttt{date}.
+
+Our primary objective in this study was to collect baseline data. But curiousity led us to explore variation in the condition of crayfish when we thought we were noticing skinnier crayfish in sites of higher density. Length-weight regressions are one tool that is commonly used to investigate changes in volumetric growth with increasing length. In the absence of a standardized condition metric such as that widely applied in fish populations, relative weight (W\textsubscript{r}), we thought this might offer some insight into variability in condition.
+
+What follows is a steroid-injected version of the analysis we started with.
+
+Length-weight relationships in animals are generally parameterized by log-transforming length and mass. This is because the relationship between the two is exponential, or can be described using a power function (ouch, think back to intro bio). For a given unit increase in length, we expect mass to increase as an approximately cubic function of length.
+
+We can see this in our un-transformed data pretty cleanly:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(cray, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ length, }\DataTypeTok{y =}\NormalTok{ mass)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-371-1.pdf}
+
+The relationship depicted above can be expressed mathematically as:
+
+\[W = aL^b,\]
+
+and statistically as:
+
+\[W_i = a {L_i}^b e^{\epsilon_i},\]
+
+where \(W_i\) is mass (weight) of individual \(_i\), \(L_i\) is length of the individual, \(a\) and \(b\) are the coefficient and exponent describing change in mass as a function of length, and \(\epsilon_i\) is the multiplicative error term for each crayfish (residuals change with length). Here, \(b\) also has interpretation relative to allometry in growth patterns, where values of 3.0 indicate isometry, values below 3 indicate negative allometry, and values above 3 indicate positive allometry in the length-weight relationship. This means that at values much above 3, we would expect individuals to get heavier faster relative to their length at large sizes.
+
+We can certainly estimate this kind of relationship using nonlinear regression. But, nonlinear regression can get a little unstable due to inherent correlations between parameters, and the multiplicative error described above. So, it can be easier to log-transform both sides of the equation to make the relationship linear and achieve a constant error across the range of X (\emph{homoscedasticity}). As a result, we generally linearize relationships like this to improve modeling whenever we can, in this case by taking the natural logarithm of both sides of the equation:
+
+\[log(W_i) = log(a) + b \cdot log(L_i) + \epsilon_i\]
+
+Now, that should look a whole lot like the linear models we have been talking about all semester. In fact, by substitution, we could say that:
+
+\[Y = \beta_0 + \beta_1 \cdot X_i + \epsilon_i\]
+
+where \(Y\) is \texttt{log(mass)}, and \(X\) is \texttt{log(length)}. Then, we just need to remember that \(\beta_0\) is estimated on the log scale.
+
+We can take a look at how this looks in our data by plotting the transformed data.
+
+Start by log-transforming length and mass
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Log transform length and mass}
+\NormalTok{cray}\OperatorTok{$}\NormalTok{loglength <-}\StringTok{ }\KeywordTok{log}\NormalTok{(cray}\OperatorTok{$}\NormalTok{length)}
+\NormalTok{cray}\OperatorTok{$}\NormalTok{logmass <-}\StringTok{ }\KeywordTok{log}\NormalTok{(cray}\OperatorTok{$}\NormalTok{mass)}
+\end{Highlighting}
+\end{Shaded}
+
+Plot the relationship. Note that only the names have been changed
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(cray, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ loglength, }\DataTypeTok{y =}\NormalTok{ logmass)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-373-1.pdf}
+
+If nothing else, this tells me we need to go after more small cray next summer. For now, let's get rid of all crayfish weighing less than 1 g because the data are sparse down there and small values are known to cause some trouble in these kinds of models {[}still refusing to provide citations{]}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Drop the measurements for crayfish < 1 g}
+\NormalTok{cray <-}\StringTok{ }\NormalTok{cray }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(mass }\OperatorTok{>=}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, let's take a look at the residual diagnostics for a linear model that includes a group effect of \texttt{site} and (of course) \texttt{length} as explanatory variables that we will use to predict changes in our response of interest, \texttt{mass}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{testmod <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(logmass }\OperatorTok{~}\StringTok{ }\NormalTok{loglength }\OperatorTok{+}\StringTok{ }\NormalTok{site, }\DataTypeTok{data =}\NormalTok{ cray)}
+
+\KeywordTok{ggplot}\NormalTok{(testmod, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ site, }\DataTypeTok{y =}\NormalTok{ .resid, }\DataTypeTok{fill =}\NormalTok{ site, }\DataTypeTok{color =}\NormalTok{ site)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_violin}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.20}\NormalTok{, }\DataTypeTok{trim =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-375-1.pdf}
+
+These look pretty good over all, but you should recognize at this point that we may have some concerns about whether or not variances are equal between groups, and whether observations at each \texttt{site} can really be considered independent (they cannot).
+
+Next, we will take a look at a few different ways to analyze these data using maximum likelihood estimation. Our goal here is to estimate the relationship between \texttt{length} and \texttt{mass} while accounting for inherent variability between \texttt{site}s.
+
+\hypertarget{random-intercepts-model}{%
+\subsection{Random-intercepts model}\label{random-intercepts-model}}
+
+First, we will analyze the data assuming that the intercepts for our linear model can vary between populations, but the relationship between length and mass is the same across all populations. This is a very common approach in many ecological and biological applications, as it often is the case that we are just trying to account for sampling design when we do this kind of analysis.
+
+This is really straightforward to do in R. First, load the \texttt{lme4} package if you didn't do it at the start of the chapter.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Load the package}
+\KeywordTok{library}\NormalTok{(lme4)}
+\end{Highlighting}
+\end{Shaded}
+
+Next, we fit the model. To do this we will use the \texttt{lmer()} function. Notice that now we have to add an argument to specify a random effect of \texttt{site} on the intercept \texttt{1}. This is our way of telling R that we want to account for site-specific variability in the length-mass relationship.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fit the model}
+\NormalTok{craymod <-}\StringTok{ }\KeywordTok{lmer}\NormalTok{(logmass }\OperatorTok{~}\StringTok{ }\NormalTok{loglength }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{site), }\DataTypeTok{data =}\NormalTok{ cray)}
+\end{Highlighting}
+\end{Shaded}
+
+Being responsible individuals, we now have a look at the residuals to make sure we've met assumptions of normality and homoscedasticity:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Plot the residuals}
+\KeywordTok{ggplot}\NormalTok{(craymod, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ site, }\DataTypeTok{y =}\NormalTok{ .resid, }\DataTypeTok{fill =}\NormalTok{ site, }\DataTypeTok{color =}\NormalTok{ site)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_violin}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.20}\NormalTok{, }\DataTypeTok{trim =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-378-1.pdf}
+
+That's looking about as good as we could hope for, so now let's go ahead and crack open the model summary.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Print the summary}
+\KeywordTok{summary}\NormalTok{(craymod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Linear mixed model fit by REML ['lmerMod']
+## Formula: logmass ~ loglength + (1 | site)
+##    Data: cray
+## 
+## REML criterion at convergence: -980.3
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -8.0026 -0.5412 -0.0534  0.4781  6.2908 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  site     (Intercept) 0.001792 0.04234 
+##  Residual             0.018911 0.13752 
+## Number of obs: 890, groups:  site, 6
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept) -7.99294    0.08031  -99.53
+## loglength    2.89236    0.02417  119.64
+## 
+## Correlation of Fixed Effects:
+##           (Intr)
+## loglength -0.975
+\end{verbatim}
+
+For now, we will skip the usual walkthrough of all the wonderful tidbits that R has to offer and cut right to the chase. We can see from the table for our fixed effects that we have successfully detected the relationship between \texttt{length} and \texttt{mass} (p \textless{} 0.05), but this should come as no surprise based on the plot we saw and the fact that I already told you this is a well conserved biological relationship.
+
+We can see that the estimated sd for our intercept is fairly low, so we may not need to specify this as a random effect were we concerned about model complexity. Given that we are interested in this random effect, and that we (in this case) want to think of \texttt{site} as having been sampled from a broader population of sites, we will retain it in our model. From here, we could go on to make predictions across populations using our fixed intercept and slope, or we could use the population specific intercepts and the shared slope.
+
+First, let's make some predictions about the average relationship between \texttt{length} and \texttt{mass} in each \texttt{site}. This is still really easy to do using the built-in \texttt{predict()} methods for \texttt{lmer()} objects:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make predictions from craymod}
+\NormalTok{log_preds <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(craymod)}
+
+\CommentTok{# Undo the log-transform}
+\NormalTok{real_preds <-}\StringTok{ }\KeywordTok{exp}\NormalTok{(log_preds)}
+
+\CommentTok{# Combine them with the original data}
+\NormalTok{cray_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(cray, log_preds, real_preds)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can plot our predictions by treating this just like any other model:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(cray_preds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ length, }\DataTypeTok{y =}\NormalTok{ mass, }\DataTypeTok{color =}\NormalTok{ site, }\DataTypeTok{fill =}\NormalTok{ site)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.10}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ real_preds), }\DataTypeTok{lwd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.50}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Carapace length (mm)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Mass (g)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-381-1.pdf}
+
+This is helpful for identifying some of the differences between sites. In this case, it looks like we have slightly smaller crayfish in a handful of sites (\texttt{Bailey\ Road}, \texttt{Colliersville}, and \texttt{Route\ 80}) and the rest of them look pretty similar. It can be difficult to see how our model fits the data for individual groups. Remember, that we could address this by using a quick \texttt{facet\_wrap()} in our plotting code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(cray_preds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ length, }\DataTypeTok{y =}\NormalTok{ mass, }\DataTypeTok{color =}\NormalTok{ site, }\DataTypeTok{fill =}\NormalTok{ site)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.10}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ real_preds), }\DataTypeTok{lwd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.50}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{site) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Carapace length (mm)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Mass (g)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-382-1.pdf}
+
+This let's us see how well our predictions fit the data from individual streams.
+
+But, we still don't really have a great way of looking at differences between groups if we are interested in those. And, we can't see the uncertainty in our predictions (e.g.~the confidence bands we usually plot with these). Why is this? We do not have the technology. Basically, computing group-specific variances is conceptually and programmatically challenging. But, we can use some simulation methods to do this, and some of these have been implemented in newer versions of the \texttt{lme4} package and related packages like \texttt{merTools}.
+
+IMO, if you are going to go through simulations just to approximate confidence intervals, you are probably interested in the group-level estimates as well, and you should really be thinking about Bayesian approaches at this point. But we won't talk about those in this book because it is The Worst Stats Text eveR.
+
+In the meantime, here is one way to compute site-specific variances for our predictions about the \texttt{length}-\texttt{mass} relationship so we don't have to feel like we haven't finished the job! This example uses the \texttt{predictInterval()} function from the \texttt{merTools} package to demonstrate.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Load the merTools package}
+\KeywordTok{library}\NormalTok{(merTools)}
+
+\CommentTok{# Simulate predictions from the relationship}
+\CommentTok{# stored in the model fit using our original data}
+\NormalTok{log_preds <-}\StringTok{ }\KeywordTok{predictInterval}\NormalTok{(}
+  \DataTypeTok{merMod =}\NormalTok{ craymod,}
+  \DataTypeTok{level =} \FloatTok{0.95}\NormalTok{, }\DataTypeTok{n.sims =} \DecValTok{1000}\NormalTok{,}
+  \DataTypeTok{stat =} \StringTok{"median"}\NormalTok{, }\DataTypeTok{type =} \StringTok{"linear.prediction"}\NormalTok{,}
+  \DataTypeTok{include.resid.var =} \OtherTok{TRUE}
+\NormalTok{)}
+
+\CommentTok{# Convert them to the real scale for plotting}
+\NormalTok{real_preds <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(log_preds, }\DecValTok{2}\NormalTok{, exp)}
+
+\CommentTok{# Combine predictions with the original data}
+\NormalTok{mer_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(cray, real_preds)}
+\end{Highlighting}
+\end{Shaded}
+
+Finally, let's add that beautiful uncertainty to our site-specific predictive plots that we made above!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mer_preds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ length, }\DataTypeTok{y =}\NormalTok{ mass, }\DataTypeTok{color =}\NormalTok{ site, }\DataTypeTok{fill =}\NormalTok{ site)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.10}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr, }\DataTypeTok{color =} \OtherTok{NULL}\NormalTok{), }\DataTypeTok{alpha =} \FloatTok{.3}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ fit), }\DataTypeTok{lwd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.50}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{site) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Carapace length (mm)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Mass (g)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-384-1.pdf}
+
+This may seem like a lot of work at first glance, but hopefully you do realize that it is about the same amount of code as making predictions from linear models and general linear models, and now we have introduced yet another way to dealing with violations of assumptions! Realize that these tools are still constantly being developed, and just a couple of years ago it took a lot more code to do this for mixed models than it does now.
+
+\hypertarget{next-14}{%
+\section{Next steps}\label{next-14}}
+
+This chapter provided a basic overview of why to use mixed models, how to analyze them, and how to use predictions and plots to determine what the results mean. These models are a potentially powerful tool that arguably are still under-utilized in biology and ecology. To crank up the power even more, we will generalize these models to include tools like logistic regression and count models in \protect\hyperlink{Chapter15}{Chapter 15}.
 
   \bibliography{book.bib,packages.bib}
 
