@@ -408,12 +408,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We could estimate the posterior means like this:</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="16-9-summarizing-results.html#cb48-1"></a><span class="kw">apply</span>(survival_post, <span class="dv">2</span>, mean)</span></code></pre></div>
 <pre><code>##   Chicken      Duck 
-## 0.8516082 0.9269831</code></pre>
+## 0.8518930 0.9269194</code></pre>
 <p>Or we could get quantiles of interest, for example 95% credible (high-density) intervals:</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="16-9-summarizing-results.html#cb50-1"></a><span class="kw">apply</span>(survival_post, <span class="dv">2</span>, quantile, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##         Chicken      Duck
-## 2.5%  0.7867197 0.6584089
-## 97.5% 0.9074637 0.9997662</code></pre>
+## 2.5%  0.7872226 0.6595362
+## 97.5% 0.9084649 0.9996067</code></pre>
 <p>We can even plot the predicted probability of survival for each species across MCMC iterations to visualize the posterior distributions as boxplots, histograms, or violins.</p>
 <p>Pivot the posterior estimates into long format so we can feed it to <code>ggplot()</code> like our usual data sets and then we’ll demonstrate.</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="16-9-summarizing-results.html#cb52-1"></a>plotter &lt;-<span class="st"> </span>survival_post <span class="op">%&gt;%</span></span>
@@ -452,11 +452,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="16-9-summarizing-results.html#cb56-1"></a>survival_post<span class="op">$</span>difference &lt;-<span class="st"> </span>survival_post<span class="op">$</span>Chicken <span class="op">-</span><span class="st"> </span>survival_post<span class="op">$</span>Duck</span></code></pre></div>
 <p>Now, we can go on to calculate the mean difference:</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="16-9-summarizing-results.html#cb57-1"></a><span class="kw">mean</span>(survival_post<span class="op">$</span>difference)</span></code></pre></div>
-<pre><code>## [1] -0.0753749</code></pre>
+<pre><code>## [1] -0.07502637</code></pre>
 <p>And we can even compare the 95% high density interval (HDI) on the difference to see if it includes zero as a credible value for the true difference. If zero is contained within the 95% HDI, then we fail to reject the null hypothesis that there is no difference in survival between <code>Chicken</code> and <code>Duck</code>.</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="16-9-summarizing-results.html#cb59-1"></a><span class="kw">quantile</span>(survival_post<span class="op">$</span>difference, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##       2.5%      97.5% 
-## -0.1957618  0.2145330</code></pre>
+## -0.1936121  0.2138639</code></pre>
 <p>A quick look at a histogram of the difference will show us that we have basically no evidence to reject the null based on overlap with zero:</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="16-9-summarizing-results.html#cb61-1"></a><span class="kw">ggplot</span>(survival_post, <span class="kw">aes</span>(difference)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>

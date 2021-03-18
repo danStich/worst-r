@@ -430,7 +430,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Estimates:
 ##               mean   sd   10%   50%   90%
 ## (Intercept) 1.8    0.2  1.5   1.8   2.1  
-## speciesduck 3.6    2.0  1.4   3.3   6.2  
+## speciesduck 3.5    1.8  1.4   3.2   6.0  
 ## 
 ## Fit Diagnostics:
 ##            mean   sd   10%   50%   90%
@@ -440,10 +440,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## MCMC diagnostics
 ##               mcse Rhat n_eff
-## (Intercept)   0.0  1.0  3003 
-## speciesduck   0.1  1.0   385 
-## mean_PPD      0.0  1.0  3561 
-## log-posterior 0.0  1.0   553 
+## (Intercept)   0.0  1.0  3292 
+## speciesduck   0.1  1.0   539 
+## mean_PPD      0.0  1.0  3573 
+## log-posterior 0.0  1.0   800 
 ## 
 ## For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure of effective sample size, and Rhat is the potential scale reduction factor on split chains (at convergence Rhat=1).</code></pre>
 <p>If you look closely at the output above, you should be able to recognize that just as with the <code>glm()</code> function we get a brief summary of our coefficients in the <code>Estimates</code> portion of the output. You should also notice that these estimates are on the logit scale, just as is the case with <code>glm()</code>. How neat.</p>
