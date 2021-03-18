@@ -63,7 +63,7 @@ There are about 17,000 observations (rows) of 6 variables (columns) in this data
 `backCalculated`: a logical indicating whether or not the length
       of the fish was back-calculated from aging.\
       
-`Mass`: the mass of indnividual fish (in grams). Note that this is NA
+`Mass`: the mass of individual fish (in grams). Note that this is NA
       for all ages that were estimated from hard structures (so all
       cases for which `backCalculated == TRUE`). 
         
