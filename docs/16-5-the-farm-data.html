@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -400,12 +402,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">16.5</span> The farm data</h2>
 <p>In this section, we will apply Bayes theorem to update our prior beliefs about the probability of some event of interest in order to demonstrate how we can estimate a conditional probability for that event given some data. We will use the example to demonstrate how the prior and our data interact to form the posterior.</p>
 <p>We start by reading in data.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="16-5-the-farm-data.html#cb25-1"></a><span class="co"># Read in the data</span></span>
-<span id="cb25-2"><a href="16-5-the-farm-data.html#cb25-2"></a>birds &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/farmdata.csv&quot;</span>)</span>
-<span id="cb25-3"><a href="16-5-the-farm-data.html#cb25-3"></a></span>
-<span id="cb25-4"><a href="16-5-the-farm-data.html#cb25-4"></a><span class="co"># It&#39;s a short data set.</span></span>
-<span id="cb25-5"><a href="16-5-the-farm-data.html#cb25-5"></a><span class="co"># Let&#39;s just print it to the console</span></span>
-<span id="cb25-6"><a href="16-5-the-farm-data.html#cb25-6"></a>birds</span></code></pre></div>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="16-5-the-farm-data.html#cb606-1"></a><span class="co"># Read in the data</span></span>
+<span id="cb606-2"><a href="16-5-the-farm-data.html#cb606-2"></a>birds &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/farmdata.csv&quot;</span>)</span>
+<span id="cb606-3"><a href="16-5-the-farm-data.html#cb606-3"></a></span>
+<span id="cb606-4"><a href="16-5-the-farm-data.html#cb606-4"></a><span class="co"># It&#39;s a short data set.</span></span>
+<span id="cb606-5"><a href="16-5-the-farm-data.html#cb606-5"></a><span class="co"># Let&#39;s just print it to the console</span></span>
+<span id="cb606-6"><a href="16-5-the-farm-data.html#cb606-6"></a>birds</span></code></pre></div>
 <pre><code>##    hatched fledged species
 ## 1       26      21 chicken
 ## 2       16      15 chicken
@@ -428,7 +430,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Step 2</strong>: Install Rstan following the next step on the same wiki <a href="https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started#installation-of-rstan">here</a>.</p>
 <p><strong>Step 3</strong>: Install the <code>rstanarm</code> package by running: <code>install.packages("rstanarm")</code>.</p>
 <p>Once, you’ve done that, don’t forget to load it:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="16-5-the-farm-data.html#cb27-1"></a><span class="kw">library</span>(rstanarm)</span></code></pre></div>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="16-5-the-farm-data.html#cb608-1"></a><span class="kw">library</span>(rstanarm)</span></code></pre></div>
 </div>
             </section>
 

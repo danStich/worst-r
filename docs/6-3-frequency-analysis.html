@@ -358,6 +358,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="15.4" data-path="15-4-next-15.html"><a href="15-4-next-15.html"><i class="fa fa-check"></i><b>15.4</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="16" data-path="16-introduction-to-bayesian-inference.html"><a href="16-introduction-to-bayesian-inference.html"><i class="fa fa-check"></i><b>16</b> Introduction to Bayesian inference</a><ul>
+<li class="chapter" data-level="16.1" data-path="16-1-intro-16.html"><a href="16-1-intro-16.html"><i class="fa fa-check"></i><b>16.1</b> Introduction</a></li>
+<li class="chapter" data-level="16.2" data-path="16-2-intro-to-bayes-theorem.html"><a href="16-2-intro-to-bayes-theorem.html"><i class="fa fa-check"></i><b>16.2</b> Intro to Bayes Theorem</a></li>
+<li class="chapter" data-level="16.3" data-path="16-3-the-prior.html"><a href="16-3-the-prior.html"><i class="fa fa-check"></i><b>16.3</b> The prior</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="16-3-the-prior.html"><a href="16-3-the-prior.html#the-hospital-example"><i class="fa fa-check"></i><b>16.3.1</b> The hospital example</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="16-4-the-posterior.html"><a href="16-4-the-posterior.html"><i class="fa fa-check"></i><b>16.4</b> The posterior</a></li>
+<li class="chapter" data-level="16.5" data-path="16-5-the-farm-data.html"><a href="16-5-the-farm-data.html"><i class="fa fa-check"></i><b>16.5</b> The farm data</a></li>
+<li class="chapter" data-level="16.6" data-path="16-6-running-a-bayesian-model-with-rstanarm.html"><a href="16-6-running-a-bayesian-model-with-rstanarm.html"><i class="fa fa-check"></i><b>16.6</b> Running a Bayesian model with <code>rstanarm</code></a><ul>
+<li class="chapter" data-level="16.6.1" data-path="16-6-running-a-bayesian-model-with-rstanarm.html"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#interpreting-the-model-summary"><i class="fa fa-check"></i><b>16.6.1</b> Interpreting the model summary</a></li>
+</ul></li>
+<li class="chapter" data-level="16.7" data-path="16-7-more-diagnostics.html"><a href="16-7-more-diagnostics.html"><i class="fa fa-check"></i><b>16.7</b> More diagnostics</a><ul>
+<li class="chapter" data-level="16.7.1" data-path="16-7-more-diagnostics.html"><a href="16-7-more-diagnostics.html#trace-plots"><i class="fa fa-check"></i><b>16.7.1</b> Trace plots</a></li>
+<li class="chapter" data-level="16.7.2" data-path="16-7-more-diagnostics.html"><a href="16-7-more-diagnostics.html#colinearity"><i class="fa fa-check"></i><b>16.7.2</b> Colinearity</a></li>
+<li class="chapter" data-level="16.7.3" data-path="16-7-more-diagnostics.html"><a href="16-7-more-diagnostics.html#divergence"><i class="fa fa-check"></i><b>16.7.3</b> Divergence</a></li>
+</ul></li>
+<li class="chapter" data-level="16.8" data-path="16-8-model-selection.html"><a href="16-8-model-selection.html"><i class="fa fa-check"></i><b>16.8</b> Model selection</a></li>
+<li class="chapter" data-level="16.9" data-path="16-9-summarizing-results.html"><a href="16-9-summarizing-results.html"><i class="fa fa-check"></i><b>16.9</b> Summarizing results</a></li>
+<li class="chapter" data-level="16.10" data-path="16-10-next-16.html"><a href="16-10-next-16.html"><i class="fa fa-check"></i><b>16.10</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -421,20 +441,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb277-2"><a href="6-3-frequency-analysis.html#cb277-2"></a><span class="st">    </span><span class="kw">filter</span>(Age <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span><span class="op">:</span><span class="dv">15</span>)) <span class="co"># Select only shared age range</span></span>
 <span id="cb277-3"><a href="6-3-frequency-analysis.html#cb277-3"></a></span>
 <span id="cb277-4"><a href="6-3-frequency-analysis.html#cb277-4"></a><span class="kw">head</span>(freqs)</span></code></pre></div>
-<pre><code>##   Year Length Weight_kg Age cohort n_stocked     n acre   ha nha     kg kg_ha
-## 1 2006   1262    23.154  12   1994      7000 25128 2957 1203  21 129929   108
-## 2 2006   1138    23.923  10   1996      7000 25128 2957 1203  21 129929   108
-## 3 2006   1187    18.614  10   1996      7000 25128 2957 1203  21 129929   108
-## 4 2006   1207    19.522  12   1994      7000 25128 2957 1203  21 129929   108
-## 5 2006   1086    21.285  10   1996      7000 25128 2957 1203  21 129929   108
-## 6 2006   1095    18.160  12   1994      7000 25128 2957 1203  21 129929   108
-##   density
-## 1     low
-## 2     low
-## 3     low
-## 4     low
-## 5     low
-## 6     low</code></pre>
+<pre><code>##   Year Length Weight_kg Age cohort n_stocked     n acre   ha nha
+## 1 2006   1262    23.154  12   1994      7000 25128 2957 1203  21
+## 2 2006   1138    23.923  10   1996      7000 25128 2957 1203  21
+## 3 2006   1187    18.614  10   1996      7000 25128 2957 1203  21
+## 4 2006   1207    19.522  12   1994      7000 25128 2957 1203  21
+## 5 2006   1086    21.285  10   1996      7000 25128 2957 1203  21
+## 6 2006   1095    18.160  12   1994      7000 25128 2957 1203  21
+##       kg kg_ha density
+## 1 129929   108     low
+## 2 129929   108     low
+## 3 129929   108     low
+## 4 129929   108     low
+## 5 129929   108     low
+## 6 129929   108     low</code></pre>
 <p>We will test the null hypothesis that there is no difference in the number of age-10 fish between high and low densities.</p>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="6-3-frequency-analysis.html#cb279-1"></a><span class="co"># Run the test</span></span>
 <span id="cb279-2"><a href="6-3-frequency-analysis.html#cb279-2"></a>chi_test &lt;-<span class="st"> </span><span class="kw">with</span>(freqs, <span class="kw">chisq.test</span>(<span class="dt">x =</span> density, <span class="dt">y =</span> Age))</span>

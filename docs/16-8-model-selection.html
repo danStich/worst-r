@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -400,18 +402,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">16.8</span> Model selection</h2>
 <p>Let’s say we now want to say something about statistical significance of our group effects. There are a couple of ways in which we could do this. First, we could use model selection just like we demonstrated in <a href="https://danstich.github.io/worst-r/11-5-a-priori.html">Chapter 11.5</a>…sort of. Instead of using AIC (or DIC or BIC or WAIC) this time we will use a leave-one-out cross-validation information criterion, LOO-IC from the <code>loo</code> package <a href="https://cran.r-project.org/web/packages/loo/vignettes/loo2-example.html">(see web vignette here)</a>.</p>
 <p>But first, we’ll need another model to which we can compare <code>chick_model</code>. Just as we did for <code>lm()</code> and <code>glm()</code>, we can create a <code>null</code> model against which we can evaluate the performance of <code>chick_model</code> to see if including species improves our understanding of chick survival.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="16-8-model-selection.html#cb42-1"></a>null_model &lt;-<span class="st"> </span><span class="kw">stan_glm</span>(<span class="dt">formula =</span> <span class="kw">cbind</span>(fledged, died) <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
-<span id="cb42-2"><a href="16-8-model-selection.html#cb42-2"></a>         <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> logit),</span>
-<span id="cb42-3"><a href="16-8-model-selection.html#cb42-3"></a>         <span class="dt">data =</span> birds</span>
-<span id="cb42-4"><a href="16-8-model-selection.html#cb42-4"></a>         )</span></code></pre></div>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="16-8-model-selection.html#cb617-1"></a>null_model &lt;-<span class="st"> </span><span class="kw">stan_glm</span>(<span class="dt">formula =</span> <span class="kw">cbind</span>(fledged, died) <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
+<span id="cb617-2"><a href="16-8-model-selection.html#cb617-2"></a>         <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> logit),</span>
+<span id="cb617-3"><a href="16-8-model-selection.html#cb617-3"></a>         <span class="dt">data =</span> birds</span>
+<span id="cb617-4"><a href="16-8-model-selection.html#cb617-4"></a>         )</span></code></pre></div>
 <p>Beautiful, now we can do some cross validation. <strong>This will take a hot minute!</strong> On the Windows computer I am using, I need to use a single core for this, but you can use more if your computer will let you. Note that you will get a message here telling you that the model is being refit because observation 3 is a bit of a stinker.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="16-8-model-selection.html#cb43-1"></a>null_loo &lt;-<span class="st"> </span><span class="kw">loo</span>(null_model, <span class="dt">k_threshold =</span> <span class="fl">0.70</span>, <span class="dt">cores =</span> <span class="dv">1</span>)</span>
-<span id="cb43-2"><a href="16-8-model-selection.html#cb43-2"></a>chick_loo &lt;-<span class="st"> </span><span class="kw">loo</span>(chick_model, <span class="dt">k_threshold =</span> <span class="fl">0.70</span>, <span class="dt">cores =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="16-8-model-selection.html#cb618-1"></a>null_loo &lt;-<span class="st"> </span><span class="kw">loo</span>(null_model, <span class="dt">k_threshold =</span> <span class="fl">0.70</span>, <span class="dt">cores =</span> <span class="dv">1</span>)</span>
+<span id="cb618-2"><a href="16-8-model-selection.html#cb618-2"></a>chick_loo &lt;-<span class="st"> </span><span class="kw">loo</span>(chick_model, <span class="dt">k_threshold =</span> <span class="fl">0.70</span>, <span class="dt">cores =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>And, finally, we compare the models:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="16-8-model-selection.html#cb44-1"></a><span class="kw">loo_compare</span>(null_loo, chick_loo)</span></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="16-8-model-selection.html#cb619-1"></a><span class="kw">loo_compare</span>(null_loo, chick_loo)</span></code></pre></div>
 <pre><code>##             elpd_diff se_diff
 ## chick_model  0.0       0.0   
-## null_model  -3.8       1.8</code></pre>
+## null_model  -3.8       1.7</code></pre>
 <p>And, based on the same rules of thumb that we use with AIC we can see that the model incorporating species is better supported than the null model, so we can reject the null.</p>
 </div>
             </section>

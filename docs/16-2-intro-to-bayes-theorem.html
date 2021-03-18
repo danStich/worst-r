@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -421,74 +423,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[P(Cancer|Age 50) = \frac{Beta(200, 10000) \cdot 0.01}{0.03}\]</span></p>
 <p>Realistically, this is a <em>much</em> tighter distribution than we would use for a situation like this, but we’ll discuss that later. The point is that even a little uncertainty makes the process more complicated than if exact values are <em>known</em>.</p>
 <p>We can make this distribution in R:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="16-2-intro-to-bayes-theorem.html#cb2-1"></a><span class="co"># Simulate 10000 random values for p(Age 50 | Cancer)</span></span>
-<span id="cb2-2"><a href="16-2-intro-to-bayes-theorem.html#cb2-2"></a>p_<span class="dv">50</span>_cancer &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="fl">1e4</span>, <span class="dv">200</span>, <span class="fl">1e4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="16-2-intro-to-bayes-theorem.html#cb583-1"></a><span class="co"># Simulate 10000 random values for p(Age 50 | Cancer)</span></span>
+<span id="cb583-2"><a href="16-2-intro-to-bayes-theorem.html#cb583-2"></a>p_<span class="dv">50</span>_cancer &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="fl">1e4</span>, <span class="dv">200</span>, <span class="fl">1e4</span>)</span></code></pre></div>
 <p>We can also look at this distribution:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="16-2-intro-to-bayes-theorem.html#cb3-1"></a><span class="co"># Make the object into a df with</span></span>
-<span id="cb3-2"><a href="16-2-intro-to-bayes-theorem.html#cb3-2"></a><span class="co"># a single column automatically </span></span>
-<span id="cb3-3"><a href="16-2-intro-to-bayes-theorem.html#cb3-3"></a><span class="co"># named p_cancer_50</span></span>
-<span id="cb3-4"><a href="16-2-intro-to-bayes-theorem.html#cb3-4"></a>p_50c &lt;-<span class="st"> </span><span class="kw">data.frame</span>(p_<span class="dv">50</span>_cancer)</span>
-<span id="cb3-5"><a href="16-2-intro-to-bayes-theorem.html#cb3-5"></a></span>
-<span id="cb3-6"><a href="16-2-intro-to-bayes-theorem.html#cb3-6"></a><span class="co"># Plot it</span></span>
-<span id="cb3-7"><a href="16-2-intro-to-bayes-theorem.html#cb3-7"></a><span class="kw">ggplot</span>(p_50c, <span class="kw">aes</span>(p_<span class="dv">50</span>_cancer)) <span class="op">+</span></span>
-<span id="cb3-8"><a href="16-2-intro-to-bayes-theorem.html#cb3-8"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>) <span class="op">+</span></span>
-<span id="cb3-9"><a href="16-2-intro-to-bayes-theorem.html#cb3-9"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;P(50 | Cancer)&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="16-2-intro-to-bayes-theorem.html#cb584-1"></a><span class="co"># Make the object into a df with</span></span>
+<span id="cb584-2"><a href="16-2-intro-to-bayes-theorem.html#cb584-2"></a><span class="co"># a single column automatically </span></span>
+<span id="cb584-3"><a href="16-2-intro-to-bayes-theorem.html#cb584-3"></a><span class="co"># named p_cancer_50</span></span>
+<span id="cb584-4"><a href="16-2-intro-to-bayes-theorem.html#cb584-4"></a>p_50c &lt;-<span class="st"> </span><span class="kw">data.frame</span>(p_<span class="dv">50</span>_cancer)</span>
+<span id="cb584-5"><a href="16-2-intro-to-bayes-theorem.html#cb584-5"></a></span>
+<span id="cb584-6"><a href="16-2-intro-to-bayes-theorem.html#cb584-6"></a><span class="co"># Plot it</span></span>
+<span id="cb584-7"><a href="16-2-intro-to-bayes-theorem.html#cb584-7"></a><span class="kw">ggplot</span>(p_50c, <span class="kw">aes</span>(p_<span class="dv">50</span>_cancer)) <span class="op">+</span></span>
+<span id="cb584-8"><a href="16-2-intro-to-bayes-theorem.html#cb584-8"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>) <span class="op">+</span></span>
+<span id="cb584-9"><a href="16-2-intro-to-bayes-theorem.html#cb584-9"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;P(50 | Cancer)&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-403-1.png" width="672" /></p>
 <p>Now, we have a working probability distribution for the probability of being age 50 given that one has cancer. We can plug this into Bayes Theorem and construct a probability distribution to solve for the inverse: the probability of having cancer given that the patient is age 50 <span class="math inline">\((P(Cancer|Age 50))\)</span>. Let’s do it in R.</p>
 <p>First, let’s define our other marginal probabilities as variables in R.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="16-2-intro-to-bayes-theorem.html#cb4-1"></a>p_cancer &lt;-<span class="st"> </span><span class="fl">0.01</span> <span class="co"># Marginal probability of having cancer</span></span>
-<span id="cb4-2"><a href="16-2-intro-to-bayes-theorem.html#cb4-2"></a>p_<span class="dv">50</span> &lt;-<span class="st"> </span><span class="fl">0.03</span> <span class="co"># Marginal probability of being age 50</span></span></code></pre></div>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="16-2-intro-to-bayes-theorem.html#cb585-1"></a>p_cancer &lt;-<span class="st"> </span><span class="fl">0.01</span> <span class="co"># Marginal probability of having cancer</span></span>
+<span id="cb585-2"><a href="16-2-intro-to-bayes-theorem.html#cb585-2"></a>p_<span class="dv">50</span> &lt;-<span class="st"> </span><span class="fl">0.03</span> <span class="co"># Marginal probability of being age 50</span></span></code></pre></div>
 <p>Now we can solve the theorem for our finite number of observations:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="16-2-intro-to-bayes-theorem.html#cb5-1"></a>p_cancer_<span class="dv">50</span> &lt;-<span class="st"> </span>(p_<span class="dv">50</span>_cancer <span class="op">*</span><span class="st"> </span>p_cancer) <span class="op">/</span><span class="st"> </span>p_<span class="dv">50</span></span></code></pre></div>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="16-2-intro-to-bayes-theorem.html#cb586-1"></a>p_cancer_<span class="dv">50</span> &lt;-<span class="st"> </span>(p_<span class="dv">50</span>_cancer <span class="op">*</span><span class="st"> </span>p_cancer) <span class="op">/</span><span class="st"> </span>p_<span class="dv">50</span></span></code></pre></div>
 <p>We can calculate descriptive statistics for the conditional probability so that we can describe the distribution.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="16-2-intro-to-bayes-theorem.html#cb6-1"></a><span class="co"># Using a mean and standard deviation</span></span>
-<span id="cb6-2"><a href="16-2-intro-to-bayes-theorem.html#cb6-2"></a><span class="kw">mean</span>(p_cancer_<span class="dv">50</span>)</span></code></pre></div>
-<pre><code>## [1] 0.006540186</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="16-2-intro-to-bayes-theorem.html#cb8-1"></a><span class="kw">sd</span>(p_cancer_<span class="dv">50</span>)</span></code></pre></div>
-<pre><code>## [1] 0.0004615277</code></pre>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="16-2-intro-to-bayes-theorem.html#cb587-1"></a><span class="co"># Using a mean and standard deviation</span></span>
+<span id="cb587-2"><a href="16-2-intro-to-bayes-theorem.html#cb587-2"></a><span class="kw">mean</span>(p_cancer_<span class="dv">50</span>)</span></code></pre></div>
+<pre><code>## [1] 0.006544295</code></pre>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="16-2-intro-to-bayes-theorem.html#cb589-1"></a><span class="kw">sd</span>(p_cancer_<span class="dv">50</span>)</span></code></pre></div>
+<pre><code>## [1] 0.0004666635</code></pre>
 <p>We can calculate quantiles (95% CRI). Note that in Bayesian inference, we are going to call these ‘credible intervals’ (CRI) or ‘high density intervals’ (HDI) depending on assumptions related to normality, but they are functionally the same thing as ‘confidence intervals’ as far as we are concerned (tell no one I said that eveR).</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="16-2-intro-to-bayes-theorem.html#cb10-1"></a><span class="kw">quantile</span>(p_cancer_<span class="dv">50</span>, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.50</span>, <span class="fl">0.975</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="16-2-intro-to-bayes-theorem.html#cb591-1"></a><span class="kw">quantile</span>(p_cancer_<span class="dv">50</span>, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.50</span>, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##        2.5%         50%       97.5% 
-## 0.005677054 0.006523630 0.007474591</code></pre>
+## 0.005654164 0.006529908 0.007491070</code></pre>
 <p>We can also look at the actual distribution:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="16-2-intro-to-bayes-theorem.html#cb12-1"></a><span class="co"># Make the object into a df with</span></span>
-<span id="cb12-2"><a href="16-2-intro-to-bayes-theorem.html#cb12-2"></a><span class="co"># a single column automatically </span></span>
-<span id="cb12-3"><a href="16-2-intro-to-bayes-theorem.html#cb12-3"></a><span class="co"># named p_cancer_50</span></span>
-<span id="cb12-4"><a href="16-2-intro-to-bayes-theorem.html#cb12-4"></a>p_c50 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(p_cancer_<span class="dv">50</span>)</span>
-<span id="cb12-5"><a href="16-2-intro-to-bayes-theorem.html#cb12-5"></a></span>
-<span id="cb12-6"><a href="16-2-intro-to-bayes-theorem.html#cb12-6"></a><span class="co"># Plot it</span></span>
-<span id="cb12-7"><a href="16-2-intro-to-bayes-theorem.html#cb12-7"></a><span class="kw">ggplot</span>(p_c50, <span class="kw">aes</span>(p_cancer_<span class="dv">50</span>)) <span class="op">+</span></span>
-<span id="cb12-8"><a href="16-2-intro-to-bayes-theorem.html#cb12-8"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>) <span class="op">+</span></span>
-<span id="cb12-9"><a href="16-2-intro-to-bayes-theorem.html#cb12-9"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;P(Cancer | 50)&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="16-2-intro-to-bayes-theorem.html#cb593-1"></a><span class="co"># Make the object into a df with</span></span>
+<span id="cb593-2"><a href="16-2-intro-to-bayes-theorem.html#cb593-2"></a><span class="co"># a single column automatically </span></span>
+<span id="cb593-3"><a href="16-2-intro-to-bayes-theorem.html#cb593-3"></a><span class="co"># named p_cancer_50</span></span>
+<span id="cb593-4"><a href="16-2-intro-to-bayes-theorem.html#cb593-4"></a>p_c50 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(p_cancer_<span class="dv">50</span>)</span>
+<span id="cb593-5"><a href="16-2-intro-to-bayes-theorem.html#cb593-5"></a></span>
+<span id="cb593-6"><a href="16-2-intro-to-bayes-theorem.html#cb593-6"></a><span class="co"># Plot it</span></span>
+<span id="cb593-7"><a href="16-2-intro-to-bayes-theorem.html#cb593-7"></a><span class="kw">ggplot</span>(p_c50, <span class="kw">aes</span>(p_cancer_<span class="dv">50</span>)) <span class="op">+</span></span>
+<span id="cb593-8"><a href="16-2-intro-to-bayes-theorem.html#cb593-8"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>) <span class="op">+</span></span>
+<span id="cb593-9"><a href="16-2-intro-to-bayes-theorem.html#cb593-9"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;P(Cancer | 50)&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-408-1.png" width="672" /></p>
 <p>Finally, let’s say now that there is uncertainty in all of our probabilities of interest:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="16-2-intro-to-bayes-theorem.html#cb13-1"></a><span class="co"># First, let&#39;s define each of our</span></span>
-<span id="cb13-2"><a href="16-2-intro-to-bayes-theorem.html#cb13-2"></a><span class="co"># probabilities as variables in R</span></span>
-<span id="cb13-3"><a href="16-2-intro-to-bayes-theorem.html#cb13-3"></a>p_<span class="dv">50</span>_cancer &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="fl">1e4</span>, <span class="dv">20</span>, <span class="fl">1e3</span>)</span>
-<span id="cb13-4"><a href="16-2-intro-to-bayes-theorem.html#cb13-4"></a>p_cancer &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="fl">1e4</span>, <span class="dv">10</span>, <span class="fl">1e3</span>)</span>
-<span id="cb13-5"><a href="16-2-intro-to-bayes-theorem.html#cb13-5"></a>p_<span class="dv">50</span> &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="fl">1e4</span>, <span class="dv">30</span>, <span class="fl">1e3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="16-2-intro-to-bayes-theorem.html#cb594-1"></a><span class="co"># First, let&#39;s define each of our</span></span>
+<span id="cb594-2"><a href="16-2-intro-to-bayes-theorem.html#cb594-2"></a><span class="co"># probabilities as variables in R</span></span>
+<span id="cb594-3"><a href="16-2-intro-to-bayes-theorem.html#cb594-3"></a>p_<span class="dv">50</span>_cancer &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="fl">1e4</span>, <span class="dv">20</span>, <span class="fl">1e3</span>)</span>
+<span id="cb594-4"><a href="16-2-intro-to-bayes-theorem.html#cb594-4"></a>p_cancer &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="fl">1e4</span>, <span class="dv">10</span>, <span class="fl">1e3</span>)</span>
+<span id="cb594-5"><a href="16-2-intro-to-bayes-theorem.html#cb594-5"></a>p_<span class="dv">50</span> &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="fl">1e4</span>, <span class="dv">30</span>, <span class="fl">1e3</span>)</span></code></pre></div>
 <p>We can continue as before. We solve the theorem for our finite number of observations:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="16-2-intro-to-bayes-theorem.html#cb14-1"></a>p_cancer_<span class="dv">50</span> &lt;-<span class="st"> </span>(p_<span class="dv">50</span>_cancer <span class="op">*</span><span class="st"> </span>p_cancer) <span class="op">/</span><span class="st"> </span>p_<span class="dv">50</span></span></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="16-2-intro-to-bayes-theorem.html#cb595-1"></a>p_cancer_<span class="dv">50</span> &lt;-<span class="st"> </span>(p_<span class="dv">50</span>_cancer <span class="op">*</span><span class="st"> </span>p_cancer) <span class="op">/</span><span class="st"> </span>p_<span class="dv">50</span></span></code></pre></div>
 <p>We calculate descriptive statistics for the conditional probability to describe the probability using a mean and standard deviation.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="16-2-intro-to-bayes-theorem.html#cb15-1"></a><span class="kw">mean</span>(p_cancer_<span class="dv">50</span>)</span></code></pre></div>
-<pre><code>## [1] 0.006914653</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="16-2-intro-to-bayes-theorem.html#cb17-1"></a><span class="kw">sd</span>(p_cancer_<span class="dv">50</span>)</span></code></pre></div>
-<pre><code>## [1] 0.003079505</code></pre>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="16-2-intro-to-bayes-theorem.html#cb596-1"></a><span class="kw">mean</span>(p_cancer_<span class="dv">50</span>)</span></code></pre></div>
+<pre><code>## [1] 0.006817869</code></pre>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="16-2-intro-to-bayes-theorem.html#cb598-1"></a><span class="kw">sd</span>(p_cancer_<span class="dv">50</span>)</span></code></pre></div>
+<pre><code>## [1] 0.002979262</code></pre>
 <p>Quantiles (95% CRI and median):</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="16-2-intro-to-bayes-theorem.html#cb19-1"></a><span class="kw">quantile</span>(p_cancer_<span class="dv">50</span>, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.50</span>, <span class="fl">0.975</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="16-2-intro-to-bayes-theorem.html#cb600-1"></a><span class="kw">quantile</span>(p_cancer_<span class="dv">50</span>, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.50</span>, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##        2.5%         50%       97.5% 
-## 0.002643567 0.006343373 0.014325165</code></pre>
+## 0.002596610 0.006273694 0.014102239</code></pre>
 <p>And, have a look at our new distribution:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="16-2-intro-to-bayes-theorem.html#cb21-1"></a><span class="co"># Make the object into a df with</span></span>
-<span id="cb21-2"><a href="16-2-intro-to-bayes-theorem.html#cb21-2"></a><span class="co"># a single column automatically </span></span>
-<span id="cb21-3"><a href="16-2-intro-to-bayes-theorem.html#cb21-3"></a><span class="co"># named p_cancer_50</span></span>
-<span id="cb21-4"><a href="16-2-intro-to-bayes-theorem.html#cb21-4"></a>p_c50 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(p_cancer_<span class="dv">50</span>)</span>
-<span id="cb21-5"><a href="16-2-intro-to-bayes-theorem.html#cb21-5"></a></span>
-<span id="cb21-6"><a href="16-2-intro-to-bayes-theorem.html#cb21-6"></a><span class="co"># Plot it</span></span>
-<span id="cb21-7"><a href="16-2-intro-to-bayes-theorem.html#cb21-7"></a><span class="kw">ggplot</span>(p_c50, <span class="kw">aes</span>(p_cancer_<span class="dv">50</span>)) <span class="op">+</span></span>
-<span id="cb21-8"><a href="16-2-intro-to-bayes-theorem.html#cb21-8"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>) <span class="op">+</span></span>
-<span id="cb21-9"><a href="16-2-intro-to-bayes-theorem.html#cb21-9"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;P(Cancer | 50)&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="16-2-intro-to-bayes-theorem.html#cb602-1"></a><span class="co"># Make the object into a df with</span></span>
+<span id="cb602-2"><a href="16-2-intro-to-bayes-theorem.html#cb602-2"></a><span class="co"># a single column automatically </span></span>
+<span id="cb602-3"><a href="16-2-intro-to-bayes-theorem.html#cb602-3"></a><span class="co"># named p_cancer_50</span></span>
+<span id="cb602-4"><a href="16-2-intro-to-bayes-theorem.html#cb602-4"></a>p_c50 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(p_cancer_<span class="dv">50</span>)</span>
+<span id="cb602-5"><a href="16-2-intro-to-bayes-theorem.html#cb602-5"></a></span>
+<span id="cb602-6"><a href="16-2-intro-to-bayes-theorem.html#cb602-6"></a><span class="co"># Plot it</span></span>
+<span id="cb602-7"><a href="16-2-intro-to-bayes-theorem.html#cb602-7"></a><span class="kw">ggplot</span>(p_c50, <span class="kw">aes</span>(p_cancer_<span class="dv">50</span>)) <span class="op">+</span></span>
+<span id="cb602-8"><a href="16-2-intro-to-bayes-theorem.html#cb602-8"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>) <span class="op">+</span></span>
+<span id="cb602-9"><a href="16-2-intro-to-bayes-theorem.html#cb602-9"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;P(Cancer | 50)&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-413-1.png" width="672" /></p>
 <p>Now you can see why computers are starting to matter, and we are not even doing Bayesian inference yet. Why is that?</p>
 <p>Because we still haven’t collected any data!!! All that we have done here is state some basic mathematical representations of our beliefs about certain conditional and marginal probabilities of specific events. Those beliefs may be useful representations, or they may be way off!</p>
 <p>This mathematical formulation of our ‘beliefs’ is known as the prior distribution for the probability of the event of interest. “Want to know more about the prior distribution”, you say? How convenient…</p>
