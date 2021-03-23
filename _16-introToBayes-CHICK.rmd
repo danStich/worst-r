@@ -1,8 +1,8 @@
 
 # Introduction to Bayesian inference
 
-<img src="images/dace.jpg" alt="A picture of my chickens">
-<p style="font-family: times, serif; font-size:.9em; font-style:italic"> This is a northern red-bellied dace. It is one of many sensitive species of stream fishes that can be affected by rusty crayfish, which is invasive to the stream where we caught this fish. We do not take pictures of rusty crayfish.</p>
+<img src="images/chickens.jpg" alt="A picture of my chickens">
+<p style="font-family: times, serif; font-size:.9em; font-style:italic"> These are the chickens from the data set used in this chapter. Actually, these are only the chickens that survived to fledge. Ouch.</p>
 
 ## Introduction {#intro-16}
 
@@ -19,28 +19,6 @@ Even though we are switching out our estimation method in this Part, we'll conti
 ```{r warning = FALSE, message=FALSE}
 library(tidyverse)
 ```
-
-### Installing RStan
-For this book, we will introduce Bayesian estimation using a similar approach to what we learned for GLM. You need to **pause here** and **appreciate how ridiculously easy folks have made this for you**. I used to teach students how to code each of their models by hand in this class. We had to package the data in special ways, write out separate model files with pre-defined likelihoods, and manage the monstrous results lists by hand. Now, thanks to the functionality provided by packages such as [`RStan`](http://mc-stan.org/rstan/) and [`rstanarm`](https://cran.r-project.org/web/packages/rstanarm/index.html) you can do this without ever leaving the comfort of R. Do also note that the real power as a modeler still lays in the ability to formulate and specify these models explicitly. This opens up whole new possibilities for model and data structuring that can't be achieved in any single R package. But, that is for another course and a *much* better textbook (eventually I will add citations...or not...this is The Worst Stats Text eveR). We will discuss how the actual estimation works as we go along (and in a less diffuse fashion in class), but you'll need to spend a significant amount of time on your own if you are looking for a deep understanding of the mechanics. You'll probably want to build up to the [Stan User Manual](https://mc-stan.org/docs/2_25/reference-manual/index.html#overview) rather than starting there if this is your first exposure to Bayesian estimation methods.
-
-The hardest part about getting started with Stan is installing the necessary R packages, but this is getting easier all the time.
-
-We are going to install two R packages here: `RStan`, the interface to Stan software, and `rstanarm`, a package that provides Bayesian generalized linear models via Stan. This package allows us to fit everything from ANOVAs discussed in [Chapter 7](https://danstich.github.io/worst-r/7-1-anova.html) to generalized linear mixed models discussed in [Chapter 15](https://danstich.github.io/worst-r/15-Chapter15.html).
-
-But, first we need to do a little work to get ready. Here's what we are going to do:
-
-**Step 1**: Configure the C++ toolchain on your operating system following the instructions provided by the Stan Development Team on the [RStan wiki](https://github.com/stan-dev/rstan/wiki/Configuring-C---Toolchain-for-Mac)
-
-**Step 2**: Install Rstan following the next step on the same wiki [here](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started#installation-of-rstan).
-
-**Step 3**: Install the `rstanarm` package by running: `install.packages("rstanarm")`.
-
-Once, you've done that, don't forget to load it:
-
-```{r, warning=FALSE, message=FALSE}
-library(rstanarm)
-```
-
 
 ## Intro to Bayes Theorem
 Bayes Theorem provides the mathematical framework through which Bayesian inference is applied to quantitative questions. The theorem, in the most basic sense, helps us understand the probability of some event given conditions we suspect are related to that event. This elegant theorem was first derived by Reverend Thomas Bayes in the 1700s. The equation was later reworked by Pierre-Simon Laplace to yield the modern version that we use today:
@@ -270,75 +248,101 @@ The posterior distribution can be estimated as the product of our prior distribu
 
 $$posterior \propto prior \cdot likelihood$$
 
+You'll recall from our early adventures into probability distributions and the moments of those distributions that every probability distribution that we work with has a 'likelihood function'. So, if our prior distribution was a beta distribution (let's say for a binomial response), then we would use the likelihood for the Beta distribution in the theorem above. For a given observation, we could calculate the value of the likelihood for that observation and solve the theorem exactly...sometimes...but not usually in practice. In order to do this, we need to know the form of the posterior ahead of time. There are a relatively limited set of conditions that allow us to know this ahead of time. Namely, we need to know that we are working with a 'conjugate' prior. Without getting too far afield, these are prior distributions for which the form of the posterior is defined and known because it is from the same family as the prior. In our example above, the beta distribution is a conjugate prior for the binomial likelihood, so the solution to Bayes theorem is, relatively speaking, trivial compared to other situations. This is the primary reason that computers are needed to implement modern Bayesian inference. Most of the time we do not know the form of the posterior distribution ahead of time, so we use MCMC sampling to approximate the distribution numerically.
 
 In the simplest sense, the posterior distribution is a combination of our prior distribution and our data. So if you remember nothing else in the explanation, remember that.
 
 
-## Worked example with the Cray data
-In this section, we will apply Bayesian inference to the Cray data, which are first introduced in [Chapter 14 Linear Mixed Models](https://danstich.github.io/worst-r/14-Chapter14.html). Hopefully, this example also demonstrates that linear models are just one special type of GLM that assume a normal error distribution.
+## The farm data
+In this section, we will apply Bayes theorem to update our prior beliefs about the probability of some event of interest in order to demonstrate how we can estimate a conditional probability for that event given some data. We will use the example to demonstrate how the prior and our data interact to form the posterior.
 
 We start by reading in data. 
 ```{r}
 # Read in the data
-cray <- read.csv("data/cray.csv")
+birds <- read.csv("data/farmdata.csv")
+
+# It's a short data set.
+# Let's just print it to the console
+birds
 
 ```
 
-These data come from a preliminary study of rusty crayfish <a href="https://academic.oup.com/jcb/article/37/5/615/4060680"> *Faxonius*</a> *rusticus* density in various tributaries to the Susquehanna River. The data were collected as part of a summer research project by one of our former high-school interns at the SUNY Oneonta <a href="https://suny.oneonta.edu/biological-field-station"> Biological Field Station </a>.
+This data set contains information about chick survival from hatch to adulthood for each cohort of birds on my small-scale poultry farm through 2019. The file contains data on the starting number at hatch, the number of chicks fledged, and the species of bird.
 
-There are `r nrow(cray)` observations of 7 variables. Each of the observations (rows) corresponds to a rusty crayfish that was collected and measured (`length` in mm and `mass` in g) at one of several `site`s on a given `date`. The variable `catch` is the total number caught by electrobugging over a given `time` (minutes). To compare density between sites, `catch` was divided by (`time`/60) to calculate catch per unit effort (`cpue`) as number of crayfish per hour. Therefore, observations of `cpue`, `catch`, and `time` correspond to unique `date` and `site` combinations, but `length` and `mass` represent unique individuals within `site` and `date`.
+We will use the data set to estimate chick survival from hatch to fledge. There are a number of ways we can do this. In practice, we will probably use MCMC sampling 99% of the time (haha, Bayesian joke). But we may run into situations in the real world in which we can estimate the posterior distribution by hand or in which we need an alternative algorithm for flexibility.
 
-For now, we will use this data set to estimate the relationship between log~e~length and log~e~mass of the crayfish as a linear regression, this time as a GLM using Bayesian inference.
+Let's start simple by estimating the mean expected survival of chicks on my farm across all cohorts and species.
+
+For this book, we will introduce Bayesian estimation using a similar approach to what we learned for GLM. You need to **pause here** and **appreciate how ridiculously easy folks have made this for you**. I used to teach students how to code each of their models by hand in this class. We had to package the data in special ways, write out separate model files with pre-defined likelihoods, and manage the monstrous results lists by hand. Now, thanks to the functionality provided by packages such as [`RStan`](http://mc-stan.org/rstan/) and [`rstanarm`](https://cran.r-project.org/web/packages/rstanarm/index.html) you can do this without ever leaving the comfort of R. Do also note that the real power as a modeler still lays in the ability to formulate and specify these models explicitly. This opens up whole new possibilities for model and data structuring that can't be achieved in any single R package. But, that is for another course and a *much* better textbook (eventually I will add citations...or not...this is The Worst Stats Text eveR). We will discuss how the actual estimation works as we go along (and in a less diffuse fashion in class), but you'll need to spend a significant amount of time on your own if you are looking for a deep understanding of the mechanics. You'll probably want to build up to the [Stan User Manual](https://mc-stan.org/docs/2_25/reference-manual/index.html#overview) rather than starting there if this is your first exposure to Bayesian estimation methods.
+
+The hardest part about getting started with Stan is installing the necessary R packages, but this is getting easier all the time.
+
+We are going to install two R packages here: `RStan`, the interface to Stan software, and `rstanarm`, a package that provides Bayesian generalized linear models via Stan. This package allows us to fit everything from ANOVAs discussed in [Chapter 7](https://danstich.github.io/worst-r/7-1-anova.html) to generalized linear mixed models discussed in [Chapter 15](https://danstich.github.io/worst-r/15-Chapter15.html).
+
+But, first we need to do a little work to get ready. Here's what we are going to do:
+
+**Step 1**: Configure the C++ toolchain on your operating system following the instructions provided by the Stan Development Team on the [RStan wiki](https://github.com/stan-dev/rstan/wiki/Configuring-C---Toolchain-for-Mac)
+
+**Step 2**: Install Rstan following the next step on the same wiki [here](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started#installation-of-rstan).
+
+**Step 3**: Install the `rstanarm` package by running: `install.packages("rstanarm")`.
+
+Once, you've done that, don't forget to load it:
+
+```{r, warning=FALSE, message=FALSE}
+library(rstanarm)
+```
 
 
 ## Running a Bayesian model with `rstanarm`
 Any time we use a convenient wrapper in R, we sacrifice a little control, but for getting exposure to Bayesian methods I think this is a worthwhile sacrifice. Truth be told, I write all of my models out by hand because I often need to use non-standard models such as non-linear growth models and I need that control. The convenience and flexibility offered through the model-fitting functions in `rstanarm` alone will keep you more than busy until you reach a deeper level of understanding needed to write your own should you aspire to do so.
 
-Let's go ahead and estimate a Gaussian GLM using `logMass` as our response and `loglength` as our explanatory variable.
+Let's go ahead and estimate a binomial logistic regression that estimates the probability that a `hatched` chick is also `fledged`. 
 
-For the sake of simplicity, we'll create new columns in the `cray` data for loglength and logmass:
+For the sake of simplicity, we'll create a new column in the `birds` data first that contains the number of birds that `died` instead of `fledged`. We will also drop the geese from the data set with `filter()`.
 
 ```{r}
-cray <- cray %>%
-  mutate(loglength = log(length),
-         logmass = log(mass)
-         )
+birds <- birds %>%
+  filter(species != "goose") %>%
+  mutate(died = hatched - fledged)
 ```
 
-The next thing we'll do is tell R to set up some options for Stan to make things work faster. **We only need to do this once per R session.**
+The last thing we'll do is tell R to set up some options for Stan to make things work faster. **We only need to do this once per R session.**
 
 ```{r}
 rstan::rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
 ```
 
-Now, we can fit our first Bayesian model. We will do this using basically the same approach that we use in R:
+Now, we can fit our first Bayesian model.
+
+Note that we use the `cbind()` function to combine the columns for birds that successfully `fledged` and those that `died`. We also tell R that the sampling distribution for our response is `binomial` (number of successes out of the total number) so it needs to estimate the response as a proportion or probability using the `logit` link function. 
 
 ```{r}
-cray_model <- stan_glm(logmass ~ loglength,
-         family = gaussian(),
-         data = cray
+chick_model <- stan_glm(formula = cbind(fledged, died) ~ species,
+         family = binomial(link = logit),
+         data = birds
          )
 ```
 
-This model tests the null hypothesis that the log length of crayfish has no influence on log mass (slope = 0).
+This model tests the null hypothesis that the mean probability of chick survival from `hatched` to `fledged` is the same between `species` of bird on my farm. That means that this is an ANOVA-style GLM, but is estimated using Bayesian methods.
 
 We can have a look at a quick `summary()` of our model in the usual way:
 
 ```{r}
-summary(cray_model)
+summary(chick_model)
 ```
 
-If you look closely at the output above, you should be able to recognize that just as with the `glm()` function we get a brief summary of our coefficients in the `Estimates` portion of the output.
+If you look closely at the output above, you should be able to recognize that just as with the `glm()` function we get a brief summary of our coefficients in the `Estimates` portion of the output. You should also notice that these estimates are on the logit scale, just as is the case with `glm()`. How neat.
 
 ### Interpreting the model summary
 As for the rest of this summary. For now, we will focus on a few specific things:
 
-**1.** Do our estimates make logical sense? Not are they right or wrong, but is our estimate crap or not? If the 95% CRI goes from negative infinity to infinity on the real scale here, then we probably have some issues with estimation because this means that we learned nothing new from the data (crap).
+**1.** Do our estimates make logical sense? Not are they right or wrong, but is our estimate crap or not? If the 95% CRI goes from zero to one on the real scale here, then we probably have some issues with estimation because this means that we learned nothing new from the data (crap).
 
 **2.** We need to look at the value of `Rhat`($\hat{r}$, the potential scale-reduction factor). This statistic is a diagnostic that can help us determine whether or not the model has even converged on an estimate for our parameter(s) of interest. It assesses the degree of mixing (agreement) between the chains that we used to get our estimates. Here, our values are about 1, so we are satisfied. Larger values would indicate a problem. We will examine some graphical diagnostics of mixing below.
 
-**3.** We need to pay attention to `n_eff`. This quantity is the 'number of effective samples' that we have taken from the posterior. As discussed in class, the draws we take from the posterior can be auto-correlated to varying degrees depending on the sampler used. `n_eff` tells us how many independent samples we can actually consider ourselves to have drawn from the posterior. To have have some degree of confidence in our parameter estimates, we want this to be at least several hundred large. More is better, but these models can take a long time to run as they build in complexity so there is a balance to be struck. If we are running long chains and we still are not achieving large `n_eff`, it is a pretty good indication that we need to increase our thinning rate or (more likely) consider an alternative model parameterization. We are good to go according to the output from the `cray_model` above.
+**3.** We need to pay attention to `n_eff`. This quantity is the 'number of effective samples' that we have taken from the posterior. As discussed in class, the draws we take from the posterior can be auto-correlated to varying degrees depending on the sampler used. `n_eff` tells us how many independent samples we can actually consider ourselves to have drawn from the posterior. To have have some degree of confidence in our parameter estimates, we want this to be at least several hundred large. More is better, but these models can take a long time to run as they build in complexity so there is a balance to be struck. If we are running long chains and we still are not achieving large `n_eff`, it is a pretty good indication that we need to increase our thinning rate or (more likely) consider an alternative model parameterization. We are good to go according to the output from the `chick_model` above.
  
  
 ## More diagnostics
@@ -351,16 +355,16 @@ In the plot below, the x-axes are model iteration number. Each point on a line s
 
 ```{r, fig.height=3, fig.width=6}
 library(bayesplot)
-mcmc_trace(cray_model, facet_args = list(scales = "free"))
+mcmc_trace(chick_model, facet_args = list(scales = "fixed"))
 ```
 
 ### Colinearity
-Next, we can take a look at the **pairs plot** to see whether there are any obvious correlations of concern between our parameters. As anticipated, everything looks okay here, except we do see that we have a pretty strong correlation between our intercept and slope parameters. This is not important for this specific analysis, but we would want to consider this if we were estimating slopes and intercepts independently for each population (`site`) in the data set. 
+Next, we can take a look at the **pairs plot** to see whether there are any obvious correlations of concern between our parameters. As anticipated, everything looks okay here. 
 
 ```{r}
 mcmc_pairs(
-  cray_model,
-  np = nuts_params(cray_model),
+  chick_model,
+  np = nuts_params(chick_model),
   off_diag_args = list(alpha = 0.25)
 )
 ```
@@ -371,128 +375,128 @@ Not like the movies, like "does not follow expectation". Divergent transitions a
 By default, models fit using RStan will throw a warning if there are divergent transitions. You can get a quick of whether or not this is an issue like so:
 
 ```{r}
-mcmc_nuts_divergence(nuts_params(cray_model), log_posterior(cray_model))
+mcmc_nuts_divergence(nuts_params(chick_model), log_posterior(chick_model))
 ```
 
 Again, no problems here as far as we are concerned. We will address any further issues related to divergence as they arise later in the textbook or class.
 
 ## Model selection
-Let's say we now want to say something about statistical significance of our effects. There are a couple of ways in which we could do this. First, we could use model selection just like we demonstrated in [Chapter 11.5](https://danstich.github.io/worst-r/11-5-a-priori.html)...sort of. Instead of using AIC (or DIC or BIC or WAIC) this time we will use a leave-one-out cross-validation information criterion, LOO-IC from the `loo` package [(see web vignette here)](https://cran.r-project.org/web/packages/loo/vignettes/loo2-example.html).
+Let's say we now want to say something about statistical significance of our group effects. There are a couple of ways in which we could do this. First, we could use model selection just like we demonstrated in [Chapter 11.5](https://danstich.github.io/worst-r/11-5-a-priori.html)...sort of. Instead of using AIC (or DIC or BIC or WAIC) this time we will use a leave-one-out cross-validation information criterion, LOO-IC from the `loo` package [(see web vignette here)](https://cran.r-project.org/web/packages/loo/vignettes/loo2-example.html).
 
-But first, we'll need another model to which we can compare `cray_model`. Just as we did for `lm()` and `glm()`, we can create a `null` model against which we can evaluate the performance of `cray_model` to see if including length as a predictor improves our understanding of variability in crayfish mass.
+But first, we'll need another model to which we can compare `chick_model`. Just as we did for `lm()` and `glm()`, we can create a `null` model against which we can evaluate the performance of `chick_model` to see if including species improves our understanding of chick survival.
 
 ```{r}
-null_model <- stan_glm(formula = logmass ~ 1,
-         family = gaussian,
-         data = cray
+null_model <- stan_glm(formula = cbind(fledged, died) ~ 1,
+         family = binomial(link = logit),
+         data = birds
          )
 ```
 
-Beautiful, now we can do some cross validation. **This will take a hot minute!** 
-
-On the Windows computer I am using, I either need to use a single core for this due to a bug in the version of `loo` that I am using, or I need to extract the model likelihoods manually with the `log_lik` function until I update my version. 
-
-Extract the log likelihoods for each of the model like so:
-```{r}
-null_lik <- log_lik(null_model)
-cray_lik <- log_lik(cray_model)
-```
-
-Now, we can conduct leave-one-out cross validation on the fitted model posteriors and our data using the `loo()` function. Wow, that is way easier than writing this out by hand, and way faster than re-running the model for each data point!
+Beautiful, now we can do some cross validation. **This will take a hot minute!** On the Windows computer I am using, I need to use a single core for this, but you can use more if your computer will let you. Note that you will get a message here telling you that the model is being refit because observation 3 is a bit of a stinker.
 
 ```{r, warning = FALSE, message = FALSE}
-null_loo <- loo(null_lik, k_threshold = 0.70, cores = 7)
-cray_loo <- loo(cray_lik, k_threshold = 0.70, cores = 7)
+null_loo <- loo(null_model, k_threshold = 0.70, cores = 1)
+chick_loo <- loo(chick_model, k_threshold = 0.70, cores = 1)
 
 ```
 
 And, finally, we compare the models: 
-
 ```{r}
-loo_compare(null_loo, cray_loo)
+loo_compare(null_loo, chick_loo)
 ```
 
-Based on the same rules of thumb that we used with AIC, we can see that the relationship between `loglength` and `logmass` is better supported than the null model, so we can reject the null. No surprise there, but hopefully a useful demonstration.
+And, based on the same rules of thumb that we use with AIC we can see that the model incorporating species is better supported than the null model, so we can reject the null.
 
 
 ## Summarizing results
-But, what if we want to say something about statistical significance without doing model selection? In MLE analyses and all of our statistical hypothesis testing so far, we have used p-values. However, you might notice that there is no p-value associated with our model output above!
+But, what if we want to say something about statistical significance without doing model selection? We can look at the derived difference of survival probabilities for `chicken` and `duck` using our model, as well. To do this, we need to get the posterior survival probabilities for each species on the real scale. This is actually pretty painless for the current example.
 
-One of the easiest ways to assess statistical significance of a coefficient in Bayesian inference, is to simply compare one or more posteriors in a method similar to that used for t-tests and ANOVAs earlier in the book. To do this, we will extract the posterior estimates for loglength (our beta or slope coefficient) and compare the sampling distribution to some value of interest. For most linear-regression-type models we are interested in comparing the coefficient to zero. If the 95% Credible interval for our coefficient estimate includes zero then we fail to reject the null. If zero is outside the 95% CRI, then we reject the null and conclude that the relationship is statistically significant.
-
-Sounds simple enough, right? Let's try it out!
-
-First, use the `as.matrix()` function to extract the posterior estimates for our coefficients and package them in a `data.frame()`.
+I am going to save the output of that function to a new object called `ests` for "estimates". This object will have one column for each of the parameters estimated in the model: the intercept, or `(Intercept)` and `speciesduck`. This ought to look really similar to the notation used in the output of `glm()`!
 
 ```{r}
-estimates <- data.frame( as.matrix(cray_model) )
+ests <- data.frame(as.matrix(chick_model))
+names(ests) <- c("Chicken", "Duck")
 ```
 
-If you have a look you will notice that we now have a data.frame with three columns (`Intercept`, `loglength`, and `sigma`) and 4,000 rows. There is one row for each of our model iterations in this case, so we get 4,000 estimates of each parameter!
-
-Have a look:
+If we are interested in the difference in survival between `chicken` and `duck`, we can now compare the two directly using the column for `speciesduck` in this new object, but we need to convert it from the link scale to the logit scale using the `invlogit()` function from the `rstanarm` package (in this case):
 
 ```{r}
-head(estimates)
+survival_post <- data.frame(apply(ests, 2, invlogit))
 ```
 
-This is great! Now, if we want we can calculate descriptive statistics for any of these parameters or combine them in any other way that might be meaningful. Here, we are interested in the coefficient (beta) for `loglength`, so let's check it out.
+And now, we can do all the descriptive statistics we like.
 
-Calculate the mean:
+We could estimate the posterior means like this:
 
 ```{r}
-mean(estimates$loglength)
+apply(survival_post, 2, mean)
 ```
-Calculate 95% CRI:
+Or we could get quantiles of interest, for example 95% credible (high-density) intervals:
 
 ```{r}
-quantile(estimates$loglength, probs = c(0.025, 0.975))
-```
-We can see that the 95% CRI excludes zero, so we can now say that the relationship is statistically significant. Of course, this is obvious if you know anything about biology, so we could compare to any other meaningful value. For example, we use a value of 3.00 to represent "isometric growth" in biology and could apply the same approach here to that value. Since 3.00 is outside the 95% CRI, we would determine that growth is not isometric for these populations, but rather "positively allometric". Sweet biology.
-
-
-## Making predictions
-Let's go ahead and wrap this all up by making some predictions from our model and plotting those over the raw data. This process is essentially identical to the process we used for linear models and GLM in R:
-
-Make log-scale predictions
-
-```{r}
-lpreds <- data.frame( predict(cray_model, se.fit = TRUE) )
+apply(survival_post, 2, quantile, probs = c(0.025, 0.975))
 ```
 
-Calculate confidence intervals:
+We can even plot the predicted probability of survival for each species across MCMC iterations to visualize the posterior distributions as boxplots, histograms, or violins.
+
+Pivot the posterior estimates into long format so we can feed it to `ggplot()` like our usual data sets and then we'll demonstrate.
 
 ```{r}
-lpreds$lwr = lpreds$fit - 1.96 * lpreds$se.fit
-lpreds$upr = lpreds$fit + 1.96 * lpreds$se.fit
-
+plotter <- survival_post %>%
+  pivot_longer(cols = c("Chicken", "Duck"), 
+               names_to="Species",
+               values_to="Survival") %>%
+  group_by(Species)
 ```
 
-Now, convert the predictions back to the real scale for plotting:
+Now, we can plot our posterior samples just like we did in earlier chapters.
 
 ```{r}
-rpreds <- apply(lpreds, 2, exp)
-```
+# Get group-specific means from raw data for plotting
+birds %>%
+  group_by(species) %>%
+  summarize(means = mean(fledged/hatched), .groups = "keep")
 
-And smash the predictions back together with the data
+# Save these to a quick df
+raw_stats <- data.frame(
+  Species = c("Chicken", "Duck"),
+  means = c(0.864, 1)
+)
 
-```{r}
-cray_preds <- data.frame(cray, rpreds)
-```
-
-
-Finally, we can plot our predictions over the raw data on the real scale:
-
-```{r}
 # Make the plot of our predictions against raw data
-ggplot(cray_preds, aes(x = length, y = mass)) +
-  geom_point(alpha = 0.05) +
-  geom_ribbon(aes(x = length, ymin = lwr, ymax = upr),
-              alpha = 0.2) +
-  xlab("Carapace length (mm)") +
-  ylab("Claw-free mass (g)") +
+ggplot(plotter, aes(x = Species, y = Survival,
+                     color = Species, fill = Species)) +
+  geom_jitter(alpha = 0.05, width = 0.05) +
+  geom_violin(alpha = 0.05, draw_quantiles = 0.5) +
+  geom_point(mapping = aes(x = Species, y = means),
+             data = raw_stats, color = "black", size = 1) +
   theme_bw()
 ```
 
+As we can see from this, there is a lot of uncertainty in the estimated survival of ducks, due primarily to the small sample size but also because all of our cohorts experienced 100% survival.
+
+Is the difference between these real? We could actually calculated it to find out. Let's store the difference between species as a new column in this data set.
+
+```{r}
+survival_post$difference <- survival_post$Chicken - survival_post$Duck
+```
+
+Now, we can go on to calculate the mean difference:
+```{r}
+mean(survival_post$difference)
+```
+
+And we can even compare the 95% high density interval (HDI) on the difference to see if it includes zero as a credible value for the true difference. If zero is contained within the 95% HDI, then we fail to reject the null hypothesis that there is no difference in survival between `Chicken` and `Duck`.
+
+```{r}
+quantile(survival_post$difference, c(0.025, 0.975))
+```
+
+A quick look at a histogram of the difference will show us that we have basically no evidence to reject the null based on overlap with zero:
+
+```{r}
+ggplot(survival_post, aes(difference)) + geom_histogram(bins = 20)
+```
+
 ## Next steps {#next-16}
-There you have it: your first Bayesian data analysis. Needless to say (perhaps?) this was a simple example. However, it demonstrates a basic application and some of the tangible advantages over some of the other methods we have been using so far. We will continue to layer complexity into our Bayesian models as we move forward side by side with other methods. 
+There you have it: your first Bayesian data analysis. Needless to say (perhaps?) this was a simple example. However, it demonstrates a basic application and some of the tangible advantages over some of the other methods we have been using so far. We will continue to layer complexity into our Bayesian models as we move forward. 
