@@ -1,0 +1,337 @@
+
+# Logistic regression {#Chapter17}
+
+<img src="images/veligers.jpg" alt="">
+<p style="font-family: times, serif; font-size:.9em; font-style:italic">
+"Life or death" is a phrase we reserve for situations that are not normal. Coincidentally, life or death is also a binary variable, and therefore it's residuals are also not normal. Will these zebra mussels live or die? That will be our next adventure, but for that we need the generalized linear model (GLM).</p>
+
+
+## Introduction {#intro17}
+
+In this chapter, we will follow along with the case example from [Chapter 12](https://danstich.github.io/worst-r/12-Chapter12.html) that examined a behavioral choice made by Atlantic salmon smolts while they migrated from streams to the ocean.
+
+We'll work with some packages from the `tidyverse`, `rstan`, and `rstanarm`, and we'll use the `StillwaterChoice` data from the class data folder. You can go ahead and load those whenever you are ready to get started.
+
+```{r, warning = FALSE, message = FALSE}
+library(tidyverse)
+library(rstan)
+library(rstanarm)
+
+```
+
+You can also set up some options for Stan right up front. Here I am telling rstan not to compile a model everytime I run one that is already compiled, and I am setting an option that tells R to detect the number of virtual "cores" on my computer so it can run models in parallel to speed things up. This means that instead of sampling all my Markov Chains serially one at a time I can sample each of them on a separate process on my computer.
+
+```{r}
+rstan::rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
+```
+
+
+## Binary (logistic) regression {#logistic-17}
+
+Here, we will duplicate the analysis from [Chapter 12](https://danstich.github.io/worst-r/12-Chapter12.html) using a Bayesian framework with the `rstanarm` package. We'll note some differences and some similarities as we go along.
+
+Read in the data file.
+ 
+```{r}
+choice <- read.csv("data/StillwaterChoiceData.csv")
+```
+
+Look at the first few rows of data:
+
+```{r}
+head(choice)
+```
+
+
+
+### Data Explanation
+
+The full data explanation is provided in [Chapter 12.4](https://danstich.github.io/worst-r/12-4-logistic.html) and will not be repeat it here. Go check it out if you need a reminder of what data are in there.
+
+### Data analysis
+
+We are going to use the 1/0 binary data to estimate the effects of a number of covariates of interest on the probability that an individual fish used the Stillwater Branch for migration in each year of this study using logistic regression. 
+  
+If our response, `path` is a binary variable where 1 = Stillwater and 0 = mainstem for each fish 1 to *n*, we can think of p(Stillwater Branch) as:
+
+$$p(Stillwater) = \frac{\sum{path}}{n}$$
+
+and the logit of p(Stillwater Branch) can assumed to be normally distributed with a mean of \mu.
+
+$$logit(p) = Normal(\mu, \sigma^{2})$$
+
+Now that we know we are doing *more or less* the same thing as we were for linear models, let's move on with fitting the model.
+
+First, since we are interested in the fixed effects of year, and not the linear trend through time, we need to convert year to factor.
+
+```{r}
+choice$year <- as.factor(choice$year)
+```
+
+Now, if we want to test hypotheses about the influences of explanatory variables on the probability of using the Stillwater Branch, we could make models to represent those hypotheses. For example, if we wanted to test whether `flow` had a significant influence on `path` across `year`s, then we could build a model that looks like this:
+
+```{r, warning = FALSE, message = FALSE}
+flow_mod <- stan_glm(path ~ year + flow, 
+                     family = binomial(link = "logit"), 
+                     data = choice)
+```
+
+We could make another model that investigates effects of `length` on `path` choice instead of flow:
+
+```{r}
+len_mod <- stan_glm(path ~ year + length, 
+                     family = binomial(link = "logit"), 
+                     data = choice)
+```
+
+Or a model that includes both with an annoying name:
+
+```{r}
+flow_len_mod <- stan_glm(path ~ year + flow + length, 
+                     family = binomial(link = "logit"), 
+                     data = choice)
+```
+
+We could look at these individually to determine variable-level significance using approaches demonstrated in [Chapter 16.9](https://danstich.github.io/worst-r/16-9-summarizing-results.html).
+
+**First**, let's define a slightly more complex set of models based on *a priori* combinations of explanatory variables. Note that this is pretty much identical to how we do this for models fit with `glm()` except now we are using `stan_glm()` to fit the models!
+
+```{r}  
+# Make an empty list to hold the models
+mods <- list()
+
+# Now, add models to the list. Stop and think about what each one means.
+mods[[1]] <- stan_glm(path ~ year + hatchery + length + flow, family = binomial, data = choice)
+mods[[2]] <- stan_glm(path ~ year + flow, family = binomial, data = choice)
+mods[[3]] <- stan_glm(path ~ year + hatchery, family = binomial, data = choice)
+mods[[4]] <- stan_glm(path ~ year + length, family = binomial, data = choice)
+mods[[5]] <- stan_glm(path ~ year + length + hatchery, family = binomial, data = choice)
+mods[[6]] <- stan_glm(path ~ year + length + flow, family = binomial, data = choice)
+mods[[7]] <- stan_glm(path ~ year + hatchery + flow, family = binomial, data = choice)
+```
+
+**Next**, give the models some names using the formulas for each of the models. *Remember*: models are stored as list objects in R, and each of those list objects (models) has names. We can reference those names using the `$` notation, and from there we can access the actual model `formula`. The third element of this `formula` object contains the explanatory variables!! Just like `glm()`. Whoa!
+
+We can extract the `formula` for each model (which is an element in the `mods` list) using a `for` loop to assign them one at a time. Here, we are assigning the i^th^ formula to be the name of the i^th^ element in the list `mods`. Nifty. Note that this is pretty much identical to how we do this for models fit with `glm()`!
+```{r}
+# Assign the formula for each of the models as the name
+for (i in 1:length(mods)) {
+  names(mods)[i] <- as.character(mods[[i]]$formula)[3]
+}
+
+```
+
+Now, we use the `loo` package to make a model selection table like we did in [Chapter 16.8](#bayesian-model-selection):  
+
+```{r, message=FALSE, warning=FALSE}
+# Load the library
+library(loo)
+
+# Extract the log-likelihood matrices
+log_liks <- lapply(mods, log_lik)
+
+# Now apply the loo() function to each 
+# model to get elpd_loo
+loos <- lapply(log_liks, loo)
+
+# Finally, we can compare them with loo_compare()
+mod_table <- loo_compare(loos)
+
+```
+
+Nice.
+
+
+### Interpreting the results
+This proceeds the same way for GLM as it does for linear models until we get to making predictions of the response based on our best model.
+
+Our model selection table is an object in R (*right*?), and we can reference that object using `$` notation, matrix notation `[ , ]`, or by calling `rownames()` to get the name for each of the models. Let's use this approach to get the best model from our candidate set.
+```{r, message=FALSE, warning=FALSE}  
+# Print the table
+mod_table
+```
+
+```{r}
+# Look at the structure just to show that it is, indeed, an object:
+str(mod_table)
+```
+
+Look at the `rownames` of the table. These `rownames` are the index for each of our models as they appear in the `mods` object, and we can use the index to reference objects inside of the `mods` list...
+```{r}
+rownames(mod_table)
+```
+
+The rowname for the best model (the one at the top of the table) is `year + flow`. Print the model to see it as follows. Notice the back-ticks (``) around the model name to deal with spaces.
+
+```{r}
+mods$`year + flow`
+```
+
+Great! Let's save this to an object so we can work with it a little easier.
+
+```{r}
+best_mod <- mods$`year + flow`
+```
+
+We can get an understanding of the explanatory power of our model using a Bayesian R^2^ (described by Gelman et al. [2018](10.1080/00031305.2018.1549100)). By default, this function will return one estimate of the R^2^ for each iteration of the model, so we should get 4,000 estimates of R^2^ here.
+
+```{r}
+r_squared <- bayes_R2(best_mod)
+
+mean(r_squared)
+
+```
+
+Meh, about average for an ecological study, but that doesn't mean it is good. What we are really after here is just a good idea of what proportion of fish use this route and whether it can be reasonably well related to discharge, so we'll keep pressing along to see if we have that.
+
+Let's wrap our interpretation of results by looking at coefficient estimates as indicators of statistical significance.
+
+First, we could extract just the parameters for ease:
+
+```{r}
+coeffs <- data.frame( as.matrix(best_mod) )
+```
+
+The `coeffs` object is now a dataframe with 4,000 posterior samples (rows) of each model coefficient (columns).
+
+Then, we can determine whether zero or any other value of interest is included within the credible range of values for each of these coefficients. If zero falls outside the credible range for any of the parameters, we can conclude that the effect was significant. For categorical variables, this means groups are different. For continuous explanatory variables, it means that the slope is different from zero (flat).
+
+Pivot the coefficients into long form first so they are grouped for plotting, and then we'll summarize the posteriors.
+
+```{r}
+coeffs_stacked <- coeffs %>% 
+  pivot_longer(cols = everything(),
+               names_to = "coeff",
+               values_to = "val"
+               ) %>% 
+  group_by(coeff)
+```
+
+You can calculate means and 95% Credible intervals for plotting:
+
+```{r, warning=FALSE, message=FALSE}
+post_summary <- coeffs_stacked %>%
+  summarize(
+    fit = mean(val),
+    lwr = quantile(val, 0.025),
+    upr = quantile(val, 0.975)
+  )
+```
+
+
+We can plot these really easily to see whether any of the parameters overlap zero:
+
+```{r}
+ggplot(post_summary, aes(x = coeff, y = fit, color = coeff, fill = coeff)) +
+  geom_point(size = 2) +
+  geom_segment(aes(xend = coeff, y = lwr, yend = upr), lwd=1)
+```
+
+You can get a similar plot using the built-in `plot()` method for the fitted model object a lot more easily like so. By default, this method plots 95% high density (credible) intervals for each of the posteriors.
+
+```{r}
+plot(best_mod)
+```
+
+### Interpretting categorical effects
+
+Regardless of the method we use, we see there is a lot of variability between years and there is reasonable support to suggest that this variability is significant. How can we tell this? We don't have access to p-values like we do in MLE or OLS anymore because of how the likelihood is expressed in these models. Instead, we can do group-wise comparisons to determine specific differences but this becomes cumbersome when we have many levels.
+
+Remember, that the null hypothesis for factors under an ANOVA- or ANCOVA-like analysis is just that any two group means differ. In this case, it looks like 2011 and 2009 are the most different since 2011 has lower probability of using Stillwater Branch than 2005 (Intercept) and 2009 is greater.
+
+If we want to compare year-specific means, we'll need to make predictions on the logit scale and then convert to the real scale where we can actually derive the difference between years arithmetically for the entire posteriors.
+
+Make predictions from the model on the logit scale, and convert to the real scale using the `invlogit()` function from the `rstanarm` package:
+
+```{r}
+p_stillwater_2009 <- invlogit( 
+  coeffs$X.Intercept. + coeffs$year2009 + coeffs$flow * mean(choice$flow))
+
+p_stillwater_2011 <- invlogit( 
+  coeffs$X.Intercept. + coeffs$year2011 + coeffs$flow * mean(choice$flow))
+
+```
+
+And now you can calculate the difference (note that this is for the average flow).
+
+```{r}
+difference <- p_stillwater_2009 - p_stillwater_2011
+```
+
+If we are interested in whether the true difference is equal to zero (null) then we can calculate quantiles:
+
+```{r}
+quantile(difference, probs = c(0.025, 0.975))
+```
+In this case, there is at least a 95% chance that the probability of smolts using the Stillwater Branch varies between 2009 and 2011, so we can conclude that the effect is significant at $\alpha$ = 0.05.
+
+We can also plot a histogram of the differences really easily now that it is just a vector in R:
+
+```{r}
+ggplot() + 
+  geom_histogram(aes(x = difference), binwidth = 0.01) +
+  xlab("Difference in p(Stillwater) between 2009 and 2011") +
+  ylab("Count") +
+  scale_y_continuous(limits = c(0, 450), expand = c(0, 0)) +
+  theme_bw() +
+  theme(
+    axis.title.x = element_text(vjust = -1),
+    axis.title.y = element_text(vjust = 3),
+  )
+```
+
+### Interpretting continuous effects
+Interpreting significance and direction of continuous effects is a little more straightforward. In this case, we just need to determine whether the posterior estimate of the coefficient for continuous explanatory variables differs from zero or another value of interest.
+
+```{r}
+quantile(coeffs$flow, probs = c(0.025, 0.975))
+```
+
+It was really hard to see in the coefficients plot due to differences in scale, so we can make a histogram of this one to visualize that difference as well.
+
+
+### Making predictions
+The first thing to remember here is that we have used a link function to estimate this model, so we cannot use the same method as we did for linear models to make predictions about our response from the model coefficients.
+
+The second thing to remember here is that by definition we have used an *invertible* link function to estimate this model so the previous statement is a lie and we actually can use the same method as before to make predictions about our response from the model coefficients. We just need to add an extra step so that we can invert our predictions about the expected value of Y with respect to X.
+
+Confused? Yeah, it's a little confusing. As always an example always goes a long way...
+
+We can make predictions from our best model pretty much the same way we did in [Chapter 12.4.4](https://danstich.github.io/worst-r/12-4-logistic.html#making-predictions).
+
+```{r}
+# Make predictions from the best model
+logit_preds <- data.frame( predict(best_mod, type = "link", se.fit = TRUE) )
+
+# Calculate confidence intervals as 1.96 * standard error
+logit_preds$lwr <- logit_preds$fit + 1.96 * logit_preds$se.fit
+logit_preds$upr <- logit_preds$fit - 1.96 * logit_preds$se.fit
+
+# Invert the link function
+real_preds <- apply(logit_preds, 2, invlogit)
+
+# Combine the predictions with the original data
+choice_preds <- data.frame(choice, real_preds)
+```
+
+Go ahead and have a look at the `logit_preds` and `real_preds` objects to make sure you understand what we just did.
+
+Now, we can finish by plotting our predictions:
+
+```{r}
+ggplot(choice_preds, aes(x = flow, y = fit, fill = year)) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, fill = year), alpha = 0.25) +
+  geom_line(aes(color = year)) +
+  xlab(expression(paste("Flow ( ", m^3, "\u00b7", s^-1, ")"))) +
+  theme_bw() +
+  theme(panel.grid = element_blank())
+```
+<br>
+
+You can see that, in general, there is a relatively low probability of an individual fish using the Stillwater Branch, but we see increasing probability of using that route with increasing `flow` across years. 
+
+
+## Next steps {#next12}
+
+Here we have demonstrated similarities between the GLM and the models with which we have worked previously. You should realize now that the linear models we've been using are really just a special kind of GLM that uses a "normal" or "Gaussian" error distribution. If we think about what kind of data we actually have, this can open up lots of other "non-normal" options without scaring the life out of us! Hopefully, logistic regression is now a useful tool in your statistical hardware box. Finally, you should also appreciate that we have multiple methods (OLS, MLE, Bayesian) for estimating these models and they all work in similar ways with slightly different approaches. Next, we'll look at how to keep extending this GLM framework for analysis of **count** data in [Chapter 18](#Chapter18).
