@@ -376,7 +376,7 @@ mcmc_nuts_divergence(nuts_params(cray_model), log_posterior(cray_model))
 
 Again, no problems here as far as we are concerned. We will address any further issues related to divergence as they arise later in the textbook or class.
 
-## Model selection
+## Model selection{#bayesian-model-selection}
 Let's say we now want to say something about statistical significance of our effects. There are a couple of ways in which we could do this. First, we could use model selection just like we demonstrated in [Chapter 11.5](https://danstich.github.io/worst-r/11-5-a-priori.html)...sort of. Instead of using AIC (or DIC or BIC or WAIC) this time we will use a leave-one-out cross-validation information criterion, LOO-IC from the `loo` package [(see web vignette here)](https://cran.r-project.org/web/packages/loo/vignettes/loo2-example.html).
 
 But first, we'll need another model to which we can compare `cray_model`. Just as we did for `lm()` and `glm()`, we can create a `null` model against which we can evaluate the performance of `cray_model` to see if including length as a predictor improves our understanding of variability in crayfish mass.

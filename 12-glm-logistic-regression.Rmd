@@ -155,11 +155,11 @@ We will use this function to transform the probability of using the Stillwater B
 
 If our response, `path` is a binary variable where 1 = Stillwater and 0 = mainstem for each fish 1 to *n*, we can think of p(Stillwater Branch) as:
 
-$p(Stillwater) = \frac{\sum{path}}{n}$
+$$p(Stillwater) = \frac{\sum{path}}{n}$$
 
 and the logit of p(Stillwater Branch) can assumed to be normally distributed with a mean of \mu.
 
-$logit(p) ~ Normal(\mu, \sigma^{2})$
+$$logit(p) ~ Normal(\mu, \sigma^{2})$$
 
 Now that we know we are doing *more or less* the same thing let's move on with fitting the model.
 
