@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -374,10 +376,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.7.2" data-path="16-7-more-diagnostics.html"><a href="16-7-more-diagnostics.html#colinearity"><i class="fa fa-check"></i><b>16.7.2</b> Colinearity</a></li>
 <li class="chapter" data-level="16.7.3" data-path="16-7-more-diagnostics.html"><a href="16-7-more-diagnostics.html#divergence"><i class="fa fa-check"></i><b>16.7.3</b> Divergence</a></li>
 </ul></li>
-<li class="chapter" data-level="16.8" data-path="16-8-model-selection.html"><a href="16-8-model-selection.html"><i class="fa fa-check"></i><b>16.8</b> Model selection</a></li>
+<li class="chapter" data-level="16.8" data-path="16-8-bayesian-model-selection.html"><a href="16-8-bayesian-model-selection.html"><i class="fa fa-check"></i><b>16.8</b> Model selection</a></li>
 <li class="chapter" data-level="16.9" data-path="16-9-summarizing-results.html"><a href="16-9-summarizing-results.html"><i class="fa fa-check"></i><b>16.9</b> Summarizing results</a></li>
 <li class="chapter" data-level="16.10" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>16.10</b> Making predictions</a></li>
 <li class="chapter" data-level="16.11" data-path="16-11-next-16.html"><a href="16-11-next-16.html"><i class="fa fa-check"></i><b>16.11</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="17-Chapter17.html"><a href="17-Chapter17.html"><i class="fa fa-check"></i><b>17</b> Logistic regression</a><ul>
+<li class="chapter" data-level="17.1" data-path="17-1-intro17.html"><a href="17-1-intro17.html"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html"><i class="fa fa-check"></i><b>17.2</b> Binary (logistic) regression</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-explanation"><i class="fa fa-check"></i><b>17.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="17.2.2" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-analysis"><i class="fa fa-check"></i><b>17.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="17.2.3" data-path="12-4-logistic.html"><a href="12-4-logistic.html#interpreting-the-results"><i class="fa fa-check"></i><b>17.2.3</b> Interpreting the results</a></li>
+<li class="chapter" data-level="17.2.4" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#interpretting-categorical-effects"><i class="fa fa-check"></i><b>17.2.4</b> Interpretting categorical effects</a></li>
+<li class="chapter" data-level="17.2.5" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#interpretting-continuous-effects"><i class="fa fa-check"></i><b>17.2.5</b> Interpretting continuous effects</a></li>
+<li class="chapter" data-level="17.2.6" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>17.2.6</b> Making predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="12-5-next12.html"><a href="12-5-next12.html#next12"><i class="fa fa-check"></i><b>17.3</b> Next steps</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -403,24 +417,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">16.10</span> Making predictions</h2>
 <p>Let’s go ahead and wrap this all up by making some predictions from our model and plotting those over the raw data. This process is essentially identical to the process we used for linear models and GLM in R:</p>
 <p>Make log-scale predictions</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="16-10-making-predictions.html#cb53-1"></a>lpreds &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="kw">predict</span>(cray_model, <span class="dt">se.fit =</span> <span class="ot">TRUE</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="16-10-making-predictions.html#cb629-1"></a>lpreds &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="kw">predict</span>(cray_model, <span class="dt">se.fit =</span> <span class="ot">TRUE</span>) )</span></code></pre></div>
 <p>Calculate confidence intervals:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="16-10-making-predictions.html#cb54-1"></a>lpreds<span class="op">$</span>lwr =<span class="st"> </span>lpreds<span class="op">$</span>fit <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>lpreds<span class="op">$</span>se.fit</span>
-<span id="cb54-2"><a href="16-10-making-predictions.html#cb54-2"></a>lpreds<span class="op">$</span>upr =<span class="st"> </span>lpreds<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>lpreds<span class="op">$</span>se.fit</span></code></pre></div>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="16-10-making-predictions.html#cb630-1"></a>lpreds<span class="op">$</span>lwr =<span class="st"> </span>lpreds<span class="op">$</span>fit <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>lpreds<span class="op">$</span>se.fit</span>
+<span id="cb630-2"><a href="16-10-making-predictions.html#cb630-2"></a>lpreds<span class="op">$</span>upr =<span class="st"> </span>lpreds<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>lpreds<span class="op">$</span>se.fit</span></code></pre></div>
 <p>Now, convert the predictions back to the real scale for plotting:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="16-10-making-predictions.html#cb55-1"></a>rpreds &lt;-<span class="st"> </span><span class="kw">apply</span>(lpreds, <span class="dv">2</span>, exp)</span></code></pre></div>
+<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="16-10-making-predictions.html#cb631-1"></a>rpreds &lt;-<span class="st"> </span><span class="kw">apply</span>(lpreds, <span class="dv">2</span>, exp)</span></code></pre></div>
 <p>And smash the predictions back together with the data</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="16-10-making-predictions.html#cb56-1"></a>cray_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(cray, rpreds)</span></code></pre></div>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="16-10-making-predictions.html#cb632-1"></a>cray_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(cray, rpreds)</span></code></pre></div>
 <p>Finally, we can plot our predictions over the raw data on the real scale:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="16-10-making-predictions.html#cb57-1"></a><span class="co"># Make the plot of our predictions against raw data</span></span>
-<span id="cb57-2"><a href="16-10-making-predictions.html#cb57-2"></a><span class="kw">ggplot</span>(cray_preds, <span class="kw">aes</span>(<span class="dt">x =</span> length, <span class="dt">y =</span> mass)) <span class="op">+</span></span>
-<span id="cb57-3"><a href="16-10-making-predictions.html#cb57-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.05</span>) <span class="op">+</span></span>
-<span id="cb57-4"><a href="16-10-making-predictions.html#cb57-4"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> length, <span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr),</span>
-<span id="cb57-5"><a href="16-10-making-predictions.html#cb57-5"></a>              <span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></span>
-<span id="cb57-6"><a href="16-10-making-predictions.html#cb57-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Carapace length (mm)&quot;</span>) <span class="op">+</span></span>
-<span id="cb57-7"><a href="16-10-making-predictions.html#cb57-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Claw-free mass (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb57-8"><a href="16-10-making-predictions.html#cb57-8"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="16-10-making-predictions.html#cb633-1"></a><span class="co"># Make the plot of our predictions against raw data</span></span>
+<span id="cb633-2"><a href="16-10-making-predictions.html#cb633-2"></a><span class="kw">ggplot</span>(cray_preds, <span class="kw">aes</span>(<span class="dt">x =</span> length, <span class="dt">y =</span> mass)) <span class="op">+</span></span>
+<span id="cb633-3"><a href="16-10-making-predictions.html#cb633-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.05</span>) <span class="op">+</span></span>
+<span id="cb633-4"><a href="16-10-making-predictions.html#cb633-4"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> length, <span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr),</span>
+<span id="cb633-5"><a href="16-10-making-predictions.html#cb633-5"></a>              <span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></span>
+<span id="cb633-6"><a href="16-10-making-predictions.html#cb633-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Carapace length (mm)&quot;</span>) <span class="op">+</span></span>
+<span id="cb633-7"><a href="16-10-making-predictions.html#cb633-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Claw-free mass (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb633-8"><a href="16-10-making-predictions.html#cb633-8"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-484-1.png" width="672" /></p>
 </div>
             </section>
 

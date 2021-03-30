@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -374,10 +376,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.7.2" data-path="16-7-more-diagnostics.html"><a href="16-7-more-diagnostics.html#colinearity"><i class="fa fa-check"></i><b>16.7.2</b> Colinearity</a></li>
 <li class="chapter" data-level="16.7.3" data-path="16-7-more-diagnostics.html"><a href="16-7-more-diagnostics.html#divergence"><i class="fa fa-check"></i><b>16.7.3</b> Divergence</a></li>
 </ul></li>
-<li class="chapter" data-level="16.8" data-path="16-8-model-selection.html"><a href="16-8-model-selection.html"><i class="fa fa-check"></i><b>16.8</b> Model selection</a></li>
+<li class="chapter" data-level="16.8" data-path="16-8-bayesian-model-selection.html"><a href="16-8-bayesian-model-selection.html"><i class="fa fa-check"></i><b>16.8</b> Model selection</a></li>
 <li class="chapter" data-level="16.9" data-path="16-9-summarizing-results.html"><a href="16-9-summarizing-results.html"><i class="fa fa-check"></i><b>16.9</b> Summarizing results</a></li>
 <li class="chapter" data-level="16.10" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>16.10</b> Making predictions</a></li>
 <li class="chapter" data-level="16.11" data-path="16-11-next-16.html"><a href="16-11-next-16.html"><i class="fa fa-check"></i><b>16.11</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="17-Chapter17.html"><a href="17-Chapter17.html"><i class="fa fa-check"></i><b>17</b> Logistic regression</a><ul>
+<li class="chapter" data-level="17.1" data-path="17-1-intro17.html"><a href="17-1-intro17.html"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html"><i class="fa fa-check"></i><b>17.2</b> Binary (logistic) regression</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-explanation"><i class="fa fa-check"></i><b>17.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="17.2.2" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-analysis"><i class="fa fa-check"></i><b>17.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="17.2.3" data-path="12-4-logistic.html"><a href="12-4-logistic.html#interpreting-the-results"><i class="fa fa-check"></i><b>17.2.3</b> Interpreting the results</a></li>
+<li class="chapter" data-level="17.2.4" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#interpretting-categorical-effects"><i class="fa fa-check"></i><b>17.2.4</b> Interpretting categorical effects</a></li>
+<li class="chapter" data-level="17.2.5" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#interpretting-continuous-effects"><i class="fa fa-check"></i><b>17.2.5</b> Interpretting continuous effects</a></li>
+<li class="chapter" data-level="17.2.6" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>17.2.6</b> Making predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="12-5-next12.html"><a href="12-5-next12.html#next12"><i class="fa fa-check"></i><b>17.3</b> Next steps</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -403,8 +417,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">16.5</span> Worked example with the Cray data</h2>
 <p>In this section, we will apply Bayesian inference to the Cray data, which are first introduced in <a href="https://danstich.github.io/worst-r/14-Chapter14.html">Chapter 14 Linear Mixed Models</a>. Hopefully, this example also demonstrates that linear models are just one special type of GLM that assume a normal error distribution.</p>
 <p>We start by reading in data.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="16-5-worked-example-with-the-cray-data.html#cb26-1"></a><span class="co"># Read in the data</span></span>
-<span id="cb26-2"><a href="16-5-worked-example-with-the-cray-data.html#cb26-2"></a>cray &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/cray.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="16-5-worked-example-with-the-cray-data.html#cb608-1"></a><span class="co"># Read in the data</span></span>
+<span id="cb608-2"><a href="16-5-worked-example-with-the-cray-data.html#cb608-2"></a>cray &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/cray.csv&quot;</span>)</span></code></pre></div>
 <p>These data come from a preliminary study of rusty crayfish <a href="https://academic.oup.com/jcb/article/37/5/615/4060680"> <em>Faxonius</em></a> <em>rusticus</em> density in various tributaries to the Susquehanna River. The data were collected as part of a summer research project by one of our former high-school interns at the SUNY Oneonta <a href="https://suny.oneonta.edu/biological-field-station"> Biological Field Station </a>.</p>
 <p>There are 964 observations of 7 variables. Each of the observations (rows) corresponds to a rusty crayfish that was collected and measured (<code>length</code> in mm and <code>mass</code> in g) at one of several <code>site</code>s on a given <code>date</code>. The variable <code>catch</code> is the total number caught by electrobugging over a given <code>time</code> (minutes). To compare density between sites, <code>catch</code> was divided by (<code>time</code>/60) to calculate catch per unit effort (<code>cpue</code>) as number of crayfish per hour. Therefore, observations of <code>cpue</code>, <code>catch</code>, and <code>time</code> correspond to unique <code>date</code> and <code>site</code> combinations, but <code>length</code> and <code>mass</code> represent unique individuals within <code>site</code> and <code>date</code>.</p>
 <p>For now, we will use this data set to estimate the relationship between log<sub>e</sub>length and log<sub>e</sub>mass of the crayfish as a linear regression, this time as a GLM using Bayesian inference.</p>

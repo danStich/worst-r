@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.3 Subsetting and selecting data | The Worst Stats Text eveR</title>
-  <meta name="description" content="3.3 Subsetting and selecting data | The Worst Stats Text eveR" />
+  <title>17 Logistic regression | The Worst Stats Text eveR</title>
+  <meta name="description" content="17 Logistic regression | The Worst Stats Text eveR" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.3 Subsetting and selecting data | The Worst Stats Text eveR" />
+  <meta property="og:title" content="17 Logistic regression | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.3 Subsetting and selecting data | The Worst Stats Text eveR" />
+  <meta name="twitter:title" content="17 Logistic regression | The Worst Stats Text eveR" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="3-2-quick-data-summaries.html"/>
-<link rel="next" href="3-4-better-data-summaries.html"/>
+<link rel="prev" href="16-11-next-16.html"/>
+<link rel="next" href="17-1-intro17.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -413,80 +413,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="subsetting-and-selecting-data" class="section level2">
-<h2><span class="header-section-number">3.3</span> Subsetting and selecting data</h2>
-<p>Before we can make meaningful data summaries, we will probably need to re-organize our data in a logical way (through sub-setting or selected specific chunks of data). A lot of times, we do this along the way without really thinking about it.</p>
-<div id="manual-subsets-and-selections" class="section level3">
-<h3><span class="header-section-number">3.3.1</span> Manual subsets and selections</h3>
-<p>We talked a little about sub-setting data with logical queries in <a href="2-Chapter2.html#Chapter2">Chapter 2</a>. Now, let’s refresh and take that a little further to see why we might want to do that.</p>
-<p>First, we’ll select just the data from <code>am_shad</code> where <code>backCalculated</code> was <code>FALSE</code>. This will give us only the measured <code>Length</code> and <code>Mass</code> for each of the fish, along with their <code>Sex</code> and <code>yearCollected</code>. I’ll call this new object <code>measured</code>. Remember, <code>am_shad</code> is a data frame, so it has two dimensions when we use <code>[ ]</code> for sub-setting and these are separated by a comma, like this: <code>object[rows, columns]</code>. When we leave the columns blank, R knows that it should keep all of the columns.</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="3-3-subsetting-and-selecting-data.html#cb118-1"></a>measured &lt;-<span class="st"> </span>am_shad[am_shad<span class="op">$</span>backCalculated <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>, ]</span></code></pre></div>
-<p>We could do this for as many conceivable conditions in our data on which we may wish to subset, but the code can get clunky and hard to manage. For example can you imagine re-writing this if you just want to select age six roes without back-calculated lengths?</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="3-3-subsetting-and-selecting-data.html#cb119-1"></a><span class="co"># Notice how we string together multiple </span></span>
-<span id="cb119-2"><a href="3-3-subsetting-and-selecting-data.html#cb119-2"></a><span class="co"># conditions with &quot;&amp;&quot;. If these were &#39;or&#39;</span></span>
-<span id="cb119-3"><a href="3-3-subsetting-and-selecting-data.html#cb119-3"></a><span class="co"># we would use the vertical pipe &quot;|&quot;</span></span>
-<span id="cb119-4"><a href="3-3-subsetting-and-selecting-data.html#cb119-4"></a>age_<span class="dv">6</span>_rows_measured &lt;-<span class="st"> </span>am_shad[am_shad<span class="op">$</span>backCalculated <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span> <span class="op">&amp;</span><span class="st"> </span></span>
-<span id="cb119-5"><a href="3-3-subsetting-and-selecting-data.html#cb119-5"></a><span class="st">                                 </span>am_shad<span class="op">$</span>Sex <span class="op">==</span><span class="st"> &quot;R&quot;</span> <span class="op">&amp;</span></span>
-<span id="cb119-6"><a href="3-3-subsetting-and-selecting-data.html#cb119-6"></a><span class="st">                                 </span>am_shad<span class="op">$</span>Age <span class="op">==</span><span class="st"> </span><span class="dv">6</span>, ]</span></code></pre></div>
-</div>
-<div id="subsetting-and-summaries-in-base-r" class="section level3">
-<h3><span class="header-section-number">3.3.2</span> Subsetting and summaries in base R</h3>
-<p>This notation can be really confusing to folks who are just trying to learn a new programming language. Because of that, there are great functions like <code>subset()</code> available that are more intuitive (but less clear to programmers). You could also subset the data using the following code:</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="3-3-subsetting-and-selecting-data.html#cb120-1"></a>measured &lt;-<span class="st"> </span><span class="kw">subset</span>(am_shad, backCalculated <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>)</span></code></pre></div>
-<p>We could also get our age-six females from the previous example using this approach, and at least the code is a little cleaner:</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="3-3-subsetting-and-selecting-data.html#cb121-1"></a>age_<span class="dv">6</span>_roes_measured &lt;-<span class="st"> </span><span class="kw">subset</span>(am_shad,</span>
-<span id="cb121-2"><a href="3-3-subsetting-and-selecting-data.html#cb121-2"></a>                              backCalculated <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span> <span class="op">&amp;</span></span>
-<span id="cb121-3"><a href="3-3-subsetting-and-selecting-data.html#cb121-3"></a><span class="st">                                </span>Sex <span class="op">==</span><span class="st"> &quot;R&quot;</span> <span class="op">&amp;</span></span>
-<span id="cb121-4"><a href="3-3-subsetting-and-selecting-data.html#cb121-4"></a><span class="st">                                </span>Age <span class="op">==</span><span class="st"> </span><span class="dv">6</span></span>
-<span id="cb121-5"><a href="3-3-subsetting-and-selecting-data.html#cb121-5"></a>                              )</span></code></pre></div>
-<p>Both do the same thing, but we’ll see later that using <code>subset</code> is preferable if we plan on chaining together a bunch of data manipulation commands using pipes (<code>%&gt;%</code>).</p>
-<p>Next, we might be interested to know how many fish we have represented in each <code>Sex</code>. We can find this out using the <code>table</code> function in base R:</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="3-3-subsetting-and-selecting-data.html#cb122-1"></a><span class="co"># Here, I use the column name because</span></span>
-<span id="cb122-2"><a href="3-3-subsetting-and-selecting-data.html#cb122-2"></a><span class="co"># we just want all observations of a single</span></span>
-<span id="cb122-3"><a href="3-3-subsetting-and-selecting-data.html#cb122-3"></a><span class="co"># variable. Be careful switching between names,</span></span>
-<span id="cb122-4"><a href="3-3-subsetting-and-selecting-data.html#cb122-4"></a><span class="co"># numbers, and $names!</span></span>
-<span id="cb122-5"><a href="3-3-subsetting-and-selecting-data.html#cb122-5"></a><span class="kw">table</span>(measured[<span class="st">&#39;Sex&#39;</span>])</span></code></pre></div>
-<pre><code>## 
-##    B    R 
-## 1793 1253</code></pre>
-<p>We see that we have <code>1793</code> females and <code>1253</code> males.</p>
-<p>We can also get tallies of the number of fish in each <code>Age</code> for each <code>Sex</code> if we would like to see that:</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="3-3-subsetting-and-selecting-data.html#cb124-1"></a><span class="kw">table</span>(measured<span class="op">$</span>Sex, measured<span class="op">$</span>Age)</span></code></pre></div>
-<pre><code>##    
-##       3   4   5   6   7
-##   B 255 848 579 108   3
-##   R   0 361 658 220  14</code></pre>
-<p>But, what if we wanted to calculate some kind of summary statistic, like a <code>mean</code> and report that by group?</p>
-<p>For our age-6 females example, it would look like this:</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="3-3-subsetting-and-selecting-data.html#cb126-1"></a>age_<span class="dv">6</span>_roes_measured &lt;-<span class="st"> </span><span class="kw">subset</span>(am_shad,</span>
-<span id="cb126-2"><a href="3-3-subsetting-and-selecting-data.html#cb126-2"></a>                              backCalculated <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span> <span class="op">&amp;</span></span>
-<span id="cb126-3"><a href="3-3-subsetting-and-selecting-data.html#cb126-3"></a><span class="st">                                </span>Sex <span class="op">==</span><span class="st"> &quot;R&quot;</span> <span class="op">&amp;</span></span>
-<span id="cb126-4"><a href="3-3-subsetting-and-selecting-data.html#cb126-4"></a><span class="st">                                </span>Age <span class="op">==</span><span class="st"> </span><span class="dv">6</span></span>
-<span id="cb126-5"><a href="3-3-subsetting-and-selecting-data.html#cb126-5"></a>                              )</span>
-<span id="cb126-6"><a href="3-3-subsetting-and-selecting-data.html#cb126-6"></a></span>
-<span id="cb126-7"><a href="3-3-subsetting-and-selecting-data.html#cb126-7"></a>age_<span class="dv">6</span>_female_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(age_<span class="dv">6</span>_roes_measured<span class="op">$</span>Length)</span></code></pre></div>
-<p>Again, we could do this manually, but would require a lot of code for a simple calculation if we use the methods above all by themselves to get these for each age group of roes.</p>
-<p>We would basically just copy-and-paste the code over and over to force R into making the data summaries we need. Nothing wrong with this approach, and it certainly has its uses for simple summaries, but it can be cumbersome and redundant. It also fills your workspace up with tons of objects that are hard to keep track of and that will cause your code-completion suggestions to be <em>wicked</em> annoying in RStudio.</p>
-<p>That usually means there is a better way to write the code…</p>
-</div>
-<div id="tidyverse" class="section level3">
-<h3><span class="header-section-number">3.3.3</span> Subsetting and summaries in the tidyverse</h3>
-<p>Long ago, when I was still a noOb writing R code with a stand-alone text editor and a console there were not a ton of packages available for the express purpose of cleaning up data manipulation in R. The one I relied on most heavily was the <code>plyr</code> package. Since then, R has grown and a lot of these functions have been gathered under the umbrella of the <a href="https://www.tidyverse.org/packages/">tidyverse</a>, which is a collection of specific R packages designed to make the whole process less painful. These include packages like <code>dplyr</code> (which replaced <code>plyr</code>) and others that are designed to work together with similar syntax to make data science (for us, data manipulation and presentation) a lot cleaner and better standardized. We will rely heavily on packages in the tidyverse throughout this book.</p>
-<p>Before we can work with these packages, however, we need to install them - something we haven’t talked about yet! Most of the critical R packages are hosted through the Comprehensive R Archive Network, or <a href="https://cran.r-project.org/">CRAN</a>. Still, tons of others are available for installation from hosting services like GitHub and GitLab.</p>
-<p>If you haven’t seen it yet, <a href="https://www.youtube.com/watch?v=u1r5XTqrCTQ">here</a> is a three-minute video explaining how to install packages using RStudio. <strong>Watch it. Please.</strong></p>
-<p>It is also easy to install packages by running a line of code in the console. We could install each of the packages in the tidyverse separately. But we can also get all of them at once because they are all packaged together, too.</p>
-<p>Follow the instructions in the YouTube link above, or install the package from the command line:</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="3-3-subsetting-and-selecting-data.html#cb127-1"></a><span class="kw">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>)</span></code></pre></div>
-<p>Once we have installed these packages, we can use the functions in them to clean up our data manipulation pipeline and get some really useful information.</p>
-</div>
+<div id="Chapter17" class="section level1">
+<h1><span class="header-section-number">17</span> Logistic regression</h1>
+<img src="images/veligers.jpg" alt="">
+<p style="font-family: times, serif; font-size:.9em; font-style:italic">
+“Life or death” is a phrase we reserve for situations that are not normal. Coincidentally, life or death is also a binary variable, and therefore it’s residuals are also not normal. Will these zebra mussels live or die? That will be our next adventure, but for that we need the generalized linear model (GLM).
+</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="3-2-quick-data-summaries.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="3-4-better-data-summaries.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="16-11-next-16.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="17-1-intro17.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

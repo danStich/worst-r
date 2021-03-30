@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.3 Subsetting and selecting data | The Worst Stats Text eveR</title>
-  <meta name="description" content="3.3 Subsetting and selecting data | The Worst Stats Text eveR" />
+  <title>17.2 Binary (logistic) regression | The Worst Stats Text eveR</title>
+  <meta name="description" content="17.2 Binary (logistic) regression | The Worst Stats Text eveR" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.3 Subsetting and selecting data | The Worst Stats Text eveR" />
+  <meta property="og:title" content="17.2 Binary (logistic) regression | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.3 Subsetting and selecting data | The Worst Stats Text eveR" />
+  <meta name="twitter:title" content="17.2 Binary (logistic) regression | The Worst Stats Text eveR" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="3-2-quick-data-summaries.html"/>
-<link rel="next" href="3-4-better-data-summaries.html"/>
+<link rel="prev" href="17-1-intro17.html"/>
+<link rel="next" href="17-3-next12.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -413,71 +413,233 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="subsetting-and-selecting-data" class="section level2">
-<h2><span class="header-section-number">3.3</span> Subsetting and selecting data</h2>
-<p>Before we can make meaningful data summaries, we will probably need to re-organize our data in a logical way (through sub-setting or selected specific chunks of data). A lot of times, we do this along the way without really thinking about it.</p>
-<div id="manual-subsets-and-selections" class="section level3">
-<h3><span class="header-section-number">3.3.1</span> Manual subsets and selections</h3>
-<p>We talked a little about sub-setting data with logical queries in <a href="2-Chapter2.html#Chapter2">Chapter 2</a>. Now, let’s refresh and take that a little further to see why we might want to do that.</p>
-<p>First, we’ll select just the data from <code>am_shad</code> where <code>backCalculated</code> was <code>FALSE</code>. This will give us only the measured <code>Length</code> and <code>Mass</code> for each of the fish, along with their <code>Sex</code> and <code>yearCollected</code>. I’ll call this new object <code>measured</code>. Remember, <code>am_shad</code> is a data frame, so it has two dimensions when we use <code>[ ]</code> for sub-setting and these are separated by a comma, like this: <code>object[rows, columns]</code>. When we leave the columns blank, R knows that it should keep all of the columns.</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="3-3-subsetting-and-selecting-data.html#cb118-1"></a>measured &lt;-<span class="st"> </span>am_shad[am_shad<span class="op">$</span>backCalculated <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>, ]</span></code></pre></div>
-<p>We could do this for as many conceivable conditions in our data on which we may wish to subset, but the code can get clunky and hard to manage. For example can you imagine re-writing this if you just want to select age six roes without back-calculated lengths?</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="3-3-subsetting-and-selecting-data.html#cb119-1"></a><span class="co"># Notice how we string together multiple </span></span>
-<span id="cb119-2"><a href="3-3-subsetting-and-selecting-data.html#cb119-2"></a><span class="co"># conditions with &quot;&amp;&quot;. If these were &#39;or&#39;</span></span>
-<span id="cb119-3"><a href="3-3-subsetting-and-selecting-data.html#cb119-3"></a><span class="co"># we would use the vertical pipe &quot;|&quot;</span></span>
-<span id="cb119-4"><a href="3-3-subsetting-and-selecting-data.html#cb119-4"></a>age_<span class="dv">6</span>_rows_measured &lt;-<span class="st"> </span>am_shad[am_shad<span class="op">$</span>backCalculated <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span> <span class="op">&amp;</span><span class="st"> </span></span>
-<span id="cb119-5"><a href="3-3-subsetting-and-selecting-data.html#cb119-5"></a><span class="st">                                 </span>am_shad<span class="op">$</span>Sex <span class="op">==</span><span class="st"> &quot;R&quot;</span> <span class="op">&amp;</span></span>
-<span id="cb119-6"><a href="3-3-subsetting-and-selecting-data.html#cb119-6"></a><span class="st">                                 </span>am_shad<span class="op">$</span>Age <span class="op">==</span><span class="st"> </span><span class="dv">6</span>, ]</span></code></pre></div>
+<div id="logistic-17" class="section level2">
+<h2><span class="header-section-number">17.2</span> Binary (logistic) regression</h2>
+<p>Here, we will duplicate the analysis from <a href="https://danstich.github.io/worst-r/12-Chapter12.html">Chapter 12</a> using a Bayesian framework with the <code>rstanarm</code> package. We’ll note some differences and some similarities as we go along.</p>
+<p>Read in the data file.</p>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="17-2-logistic-17.html#cb636-1"></a>choice &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/StillwaterChoiceData.csv&quot;</span>)</span></code></pre></div>
+<p>Look at the first few rows of data:</p>
+<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="17-2-logistic-17.html#cb637-1"></a><span class="kw">head</span>(choice)</span></code></pre></div>
+<pre><code>##   path year hatchery length mass date flow
+## 1    0 2010        1    176   57  118  345
+## 2    0 2005        1    205  101  128 1093
+## 3    0 2010        1    180   56  118  345
+## 4    0 2010        1    193   74  118  345
+## 5    0 2005        1    189   76  128 1093
+## 6    0 2010        1    180   65  118  345</code></pre>
+<div id="data-explanation" class="section level3">
+<h3><span class="header-section-number">17.2.1</span> Data Explanation</h3>
+<p>The full data explanation is provided in <a href="https://danstich.github.io/worst-r/12-4-logistic.html">Chapter 12.4</a> and will not be repeat it here. Go check it out if you need a reminder of what data are in there.</p>
 </div>
-<div id="subsetting-and-summaries-in-base-r" class="section level3">
-<h3><span class="header-section-number">3.3.2</span> Subsetting and summaries in base R</h3>
-<p>This notation can be really confusing to folks who are just trying to learn a new programming language. Because of that, there are great functions like <code>subset()</code> available that are more intuitive (but less clear to programmers). You could also subset the data using the following code:</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="3-3-subsetting-and-selecting-data.html#cb120-1"></a>measured &lt;-<span class="st"> </span><span class="kw">subset</span>(am_shad, backCalculated <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>)</span></code></pre></div>
-<p>We could also get our age-six females from the previous example using this approach, and at least the code is a little cleaner:</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="3-3-subsetting-and-selecting-data.html#cb121-1"></a>age_<span class="dv">6</span>_roes_measured &lt;-<span class="st"> </span><span class="kw">subset</span>(am_shad,</span>
-<span id="cb121-2"><a href="3-3-subsetting-and-selecting-data.html#cb121-2"></a>                              backCalculated <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span> <span class="op">&amp;</span></span>
-<span id="cb121-3"><a href="3-3-subsetting-and-selecting-data.html#cb121-3"></a><span class="st">                                </span>Sex <span class="op">==</span><span class="st"> &quot;R&quot;</span> <span class="op">&amp;</span></span>
-<span id="cb121-4"><a href="3-3-subsetting-and-selecting-data.html#cb121-4"></a><span class="st">                                </span>Age <span class="op">==</span><span class="st"> </span><span class="dv">6</span></span>
-<span id="cb121-5"><a href="3-3-subsetting-and-selecting-data.html#cb121-5"></a>                              )</span></code></pre></div>
-<p>Both do the same thing, but we’ll see later that using <code>subset</code> is preferable if we plan on chaining together a bunch of data manipulation commands using pipes (<code>%&gt;%</code>).</p>
-<p>Next, we might be interested to know how many fish we have represented in each <code>Sex</code>. We can find this out using the <code>table</code> function in base R:</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="3-3-subsetting-and-selecting-data.html#cb122-1"></a><span class="co"># Here, I use the column name because</span></span>
-<span id="cb122-2"><a href="3-3-subsetting-and-selecting-data.html#cb122-2"></a><span class="co"># we just want all observations of a single</span></span>
-<span id="cb122-3"><a href="3-3-subsetting-and-selecting-data.html#cb122-3"></a><span class="co"># variable. Be careful switching between names,</span></span>
-<span id="cb122-4"><a href="3-3-subsetting-and-selecting-data.html#cb122-4"></a><span class="co"># numbers, and $names!</span></span>
-<span id="cb122-5"><a href="3-3-subsetting-and-selecting-data.html#cb122-5"></a><span class="kw">table</span>(measured[<span class="st">&#39;Sex&#39;</span>])</span></code></pre></div>
-<pre><code>## 
-##    B    R 
-## 1793 1253</code></pre>
-<p>We see that we have <code>1793</code> females and <code>1253</code> males.</p>
-<p>We can also get tallies of the number of fish in each <code>Age</code> for each <code>Sex</code> if we would like to see that:</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="3-3-subsetting-and-selecting-data.html#cb124-1"></a><span class="kw">table</span>(measured<span class="op">$</span>Sex, measured<span class="op">$</span>Age)</span></code></pre></div>
-<pre><code>##    
-##       3   4   5   6   7
-##   B 255 848 579 108   3
-##   R   0 361 658 220  14</code></pre>
-<p>But, what if we wanted to calculate some kind of summary statistic, like a <code>mean</code> and report that by group?</p>
-<p>For our age-6 females example, it would look like this:</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="3-3-subsetting-and-selecting-data.html#cb126-1"></a>age_<span class="dv">6</span>_roes_measured &lt;-<span class="st"> </span><span class="kw">subset</span>(am_shad,</span>
-<span id="cb126-2"><a href="3-3-subsetting-and-selecting-data.html#cb126-2"></a>                              backCalculated <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span> <span class="op">&amp;</span></span>
-<span id="cb126-3"><a href="3-3-subsetting-and-selecting-data.html#cb126-3"></a><span class="st">                                </span>Sex <span class="op">==</span><span class="st"> &quot;R&quot;</span> <span class="op">&amp;</span></span>
-<span id="cb126-4"><a href="3-3-subsetting-and-selecting-data.html#cb126-4"></a><span class="st">                                </span>Age <span class="op">==</span><span class="st"> </span><span class="dv">6</span></span>
-<span id="cb126-5"><a href="3-3-subsetting-and-selecting-data.html#cb126-5"></a>                              )</span>
-<span id="cb126-6"><a href="3-3-subsetting-and-selecting-data.html#cb126-6"></a></span>
-<span id="cb126-7"><a href="3-3-subsetting-and-selecting-data.html#cb126-7"></a>age_<span class="dv">6</span>_female_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(age_<span class="dv">6</span>_roes_measured<span class="op">$</span>Length)</span></code></pre></div>
-<p>Again, we could do this manually, but would require a lot of code for a simple calculation if we use the methods above all by themselves to get these for each age group of roes.</p>
-<p>We would basically just copy-and-paste the code over and over to force R into making the data summaries we need. Nothing wrong with this approach, and it certainly has its uses for simple summaries, but it can be cumbersome and redundant. It also fills your workspace up with tons of objects that are hard to keep track of and that will cause your code-completion suggestions to be <em>wicked</em> annoying in RStudio.</p>
-<p>That usually means there is a better way to write the code…</p>
+<div id="data-analysis" class="section level3">
+<h3><span class="header-section-number">17.2.2</span> Data analysis</h3>
+<p>We are going to use the 1/0 binary data to estimate the effects of a number of covariates of interest on the probability that an individual fish used the Stillwater Branch for migration in each year of this study using logistic regression.</p>
+<p>If our response, <code>path</code> is a binary variable where 1 = Stillwater and 0 = mainstem for each fish 1 to <em>n</em>, we can think of p(Stillwater Branch) as:</p>
+<p><span class="math display">\[p(Stillwater) = \frac{\sum{path}}{n}\]</span></p>
+<p>and the logit of p(Stillwater Branch) can assumed to be normally distributed with a mean of .</p>
+<p><span class="math display">\[logit(p) = Normal(\mu, \sigma^{2})\]</span></p>
+<p>Now that we know we are doing <em>more or less</em> the same thing as we were for linear models, let’s move on with fitting the model.</p>
+<p>First, since we are interested in the fixed effects of year, and not the linear trend through time, we need to convert year to factor.</p>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="17-2-logistic-17.html#cb639-1"></a>choice<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">as.factor</span>(choice<span class="op">$</span>year)</span></code></pre></div>
+<p>Now, if we want to test hypotheses about the influences of explanatory variables on the probability of using the Stillwater Branch, we could make models to represent those hypotheses. For example, if we wanted to test whether <code>flow</code> had a significant influence on <code>path</code> across <code>year</code>s, then we could build a model that looks like this:</p>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="17-2-logistic-17.html#cb640-1"></a>flow_mod &lt;-<span class="st"> </span><span class="kw">stan_glm</span>(path <span class="op">~</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>flow, </span>
+<span id="cb640-2"><a href="17-2-logistic-17.html#cb640-2"></a>                     <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </span>
+<span id="cb640-3"><a href="17-2-logistic-17.html#cb640-3"></a>                     <span class="dt">data =</span> choice)</span></code></pre></div>
+<p>We could make another model that investigates effects of <code>length</code> on <code>path</code> choice instead of flow:</p>
+<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="17-2-logistic-17.html#cb641-1"></a>len_mod &lt;-<span class="st"> </span><span class="kw">stan_glm</span>(path <span class="op">~</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>length, </span>
+<span id="cb641-2"><a href="17-2-logistic-17.html#cb641-2"></a>                     <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </span>
+<span id="cb641-3"><a href="17-2-logistic-17.html#cb641-3"></a>                     <span class="dt">data =</span> choice)</span></code></pre></div>
+<p>Or a model that includes both with an annoying name:</p>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="17-2-logistic-17.html#cb642-1"></a>flow_len_mod &lt;-<span class="st"> </span><span class="kw">stan_glm</span>(path <span class="op">~</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>flow <span class="op">+</span><span class="st"> </span>length, </span>
+<span id="cb642-2"><a href="17-2-logistic-17.html#cb642-2"></a>                     <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </span>
+<span id="cb642-3"><a href="17-2-logistic-17.html#cb642-3"></a>                     <span class="dt">data =</span> choice)</span></code></pre></div>
+<p>We could look at these individually to determine variable-level significance using approaches demonstrated in <a href="https://danstich.github.io/worst-r/16-9-summarizing-results.html">Chapter 16.9</a>.</p>
+<p><strong>First</strong>, let’s define a slightly more complex set of models based on <em>a priori</em> combinations of explanatory variables. Note that this is pretty much identical to how we do this for models fit with <code>glm()</code> except now we are using <code>stan_glm()</code> to fit the models!</p>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="17-2-logistic-17.html#cb643-1"></a><span class="co"># Make an empty list to hold the models</span></span>
+<span id="cb643-2"><a href="17-2-logistic-17.html#cb643-2"></a>mods &lt;-<span class="st"> </span><span class="kw">list</span>()</span>
+<span id="cb643-3"><a href="17-2-logistic-17.html#cb643-3"></a></span>
+<span id="cb643-4"><a href="17-2-logistic-17.html#cb643-4"></a><span class="co"># Now, add models to the list. Stop and think about what each one means.</span></span>
+<span id="cb643-5"><a href="17-2-logistic-17.html#cb643-5"></a>mods[[<span class="dv">1</span>]] &lt;-<span class="st"> </span><span class="kw">stan_glm</span>(path <span class="op">~</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>hatchery <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st"> </span>flow, <span class="dt">family =</span> binomial, <span class="dt">data =</span> choice)</span>
+<span id="cb643-6"><a href="17-2-logistic-17.html#cb643-6"></a>mods[[<span class="dv">2</span>]] &lt;-<span class="st"> </span><span class="kw">stan_glm</span>(path <span class="op">~</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>flow, <span class="dt">family =</span> binomial, <span class="dt">data =</span> choice)</span>
+<span id="cb643-7"><a href="17-2-logistic-17.html#cb643-7"></a>mods[[<span class="dv">3</span>]] &lt;-<span class="st"> </span><span class="kw">stan_glm</span>(path <span class="op">~</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>hatchery, <span class="dt">family =</span> binomial, <span class="dt">data =</span> choice)</span>
+<span id="cb643-8"><a href="17-2-logistic-17.html#cb643-8"></a>mods[[<span class="dv">4</span>]] &lt;-<span class="st"> </span><span class="kw">stan_glm</span>(path <span class="op">~</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>length, <span class="dt">family =</span> binomial, <span class="dt">data =</span> choice)</span>
+<span id="cb643-9"><a href="17-2-logistic-17.html#cb643-9"></a>mods[[<span class="dv">5</span>]] &lt;-<span class="st"> </span><span class="kw">stan_glm</span>(path <span class="op">~</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st"> </span>hatchery, <span class="dt">family =</span> binomial, <span class="dt">data =</span> choice)</span>
+<span id="cb643-10"><a href="17-2-logistic-17.html#cb643-10"></a>mods[[<span class="dv">6</span>]] &lt;-<span class="st"> </span><span class="kw">stan_glm</span>(path <span class="op">~</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st"> </span>flow, <span class="dt">family =</span> binomial, <span class="dt">data =</span> choice)</span>
+<span id="cb643-11"><a href="17-2-logistic-17.html#cb643-11"></a>mods[[<span class="dv">7</span>]] &lt;-<span class="st"> </span><span class="kw">stan_glm</span>(path <span class="op">~</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>hatchery <span class="op">+</span><span class="st"> </span>flow, <span class="dt">family =</span> binomial, <span class="dt">data =</span> choice)</span></code></pre></div>
+<p><strong>Next</strong>, give the models some names using the formulas for each of the models. <em>Remember</em>: models are stored as list objects in R, and each of those list objects (models) has names. We can reference those names using the <code>$</code> notation, and from there we can access the actual model <code>formula</code>. The third element of this <code>formula</code> object contains the explanatory variables!! Just like <code>glm()</code>. Whoa!</p>
+<p>We can extract the <code>formula</code> for each model (which is an element in the <code>mods</code> list) using a <code>for</code> loop to assign them one at a time. Here, we are assigning the i<sup>th</sup> formula to be the name of the i<sup>th</sup> element in the list <code>mods</code>. Nifty. Note that this is pretty much identical to how we do this for models fit with <code>glm()</code>!</p>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="17-2-logistic-17.html#cb644-1"></a><span class="co"># Assign the formula for each of the models as the name</span></span>
+<span id="cb644-2"><a href="17-2-logistic-17.html#cb644-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(mods)) {</span>
+<span id="cb644-3"><a href="17-2-logistic-17.html#cb644-3"></a>  <span class="kw">names</span>(mods)[i] &lt;-<span class="st"> </span><span class="kw">as.character</span>(mods[[i]]<span class="op">$</span>formula)[<span class="dv">3</span>]</span>
+<span id="cb644-4"><a href="17-2-logistic-17.html#cb644-4"></a>}</span></code></pre></div>
+<p>Now, we use the <code>loo</code> package to make a model selection table like we did in <a href="16-8-bayesian-model-selection.html#bayesian-model-selection">Chapter 16.8</a>:</p>
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="17-2-logistic-17.html#cb645-1"></a><span class="co"># Load the library</span></span>
+<span id="cb645-2"><a href="17-2-logistic-17.html#cb645-2"></a><span class="kw">library</span>(loo)</span>
+<span id="cb645-3"><a href="17-2-logistic-17.html#cb645-3"></a></span>
+<span id="cb645-4"><a href="17-2-logistic-17.html#cb645-4"></a><span class="co"># Extract the log-likelihood matrices</span></span>
+<span id="cb645-5"><a href="17-2-logistic-17.html#cb645-5"></a>log_liks &lt;-<span class="st"> </span><span class="kw">lapply</span>(mods, log_lik)</span>
+<span id="cb645-6"><a href="17-2-logistic-17.html#cb645-6"></a></span>
+<span id="cb645-7"><a href="17-2-logistic-17.html#cb645-7"></a><span class="co"># Now apply the loo() function to each </span></span>
+<span id="cb645-8"><a href="17-2-logistic-17.html#cb645-8"></a><span class="co"># model to get elpd_loo</span></span>
+<span id="cb645-9"><a href="17-2-logistic-17.html#cb645-9"></a>loos &lt;-<span class="st"> </span><span class="kw">lapply</span>(log_liks, loo)</span>
+<span id="cb645-10"><a href="17-2-logistic-17.html#cb645-10"></a></span>
+<span id="cb645-11"><a href="17-2-logistic-17.html#cb645-11"></a><span class="co"># Finally, we can compare them with loo_compare()</span></span>
+<span id="cb645-12"><a href="17-2-logistic-17.html#cb645-12"></a>mod_table &lt;-<span class="st"> </span><span class="kw">loo_compare</span>(loos)</span></code></pre></div>
+<p>Nice.</p>
 </div>
-<div id="tidyverse" class="section level3">
-<h3><span class="header-section-number">3.3.3</span> Subsetting and summaries in the tidyverse</h3>
-<p>Long ago, when I was still a noOb writing R code with a stand-alone text editor and a console there were not a ton of packages available for the express purpose of cleaning up data manipulation in R. The one I relied on most heavily was the <code>plyr</code> package. Since then, R has grown and a lot of these functions have been gathered under the umbrella of the <a href="https://www.tidyverse.org/packages/">tidyverse</a>, which is a collection of specific R packages designed to make the whole process less painful. These include packages like <code>dplyr</code> (which replaced <code>plyr</code>) and others that are designed to work together with similar syntax to make data science (for us, data manipulation and presentation) a lot cleaner and better standardized. We will rely heavily on packages in the tidyverse throughout this book.</p>
-<p>Before we can work with these packages, however, we need to install them - something we haven’t talked about yet! Most of the critical R packages are hosted through the Comprehensive R Archive Network, or <a href="https://cran.r-project.org/">CRAN</a>. Still, tons of others are available for installation from hosting services like GitHub and GitLab.</p>
-<p>If you haven’t seen it yet, <a href="https://www.youtube.com/watch?v=u1r5XTqrCTQ">here</a> is a three-minute video explaining how to install packages using RStudio. <strong>Watch it. Please.</strong></p>
-<p>It is also easy to install packages by running a line of code in the console. We could install each of the packages in the tidyverse separately. But we can also get all of them at once because they are all packaged together, too.</p>
-<p>Follow the instructions in the YouTube link above, or install the package from the command line:</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="3-3-subsetting-and-selecting-data.html#cb127-1"></a><span class="kw">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>)</span></code></pre></div>
-<p>Once we have installed these packages, we can use the functions in them to clean up our data manipulation pipeline and get some really useful information.</p>
+<div id="interpreting-the-results" class="section level3">
+<h3><span class="header-section-number">17.2.3</span> Interpreting the results</h3>
+<p>This proceeds the same way for GLM as it does for linear models until we get to making predictions of the response based on our best model.</p>
+<p>Our model selection table is an object in R (<em>right</em>?), and we can reference that object using <code>$</code> notation, matrix notation <code>[ , ]</code>, or by calling <code>rownames()</code> to get the name for each of the models. Let’s use this approach to get the best model from our candidate set.</p>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="17-2-logistic-17.html#cb646-1"></a><span class="co"># Print the table</span></span>
+<span id="cb646-2"><a href="17-2-logistic-17.html#cb646-2"></a>mod_table</span></code></pre></div>
+<pre><code>##                                 elpd_diff se_diff
+## year + hatchery + flow           0.0       0.0   
+## year + flow                     -0.1       1.4   
+## year + length + flow            -0.3       1.2   
+## year + hatchery + length + flow -1.0       0.4   
+## year + hatchery                 -2.3       2.5   
+## year + length                   -2.9       2.8   
+## year + length + hatchery        -3.1       2.5</code></pre>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="17-2-logistic-17.html#cb648-1"></a><span class="co"># Look at the structure just to show that it is, indeed, an object:</span></span>
+<span id="cb648-2"><a href="17-2-logistic-17.html#cb648-2"></a><span class="kw">str</span>(mod_table)</span></code></pre></div>
+<pre><code>##  &#39;compare.loo&#39; num [1:7, 1:8] 0 -0.101 -0.272 -1.004 -2.279 ...
+##  - attr(*, &quot;dimnames&quot;)=List of 2
+##   ..$ : chr [1:7] &quot;year + hatchery + flow&quot; &quot;year + flow&quot; &quot;year + length + flow&quot; &quot;year + hatchery + length + flow&quot; ...
+##   ..$ : chr [1:8] &quot;elpd_diff&quot; &quot;se_diff&quot; &quot;elpd_loo&quot; &quot;se_elpd_loo&quot; ...</code></pre>
+<p>Look at the <code>rownames</code> of the table. These <code>rownames</code> are the index for each of our models as they appear in the <code>mods</code> object, and we can use the index to reference objects inside of the <code>mods</code> list…</p>
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="17-2-logistic-17.html#cb650-1"></a><span class="kw">rownames</span>(mod_table)</span></code></pre></div>
+<pre><code>## [1] &quot;year + hatchery + flow&quot;         
+## [2] &quot;year + flow&quot;                    
+## [3] &quot;year + length + flow&quot;           
+## [4] &quot;year + hatchery + length + flow&quot;
+## [5] &quot;year + hatchery&quot;                
+## [6] &quot;year + length&quot;                  
+## [7] &quot;year + length + hatchery&quot;</code></pre>
+<p>The rowname for the best model (the one at the top of the table) is <code>year + flow</code>. Print the model to see it as follows. Notice the back-ticks (``) around the model name to deal with spaces.</p>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="17-2-logistic-17.html#cb652-1"></a>mods<span class="op">$</span><span class="st">`</span><span class="dt">year + flow</span><span class="st">`</span></span></code></pre></div>
+<pre><code>## stan_glm
+##  family:       binomial [logit]
+##  formula:      path ~ year + flow
+##  observations: 759
+##  predictors:   7
+## ------
+##             Median MAD_SD
+## (Intercept) -2.9    0.8  
+## year2006    -0.5    0.6  
+## year2009     0.3    0.5  
+## year2010     0.0    0.6  
+## year2011    -0.8    0.4  
+## year2012    -0.8    0.5  
+## flow         0.0    0.0  
+## 
+## ------
+## * For help interpreting the printed output see ?print.stanreg
+## * For info on the priors used see ?prior_summary.stanreg</code></pre>
+<p>Great! Let’s save this to an object so we can work with it a little easier.</p>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="17-2-logistic-17.html#cb654-1"></a>best_mod &lt;-<span class="st"> </span>mods<span class="op">$</span><span class="st">`</span><span class="dt">year + flow</span><span class="st">`</span></span></code></pre></div>
+<p>We can get an understanding of the explanatory power of our model using a Bayesian R<sup>2</sup> (described by Gelman et al. <a href="10.1080/00031305.2018.1549100">2018</a>). By default, this function will return one estimate of the R<sup>2</sup> for each iteration of the model, so we should get 4,000 estimates of R<sup>2</sup> here.</p>
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="17-2-logistic-17.html#cb655-1"></a>r_squared &lt;-<span class="st"> </span><span class="kw">bayes_R2</span>(best_mod)</span>
+<span id="cb655-2"><a href="17-2-logistic-17.html#cb655-2"></a></span>
+<span id="cb655-3"><a href="17-2-logistic-17.html#cb655-3"></a><span class="kw">mean</span>(r_squared)</span></code></pre></div>
+<pre><code>## [1] 0.04985448</code></pre>
+<p>Meh, about average for an ecological study, but that doesn’t mean it is good. What we are really after here is just a good idea of what proportion of fish use this route and whether it can be reasonably well related to discharge, so we’ll keep pressing along to see if we have that.</p>
+<p>Let’s wrap our interpretation of results by looking at coefficient estimates as indicators of statistical significance.</p>
+<p>First, we could extract just the parameters for ease:</p>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="17-2-logistic-17.html#cb657-1"></a>coeffs &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="kw">as.matrix</span>(best_mod) )</span></code></pre></div>
+<p>The <code>coeffs</code> object is now a dataframe with 4,000 posterior samples (rows) of each model coefficient (columns).</p>
+<p>Then, we can determine whether zero or any other value of interest is included within the credible range of values for each of these coefficients. If zero falls outside the credible range for any of the parameters, we can conclude that the effect was significant. For categorical variables, this means groups are different. For continuous explanatory variables, it means that the slope is different from zero (flat).</p>
+<p>Pivot the coefficients into long form first so they are grouped for plotting, and then we’ll summarize the posteriors.</p>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="17-2-logistic-17.html#cb658-1"></a>coeffs_stacked &lt;-<span class="st"> </span>coeffs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb658-2"><a href="17-2-logistic-17.html#cb658-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">everything</span>(),</span>
+<span id="cb658-3"><a href="17-2-logistic-17.html#cb658-3"></a>               <span class="dt">names_to =</span> <span class="st">&quot;coeff&quot;</span>,</span>
+<span id="cb658-4"><a href="17-2-logistic-17.html#cb658-4"></a>               <span class="dt">values_to =</span> <span class="st">&quot;val&quot;</span></span>
+<span id="cb658-5"><a href="17-2-logistic-17.html#cb658-5"></a>               ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb658-6"><a href="17-2-logistic-17.html#cb658-6"></a><span class="st">  </span><span class="kw">group_by</span>(coeff)</span></code></pre></div>
+<p>You can calculate means and 95% Credible intervals for plotting:</p>
+<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="17-2-logistic-17.html#cb659-1"></a>post_summary &lt;-<span class="st"> </span>coeffs_stacked <span class="op">%&gt;%</span></span>
+<span id="cb659-2"><a href="17-2-logistic-17.html#cb659-2"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb659-3"><a href="17-2-logistic-17.html#cb659-3"></a>    <span class="dt">fit =</span> <span class="kw">mean</span>(val),</span>
+<span id="cb659-4"><a href="17-2-logistic-17.html#cb659-4"></a>    <span class="dt">lwr =</span> <span class="kw">quantile</span>(val, <span class="fl">0.025</span>),</span>
+<span id="cb659-5"><a href="17-2-logistic-17.html#cb659-5"></a>    <span class="dt">upr =</span> <span class="kw">quantile</span>(val, <span class="fl">0.975</span>)</span>
+<span id="cb659-6"><a href="17-2-logistic-17.html#cb659-6"></a>  )</span></code></pre></div>
+<p>We can plot these really easily to see whether any of the parameters overlap zero:</p>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="17-2-logistic-17.html#cb660-1"></a><span class="kw">ggplot</span>(post_summary, <span class="kw">aes</span>(<span class="dt">x =</span> coeff, <span class="dt">y =</span> fit, <span class="dt">color =</span> coeff, <span class="dt">fill =</span> coeff)) <span class="op">+</span></span>
+<span id="cb660-2"><a href="17-2-logistic-17.html#cb660-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb660-3"><a href="17-2-logistic-17.html#cb660-3"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> coeff, <span class="dt">y =</span> lwr, <span class="dt">yend =</span> upr), <span class="dt">lwd=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-505-1.png" width="672" /></p>
+<p>You can get a similar plot using the built-in <code>plot()</code> method for the fitted model object a lot more easily like so. By default, this method plots 95% high density (credible) intervals for each of the posteriors.</p>
+<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="17-2-logistic-17.html#cb661-1"></a><span class="kw">plot</span>(best_mod)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-506-1.png" width="672" /></p>
+</div>
+<div id="interpretting-categorical-effects" class="section level3">
+<h3><span class="header-section-number">17.2.4</span> Interpretting categorical effects</h3>
+<p>Regardless of the method we use, we see there is a lot of variability between years and there is reasonable support to suggest that this variability is significant. How can we tell this? We don’t have access to p-values like we do in MLE or OLS anymore because of how the likelihood is expressed in these models. Instead, we can do group-wise comparisons to determine specific differences but this becomes cumbersome when we have many levels.</p>
+<p>Remember, that the null hypothesis for factors under an ANOVA- or ANCOVA-like analysis is just that any two group means differ. In this case, it looks like 2011 and 2009 are the most different since 2011 has lower probability of using Stillwater Branch than 2005 (Intercept) and 2009 is greater.</p>
+<p>If we want to compare year-specific means, we’ll need to make predictions on the logit scale and then convert to the real scale where we can actually derive the difference between years arithmetically for the entire posteriors.</p>
+<p>Make predictions from the model on the logit scale, and convert to the real scale using the <code>invlogit()</code> function from the <code>rstanarm</code> package:</p>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="17-2-logistic-17.html#cb662-1"></a>p_stillwater_<span class="dv">2009</span> &lt;-<span class="st"> </span><span class="kw">invlogit</span>( </span>
+<span id="cb662-2"><a href="17-2-logistic-17.html#cb662-2"></a>  coeffs<span class="op">$</span>X.Intercept. <span class="op">+</span><span class="st"> </span>coeffs<span class="op">$</span>year2009 <span class="op">+</span><span class="st"> </span>coeffs<span class="op">$</span>flow <span class="op">*</span><span class="st"> </span><span class="kw">mean</span>(choice<span class="op">$</span>flow))</span>
+<span id="cb662-3"><a href="17-2-logistic-17.html#cb662-3"></a></span>
+<span id="cb662-4"><a href="17-2-logistic-17.html#cb662-4"></a>p_stillwater_<span class="dv">2011</span> &lt;-<span class="st"> </span><span class="kw">invlogit</span>( </span>
+<span id="cb662-5"><a href="17-2-logistic-17.html#cb662-5"></a>  coeffs<span class="op">$</span>X.Intercept. <span class="op">+</span><span class="st"> </span>coeffs<span class="op">$</span>year2011 <span class="op">+</span><span class="st"> </span>coeffs<span class="op">$</span>flow <span class="op">*</span><span class="st"> </span><span class="kw">mean</span>(choice<span class="op">$</span>flow))</span></code></pre></div>
+<p>And now you can calculate the difference (note that this is for the average flow).</p>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="17-2-logistic-17.html#cb663-1"></a>difference &lt;-<span class="st"> </span>p_stillwater_<span class="dv">2009</span> <span class="op">-</span><span class="st"> </span>p_stillwater_<span class="dv">2011</span></span></code></pre></div>
+<p>If we are interested in whether the true difference is equal to zero (null) then we can calculate quantiles:</p>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="17-2-logistic-17.html#cb664-1"></a><span class="kw">quantile</span>(difference, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div>
+<pre><code>##      2.5%     97.5% 
+## 0.0333136 0.1844421</code></pre>
+<p>In this case, there is at least a 95% chance that the probability of smolts using the Stillwater Branch varies between 2009 and 2011, so we can conclude that the effect is significant at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<p>We can also plot a histogram of the differences really easily now that it is just a vector in R:</p>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="17-2-logistic-17.html#cb666-1"></a><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb666-2"><a href="17-2-logistic-17.html#cb666-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x =</span> difference), <span class="dt">binwidth =</span> <span class="fl">0.01</span>) <span class="op">+</span></span>
+<span id="cb666-3"><a href="17-2-logistic-17.html#cb666-3"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Difference in p(Stillwater) between 2009 and 2011&quot;</span>) <span class="op">+</span></span>
+<span id="cb666-4"><a href="17-2-logistic-17.html#cb666-4"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Count&quot;</span>) <span class="op">+</span></span>
+<span id="cb666-5"><a href="17-2-logistic-17.html#cb666-5"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">450</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb666-6"><a href="17-2-logistic-17.html#cb666-6"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb666-7"><a href="17-2-logistic-17.html#cb666-7"></a><span class="st">  </span><span class="kw">theme</span>(</span>
+<span id="cb666-8"><a href="17-2-logistic-17.html#cb666-8"></a>    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">-1</span>),</span>
+<span id="cb666-9"><a href="17-2-logistic-17.html#cb666-9"></a>    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb666-10"><a href="17-2-logistic-17.html#cb666-10"></a>  )</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-510-1.png" width="672" /></p>
+</div>
+<div id="interpretting-continuous-effects" class="section level3">
+<h3><span class="header-section-number">17.2.5</span> Interpretting continuous effects</h3>
+<p>Interpreting significance and direction of continuous effects is a little more straightforward. In this case, we just need to determine whether the posterior estimate of the coefficient for continuous explanatory variables differs from zero or another value of interest.</p>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="17-2-logistic-17.html#cb667-1"></a><span class="kw">quantile</span>(coeffs<span class="op">$</span>flow, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div>
+<pre><code>##         2.5%        97.5% 
+## 0.0005146039 0.0028548689</code></pre>
+<p>It was really hard to see in the coefficients plot due to differences in scale, so we can make a histogram of this one to visualize that difference as well.</p>
+</div>
+<div id="making-predictions" class="section level3">
+<h3><span class="header-section-number">17.2.6</span> Making predictions</h3>
+<p>The first thing to remember here is that we have used a link function to estimate this model, so we cannot use the same method as we did for linear models to make predictions about our response from the model coefficients.</p>
+<p>The second thing to remember here is that by definition we have used an <em>invertible</em> link function to estimate this model so the previous statement is a lie and we actually can use the same method as before to make predictions about our response from the model coefficients. We just need to add an extra step so that we can invert our predictions about the expected value of Y with respect to X.</p>
+<p>Confused? Yeah, it’s a little confusing. As always an example always goes a long way…</p>
+<p>We can make predictions from our best model pretty much the same way we did in <a href="https://danstich.github.io/worst-r/12-4-logistic.html#making-predictions">Chapter 12.4.4</a>.</p>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="17-2-logistic-17.html#cb669-1"></a><span class="co"># Make predictions from the best model</span></span>
+<span id="cb669-2"><a href="17-2-logistic-17.html#cb669-2"></a>logit_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="kw">predict</span>(best_mod, <span class="dt">type =</span> <span class="st">&quot;link&quot;</span>, <span class="dt">se.fit =</span> <span class="ot">TRUE</span>) )</span>
+<span id="cb669-3"><a href="17-2-logistic-17.html#cb669-3"></a></span>
+<span id="cb669-4"><a href="17-2-logistic-17.html#cb669-4"></a><span class="co"># Calculate confidence intervals as 1.96 * standard error</span></span>
+<span id="cb669-5"><a href="17-2-logistic-17.html#cb669-5"></a>logit_preds<span class="op">$</span>lwr &lt;-<span class="st"> </span>logit_preds<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>logit_preds<span class="op">$</span>se.fit</span>
+<span id="cb669-6"><a href="17-2-logistic-17.html#cb669-6"></a>logit_preds<span class="op">$</span>upr &lt;-<span class="st"> </span>logit_preds<span class="op">$</span>fit <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>logit_preds<span class="op">$</span>se.fit</span>
+<span id="cb669-7"><a href="17-2-logistic-17.html#cb669-7"></a></span>
+<span id="cb669-8"><a href="17-2-logistic-17.html#cb669-8"></a><span class="co"># Invert the link function</span></span>
+<span id="cb669-9"><a href="17-2-logistic-17.html#cb669-9"></a>real_preds &lt;-<span class="st"> </span><span class="kw">apply</span>(logit_preds, <span class="dv">2</span>, invlogit)</span>
+<span id="cb669-10"><a href="17-2-logistic-17.html#cb669-10"></a></span>
+<span id="cb669-11"><a href="17-2-logistic-17.html#cb669-11"></a><span class="co"># Combine the predictions with the original data</span></span>
+<span id="cb669-12"><a href="17-2-logistic-17.html#cb669-12"></a>choice_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(choice, real_preds)</span></code></pre></div>
+<p>Go ahead and have a look at the <code>logit_preds</code> and <code>real_preds</code> objects to make sure you understand what we just did.</p>
+<p>Now, we can finish by plotting our predictions:</p>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="17-2-logistic-17.html#cb670-1"></a><span class="kw">ggplot</span>(choice_preds, <span class="kw">aes</span>(<span class="dt">x =</span> flow, <span class="dt">y =</span> fit, <span class="dt">fill =</span> year)) <span class="op">+</span></span>
+<span id="cb670-2"><a href="17-2-logistic-17.html#cb670-2"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr, <span class="dt">fill =</span> year), <span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></span>
+<span id="cb670-3"><a href="17-2-logistic-17.html#cb670-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> year)) <span class="op">+</span></span>
+<span id="cb670-4"><a href="17-2-logistic-17.html#cb670-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;Flow ( &quot;</span>, m<span class="op">^</span><span class="dv">3</span>, <span class="st">&quot;\u00b7&quot;</span>, s<span class="op">^-</span><span class="dv">1</span>, <span class="st">&quot;)&quot;</span>))) <span class="op">+</span></span>
+<span id="cb670-5"><a href="17-2-logistic-17.html#cb670-5"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb670-6"><a href="17-2-logistic-17.html#cb670-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-513-1.png" width="672" />
+<br></p>
+<p>You can see that, in general, there is a relatively low probability of an individual fish using the Stillwater Branch, but we see increasing probability of using that route with increasing <code>flow</code> across years.</p>
 </div>
 </div>
             </section>
@@ -485,8 +647,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="3-2-quick-data-summaries.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="3-4-better-data-summaries.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="17-1-intro17.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="17-3-next12.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

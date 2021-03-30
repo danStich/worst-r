@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -374,10 +376,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.7.2" data-path="16-7-more-diagnostics.html"><a href="16-7-more-diagnostics.html#colinearity"><i class="fa fa-check"></i><b>16.7.2</b> Colinearity</a></li>
 <li class="chapter" data-level="16.7.3" data-path="16-7-more-diagnostics.html"><a href="16-7-more-diagnostics.html#divergence"><i class="fa fa-check"></i><b>16.7.3</b> Divergence</a></li>
 </ul></li>
-<li class="chapter" data-level="16.8" data-path="16-8-model-selection.html"><a href="16-8-model-selection.html"><i class="fa fa-check"></i><b>16.8</b> Model selection</a></li>
+<li class="chapter" data-level="16.8" data-path="16-8-bayesian-model-selection.html"><a href="16-8-bayesian-model-selection.html"><i class="fa fa-check"></i><b>16.8</b> Model selection</a></li>
 <li class="chapter" data-level="16.9" data-path="16-9-summarizing-results.html"><a href="16-9-summarizing-results.html"><i class="fa fa-check"></i><b>16.9</b> Summarizing results</a></li>
 <li class="chapter" data-level="16.10" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>16.10</b> Making predictions</a></li>
 <li class="chapter" data-level="16.11" data-path="16-11-next-16.html"><a href="16-11-next-16.html"><i class="fa fa-check"></i><b>16.11</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="17-Chapter17.html"><a href="17-Chapter17.html"><i class="fa fa-check"></i><b>17</b> Logistic regression</a><ul>
+<li class="chapter" data-level="17.1" data-path="17-1-intro17.html"><a href="17-1-intro17.html"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html"><i class="fa fa-check"></i><b>17.2</b> Binary (logistic) regression</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-explanation"><i class="fa fa-check"></i><b>17.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="17.2.2" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-analysis"><i class="fa fa-check"></i><b>17.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="17.2.3" data-path="12-4-logistic.html"><a href="12-4-logistic.html#interpreting-the-results"><i class="fa fa-check"></i><b>17.2.3</b> Interpreting the results</a></li>
+<li class="chapter" data-level="17.2.4" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#interpretting-categorical-effects"><i class="fa fa-check"></i><b>17.2.4</b> Interpretting categorical effects</a></li>
+<li class="chapter" data-level="17.2.5" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#interpretting-continuous-effects"><i class="fa fa-check"></i><b>17.2.5</b> Interpretting continuous effects</a></li>
+<li class="chapter" data-level="17.2.6" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>17.2.6</b> Making predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="12-5-next12.html"><a href="12-5-next12.html#next12"><i class="fa fa-check"></i><b>17.3</b> Next steps</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -413,33 +427,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For this example, let’s assume that we are interested in the survival of a hospital patient. Survival will be denoted as a ‘success’, or 1, and mortality as a ‘failure’, or ‘0’. In this sense, we are dealing with a binomial outcome. But, remember, we can always represent binomial outcomes on the probability scale…right?</p>
 <p>In this case, let’s say that we are assuming <em>a priori</em> that survival might be due to random chance, or that it might be influenced by some factor of interest (we’ll use “hospital” in the example below).</p>
 <p>There are multiple approaches that we could take to formulating a prior distribution for this case.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="16-3-the-prior.html#cb23-1"></a><span class="co"># A uniform distribution that indicates we</span></span>
-<span id="cb23-2"><a href="16-3-the-prior.html#cb23-2"></a><span class="co"># have no knowledge about how survival</span></span>
-<span id="cb23-3"><a href="16-3-the-prior.html#cb23-3"></a><span class="co"># varies between hospitals</span></span>
-<span id="cb23-4"><a href="16-3-the-prior.html#cb23-4"></a>flat &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="fl">1e4</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb23-5"><a href="16-3-the-prior.html#cb23-5"></a></span>
-<span id="cb23-6"><a href="16-3-the-prior.html#cb23-6"></a><span class="co"># A diffuse prior that indicates we think</span></span>
-<span id="cb23-7"><a href="16-3-the-prior.html#cb23-7"></a><span class="co"># survival is the same between hospitals but</span></span>
-<span id="cb23-8"><a href="16-3-the-prior.html#cb23-8"></a><span class="co"># we don&#39;t want to make too strong a statement</span></span>
-<span id="cb23-9"><a href="16-3-the-prior.html#cb23-9"></a>diffuse &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="fl">1e4</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
-<span id="cb23-10"><a href="16-3-the-prior.html#cb23-10"></a></span>
-<span id="cb23-11"><a href="16-3-the-prior.html#cb23-11"></a><span class="co"># A peaked (strong) prior that indicates we</span></span>
-<span id="cb23-12"><a href="16-3-the-prior.html#cb23-12"></a><span class="co"># are relatively certain ahead of time that</span></span>
-<span id="cb23-13"><a href="16-3-the-prior.html#cb23-13"></a><span class="co"># survival is the same in both hospitals</span></span>
-<span id="cb23-14"><a href="16-3-the-prior.html#cb23-14"></a>strong &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="fl">1e4</span>, <span class="dv">500</span>, <span class="dv">500</span>)</span>
-<span id="cb23-15"><a href="16-3-the-prior.html#cb23-15"></a></span>
-<span id="cb23-16"><a href="16-3-the-prior.html#cb23-16"></a><span class="co"># A strong prior that indicates we think</span></span>
-<span id="cb23-17"><a href="16-3-the-prior.html#cb23-17"></a><span class="co"># survival is substantially different</span></span>
-<span id="cb23-18"><a href="16-3-the-prior.html#cb23-18"></a><span class="co"># between hospitals</span></span>
-<span id="cb23-19"><a href="16-3-the-prior.html#cb23-19"></a>bimodal &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="fl">1e4</span>, <span class="fl">.5</span>, <span class="fl">.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="16-3-the-prior.html#cb605-1"></a><span class="co"># A uniform distribution that indicates we</span></span>
+<span id="cb605-2"><a href="16-3-the-prior.html#cb605-2"></a><span class="co"># have no knowledge about how survival</span></span>
+<span id="cb605-3"><a href="16-3-the-prior.html#cb605-3"></a><span class="co"># varies between hospitals</span></span>
+<span id="cb605-4"><a href="16-3-the-prior.html#cb605-4"></a>flat &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="fl">1e4</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb605-5"><a href="16-3-the-prior.html#cb605-5"></a></span>
+<span id="cb605-6"><a href="16-3-the-prior.html#cb605-6"></a><span class="co"># A diffuse prior that indicates we think</span></span>
+<span id="cb605-7"><a href="16-3-the-prior.html#cb605-7"></a><span class="co"># survival is the same between hospitals but</span></span>
+<span id="cb605-8"><a href="16-3-the-prior.html#cb605-8"></a><span class="co"># we don&#39;t want to make too strong a statement</span></span>
+<span id="cb605-9"><a href="16-3-the-prior.html#cb605-9"></a>diffuse &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="fl">1e4</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb605-10"><a href="16-3-the-prior.html#cb605-10"></a></span>
+<span id="cb605-11"><a href="16-3-the-prior.html#cb605-11"></a><span class="co"># A peaked (strong) prior that indicates we</span></span>
+<span id="cb605-12"><a href="16-3-the-prior.html#cb605-12"></a><span class="co"># are relatively certain ahead of time that</span></span>
+<span id="cb605-13"><a href="16-3-the-prior.html#cb605-13"></a><span class="co"># survival is the same in both hospitals</span></span>
+<span id="cb605-14"><a href="16-3-the-prior.html#cb605-14"></a>strong &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="fl">1e4</span>, <span class="dv">500</span>, <span class="dv">500</span>)</span>
+<span id="cb605-15"><a href="16-3-the-prior.html#cb605-15"></a></span>
+<span id="cb605-16"><a href="16-3-the-prior.html#cb605-16"></a><span class="co"># A strong prior that indicates we think</span></span>
+<span id="cb605-17"><a href="16-3-the-prior.html#cb605-17"></a><span class="co"># survival is substantially different</span></span>
+<span id="cb605-18"><a href="16-3-the-prior.html#cb605-18"></a><span class="co"># between hospitals</span></span>
+<span id="cb605-19"><a href="16-3-the-prior.html#cb605-19"></a>bimodal &lt;-<span class="st"> </span><span class="kw">rbeta</span>(<span class="fl">1e4</span>, <span class="fl">.5</span>, <span class="fl">.5</span>)</span></code></pre></div>
 <p>We can combine these into a dataframe for visualizing them, and then use the <code>pivot_longer()</code> function to stack the dataframe for plotting:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="16-3-the-prior.html#cb24-1"></a>priors &lt;-<span class="st"> </span><span class="kw">data.frame</span>(flat, diffuse, strong, bimodal) <span class="op">%&gt;%</span></span>
-<span id="cb24-2"><a href="16-3-the-prior.html#cb24-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(flat, diffuse, strong, bimodal))</span></code></pre></div>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="16-3-the-prior.html#cb606-1"></a>priors &lt;-<span class="st"> </span><span class="kw">data.frame</span>(flat, diffuse, strong, bimodal) <span class="op">%&gt;%</span></span>
+<span id="cb606-2"><a href="16-3-the-prior.html#cb606-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(flat, diffuse, strong, bimodal))</span></code></pre></div>
 <p>We can look at these to compare them. Note that the x-axis is the same in all of the plots below, so changes in the location, shape, and spread are all controlled by the differences in the parameters used to specify each of these priors.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="16-3-the-prior.html#cb25-1"></a><span class="kw">ggplot</span>(priors, <span class="kw">aes</span>(<span class="dt">x =</span> value, <span class="dt">color =</span> name, <span class="dt">fill =</span> name)) <span class="op">+</span></span>
-<span id="cb25-2"><a href="16-3-the-prior.html#cb25-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>) <span class="op">+</span></span>
-<span id="cb25-3"><a href="16-3-the-prior.html#cb25-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>name, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="16-3-the-prior.html#cb607-1"></a><span class="kw">ggplot</span>(priors, <span class="kw">aes</span>(<span class="dt">x =</span> value, <span class="dt">color =</span> name, <span class="dt">fill =</span> name)) <span class="op">+</span></span>
+<span id="cb607-2"><a href="16-3-the-prior.html#cb607-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>) <span class="op">+</span></span>
+<span id="cb607-3"><a href="16-3-the-prior.html#cb607-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>name, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-463-1.png" width="672" /></p>
 <p>You can see how different each of these priors is from one another. Hopefully, you are also starting to think about the different kinds of hypotheses that we might test with these different priors. In this case, the issue that we are always trying to address is whether or not survival (or whatever) is due only to random chance. This could be likened to asking whether or not a coin that we toss is a fair coin, or if it has some bias (say for example that it is more likely to land heads up because it is heavier on one side).</p>
 <p>Now that we have a prior distribution for our event of interest, we can go out into the world and collect some data about that event. We will then use those data to formulate a ‘posterior’ distribution that reflects some combination of our prior distribution and the data that we have collected. This process is commonly referred to as ‘updating’ our prior beliefs about the event of interest, and is the foundation that underlies Bayesian inference. How we get from the prior to a posterior is wholly dependent on the tools we use to obtain the solution to Bayes theorem, but most often this occurs through the use of Markov-chain Monte Carlo simulation. This approach allows us to work through Bayes theorem one set of values at a time to obtain a heuristic, simulation-based approach to solving for conditional probabilities. We will discuss this in some (but not too much!) detail as we move forward.</p>
 <p>Before moving on, it is important to note that our prior beliefs can potentially have a strong influence on the posterior distribution. This has been the subject of much controversy in the application of Bayesian inference to modern scientific study. Our goal in using prior information should not be to dominate the posterior with our prior beliefs in biological and ecological studies, specifically. It should be to support improved inference through the inclusion of relevant information, and can be extremely helpful for situations in which data are somewhat deficient. We want our data to dominate the form of the posterior distributions that result from our analyses. If this is not the case, then we need to be explicit about this and should almost always attempt to evaluate the “sensitivity” of our posterior distribution(s) to the prior(s) we have chosen. This is a field of ongoing development in specific disciplines, and I encourage you to seek out the relevant literature on the matter if you intend to use Bayesian inference in your own research.</p>

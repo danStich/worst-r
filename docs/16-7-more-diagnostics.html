@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="16-6-running-a-bayesian-model-with-rstanarm.html"/>
-<link rel="next" href="16-8-model-selection.html"/>
+<link rel="next" href="16-8-bayesian-model-selection.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -374,10 +376,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.7.2" data-path="16-7-more-diagnostics.html"><a href="16-7-more-diagnostics.html#colinearity"><i class="fa fa-check"></i><b>16.7.2</b> Colinearity</a></li>
 <li class="chapter" data-level="16.7.3" data-path="16-7-more-diagnostics.html"><a href="16-7-more-diagnostics.html#divergence"><i class="fa fa-check"></i><b>16.7.3</b> Divergence</a></li>
 </ul></li>
-<li class="chapter" data-level="16.8" data-path="16-8-model-selection.html"><a href="16-8-model-selection.html"><i class="fa fa-check"></i><b>16.8</b> Model selection</a></li>
+<li class="chapter" data-level="16.8" data-path="16-8-bayesian-model-selection.html"><a href="16-8-bayesian-model-selection.html"><i class="fa fa-check"></i><b>16.8</b> Model selection</a></li>
 <li class="chapter" data-level="16.9" data-path="16-9-summarizing-results.html"><a href="16-9-summarizing-results.html"><i class="fa fa-check"></i><b>16.9</b> Summarizing results</a></li>
 <li class="chapter" data-level="16.10" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>16.10</b> Making predictions</a></li>
 <li class="chapter" data-level="16.11" data-path="16-11-next-16.html"><a href="16-11-next-16.html"><i class="fa fa-check"></i><b>16.11</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="17-Chapter17.html"><a href="17-Chapter17.html"><i class="fa fa-check"></i><b>17</b> Logistic regression</a><ul>
+<li class="chapter" data-level="17.1" data-path="17-1-intro17.html"><a href="17-1-intro17.html"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html"><i class="fa fa-check"></i><b>17.2</b> Binary (logistic) regression</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-explanation"><i class="fa fa-check"></i><b>17.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="17.2.2" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-analysis"><i class="fa fa-check"></i><b>17.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="17.2.3" data-path="12-4-logistic.html"><a href="12-4-logistic.html#interpreting-the-results"><i class="fa fa-check"></i><b>17.2.3</b> Interpreting the results</a></li>
+<li class="chapter" data-level="17.2.4" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#interpretting-categorical-effects"><i class="fa fa-check"></i><b>17.2.4</b> Interpretting categorical effects</a></li>
+<li class="chapter" data-level="17.2.5" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#interpretting-continuous-effects"><i class="fa fa-check"></i><b>17.2.5</b> Interpretting continuous effects</a></li>
+<li class="chapter" data-level="17.2.6" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>17.2.6</b> Making predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="12-5-next12.html"><a href="12-5-next12.html#next12"><i class="fa fa-check"></i><b>17.3</b> Next steps</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -406,31 +420,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="trace-plots" class="section level3">
 <h3><span class="header-section-number">16.7.1</span> Trace plots</h3>
 <p>In the plot below, the x-axes are model iteration number. Each point on a line shows the parameter value drawn for each chain (of 4 that are run by default) for each iteration that we ran the model (default = 4,000 runs). We can see that there is a high degree of overlap between the four chains, which should inspire some confidence because it means that all of the chains converged on a similar space in each panel (parameter) below.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="16-7-more-diagnostics.html#cb32-1"></a><span class="kw">library</span>(bayesplot)</span></code></pre></div>
-<pre><code>## This is bayesplot version 1.7.2</code></pre>
-<pre><code>## - Online documentation and vignettes at mc-stan.org/bayesplot</code></pre>
-<pre><code>## - bayesplot theme set to bayesplot::theme_default()</code></pre>
-<pre><code>##    * Does _not_ affect other ggplot2 plots</code></pre>
-<pre><code>##    * See ?bayesplot_theme_set for details on theme setting</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="16-7-more-diagnostics.html#cb38-1"></a><span class="kw">mcmc_trace</span>(cray_model, <span class="dt">facet_args =</span> <span class="kw">list</span>(<span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-23-1.png" width="576" /></p>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="16-7-more-diagnostics.html#cb614-1"></a><span class="kw">library</span>(bayesplot)</span>
+<span id="cb614-2"><a href="16-7-more-diagnostics.html#cb614-2"></a><span class="kw">mcmc_trace</span>(cray_model, <span class="dt">facet_args =</span> <span class="kw">list</span>(<span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>))</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-469-1.png" width="576" /></p>
 </div>
 <div id="colinearity" class="section level3">
 <h3><span class="header-section-number">16.7.2</span> Colinearity</h3>
 <p>Next, we can take a look at the <strong>pairs plot</strong> to see whether there are any obvious correlations of concern between our parameters. As anticipated, everything looks okay here, except we do see that we have a pretty strong correlation between our intercept and slope parameters. This is not important for this specific analysis, but we would want to consider this if we were estimating slopes and intercepts independently for each population (<code>site</code>) in the data set.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="16-7-more-diagnostics.html#cb39-1"></a><span class="kw">mcmc_pairs</span>(</span>
-<span id="cb39-2"><a href="16-7-more-diagnostics.html#cb39-2"></a>  cray_model,</span>
-<span id="cb39-3"><a href="16-7-more-diagnostics.html#cb39-3"></a>  <span class="dt">np =</span> <span class="kw">nuts_params</span>(cray_model),</span>
-<span id="cb39-4"><a href="16-7-more-diagnostics.html#cb39-4"></a>  <span class="dt">off_diag_args =</span> <span class="kw">list</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>)</span>
-<span id="cb39-5"><a href="16-7-more-diagnostics.html#cb39-5"></a>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="16-7-more-diagnostics.html#cb615-1"></a><span class="kw">mcmc_pairs</span>(</span>
+<span id="cb615-2"><a href="16-7-more-diagnostics.html#cb615-2"></a>  cray_model,</span>
+<span id="cb615-3"><a href="16-7-more-diagnostics.html#cb615-3"></a>  <span class="dt">np =</span> <span class="kw">nuts_params</span>(cray_model),</span>
+<span id="cb615-4"><a href="16-7-more-diagnostics.html#cb615-4"></a>  <span class="dt">off_diag_args =</span> <span class="kw">list</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>)</span>
+<span id="cb615-5"><a href="16-7-more-diagnostics.html#cb615-5"></a>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-470-1.png" width="672" /></p>
 </div>
 <div id="divergence" class="section level3">
 <h3><span class="header-section-number">16.7.3</span> Divergence</h3>
 <p>Not like the movies, like “does not follow expectation”. Divergent transitions are an indication that something has gone wrong in your model. You can read more about them here someday, once you understand the first three paragraphs in this section of the Stan Manual [(Chapter 15.5)] (<a href="https://mc-stan.org/docs/2_25/reference-manual/divergent-transitions.html" class="uri">https://mc-stan.org/docs/2_25/reference-manual/divergent-transitions.html</a>). For now, understand that divergence in this sense is a bad thing and it probably means you have a problem with the model that you’ve created. It doesn’t mean you have to throw your data in the garbage. There are some tools in Stan to account for this. But, this is usually a good sign that there is at least something in your model you could change to make it easier to estimate. This could mean changing the likelihood, transforming the data, or re-casting it in another way. Even though that can be scary, we still need to take a look!</p>
 <p>By default, models fit using RStan will throw a warning if there are divergent transitions. You can get a quick of whether or not this is an issue like so:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="16-7-more-diagnostics.html#cb40-1"></a><span class="kw">mcmc_nuts_divergence</span>(<span class="kw">nuts_params</span>(cray_model), <span class="kw">log_posterior</span>(cray_model))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="16-7-more-diagnostics.html#cb616-1"></a><span class="kw">mcmc_nuts_divergence</span>(<span class="kw">nuts_params</span>(cray_model), <span class="kw">log_posterior</span>(cray_model))</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-471-1.png" width="672" /></p>
 <p>Again, no problems here as far as we are concerned. We will address any further issues related to divergence as they arise later in the textbook or class.</p>
 </div>
 </div>
@@ -440,7 +449,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="16-6-running-a-bayesian-model-with-rstanarm.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="16-8-model-selection.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="16-8-bayesian-model-selection.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

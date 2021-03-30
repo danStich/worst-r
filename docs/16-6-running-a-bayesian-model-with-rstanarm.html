@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -374,10 +376,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.7.2" data-path="16-7-more-diagnostics.html"><a href="16-7-more-diagnostics.html#colinearity"><i class="fa fa-check"></i><b>16.7.2</b> Colinearity</a></li>
 <li class="chapter" data-level="16.7.3" data-path="16-7-more-diagnostics.html"><a href="16-7-more-diagnostics.html#divergence"><i class="fa fa-check"></i><b>16.7.3</b> Divergence</a></li>
 </ul></li>
-<li class="chapter" data-level="16.8" data-path="16-8-model-selection.html"><a href="16-8-model-selection.html"><i class="fa fa-check"></i><b>16.8</b> Model selection</a></li>
+<li class="chapter" data-level="16.8" data-path="16-8-bayesian-model-selection.html"><a href="16-8-bayesian-model-selection.html"><i class="fa fa-check"></i><b>16.8</b> Model selection</a></li>
 <li class="chapter" data-level="16.9" data-path="16-9-summarizing-results.html"><a href="16-9-summarizing-results.html"><i class="fa fa-check"></i><b>16.9</b> Summarizing results</a></li>
 <li class="chapter" data-level="16.10" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>16.10</b> Making predictions</a></li>
 <li class="chapter" data-level="16.11" data-path="16-11-next-16.html"><a href="16-11-next-16.html"><i class="fa fa-check"></i><b>16.11</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="17-Chapter17.html"><a href="17-Chapter17.html"><i class="fa fa-check"></i><b>17</b> Logistic regression</a><ul>
+<li class="chapter" data-level="17.1" data-path="17-1-intro17.html"><a href="17-1-intro17.html"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html"><i class="fa fa-check"></i><b>17.2</b> Binary (logistic) regression</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-explanation"><i class="fa fa-check"></i><b>17.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="17.2.2" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-analysis"><i class="fa fa-check"></i><b>17.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="17.2.3" data-path="12-4-logistic.html"><a href="12-4-logistic.html#interpreting-the-results"><i class="fa fa-check"></i><b>17.2.3</b> Interpreting the results</a></li>
+<li class="chapter" data-level="17.2.4" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#interpretting-categorical-effects"><i class="fa fa-check"></i><b>17.2.4</b> Interpretting categorical effects</a></li>
+<li class="chapter" data-level="17.2.5" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#interpretting-continuous-effects"><i class="fa fa-check"></i><b>17.2.5</b> Interpretting continuous effects</a></li>
+<li class="chapter" data-level="17.2.6" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>17.2.6</b> Making predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="12-5-next12.html"><a href="12-5-next12.html#next12"><i class="fa fa-check"></i><b>17.3</b> Next steps</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -404,21 +418,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Any time we use a convenient wrapper in R, we sacrifice a little control, but for getting exposure to Bayesian methods I think this is a worthwhile sacrifice. Truth be told, I write all of my models out by hand because I often need to use non-standard models such as non-linear growth models and I need that control. The convenience and flexibility offered through the model-fitting functions in <code>rstanarm</code> alone will keep you more than busy until you reach a deeper level of understanding needed to write your own should you aspire to do so.</p>
 <p>Let’s go ahead and estimate a Gaussian GLM using <code>logMass</code> as our response and <code>loglength</code> as our explanatory variable.</p>
 <p>For the sake of simplicity, we’ll create new columns in the <code>cray</code> data for loglength and logmass:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb27-1"></a>cray &lt;-<span class="st"> </span>cray <span class="op">%&gt;%</span></span>
-<span id="cb27-2"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb27-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">loglength =</span> <span class="kw">log</span>(length),</span>
-<span id="cb27-3"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb27-3"></a>         <span class="dt">logmass =</span> <span class="kw">log</span>(mass)</span>
-<span id="cb27-4"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb27-4"></a>         )</span></code></pre></div>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb609-1"></a>cray &lt;-<span class="st"> </span>cray <span class="op">%&gt;%</span></span>
+<span id="cb609-2"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb609-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">loglength =</span> <span class="kw">log</span>(length),</span>
+<span id="cb609-3"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb609-3"></a>         <span class="dt">logmass =</span> <span class="kw">log</span>(mass)</span>
+<span id="cb609-4"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb609-4"></a>         )</span></code></pre></div>
 <p>The next thing we’ll do is tell R to set up some options for Stan to make things work faster. <strong>We only need to do this once per R session.</strong></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb28-1"></a>rstan<span class="op">::</span><span class="kw">rstan_options</span>(<span class="dt">auto_write =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb28-2"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb28-2"></a><span class="kw">options</span>(<span class="dt">mc.cores =</span> parallel<span class="op">::</span><span class="kw">detectCores</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb610-1"></a>rstan<span class="op">::</span><span class="kw">rstan_options</span>(<span class="dt">auto_write =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb610-2"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb610-2"></a><span class="kw">options</span>(<span class="dt">mc.cores =</span> parallel<span class="op">::</span><span class="kw">detectCores</span>())</span></code></pre></div>
 <p>Now, we can fit our first Bayesian model. We will do this using basically the same approach that we use in R:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb29-1"></a>cray_model &lt;-<span class="st"> </span><span class="kw">stan_glm</span>(logmass <span class="op">~</span><span class="st"> </span>loglength,</span>
-<span id="cb29-2"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb29-2"></a>         <span class="dt">family =</span> <span class="kw">gaussian</span>(),</span>
-<span id="cb29-3"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb29-3"></a>         <span class="dt">data =</span> cray</span>
-<span id="cb29-4"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb29-4"></a>         )</span></code></pre></div>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb611-1"></a>cray_model &lt;-<span class="st"> </span><span class="kw">stan_glm</span>(logmass <span class="op">~</span><span class="st"> </span>loglength,</span>
+<span id="cb611-2"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb611-2"></a>         <span class="dt">family =</span> <span class="kw">gaussian</span>(),</span>
+<span id="cb611-3"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb611-3"></a>         <span class="dt">data =</span> cray</span>
+<span id="cb611-4"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb611-4"></a>         )</span></code></pre></div>
 <p>This model tests the null hypothesis that the log length of crayfish has no influence on log mass (slope = 0).</p>
 <p>We can have a look at a quick <code>summary()</code> of our model in the usual way:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb30-1"></a><span class="kw">summary</span>(cray_model)</span></code></pre></div>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb612-1"></a><span class="kw">summary</span>(cray_model)</span></code></pre></div>
 <pre><code>## 
 ## Model Info:
 ##  function:     stan_glm
@@ -444,11 +458,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## MCMC diagnostics
 ##               mcse Rhat n_eff
-## (Intercept)   0.0  1.0  4359 
-## loglength     0.0  1.0  4352 
-## sigma         0.0  1.0  2908 
-## mean_PPD      0.0  1.0  3484 
-## log-posterior 0.0  1.0  1818 
+## (Intercept)   0.0  1.0  4378 
+## loglength     0.0  1.0  4338 
+## sigma         0.0  1.0  2374 
+## mean_PPD      0.0  1.0  3414 
+## log-posterior 0.0  1.0  1703 
 ## 
 ## For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure of effective sample size, and Rhat is the potential scale reduction factor on split chains (at convergence Rhat=1).</code></pre>
 <p>If you look closely at the output above, you should be able to recognize that just as with the <code>glm()</code> function we get a brief summary of our coefficients in the <code>Estimates</code> portion of the output.</p>

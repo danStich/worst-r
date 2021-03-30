@@ -134,6 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -374,10 +376,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.7.2" data-path="16-7-more-diagnostics.html"><a href="16-7-more-diagnostics.html#colinearity"><i class="fa fa-check"></i><b>16.7.2</b> Colinearity</a></li>
 <li class="chapter" data-level="16.7.3" data-path="16-7-more-diagnostics.html"><a href="16-7-more-diagnostics.html#divergence"><i class="fa fa-check"></i><b>16.7.3</b> Divergence</a></li>
 </ul></li>
-<li class="chapter" data-level="16.8" data-path="16-8-model-selection.html"><a href="16-8-model-selection.html"><i class="fa fa-check"></i><b>16.8</b> Model selection</a></li>
+<li class="chapter" data-level="16.8" data-path="16-8-bayesian-model-selection.html"><a href="16-8-bayesian-model-selection.html"><i class="fa fa-check"></i><b>16.8</b> Model selection</a></li>
 <li class="chapter" data-level="16.9" data-path="16-9-summarizing-results.html"><a href="16-9-summarizing-results.html"><i class="fa fa-check"></i><b>16.9</b> Summarizing results</a></li>
 <li class="chapter" data-level="16.10" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>16.10</b> Making predictions</a></li>
 <li class="chapter" data-level="16.11" data-path="16-11-next-16.html"><a href="16-11-next-16.html"><i class="fa fa-check"></i><b>16.11</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="17-Chapter17.html"><a href="17-Chapter17.html"><i class="fa fa-check"></i><b>17</b> Logistic regression</a><ul>
+<li class="chapter" data-level="17.1" data-path="17-1-intro17.html"><a href="17-1-intro17.html"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html"><i class="fa fa-check"></i><b>17.2</b> Binary (logistic) regression</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-explanation"><i class="fa fa-check"></i><b>17.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="17.2.2" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-analysis"><i class="fa fa-check"></i><b>17.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="17.2.3" data-path="12-4-logistic.html"><a href="12-4-logistic.html#interpreting-the-results"><i class="fa fa-check"></i><b>17.2.3</b> Interpreting the results</a></li>
+<li class="chapter" data-level="17.2.4" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#interpretting-categorical-effects"><i class="fa fa-check"></i><b>17.2.4</b> Interpretting categorical effects</a></li>
+<li class="chapter" data-level="17.2.5" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#interpretting-continuous-effects"><i class="fa fa-check"></i><b>17.2.5</b> Interpretting continuous effects</a></li>
+<li class="chapter" data-level="17.2.6" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>17.2.6</b> Making predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="12-5-next12.html"><a href="12-5-next12.html#next12"><i class="fa fa-check"></i><b>17.3</b> Next steps</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -406,7 +420,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>During the next several chapters, I am hoping that we can dive in to the basic underpinnings of the Bayesian framework for scientific inference, along with maximum likelihood estimation, as we move through more complex extensions of linear models. The Bayesian framework has been around for a long time, but only recently has it become really broadly applicable to common analytical problems. There are some fundamental (and philosophical) differences between the use of maximum likelihood estimation (aka “frequentist”) methods and the application of Bayes theorem for answering statistical questions. I am hoping we can touch on some of these during our discussions and show the real, practical strengths of maximum likelihood and Bayesian inference that might actually make you want to use one or the other for certain applications.</p>
 <p>For better or worse, there is no way we can possibly do a comprehensive treatment of Bayesian statistics within the context of a survey-style, applied statistics course or textbook such as this. We can, however, set you up with some basic tools so you can apply Bayesian inference to commonly encountered situations (t-tests, regression, ANOVA, ANCOVA, GLM, LMM, and GLMM) that should allow you to explore these concepts on your own in the future. To achieve this, I would like for us to cover some Bayesian analogs to some of frequentist tests that we have considered so far this semester. For this reason, we will explore maximum likelihood and Bayesian estimation methods side by side while learning new techniques during class.</p>
 <p>Even though we are switching out our estimation method in this Part, we’ll continue to work with the <code>tidyverse</code>. Be sure to load it whenever you are ready to get started.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="16-1-intro-16.html#cb1-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="16-1-intro-16.html#cb583-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <div id="installing-rstan" class="section level3">
 <h3><span class="header-section-number">16.1.1</span> Installing RStan</h3>
 <p>For this book, we will introduce Bayesian estimation using a similar approach to what we learned for GLM. You need to <strong>pause here</strong> and <strong>appreciate how ridiculously easy folks have made this for you</strong>. I used to teach students how to code each of their models by hand in this class. We had to package the data in special ways, write out separate model files with pre-defined likelihoods, and manage the monstrous results lists by hand. Now, thanks to the functionality provided by packages such as <a href="http://mc-stan.org/rstan/"><code>RStan</code></a> and <a href="https://cran.r-project.org/web/packages/rstanarm/index.html"><code>rstanarm</code></a> you can do this without ever leaving the comfort of R. Do also note that the real power as a modeler still lays in the ability to formulate and specify these models explicitly. This opens up whole new possibilities for model and data structuring that can’t be achieved in any single R package. But, that is for another course and a <em>much</em> better textbook (eventually I will add citations…or not…this is The Worst Stats Text eveR). We will discuss how the actual estimation works as we go along (and in a less diffuse fashion in class), but you’ll need to spend a significant amount of time on your own if you are looking for a deep understanding of the mechanics. You’ll probably want to build up to the <a href="https://mc-stan.org/docs/2_25/reference-manual/index.html#overview">Stan User Manual</a> rather than starting there if this is your first exposure to Bayesian estimation methods.</p>
@@ -417,7 +431,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Step 2</strong>: Install Rstan following the next step on the same wiki <a href="https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started#installation-of-rstan">here</a>.</p>
 <p><strong>Step 3</strong>: Install the <code>rstanarm</code> package by running: <code>install.packages("rstanarm")</code>.</p>
 <p>Once, you’ve done that, don’t forget to load it:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="16-1-intro-16.html#cb2-1"></a><span class="kw">library</span>(rstanarm)</span></code></pre></div>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="16-1-intro-16.html#cb584-1"></a><span class="kw">library</span>(rstanarm)</span></code></pre></div>
 </div>
 </div>
             </section>
