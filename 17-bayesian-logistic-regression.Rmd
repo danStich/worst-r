@@ -332,6 +332,6 @@ ggplot(choice_preds, aes(x = flow, y = fit, fill = year)) +
 You can see that, in general, there is a relatively low probability of an individual fish using the Stillwater Branch, but we see increasing probability of using that route with increasing `flow` across years. 
 
 
-## Next steps {#next12}
+## Next steps {#next17}
 
 Here we have demonstrated similarities between the GLM and the models with which we have worked previously. You should realize now that the linear models we've been using are really just a special kind of GLM that uses a "normal" or "Gaussian" error distribution. If we think about what kind of data we actually have, this can open up lots of other "non-normal" options without scaring the life out of us! Hopefully, logistic regression is now a useful tool in your statistical hardware box. Finally, you should also appreciate that we have multiple methods (OLS, MLE, Bayesian) for estimating these models and they all work in similar ways with slightly different approaches. Next, we'll look at how to keep extending this GLM framework for analysis of **count** data in [Chapter 18](#Chapter18).

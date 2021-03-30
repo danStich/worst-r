@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="17-1-intro17.html"/>
-<link rel="next" href="17-3-next12.html"/>
+<link rel="next" href="17-3-next17.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -388,7 +388,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.2.4" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#continuous-17"><i class="fa fa-check"></i><b>17.2.4</b> Continuous effects</a></li>
 <li class="chapter" data-level="17.2.5" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#predictions-17"><i class="fa fa-check"></i><b>17.2.5</b> Making predictions</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="12-5-next12.html"><a href="12-5-next12.html#next12"><i class="fa fa-check"></i><b>17.3</b> Next steps</a></li>
+<li class="chapter" data-level="17.3" data-path="17-3-next17.html"><a href="17-3-next17.html"><i class="fa fa-check"></i><b>17.3</b> Next steps</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -492,15 +492,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-2"><a href="17-2-logistic-17.html#cb13-2"></a>mod_table</span></code></pre></div>
 <pre><code>##                                 elpd_diff se_diff
 ## year + flow                      0.0       0.0   
-## year + hatchery + flow           0.0       1.5   
-## year + length + flow            -0.3       1.1   
+## year + hatchery + flow          -0.2       1.4   
+## year + length + flow            -0.3       1.2   
 ## year + hatchery + length + flow -1.0       1.5   
 ## year + hatchery                 -2.2       3.0   
-## year + length                   -2.8       2.8   
-## year + length + hatchery        -3.4       3.0</code></pre>
+## year + length                   -2.8       2.9   
+## year + length + hatchery        -3.2       3.0</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="17-2-logistic-17.html#cb15-1"></a><span class="co"># Look at the structure just to show that it is, indeed, an object:</span></span>
 <span id="cb15-2"><a href="17-2-logistic-17.html#cb15-2"></a><span class="kw">str</span>(mod_table)</span></code></pre></div>
-<pre><code>##  &#39;compare.loo&#39; num [1:7, 1:8] 0 -0.0354 -0.2726 -1.0399 -2.155 ...
+<pre><code>##  &#39;compare.loo&#39; num [1:7, 1:8] 0 -0.159 -0.253 -0.961 -2.243 ...
 ##  - attr(*, &quot;dimnames&quot;)=List of 2
 ##   ..$ : chr [1:7] &quot;year + flow&quot; &quot;year + hatchery + flow&quot; &quot;year + length + flow&quot; &quot;year + hatchery + length + flow&quot; ...
 ##   ..$ : chr [1:8] &quot;elpd_diff&quot; &quot;se_diff&quot; &quot;elpd_loo&quot; &quot;se_elpd_loo&quot; ...</code></pre>
@@ -525,31 +525,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Estimates:
 ##               mean   sd     10%    50%    90% 
-## (Intercept) -2.975  0.784 -3.980 -2.956 -1.964
-## year2006    -0.520  0.617 -1.315 -0.508  0.255
-## year2009     0.274  0.459 -0.312  0.272  0.859
-## year2010    -0.009  0.641 -0.818 -0.009  0.813
-## year2011    -0.800  0.411 -1.327 -0.797 -0.279
-## year2012    -0.775  0.518 -1.433 -0.778 -0.118
+## (Intercept) -2.979  0.810 -4.031 -2.973 -1.937
+## year2006    -0.510  0.625 -1.309 -0.522  0.299
+## year2009     0.272  0.469 -0.326  0.271  0.884
+## year2010    -0.003  0.661 -0.830 -0.017  0.872
+## year2011    -0.799  0.407 -1.332 -0.797 -0.286
+## year2012    -0.763  0.526 -1.434 -0.756 -0.097
 ## flow         0.002  0.001  0.001  0.002  0.002
 ## 
 ## Fit Diagnostics:
 ##            mean   sd    10%   50%   90%
-## mean_PPD 0.128  0.017 0.108 0.128 0.150
+## mean_PPD 0.129  0.017 0.108 0.128 0.150
 ## 
 ## The mean_ppd is the sample average posterior predictive distribution of the outcome variable (for details see help(&#39;summary.stanreg&#39;)).
 ## 
 ## MCMC diagnostics
 ##               mcse  Rhat  n_eff
-## (Intercept)   0.021 1.002 1364 
-## year2006      0.016 1.003 1518 
-## year2009      0.012 1.004 1515 
-## year2010      0.017 1.002 1398 
-## year2011      0.009 1.001 1968 
-## year2012      0.013 1.001 1699 
-## flow          0.000 1.001 1694 
-## mean_PPD      0.000 0.999 3838 
-## log-posterior 0.049 1.003 1457 
+## (Intercept)   0.024 1.003 1179 
+## year2006      0.017 1.002 1421 
+## year2009      0.013 1.002 1317 
+## year2010      0.019 1.002 1244 
+## year2011      0.010 1.000 1567 
+## year2012      0.014 1.002 1345 
+## flow          0.000 1.002 1524 
+## mean_PPD      0.000 1.001 3611 
+## log-posterior 0.049 1.001 1496 
 ## 
 ## For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure of effective sample size, and Rhat is the potential scale reduction factor on split chains (at convergence Rhat=1).</code></pre>
 <p>Great! Let’s save this to an object so we can work with it a little easier.</p>
@@ -558,7 +558,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="17-2-logistic-17.html#cb22-1"></a>r_squared &lt;-<span class="st"> </span><span class="kw">bayes_R2</span>(best_mod)</span>
 <span id="cb22-2"><a href="17-2-logistic-17.html#cb22-2"></a></span>
 <span id="cb22-3"><a href="17-2-logistic-17.html#cb22-3"></a><span class="kw">mean</span>(r_squared)</span></code></pre></div>
-<pre><code>## [1] 0.05029358</code></pre>
+<pre><code>## [1] 0.04997633</code></pre>
 <p>Meh, about average for an ecological study, but that doesn’t mean it is good. What we are really after here is just a good idea of what proportion of fish use this route and whether it can be reasonably well related to discharge, so we’ll keep pressing along to see if we have that.</p>
 <p>Let’s wrap our interpretation of results by looking at coefficient estimates as indicators of statistical significance.</p>
 <p>First, we could extract just the parameters for ease:</p>
@@ -603,7 +603,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If we are interested in whether the true difference is equal to zero (null) then we can calculate quantiles:</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="17-2-logistic-17.html#cb31-1"></a><span class="kw">quantile</span>(difference, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##       2.5%      97.5% 
-## 0.03022314 0.18921125</code></pre>
+## 0.02916157 0.18776752</code></pre>
 <p>In this case, there is at least a 95% chance that the probability of smolts using the Stillwater Branch varies between 2009 and 2011, so we can conclude that the effect is significant at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
 <p>We can also plot a histogram of the differences really easily now that it is just a vector in R:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="17-2-logistic-17.html#cb33-1"></a><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
@@ -624,7 +624,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Interpreting significance and direction of continuous effects is a little more straightforward. In this case, we just need to determine whether the posterior estimate of the coefficient for continuous explanatory variables differs from zero or another value of interest.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="17-2-logistic-17.html#cb34-1"></a><span class="kw">quantile</span>(coeffs<span class="op">$</span>flow, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##         2.5%        97.5% 
-## 0.0004491177 0.0028834059</code></pre>
+## 0.0004372861 0.0029065343</code></pre>
 <p>It was really hard to see in the coefficients plot due to differences in scale, so we can make a histogram of this one to visualize that difference as well.</p>
 </div>
 <div id="predictions-17" class="section level3">
@@ -664,7 +664,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="17-1-intro17.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="17-3-next12.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="17-3-next17.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
