@@ -134,8 +134,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-what-is-r.html"><a href="1-1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-why-should-i-use-r.html"><a href="1-2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
@@ -381,15 +379,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.10" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>16.10</b> Making predictions</a></li>
 <li class="chapter" data-level="16.11" data-path="16-11-next-16.html"><a href="16-11-next-16.html"><i class="fa fa-check"></i><b>16.11</b> Next steps</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="17-Chapter17.html"><a href="17-Chapter17.html"><i class="fa fa-check"></i><b>17</b> Logistic regression</a><ul>
+<li class="chapter" data-level="17" data-path="17-Chapter17.html"><a href="17-Chapter17.html"><i class="fa fa-check"></i><b>17</b> Bayesian Logistic regression</a><ul>
 <li class="chapter" data-level="17.1" data-path="17-1-intro17.html"><a href="17-1-intro17.html"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
 <li class="chapter" data-level="17.2" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html"><i class="fa fa-check"></i><b>17.2</b> Binary (logistic) regression</a><ul>
-<li class="chapter" data-level="17.2.1" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-explanation"><i class="fa fa-check"></i><b>17.2.1</b> Data Explanation</a></li>
-<li class="chapter" data-level="17.2.2" data-path="12-4-logistic.html"><a href="12-4-logistic.html#data-analysis"><i class="fa fa-check"></i><b>17.2.2</b> Data analysis</a></li>
-<li class="chapter" data-level="17.2.3" data-path="12-4-logistic.html"><a href="12-4-logistic.html#interpreting-the-results"><i class="fa fa-check"></i><b>17.2.3</b> Interpreting the results</a></li>
-<li class="chapter" data-level="17.2.4" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#interpretting-categorical-effects"><i class="fa fa-check"></i><b>17.2.4</b> Interpretting categorical effects</a></li>
-<li class="chapter" data-level="17.2.5" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#interpretting-continuous-effects"><i class="fa fa-check"></i><b>17.2.5</b> Interpretting continuous effects</a></li>
-<li class="chapter" data-level="17.2.6" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>17.2.6</b> Making predictions</a></li>
+<li class="chapter" data-level="17.2.1" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#data-17"><i class="fa fa-check"></i><b>17.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="17.2.2" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#analysis-17"><i class="fa fa-check"></i><b>17.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="17.2.3" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#interpretting-17"><i class="fa fa-check"></i><b>17.2.3</b> Interpreting the results</a></li>
+<li class="chapter" data-level="17.2.4" data-path="17-2-logistic-17.html"><a href="17-2-logistic-17.html#continuous-17"><i class="fa fa-check"></i><b>17.2.4</b> Continuous effects</a></li>
+<li class="chapter" data-level="17.2.5" data-path="12-4-logistic.html"><a href="12-4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>17.2.5</b> Making predictions</a></li>
 </ul></li>
 <li class="chapter" data-level="17.3" data-path="12-5-next12.html"><a href="12-5-next12.html#next12"><i class="fa fa-check"></i><b>17.3</b> Next steps</a></li>
 </ul></li>
@@ -417,12 +414,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">17.1</span> Introduction</h2>
 <p>In this chapter, we will follow along with the case example from <a href="https://danstich.github.io/worst-r/12-Chapter12.html">Chapter 12</a> that examined a behavioral choice made by Atlantic salmon smolts while they migrated from streams to the ocean.</p>
 <p>We’ll work with some packages from the <code>tidyverse</code>, <code>rstan</code>, and <code>rstanarm</code>, and we’ll use the <code>StillwaterChoice</code> data from the class data folder. You can go ahead and load those whenever you are ready to get started.</p>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="17-1-intro17.html#cb634-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb634-2"><a href="17-1-intro17.html#cb634-2"></a><span class="kw">library</span>(rstan)</span>
-<span id="cb634-3"><a href="17-1-intro17.html#cb634-3"></a><span class="kw">library</span>(rstanarm)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="17-1-intro17.html#cb1-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="17-1-intro17.html#cb1-2"></a><span class="kw">library</span>(rstan)</span>
+<span id="cb1-3"><a href="17-1-intro17.html#cb1-3"></a><span class="kw">library</span>(rstanarm)</span></code></pre></div>
 <p>You can also set up some options for Stan right up front. Here I am telling rstan not to compile a model everytime I run one that is already compiled, and I am setting an option that tells R to detect the number of virtual “cores” on my computer so it can run models in parallel to speed things up. This means that instead of sampling all my Markov Chains serially one at a time I can sample each of them on a separate process on my computer.</p>
-<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="17-1-intro17.html#cb635-1"></a>rstan<span class="op">::</span><span class="kw">rstan_options</span>(<span class="dt">auto_write =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb635-2"><a href="17-1-intro17.html#cb635-2"></a><span class="kw">options</span>(<span class="dt">mc.cores =</span> parallel<span class="op">::</span><span class="kw">detectCores</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="17-1-intro17.html#cb2-1"></a>rstan<span class="op">::</span><span class="kw">rstan_options</span>(<span class="dt">auto_write =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb2-2"><a href="17-1-intro17.html#cb2-2"></a><span class="kw">options</span>(<span class="dt">mc.cores =</span> parallel<span class="op">::</span><span class="kw">detectCores</span>())</span></code></pre></div>
 </div>
             </section>
 

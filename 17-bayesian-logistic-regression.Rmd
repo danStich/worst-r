@@ -1,5 +1,5 @@
 
-# Logistic regression {#Chapter17}
+# Bayesian Logistic regression {#Chapter17}
 
 <img src="images/veligers.jpg" alt="">
 <p style="font-family: times, serif; font-size:.9em; font-style:italic">
@@ -45,11 +45,11 @@ head(choice)
 
 
 
-### Data Explanation
+### Data Explanation {#data-17}
 
 The full data explanation is provided in [Chapter 12.4](https://danstich.github.io/worst-r/12-4-logistic.html) and will not be repeat it here. Go check it out if you need a reminder of what data are in there.
 
-### Data analysis
+### Data analysis {#analysis-17}
 
 We are going to use the 1/0 binary data to estimate the effects of a number of covariates of interest on the probability that an individual fish used the Stillwater Branch for migration in each year of this study using logistic regression. 
   
@@ -143,7 +143,7 @@ mod_table <- loo_compare(loos)
 Nice.
 
 
-### Interpreting the results
+### Interpreting the results {#interpretting-17}
 This proceeds the same way for GLM as it does for linear models until we get to making predictions of the response based on our best model.
 
 Our model selection table is an object in R (*right*?), and we can reference that object using `$` notation, matrix notation `[ , ]`, or by calling `rownames()` to get the name for each of the models. Let's use this approach to get the best model from our candidate set.
@@ -165,7 +165,7 @@ rownames(mod_table)
 The rowname for the best model (the one at the top of the table) is `year + flow`. Print the model to see it as follows. Notice the back-ticks (``) around the model name to deal with spaces.
 
 ```{r}
-mods$`year + flow`
+print( mods$`year + flow`, digits = 3)
 ```
 
 Great! Let's save this to an object so we can work with it a little easier.
@@ -234,7 +234,7 @@ You can get a similar plot using the built-in `plot()` method for the fitted mod
 plot(best_mod)
 ```
 
-### Interpretting categorical effects
+#### Categorical effects {#categorical-17}
 
 Regardless of the method we use, we see there is a lot of variability between years and there is reasonable support to suggest that this variability is significant. How can we tell this? We don't have access to p-values like we do in MLE or OLS anymore because of how the likelihood is expressed in these models. Instead, we can do group-wise comparisons to determine specific differences but this becomes cumbersome when we have many levels.
 
@@ -281,7 +281,7 @@ ggplot() +
   )
 ```
 
-### Interpretting continuous effects
+### Continuous effects {#continuous-17}
 Interpreting significance and direction of continuous effects is a little more straightforward. In this case, we just need to determine whether the posterior estimate of the coefficient for continuous explanatory variables differs from zero or another value of interest.
 
 ```{r}
