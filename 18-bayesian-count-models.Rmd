@@ -1,0 +1,355 @@
+# GLM: Count models {#Chapter18}
+
+<img src="images/crabs.jpg" alt="">
+
+<p style="font-family: times, serif; font-size:.9em; font-style:italic">
+The majestic female horseshoe crab. Once she has one mate she might attract any number of other "satellite" males. How many? Let's find out, but first we'll need a good count model. </p>
+
+## Introduction {#intro18}
+
+In this chapter, we will follow along with the case example from [Chapter 13](https://danstich.github.io/worst-r/13-Chapter13.html) that examined attraction of satellite males to female horseshoe crabs.
+
+We'll work with some packages from the `tidyverse`, as well as the `rstanarm`, and `loo` packages. We'll use the `crabs` data from the class data folder. You can go ahead and load those whenever you are ready to get started.
+
+```{r, warning = FALSE, message = FALSE}
+library(tidyverse)
+library(rstanarm)
+library(loo)
+
+```
+
+## Poisson regression {#poisson-18}
+
+Poisson regression is useful for situations in which we have a response (independent variable) that is a count. These are discrete data that cannot be considered continuous because it is impossible for them to take on non-integer or non-negative values. Common examples of these types of responses include species count data in ecology, cell or colony counts in biology, and the number of respondents or patients reporting a side-effect or symptom of interest in health care studies.
+
+For the Poisson family, the link function that we will use is the "log" link function. This one is exactly what it sounds like. This link function allows us to work with data that are constrained to be non-negative, a desirable property when we are working with count data.
+
+We will walk through the `crabs` data set for both the Poisson and negative binomial examples, addressing some distributional assumptions and model fit along the way.
+
+```{r}
+# Read in the data. These data also are available through
+# the glm2 package in R.
+crabs <- read.csv("data/crabs.csv", header = TRUE)
+
+# Have a look-see
+head(crabs)
+
+```
+
+
+### Data explanation {#data-18}
+
+These data are described in [Chapter 13.2](https://danstich.github.io/worst-r/13-2-poisson-regression.html). If you need a reminder of what they are go ahead and check them out there.
+
+We are going to convert color to a `factor` to start because it is currently stored as a numeric variable.
+```{r}
+# We want to convert color to
+# a factor right off the bat
+crabs$color <- as.factor(crabs$color)
+```
+
+Next, we'll fit a "full" model that assumes the number of `satellites` is a function of `width`, `mass`, `spine` condition, and `color`.
+```{r}
+# Fit a model
+poisson_mod <- stan_glm(
+  satellites ~ width + mass + spine + color,
+  data = crabs,
+  family = poisson()
+)
+```
+
+Before we go any further, let's have a quick look at the model diagnostics using the methods we applied to linear models in [Chapter 9](#Chapter9). Right away, we can see that this model is not a very good fit to the data.
+
+First, put the fitted.values and the residuals from this `stanreg` object into a dataframe so we can plot them. I am using the same names that are assigned by `glm()` so I don't have to change my code.
+
+```{r}
+resids <- data.frame(.fitted = poisson_mod$fitted.values, 
+                     .resid = poisson_mod$residuals)
+```
+
+Now, we can plot them:
+
+```{r}
+ggplot(resids, aes(x = .fitted, y = .resid)) +
+  geom_jitter() +
+  xlab("Fitted values") +
+  ylab(expression(paste(epsilon)))
+```
+
+Just as in the models we fit with `glm()` in Chapter 13, a few things should jump right out at you from this plot. First, there is some kind of trend happening at the bottom of our plot where the residuals slant downward from left to right. That's something that should scream "not good!" at you, even if you don't know why. Second, this plot doesn't really make it look like our residuals are symmetrically distributed with a mean of zero. But, it is really hard to tell from this graph, especially because of the weird patterns at the bottom of the scatter plot.
+
+We can check this second concern using a histogram if we want to see if it "looks normal" like this:
+
+```{r}
+ggplot(resids, aes(x = .resid)) +
+  geom_histogram(bins = 25) +
+  xlab(expression(paste(epsilon)))
+```
+
+Now that we see it presented this way, it is pretty clear that our residuals are not symmetrically distributed around zero even if the mean is about zero. We could also calculate some descriptive statistics for the residuals to really nail this down.
+
+```{r}
+mean(poisson_mod$residuals)
+```
+
+Hmmm...the mean is fairly close to zero here, but we've already talked about the fact that the mean isn't a very good descriptive statistic for distributions that we suspect or know are not normal. What about the median as a measure of central tendency?
+
+```{r}
+median(poisson_mod$residuals)
+```
+
+Wow, okay, that is a bit more negative than the mean, and at this point we may start to question whether we can say that the residuals are normally distributed with a mean of zero. 
+
+So, why has this happened to us? Recall that the Poisson distribution is controlled by a single parameter, $\lambda$, that is both the mean and the variance of the distribution. If we had started by doing data exploration we would have, of course, noticed that even though the data represent counts, they are pretty clearly over-dispersed (variance is much larger than mean) and are indicative of a negative binomial sampling distribution.
+
+For now, we won't bother to look at the results or the predictions from this model because the link function is the same for Poisson and negative binomial, so we can get the results from the negative binomial regression in the same way later if that works. Plus, if our model is in violation of assumptions then the results will be unreliable anyway.
+
+
+## Negative binomial regression {#negbin-18}
+Okay, moving on with life, let's take a look at the negative binomial regression model as an alternative to Poisson regression. Truthfully, this is usually where I start these days, and then I might consider backing down to use of Poisson if all assumptions are actually verified (but, **this has literally never happened for me**).
+
+We will start this time by actually doing some data exploration before our analysis. This is really how we should have started above, but that would have ruined all the fun.
+
+First, look at the distribution of the data. Here, it should be pretty obvious to you by now that these are count data for which the mean is not equal to the variance...right?
+```{r}
+ggplot(crabs, aes(x = satellites)) + 
+  geom_histogram(bins = 15)
+```    
+
+If you think back to [Chapter 5](https://danstich.github.io/worst-r/5-Chapter5.html), you'll remember this is a pretty typical example of the negative binomial distribution.
+
+We can take a look at how this shakes out between our groups (`color`) as well.
+
+```{r}
+ggplot(
+  crabs,
+  aes(x = color, y = satellites, color = color, fill = color)) + 
+  geom_boxplot(alpha = 0.20, width = 0.25) +
+  xlab("Color") +
+  ylab("Number of satellites") +
+  theme_bw() +
+  theme(
+    axis.title.x = element_text(vjust = -1),
+    axis.title.y = element_text(vjust = 3)
+  )
+```
+
+And, you can see here that even within groups the distributions do not look like they are normal or like they have equal variances, so we will fit a GLM that assumes the response is drawn from a negative binomial distribution. 
+
+We can fit it with the GLM function like this using `rstanarm`:
+
+```{r}
+# Fit a model
+negbin_mod <- stan_glm(
+  satellites ~ width + mass + spine + color,
+  data = crabs,
+  family = neg_binomial_2()
+)
+```
+
+Play around with the two formulations above and see if there's a difference. *Clue*: there's not, really. Just two different ways to do the same thing. The functionality in the `glm` function only came around recently, that's all.
+
+Now, let's take a look at the distribution of the residuals. I am going to work with the object I fit using the `glm()` function. This time, we'll split our residuals out by `color` group so we can see where the problems are
+
+```{r}
+resids <- data.frame(.fitted = negbin_mod$fitted.values, 
+                     .resid = negbin_mod$residuals)
+
+crab_resids <- data.frame(crabs, resids)
+```
+
+Now, we can plot them:
+
+```{r}
+ggplot(crab_resids, aes(x = color, y = .resid)) +
+  geom_boxplot() +
+  xlab("Fitted values") +
+  ylab(expression(paste(epsilon)))
+```
+
+Now we are starting to look a lot more "normal" within groups, and we are getting more symmetrical in our residual sampling distributions. However, just as in Chapter 13, we notice that all the means in our boxplot above seem to be less than zero, which suggests some systematic bias in our residuals.
+
+**But**, how does this compare to the Poisson model for count data? We can use model selection to compare the Poisson model to the negative binomial model, since the response is the same in both cases.
+
+We can extract the estimated log likelihoods directly from the models:
+
+```{r}
+poisson_lik <- log_lik(poisson_mod)
+negbin_lik <- log_lik(negbin_mod)
+```
+
+And we can compute LOO-IC statistics using the `loo` package. Notice that here we get some warnings suggesting there are one or more problem observations (!) in the Poisson fit ("too high" or > 0.70) that seem to be mostly resolved using the negative binomial fit ("slightly high" or > 0.50).
+
+```{r}
+poisson_loo <- loo(poisson_lik)
+negbin_loo <- loo(negbin_lik)
+```
+
+Then, we can compare the models directly because they use the same response and link function:
+
+```{r}
+loo_compare(poisson_loo, negbin_loo)
+```
+
+
+The negative binomial model is clearly superior to the Poisson model here. 
+
+Now, with a reasonable model in hand we could proceed with data visualization, but we might also rather have a "good" model to work with instead of just one that is "good enough". It turns out that the real problem behind the weirdness in our residuals is actually due to an excess number of zero counts of `satellite` males on a lot of our females. This is very common in count data, where we might observe a lot of zeros before actually counting a success. For these cases, we'll need to deal with the issue these excessive zeros ("zero inflation") directly.
+
+
+## Zero inflation {#zinfl-18} 
+
+The fits of these two models, in reality, suggest the need to for what is becoming an increasingly common statistical tool: the zero inflated count model. Zero inflation (excess zeroes in count data) can arise by one of two mechanisms: true ("process") zeros and observational zeros that result from imperfect detection. There are a number of ways to handle these types of data.
+
+One approach to dealing with this is to use a **hurdle model**. The idea is to make two separate models: 1) a logistic regression model to help us determine which factors influence whether the phenomenon of interest even occurred (0 or 1), and 2) a count model to help us determine what factors influence with the frequency of occurrence given that it occurred in the first place. 
+
+When these models are linked mathematically, we call it a "mixture model" - an approach that has become very popular for accounting for imperfect detection when estimating abundance of organisms. For now, let's just look at the hurdle model for our crab data as the n-mixture approach falls solidly in the realm of "advanced" methods we'll not discuss in this decidedly Worst statistics book.
+
+### Step 1: Presence-absence
+First, we need to make a binary indicator variable to represent whether or not any satellites were present:
+
+```{r}
+# Make a new column for count
+# and absence (of satellite males)
+# and initialize to zero
+crabs$present <- 0
+
+# Assign a '1' if any satellites were
+# observed
+crabs$present[crabs$satellites > 0] <- 1
+```
+
+Now, the first step in the hurdle model is to fit a logistic regression model to predict how our response is affected by some combination of explanatory variables.
+
+```{r}
+hurdle_step1 <- stan_glm(
+  present ~ mass, 
+  data = crabs, 
+  family = binomial())
+```  
+
+Let's have a look at the estimated coefficient for `mass` from this model:
+
+```{r}
+coeffs <- data.frame(hurdle_step1)
+
+ggplot(coeffs, aes(x = mass)) + geom_histogram(bins = 50) 
+```
+
+Here we see that `mass` has a significant effect on whether or not *any* satellite males are present because zero is not included within the credible range of estimates. You could imagine fitting any number of plausible biological models for comparison using LOO-IC or elpd~loo~ at this point.
+
+### Step 2: Counts given presence
+
+Step 2 is to fit a count model to explain the effects of some combination of explanatory variables on the frequency with which the phenomenon occurs given that it ever occurred in the first place. **Note**: This does not have to be the same combination of explanatory variables. In fact, it is always conceivable that different processes influence these two distinct phenomena. As with the count-absence model, you could even fit a candidate set of models and proceed with model comparisons using LOO-IC.
+
+```{r}
+crabs2 <- crabs[crabs$satellites != 0, ]
+
+# Make a model relating the number
+# of satellite males to the mass
+# of female crabs
+hurdle_step2 <- stan_glm(
+  satellites ~ mass,
+  data = crabs2,
+  family = neg_binomial_2()
+)
+
+```
+
+From these results, we can see that our count models in the previous sections were really just picking up on the large number of zeroes in our data set. We know this because of the differences in the results between the models `hurdle_step1` and `hurdle_step2`. 
+
+Likewise, we can take another look at our model diagnostics for `hurdle_step2` to see if our diagnostic plots look more reasonable now.
+
+```{r}
+resids <- data.frame(.fitted = hurdle_step2$fitted.values, 
+                     .resid = hurdle_step2$residuals)
+```
+
+Now, we can plot them:
+
+```{r}
+ggplot(resids, aes(x = .fitted, y = .resid)) +
+  geom_jitter() +
+  xlab("Fitted values") +
+  ylab(expression(paste(epsilon)))
+```
+
+These residuals still aren't perfect, but they are a lot better than they were before. For now, we will go ahead and make some predictive plots to see how we did.
+
+### Predictions {#predict-counts}
+
+Now that we are finally happy with our residual plots (wow, that took a lot longer than fitting any of the models!) we can make a plot of our predictions against the raw data to see how we did.
+
+Let's start with the count/absence component that we fit in `hurdle_step1`:
+
+Remember, that `hurdle_step1` is just a logistic regression model, so our predictions will follow the same process as we did in [Chapter 12.4](https://danstich.github.io/worst-r/12-4-logistic.html#making-predictions). We'll use the `crabs` data to make and plot predictions for this one since we had presence-absence info for each crab.
+
+```{r}
+# Make predictions on the logit scale
+logit_preds <- data.frame( predict(hurdle_step1, se.fit = TRUE) )
+
+# Get 95% confidence intervals
+logit_preds$lwr <- logit_preds$fit + logit_preds$se.fit * qnorm(0.025)
+logit_preds$upr <- logit_preds$fit + logit_preds$se.fit * qnorm(0.975)
+
+# Invert the logit-link function
+logit_preds <- apply(logit_preds, 2, invlogit)
+
+# Combine the new masses and the predictions with which
+# they are associated
+pres_preds <- data.frame(crabs, logit_preds)
+```
+
+**Important:** Our hurdle model actually contains two models (`hurdle_step1` and `hurdle_step2`). The `hurdle_step1` component is actually **logistic regression** and therefore uses the **logit** link function that we introduced in [Chapter 12](#Chapter12), so we need to invert the logit to get the probability of a female having any `satellite` males as a function of `mass`. This is done in the code above. Make sure you understand how and why we do this!
+
+Once you've got that down, it's all over but the plotting. Here is how predicted probability of `satellite` male crab count changes across the range of observed female `mass`:
+
+```{r}
+ggplot(pres_preds, aes(x = mass, y = fit)) +
+  geom_line() +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, color = NULL), alpha = .3) +
+  scale_y_continuous(limits = c(0, 1)) +
+  xlab("Mass of female crab (g)") +
+  ylab("Probability of satellite male")
+```
+
+Finally, we can make a plot of the number of `satellite` males we would expect to see on a female crab given that she had attracted any males in the first place.
+
+**Also important:** We need to remember here that we have two different models. The first model `hurdle_step1` was a binary logistic regression, so it used the logit link. The second model `hurdle_step2` was a count model and used the log link. That means we need to invert the **log** link to get our predicted counts back on the real scale. 
+
+We will combine our predictions with the `crabs2` dataframe, which only contains observations for which there was at least one `satellite`.
+
+```{r}
+# Make predictions using step2 model and the crabs2 dataframe
+count_preds <- data.frame(predict(hurdle_step2, se.fit = TRUE))
+
+# Get 95% confidence intervals
+count_preds$lwr <- count_preds$fit + count_preds$se.fit * qnorm(0.025)
+count_preds$upr <- count_preds$fit + count_preds$se.fit * qnorm(0.975)
+
+# Invert the log link function
+count_preds <- apply(count_preds, 2, exp)
+
+# Combine the new masses and the predictions with which
+# they are associated - overwriting on the fly - yuck!!
+count_preds <- data.frame(crabs2, count_preds)
+```
+
+
+Here is a plot showing how the number of `satellite` males observed changes with the `mass` of female horseshoe crabs:
+
+```{r}
+ggplot(count_preds, aes(x = mass, y = satellites)) +
+  geom_jitter() +
+  geom_line(aes(y = fit)) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr, color = NULL), alpha = .3) +
+  xlab("Mass of female crab (kg)") +
+  ylab("Number of satellite males")
+```
+
+Well, it doesn't exactly inspire great confidence in the biological relationship between female horseshoe crab mass and the number of satellite males she attracts, but that is exactly why it is so important to communicate these effects
+
+## Next steps
+
+This chapter has provided an overview of GLMs that we can use for count data in Bayesian inference, and demonstrates one way to handle cases of skewed counts or (more extreme case) zero-inflated counts. These are common "problems" in biological and ecological data that are easily resolved within the flexible framework of GLM, which includes all of the other models we've looked at since [Chapter 6](#Chapter6). These tools have been extended in both MLE and Bayesian frameworks within the mark-recapture and occupancy realms that I strongly encourage you to check out if you think these data are representative of the kinds of data you collect - this should get you started though! In [Chapter 19](#Chapter19) and [Chapter 20](#Chapter20) we'll look at how to extend this framework even further (another umbrella) to include repeated observations and relatedness between groups when we introduce Bayesian hierarchical models.
+

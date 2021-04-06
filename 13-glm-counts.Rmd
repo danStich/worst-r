@@ -17,7 +17,7 @@ library(boot) # For inv.logit() function
 library(MASS) # For negative.binomial family in glm()
 ```
 
-## Poisson regression
+## Poisson regression {#poisson-13}
 Poisson regression is useful for situations in which we have a response (independent variable) that is a count. These are discrete data that cannot be considered continuous because it is impossible for them to take on non-integer or non-negative values. Common examples of these types of responses include species count data in ecology, cell or colony counts in biology, and the number of respondents or patients reporting a side-effect or symptom of interest in health care studies.
 
 For the Poisson family, the link function that we will use is the "log" link function. This one is exactly what it sounds like. This link function allows us to work with data that are constrained to be non-negative, a desirable property when we are working with count data.
@@ -35,7 +35,7 @@ str(crabs)
 ```
 
 
-### Data explanation
+### Data explanation {#data-13}
 These data represent the number of satellite male horseshoe crabs per female (rows) in relation to a number of characteristics of the females. Here, our response of interest is `satellites` and the female characteristics are our explanatory (independent) variables. These include female color, spine condition, carapace width, and mass (g).
 
 The full citation for the paper on which this data set is based is here:
@@ -72,7 +72,7 @@ This brings us to the next important point we need to make about GLMS...
 
 > Even though we are relaxing the assumptions of linear models, we still need to check to make sure the models we use are valid with respect to our assumptions.
 
-This will become considerably more complicated as we begin to move into distributions other than the binomial and the Poisson, as our standard methods become less and less applicable and in-depth model validation becomes more obscure and more involved.
+This will become considerably more complicated as we begin to move into distributions other than the binomial and the Poisson, as our standard methods become less and less applicable and in-depth model validation becomes more obscure and more involved (but more important!).
 
 So, what is going on here? At this point a few things should jump out at you from this plot. First, there is some kind of trend happening at the bottom of our plot where the residuals slant downward from left to right. That's something that should scream "not good!" at you, even if you don't know why. Second, this plot doesn't really make it look like our residuals are symmetrically distributed with a mean of zero. But, it is really hard to tell from this graph, especially because of the weird patterns at the bottom of the scatter plot.
 
@@ -162,7 +162,7 @@ AIC(count_mod, neg_mod)
 Clearly the negative binomial model is far superior to the Poisson model here. Now, with a reasonable model in hand we could proceed with data visualization, but we might also rather have a "good" model to work with instead of just one that is "good enough". It turns out that the really problem behind the weirdness in our residuals is actually due to an excess number of zero counts of `satellite` males on a lot of our females. This is actually really common in count data, where we might observe a lot of zeros before actually counting a success. And, once we have one success (e.g. a parasite infection or illness), we often have extreme events with lots of successes. For example, it might take a while to find a fish with a parasite, or a human with a specific illness, but then that individual could have dozens or hundreds of parasites, or the illness might pop up in a cluster of hundreds of individuals in one location depending on the intensity of the infection. For these cases, we'll need to deal with the issue these excessive zeros ("zero inflation") directly.
 
 
-## Zero inflation 
+## Zero inflation {#zinf-13}
 
 The fits of these two models, in reality, suggest the need to for what is becoming an increasingly common statistical tool: the zero inflated count model. Zero inflation (excess zeroes in count data) can arise by one of two mechanisms: true ("process") zeros and observational zeros that result from imperfect detection.
 
@@ -221,7 +221,7 @@ ggplot(step2, aes(x = .fitted, y = .resid)) +
 
 Here, we can see that our residual plots indicate a pretty drastic improvement.
 
-### Predictions {#predict-counts}
+### Predictions {#predict-13}
 
 Now that we are finally happy with our residual plots (wow, that took a lot longer than fitting any of the models!) we can make a plot of our predictions against the raw data to see how we did.
 
@@ -303,6 +303,6 @@ ggplot(count_preds, aes(x = mass, y = fit)) +
 
 Well, it doesn't exactly inspire great confidence in the biological relationship between female horseshoe crab mass and the number of satellite males she attracts, but that is exactly why it is so important to communicate these effects
 
-## Next steps
+## Next steps {#next-13}
 
 This chapter has provided an overview of GLMs that we can use for count data, and demonstrates one way to handle cases of skewed counts or (more extreme case) zero-inflated counts. These are common "problems" in biological and ecological data that are easily resolved within the flexible framework of GLM, which includes all of the other models we've looked at since [Chapter 6](#Chapter6). In [Chapter 14](#Chapter14) and [Chapter 15](#Chapter15) we'll look at how to extend this framework even further (another umbrella) to include repeated observations and relatedness between groups when we introduce mixed effects models.
