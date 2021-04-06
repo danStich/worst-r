@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.2 Simple linear regression | The Worst Stats Text eveR</title>
-  <meta name="description" content="7.2 Simple linear regression | The Worst Stats Text eveR" />
+  <title>18.5 Next steps | The Worst Stats Text eveR</title>
+  <meta name="description" content="18.5 Next steps | The Worst Stats Text eveR" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.2 Simple linear regression | The Worst Stats Text eveR" />
+  <meta property="og:title" content="18.5 Next steps | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.2 Simple linear regression | The Worst Stats Text eveR" />
+  <meta name="twitter:title" content="18.5 Next steps | The Worst Stats Text eveR" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="7-1-anova.html"/>
-<link rel="next" href="7-3-multiple-linear-regression.html"/>
+<link rel="prev" href="18-4-zinfl-18.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -425,87 +425,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="simple-linear-regression" class="section level2">
-<h2><span class="header-section-number">7.2</span> Simple linear regression</h2>
-<p>We have now considered the case of what to do when we have a numerical response and categorical explanatory variable(s) with any number of groups or grouping variables. But, what if we have both a numerical response and numerical explanatory variables? Fear not, there is a stat for that! Now we are entering the realm of correlation and regression. Next week, we’ll show that ANOVA is, in fact, just a special kind of regression.</p>
-<p>When we fit a linear regression model, we are trying to explain relationships between some response of interest (dependent variable y) and one or more explanatory (independent) variables, x.</p>
-<p>As with all linear models the goal of regression analysis is, in it’s simplest sense, to fit a line through all of the points in bivariate space that minimizes the distance between the points and a line of the form:</p>
-<p><span class="math display">\[y = mx + b\]</span></p>
-<p>That ought to look familiar!</p>
-<p>In the case of statistics, we usually represent the formula for a line like this:</p>
-<p><span class="math display">\[Y_i = \beta_0 + \beta_i X_i\]</span></p>
-<p>We are ignoring an important part of these statistical models for now. In most cases, though, we will be estimating a parameter for the intercept and one parameter for each explanatory variable of interest.</p>
-<div id="simple-linear-regression-1" class="section level3">
-<h3><span class="header-section-number">7.2.1</span> Simple linear regression</h3>
-<p>Since most folks are probably more familiar with linear regression than with ANOVA whether they know it or not, we’ll jump right into this one with an example using the <code>swiss</code> data.</p>
-<p>These data are for fertility and infant mortality rates as related to a number of socio-economic indicators. Take a moment to look at them:</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="7-2-simple-linear-regression.html#cb314-1"></a><span class="kw">data</span>(swiss)</span></code></pre></div>
-<p>You can see the description of these data by looking at the help file for the data set as always. Have look on your own:</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="7-2-simple-linear-regression.html#cb315-1"></a>?swiss</span></code></pre></div>
-<p>Now, let’s get cracking.</p>
-<p>We’ll start by fitting a simple model and then build complexity.</p>
-<p>Fit a model that relates fertility to education level. Notice that this looks exactly the same as the call to <code>lm</code> for the ANOVAs above? That’s because they are the same thing and people have been lying to you your whole life. Perhaps it took reading The Worst Stats Text eveR to learn it? If so, I aplogize for your misfortune.</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="7-2-simple-linear-regression.html#cb316-1"></a><span class="co"># Fit the model and assign it to a named object</span></span>
-<span id="cb316-2"><a href="7-2-simple-linear-regression.html#cb316-2"></a>fert_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</span>
-<span id="cb316-3"><a href="7-2-simple-linear-regression.html#cb316-3"></a></span>
-<span id="cb316-4"><a href="7-2-simple-linear-regression.html#cb316-4"></a><span class="co"># Summarize the model</span></span>
-<span id="cb316-5"><a href="7-2-simple-linear-regression.html#cb316-5"></a><span class="kw">summary</span>(fert_mod)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = Fertility ~ Education, data = swiss)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -17.036  -6.711  -1.011   9.526  19.689 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  79.6101     2.1041  37.836  &lt; 2e-16 ***
-## Education    -0.8624     0.1448  -5.954 3.66e-07 ***
-## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 9.446 on 45 degrees of freedom
-## Multiple R-squared:  0.4406,	Adjusted R-squared:  0.4282 
-## F-statistic: 35.45 on 1 and 45 DF,  p-value: 3.659e-07</code></pre>
-<p>The <code>(Intercept)</code> term in this summary is the y-intercept from our formula for a line and the <code>Education</code> coefficient is the slope of the line. Our intercept tells us that mean <code>Fertility</code> (y) is about 79.6 when <code>Education</code> (x) is zero. Note that this interpretation does not change even if we did not observe an education of zero in the data - something to think about in the weeks to come. The p-value for the intercept just tells us that this value is significantly different from zero (snores).</p>
-<p>The p-value for the <code>Education</code> coefficient tells us that the slope of the line is also significantly different from zero. Because this number is negative, we know that there is an inverse relationship between <code>Education</code> and <code>Fertility</code>. In other words, more highly educated individuals have fewer children. You can tell this is an inverse relationship because of the minus sign in front of the coefficient for <code>Education</code>. We know that the relationship is significant because of the small p-value and corresponding significance codes.</p>
-<p>We explained a little more than 40% of the variability in the response with this one explanatory variable if we look at the R<sup>2</sup> value that is returned (we’ll work with the <code>Multiple R-squared</code> by default).</p>
-<p>This is as far as the summary goes for linear regression for now. That is, we don’t need the ANOVA table to assess significance any more because we have no factors - just continuous variables. What we end up with in this summary are the coefficients that can be used to describe the line that passes through the data and minimizes the residual errors (that’s the part we ignored above).</p>
-<blockquote>
-<p>WHAT??</p>
-</blockquote>
-<p>Let’s explain this by actually looking at the data and plotting our model over the top of it.</p>
-<p>First, we’ll use the built-in <code>predict()</code> function to create a trend line and a prediction interval. We’ll dig deeper into how to do this in <a href="10-Chapter10.html#Chapter10">Chapter 10</a>.</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="7-2-simple-linear-regression.html#cb318-1"></a><span class="co"># Make predictions from the fitted model object using observed data</span></span>
-<span id="cb318-2"><a href="7-2-simple-linear-regression.html#cb318-2"></a>predicted_fertility =<span class="st"> </span><span class="kw">predict</span>(fert_mod, <span class="dt">interval =</span> <span class="st">&#39;confidence&#39;</span>)</span>
-<span id="cb318-3"><a href="7-2-simple-linear-regression.html#cb318-3"></a></span>
-<span id="cb318-4"><a href="7-2-simple-linear-regression.html#cb318-4"></a><span class="co"># Add these to the swiss data</span></span>
-<span id="cb318-5"><a href="7-2-simple-linear-regression.html#cb318-5"></a>swiss_pred &lt;-<span class="st"> </span><span class="kw">cbind</span>(swiss, predicted_fertility)</span></code></pre></div>
-<p>Now, we can plot the raw data as a scatterplot and add our model estimates over the top. You should notice that the confidence interval is much wider at high values of <code>Education</code> because there are few data points and thus more uncertainty in that part of the data.</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="7-2-simple-linear-regression.html#cb319-1"></a><span class="co"># Sets up data and aesthetics</span></span>
-<span id="cb319-2"><a href="7-2-simple-linear-regression.html#cb319-2"></a><span class="kw">ggplot</span>(swiss_pred, </span>
-<span id="cb319-3"><a href="7-2-simple-linear-regression.html#cb319-3"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> Education, <span class="dt">y =</span> Fertility)) <span class="op">+</span></span>
-<span id="cb319-4"><a href="7-2-simple-linear-regression.html#cb319-4"></a><span class="st">  </span><span class="co"># Adds raw data as points</span></span>
-<span id="cb319-5"><a href="7-2-simple-linear-regression.html#cb319-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">colour =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">alpha =</span> <span class="fl">0.3</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb319-6"><a href="7-2-simple-linear-regression.html#cb319-6"></a><span class="st">  </span><span class="co"># Adds regression line</span></span>
-<span id="cb319-7"><a href="7-2-simple-linear-regression.html#cb319-7"></a><span class="st">  </span><span class="kw">geom_line</span>( <span class="kw">aes</span>(<span class="dt">y =</span> fit), <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb319-8"><a href="7-2-simple-linear-regression.html#cb319-8"></a><span class="st">  </span><span class="co"># Adds 95% confidence interval</span></span>
-<span id="cb319-9"><a href="7-2-simple-linear-regression.html#cb319-9"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr), <span class="dt">color =</span> <span class="st">&#39;purple&#39;</span>, <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span></span>
-<span id="cb319-10"><a href="7-2-simple-linear-regression.html#cb319-10"></a><span class="st">  </span><span class="co"># Adds sweet style tweaks of your choosing</span></span>
-<span id="cb319-11"><a href="7-2-simple-linear-regression.html#cb319-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-257-1.png" width="672" /></p>
-<p>Again, dangerously easy.</p>
+<div id="next-steps" class="section level2">
+<h2><span class="header-section-number">18.5</span> Next steps</h2>
+<p>This chapter has provided an overview of GLMs that we can use for count data in Bayesian inference, and demonstrates one way to handle cases of skewed counts or (more extreme case) zero-inflated counts. These are common “problems” in biological and ecological data that are easily resolved within the flexible framework of GLM, which includes all of the other models we’ve looked at since <a href="6-Chapter6.html#Chapter6">Chapter 6</a>. These tools have been extended in both MLE and Bayesian frameworks within the mark-recapture and occupancy realms that I strongly encourage you to check out if you think these data are representative of the kinds of data you collect - this should get you started though! In <a href="#Chapter19">Chapter 19</a> and <a href="#Chapter20">Chapter 20</a> we’ll look at how to extend this framework even further (another umbrella) to include repeated observations and relatedness between groups when we introduce Bayesian hierarchical models.</p>
+
 </div>
-</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="7-1-anova.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="7-3-multiple-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="18-4-zinfl-18.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
