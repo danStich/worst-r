@@ -405,6 +405,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="18-5-next-steps.html"><a href="18-5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a><ul>
+<li class="chapter" data-level="19.1" data-path="19-1-intro-19.html"><a href="19-1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19-2-hierarchical.html"><a href="19-2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -472,8 +480,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## group      2  3.7663  1.8832  4.8461 0.01591 *
 ## Residuals 27 10.4921  0.3886                  
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Okay, this is really what we needed in order to evaluate our null hypothesis: an ANOVA table with a break down of the residuals, mean squared errors, and test statistic(s). We interpret the test statistic and the p-value the same way we did in <a href="6-Chapter6.html#Chapter6">Chapter 6</a> when we did t-tests and Wilcox tests. And, we can now say:</p>
 <blockquote>
 <p>We found that the treatment had a significant effect on plant weight
@@ -519,8 +526,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## grouptrt1    -0.3710     0.2788  -1.331   0.1944    
 ## grouptrt2     0.4940     0.2788   1.772   0.0877 .  
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 0.6234 on 27 degrees of freedom
 ## Multiple R-squared:  0.2641,	Adjusted R-squared:  0.2096 
@@ -591,7 +597,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb303-9"><a href="7-1-anova.html#cb303-9"></a>  <span class="dt">xlab=</span><span class="st">&#39;Treatment group&#39;</span>, <span class="co"># X-axis label</span></span>
 <span id="cb303-10"><a href="7-1-anova.html#cb303-10"></a>  <span class="dt">boxwex=</span>.<span class="dv">25</span></span>
 <span id="cb303-11"><a href="7-1-anova.html#cb303-11"></a>  )</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-248-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-267-1.png" width="672" /></p>
 <p>In addition to what we wrote before, we can now say something along the lines of:</p>
 <blockquote>
 <p>“We found that the mass of plants in the trt2 group (5.5 <span class="math inline">\(\pm\)</span> 0.4 g) was significantly greater than plants in the trt1 group (4.7 <span class="math inline">\(\pm\)</span> 0.8 g; Tukey HSD, p = 0.012). However, we failed to detect differences in mass between plants in the control group (5.0 <span class="math inline">\(\pm\)</span> 0.6 g) and trt1 (p = 0.39) or trt2 (p = 0.20).”</p>
@@ -627,8 +633,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## speciesSpecies 3  -1.8750     0.7512  -2.496 0.021414 *  
 ## genderMale         4.9083     0.6133   8.003 1.16e-07 ***
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 1.502 on 20 degrees of freedom
 ## Multiple R-squared:  0.8096,	Adjusted R-squared:  0.781 
@@ -643,8 +648,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## gender     1 144.550 144.550  64.041  1.16e-07 ***
 ## Residuals 20  45.143   2.257                      
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>As you can see, the output for the model is much the same as for the one-way ANOVA. The only real difference is that we have more than one grouping variable here. We conclude that there is a significant difference in <code>lintmass</code> between <code>species</code> (F = 10.50, df = 2, p &lt; 0.05) and between <code>genders</code> (F = 64.01, df = 1, p &lt; 0.05).</p>
 <p>As before, we can make a quick boxplot and overlay our raw data to visualize these differences:</p>
 <div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="7-1-anova.html#cb309-1"></a>lint <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -659,7 +663,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb309-10"><a href="7-1-anova.html#cb309-10"></a>          <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust=</span><span class="dv">3</span>),</span>
 <span id="cb309-11"><a href="7-1-anova.html#cb309-11"></a>          <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
 <span id="cb309-12"><a href="7-1-anova.html#cb309-12"></a>          )</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-270-1.png" width="672" /></p>
 <p>Hopefully after seeing these results you are now starting to realize how important a few well-placed figures and tables can be for clearly communicating the results of your research (even if it is about belly-button lint).</p>
 <p>The math for making predictions becomes a little more complicated once we add a second grouping variable. Even the numbers of pair-wise comparisons can become overwhelming in a simple situation like this. Therefore, we’ll hold off on digging too much deeper into the math until next week.</p>
 </div>
@@ -681,23 +685,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## -2.525 -0.750  0.050  1.019  1.875 
 ## 
 ## Coefficients:
-##                             Estimate Std. Error t value
-## (Intercept)                  14.9250     0.7404  20.159
-## speciesSpecies 2             -2.2500     1.0471  -2.149
-## speciesSpecies 3             -1.2000     1.0471  -1.146
-## genderMale                    6.1500     1.0471   5.874
-## speciesSpecies 2:genderMale  -2.3750     1.4808  -1.604
-## speciesSpecies 3:genderMale  -1.3500     1.4808  -0.912
-##                             Pr(&gt;|t|)    
-## (Intercept)                 8.40e-14 ***
-## speciesSpecies 2              0.0455 *  
-## speciesSpecies 3              0.2668    
-## genderMale                  1.46e-05 ***
-## speciesSpecies 2:genderMale   0.1261    
-## speciesSpecies 3:genderMale   0.3740    
+##                             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                  14.9250     0.7404  20.159 8.40e-14 ***
+## speciesSpecies 2             -2.2500     1.0471  -2.149   0.0455 *  
+## speciesSpecies 3             -1.2000     1.0471  -1.146   0.2668    
+## genderMale                    6.1500     1.0471   5.874 1.46e-05 ***
+## speciesSpecies 2:genderMale  -2.3750     1.4808  -1.604   0.1261    
+## speciesSpecies 3:genderMale  -1.3500     1.4808  -0.912   0.3740    
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 1.481 on 18 degrees of freedom
 ## Multiple R-squared:  0.8335,	Adjusted R-squared:  0.7873 
@@ -713,8 +709,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## species:gender  2   5.676   2.838  1.2943 0.2984104    
 ## Residuals      18  39.468   2.193                      
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Alas, in the case of the lint model, this interaction is not significant, so we lack the evidence we would need to say that lint accumulation changes differently between genders within species.</p>
 </div>
 </div>

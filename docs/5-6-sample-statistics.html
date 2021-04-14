@@ -405,6 +405,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="18-5-next-steps.html"><a href="18-5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a><ul>
+<li class="chapter" data-level="19.1" data-path="19-1-intro-19.html"><a href="19-1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19-2-hierarchical.html"><a href="19-2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -490,14 +498,14 @@ distribution in the normal</li>
 <span id="cb213-14"><a href="5-6-sample-statistics.html#cb213-14"></a>}</span>
 <span id="cb213-15"><a href="5-6-sample-statistics.html#cb213-15"></a><span class="co"># Test the function</span></span>
 <span id="cb213-16"><a href="5-6-sample-statistics.html#cb213-16"></a><span class="kw">norm.mom</span>(test_norm)</span></code></pre></div>
-<pre><code>## [1] 20.000698  3.982202</code></pre>
+<pre><code>## [1] 19.989901  4.043962</code></pre>
 <p>Because this one is so common, R has built-in estimators that rely on
 the exact solution provided by the formulas for the first two moments
 of the normal distribution:</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="5-6-sample-statistics.html#cb215-1"></a><span class="kw">mean</span>(test_norm)</span></code></pre></div>
-<pre><code>## [1] 20.0007</code></pre>
+<pre><code>## [1] 19.9899</code></pre>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="5-6-sample-statistics.html#cb217-1"></a><span class="kw">var</span>(test_norm)</span></code></pre></div>
-<pre><code>## [1] 3.9826</code></pre>
+<pre><code>## [1] 4.044366</code></pre>
 <p>Wow, that was a lot less code. That is the beauty of having these functions available. How do these compare to the answers returned by our function if you scroll back up?</p>
 </div>
 <div id="maximum-likelihood-estimator" class="section level4">
@@ -505,8 +513,8 @@ of the normal distribution:</p>
 <p>R also has built-in <strong>maximum likelihood</strong> estimators that provide an exact solution to the first two moments of the normal distribution. These are available through the <code>MASS</code> package.</p>
 <div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="5-6-sample-statistics.html#cb219-1"></a><span class="kw">fitdistr</span>(test_norm, <span class="st">&#39;normal&#39;</span>)</span></code></pre></div>
 <pre><code>##       mean           sd     
-##   20.00069769    1.99554558 
-##  ( 0.01995546) ( 0.01411064)</code></pre>
+##   19.98990112    2.01096044 
+##  ( 0.02010960) ( 0.01421964)</code></pre>
 <p>Only one problem here: R doesn’t report the second moment! It reports
 the square root of the second moment: the <strong>standard deviation</strong>!</p>
 <p>Finally, let’s write our own function and maximize the likelihood with the <code>optim()</code> function in R.</p>
@@ -538,14 +546,14 @@ our parameters (<code>mu</code> and <code>sigma2</code>).</p>
 <p>To get started, we need to take a guess at what those parameters could be. (Yes, we know they are mu = 20 and sd = 2)</p>
 <div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="5-6-sample-statistics.html#cb222-1"></a><span class="kw">optim</span>(<span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">4</span>), normal.lik, <span class="dt">y=</span><span class="kw">data.frame</span>(test_norm))</span></code></pre></div>
 <pre><code>## $par
-## [1] 20.000492  3.982106
+## [1] 19.989718  4.044819
 ## 
 ## $value
-## [1] 21098.56
+## [1] 21175.51
 ## 
 ## $counts
 ## function gradient 
-##       51       NA 
+##       49       NA 
 ## 
 ## $convergence
 ## [1] 0
@@ -572,22 +580,22 @@ our parameters (<code>mu</code> and <code>sigma2</code>).</p>
 <p>Look at the structure I’ll be damned, it’s a list! Hey, we learned about those!</p>
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="5-6-sample-statistics.html#cb226-1"></a><span class="kw">str</span>(est)   </span></code></pre></div>
 <pre><code>## List of 5
-##  $ par        : num [1:2] 20 3.98
-##  $ value      : num 21099
-##  $ counts     : Named int [1:2] 105 NA
+##  $ par        : num [1:2] 19.99 4.04
+##  $ value      : num 21176
+##  $ counts     : Named int [1:2] 97 NA
 ##   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;function&quot; &quot;gradient&quot;
 ##  $ convergence: int 0
 ##  $ message    : NULL</code></pre>
 <p>And, here are the estimates:</p>
 <div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="5-6-sample-statistics.html#cb228-1"></a><span class="co"># Both</span></span>
 <span id="cb228-2"><a href="5-6-sample-statistics.html#cb228-2"></a>est<span class="op">$</span>par </span></code></pre></div>
-<pre><code>## [1] 19.999784  3.984592</code></pre>
+<pre><code>## [1] 19.992387  4.038311</code></pre>
 <div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="5-6-sample-statistics.html#cb230-1"></a><span class="co"># The mean  </span></span>
 <span id="cb230-2"><a href="5-6-sample-statistics.html#cb230-2"></a>est<span class="op">$</span>par[<span class="dv">1</span>]</span></code></pre></div>
-<pre><code>## [1] 19.99978</code></pre>
+<pre><code>## [1] 19.99239</code></pre>
 <div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="5-6-sample-statistics.html#cb232-1"></a><span class="co"># The variance  </span></span>
 <span id="cb232-2"><a href="5-6-sample-statistics.html#cb232-2"></a>est<span class="op">$</span>par[<span class="dv">2</span>] </span></code></pre></div>
-<pre><code>## [1] 3.984592</code></pre>
+<pre><code>## [1] 4.038311</code></pre>
 <p>There you have it, a couple of different ways to calculate parameters of the normal distribution using a couple of different approaches each.</p>
 </div>
 </div>
@@ -596,18 +604,18 @@ our parameters (<code>mu</code> and <code>sigma2</code>).</p>
 <p>There are a number of other ways we might like to describe this this (or any) sampling distribution. Here are a few examples that we will work with this semester.</p>
 <div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="5-6-sample-statistics.html#cb234-1"></a><span class="co"># Here is the median, or 50th percentile</span></span>
 <span id="cb234-2"><a href="5-6-sample-statistics.html#cb234-2"></a><span class="kw">median</span>(test_norm) </span></code></pre></div>
-<pre><code>## [1] 19.99909</code></pre>
+<pre><code>## [1] 19.97711</code></pre>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="5-6-sample-statistics.html#cb236-1"></a><span class="co"># The 95% confidence limits</span></span>
 <span id="cb236-2"><a href="5-6-sample-statistics.html#cb236-2"></a><span class="kw">quantile</span>(test_norm, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)) </span></code></pre></div>
 <pre><code>##     2.5%    97.5% 
-## 16.03945 23.90298</code></pre>
+## 16.07314 23.94186</code></pre>
 <div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="5-6-sample-statistics.html#cb238-1"></a><span class="co"># Interquartile range (Q1 and Q3)</span></span>
 <span id="cb238-2"><a href="5-6-sample-statistics.html#cb238-2"></a><span class="kw">quantile</span>(test_norm, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))    </span></code></pre></div>
 <pre><code>##      25%      75% 
-## 18.64226 21.38145</code></pre>
+## 18.63050 21.33788</code></pre>
 <div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="5-6-sample-statistics.html#cb240-1"></a><span class="co"># Range of sample</span></span>
 <span id="cb240-2"><a href="5-6-sample-statistics.html#cb240-2"></a><span class="kw">range</span>(test_norm)                             </span></code></pre></div>
-<pre><code>## [1] 12.95133 27.19634</code></pre>
+<pre><code>## [1] 12.16454 28.01517</code></pre>
 </div>
 </div>
             </section>

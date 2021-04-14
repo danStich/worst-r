@@ -405,6 +405,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="18-5-next-steps.html"><a href="18-5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a><ul>
+<li class="chapter" data-level="19.1" data-path="19-1-intro-19.html"><a href="19-1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19-2-hierarchical.html"><a href="19-2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -455,7 +463,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This approach allows us to look at relationships between all variables at once. Note below that I am using all columns except <code>ID</code> because that graph would be a mess.</p>
 <div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="9-5-data-exploration.html#cb350-1"></a><span class="co"># Look at correlations between variables</span></span>
 <span id="cb350-2"><a href="9-5-data-exploration.html#cb350-2"></a><span class="kw">pairs</span>(turtles[ , <span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(turtles)])</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-282-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-301-1.png" width="672" /></p>
 <p>But, for this data set this is really gross and difficult to interpret due to the nature of the variables. This should tell you that thinking about this stuff before you collect data is really important!</p>
 <p>It would make a lot more sense for something like the built-in <code>swiss</code> data because those variables are all continuous. You can check that out by running <code>pairs(swiss)</code> in your code. Look at all of the related variables in the <code>swiss</code> data! This relatedness is called <strong>collinearity</strong> and can cause some issues if we are not careful about it.</p>
 <p>We’ll talk about problems related to correlation between variables (e.g. temperature and photoperiod) in detail when we discuss model selection and collinearity. In the sections that follow, we’ll just focus our efforts on diagnosing <code>Year</code> as a categorical explanatory variable and <code>Width</code> as a continuous explanatory variable.</p>
@@ -472,7 +480,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb351-2"><a href="9-5-data-exploration.html#cb351-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(Year), <span class="dt">y =</span> Stay, <span class="dt">group =</span> Year), <span class="dt">fill =</span> <span class="st">&#39;gray87&#39;</span>) <span class="op">+</span></span>
 <span id="cb351-3"><a href="9-5-data-exploration.html#cb351-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
 <span id="cb351-4"><a href="9-5-data-exploration.html#cb351-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-283-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-302-1.png" width="672" /></p>
 <p>Whoa! We have a couple of issues here.</p>
 <p>First of all: we have clearly identified a number of ‘outliers’ in our data. These are the circles that are outside the whiskers of our box plots.</p>
 <p>One way to address these outliers is by dropping them from the data. We only want to do this if we have a pretty good justification for this ahead of time (“<em>a priori</em>”). And, sometimes these can be some of the most interesting observations.</p>
@@ -482,7 +490,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb352-3"><a href="9-5-data-exploration.html#cb352-3"></a>       <span class="dt">fill =</span> <span class="st">&#39;gray87&#39;</span>) <span class="op">+</span></span>
 <span id="cb352-4"><a href="9-5-data-exploration.html#cb352-4"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
 <span id="cb352-5"><a href="9-5-data-exploration.html#cb352-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-284-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-303-1.png" width="672" /></p>
 <blockquote>
 <p>NOTE: I will not cover variable transformation extensively in this class or text. The justification is: 1) you can Google it to learn more about what transformations are useful for what, and 2) I will argue that most of the time there are better methods for dealing with non-normal data and then I will show you how to use those methods as we go.</p>
 </blockquote>
@@ -490,7 +498,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="9-5-data-exploration.html#cb353-1"></a><span class="kw">ggplot</span>(turtles, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">log</span>(Stay))) <span class="op">+</span></span>
 <span id="cb353-2"><a href="9-5-data-exploration.html#cb353-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></span>
 <span id="cb353-3"><a href="9-5-data-exploration.html#cb353-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>Year)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-285-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-304-1.png" width="672" /></p>
 <p><br></p>
 <p>Again, a little better, but perhaps not as good as we’d like.</p>
 </div>

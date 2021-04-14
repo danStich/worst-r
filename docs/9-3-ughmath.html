@@ -405,6 +405,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="18-5-next-steps.html"><a href="18-5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a><ul>
+<li class="chapter" data-level="19.1" data-path="19-1-intro-19.html"><a href="19-1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19-2-hierarchical.html"><a href="19-2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -473,11 +481,11 @@ if you like that one better.</p>
 <p>We can make a histogram of the residuals to confirm the assumption that the residuals are normally distributed with a mean of zero. This assumption is important because it allows us to drop <span class="math inline">\(\epsilon\)</span> from the equations above and fall back to our old friend <span class="math inline">\(y = mx + b\)</span>. As you can see below, the mean of our residuals is about zero, and the distribution of residuals also appears to be symmetrical (normal).</p>
 <div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="9-3-ughmath.html#cb339-1"></a><span class="kw">ggplot</span>(resid_df, <span class="kw">aes</span>(<span class="dt">x =</span> epsilon)) <span class="op">+</span></span>
 <span id="cb339-2"><a href="9-3-ughmath.html#cb339-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>()</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-291-1.png" width="672" /></p>
 <p>We could also examine residuals within <code>Species</code> using a box plot. Again, we should see that our residuals are normally distributed with a mean of zero within groups. However, you may notice that the variance of <span class="math inline">\(\epsilon\)</span> is clearly not equal between groups.</p>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="9-3-ughmath.html#cb340-1"></a><span class="kw">ggplot</span>(resid_df, <span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> epsilon)) <span class="op">+</span></span>
 <span id="cb340-2"><a href="9-3-ughmath.html#cb340-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-292-1.png" width="672" /></p>
 </div>
 <div id="residuals-in-linear-regression" class="section level3">
 <h3><span class="header-section-number">9.3.2</span> Residuals in linear regression</h3>
@@ -495,16 +503,16 @@ if you like that one better.</p>
 <p>And now we can make a histogram to see if they are normal with a mean of zero.</p>
 <div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="9-3-ughmath.html#cb343-1"></a><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> resids)) <span class="op">+</span></span>
 <span id="cb343-2"><a href="9-3-ughmath.html#cb343-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>()</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-276-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-295-1.png" width="672" /></p>
 <p>This also allows us to determine whether there are any changes in the residuals along the range of <span class="math inline">\(x\)</span> values to assess whether we have satisfied the assumption of independence of observations. To do this, we just need to plot the residuals against the fitted values (the data in the <code>iris$Petal.Length</code> column).</p>
 <div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="9-3-ughmath.html#cb344-1"></a><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Petal.Length, <span class="dt">y =</span> resids)) <span class="op">+</span></span>
 <span id="cb344-2"><a href="9-3-ughmath.html#cb344-2"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-277-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-296-1.png" width="672" /></p>
 <p><br></p>
 <p>If we’ve met assumptions of independence of observations, the plot above should look like random scatter from left to right and top to bottom. Looks like that is not the case here because the group of data on the left have a much lower spread of residuals than the rest of the data. In fact, if you color by <code>Species</code> it becomes obvious that these are samples for <code>setosa</code>.</p>
 <div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="9-3-ughmath.html#cb345-1"></a><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Petal.Length, <span class="dt">y =</span> resids, <span class="dt">color =</span> Species)) <span class="op">+</span></span>
 <span id="cb345-2"><a href="9-3-ughmath.html#cb345-2"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-278-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-297-1.png" width="672" /></p>
 <p>Boo <code>setosa</code>!</p>
 <p>Finally, if the code doesn’t do it for you, we can graph the regression to see what residuals actually look like for our model. It is the squared sum of these errors, specifically, which R is trying to minimize when it estimates the coefficients for the formula of our line. That is why we talk about “sums of squares” in ANOVA tables.</p>
 <p>Here is a visual representation of residuals. The points are our raw data, the diagonal line is our model prediction, and the vertical lines represent the residual error for each observation.</p>
@@ -517,7 +525,7 @@ if you like that one better.</p>
 <span id="cb346-7"><a href="9-3-ughmath.html#cb346-7"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> Petal.Length, <span class="dt">yend =</span> y_hat), <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span></span>
 <span id="cb346-8"><a href="9-3-ughmath.html#cb346-8"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
 <span id="cb346-9"><a href="9-3-ughmath.html#cb346-9"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-279-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-298-1.png" width="672" /></p>
 <p><br></p>
 <p>So, now that we know what residuals <em>are</em> or at least what they <em>look like</em> we can talk about how they are used.</p>
 <p>We will keep making tweaks to our equation in <a href="10-Chapter10.html#Chapter10">Chapter 10</a> when we start to think of the linear model more accurately as <span class="math inline">\(y = \beta X + \epsilon\)</span> or <span class="math inline">\(\sum_{k=1}^{K} \beta_k X_k + \epsilon\)</span> to unify the t-test, ANOVA, linear regression, and ANCOVA into a single general framework (the general linear model you def read about in <a href="8-Chapter8.html#Chapter8">Chapter 8</a>).</p>

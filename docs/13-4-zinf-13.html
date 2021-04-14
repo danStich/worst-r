@@ -405,6 +405,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="18-5-next-steps.html"><a href="18-5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a><ul>
+<li class="chapter" data-level="19.1" data-path="19-1-intro-19.html"><a href="19-1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19-2-hierarchical.html"><a href="19-2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -455,8 +463,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## (Intercept)  -3.6933     0.8799  -4.197 2.70e-05 ***
 ## mass          1.8145     0.3766   4.818 1.45e-06 ***
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
@@ -492,8 +499,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## (Intercept)   1.0036     0.2726   3.681 0.000363 ***
 ## mass          0.1941     0.1018   1.907 0.059190 .  
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for Negative Binomial(1) family taken to be 0.3128844)
 ## 
@@ -508,7 +514,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb538-2"><a href="13-4-zinf-13.html#cb538-2"></a><span class="st">  </span><span class="kw">geom_jitter</span>() <span class="op">+</span></span>
 <span id="cb538-3"><a href="13-4-zinf-13.html#cb538-3"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fitted values&quot;</span>) <span class="op">+</span></span>
 <span id="cb538-4"><a href="13-4-zinf-13.html#cb538-4"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon)))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-416-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-435-1.png" width="672" /></p>
 <p>Here, we can see that our residual plots indicate a pretty drastic improvement.</p>
 <div id="predict-13" class="section level3">
 <h3><span class="header-section-number">13.4.1</span> Predictions</h3>
@@ -542,7 +548,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb540-4"><a href="13-4-zinf-13.html#cb540-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="op">+</span></span>
 <span id="cb540-5"><a href="13-4-zinf-13.html#cb540-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Mass of female crab (g)&quot;</span>) <span class="op">+</span></span>
 <span id="cb540-6"><a href="13-4-zinf-13.html#cb540-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability of satellite male&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-418-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-437-1.png" width="672" /></p>
 <p>Finally, we can make a plot of the number of <code>satellite</code> males we would expect to see on a female crab given that she had attracted any males in the first place.</p>
 <p><strong>Also important:</strong> We need to remember here that we have two different models. The first model <code>step1</code> was a binary logistic regression, so it used the logit link. The second model <code>step2</code> was a count model and used the log link. That means we need to invert the log link to get our predicted counts back on the real scale.</p>
 <div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="13-4-zinf-13.html#cb541-1"></a><span class="co"># Sequences of new masses based on the min and max observed</span></span>
@@ -571,7 +577,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb542-4"><a href="13-4-zinf-13.html#cb542-4"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr, <span class="dt">color =</span> <span class="ot">NULL</span>), <span class="dt">alpha =</span> <span class="fl">.3</span>) <span class="op">+</span></span>
 <span id="cb542-5"><a href="13-4-zinf-13.html#cb542-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Mass of female crab (kg)&quot;</span>) <span class="op">+</span></span>
 <span id="cb542-6"><a href="13-4-zinf-13.html#cb542-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Number of satellite males&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-420-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-439-1.png" width="672" /></p>
 <p>Well, it doesn’t exactly inspire great confidence in the biological relationship between female horseshoe crab mass and the number of satellite males she attracts, but that is exactly why it is so important to communicate these effects</p>
 </div>
 </div>

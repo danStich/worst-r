@@ -405,6 +405,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="18-5-next-steps.html"><a href="18-5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a><ul>
+<li class="chapter" data-level="19.1" data-path="19-1-intro-19.html"><a href="19-1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19-2-hierarchical.html"><a href="19-2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -451,8 +459,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## grouptrt1    -0.3710     0.2788  -1.331   0.1944    
 ## grouptrt2     0.4940     0.2788   1.772   0.0877 .  
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 0.6234 on 27 degrees of freedom
 ## Multiple R-squared:  0.2641,	Adjusted R-squared:  0.2096 
@@ -509,11 +516,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can get the model coefficients (<span class="math inline">\(\beta\)</span>) like this:</p>
 <div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="10-1-one-way-anova.html#cb378-1"></a><span class="co"># We can get the model coefficients like this:</span></span>
 <span id="cb378-2"><a href="10-1-one-way-anova.html#cb378-2"></a><span class="kw">names</span>(mod)</span></code></pre></div>
-<pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;      
-##  [4] &quot;rank&quot;          &quot;fitted.values&quot; &quot;assign&quot;       
-##  [7] &quot;qr&quot;            &quot;df.residual&quot;   &quot;contrasts&quot;    
-## [10] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;        
-## [13] &quot;model&quot;</code></pre>
+<pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;          &quot;fitted.values&quot;
+##  [6] &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;   &quot;contrasts&quot;     &quot;xlevels&quot;      
+## [11] &quot;call&quot;          &quot;terms&quot;         &quot;model&quot;</code></pre>
 <div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="10-1-one-way-anova.html#cb380-1"></a>coeffs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(mod<span class="op">$</span>coefficients)</span>
 <span id="cb380-2"><a href="10-1-one-way-anova.html#cb380-2"></a></span>
 <span id="cb380-3"><a href="10-1-one-way-anova.html#cb380-3"></a><span class="co"># And now we have a vector of beta</span></span>
@@ -595,7 +600,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb389-11"><a href="10-1-one-way-anova.html#cb389-11"></a>        <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>),</span>
 <span id="cb389-12"><a href="10-1-one-way-anova.html#cb389-12"></a>        <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
 <span id="cb389-13"><a href="10-1-one-way-anova.html#cb389-13"></a>        )</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-312-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-331-1.png" width="672" /></p>
 <p>This plot is really cool, but it doesn’t actually show us how our model predictions compare to the raw data!</p>
 <p>However, we could also think of our model predictions as just being different y-intercepts, which will be helpful when we start to work with ANCOVA. If we plotted them that way, they would look like this:</p>
 <div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="10-1-one-way-anova.html#cb390-1"></a><span class="kw">ggplot</span>(pred_plantCI, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> fit, <span class="dt">color =</span> group)) <span class="op">+</span></span>
@@ -606,7 +611,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb390-6"><a href="10-1-one-way-anova.html#cb390-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;X&quot;</span>) <span class="op">+</span></span>
 <span id="cb390-7"><a href="10-1-one-way-anova.html#cb390-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb390-8"><a href="10-1-one-way-anova.html#cb390-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Predicted&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-313-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-332-1.png" width="672" /></p>
 <p>But this is really hard to see and understand. So, we usually look at it like this in keeping with the dummy coding that is used in the model matrix:</p>
 <div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="10-1-one-way-anova.html#cb391-1"></a><span class="kw">ggplot</span>(pred_plantCI, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> fit, <span class="dt">color =</span> group)) <span class="op">+</span></span>
 <span id="cb391-2"><a href="10-1-one-way-anova.html#cb391-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span></span>
@@ -616,7 +621,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb391-6"><a href="10-1-one-way-anova.html#cb391-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;X[, i]&quot;</span>) <span class="op">+</span></span>
 <span id="cb391-7"><a href="10-1-one-way-anova.html#cb391-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="op">+</span></span>
 <span id="cb391-8"><a href="10-1-one-way-anova.html#cb391-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Predicted&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-314-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-333-1.png" width="672" /></p>
 <p>Or, perhaps more mercifully:</p>
 <div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="10-1-one-way-anova.html#cb392-1"></a><span class="kw">ggplot</span>(pred_plantCI, <span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">y =</span> fit, <span class="dt">color =</span> group)) <span class="op">+</span></span>
 <span id="cb392-2"><a href="10-1-one-way-anova.html#cb392-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span></span>
@@ -625,7 +630,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb392-5"><a href="10-1-one-way-anova.html#cb392-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Treatment group&quot;</span>) <span class="op">+</span></span>
 <span id="cb392-6"><a href="10-1-one-way-anova.html#cb392-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="op">+</span></span>
 <span id="cb392-7"><a href="10-1-one-way-anova.html#cb392-7"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Predicted&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-315-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-334-1.png" width="672" /></p>
 <p>Finally, we could put this right over the top of our raw data and/or violin to see how well the model predictions match up with the data:</p>
 <div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="10-1-one-way-anova.html#cb393-1"></a><span class="kw">ggplot</span>(PlantGrowth, <span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">y =</span> weight, <span class="dt">color =</span> group)) <span class="op">+</span></span>
 <span id="cb393-2"><a href="10-1-one-way-anova.html#cb393-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> group), <span class="dt">alpha =</span> <span class="fl">0.05</span>) <span class="op">+</span></span>
@@ -642,7 +647,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb393-13"><a href="10-1-one-way-anova.html#cb393-13"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Treatment group&quot;</span>) <span class="op">+</span></span>
 <span id="cb393-14"><a href="10-1-one-way-anova.html#cb393-14"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="op">+</span></span>
 <span id="cb393-15"><a href="10-1-one-way-anova.html#cb393-15"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;Group&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-316-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-335-1.png" width="672" /></p>
 </div>
 </div>
             </section>

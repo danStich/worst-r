@@ -405,6 +405,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="18-5-next-steps.html"><a href="18-5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a><ul>
+<li class="chapter" data-level="19.1" data-path="19-1-intro-19.html"><a href="19-1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19-2-hierarchical.html"><a href="19-2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -481,7 +489,7 @@ But make no mistake, you’re wall’s still covered in shit</p>
 <p>They definitely look like they are normal with a mean of zero:</p>
 <div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="11-5-a-priori.html#cb444-1"></a><span class="kw">ggplot</span>(swiss_resids, <span class="kw">aes</span>(<span class="dt">x =</span> resids)) <span class="op">+</span></span>
 <span id="cb444-2"><a href="11-5-a-priori.html#cb444-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-355-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-374-1.png" width="672" /></p>
 <p>A glance at the residuals vs fitted seems to indicate that we don’t have any concerning patterns in the residuals with respect to the observed value of fertility, although we do see that one point all by itself over to the left that might make us want to puke a little.</p>
 <div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="11-5-a-priori.html#cb445-1"></a><span class="co"># Make a pretty plot to make sure we haven&#39;t</span></span>
 <span id="cb445-2"><a href="11-5-a-priori.html#cb445-2"></a><span class="co"># completely forgotten about those pesky</span></span>
@@ -492,7 +500,7 @@ But make no mistake, you’re wall’s still covered in shit</p>
 <span id="cb445-7"><a href="11-5-a-priori.html#cb445-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fertility&quot;</span>) <span class="op">+</span></span>
 <span id="cb445-8"><a href="11-5-a-priori.html#cb445-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon))) <span class="op">+</span></span>
 <span id="cb445-9"><a href="11-5-a-priori.html#cb445-9"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-356-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-375-1.png" width="672" /></p>
 <p><br></p>
 <p>Now that we have verified we are not in violation of assumptions we can apply model selection to find out if one is clearly better than the others and if so which. Then, we’ll use our best model to make predictions just like last week and next week and the week after that…and so on.</p>
 <p>Let’s start by making a list of our models and giving each element (model) in the list a name:</p>
@@ -520,8 +528,7 @@ But make no mistake, you’re wall’s still covered in shit</p>
 ## (Intercept)  79.6101     2.1041  37.836  &lt; 2e-16 ***
 ## Education    -0.8624     0.1448  -5.954 3.66e-07 ***
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 9.446 on 45 degrees of freedom
 ## Multiple R-squared:  0.4406,	Adjusted R-squared:  0.4282 
@@ -530,10 +537,9 @@ But make no mistake, you’re wall’s still covered in shit</p>
 <span id="cb449-2"><a href="11-5-a-priori.html#cb449-2"></a><span class="co"># so we can also look at the names of this summary,</span></span>
 <span id="cb449-3"><a href="11-5-a-priori.html#cb449-3"></a><span class="co"># like this</span></span>
 <span id="cb449-4"><a href="11-5-a-priori.html#cb449-4"></a><span class="kw">names</span>(<span class="kw">summary</span>(mods<span class="op">$</span>Ed))</span></code></pre></div>
-<pre><code>##  [1] &quot;call&quot;          &quot;terms&quot;         &quot;residuals&quot;    
-##  [4] &quot;coefficients&quot;  &quot;aliased&quot;       &quot;sigma&quot;        
-##  [7] &quot;df&quot;            &quot;r.squared&quot;     &quot;adj.r.squared&quot;
-## [10] &quot;fstatistic&quot;    &quot;cov.unscaled&quot;</code></pre>
+<pre><code>##  [1] &quot;call&quot;          &quot;terms&quot;         &quot;residuals&quot;     &quot;coefficients&quot;  &quot;aliased&quot;      
+##  [6] &quot;sigma&quot;         &quot;df&quot;            &quot;r.squared&quot;     &quot;adj.r.squared&quot; &quot;fstatistic&quot;   
+## [11] &quot;cov.unscaled&quot;</code></pre>
 <p><em>Whoa</em>, this is some heavy stuff. To recap, we have made a list of models, each of which are actually lists themselves. Each model has lots of elements. The output of <code>summary()</code> for each model is also a list with and the elements have names of their own. Within that final list we can find the <code>Adusted R-squared</code> or what <code>summary()</code> calls the <code>adj.r.squared</code>. It’s turtles all the way down all over again.</p>
 <p>We can, of course, extract the adjusted R<sup>2</sup> value from the output of <code>summary()</code> by name:</p>
 <div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="11-5-a-priori.html#cb451-1"></a>ed_r &lt;-<span class="st"> </span><span class="kw">summary</span>(mods<span class="op">$</span>Ed)<span class="op">$</span>adj.r.squared</span>

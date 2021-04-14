@@ -405,6 +405,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="18-5-next-steps.html"><a href="18-5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a><ul>
+<li class="chapter" data-level="19.1" data-path="19-1-intro-19.html"><a href="19-1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19-2-hierarchical.html"><a href="19-2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -430,22 +438,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>There are a number of simple ways to summarize data quickly in base R. We already looked at a few of these in previous chapters. But what about something a little more in-depth?</p>
 <p>One quick way to look at your data is using the <code>summary()</code> function</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="3-2-quick-data-summaries.html#cb116-1"></a><span class="kw">summary</span>(am_shad)</span></code></pre></div>
-<pre><code>##  Sex           Age            Length      yearCollected 
-##  B:9512   Min.   :1.000   Min.   : 3.00   Min.   :2010  
-##  R:7434   1st Qu.:2.000   1st Qu.:31.00   1st Qu.:2011  
-##           Median :3.000   Median :38.00   Median :2012  
-##           Mean   :3.155   Mean   :36.39   Mean   :2012  
-##           3rd Qu.:4.000   3rd Qu.:43.00   3rd Qu.:2013  
-##           Max.   :7.000   Max.   :55.00   Max.   :2014  
-##                                                         
-##  backCalculated       Mass      
-##  Mode :logical   Min.   :   0   
-##  FALSE:3046      1st Qu.: 900   
-##  TRUE :13900     Median :1120   
-##                  Mean   :1173   
-##                  3rd Qu.:1440   
-##                  Max.   :3280   
-##                  NA&#39;s   :14115</code></pre>
+<pre><code>##  Sex           Age            Length      yearCollected  backCalculated 
+##  B:9512   Min.   :1.000   Min.   : 3.00   Min.   :2010   Mode :logical  
+##  R:7434   1st Qu.:2.000   1st Qu.:31.00   1st Qu.:2011   FALSE:3046     
+##           Median :3.000   Median :38.00   Median :2012   TRUE :13900    
+##           Mean   :3.155   Mean   :36.39   Mean   :2012                  
+##           3rd Qu.:4.000   3rd Qu.:43.00   3rd Qu.:2013                  
+##           Max.   :7.000   Max.   :55.00   Max.   :2014                  
+##                                                                         
+##       Mass      
+##  Min.   :   0   
+##  1st Qu.: 900   
+##  Median :1120   
+##  Mean   :1173   
+##  3rd Qu.:1440   
+##  Max.   :3280   
+##  NA&#39;s   :14115</code></pre>
 <p>This is useful for getting the big-picture. For continuous variables (e.g., <code>Age</code> and <code>Length</code>) R will report some descriptive statistics like the <code>mean</code>, <code>median</code>, and quantiles. For discrete variables (e.g. <code>Sex</code> and <code>backCalculated</code>) we get the mode (if not <code>factor</code> or <code>chr</code>) and counts of observations within each discrete level (e.g. number of observations of <code>B</code> and <code>R</code> in the variable <code>Sex</code>).</p>
 <p>But, this approach doesn’t really give us much info.</p>
 <p>We can create more meaningful summaries pretty easily if we install and load some packages like we talked about in <a href="1-Chapter1.html#Chapter1">Chapter 1</a>, and then look at different ways of sub-setting the data with base R and some methods that might be a little more intuitive for you.</p>

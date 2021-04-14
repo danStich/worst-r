@@ -405,6 +405,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="18-5-next-steps.html"><a href="18-5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a><ul>
+<li class="chapter" data-level="19.1" data-path="19-1-intro-19.html"><a href="19-1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19-2-hierarchical.html"><a href="19-2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -431,11 +439,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We will start this time by actually doing some data exploration before our analysis. This is really how we should have started above, but that would have ruined all the fun.</p>
 <p>First, look at the distribution of the data. Here, it should be pretty obvious to you by now that these are count data for which the mean is not equal to the variance…right?</p>
 <div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="13-3-negbin.html#cb527-1"></a><span class="kw">hist</span>(crabs<span class="op">$</span>satellites)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-408-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-427-1.png" width="672" /></p>
 <p>If you think back to a couple of weeks ago, you’ll remember this is a pretty typical example of the negative binomial distribution.</p>
 <p>We can take a look at how this shakes out between our groups (<code>color</code>) as well.</p>
 <div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="13-3-negbin.html#cb528-1"></a><span class="kw">boxplot</span>(satellites <span class="op">~</span><span class="st"> </span>color, <span class="dt">data =</span> crabs, <span class="dt">boxwex =</span> <span class="fl">0.3</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-409-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-428-1.png" width="672" /></p>
 <p>And, you can see here that even within groups the distributions do not look like they are normal or like they have equal variances, so we will fit a GLM that assumes the response is drawn from a negative binomial distribution.</p>
 <p>For this example, we will use a function called <code>glm.nb</code>. This function allows us to estimate a GLM for lets us estimate parameters for a GLM that uses the negative binomial error distribution and estimates the “overdispersion parameter” for the negative binomial distribution. You, of course, remember this parameter and know it as <code>theta</code> or <code>size</code> from our discussions about sampling distributions.</p>
 <p>We can fit it with the GLM function like this as long as we have the <code>Mass</code> package loaded:</p>
@@ -450,7 +458,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb530-3"><a href="13-3-negbin.html#cb530-3"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">factor</span>(color)), <span class="dt">width =</span> <span class="fl">.1</span>) <span class="op">+</span></span>
 <span id="cb530-4"><a href="13-3-negbin.html#cb530-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fitted values&quot;</span>) <span class="op">+</span></span>
 <span id="cb530-5"><a href="13-3-negbin.html#cb530-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon)))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-411-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-430-1.png" width="672" /></p>
 <p>Now we are starting to look a lot more “normal” within groups, and we are getting more symmetrical in our residual sampling distributions. If we had to move forward with this model we could probably do so with a straight face at this point. However, it looks like most of the area of each violin above is below zero (so the mean of our residuals is also negative and non-zero), so we may have some issues going on here that could make this model bad for prediction.</p>
 <p><strong>But</strong>, how does this compare to the Poisson model for count data? We can use model selection to compare the Poisson model to the negative binomial model, since the response is the same in both cases.</p>
 <div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="13-3-negbin.html#cb531-1"></a><span class="kw">AIC</span>(count_mod, neg_mod)</span></code></pre></div>

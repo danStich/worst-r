@@ -405,6 +405,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="18-5-next-steps.html"><a href="18-5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a><ul>
+<li class="chapter" data-level="19.1" data-path="19-1-intro-19.html"><a href="19-1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19-2-hierarchical.html"><a href="19-2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -520,22 +528,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## Model selection based on AICc:
 ## 
-##                                 K   AICc Delta_AICc AICcWt
-## year + flow                     7 565.16       0.00   0.31
-## year + hatchery + flow          8 565.23       0.07   0.30
-## year + length + flow            8 565.91       0.75   0.21
-## year + hatchery + length + flow 9 567.12       1.96   0.12
-## year + hatchery                 7 569.50       4.34   0.04
-## year + length                   7 570.80       5.64   0.02
-## year + length + hatchery        8 571.37       6.21   0.01
-##                                 Cum.Wt      LL
-## year + flow                       0.31 -275.51
-## year + hatchery + flow            0.61 -274.52
-## year + length + flow              0.82 -274.86
-## year + hatchery + length + flow   0.93 -274.44
-## year + hatchery                   0.97 -277.68
-## year + length                     0.99 -278.33
-## year + length + hatchery          1.00 -277.59</code></pre>
+##                                 K   AICc Delta_AICc AICcWt Cum.Wt      LL
+## year + flow                     7 565.16       0.00   0.31   0.31 -275.51
+## year + hatchery + flow          8 565.23       0.07   0.30   0.61 -274.52
+## year + length + flow            8 565.91       0.75   0.21   0.82 -274.86
+## year + hatchery + length + flow 9 567.12       1.96   0.12   0.93 -274.44
+## year + hatchery                 7 569.50       4.34   0.04   0.97 -277.68
+## year + length                   7 570.80       5.64   0.02   0.99 -278.33
+## year + length + hatchery        8 571.37       6.21   0.01   1.00 -277.59</code></pre>
 <div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="12-4-logistic.html#cb490-1"></a><span class="co"># Look at the structure just to show that it is, indeed, an object:</span></span>
 <span id="cb490-2"><a href="12-4-logistic.html#cb490-2"></a><span class="kw">str</span>(mod_table)</span></code></pre></div>
 <pre><code>## Classes &#39;aictab&#39; and &#39;data.frame&#39;:	7 obs. of  8 variables:
@@ -556,10 +556,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Call:  glm(formula = path ~ year + flow, family = binomial, data = choice)
 ## 
 ## Coefficients:
-## (Intercept)     year2006     year2009     year2010  
-##   -2.911624    -0.518632     0.243194    -0.043979  
-##    year2011     year2012         flow  
-##   -0.814334    -0.764289     0.001642  
+## (Intercept)     year2006     year2009     year2010     year2011     year2012  
+##   -2.911624    -0.518632     0.243194    -0.043979    -0.814334    -0.764289  
+##        flow  
+##    0.001642  
 ## 
 ## Degrees of Freedom: 758 Total (i.e. Null);  752 Residual
 ## Null Deviance:	    580.2 
@@ -584,8 +584,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## year2012    -0.7642890  0.5137641  -1.488 0.136849    
 ## flow         0.0016416  0.0006195   2.650 0.008052 ** 
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
@@ -614,8 +613,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## year2012    -0.7642890  0.5137641  -1.488 0.136849    
 ## flow         0.0016416  0.0006195   2.650 0.008052 ** 
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
@@ -649,8 +647,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## year2012    -0.7642890  0.5137641  -1.488 0.136849    
 ## flow         0.0016416  0.0006195   2.650 0.008052 ** 
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
@@ -669,8 +666,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## year  12.8043  5   0.025283 * 
 ## flow   7.4471  1   0.006354 **
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Here, we see that there are significant effects of both <code>year</code> and <code>flow</code> on our response, <code>path</code>. But, how on Earth do we communicate these effects?</p>
 </div>
 <div id="making-predictions" class="section level3">
@@ -682,22 +678,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="12-4-logistic.html#cb504-1"></a>c.res &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">summary</span>(mods[[best]])<span class="op">$</span>coefficients)</span></code></pre></div>
 <p>Now we can look at the coefficient estimates. These estimates may not make a lot of intuitive sense at first. That is because they are on the <strong>logit</strong> scale.</p>
 <div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="12-4-logistic.html#cb505-1"></a>c.res</span></code></pre></div>
-<pre><code>##                 Estimate   Std..Error     z.value
-## (Intercept) -2.911624325 0.7981931477 -3.64776913
-## year2006    -0.518631856 0.6237029032 -0.83153670
-## year2009     0.243193850 0.4615202282  0.52694083
-## year2010    -0.043978930 0.6525992875 -0.06739041
-## year2011    -0.814334317 0.4029437518 -2.02096276
-## year2012    -0.764288967 0.5137640800 -1.48762632
-## flow         0.001641583 0.0006194926  2.64988401
-##                 Pr...z..
-## (Intercept) 0.0002645272
-## year2006    0.4056705026
-## year2009    0.5982346820
-## year2010    0.9462709073
-## year2011    0.0432836201
-## year2012    0.1368494687
-## flow        0.0080519409</code></pre>
+<pre><code>##                 Estimate   Std..Error     z.value     Pr...z..
+## (Intercept) -2.911624325 0.7981931477 -3.64776913 0.0002645272
+## year2006    -0.518631856 0.6237029032 -0.83153670 0.4056705026
+## year2009     0.243193850 0.4615202282  0.52694083 0.5982346820
+## year2010    -0.043978930 0.6525992875 -0.06739041 0.9462709073
+## year2011    -0.814334317 0.4029437518 -2.02096276 0.0432836201
+## year2012    -0.764288967 0.5137640800 -1.48762632 0.1368494687
+## flow         0.001641583 0.0006194926  2.64988401 0.0080519409</code></pre>
 <p>If it helps, we can make some predictions. Let’s say we want to ask <strong>what was the mean probability of using the Stillwater Branch in 2006 under average flow?</strong>. To answer that question, we would do:</p>
 <div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="12-4-logistic.html#cb507-1"></a><span class="co"># Remember:  y = mx + b</span></span>
 <span id="cb507-2"><a href="12-4-logistic.html#cb507-2"></a>logit_pred2006 &lt;-<span class="st"> </span><span class="fl">-2.91162</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.00164</span> <span class="op">*</span><span class="st"> </span><span class="kw">mean</span>(choice<span class="op">$</span>flow)</span></code></pre></div>
@@ -729,7 +717,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb513-4"><a href="12-4-logistic.html#cb513-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;Flow ( &quot;</span>, m<span class="op">^</span><span class="dv">3</span>, <span class="st">&quot;\u00b7&quot;</span>, s<span class="op">^-</span><span class="dv">1</span>, <span class="st">&quot;)&quot;</span>))) <span class="op">+</span></span>
 <span id="cb513-5"><a href="12-4-logistic.html#cb513-5"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
 <span id="cb513-6"><a href="12-4-logistic.html#cb513-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-398-1.png" width="672" />
+<p><img src="worstr_files/figure-html/unnamed-chunk-417-1.png" width="672" />
 <br></p>
 <p>You can see that, in general, there is a relatively low probability of an individual fish using the Stillwater Branch, but we see increasing probability of using that route with increasing <code>flow</code>.</p>
 </div>

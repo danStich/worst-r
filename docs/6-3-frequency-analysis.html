@@ -405,6 +405,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="18-5-next-steps.html"><a href="18-5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a><ul>
+<li class="chapter" data-level="19.1" data-path="19-1-intro-19.html"><a href="19-1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19-2-hierarchical.html"><a href="19-2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -468,20 +476,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb277-2"><a href="6-3-frequency-analysis.html#cb277-2"></a><span class="st">    </span><span class="kw">filter</span>(Age <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span><span class="op">:</span><span class="dv">15</span>)) <span class="co"># Select only shared age range</span></span>
 <span id="cb277-3"><a href="6-3-frequency-analysis.html#cb277-3"></a></span>
 <span id="cb277-4"><a href="6-3-frequency-analysis.html#cb277-4"></a><span class="kw">head</span>(freqs)</span></code></pre></div>
-<pre><code>##   Year Length Weight_kg Age cohort n_stocked     n acre   ha
-## 1 2006   1262    23.154  12   1994      7000 25128 2957 1203
-## 2 2006   1138    23.923  10   1996      7000 25128 2957 1203
-## 3 2006   1187    18.614  10   1996      7000 25128 2957 1203
-## 4 2006   1207    19.522  12   1994      7000 25128 2957 1203
-## 5 2006   1086    21.285  10   1996      7000 25128 2957 1203
-## 6 2006   1095    18.160  12   1994      7000 25128 2957 1203
-##   nha     kg kg_ha density
-## 1  21 129929   108     low
-## 2  21 129929   108     low
-## 3  21 129929   108     low
-## 4  21 129929   108     low
-## 5  21 129929   108     low
-## 6  21 129929   108     low</code></pre>
+<pre><code>##   Year Length Weight_kg Age cohort n_stocked     n acre   ha nha     kg kg_ha
+## 1 2006   1262    23.154  12   1994      7000 25128 2957 1203  21 129929   108
+## 2 2006   1138    23.923  10   1996      7000 25128 2957 1203  21 129929   108
+## 3 2006   1187    18.614  10   1996      7000 25128 2957 1203  21 129929   108
+## 4 2006   1207    19.522  12   1994      7000 25128 2957 1203  21 129929   108
+## 5 2006   1086    21.285  10   1996      7000 25128 2957 1203  21 129929   108
+## 6 2006   1095    18.160  12   1994      7000 25128 2957 1203  21 129929   108
+##   density
+## 1     low
+## 2     low
+## 3     low
+## 4     low
+## 5     low
+## 6     low</code></pre>
 <p>We will test the null hypothesis that there is no difference in the number of age-10 fish between high and low densities.</p>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="6-3-frequency-analysis.html#cb279-1"></a><span class="co"># Run the test</span></span>
 <span id="cb279-2"><a href="6-3-frequency-analysis.html#cb279-2"></a>chi_test &lt;-<span class="st"> </span><span class="kw">with</span>(freqs, <span class="kw">chisq.test</span>(<span class="dt">x =</span> density, <span class="dt">y =</span> Age))</span>
@@ -496,7 +504,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>And, bam! We see that there is a difference in the frequency of fish collected in each age class in high and low density years. Shocker.</p>
 <p>Data visualization techniques for contingency table analyses like this seem to have generally lagged behind theory in terms of wide-spread implementation. There is a base R <code>mosaicplot</code> that plots relative freqencies. You can interpret the width of the bars as the proportion of total observations in each age class. Likewise, the height of the vertical segnmens corresponds to proportion of <code>high</code> or <code>low</code> <code>density</code> observations in each <code>Age</code>.</p>
 <div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="6-3-frequency-analysis.html#cb281-1"></a><span class="kw">mosaicplot</span>(Age <span class="op">~</span><span class="st"> </span>density, <span class="dt">data =</span> freqs)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-234-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-253-1.png" width="672" /></p>
 <p>The need for improved graphical representation for these data types is recognized. There have been recent efforts to extend the philosophies used <code>ggplot()</code> to contingency analysis by r developers (see <a href="http://vita.had.co.nz/papers/prodplots.pdf">Wickham and Hofmann 2011</a>). It was even the topic of a recent master’s thesis (<a href="https://lib.dr.iastate.edu/cgi/viewcontent.cgi?article=7144&context=etd">see Grant 2017</a>). But as far as I know the ideas from these works have not been integrated into <code>ggplot2</code> or the <code>tidyverse</code> yet. Sorry about the citations. I don’t know what I was thinking. This is supposed to be the Worst Stats Text eveR.</p>
 </div>
 </div>

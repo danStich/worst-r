@@ -405,6 +405,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="18-5-next-steps.html"><a href="18-5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a><ul>
+<li class="chapter" data-level="19.1" data-path="19-1-intro-19.html"><a href="19-1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19-2-hierarchical.html"><a href="19-2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -437,7 +445,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb156-3"><a href="4-3-plotting-with-ggplot2.html#cb156-3"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(otsego, <span class="kw">aes</span>(<span class="dt">x=</span>temp)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">bins=</span><span class="dv">30</span>)</span>
 <span id="cb156-4"><a href="4-3-plotting-with-ggplot2.html#cb156-4"></a></span>
 <span id="cb156-5"><a href="4-3-plotting-with-ggplot2.html#cb156-5"></a><span class="kw">print</span>(p)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
 <p>Right away this looks a lot prettier than the default histogram that we produced with base graphics. Of course, we can customize just like we did before.</p>
 <p>Let’s add labels for the x and y-axis next:</p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="4-3-plotting-with-ggplot2.html#cb157-1"></a><span class="co"># Histogram of water temperature across </span></span>
@@ -448,7 +456,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb157-6"><a href="4-3-plotting-with-ggplot2.html#cb157-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Count&quot;</span>)</span>
 <span id="cb157-7"><a href="4-3-plotting-with-ggplot2.html#cb157-7"></a></span>
 <span id="cb157-8"><a href="4-3-plotting-with-ggplot2.html#cb157-8"></a><span class="kw">print</span>(p)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
 <p>We can also scale the <code>x-axis</code> and the <code>y-axis</code> like we did in the <a href="4-2-base-graphics.html#histograms">base graphics example</a>.</p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="4-3-plotting-with-ggplot2.html#cb158-1"></a><span class="co"># Histogram of water temperature across </span></span>
 <span id="cb158-2"><a href="4-3-plotting-with-ggplot2.html#cb158-2"></a><span class="co"># all dates and depths</span></span>
@@ -459,7 +467,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb158-7"><a href="4-3-plotting-with-ggplot2.html#cb158-7"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">25</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb158-8"><a href="4-3-plotting-with-ggplot2.html#cb158-8"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
 <span id="cb158-9"><a href="4-3-plotting-with-ggplot2.html#cb158-9"></a><span class="kw">print</span>(p)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
 <p>We can modify each of other layers individually, all at once using preset ggplot <a href="http://www.sthda.com/english/wiki/ggplot2-title-main-axis-and-legend-titles">themes</a> or by modifying a pre-defined theme.</p>
 <p>Let’s have a look at how a theme changes the appearance. I am going to add <code>theme_bw()</code> here, but check out the others linked above. I also add a few adjust the position of the x- and y-axis labels and removed the panel grid in the <code>theme()</code> function after applying a theme.</p>
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="4-3-plotting-with-ggplot2.html#cb159-1"></a><span class="co"># Histogram of water temperature across </span></span>
@@ -477,7 +485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb159-13"><a href="4-3-plotting-with-ggplot2.html#cb159-13"></a>    <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
 <span id="cb159-14"><a href="4-3-plotting-with-ggplot2.html#cb159-14"></a>  )</span>
 <span id="cb159-15"><a href="4-3-plotting-with-ggplot2.html#cb159-15"></a><span class="kw">print</span>(p)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
 <p>Spend some time practicing this and changing options to see what you can come up with. Be sure to check out the descriptions of the options you can pass to theme by running <code>?theme</code> to get the help file.</p>
 </div>
 <div id="ggscatter" class="section level3">
@@ -490,7 +498,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="4-3-plotting-with-ggplot2.html#cb161-1"></a>s &lt;-<span class="st"> </span><span class="kw">ggplot</span>(surface, <span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> temp)) <span class="op">+</span></span>
 <span id="cb161-2"><a href="4-3-plotting-with-ggplot2.html#cb161-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span>
 <span id="cb161-3"><a href="4-3-plotting-with-ggplot2.html#cb161-3"></a><span class="kw">print</span>(s)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
 <p>At a glance, this already looks a lot nicer than the default scatterplots from base graphics, but we still have a lot of work to do. Plus, we get ggplots own odd behaviors when it comes to the x-axis scale and titles. So, let’s get to work!</p>
 <p>First, we’ll replace the default axis titles and add the <code>theme_bw()</code> that we used above, with the same modifications to axis positions and grid lines.</p>
 <div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="4-3-plotting-with-ggplot2.html#cb162-1"></a>s &lt;-<span class="st"> </span><span class="kw">ggplot</span>(surface, <span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> temp)) <span class="op">+</span></span>
@@ -503,7 +511,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb162-8"><a href="4-3-plotting-with-ggplot2.html#cb162-8"></a>        <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
 <span id="cb162-9"><a href="4-3-plotting-with-ggplot2.html#cb162-9"></a>  )</span>
 <span id="cb162-10"><a href="4-3-plotting-with-ggplot2.html#cb162-10"></a><span class="kw">print</span>(s)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 <p>Okay, now we need to fix that pesky x-axis scale to use whole months or text labels.</p>
 <p>To fix the axis scales, we’ve actually got to do a little bit of work this time. In this case the easiest thing to do is probably to make a categorical variable out of the column <code>month</code>, which is an integer. We can do this using some fancy indexing with the built-in object that contains month abbreviations, <code>month.abb</code> in base R.</p>
 <div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="4-3-plotting-with-ggplot2.html#cb163-1"></a>surface<span class="op">$</span>c_month &lt;-<span class="st"> </span><span class="kw">factor</span>(month.abb[surface<span class="op">$</span>month], <span class="dt">levels=</span>month.abb)</span></code></pre></div>
@@ -518,7 +526,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb164-8"><a href="4-3-plotting-with-ggplot2.html#cb164-8"></a>        <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
 <span id="cb164-9"><a href="4-3-plotting-with-ggplot2.html#cb164-9"></a>  )</span>
 <span id="cb164-10"><a href="4-3-plotting-with-ggplot2.html#cb164-10"></a><span class="kw">print</span>(s)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-161-1.png" width="672" />
+<p><img src="worstr_files/figure-html/unnamed-chunk-180-1.png" width="672" />
 This is starting to look really nice.</p>
 <p>Finally, we just add a little transparency to the points by specifying <code>alpha = 0.2</code> inside of <code>geom_point()</code> and we are good to go!</p>
 <div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="4-3-plotting-with-ggplot2.html#cb165-1"></a>s &lt;-<span class="st"> </span><span class="kw">ggplot</span>(surface, <span class="kw">aes</span>(<span class="dt">x =</span> c_month, <span class="dt">y =</span> temp)) <span class="op">+</span></span>
@@ -531,7 +539,7 @@ This is starting to look really nice.</p>
 <span id="cb165-8"><a href="4-3-plotting-with-ggplot2.html#cb165-8"></a>        <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
 <span id="cb165-9"><a href="4-3-plotting-with-ggplot2.html#cb165-9"></a>  )</span>
 <span id="cb165-10"><a href="4-3-plotting-with-ggplot2.html#cb165-10"></a><span class="kw">print</span>(s)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
 <p>Looks just like the one we made with base graphics!</p>
 </div>
 <div id="gglines" class="section level3">
@@ -547,7 +555,7 @@ This is starting to look really nice.</p>
 <span id="cb167-2"><a href="4-3-plotting-with-ggplot2.html#cb167-2"></a><span class="st">  </span><span class="kw">geom_line</span>()</span>
 <span id="cb167-3"><a href="4-3-plotting-with-ggplot2.html#cb167-3"></a></span>
 <span id="cb167-4"><a href="4-3-plotting-with-ggplot2.html#cb167-4"></a><span class="kw">print</span>(lp)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
 <p>There you have it!</p>
 <p>Now, we just need to add this to our scatterplot that we made previously. To do this, we have to insert <code>geom_line()</code> in the code, but we must specify</p>
 <div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="4-3-plotting-with-ggplot2.html#cb168-1"></a>s &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> surface, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> c_month, <span class="dt">y =</span> temp)) <span class="op">+</span></span>
@@ -566,7 +574,7 @@ This is starting to look really nice.</p>
 <span id="cb168-14"><a href="4-3-plotting-with-ggplot2.html#cb168-14"></a>  )</span>
 <span id="cb168-15"><a href="4-3-plotting-with-ggplot2.html#cb168-15"></a></span>
 <span id="cb168-16"><a href="4-3-plotting-with-ggplot2.html#cb168-16"></a><span class="kw">print</span>(s)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
 <p>We will continue to use this approach throughout the book to plot raw data and model predictions. So, if it is giving you trouble now, spend some extra time with it.</p>
 </div>
 <div id="ggboxplots" class="section level3">
@@ -576,7 +584,7 @@ This is starting to look really nice.</p>
 <div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="4-3-plotting-with-ggplot2.html#cb169-1"></a>bp &lt;-<span class="st"> </span><span class="kw">ggplot</span>(surface, <span class="kw">aes</span>(<span class="dt">x =</span> c_month, <span class="dt">y =</span> temp)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</span>
 <span id="cb169-2"><a href="4-3-plotting-with-ggplot2.html#cb169-2"></a></span>
 <span id="cb169-3"><a href="4-3-plotting-with-ggplot2.html#cb169-3"></a><span class="kw">print</span>(bp)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
 <p>If we add changes we made to previous plots here, then we can get a cleaner look:</p>
 <div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="4-3-plotting-with-ggplot2.html#cb170-1"></a>bp &lt;-<span class="st"> </span><span class="kw">ggplot</span>(surface, <span class="kw">aes</span>(<span class="dt">x =</span> c_month, <span class="dt">y =</span> temp)) <span class="op">+</span></span>
 <span id="cb170-2"><a href="4-3-plotting-with-ggplot2.html#cb170-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">color =</span> <span class="st">&#39;gray40&#39;</span>, <span class="dt">fill =</span> <span class="st">&#39;gray87&#39;</span>, <span class="dt">width =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
@@ -589,7 +597,7 @@ This is starting to look really nice.</p>
 <span id="cb170-9"><a href="4-3-plotting-with-ggplot2.html#cb170-9"></a>  )</span>
 <span id="cb170-10"><a href="4-3-plotting-with-ggplot2.html#cb170-10"></a></span>
 <span id="cb170-11"><a href="4-3-plotting-with-ggplot2.html#cb170-11"></a><span class="kw">print</span>(bp)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
 <p>And, of course, we can add our “jittered”, raw data points over the top to show the spread.</p>
 <div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="4-3-plotting-with-ggplot2.html#cb171-1"></a>bp &lt;-<span class="st"> </span><span class="kw">ggplot</span>(surface, <span class="kw">aes</span>(<span class="dt">x =</span> c_month, <span class="dt">y =</span> temp)) <span class="op">+</span></span>
 <span id="cb171-2"><a href="4-3-plotting-with-ggplot2.html#cb171-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">color =</span> <span class="st">&#39;gray40&#39;</span>, <span class="dt">fill =</span> <span class="st">&#39;gray87&#39;</span>, <span class="dt">width =</span> <span class="fl">0.4</span>) <span class="op">+</span></span>
@@ -603,7 +611,7 @@ This is starting to look really nice.</p>
 <span id="cb171-10"><a href="4-3-plotting-with-ggplot2.html#cb171-10"></a>  )</span>
 <span id="cb171-11"><a href="4-3-plotting-with-ggplot2.html#cb171-11"></a></span>
 <span id="cb171-12"><a href="4-3-plotting-with-ggplot2.html#cb171-12"></a><span class="kw">print</span>(bp)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
 </div>
 </div>
             </section>

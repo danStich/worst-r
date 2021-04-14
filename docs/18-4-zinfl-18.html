@@ -405,6 +405,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="18-5-next-steps.html"><a href="18-5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a><ul>
+<li class="chapter" data-level="19.1" data-path="19-1-intro-19.html"><a href="19-1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19-2-hierarchical.html"><a href="19-2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -450,7 +458,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="18-4-zinfl-18.html#cb694-1"></a>coeffs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(hurdle_step1)</span>
 <span id="cb694-2"><a href="18-4-zinfl-18.html#cb694-2"></a></span>
 <span id="cb694-3"><a href="18-4-zinfl-18.html#cb694-3"></a><span class="kw">ggplot</span>(coeffs, <span class="kw">aes</span>(<span class="dt">x =</span> mass)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>) </span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-541-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-560-1.png" width="672" /></p>
 <p>Here we see that <code>mass</code> has a significant effect on whether or not <em>any</em> satellite males are present because zero is not included within the credible range of estimates. You could imagine fitting any number of plausible biological models for comparison using LOO-IC or elpd<sub>loo</sub> at this point.</p>
 </div>
 <div id="step-2-counts-given-presence" class="section level3">
@@ -475,7 +483,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb697-2"><a href="18-4-zinfl-18.html#cb697-2"></a><span class="st">  </span><span class="kw">geom_jitter</span>() <span class="op">+</span></span>
 <span id="cb697-3"><a href="18-4-zinfl-18.html#cb697-3"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fitted values&quot;</span>) <span class="op">+</span></span>
 <span id="cb697-4"><a href="18-4-zinfl-18.html#cb697-4"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon)))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-544-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-563-1.png" width="672" /></p>
 <p>These residuals still aren’t perfect, but they are a lot better than they were before. For now, we will go ahead and make some predictive plots to see how we did.</p>
 </div>
 <div id="predict-counts" class="section level3">
@@ -504,7 +512,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb699-4"><a href="18-4-zinfl-18.html#cb699-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="op">+</span></span>
 <span id="cb699-5"><a href="18-4-zinfl-18.html#cb699-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Mass of female crab (g)&quot;</span>) <span class="op">+</span></span>
 <span id="cb699-6"><a href="18-4-zinfl-18.html#cb699-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability of satellite male&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-546-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-565-1.png" width="672" /></p>
 <p>Finally, we can make a plot of the number of <code>satellite</code> males we would expect to see on a female crab given that she had attracted any males in the first place.</p>
 <p><strong>Also important:</strong> We need to remember here that we have two different models. The first model <code>hurdle_step1</code> was a binary logistic regression, so it used the logit link. The second model <code>hurdle_step2</code> was a count model and used the log link. That means we need to invert the <strong>log</strong> link to get our predicted counts back on the real scale.</p>
 <p>We will combine our predictions with the <code>crabs2</code> dataframe, which only contains observations for which there was at least one <code>satellite</code>.</p>
@@ -528,7 +536,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb701-4"><a href="18-4-zinfl-18.html#cb701-4"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr, <span class="dt">color =</span> <span class="ot">NULL</span>), <span class="dt">alpha =</span> <span class="fl">.3</span>) <span class="op">+</span></span>
 <span id="cb701-5"><a href="18-4-zinfl-18.html#cb701-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Mass of female crab (kg)&quot;</span>) <span class="op">+</span></span>
 <span id="cb701-6"><a href="18-4-zinfl-18.html#cb701-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Number of satellite males&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-548-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-567-1.png" width="672" /></p>
 <p>Well, it doesn’t exactly inspire great confidence in the biological relationship between female horseshoe crab mass and the number of satellite males she attracts, but that is exactly why it is so important to communicate these effects</p>
 </div>
 </div>

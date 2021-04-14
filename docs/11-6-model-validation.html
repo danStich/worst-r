@@ -405,6 +405,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="18-5-next-steps.html"><a href="18-5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a><ul>
+<li class="chapter" data-level="19.1" data-path="19-1-intro-19.html"><a href="19-1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19-2-hierarchical.html"><a href="19-2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -475,7 +483,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now, We can look at a plot of our predicted values for each iteration against the data point that was withheld for making the prediction.</p>
 <div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="11-6-model-validation.html#cb469-1"></a><span class="kw">ggplot</span>(loo_df, <span class="kw">aes</span>(<span class="dt">x =</span> fert_obs, <span class="dt">y =</span> fert_pred)) <span class="op">+</span></span>
 <span id="cb469-2"><a href="11-6-model-validation.html#cb469-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-368-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-387-1.png" width="672" /></p>
 <p>We can add a regression line to the plot to see whether we are over or under predicting <code>Fertility</code> from our model in a systematic way:</p>
 <div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="11-6-model-validation.html#cb470-1"></a><span class="co"># Fit the model</span></span>
 <span id="cb470-2"><a href="11-6-model-validation.html#cb470-2"></a>pred_line &lt;-<span class="st"> </span><span class="kw">lm</span>(fert_pred <span class="op">~</span><span class="st"> </span>fert_obs, <span class="dt">data =</span> loo_df)</span>
@@ -490,7 +498,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb470-11"><a href="11-6-model-validation.html#cb470-11"></a><span class="kw">ggplot</span>(loo_df_pred, <span class="kw">aes</span>(<span class="dt">x =</span> fert_obs, <span class="dt">y =</span> fert_pred)) <span class="op">+</span></span>
 <span id="cb470-12"><a href="11-6-model-validation.html#cb470-12"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb470-13"><a href="11-6-model-validation.html#cb470-13"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> loo_pred))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-369-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-388-1.png" width="672" /></p>
 <p><br></p>
 <p>You can see that we are generally okay, but tend to under-predict at both low and high values of <code>Fertility</code> because the points on either end of the line fall mostly below the line. This is due either to a lack of data at extremes or some overlooked non-linearity in the relationship between X (<code>Education</code>) and Y (<code>Fertility</code>). If we intentionally collected more data at the extremes of <code>Education</code> that could resolve which is the case (because we would either improve prediction at extremes or see the non-linearity in the relationship more clearly). We will use log-transformations to deal help linearize these relationships in some future examples.</p>
 <p>We could also look at the summary of our observed vs predicted regression to see how good we are (how much variance in prediction is explained by the model). In this case, it is not great. If we were going to use this for model prediction, we might want there to be a stronger correlation between the observed and predicted values. In that case, it might just mean collecting more or better data or it could mean re-thinking what is being measured and how.</p>

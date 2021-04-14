@@ -405,6 +405,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="18.5" data-path="18-5-next-steps.html"><a href="18-5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a><ul>
+<li class="chapter" data-level="19.1" data-path="19-1-intro-19.html"><a href="19-1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19-2-hierarchical.html"><a href="19-2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="19-3-worked-19.html"><a href="19-3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -484,8 +492,7 @@ Equal variance
 ## 	F test to compare two variances
 ## 
 ## data:  Length by density
-## F = 0.72988, num df = 20, denom df = 7, p-value =
-## 0.5423
+## F = 0.72988, num df = 20, denom df = 7, p-value = 0.5423
 ## alternative hypothesis: true ratio of variances is not equal to 1
 ## 95 percent confidence interval:
 ##  0.1634026 2.1950440
@@ -522,7 +529,7 @@ Equal variance
 <p>Here is a quick, ugly violin plot with some basic options. Pretty easy to make, but also kind of makes you want to puke.</p>
 <div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="6-2-two-sample-tests.html#cb273-1"></a><span class="kw">ggplot</span>(mid_carps, <span class="kw">aes</span>(<span class="dt">x =</span> density, <span class="dt">y =</span> Length)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb273-2"><a href="6-2-two-sample-tests.html#cb273-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">group =</span> density), <span class="dt">trim =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-248-1.png" width="672" /></p>
 <p>Here is a much better plot. Not that much more difficult to make, and doesn’t make you want to puke even if the code does a little bit.</p>
 <div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="6-2-two-sample-tests.html#cb274-1"></a>mid_carps <span class="op">%&gt;%</span></span>
 <span id="cb274-2"><a href="6-2-two-sample-tests.html#cb274-2"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> density, <span class="dt">y =</span> Length, <span class="dt">fill =</span> density, <span class="dt">color =</span> density)) <span class="op">+</span><span class="st"> </span></span>
@@ -539,7 +546,7 @@ Equal variance
 <span id="cb274-13"><a href="6-2-two-sample-tests.html#cb274-13"></a>    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>),</span>
 <span id="cb274-14"><a href="6-2-two-sample-tests.html#cb274-14"></a>    <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
 <span id="cb274-15"><a href="6-2-two-sample-tests.html#cb274-15"></a>  )</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-249-1.png" width="672" /></p>
 <p>There, isn’t that fancy? I think that gives you a much more detailed understanding of how <code>Length</code> varies between <code>high</code> and <code>low</code> population density than a simple p-value. But, maybe its just me…</p>
 </div>
 </div>
