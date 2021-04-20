@@ -413,6 +413,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="20" data-path="20-Chapter20.html"><a href="20-Chapter20.html"><i class="fa fa-check"></i><b>20</b> Bayesian hierarchical GLM</a><ul>
+<li class="chapter" data-level="20.1" data-path="20-1-intro-20.html"><a href="20-1-intro-20.html"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
+<li class="chapter" data-level="20.2" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression {#20-logistic}</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#data-explanation-20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation {#20-logistic-data}</a></li>
+<li class="chapter" data-level="20.2.2" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#data-analysis-20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis {#20-logistic-analysis}</a></li>
+<li class="chapter" data-level="20.2.3" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#predictions-20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions {#20-logistic-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models {#20-count}</a><ul>
+<li class="chapter" data-level="20.3.1" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
+<li class="chapter" data-level="20.3.2" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#data-analysis-20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis {#20-count-analysis}</a></li>
+<li class="chapter" data-level="20.3.3" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#predictions-20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions {#20-count-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="20-4-next-20.html"><a href="20-4-next-20.html"><i class="fa fa-check"></i><b>20.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -458,7 +472,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="18-4-zinfl-18.html#cb694-1"></a>coeffs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(hurdle_step1)</span>
 <span id="cb694-2"><a href="18-4-zinfl-18.html#cb694-2"></a></span>
 <span id="cb694-3"><a href="18-4-zinfl-18.html#cb694-3"></a><span class="kw">ggplot</span>(coeffs, <span class="kw">aes</span>(<span class="dt">x =</span> mass)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>) </span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-560-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-501-1.png" width="672" /></p>
 <p>Here we see that <code>mass</code> has a significant effect on whether or not <em>any</em> satellite males are present because zero is not included within the credible range of estimates. You could imagine fitting any number of plausible biological models for comparison using LOO-IC or elpd<sub>loo</sub> at this point.</p>
 </div>
 <div id="step-2-counts-given-presence" class="section level3">
@@ -483,7 +497,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb697-2"><a href="18-4-zinfl-18.html#cb697-2"></a><span class="st">  </span><span class="kw">geom_jitter</span>() <span class="op">+</span></span>
 <span id="cb697-3"><a href="18-4-zinfl-18.html#cb697-3"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fitted values&quot;</span>) <span class="op">+</span></span>
 <span id="cb697-4"><a href="18-4-zinfl-18.html#cb697-4"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon)))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-563-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-504-1.png" width="672" /></p>
 <p>These residuals still aren’t perfect, but they are a lot better than they were before. For now, we will go ahead and make some predictive plots to see how we did.</p>
 </div>
 <div id="predict-counts" class="section level3">
@@ -512,7 +526,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb699-4"><a href="18-4-zinfl-18.html#cb699-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="op">+</span></span>
 <span id="cb699-5"><a href="18-4-zinfl-18.html#cb699-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Mass of female crab (g)&quot;</span>) <span class="op">+</span></span>
 <span id="cb699-6"><a href="18-4-zinfl-18.html#cb699-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability of satellite male&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-565-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-506-1.png" width="672" /></p>
 <p>Finally, we can make a plot of the number of <code>satellite</code> males we would expect to see on a female crab given that she had attracted any males in the first place.</p>
 <p><strong>Also important:</strong> We need to remember here that we have two different models. The first model <code>hurdle_step1</code> was a binary logistic regression, so it used the logit link. The second model <code>hurdle_step2</code> was a count model and used the log link. That means we need to invert the <strong>log</strong> link to get our predicted counts back on the real scale.</p>
 <p>We will combine our predictions with the <code>crabs2</code> dataframe, which only contains observations for which there was at least one <code>satellite</code>.</p>
@@ -536,7 +550,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb701-4"><a href="18-4-zinfl-18.html#cb701-4"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr, <span class="dt">color =</span> <span class="ot">NULL</span>), <span class="dt">alpha =</span> <span class="fl">.3</span>) <span class="op">+</span></span>
 <span id="cb701-5"><a href="18-4-zinfl-18.html#cb701-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Mass of female crab (kg)&quot;</span>) <span class="op">+</span></span>
 <span id="cb701-6"><a href="18-4-zinfl-18.html#cb701-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Number of satellite males&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-567-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-508-1.png" width="672" /></p>
 <p>Well, it doesn’t exactly inspire great confidence in the biological relationship between female horseshoe crab mass and the number of satellite males she attracts, but that is exactly why it is so important to communicate these effects</p>
 </div>
 </div>

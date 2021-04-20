@@ -413,6 +413,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="20" data-path="20-Chapter20.html"><a href="20-Chapter20.html"><i class="fa fa-check"></i><b>20</b> Bayesian hierarchical GLM</a><ul>
+<li class="chapter" data-level="20.1" data-path="20-1-intro-20.html"><a href="20-1-intro-20.html"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
+<li class="chapter" data-level="20.2" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression {#20-logistic}</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#data-explanation-20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation {#20-logistic-data}</a></li>
+<li class="chapter" data-level="20.2.2" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#data-analysis-20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis {#20-logistic-analysis}</a></li>
+<li class="chapter" data-level="20.2.3" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#predictions-20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions {#20-logistic-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models {#20-count}</a><ul>
+<li class="chapter" data-level="20.3.1" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
+<li class="chapter" data-level="20.3.2" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#data-analysis-20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis {#20-count-analysis}</a></li>
+<li class="chapter" data-level="20.3.3" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#predictions-20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions {#20-count-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="20-4-next-20.html"><a href="20-4-next-20.html"><i class="fa fa-check"></i><b>20.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -454,13 +468,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ logmass  : num  1.97 1.92 1.91 1.87 1.81 ...</code></pre>
 <div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="19-3-worked-19.html#cb706-1"></a><span class="co"># And, have a look at the first few lines of data</span></span>
 <span id="cb706-2"><a href="19-3-worked-19.html#cb706-2"></a><span class="kw">head</span>(cray)</span></code></pre></div>
-<pre><code>##        date         waterbody            site length mass loglength  logmass
-## 1 6/28/2018 Susquehanna River Cooperstown Dam  30.88 7.18  3.430109 1.971299
-## 2 6/28/2018 Susquehanna River Cooperstown Dam  31.18 6.85  3.439777 1.924249
-## 3 6/28/2018 Susquehanna River Cooperstown Dam  31.15 6.75  3.438814 1.909543
-## 4 6/28/2018 Susquehanna River Cooperstown Dam  29.28 6.46  3.376905 1.865629
-## 5 6/28/2018 Susquehanna River Cooperstown Dam  28.31 6.14  3.343215 1.814825
-## 6 6/28/2018 Susquehanna River Cooperstown Dam  30.55 5.99  3.419365 1.790091</code></pre>
+<pre><code>##        date         waterbody            site length mass loglength
+## 1 6/28/2018 Susquehanna River Cooperstown Dam  30.88 7.18  3.430109
+## 2 6/28/2018 Susquehanna River Cooperstown Dam  31.18 6.85  3.439777
+## 3 6/28/2018 Susquehanna River Cooperstown Dam  31.15 6.75  3.438814
+## 4 6/28/2018 Susquehanna River Cooperstown Dam  29.28 6.46  3.376905
+## 5 6/28/2018 Susquehanna River Cooperstown Dam  28.31 6.14  3.343215
+## 6 6/28/2018 Susquehanna River Cooperstown Dam  30.55 5.99  3.419365
+##    logmass
+## 1 1.971299
+## 2 1.924249
+## 3 1.909543
+## 4 1.865629
+## 5 1.814825
+## 6 1.790091</code></pre>
 <p>This is a fairly straightforward data set. There are 964 observations of 7 variables. Each of the observations (rows) corresponds to a rusty crayfish that was collected and measured (<code>length</code> in mm and <code>mass</code> in g) at one of several <code>site</code>s on a given <code>date</code>. The variable <code>catch</code> is the total number caught by electrobugging over a given <code>time</code> (minutes). To compare density between sites, <code>catch</code> was divided by (<code>time</code>/60) to calculate catch per unit effort (<code>cpue</code>) as number of crayfish per hour. Therefore, observations of <code>cpue</code>, <code>catch</code>, and <code>time</code> correspond to unique <code>date</code> and <code>site</code> combinations, but <code>length</code> and <code>mass</code> represent unique individuals within <code>site</code> and <code>date</code>.</p>
 <p>Our primary objective in this study was to collect baseline data. But curiosity led us to explore variation in the condition of crayfish when we thought we were noticing skinnier crayfish in sites of higher density. Length-weight regressions are one tool that is commonly used to investigate changes in volumetric growth with increasing length. In the absence of a standardized condition metric such as that widely applied in fish populations, relative weight (W<sub>r</sub>), we thought this might offer some insight into variability in condition.</p>
 <p>What follows is a steroid-injected version of the analysis we started with.</p>
@@ -468,7 +489,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can see this in our un-transformed data pretty cleanly:</p>
 <div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="19-3-worked-19.html#cb708-1"></a><span class="kw">ggplot</span>(cray, <span class="kw">aes</span>(<span class="dt">x =</span> length, <span class="dt">y =</span> mass)) <span class="op">+</span></span>
 <span id="cb708-2"><a href="19-3-worked-19.html#cb708-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-572-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-513-1.png" width="672" /></p>
 <p>The relationship depicted above can be expressed mathematically as:</p>
 <p><span class="math display">\[W = aL^b,\]</span></p>
 <p>and statistically as:</p>
@@ -487,7 +508,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Plot the relationship. Note that only the names have been changed.</p>
 <div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="19-3-worked-19.html#cb710-1"></a><span class="kw">ggplot</span>(cray, <span class="kw">aes</span>(<span class="dt">x =</span> loglength, <span class="dt">y =</span> logmass)) <span class="op">+</span></span>
 <span id="cb710-2"><a href="19-3-worked-19.html#cb710-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-574-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-515-1.png" width="672" /></p>
 <p>If nothing else, this tells me we need to go after more small cray next summer. For now, let’s get rid of all crayfish weighing less than 1 g because the data are sparse down there and small values are known to cause some trouble in these kinds of models [still refusing to provide citations].</p>
 <div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="19-3-worked-19.html#cb711-1"></a><span class="co"># Drop the measurements for crayfish &lt; 1 g</span></span>
 <span id="cb711-2"><a href="19-3-worked-19.html#cb711-2"></a>cray &lt;-<span class="st"> </span>cray <span class="op">%&gt;%</span></span>
@@ -498,7 +519,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb712-3"><a href="19-3-worked-19.html#cb712-3"></a><span class="kw">ggplot</span>(testmod, <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> .resid, <span class="dt">fill =</span> site, <span class="dt">color =</span> site)) <span class="op">+</span></span>
 <span id="cb712-4"><a href="19-3-worked-19.html#cb712-4"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">alpha =</span> <span class="fl">0.20</span>, <span class="dt">trim =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
 <span id="cb712-5"><a href="19-3-worked-19.html#cb712-5"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>, <span class="dt">alpha =</span> <span class="fl">0.20</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-576-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-517-1.png" width="672" /></p>
 <p>These look pretty good over all, but you should recognize at this point that we may have some concerns about whether or not variances are equal between groups, and whether observations at each <code>site</code> can really be considered independent (they cannot).</p>
 <p>Next, we will take a look at a few different ways to analyze these data using maximum likelihood estimation. Our goal here is to estimate the relationship between <code>length</code> and <code>mass</code> while accounting for inherent variability between <code>site</code>s.</p>
 <div id="random-intercept-19" class="section level3">
@@ -520,7 +541,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb715-6"><a href="19-3-worked-19.html#cb715-6"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> .resid, <span class="dt">fill =</span> site, <span class="dt">color =</span> site)) <span class="op">+</span></span>
 <span id="cb715-7"><a href="19-3-worked-19.html#cb715-7"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">alpha =</span> <span class="fl">0.20</span>, <span class="dt">trim =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
 <span id="cb715-8"><a href="19-3-worked-19.html#cb715-8"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>, <span class="dt">alpha =</span> <span class="fl">0.20</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-579-1.png" width="768" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-520-1.png" width="768" /></p>
 <p>That’s looking about as good as we could hope for, so you can go ahead and crack open the model summary if that is your thing.</p>
 <div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb716-1"><a href="19-3-worked-19.html#cb716-1"></a><span class="co"># Print the summary</span></span>
 <span id="cb716-2"><a href="19-3-worked-19.html#cb716-2"></a><span class="kw">summary</span>(craymod, <span class="dt">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
@@ -554,7 +575,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb721-1"><a href="19-3-worked-19.html#cb721-1"></a><span class="kw">ggplot</span>(int_summary, <span class="kw">aes</span>(<span class="dt">x =</span> Parameter, <span class="dt">y =</span> fit)) <span class="op">+</span></span>
 <span id="cb721-2"><a href="19-3-worked-19.html#cb721-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
 <span id="cb721-3"><a href="19-3-worked-19.html#cb721-3"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> Parameter, <span class="dt">y =</span> lwr, <span class="dt">yend =</span> upr))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-585-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-526-1.png" width="672" /></p>
 <p>As in <a href="#Chapter%2014">Chapter 14</a> we see that we probably don’t “need” to include these random intercepts if we are thinking about group-specific variability as strictly being a nuisance. But, we are here to incorporate that variability directly, so we’ll keep it!</p>
 <p>Next, let’s make some predictions about the relationship between <code>length</code> and <code>mass</code> in each <code>site</code>.</p>
 <p>This is the first time we will diverge from the MLE estimation technique used in Chapter 14. Rather than using the <code>predict()</code> function as we have been, let’s use the <code>predict_posterior()</code> function to make predictions from the posterior distribution of our model parameters. Notice that we are inverting the <code>log</code> link function on the fly in the lines below <em>after</em> we derive descriptive statistics of interest.</p>
@@ -574,7 +595,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb723-3"><a href="19-3-worked-19.html#cb723-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> fit), <span class="dt">lwd =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.50</span>) <span class="op">+</span></span>
 <span id="cb723-4"><a href="19-3-worked-19.html#cb723-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Carapace length (mm)&quot;</span>) <span class="op">+</span></span>
 <span id="cb723-5"><a href="19-3-worked-19.html#cb723-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Mass (g)&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-587-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-528-1.png" width="672" /></p>
 <p>This is helpful for identifying some of the differences between sites. In this case, it looks like we have slightly smaller crayfish in a handful of sites (<code>Bailey Road</code>, <code>Colliersville</code>, and <code>Route 80</code>) and the rest of them look pretty similar. It can be difficult to see how our model fits the data for individual groups. Remember, that we could address this by using a quick <code>facet_wrap()</code> in our plotting code:</p>
 <div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="19-3-worked-19.html#cb724-1"></a><span class="kw">ggplot</span>(cray_preds, <span class="kw">aes</span>(<span class="dt">x =</span> length, <span class="dt">y =</span> mass, <span class="dt">color =</span> site, <span class="dt">fill =</span> site)) <span class="op">+</span></span>
 <span id="cb724-2"><a href="19-3-worked-19.html#cb724-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.10</span>) <span class="op">+</span></span>
@@ -582,7 +603,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb724-4"><a href="19-3-worked-19.html#cb724-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Carapace length (mm)&quot;</span>) <span class="op">+</span></span>
 <span id="cb724-5"><a href="19-3-worked-19.html#cb724-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Mass (g)&quot;</span>) <span class="op">+</span></span>
 <span id="cb724-6"><a href="19-3-worked-19.html#cb724-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-588-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-529-1.png" width="672" /></p>
 <p>This let’s us see how well our predictions fit the data from individual streams all alongside the uncertainty in our estimates (even though there isn’t much!!).</p>
 <p>As with LMM in the REML framework, this may seem like a lot of work at first glance, but hopefully you do realize that it is about the same amount of code as making predictions from linear models and general linear models, and now we have introduced yet another way to dealing with violations of assumptions!</p>
 </div>

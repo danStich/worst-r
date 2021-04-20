@@ -413,6 +413,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="20" data-path="20-Chapter20.html"><a href="20-Chapter20.html"><i class="fa fa-check"></i><b>20</b> Bayesian hierarchical GLM</a><ul>
+<li class="chapter" data-level="20.1" data-path="20-1-intro-20.html"><a href="20-1-intro-20.html"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
+<li class="chapter" data-level="20.2" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression {#20-logistic}</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#data-explanation-20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation {#20-logistic-data}</a></li>
+<li class="chapter" data-level="20.2.2" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#data-analysis-20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis {#20-logistic-analysis}</a></li>
+<li class="chapter" data-level="20.2.3" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#predictions-20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions {#20-logistic-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models {#20-count}</a><ul>
+<li class="chapter" data-level="20.3.1" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
+<li class="chapter" data-level="20.3.2" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#data-analysis-20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis {#20-count-analysis}</a></li>
+<li class="chapter" data-level="20.3.3" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#predictions-20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions {#20-count-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="20-4-next-20.html"><a href="20-4-next-20.html"><i class="fa fa-check"></i><b>20.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -448,7 +462,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb360-3"><a href="9-6-anova-diagnostics.html#cb360-3"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>() <span class="op">+</span></span>
 <span id="cb360-4"><a href="9-6-anova-diagnostics.html#cb360-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb360-5"><a href="9-6-anova-diagnostics.html#cb360-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon)))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-309-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-250-1.png" width="672" /></p>
 <p><br></p>
 <p>Cool! But…what the heck are we looking at here??</p>
 <p>We have pretty much everything we need here to understand whether we have violated the assumptions of linear models from this graph (other design issues notwithstanding).</p>
@@ -463,7 +477,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb361-7"><a href="9-6-anova-diagnostics.html#cb361-7"></a><span class="st">  </span><span class="kw">scale_color_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Year&quot;</span>) <span class="op">+</span></span>
 <span id="cb361-8"><a href="9-6-anova-diagnostics.html#cb361-8"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb361-9"><a href="9-6-anova-diagnostics.html#cb361-9"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon)))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-310-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
 <p>In fact, we see that the model fit has improved substantially, although the outliers in our data are still outliers and there is still some skew in the residuals. But, at least now all three years have residuals with a mean near zero and they’re more symmetrical than they were before. You can also see that the groups are now placed more uniformly along the x axis.</p>
 <p>If we wanted to investigate further the extent of remaining issues, we could visualize this a little better using a violin plot of the residuals:</p>
 <div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="9-6-anova-diagnostics.html#cb362-1"></a><span class="co"># Now plot the residuals</span></span>
@@ -473,7 +487,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb362-5"><a href="9-6-anova-diagnostics.html#cb362-5"></a><span class="st">  </span><span class="kw">scale_color_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Year&quot;</span>) <span class="op">+</span></span>
 <span id="cb362-6"><a href="9-6-anova-diagnostics.html#cb362-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb362-7"><a href="9-6-anova-diagnostics.html#cb362-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon)))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-311-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
 <p><br></p>
 <p>This plot now shows pretty clearly that the variance in the residuals increases from 2013 to 2015, and that there are a lot more outliers in 2013. But, there aren’t a ton of outliers, so maybe this is something we could accomodate with the right assumptions about our sampling distribution down the road.</p>
 <p>Notice that we still haven’t looked at the model results yet? That’s not just because this is The Worst Stats Text eveR.</p>

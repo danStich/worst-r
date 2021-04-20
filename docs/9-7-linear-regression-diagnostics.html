@@ -413,6 +413,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="20" data-path="20-Chapter20.html"><a href="20-Chapter20.html"><i class="fa fa-check"></i><b>20</b> Bayesian hierarchical GLM</a><ul>
+<li class="chapter" data-level="20.1" data-path="20-1-intro-20.html"><a href="20-1-intro-20.html"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
+<li class="chapter" data-level="20.2" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression {#20-logistic}</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#data-explanation-20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation {#20-logistic-data}</a></li>
+<li class="chapter" data-level="20.2.2" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#data-analysis-20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis {#20-logistic-analysis}</a></li>
+<li class="chapter" data-level="20.2.3" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#predictions-20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions {#20-logistic-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models {#20-count}</a><ul>
+<li class="chapter" data-level="20.3.1" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
+<li class="chapter" data-level="20.3.2" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#data-analysis-20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis {#20-count-analysis}</a></li>
+<li class="chapter" data-level="20.3.3" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#predictions-20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions {#20-count-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="20-4-next-20.html"><a href="20-4-next-20.html"><i class="fa fa-check"></i><b>20.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -456,7 +470,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb364-6"><a href="9-7-linear-regression-diagnostics.html#cb364-6"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb364-7"><a href="9-7-linear-regression-diagnostics.html#cb364-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Hook width&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb364-8"><a href="9-7-linear-regression-diagnostics.html#cb364-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon)))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-313-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-254-1.png" width="672" /></p>
 <p>Wow, that actually looks a whole lot better! There are still a couple of data points flying high that we would want to investigate further in this data set, but the pukey feeling in my stomach is slowly subsiding here.</p>
 <p>And remember, if you <em>really</em> want to see how your model fits the data, you could always plot the predictions over the raw data:</p>
 <div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="9-7-linear-regression-diagnostics.html#cb365-1"></a><span class="co"># Need to get rid of a couple NA values</span></span>
@@ -471,7 +485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb365-10"><a href="9-7-linear-regression-diagnostics.html#cb365-10"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr, <span class="dt">color =</span> <span class="ot">NULL</span>), <span class="dt">alpha =</span> <span class="fl">.3</span>) <span class="op">+</span></span>
 <span id="cb365-11"><a href="9-7-linear-regression-diagnostics.html#cb365-11"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Hook width&quot;</span>) <span class="op">+</span></span>
 <span id="cb365-12"><a href="9-7-linear-regression-diagnostics.html#cb365-12"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;log(Length of stay in days)&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-314-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
 <p>Surely this plot alone is evidence enough that we need to investigate confounding between hook <code>Width</code> and <code>Year</code> in any further investigation into this data set! Maybe with an ANCOVA?</p>
 <div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="9-7-linear-regression-diagnostics.html#cb366-1"></a><span class="co"># Need to get rid of a couple NA values</span></span>
 <span id="cb366-2"><a href="9-7-linear-regression-diagnostics.html#cb366-2"></a>turts &lt;-<span class="st"> </span><span class="kw">subset</span>(turtles, <span class="op">!</span><span class="kw">is.na</span>(Width))</span>
@@ -486,7 +500,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb366-11"><a href="9-7-linear-regression-diagnostics.html#cb366-11"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr, <span class="dt">color =</span> <span class="ot">NULL</span>), <span class="dt">alpha =</span> <span class="fl">.3</span>) <span class="op">+</span></span>
 <span id="cb366-12"><a href="9-7-linear-regression-diagnostics.html#cb366-12"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Hook width&quot;</span>) <span class="op">+</span></span>
 <span id="cb366-13"><a href="9-7-linear-regression-diagnostics.html#cb366-13"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;log(Length of stay in days)&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-315-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-256-1.png" width="672" /></p>
 <p>Holy crap…<strong>three lines</strong>. Where did the other two come from? Keep reading to find out in <a href="10-Chapter10.html#Chapter10">Chapter 10</a>.</p>
 <p>Notice that we still have not looked at the results of any of these models.</p>
 </div>

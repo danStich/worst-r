@@ -413,6 +413,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="20" data-path="20-Chapter20.html"><a href="20-Chapter20.html"><i class="fa fa-check"></i><b>20</b> Bayesian hierarchical GLM</a><ul>
+<li class="chapter" data-level="20.1" data-path="20-1-intro-20.html"><a href="20-1-intro-20.html"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
+<li class="chapter" data-level="20.2" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression {#20-logistic}</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#data-explanation-20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation {#20-logistic-data}</a></li>
+<li class="chapter" data-level="20.2.2" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#data-analysis-20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis {#20-logistic-analysis}</a></li>
+<li class="chapter" data-level="20.2.3" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#predictions-20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions {#20-logistic-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models {#20-count}</a><ul>
+<li class="chapter" data-level="20.3.1" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
+<li class="chapter" data-level="20.3.2" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#data-analysis-20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis {#20-count-analysis}</a></li>
+<li class="chapter" data-level="20.3.3" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#predictions-20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions {#20-count-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="20-4-next-20.html"><a href="20-4-next-20.html"><i class="fa fa-check"></i><b>20.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -516,14 +530,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>##                                 elpd_diff se_diff
 ## year + flow                      0.0       0.0   
 ## year + hatchery + flow          -0.1       1.4   
-## year + length + flow            -0.4       1.2   
-## year + hatchery + length + flow -0.9       1.5   
-## year + hatchery                 -2.1       2.9   
-## year + length                   -3.1       2.8   
-## year + length + hatchery        -3.3       3.0</code></pre>
+## year + length + flow            -0.5       1.2   
+## year + hatchery + length + flow -1.0       1.5   
+## year + hatchery                 -2.3       3.0   
+## year + length                   -3.0       2.9   
+## year + length + hatchery        -3.2       3.0</code></pre>
 <div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="17-2-logistic-17.html#cb648-1"></a><span class="co"># Look at the structure just to show that it is, indeed, an object:</span></span>
 <span id="cb648-2"><a href="17-2-logistic-17.html#cb648-2"></a><span class="kw">str</span>(mod_table)</span></code></pre></div>
-<pre><code>##  &#39;compare.loo&#39; num [1:7, 1:8] 0 -0.104 -0.366 -0.938 -2.145 ...
+<pre><code>##  &#39;compare.loo&#39; num [1:7, 1:8] 0 -0.144 -0.534 -1.039 -2.324 ...
 ##  - attr(*, &quot;dimnames&quot;)=List of 2
 ##   ..$ : chr [1:7] &quot;year + flow&quot; &quot;year + hatchery + flow&quot; &quot;year + length + flow&quot; &quot;year + hatchery + length + flow&quot; ...
 ##   ..$ : chr [1:8] &quot;elpd_diff&quot; &quot;se_diff&quot; &quot;elpd_loo&quot; &quot;se_elpd_loo&quot; ...</code></pre>
@@ -548,31 +562,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Estimates:
 ##               mean   sd     10%    50%    90% 
-## (Intercept) -2.969  0.795 -4.007 -2.954 -1.960
-## year2006    -0.526  0.625 -1.327 -0.521  0.266
-## year2009     0.272  0.459 -0.311  0.271  0.846
-## year2010    -0.023  0.654 -0.851 -0.018  0.816
-## year2011    -0.797  0.410 -1.337 -0.799 -0.266
-## year2012    -0.772  0.524 -1.438 -0.767 -0.104
+## (Intercept) -2.985  0.794 -4.016 -2.960 -2.003
+## year2006    -0.500  0.618 -1.291 -0.504  0.295
+## year2009     0.285  0.456 -0.292  0.276  0.870
+## year2010    -0.004  0.642 -0.814 -0.020  0.821
+## year2011    -0.790  0.407 -1.310 -0.781 -0.279
+## year2012    -0.762  0.522 -1.443 -0.753 -0.090
 ## flow         0.002  0.001  0.001  0.002  0.002
 ## 
 ## Fit Diagnostics:
 ##            mean   sd    10%   50%   90%
-## mean_PPD 0.128  0.017 0.107 0.128 0.150
+## mean_PPD 0.128  0.016 0.108 0.128 0.149
 ## 
 ## The mean_ppd is the sample average posterior predictive distribution of the outcome variable (for details see help(&#39;summary.stanreg&#39;)).
 ## 
 ## MCMC diagnostics
 ##               mcse  Rhat  n_eff
-## (Intercept)   0.022 1.002 1254 
-## year2006      0.017 1.001 1400 
-## year2009      0.012 1.002 1352 
-## year2010      0.018 1.003 1283 
-## year2011      0.009 1.000 2196 
-## year2012      0.013 1.001 1725 
-## flow          0.000 1.001 1646 
-## mean_PPD      0.000 1.000 3786 
-## log-posterior 0.047 1.000 1592 
+## (Intercept)   0.023 1.003 1198 
+## year2006      0.017 1.001 1383 
+## year2009      0.013 1.002 1302 
+## year2010      0.018 1.002 1223 
+## year2011      0.010 1.000 1699 
+## year2012      0.014 1.000 1454 
+## flow          0.000 1.003 1523 
+## mean_PPD      0.000 1.000 3569 
+## log-posterior 0.050 1.003 1390 
 ## 
 ## For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure of effective sample size, and Rhat is the potential scale reduction factor on split chains (at convergence Rhat=1).</code></pre>
 <p>Great! Let’s save this to an object so we can work with it a little easier.</p>
@@ -581,7 +595,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="17-2-logistic-17.html#cb655-1"></a>r_squared &lt;-<span class="st"> </span><span class="kw">bayes_R2</span>(best_mod)</span>
 <span id="cb655-2"><a href="17-2-logistic-17.html#cb655-2"></a></span>
 <span id="cb655-3"><a href="17-2-logistic-17.html#cb655-3"></a><span class="kw">mean</span>(r_squared)</span></code></pre></div>
-<pre><code>## [1] 0.05033876</code></pre>
+<pre><code>## [1] 0.050023</code></pre>
 <p>Meh, about average for an ecological study, but that doesn’t mean it is good. What we are really after here is just a good idea of what proportion of fish use this route and whether it can be reasonably well related to discharge, so we’ll keep pressing along to see if we have that.</p>
 <p>Let’s wrap our interpretation of results by looking at coefficient estimates as indicators of statistical significance.</p>
 <p>First, we could extract just the parameters for ease:</p>
@@ -606,10 +620,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="17-2-logistic-17.html#cb660-1"></a><span class="kw">ggplot</span>(post_summary, <span class="kw">aes</span>(<span class="dt">x =</span> coeff, <span class="dt">y =</span> fit, <span class="dt">color =</span> coeff, <span class="dt">fill =</span> coeff)) <span class="op">+</span></span>
 <span id="cb660-2"><a href="17-2-logistic-17.html#cb660-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
 <span id="cb660-3"><a href="17-2-logistic-17.html#cb660-3"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> coeff, <span class="dt">y =</span> lwr, <span class="dt">yend =</span> upr), <span class="dt">lwd=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-532-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-473-1.png" width="672" /></p>
 <p>You can get a similar plot using the built-in <code>plot()</code> method for the fitted model object a lot more easily like so. By default, this method plots 95% high density (credible) intervals for each of the posteriors.</p>
 <div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="17-2-logistic-17.html#cb661-1"></a><span class="kw">plot</span>(best_mod)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-533-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-474-1.png" width="672" /></p>
 <div id="categorical-17" class="section level4">
 <h4><span class="header-section-number">17.2.3.1</span> Categorical effects</h4>
 <p>Regardless of the method we use, we see there is a lot of variability between years and there is reasonable support to suggest that this variability is significant. How can we tell this? We don’t have access to p-values like we do in MLE or OLS anymore because of how the likelihood is expressed in these models. Instead, we can do group-wise comparisons to determine specific differences but this becomes cumbersome when we have many levels.</p>
@@ -625,8 +639,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="17-2-logistic-17.html#cb663-1"></a>difference &lt;-<span class="st"> </span>p_stillwater_<span class="dv">2009</span> <span class="op">-</span><span class="st"> </span>p_stillwater_<span class="dv">2011</span></span></code></pre></div>
 <p>If we are interested in whether the true difference is equal to zero (null) then we can calculate quantiles:</p>
 <div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="17-2-logistic-17.html#cb664-1"></a><span class="kw">quantile</span>(difference, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div>
-<pre><code>##       2.5%      97.5% 
-## 0.02947719 0.18531649</code></pre>
+<pre><code>##      2.5%     97.5% 
+## 0.0329588 0.1875154</code></pre>
 <p>In this case, there is at least a 95% chance that the probability of smolts using the Stillwater Branch varies between 2009 and 2011, so we can conclude that the effect is significant at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
 <p>We can also plot a histogram of the differences really easily now that it is just a vector in R:</p>
 <div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="17-2-logistic-17.html#cb666-1"></a><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
@@ -639,7 +653,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb666-8"><a href="17-2-logistic-17.html#cb666-8"></a>    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">-1</span>),</span>
 <span id="cb666-9"><a href="17-2-logistic-17.html#cb666-9"></a>    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>),</span>
 <span id="cb666-10"><a href="17-2-logistic-17.html#cb666-10"></a>  )</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-537-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-478-1.png" width="672" /></p>
 </div>
 </div>
 <div id="continuous-17" class="section level3">
@@ -647,7 +661,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Interpreting significance and direction of continuous effects is a little more straightforward. In this case, we just need to determine whether the posterior estimate of the coefficient for continuous explanatory variables differs from zero or another value of interest.</p>
 <div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="17-2-logistic-17.html#cb667-1"></a><span class="kw">quantile</span>(coeffs<span class="op">$</span>flow, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##         2.5%        97.5% 
-## 0.0004488211 0.0028917809</code></pre>
+## 0.0005093474 0.0029282942</code></pre>
 <p>It was really hard to see in the coefficients plot due to differences in scale, so we can make a histogram of this one to visualize that difference as well.</p>
 </div>
 <div id="predictions-17" class="section level3">
@@ -676,7 +690,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb670-4"><a href="17-2-logistic-17.html#cb670-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;Flow ( &quot;</span>, m<span class="op">^</span><span class="dv">3</span>, <span class="st">&quot;\u00b7&quot;</span>, s<span class="op">^-</span><span class="dv">1</span>, <span class="st">&quot;)&quot;</span>))) <span class="op">+</span></span>
 <span id="cb670-5"><a href="17-2-logistic-17.html#cb670-5"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
 <span id="cb670-6"><a href="17-2-logistic-17.html#cb670-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-540-1.png" width="672" />
+<p><img src="worstr_files/figure-html/unnamed-chunk-481-1.png" width="672" />
 <br></p>
 <p>You can see that, in general, there is a relatively low probability of an individual fish using the Stillwater Branch, but we see increasing probability of using that route with increasing <code>flow</code> across years.</p>
 </div>
