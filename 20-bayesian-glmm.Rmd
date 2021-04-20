@@ -1,0 +1,203 @@
+
+# Bayesian hierarchical GLM {#Chapter20}
+
+<img src="images/walleye.jpg" alt="">
+
+<p style="font-family: times, serif; font-size:.9em; font-style:italic"> This is a big, fat walleye. It is closely related to the yellow perch from Chapter 14, but it is a bigger, better tasting version. Likewise, GLMM is just a bigger, better tasting version of LMM. This is definitely not the last new fish data set for the book.</p>
+
+## Introduction {#intro-20}
+
+In [Chapter 14](#Chapter14) we introduced the generalized linear mixed model (GLMM) through the lens of the linear mixed model (LMM) in restricted maximum likelihood estimation. Many of the difficulties in specifying, estimating, and predicting from those models are trivial in Bayesian hierarchical models by comparison.
+
+We will use examples of logistic regression and count models to investigate Bayesian hierarchical GLMs in this chapter and round out our discussions from [Chapters 14](#Chapter14), [15](#Chapter15), and [19](#Chapter19). To do this, we will need our usual faves from the `tidyverse` and `rstanarm`. You know the drill:
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(rstanarm)
+```
+
+
+## Logistic regression {#20-logistic}
+
+For our first example this week, we will use the `choice` data from a couple weeks ago that we used to demonstrate binomial logistic regression. This time, we will add in a random intercept term that will allow us to account for repeated observations within a year. This has two implications: 1) it accounts for the fact that the years in which we conducted this study are random samples from a larger, unobserved population, and 2) it accounts for the heterogeneity of variance that theoretically might occur as a result of taking multiple, and variable, numbers of measurements within a given year- thereby reducing the overall error of the model and our associated parameter estimates (in theory).
+
+```{r, eval=TRUE, echo=FALSE}
+# Let's read in the smolt data set that we used last time
+choice <- read.csv("data/StillwaterChoiceData.csv")
+
+# Look at the first few rows of data
+head(choice)
+```
+
+ 
+### Data Explanation {#20-logistic-data}
+
+These data are from a study that examined factors affecting path choice by wild and hatchery-reared endangered Atlantic salmon smolts during seaward migration in the Penobscot River, Maine. State, local, and federal fishery managers were interested in understanding what factors affected migratory routing through the lower river because there were different numbers of dams, with different estimated smolt mortality rates, on either side of a large island hydropower project in this system. If managers could understand factors influencing migratory route, they might be able to manipulate flows, stocking dates, and dam operation to improve survival of these endangered fish. Furthermore, the results of the study were used to predict the effects of dam removal, and hydropower re-allocation in the lower river on population-level consequences for these fish. Please see the <08_glm_logisticRegression>logistic regression module</a> for a complete explanation of the data.
+
+ 
+### Data analysis {#20-logistic-analysis}
+
+We are going to use the 1/0 binary data to estimate the effects of a number of covariates of interest on the probability that an individual fish used the Stillwater Branch for migration in each year of this study using logistic regression. 
+
+Since we are not interested in the linear trend in the use of the Stillwater Branch through time, we need to convert `year` to factor. This is the same as if we wanted to use this as a fixed effect in the model as we did in [Chapter 12.4](https://danstich.github.io/worst-r/12-4-logistic.html) when we last worked with these data.
+
+```{r}
+choice$year <- as.factor(choice$year)
+```
+
+Rather than run all of the models that we ran in [Chapter 17](#Chapter17) I am just going to run the best one because these models take a little longer to run than the non-hierarchical formulations.
+
+```{r, warning = FALSE, message = FALSE}
+best_mod <- stan_glmer(path ~ (1 | year) + flow, family = binomial, data = choice)
+```
+
+### Predictions {#20-logistic-preds}
+
+Finally, we can use these models to make predictions.
+
+This is a little funky for binomial `stan_glmer()` models in `rstanarm` right now because the prevailing wisdom is to predict **outcomes** from hierarchical models fit with `rstanarm`. For binomial models, this means the output of `posterior_predict()` is ones and zeroes, which is not too terribly useful for visualizing the model results for those less mathematically inclined. Instead, we would like to see how probability of using Stillwater Branch changes in relation to our explanatory variables.
+
+We will create a quick function using some of the `rstanarm` internals based on [this example](https://groups.google.com/g/stan-users/c/GS8_8djvke4). My guess is that this will probably be implemented in the package by the next time I teach the class and edit this book.
+
+```{r}
+predicted_prob <- function(fit) {
+  dat <- rstanarm:::pp_data(fit)
+  eta <- rstanarm:::pp_eta(fit, dat)$eta
+  invlogit(eta) # inverse-logit 
+}
+
+```
+
+Now, we can make predictions about the probability of using Stillwater Branch on each row of our observed data (or new data if we want!) using this function.
+
+```{r}
+pred_matrix <- predicted_prob(best_mod)
+```
+
+The result is a matrix with 4,000 rows (1,000 iterations x 4 chains) of predicted probability of using the Stillwater Branch for each fish (row) from our original data. That is, the rows in original data correspond to the columns in `pred_matrix`. We can summarize this object the same way we did in [Chapter 19](#Chapter19) and add the descriptive statistics to the original data set for easy visualization. Note that we do not need to invert the logit because we already did that inside the `predict_prob()` function we created.
+
+```{r}
+# Calculate descriptive statistics for predicted probability
+# of using Stillwater Branch
+fit <- apply(pred_matrix, 2, mean)
+lwr <- apply(pred_matrix, 2, quantile, 0.025)
+upr <- apply(pred_matrix, 2, quantile, 0.975)
+
+# Smoosh them back together with the original data for plotting
+choice_preds <- data.frame(choice, fit, lwr, upr)
+```
+
+And now, it is all over but the plotting:
+
+```{r}
+ggplot(choice_preds, aes(x = flow, y = fit, color = year, fill = year)) +
+  geom_ribbon(aes(xmax = flow, ymin = lwr, ymax = upr), alpha = 0.10) +
+  geom_line() +
+  xlab(expression(paste("Flow (ft"^3,"s"^-1, ")"))) +
+  ylab("Probability of using Stillwater Branch") +
+  theme_bw() +
+  theme(
+    axis.title.x = element_text(vjust = -1),
+    axis.title.y = element_text(vjust = 3)
+  )
+```
+
+
+
+
+## Count models {#20-count}
+
+### Data explanation {20-count-data}
+We will wrap up our discussions about Bayesian hierarchical GLMs with a worked example of count models. For this one, we will attempt to predict counts of walleye, *Sander vitreus*, in spawning streams of Otsego Lake, NY, based on historical counts and climate data.
+
+We begin by reading in the data set:
+
+```{r}
+# Read in the walleye data
+eyes <- read.csv("data/walleye.csv", stringsAsFactors = FALSE)
+```
+
+Have a look at the first ten lines of the data set:
+
+```{r, eval=FALSE}
+head(eyes, 10)
+```
+
+And check out the data structure:   
+
+```{r}  
+str(eyes)
+```
+
+These data are counts of walleye that were captured in spawning tributaries of Otsego Lake during the 2009, 2013, 2017,and 2018 spawning season. These measurements are accompanied by various environmental indicators that include high and low flows, precipitation (rain and snow), high, low, mean temperatures (c) and degree days (dd), and photoperiod (daylight) on each day of the year.
+
+We will use the data to predict number of walleye we expect to see each day in the spawning tributaries based on historical counts and some explanatory variables of interest.
+
+### Data analysis {#20-count-analysis} 
+
+We start by estimating a model using the `stan_glmer()` function. Let's say for the sake of argument that we are simply interested in the lake-wide mean of our counts so that we know when students should, for example, be heading out to tributaries to look for walleyes in streams. 
+
+For now, we will model walleye count as a function of photoperiod, with a random effect of site on the intercepts. This model assumes that there is variability in counts of spawning individuals between sites, but that the relationship between photoperiod and count is the same across all sites. In this case, we will specify a quadratic relationship between counts and dates because we expect the number of fish to increase to some point in the run before it decreases. We are not interested in the individual sites in this case, but need to account for repeated observations within spawning locations.
+
+As we look through these results, we can see that we have a significant effect of degree days on spawning behavior. What's more is that our count of spawning fish appears to increase during the year to a point before it starts to decrease.
+
+**But** we've got what appear to be some major issues related to convergence at the bottom of this output! [dun, dun, dun]
+
+Before we get started, we need to standardize the covariate (`dd`) as discussed in [Chapter 15.3](https://danstich.github.io/worst-r/15-3-glmm-count.html). This helps keep things on a unit scale for model estimation, and prevents wacky estimates like negative variances (!). You can think of this as calculating z-scores for each observation of a given variable.
+
+```{r}
+# Standardize the covariate
+eyes$sdd <- as.vector(scale(eyes$dd))
+```
+
+And now we can fit the model. In the `rstanarm` package, the model might look something like this:
+
+```{r, warning=FALSE, message=FALSE}
+
+# Make the model
+wae_mod <- stan_glmer(counts ~ sdd + I(sdd^2) + (1 | site), 
+                      data = eyes, 
+                      family = neg_binomial_2())
+```
+
+### Predictions {#20-count-preds}
+Now, if we want, we can make a graph to show these predictions. Here, we make predictions for all years, and plot by site.
+
+
+```{r}
+pred_matrix <- posterior_predict(wae_mod)
+```
+
+Now, calculate the descriptive statistics and combine with the original data for plotting:
+
+```{r}
+fit <- apply(pred_matrix, 2, mean)
+lwr <- apply(pred_matrix, 2, quantile, 0.025)
+upr <- apply(pred_matrix, 2, quantile, 0.975)
+
+wae_preds <- data.frame(eyes, fit, lwr, upr)
+
+```
+
+And we plot the predictions:
+
+```{r}
+ggplot(wae_preds, aes(x = dd, y = counts, color = site, fill = site)) +
+  geom_point() +
+  geom_line(aes(y = fit)) +
+  geom_ribbon(aes(xmin = dd, ymin = lwr, ymax = upr, color = NULL),
+              alpha = 0.15) +
+  xlab("Growing degree days") +
+  ylab("Number of spawning walleye") +
+  theme_bw() +
+  theme(
+    axis.title.x = element_text(vjust = -1),
+    axis.title.y = element_text(vjust = 3)
+  )  
+```
+
+We can see that these estimates are pretty similar to the predictions from the `lme4` fit in [Chapter 15](#Chapter15), but the upper bounds on our credible limits have come down substantially and our predictions now align better with the observed patterns.
+ 
+## Next steps {#next-20}
+
+This chapter completes our investigations into linear models and their extensions. Not to fear, there is a whole wide world of statistics still out there for you to explore. In the final weeks of class, we will look at what to do when we have multiple correlated response variables (multivariate statistics), what to do when we have tons of explanatory variables but no idea how to meet assumptions of linear models we've discussed so far (classification and regression trees) or when we have non-linear relationships that can be common in biology.

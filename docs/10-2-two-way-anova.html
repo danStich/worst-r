@@ -413,6 +413,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="19.4" data-path="19-4-next-19.html"><a href="19-4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
 </ul></li>
+<li class="chapter" data-level="20" data-path="20-Chapter20.html"><a href="20-Chapter20.html"><i class="fa fa-check"></i><b>20</b> Bayesian hierarchical GLM</a><ul>
+<li class="chapter" data-level="20.1" data-path="20-1-intro-20.html"><a href="20-1-intro-20.html"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
+<li class="chapter" data-level="20.2" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression {#20-logistic}</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#data-explanation-20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation {#20-logistic-data}</a></li>
+<li class="chapter" data-level="20.2.2" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#data-analysis-20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis {#20-logistic-analysis}</a></li>
+<li class="chapter" data-level="20.2.3" data-path="20-2-logistic-regression-20-logistic.html"><a href="20-2-logistic-regression-20-logistic.html#predictions-20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions {#20-logistic-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models {#20-count}</a><ul>
+<li class="chapter" data-level="20.3.1" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
+<li class="chapter" data-level="20.3.2" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#data-analysis-20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis {#20-count-analysis}</a></li>
+<li class="chapter" data-level="20.3.3" data-path="20-3-count-models-20-count.html"><a href="20-3-count-models-20-count.html#predictions-20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions {#20-count-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="20-4-next-20.html"><a href="20-4-next-20.html"><i class="fa fa-check"></i><b>20.4</b> Next steps</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -521,7 +535,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb404-15"><a href="10-2-two-way-anova.html#cb404-15"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Treatment group&quot;</span>) <span class="op">+</span></span>
 <span id="cb404-16"><a href="10-2-two-way-anova.html#cb404-16"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="op">+</span></span>
 <span id="cb404-17"><a href="10-2-two-way-anova.html#cb404-17"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;Group&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-343-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-284-1.png" width="672" /></p>
 <p>Now, this looks really nice, but there is definitely something funky going on with <code>Halogen</code> in panel D in the figure above! We have clearly done a poor job of predicting this group. The reason for this, in this case, is because we need to include an <strong>interaction</strong> term in our model, which makes things even grosser in terms of the math, but is easy to do in R. Of course, if we had been doing a good job of data exploration and residual analysis, we would have noticed this before making predictive plots…</p>
 </div>
 <div id="interactions" class="section level3">
@@ -533,20 +547,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We just have three more columns in our model matrix to distinguish between coefficients for <code>resin</code> that correspond to <code>LED</code> and coefficients for <code>resin</code> that correspond to <code>Halogen</code>. It is at this point that not even I want to do the math by hand!</p>
 <div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="10-2-two-way-anova.html#cb406-1"></a><span class="co"># Have a look on your own:</span></span>
 <span id="cb406-2"><a href="10-2-two-way-anova.html#cb406-2"></a><span class="kw">head</span>(<span class="kw">model.matrix</span>(dental_int))</span></code></pre></div>
-<pre><code>##   (Intercept) lightsLED resinB resinC resinD lightsLED:resinB lightsLED:resinC
-## 1           1         0      0      0      0                0                0
-## 2           1         0      0      0      0                0                0
-## 3           1         0      0      0      0                0                0
-## 4           1         0      0      0      0                0                0
-## 5           1         0      0      0      0                0                0
-## 6           1         0      0      0      0                0                0
-##   lightsLED:resinD
-## 1                0
-## 2                0
-## 3                0
-## 4                0
-## 5                0
-## 6                0</code></pre>
+<pre><code>##   (Intercept) lightsLED resinB resinC resinD lightsLED:resinB
+## 1           1         0      0      0      0                0
+## 2           1         0      0      0      0                0
+## 3           1         0      0      0      0                0
+## 4           1         0      0      0      0                0
+## 5           1         0      0      0      0                0
+## 6           1         0      0      0      0                0
+##   lightsLED:resinC lightsLED:resinD
+## 1                0                0
+## 2                0                0
+## 3                0                0
+## 4                0                0
+## 5                0                0
+## 6                0                0</code></pre>
 <p>The process for making predictions, thankfully, is identical to two-way ANOVA in R.</p>
 <p>Using the groups we made for the main-effects model:</p>
 <div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="10-2-two-way-anova.html#cb408-1"></a>int_y_pred &lt;-<span class="st"> </span><span class="kw">predict</span>(</span>
@@ -572,7 +586,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb409-15"><a href="10-2-two-way-anova.html#cb409-15"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Treatment group&quot;</span>) <span class="op">+</span></span>
 <span id="cb409-16"><a href="10-2-two-way-anova.html#cb409-16"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="op">+</span></span>
 <span id="cb409-17"><a href="10-2-two-way-anova.html#cb409-17"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;Group&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-347-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-288-1.png" width="672" /></p>
 <p>You should see below that <strong>all</strong> of our means match up much better with the observed data in the violins. And, if you go back to the ANOVA output for this model you will see that the interaction term is significant even though <code>lights</code> still is not on it’s own. In coming chapters, we’ll talk about how to design and compare multiple models like these to compare meaningful biological hypotheses against one another.</p>
 <div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="10-2-two-way-anova.html#cb410-1"></a><span class="kw">anova</span>(dental_int)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
