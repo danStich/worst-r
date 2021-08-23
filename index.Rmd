@@ -21,8 +21,8 @@ Dan Stich, PhD
 <img src="images/roh.png" alt="alcohol molecule">
 
 <p style="font-family: times, serif; font-size:.9em; font-style:italic">
-Unskillful representation of an alcohol molecule where -OH is the functional group and R is the radical group, or "rest of the molecule", much like it is to modern statistics. This is funny, because R is a "functional" programming language that will drive you to drink (or perhaps undertake some other, healthier stress-reducing activity). Don't worry, I'll explain all of the jokes, and **most** of the code as we go, because this</p>
-is **The Worst Stats Text eveR**.
+Unskillful representation of an alcohol molecule where -OH is the functional group and R is the radical group, or "rest of the molecule", much like it is to modern statistics. This is funny, because R is a "functional" programming language that will drive you to drink (or perhaps undertake some other, healthier stress-reducing activity). Don't worry, I'll explain all of the jokes, and **most** of the code as we go, because this is</p>
+**The Worst Stats Text eveR**.
 
 
 # Preface {-#preface}
