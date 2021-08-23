@@ -543,7 +543,7 @@ Equal variance
 <p>Here is a quick, ugly violin plot with some basic options. Pretty easy to make, but also kind of makes you want to puke.</p>
 <div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="6-2-two-sample-tests.html#cb273-1"></a><span class="kw">ggplot</span>(mid_carps, <span class="kw">aes</span>(<span class="dt">x =</span> density, <span class="dt">y =</span> Length)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb273-2"><a href="6-2-two-sample-tests.html#cb273-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">group =</span> density), <span class="dt">trim =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
 <p>Here is a much better plot. Not that much more difficult to make, and doesn’t make you want to puke even if the code does a little bit.</p>
 <div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="6-2-two-sample-tests.html#cb274-1"></a>mid_carps <span class="op">%&gt;%</span></span>
 <span id="cb274-2"><a href="6-2-two-sample-tests.html#cb274-2"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> density, <span class="dt">y =</span> Length, <span class="dt">fill =</span> density, <span class="dt">color =</span> density)) <span class="op">+</span><span class="st"> </span></span>
@@ -560,7 +560,7 @@ Equal variance
 <span id="cb274-13"><a href="6-2-two-sample-tests.html#cb274-13"></a>    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>),</span>
 <span id="cb274-14"><a href="6-2-two-sample-tests.html#cb274-14"></a>    <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()</span>
 <span id="cb274-15"><a href="6-2-two-sample-tests.html#cb274-15"></a>  )</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
 <p>There, isn’t that fancy? I think that gives you a much more detailed understanding of how <code>Length</code> varies between <code>high</code> and <code>low</code> population density than a simple p-value. But, maybe its just me…</p>
 </div>
 </div>

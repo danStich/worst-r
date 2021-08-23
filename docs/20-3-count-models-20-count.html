@@ -453,12 +453,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">20.3.1</span> Data explanation {20-count-data}</h3>
 <p>We will wrap up our discussions about Bayesian hierarchical GLMs with a worked example of count models. For this one, we will attempt to predict counts of walleye, <em>Sander vitreus</em>, in spawning streams of Otsego Lake, NY, based on historical counts and climate data.</p>
 <p>We begin by reading in the data set:</p>
-<div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb733-1"><a href="20-3-count-models-20-count.html#cb733-1"></a><span class="co"># Read in the walleye data</span></span>
-<span id="cb733-2"><a href="20-3-count-models-20-count.html#cb733-2"></a>eyes &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/walleye.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="20-3-count-models-20-count.html#cb732-1"></a><span class="co"># Read in the walleye data</span></span>
+<span id="cb732-2"><a href="20-3-count-models-20-count.html#cb732-2"></a>eyes &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/walleye.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>Have a look at the first ten lines of the data set:</p>
-<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="20-3-count-models-20-count.html#cb734-1"></a><span class="kw">head</span>(eyes, <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb733-1"><a href="20-3-count-models-20-count.html#cb733-1"></a><span class="kw">head</span>(eyes, <span class="dv">10</span>)</span></code></pre></div>
 <p>And check out the data structure:</p>
-<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb735-1"><a href="20-3-count-models-20-count.html#cb735-1"></a><span class="kw">str</span>(eyes)</span></code></pre></div>
+<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="20-3-count-models-20-count.html#cb734-1"></a><span class="kw">str</span>(eyes)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:	71 obs. of  15 variables:
 ##  $ date     : chr  &quot;2009-04-01&quot; &quot;2009-04-01&quot; &quot;2009-04-01&quot; &quot;2009-04-05&quot; ...
 ##  $ site     : chr  &quot;Cripple Creek&quot; &quot;Hayden Creek&quot; &quot;Shadow Brook&quot; &quot;Cripple Creek&quot; ...
@@ -485,38 +485,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As we look through these results, we can see that we have a significant effect of degree days on spawning behavior. What’s more is that our count of spawning fish appears to increase during the year to a point before it starts to decrease.</p>
 <p><strong>But</strong> we’ve got what appear to be some major issues related to convergence at the bottom of this output! [dun, dun, dun]</p>
 <p>Before we get started, we need to standardize the covariate (<code>dd</code>) as discussed in <a href="https://danstich.github.io/worst-r/15-3-glmm-count.html">Chapter 15.3</a>. This helps keep things on a unit scale for model estimation, and prevents wacky estimates like negative variances (!). You can think of this as calculating z-scores for each observation of a given variable.</p>
-<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb737-1"><a href="20-3-count-models-20-count.html#cb737-1"></a><span class="co"># Standardize the covariate</span></span>
-<span id="cb737-2"><a href="20-3-count-models-20-count.html#cb737-2"></a>eyes<span class="op">$</span>sdd &lt;-<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">scale</span>(eyes<span class="op">$</span>dd))</span></code></pre></div>
+<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="20-3-count-models-20-count.html#cb736-1"></a><span class="co"># Standardize the covariate</span></span>
+<span id="cb736-2"><a href="20-3-count-models-20-count.html#cb736-2"></a>eyes<span class="op">$</span>sdd &lt;-<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">scale</span>(eyes<span class="op">$</span>dd))</span></code></pre></div>
 <p>And now we can fit the model. In the <code>rstanarm</code> package, the model might look something like this:</p>
-<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="20-3-count-models-20-count.html#cb738-1"></a><span class="co"># Make the model</span></span>
-<span id="cb738-2"><a href="20-3-count-models-20-count.html#cb738-2"></a>wae_mod &lt;-<span class="st"> </span><span class="kw">stan_glmer</span>(counts <span class="op">~</span><span class="st"> </span>sdd <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(sdd<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>site), </span>
-<span id="cb738-3"><a href="20-3-count-models-20-count.html#cb738-3"></a>                      <span class="dt">data =</span> eyes, </span>
-<span id="cb738-4"><a href="20-3-count-models-20-count.html#cb738-4"></a>                      <span class="dt">family =</span> <span class="kw">neg_binomial_2</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb737-1"><a href="20-3-count-models-20-count.html#cb737-1"></a><span class="co"># Make the model</span></span>
+<span id="cb737-2"><a href="20-3-count-models-20-count.html#cb737-2"></a>wae_mod &lt;-<span class="st"> </span><span class="kw">stan_glmer</span>(counts <span class="op">~</span><span class="st"> </span>sdd <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(sdd<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>site), </span>
+<span id="cb737-3"><a href="20-3-count-models-20-count.html#cb737-3"></a>                      <span class="dt">data =</span> eyes, </span>
+<span id="cb737-4"><a href="20-3-count-models-20-count.html#cb737-4"></a>                      <span class="dt">family =</span> <span class="kw">neg_binomial_2</span>())</span></code></pre></div>
 </div>
 <div id="predictions-20-count-preds" class="section level3">
 <h3><span class="header-section-number">20.3.3</span> Predictions {#20-count-preds}</h3>
 <p>Now, if we want, we can make a graph to show these predictions. Here, we make predictions for all years, and plot by site.</p>
-<div class="sourceCode" id="cb739"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb739-1"><a href="20-3-count-models-20-count.html#cb739-1"></a>pred_matrix &lt;-<span class="st"> </span><span class="kw">posterior_predict</span>(wae_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="20-3-count-models-20-count.html#cb738-1"></a>pred_matrix &lt;-<span class="st"> </span><span class="kw">posterior_predict</span>(wae_mod)</span></code></pre></div>
 <p>Now, calculate the descriptive statistics and combine with the original data for plotting:</p>
-<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="20-3-count-models-20-count.html#cb740-1"></a>fit &lt;-<span class="st"> </span><span class="kw">apply</span>(pred_matrix, <span class="dv">2</span>, mean)</span>
-<span id="cb740-2"><a href="20-3-count-models-20-count.html#cb740-2"></a>lwr &lt;-<span class="st"> </span><span class="kw">apply</span>(pred_matrix, <span class="dv">2</span>, quantile, <span class="fl">0.025</span>)</span>
-<span id="cb740-3"><a href="20-3-count-models-20-count.html#cb740-3"></a>upr &lt;-<span class="st"> </span><span class="kw">apply</span>(pred_matrix, <span class="dv">2</span>, quantile, <span class="fl">0.975</span>)</span>
-<span id="cb740-4"><a href="20-3-count-models-20-count.html#cb740-4"></a></span>
-<span id="cb740-5"><a href="20-3-count-models-20-count.html#cb740-5"></a>wae_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(eyes, fit, lwr, upr)</span></code></pre></div>
+<div class="sourceCode" id="cb739"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb739-1"><a href="20-3-count-models-20-count.html#cb739-1"></a>fit &lt;-<span class="st"> </span><span class="kw">apply</span>(pred_matrix, <span class="dv">2</span>, mean)</span>
+<span id="cb739-2"><a href="20-3-count-models-20-count.html#cb739-2"></a>lwr &lt;-<span class="st"> </span><span class="kw">apply</span>(pred_matrix, <span class="dv">2</span>, quantile, <span class="fl">0.025</span>)</span>
+<span id="cb739-3"><a href="20-3-count-models-20-count.html#cb739-3"></a>upr &lt;-<span class="st"> </span><span class="kw">apply</span>(pred_matrix, <span class="dv">2</span>, quantile, <span class="fl">0.975</span>)</span>
+<span id="cb739-4"><a href="20-3-count-models-20-count.html#cb739-4"></a></span>
+<span id="cb739-5"><a href="20-3-count-models-20-count.html#cb739-5"></a>wae_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(eyes, fit, lwr, upr)</span></code></pre></div>
 <p>And we plot the predictions:</p>
-<div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb741-1"><a href="20-3-count-models-20-count.html#cb741-1"></a><span class="kw">ggplot</span>(wae_preds, <span class="kw">aes</span>(<span class="dt">x =</span> dd, <span class="dt">y =</span> counts, <span class="dt">color =</span> site, <span class="dt">fill =</span> site)) <span class="op">+</span></span>
-<span id="cb741-2"><a href="20-3-count-models-20-count.html#cb741-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb741-3"><a href="20-3-count-models-20-count.html#cb741-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> fit)) <span class="op">+</span></span>
-<span id="cb741-4"><a href="20-3-count-models-20-count.html#cb741-4"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">xmin =</span> dd, <span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr, <span class="dt">color =</span> <span class="ot">NULL</span>),</span>
-<span id="cb741-5"><a href="20-3-count-models-20-count.html#cb741-5"></a>              <span class="dt">alpha =</span> <span class="fl">0.15</span>) <span class="op">+</span></span>
-<span id="cb741-6"><a href="20-3-count-models-20-count.html#cb741-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Growing degree days&quot;</span>) <span class="op">+</span></span>
-<span id="cb741-7"><a href="20-3-count-models-20-count.html#cb741-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Number of spawning walleye&quot;</span>) <span class="op">+</span></span>
-<span id="cb741-8"><a href="20-3-count-models-20-count.html#cb741-8"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb741-9"><a href="20-3-count-models-20-count.html#cb741-9"></a><span class="st">  </span><span class="kw">theme</span>(</span>
-<span id="cb741-10"><a href="20-3-count-models-20-count.html#cb741-10"></a>    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">-1</span>),</span>
-<span id="cb741-11"><a href="20-3-count-models-20-count.html#cb741-11"></a>    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>)</span>
-<span id="cb741-12"><a href="20-3-count-models-20-count.html#cb741-12"></a>  )  </span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-545-1.png" width="672" /></p>
+<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="20-3-count-models-20-count.html#cb740-1"></a><span class="kw">ggplot</span>(wae_preds, <span class="kw">aes</span>(<span class="dt">x =</span> dd, <span class="dt">y =</span> counts, <span class="dt">color =</span> site, <span class="dt">fill =</span> site)) <span class="op">+</span></span>
+<span id="cb740-2"><a href="20-3-count-models-20-count.html#cb740-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb740-3"><a href="20-3-count-models-20-count.html#cb740-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> fit)) <span class="op">+</span></span>
+<span id="cb740-4"><a href="20-3-count-models-20-count.html#cb740-4"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">xmin =</span> dd, <span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr, <span class="dt">color =</span> <span class="ot">NULL</span>),</span>
+<span id="cb740-5"><a href="20-3-count-models-20-count.html#cb740-5"></a>              <span class="dt">alpha =</span> <span class="fl">0.15</span>) <span class="op">+</span></span>
+<span id="cb740-6"><a href="20-3-count-models-20-count.html#cb740-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Growing degree days&quot;</span>) <span class="op">+</span></span>
+<span id="cb740-7"><a href="20-3-count-models-20-count.html#cb740-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Number of spawning walleye&quot;</span>) <span class="op">+</span></span>
+<span id="cb740-8"><a href="20-3-count-models-20-count.html#cb740-8"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb740-9"><a href="20-3-count-models-20-count.html#cb740-9"></a><span class="st">  </span><span class="kw">theme</span>(</span>
+<span id="cb740-10"><a href="20-3-count-models-20-count.html#cb740-10"></a>    <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">-1</span>),</span>
+<span id="cb740-11"><a href="20-3-count-models-20-count.html#cb740-11"></a>    <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">vjust =</span> <span class="dv">3</span>)</span>
+<span id="cb740-12"><a href="20-3-count-models-20-count.html#cb740-12"></a>  )  </span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-531-1.png" width="672" /></p>
 <p>We can see that these estimates are pretty similar to the predictions from the <code>lme4</code> fit in <a href="15-Chapter15.html#Chapter15">Chapter 15</a>, but the upper bounds on our credible limits have come down substantially and our predictions now align better with the observed patterns.</p>
 </div>
 </div>

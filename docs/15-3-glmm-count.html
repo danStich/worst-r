@@ -453,12 +453,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">15.3.1</span> Data explanation {glmm-count-data}</h3>
 <p>We will wrap up our discussions about GLMM with a worked example of count models. For this one, we will attempt to predict counts of walleye, <em>Sander vitreus</em>, in spawning streams of Otsego Lake based on historical counts and climate data.</p>
 <p>We begin by reading in the data set:</p>
-<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="15-3-glmm-count.html#cb574-1"></a><span class="co"># Read in the walleye data</span></span>
-<span id="cb574-2"><a href="15-3-glmm-count.html#cb574-2"></a>eyes &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/walleye.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="15-3-glmm-count.html#cb573-1"></a><span class="co"># Read in the walleye data</span></span>
+<span id="cb573-2"><a href="15-3-glmm-count.html#cb573-2"></a>eyes &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/walleye.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>Have a look at the first ten lines of the data set:</p>
-<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="15-3-glmm-count.html#cb575-1"></a><span class="kw">head</span>(eyes, <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="15-3-glmm-count.html#cb574-1"></a><span class="kw">head</span>(eyes, <span class="dv">10</span>)</span></code></pre></div>
 <p>And check out the data structure:</p>
-<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="15-3-glmm-count.html#cb576-1"></a><span class="kw">str</span>(eyes)</span></code></pre></div>
+<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="15-3-glmm-count.html#cb575-1"></a><span class="kw">str</span>(eyes)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:	71 obs. of  15 variables:
 ##  $ date     : chr  &quot;2009-04-01&quot; &quot;2009-04-01&quot; &quot;2009-04-01&quot; &quot;2009-04-05&quot; ...
 ##  $ site     : chr  &quot;Cripple Creek&quot; &quot;Hayden Creek&quot; &quot;Shadow Brook&quot; &quot;Cripple Creek&quot; ...
@@ -483,14 +483,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We start by estimating a model using the <code>glmer()</code> function. Let’s say for the sake of argument that we are simply interested in the lake-wide mean of our counts so that we know when students should, for example, be heading out to tributaries to look for walleyes in streams.</p>
 <p>For now, we will model walleye count as a function of photoperiod, with a random effect of site on the intercepts. This model assumes that there is variability in counts of spawning individuals between sites, but that the relationship between photoperiod and count is the same across all sites. In this case, we will specify a quadratic relationship between counts and dates because we expect the number of fish to increase to some point in the run before it decreases. We are not interested in the individual sites in this case, but need to account for repeated observations within spawning locations.</p>
 <p>In the <code>lme4</code> package, the model might look something like this:</p>
-<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="15-3-glmm-count.html#cb578-1"></a><span class="co"># Load the package</span></span>
-<span id="cb578-2"><a href="15-3-glmm-count.html#cb578-2"></a><span class="kw">library</span>(lme4)</span>
-<span id="cb578-3"><a href="15-3-glmm-count.html#cb578-3"></a></span>
-<span id="cb578-4"><a href="15-3-glmm-count.html#cb578-4"></a><span class="co"># Make the model</span></span>
-<span id="cb578-5"><a href="15-3-glmm-count.html#cb578-5"></a>waeMod1 &lt;-<span class="st"> </span><span class="kw">glmer</span>(counts <span class="op">~</span><span class="st"> </span>dd <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(dd<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>site), <span class="dt">data =</span> eyes, <span class="dt">family =</span> poisson)</span>
-<span id="cb578-6"><a href="15-3-glmm-count.html#cb578-6"></a></span>
-<span id="cb578-7"><a href="15-3-glmm-count.html#cb578-7"></a><span class="co"># Have a look-see at the results</span></span>
-<span id="cb578-8"><a href="15-3-glmm-count.html#cb578-8"></a><span class="kw">summary</span>(waeMod1)</span></code></pre></div>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="15-3-glmm-count.html#cb577-1"></a><span class="co"># Load the package</span></span>
+<span id="cb577-2"><a href="15-3-glmm-count.html#cb577-2"></a><span class="kw">library</span>(lme4)</span>
+<span id="cb577-3"><a href="15-3-glmm-count.html#cb577-3"></a></span>
+<span id="cb577-4"><a href="15-3-glmm-count.html#cb577-4"></a><span class="co"># Make the model</span></span>
+<span id="cb577-5"><a href="15-3-glmm-count.html#cb577-5"></a>waeMod1 &lt;-<span class="st"> </span><span class="kw">glmer</span>(counts <span class="op">~</span><span class="st"> </span>dd <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(dd<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>site), <span class="dt">data =</span> eyes, <span class="dt">family =</span> poisson)</span>
+<span id="cb577-6"><a href="15-3-glmm-count.html#cb577-6"></a></span>
+<span id="cb577-7"><a href="15-3-glmm-count.html#cb577-7"></a><span class="co"># Have a look-see at the results</span></span>
+<span id="cb577-8"><a href="15-3-glmm-count.html#cb577-8"></a><span class="kw">summary</span>(waeMod1)</span></code></pre></div>
 <pre><code>## Generalized linear mixed model fit by maximum likelihood (Laplace
 ##   Approximation) [glmerMod]
 ##  Family: poisson  ( log )
@@ -529,16 +529,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As we look through these results, we can see that we have a significant effect of degree days on spawning behavior. What’s more is that our count of spawning fish appears to increase during the year to a point before it starts to decrease.</p>
 <p><strong>But</strong> we’ve got what appear to be some major issues related to convergence at the bottom of this output! [dun, dun, dun]</p>
 <p>Luckily, we can fix all of these issues by simply standardizing the covariate (<code>dd</code>) as discussed previously. This helps keep things on a unit scale for model estimation, and prevents wacky estimates like negative variances (!). You can think of this as calculating z-scores for each observation of a given variable.</p>
-<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="15-3-glmm-count.html#cb580-1"></a><span class="co"># Standardize the covariate</span></span>
-<span id="cb580-2"><a href="15-3-glmm-count.html#cb580-2"></a>eyes<span class="op">$</span>sdd &lt;-<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">scale</span>(eyes<span class="op">$</span>dd))</span>
-<span id="cb580-3"><a href="15-3-glmm-count.html#cb580-3"></a></span>
-<span id="cb580-4"><a href="15-3-glmm-count.html#cb580-4"></a><span class="co"># Make the model</span></span>
-<span id="cb580-5"><a href="15-3-glmm-count.html#cb580-5"></a>waeMod2 &lt;-<span class="st"> </span><span class="kw">glmer</span>(counts <span class="op">~</span><span class="st"> </span>sdd <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(sdd<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>site),</span>
-<span id="cb580-6"><a href="15-3-glmm-count.html#cb580-6"></a>  <span class="dt">data =</span> eyes, <span class="dt">family =</span> poisson</span>
-<span id="cb580-7"><a href="15-3-glmm-count.html#cb580-7"></a>)</span>
-<span id="cb580-8"><a href="15-3-glmm-count.html#cb580-8"></a></span>
-<span id="cb580-9"><a href="15-3-glmm-count.html#cb580-9"></a><span class="co"># Have a look-see at the results</span></span>
-<span id="cb580-10"><a href="15-3-glmm-count.html#cb580-10"></a><span class="kw">summary</span>(waeMod2)</span></code></pre></div>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="15-3-glmm-count.html#cb579-1"></a><span class="co"># Standardize the covariate</span></span>
+<span id="cb579-2"><a href="15-3-glmm-count.html#cb579-2"></a>eyes<span class="op">$</span>sdd &lt;-<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">scale</span>(eyes<span class="op">$</span>dd))</span>
+<span id="cb579-3"><a href="15-3-glmm-count.html#cb579-3"></a></span>
+<span id="cb579-4"><a href="15-3-glmm-count.html#cb579-4"></a><span class="co"># Make the model</span></span>
+<span id="cb579-5"><a href="15-3-glmm-count.html#cb579-5"></a>waeMod2 &lt;-<span class="st"> </span><span class="kw">glmer</span>(counts <span class="op">~</span><span class="st"> </span>sdd <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(sdd<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>site),</span>
+<span id="cb579-6"><a href="15-3-glmm-count.html#cb579-6"></a>  <span class="dt">data =</span> eyes, <span class="dt">family =</span> poisson</span>
+<span id="cb579-7"><a href="15-3-glmm-count.html#cb579-7"></a>)</span>
+<span id="cb579-8"><a href="15-3-glmm-count.html#cb579-8"></a></span>
+<span id="cb579-9"><a href="15-3-glmm-count.html#cb579-9"></a><span class="co"># Have a look-see at the results</span></span>
+<span id="cb579-10"><a href="15-3-glmm-count.html#cb579-10"></a><span class="kw">summary</span>(waeMod2)</span></code></pre></div>
 <pre><code>## Generalized linear mixed model fit by maximum likelihood (Laplace
 ##   Approximation) [glmerMod]
 ##  Family: poisson  ( log )
@@ -573,28 +573,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="glmm-count-preds" class="section level3">
 <h3><span class="header-section-number">15.3.3</span> Predictions</h3>
 <p>Now, if we want, we can make a graph to show these predictions. Here, we make predictions for all years, and plot by site.</p>
-<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="15-3-glmm-count.html#cb582-1"></a><span class="co"># Simulate predictions from the relationship</span></span>
-<span id="cb582-2"><a href="15-3-glmm-count.html#cb582-2"></a><span class="co"># stored in the model fit using our original data</span></span>
-<span id="cb582-3"><a href="15-3-glmm-count.html#cb582-3"></a>log_preds &lt;-<span class="st"> </span><span class="kw">predictInterval</span>(</span>
-<span id="cb582-4"><a href="15-3-glmm-count.html#cb582-4"></a>  <span class="dt">merMod =</span> waeMod2,</span>
-<span id="cb582-5"><a href="15-3-glmm-count.html#cb582-5"></a>  <span class="dt">level =</span> <span class="fl">0.95</span>, <span class="dt">n.sims =</span> <span class="dv">10000</span>,</span>
-<span id="cb582-6"><a href="15-3-glmm-count.html#cb582-6"></a>  <span class="dt">stat =</span> <span class="st">&quot;median&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;linear.prediction&quot;</span></span>
-<span id="cb582-7"><a href="15-3-glmm-count.html#cb582-7"></a>)</span>
-<span id="cb582-8"><a href="15-3-glmm-count.html#cb582-8"></a></span>
-<span id="cb582-9"><a href="15-3-glmm-count.html#cb582-9"></a><span class="co"># Convert them to the real scale for plotting</span></span>
-<span id="cb582-10"><a href="15-3-glmm-count.html#cb582-10"></a>real_preds &lt;-<span class="st"> </span><span class="kw">apply</span>(log_preds, <span class="dv">2</span>, exp)</span>
-<span id="cb582-11"><a href="15-3-glmm-count.html#cb582-11"></a></span>
-<span id="cb582-12"><a href="15-3-glmm-count.html#cb582-12"></a><span class="co"># Combine predictions with the original data</span></span>
-<span id="cb582-13"><a href="15-3-glmm-count.html#cb582-13"></a>mer_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(eyes, real_preds)</span>
-<span id="cb582-14"><a href="15-3-glmm-count.html#cb582-14"></a></span>
-<span id="cb582-15"><a href="15-3-glmm-count.html#cb582-15"></a><span class="co"># Plot the predictions</span></span>
-<span id="cb582-16"><a href="15-3-glmm-count.html#cb582-16"></a><span class="kw">ggplot</span>(mer_preds, <span class="kw">aes</span>(<span class="dt">x =</span> dd, <span class="dt">y =</span> counts, <span class="dt">color =</span> site, <span class="dt">fill =</span> site)) <span class="op">+</span></span>
-<span id="cb582-17"><a href="15-3-glmm-count.html#cb582-17"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.10</span>) <span class="op">+</span></span>
-<span id="cb582-18"><a href="15-3-glmm-count.html#cb582-18"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr, <span class="dt">color =</span> <span class="ot">NULL</span>), <span class="dt">alpha =</span> <span class="fl">.3</span>) <span class="op">+</span></span>
-<span id="cb582-19"><a href="15-3-glmm-count.html#cb582-19"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> fit), <span class="dt">lwd =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.50</span>) <span class="op">+</span></span>
-<span id="cb582-20"><a href="15-3-glmm-count.html#cb582-20"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Growing degree days&quot;</span>) <span class="op">+</span></span>
-<span id="cb582-21"><a href="15-3-glmm-count.html#cb582-21"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Number of walleye in stream&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-414-1.png" width="672" /></p>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="15-3-glmm-count.html#cb581-1"></a><span class="co"># Simulate predictions from the relationship</span></span>
+<span id="cb581-2"><a href="15-3-glmm-count.html#cb581-2"></a><span class="co"># stored in the model fit using our original data</span></span>
+<span id="cb581-3"><a href="15-3-glmm-count.html#cb581-3"></a>log_preds &lt;-<span class="st"> </span><span class="kw">predictInterval</span>(</span>
+<span id="cb581-4"><a href="15-3-glmm-count.html#cb581-4"></a>  <span class="dt">merMod =</span> waeMod2,</span>
+<span id="cb581-5"><a href="15-3-glmm-count.html#cb581-5"></a>  <span class="dt">level =</span> <span class="fl">0.95</span>, <span class="dt">n.sims =</span> <span class="dv">10000</span>,</span>
+<span id="cb581-6"><a href="15-3-glmm-count.html#cb581-6"></a>  <span class="dt">stat =</span> <span class="st">&quot;median&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;linear.prediction&quot;</span></span>
+<span id="cb581-7"><a href="15-3-glmm-count.html#cb581-7"></a>)</span>
+<span id="cb581-8"><a href="15-3-glmm-count.html#cb581-8"></a></span>
+<span id="cb581-9"><a href="15-3-glmm-count.html#cb581-9"></a><span class="co"># Convert them to the real scale for plotting</span></span>
+<span id="cb581-10"><a href="15-3-glmm-count.html#cb581-10"></a>real_preds &lt;-<span class="st"> </span><span class="kw">apply</span>(log_preds, <span class="dv">2</span>, exp)</span>
+<span id="cb581-11"><a href="15-3-glmm-count.html#cb581-11"></a></span>
+<span id="cb581-12"><a href="15-3-glmm-count.html#cb581-12"></a><span class="co"># Combine predictions with the original data</span></span>
+<span id="cb581-13"><a href="15-3-glmm-count.html#cb581-13"></a>mer_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(eyes, real_preds)</span>
+<span id="cb581-14"><a href="15-3-glmm-count.html#cb581-14"></a></span>
+<span id="cb581-15"><a href="15-3-glmm-count.html#cb581-15"></a><span class="co"># Plot the predictions</span></span>
+<span id="cb581-16"><a href="15-3-glmm-count.html#cb581-16"></a><span class="kw">ggplot</span>(mer_preds, <span class="kw">aes</span>(<span class="dt">x =</span> dd, <span class="dt">y =</span> counts, <span class="dt">color =</span> site, <span class="dt">fill =</span> site)) <span class="op">+</span></span>
+<span id="cb581-17"><a href="15-3-glmm-count.html#cb581-17"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.10</span>) <span class="op">+</span></span>
+<span id="cb581-18"><a href="15-3-glmm-count.html#cb581-18"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr, <span class="dt">color =</span> <span class="ot">NULL</span>), <span class="dt">alpha =</span> <span class="fl">.3</span>) <span class="op">+</span></span>
+<span id="cb581-19"><a href="15-3-glmm-count.html#cb581-19"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> fit), <span class="dt">lwd =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.50</span>) <span class="op">+</span></span>
+<span id="cb581-20"><a href="15-3-glmm-count.html#cb581-20"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Growing degree days&quot;</span>) <span class="op">+</span></span>
+<span id="cb581-21"><a href="15-3-glmm-count.html#cb581-21"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Number of walleye in stream&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-400-1.png" width="672" /></p>
 <p>We can see that our mean predictions aren’t terrible, but there is quite a bit of uncertainty here, as above. In this case, it may behoove us to look at this within the context of negative binomial GLMMs, but that is a story for another day (and class!!).</p>
 </div>
 </div>

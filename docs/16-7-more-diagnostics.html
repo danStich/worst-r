@@ -454,26 +454,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="trace-plots" class="section level3">
 <h3><span class="header-section-number">16.7.1</span> Trace plots</h3>
 <p>In the plot below, the x-axes are model iteration number. Each point on a line shows the parameter value drawn for each chain (of 4 that are run by default) for each iteration that we ran the model (default = 4,000 runs). We can see that there is a high degree of overlap between the four chains, which should inspire some confidence because it means that all of the chains converged on a similar space in each panel (parameter) below.</p>
-<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="16-7-more-diagnostics.html#cb614-1"></a><span class="kw">library</span>(bayesplot)</span>
-<span id="cb614-2"><a href="16-7-more-diagnostics.html#cb614-2"></a><span class="kw">mcmc_trace</span>(cray_model, <span class="dt">facet_args =</span> <span class="kw">list</span>(<span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-437-1.png" width="576" /></p>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="16-7-more-diagnostics.html#cb613-1"></a><span class="kw">library</span>(bayesplot)</span>
+<span id="cb613-2"><a href="16-7-more-diagnostics.html#cb613-2"></a><span class="kw">mcmc_trace</span>(cray_model, <span class="dt">facet_args =</span> <span class="kw">list</span>(<span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>))</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-423-1.png" width="576" /></p>
 </div>
 <div id="colinearity" class="section level3">
 <h3><span class="header-section-number">16.7.2</span> Colinearity</h3>
 <p>Next, we can take a look at the <strong>pairs plot</strong> to see whether there are any obvious correlations of concern between our parameters. As anticipated, everything looks okay here, except we do see that we have a pretty strong correlation between our intercept and slope parameters. This is not important for this specific analysis, but we would want to consider this if we were estimating slopes and intercepts independently for each population (<code>site</code>) in the data set.</p>
-<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="16-7-more-diagnostics.html#cb615-1"></a><span class="kw">mcmc_pairs</span>(</span>
-<span id="cb615-2"><a href="16-7-more-diagnostics.html#cb615-2"></a>  cray_model,</span>
-<span id="cb615-3"><a href="16-7-more-diagnostics.html#cb615-3"></a>  <span class="dt">np =</span> <span class="kw">nuts_params</span>(cray_model),</span>
-<span id="cb615-4"><a href="16-7-more-diagnostics.html#cb615-4"></a>  <span class="dt">off_diag_args =</span> <span class="kw">list</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>)</span>
-<span id="cb615-5"><a href="16-7-more-diagnostics.html#cb615-5"></a>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-438-1.png" width="672" /></p>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="16-7-more-diagnostics.html#cb614-1"></a><span class="kw">mcmc_pairs</span>(</span>
+<span id="cb614-2"><a href="16-7-more-diagnostics.html#cb614-2"></a>  cray_model,</span>
+<span id="cb614-3"><a href="16-7-more-diagnostics.html#cb614-3"></a>  <span class="dt">np =</span> <span class="kw">nuts_params</span>(cray_model),</span>
+<span id="cb614-4"><a href="16-7-more-diagnostics.html#cb614-4"></a>  <span class="dt">off_diag_args =</span> <span class="kw">list</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>)</span>
+<span id="cb614-5"><a href="16-7-more-diagnostics.html#cb614-5"></a>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-424-1.png" width="672" /></p>
 </div>
 <div id="divergence" class="section level3">
 <h3><span class="header-section-number">16.7.3</span> Divergence</h3>
 <p>Not like the movies, like “does not follow expectation”. Divergent transitions are an indication that something has gone wrong in your model. You can read more about them here someday, once you understand the first three paragraphs in this section of the Stan Manual [(Chapter 15.5)] (<a href="https://mc-stan.org/docs/2_25/reference-manual/divergent-transitions.html" class="uri">https://mc-stan.org/docs/2_25/reference-manual/divergent-transitions.html</a>). For now, understand that divergence in this sense is a bad thing and it probably means you have a problem with the model that you’ve created. It doesn’t mean you have to throw your data in the garbage. There are some tools in Stan to account for this. But, this is usually a good sign that there is at least something in your model you could change to make it easier to estimate. This could mean changing the likelihood, transforming the data, or re-casting it in another way. Even though that can be scary, we still need to take a look!</p>
 <p>By default, models fit using RStan will throw a warning if there are divergent transitions. You can get a quick of whether or not this is an issue like so:</p>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="16-7-more-diagnostics.html#cb616-1"></a><span class="kw">mcmc_nuts_divergence</span>(<span class="kw">nuts_params</span>(cray_model), <span class="kw">log_posterior</span>(cray_model))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-439-1.png" width="672" /></p>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="16-7-more-diagnostics.html#cb615-1"></a><span class="kw">mcmc_nuts_divergence</span>(<span class="kw">nuts_params</span>(cray_model), <span class="kw">log_posterior</span>(cray_model))</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-425-1.png" width="672" /></p>
 <p>Again, no problems here as far as we are concerned. We will address any further issues related to divergence as they arise later in the textbook or class.</p>
 </div>
 </div>

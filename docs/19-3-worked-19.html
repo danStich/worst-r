@@ -450,14 +450,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="worked-19" class="section level2">
 <h2><span class="header-section-number">19.3</span> Worked example</h2>
 <p>Let’s start by loading the data set. This is the same data set introduced in <a href="14-4-lmm-worked.html#lmm-worked">Chapter 14.4</a>. For this chapter, I will leave the extended explanation from Chapter 14 to help place the R code within the context of the models we are building.</p>
-<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="19-3-worked-19.html#cb703-1"></a><span class="co"># Read in the data file</span></span>
-<span id="cb703-2"><a href="19-3-worked-19.html#cb703-2"></a><span class="co"># We are reading it in with the optional</span></span>
-<span id="cb703-3"><a href="19-3-worked-19.html#cb703-3"></a><span class="co"># argument because we don&#39;t want to deal</span></span>
-<span id="cb703-4"><a href="19-3-worked-19.html#cb703-4"></a><span class="co"># with code relicts if we start</span></span>
-<span id="cb703-5"><a href="19-3-worked-19.html#cb703-5"></a><span class="co"># dropping factor levels</span></span>
-<span id="cb703-6"><a href="19-3-worked-19.html#cb703-6"></a>cray &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/cray.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb704-1"><a href="19-3-worked-19.html#cb704-1"></a><span class="co"># Look at the data structure</span></span>
-<span id="cb704-2"><a href="19-3-worked-19.html#cb704-2"></a><span class="kw">str</span>(cray)</span></code></pre></div>
+<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="19-3-worked-19.html#cb702-1"></a><span class="co"># Read in the data file</span></span>
+<span id="cb702-2"><a href="19-3-worked-19.html#cb702-2"></a><span class="co"># We are reading it in with the optional</span></span>
+<span id="cb702-3"><a href="19-3-worked-19.html#cb702-3"></a><span class="co"># argument because we don&#39;t want to deal</span></span>
+<span id="cb702-4"><a href="19-3-worked-19.html#cb702-4"></a><span class="co"># with code relicts if we start</span></span>
+<span id="cb702-5"><a href="19-3-worked-19.html#cb702-5"></a><span class="co"># dropping factor levels</span></span>
+<span id="cb702-6"><a href="19-3-worked-19.html#cb702-6"></a>cray &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/cray.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="19-3-worked-19.html#cb703-1"></a><span class="co"># Look at the data structure</span></span>
+<span id="cb703-2"><a href="19-3-worked-19.html#cb703-2"></a><span class="kw">str</span>(cray)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:	964 obs. of  7 variables:
 ##  $ date     : chr  &quot;6/28/2018&quot; &quot;6/28/2018&quot; &quot;6/28/2018&quot; &quot;6/28/2018&quot; ...
 ##  $ waterbody: chr  &quot;Susquehanna River&quot; &quot;Susquehanna River&quot; &quot;Susquehanna River&quot; &quot;Susquehanna River&quot; ...
@@ -466,30 +466,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ mass     : num  7.18 6.85 6.75 6.46 6.14 5.99 5.58 4.95 4.85 4.81 ...
 ##  $ loglength: num  3.43 3.44 3.44 3.38 3.34 ...
 ##  $ logmass  : num  1.97 1.92 1.91 1.87 1.81 ...</code></pre>
-<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="19-3-worked-19.html#cb706-1"></a><span class="co"># And, have a look at the first few lines of data</span></span>
-<span id="cb706-2"><a href="19-3-worked-19.html#cb706-2"></a><span class="kw">head</span>(cray)</span></code></pre></div>
-<pre><code>##        date         waterbody            site length mass loglength
-## 1 6/28/2018 Susquehanna River Cooperstown Dam  30.88 7.18  3.430109
-## 2 6/28/2018 Susquehanna River Cooperstown Dam  31.18 6.85  3.439777
-## 3 6/28/2018 Susquehanna River Cooperstown Dam  31.15 6.75  3.438814
-## 4 6/28/2018 Susquehanna River Cooperstown Dam  29.28 6.46  3.376905
-## 5 6/28/2018 Susquehanna River Cooperstown Dam  28.31 6.14  3.343215
-## 6 6/28/2018 Susquehanna River Cooperstown Dam  30.55 5.99  3.419365
-##    logmass
-## 1 1.971299
-## 2 1.924249
-## 3 1.909543
-## 4 1.865629
-## 5 1.814825
-## 6 1.790091</code></pre>
+<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="19-3-worked-19.html#cb705-1"></a><span class="co"># And, have a look at the first few lines of data</span></span>
+<span id="cb705-2"><a href="19-3-worked-19.html#cb705-2"></a><span class="kw">head</span>(cray)</span></code></pre></div>
+<pre><code>##        date         waterbody            site length mass loglength  logmass
+## 1 6/28/2018 Susquehanna River Cooperstown Dam  30.88 7.18  3.430109 1.971299
+## 2 6/28/2018 Susquehanna River Cooperstown Dam  31.18 6.85  3.439777 1.924249
+## 3 6/28/2018 Susquehanna River Cooperstown Dam  31.15 6.75  3.438814 1.909543
+## 4 6/28/2018 Susquehanna River Cooperstown Dam  29.28 6.46  3.376905 1.865629
+## 5 6/28/2018 Susquehanna River Cooperstown Dam  28.31 6.14  3.343215 1.814825
+## 6 6/28/2018 Susquehanna River Cooperstown Dam  30.55 5.99  3.419365 1.790091</code></pre>
 <p>This is a fairly straightforward data set. There are 964 observations of 7 variables. Each of the observations (rows) corresponds to a rusty crayfish that was collected and measured (<code>length</code> in mm and <code>mass</code> in g) at one of several <code>site</code>s on a given <code>date</code>. The variable <code>catch</code> is the total number caught by electrobugging over a given <code>time</code> (minutes). To compare density between sites, <code>catch</code> was divided by (<code>time</code>/60) to calculate catch per unit effort (<code>cpue</code>) as number of crayfish per hour. Therefore, observations of <code>cpue</code>, <code>catch</code>, and <code>time</code> correspond to unique <code>date</code> and <code>site</code> combinations, but <code>length</code> and <code>mass</code> represent unique individuals within <code>site</code> and <code>date</code>.</p>
 <p>Our primary objective in this study was to collect baseline data. But curiosity led us to explore variation in the condition of crayfish when we thought we were noticing skinnier crayfish in sites of higher density. Length-weight regressions are one tool that is commonly used to investigate changes in volumetric growth with increasing length. In the absence of a standardized condition metric such as that widely applied in fish populations, relative weight (W<sub>r</sub>), we thought this might offer some insight into variability in condition.</p>
 <p>What follows is a steroid-injected version of the analysis we started with.</p>
 <p>Length-weight relationships in animals are generally parameterized by log-transforming length and mass. This is because the relationship between the two is exponential, or can be described using a power function (ouch, think back to intro bio). For a given unit increase in length, we expect mass to increase as an approximately cubic function of length.</p>
 <p>We can see this in our un-transformed data pretty cleanly:</p>
-<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="19-3-worked-19.html#cb708-1"></a><span class="kw">ggplot</span>(cray, <span class="kw">aes</span>(<span class="dt">x =</span> length, <span class="dt">y =</span> mass)) <span class="op">+</span></span>
-<span id="cb708-2"><a href="19-3-worked-19.html#cb708-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-513-1.png" width="672" /></p>
+<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="19-3-worked-19.html#cb707-1"></a><span class="kw">ggplot</span>(cray, <span class="kw">aes</span>(<span class="dt">x =</span> length, <span class="dt">y =</span> mass)) <span class="op">+</span></span>
+<span id="cb707-2"><a href="19-3-worked-19.html#cb707-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-499-1.png" width="672" /></p>
 <p>The relationship depicted above can be expressed mathematically as:</p>
 <p><span class="math display">\[W = aL^b,\]</span></p>
 <p>and statistically as:</p>
@@ -502,108 +495,108 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>where <span class="math inline">\(Y\)</span> is <code>log(mass)</code>, and <span class="math inline">\(X\)</span> is <code>log(length)</code>. Then, we just need to remember that <span class="math inline">\(\beta_0\)</span> is estimated on the log scale.</p>
 <p>We can take a look at how this looks in our data by plotting the transformed data.</p>
 <p>Start by log-transforming length and mass</p>
-<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="19-3-worked-19.html#cb709-1"></a><span class="co"># Log transform length and mass</span></span>
-<span id="cb709-2"><a href="19-3-worked-19.html#cb709-2"></a>cray<span class="op">$</span>loglength &lt;-<span class="st"> </span><span class="kw">log</span>(cray<span class="op">$</span>length)</span>
-<span id="cb709-3"><a href="19-3-worked-19.html#cb709-3"></a>cray<span class="op">$</span>logmass &lt;-<span class="st"> </span><span class="kw">log</span>(cray<span class="op">$</span>mass)</span></code></pre></div>
+<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="19-3-worked-19.html#cb708-1"></a><span class="co"># Log transform length and mass</span></span>
+<span id="cb708-2"><a href="19-3-worked-19.html#cb708-2"></a>cray<span class="op">$</span>loglength &lt;-<span class="st"> </span><span class="kw">log</span>(cray<span class="op">$</span>length)</span>
+<span id="cb708-3"><a href="19-3-worked-19.html#cb708-3"></a>cray<span class="op">$</span>logmass &lt;-<span class="st"> </span><span class="kw">log</span>(cray<span class="op">$</span>mass)</span></code></pre></div>
 <p>Plot the relationship. Note that only the names have been changed.</p>
-<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="19-3-worked-19.html#cb710-1"></a><span class="kw">ggplot</span>(cray, <span class="kw">aes</span>(<span class="dt">x =</span> loglength, <span class="dt">y =</span> logmass)) <span class="op">+</span></span>
-<span id="cb710-2"><a href="19-3-worked-19.html#cb710-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-515-1.png" width="672" /></p>
+<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="19-3-worked-19.html#cb709-1"></a><span class="kw">ggplot</span>(cray, <span class="kw">aes</span>(<span class="dt">x =</span> loglength, <span class="dt">y =</span> logmass)) <span class="op">+</span></span>
+<span id="cb709-2"><a href="19-3-worked-19.html#cb709-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-501-1.png" width="672" /></p>
 <p>If nothing else, this tells me we need to go after more small cray next summer. For now, let’s get rid of all crayfish weighing less than 1 g because the data are sparse down there and small values are known to cause some trouble in these kinds of models [still refusing to provide citations].</p>
-<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="19-3-worked-19.html#cb711-1"></a><span class="co"># Drop the measurements for crayfish &lt; 1 g</span></span>
-<span id="cb711-2"><a href="19-3-worked-19.html#cb711-2"></a>cray &lt;-<span class="st"> </span>cray <span class="op">%&gt;%</span></span>
-<span id="cb711-3"><a href="19-3-worked-19.html#cb711-3"></a><span class="st">  </span><span class="kw">filter</span>(mass <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="19-3-worked-19.html#cb710-1"></a><span class="co"># Drop the measurements for crayfish &lt; 1 g</span></span>
+<span id="cb710-2"><a href="19-3-worked-19.html#cb710-2"></a>cray &lt;-<span class="st"> </span>cray <span class="op">%&gt;%</span></span>
+<span id="cb710-3"><a href="19-3-worked-19.html#cb710-3"></a><span class="st">  </span><span class="kw">filter</span>(mass <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
 <p>Now, let’s take a look at the residual diagnostics for a linear model that includes a group effect of <code>site</code> and (of course) <code>length</code> as explanatory variables that we will use to predict changes in our response of interest, <code>mass</code>.</p>
-<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="19-3-worked-19.html#cb712-1"></a>testmod &lt;-<span class="st"> </span><span class="kw">lm</span>(logmass <span class="op">~</span><span class="st"> </span>loglength <span class="op">+</span><span class="st"> </span>site, <span class="dt">data =</span> cray)</span>
-<span id="cb712-2"><a href="19-3-worked-19.html#cb712-2"></a></span>
-<span id="cb712-3"><a href="19-3-worked-19.html#cb712-3"></a><span class="kw">ggplot</span>(testmod, <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> .resid, <span class="dt">fill =</span> site, <span class="dt">color =</span> site)) <span class="op">+</span></span>
-<span id="cb712-4"><a href="19-3-worked-19.html#cb712-4"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">alpha =</span> <span class="fl">0.20</span>, <span class="dt">trim =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb712-5"><a href="19-3-worked-19.html#cb712-5"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>, <span class="dt">alpha =</span> <span class="fl">0.20</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-517-1.png" width="672" /></p>
+<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="19-3-worked-19.html#cb711-1"></a>testmod &lt;-<span class="st"> </span><span class="kw">lm</span>(logmass <span class="op">~</span><span class="st"> </span>loglength <span class="op">+</span><span class="st"> </span>site, <span class="dt">data =</span> cray)</span>
+<span id="cb711-2"><a href="19-3-worked-19.html#cb711-2"></a></span>
+<span id="cb711-3"><a href="19-3-worked-19.html#cb711-3"></a><span class="kw">ggplot</span>(testmod, <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> .resid, <span class="dt">fill =</span> site, <span class="dt">color =</span> site)) <span class="op">+</span></span>
+<span id="cb711-4"><a href="19-3-worked-19.html#cb711-4"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">alpha =</span> <span class="fl">0.20</span>, <span class="dt">trim =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb711-5"><a href="19-3-worked-19.html#cb711-5"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>, <span class="dt">alpha =</span> <span class="fl">0.20</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-503-1.png" width="672" /></p>
 <p>These look pretty good over all, but you should recognize at this point that we may have some concerns about whether or not variances are equal between groups, and whether observations at each <code>site</code> can really be considered independent (they cannot).</p>
 <p>Next, we will take a look at a few different ways to analyze these data using maximum likelihood estimation. Our goal here is to estimate the relationship between <code>length</code> and <code>mass</code> while accounting for inherent variability between <code>site</code>s.</p>
 <div id="random-intercept-19" class="section level3">
 <h3><span class="header-section-number">19.3.1</span> Random-intercepts model</h3>
 <p>First, we will analyze the data assuming that the intercepts for our linear model can vary between populations, but the relationship between length and mass is the same across all populations. This is a very common approach in many ecological and biological applications, as it often is the case that we are just trying to account for sampling design when we do this kind of analysis.</p>
 <p>This is really straightforward to do in R. First, load the <code>rstanarm</code> package if you didn’t do it at the start of the chapter.</p>
-<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="19-3-worked-19.html#cb713-1"></a><span class="co"># Load the package</span></span>
-<span id="cb713-2"><a href="19-3-worked-19.html#cb713-2"></a><span class="kw">library</span>(rstanarm)</span></code></pre></div>
+<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="19-3-worked-19.html#cb712-1"></a><span class="co"># Load the package</span></span>
+<span id="cb712-2"><a href="19-3-worked-19.html#cb712-2"></a><span class="kw">library</span>(rstanarm)</span></code></pre></div>
 <p>Next, we fit the model. To do this we will use the <code>lmer()</code> function. Notice that now we have to add an argument to specify a random effect of <code>site</code> on the intercept <code>1</code>. This is our way of telling R that we want to account for site-specific variability in the length-mass relationship.</p>
-<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="19-3-worked-19.html#cb714-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb714-2"><a href="19-3-worked-19.html#cb714-2"></a>craymod &lt;-<span class="st"> </span><span class="kw">stan_lmer</span>(logmass <span class="op">~</span><span class="st"> </span>loglength <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>site), </span>
-<span id="cb714-3"><a href="19-3-worked-19.html#cb714-3"></a>                     <span class="dt">data =</span> cray)</span></code></pre></div>
+<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="19-3-worked-19.html#cb713-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb713-2"><a href="19-3-worked-19.html#cb713-2"></a>craymod &lt;-<span class="st"> </span><span class="kw">stan_lmer</span>(logmass <span class="op">~</span><span class="st"> </span>loglength <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>site), </span>
+<span id="cb713-3"><a href="19-3-worked-19.html#cb713-3"></a>                     <span class="dt">data =</span> cray)</span></code></pre></div>
 <p>Being responsible individuals, we now have a look at the residuals to make sure we’ve met assumptions of normality and homoscedasticity:</p>
-<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb715-1"><a href="19-3-worked-19.html#cb715-1"></a><span class="co"># Get the residuals</span></span>
-<span id="cb715-2"><a href="19-3-worked-19.html#cb715-2"></a>cray_resids &lt;-<span class="st"> </span><span class="kw">data.frame</span>(cray, <span class="dt">.resid =</span> craymod<span class="op">$</span>residuals)</span>
-<span id="cb715-3"><a href="19-3-worked-19.html#cb715-3"></a></span>
-<span id="cb715-4"><a href="19-3-worked-19.html#cb715-4"></a><span class="co"># Plot the residuals</span></span>
-<span id="cb715-5"><a href="19-3-worked-19.html#cb715-5"></a><span class="kw">ggplot</span>(cray_resids, </span>
-<span id="cb715-6"><a href="19-3-worked-19.html#cb715-6"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> .resid, <span class="dt">fill =</span> site, <span class="dt">color =</span> site)) <span class="op">+</span></span>
-<span id="cb715-7"><a href="19-3-worked-19.html#cb715-7"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">alpha =</span> <span class="fl">0.20</span>, <span class="dt">trim =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb715-8"><a href="19-3-worked-19.html#cb715-8"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>, <span class="dt">alpha =</span> <span class="fl">0.20</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-520-1.png" width="768" /></p>
+<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="19-3-worked-19.html#cb714-1"></a><span class="co"># Get the residuals</span></span>
+<span id="cb714-2"><a href="19-3-worked-19.html#cb714-2"></a>cray_resids &lt;-<span class="st"> </span><span class="kw">data.frame</span>(cray, <span class="dt">.resid =</span> craymod<span class="op">$</span>residuals)</span>
+<span id="cb714-3"><a href="19-3-worked-19.html#cb714-3"></a></span>
+<span id="cb714-4"><a href="19-3-worked-19.html#cb714-4"></a><span class="co"># Plot the residuals</span></span>
+<span id="cb714-5"><a href="19-3-worked-19.html#cb714-5"></a><span class="kw">ggplot</span>(cray_resids, </span>
+<span id="cb714-6"><a href="19-3-worked-19.html#cb714-6"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> .resid, <span class="dt">fill =</span> site, <span class="dt">color =</span> site)) <span class="op">+</span></span>
+<span id="cb714-7"><a href="19-3-worked-19.html#cb714-7"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">alpha =</span> <span class="fl">0.20</span>, <span class="dt">trim =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb714-8"><a href="19-3-worked-19.html#cb714-8"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>, <span class="dt">alpha =</span> <span class="fl">0.20</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-506-1.png" width="768" /></p>
 <p>That’s looking about as good as we could hope for, so you can go ahead and crack open the model summary if that is your thing.</p>
-<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb716-1"><a href="19-3-worked-19.html#cb716-1"></a><span class="co"># Print the summary</span></span>
-<span id="cb716-2"><a href="19-3-worked-19.html#cb716-2"></a><span class="kw">summary</span>(craymod, <span class="dt">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb715-1"><a href="19-3-worked-19.html#cb715-1"></a><span class="co"># Print the summary</span></span>
+<span id="cb715-2"><a href="19-3-worked-19.html#cb715-2"></a><span class="kw">summary</span>(craymod, <span class="dt">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p>For now, I will skip the usual walk through of all the wonderful tidbits that R has to offer and cut right to the chase.</p>
 <p>The default coefficient plot from the <code>plot()</code> function for this model is not super helpful. It shows us that there is clearly a significant relationship between length and mass, but we knew that coming into this. The intercept-adjustments are difficult to interpret in this case because of the scale of the intercept, which now doesn’t have much interpretation other than the “average” <code>logmass</code> of fish at <code>loglength = 0</code>. We can extract the site-specific intercepts to see if these are different from zero (which would mean they differ from the “average”).</p>
-<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb717-1"><a href="19-3-worked-19.html#cb717-1"></a>coeffs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(craymod)</span></code></pre></div>
+<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb716-1"><a href="19-3-worked-19.html#cb716-1"></a>coeffs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(craymod)</span></code></pre></div>
 <p>Wow, that is so ridiculously easy to do now.</p>
 <p>Now that we have the coefficients in a dataframe, we can clean up the names a little to make the plots a little nicer:</p>
-<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="19-3-worked-19.html#cb718-1"></a><span class="co"># First strip out that awful front-end text</span></span>
-<span id="cb718-2"><a href="19-3-worked-19.html#cb718-2"></a><span class="kw">names</span>(coeffs) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="dt">pattern =</span> <span class="st">&quot;b..Intercept..site.&quot;</span>,</span>
-<span id="cb718-3"><a href="19-3-worked-19.html#cb718-3"></a>                      <span class="dt">replacement =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb718-4"><a href="19-3-worked-19.html#cb718-4"></a>                      <span class="dt">x =</span> <span class="kw">names</span>(coeffs)</span>
-<span id="cb718-5"><a href="19-3-worked-19.html#cb718-5"></a>                      )</span></code></pre></div>
+<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb717-1"><a href="19-3-worked-19.html#cb717-1"></a><span class="co"># First strip out that awful front-end text</span></span>
+<span id="cb717-2"><a href="19-3-worked-19.html#cb717-2"></a><span class="kw">names</span>(coeffs) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="dt">pattern =</span> <span class="st">&quot;b..Intercept..site.&quot;</span>,</span>
+<span id="cb717-3"><a href="19-3-worked-19.html#cb717-3"></a>                      <span class="dt">replacement =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb717-4"><a href="19-3-worked-19.html#cb717-4"></a>                      <span class="dt">x =</span> <span class="kw">names</span>(coeffs)</span>
+<span id="cb717-5"><a href="19-3-worked-19.html#cb717-5"></a>                      )</span></code></pre></div>
 <p>Now we can stack the coefficients:</p>
-<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb719-1"><a href="19-3-worked-19.html#cb719-1"></a><span class="co"># Just grab the columns we want to work with here</span></span>
-<span id="cb719-2"><a href="19-3-worked-19.html#cb719-2"></a>intercepts &lt;-<span class="st"> </span>coeffs[ , <span class="dv">3</span><span class="op">:</span><span class="dv">8</span>]</span>
-<span id="cb719-3"><a href="19-3-worked-19.html#cb719-3"></a></span>
-<span id="cb719-4"><a href="19-3-worked-19.html#cb719-4"></a><span class="co"># Now stack them with pivot_longer</span></span>
-<span id="cb719-5"><a href="19-3-worked-19.html#cb719-5"></a>intercepts &lt;-<span class="st"> </span>intercepts <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb719-6"><a href="19-3-worked-19.html#cb719-6"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), </span>
-<span id="cb719-7"><a href="19-3-worked-19.html#cb719-7"></a>               <span class="dt">names_to =</span> <span class="st">&quot;Parameter&quot;</span>,</span>
-<span id="cb719-8"><a href="19-3-worked-19.html#cb719-8"></a>               <span class="dt">values_to =</span> <span class="st">&quot;Estimate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="19-3-worked-19.html#cb718-1"></a><span class="co"># Just grab the columns we want to work with here</span></span>
+<span id="cb718-2"><a href="19-3-worked-19.html#cb718-2"></a>intercepts &lt;-<span class="st"> </span>coeffs[ , <span class="dv">3</span><span class="op">:</span><span class="dv">8</span>]</span>
+<span id="cb718-3"><a href="19-3-worked-19.html#cb718-3"></a></span>
+<span id="cb718-4"><a href="19-3-worked-19.html#cb718-4"></a><span class="co"># Now stack them with pivot_longer</span></span>
+<span id="cb718-5"><a href="19-3-worked-19.html#cb718-5"></a>intercepts &lt;-<span class="st"> </span>intercepts <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb718-6"><a href="19-3-worked-19.html#cb718-6"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), </span>
+<span id="cb718-7"><a href="19-3-worked-19.html#cb718-7"></a>               <span class="dt">names_to =</span> <span class="st">&quot;Parameter&quot;</span>,</span>
+<span id="cb718-8"><a href="19-3-worked-19.html#cb718-8"></a>               <span class="dt">values_to =</span> <span class="st">&quot;Estimate&quot;</span>)</span></code></pre></div>
 <p>Calculate some summary statistics (95% CRI)</p>
-<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="19-3-worked-19.html#cb720-1"></a>int_summary &lt;-<span class="st"> </span>intercepts <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb720-2"><a href="19-3-worked-19.html#cb720-2"></a><span class="st">  </span><span class="kw">group_by</span>(Parameter) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb720-3"><a href="19-3-worked-19.html#cb720-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">fit =</span> <span class="kw">mean</span>(Estimate),</span>
-<span id="cb720-4"><a href="19-3-worked-19.html#cb720-4"></a>            <span class="dt">lwr =</span> <span class="kw">quantile</span>(Estimate, <span class="fl">0.025</span>),</span>
-<span id="cb720-5"><a href="19-3-worked-19.html#cb720-5"></a>            <span class="dt">upr =</span> <span class="kw">quantile</span>(Estimate, <span class="fl">0.975</span>)</span>
-<span id="cb720-6"><a href="19-3-worked-19.html#cb720-6"></a>            )</span></code></pre></div>
+<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb719-1"><a href="19-3-worked-19.html#cb719-1"></a>int_summary &lt;-<span class="st"> </span>intercepts <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb719-2"><a href="19-3-worked-19.html#cb719-2"></a><span class="st">  </span><span class="kw">group_by</span>(Parameter) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb719-3"><a href="19-3-worked-19.html#cb719-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">fit =</span> <span class="kw">mean</span>(Estimate),</span>
+<span id="cb719-4"><a href="19-3-worked-19.html#cb719-4"></a>            <span class="dt">lwr =</span> <span class="kw">quantile</span>(Estimate, <span class="fl">0.025</span>),</span>
+<span id="cb719-5"><a href="19-3-worked-19.html#cb719-5"></a>            <span class="dt">upr =</span> <span class="kw">quantile</span>(Estimate, <span class="fl">0.975</span>)</span>
+<span id="cb719-6"><a href="19-3-worked-19.html#cb719-6"></a>            )</span></code></pre></div>
 <p>And then you can plot them to see whether zero is excluded.</p>
-<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb721-1"><a href="19-3-worked-19.html#cb721-1"></a><span class="kw">ggplot</span>(int_summary, <span class="kw">aes</span>(<span class="dt">x =</span> Parameter, <span class="dt">y =</span> fit)) <span class="op">+</span></span>
-<span id="cb721-2"><a href="19-3-worked-19.html#cb721-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb721-3"><a href="19-3-worked-19.html#cb721-3"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> Parameter, <span class="dt">y =</span> lwr, <span class="dt">yend =</span> upr))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-526-1.png" width="672" /></p>
+<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="19-3-worked-19.html#cb720-1"></a><span class="kw">ggplot</span>(int_summary, <span class="kw">aes</span>(<span class="dt">x =</span> Parameter, <span class="dt">y =</span> fit)) <span class="op">+</span></span>
+<span id="cb720-2"><a href="19-3-worked-19.html#cb720-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb720-3"><a href="19-3-worked-19.html#cb720-3"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> Parameter, <span class="dt">y =</span> lwr, <span class="dt">yend =</span> upr))</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-512-1.png" width="672" /></p>
 <p>As in <a href="#Chapter%2014">Chapter 14</a> we see that we probably don’t “need” to include these random intercepts if we are thinking about group-specific variability as strictly being a nuisance. But, we are here to incorporate that variability directly, so we’ll keep it!</p>
 <p>Next, let’s make some predictions about the relationship between <code>length</code> and <code>mass</code> in each <code>site</code>.</p>
 <p>This is the first time we will diverge from the MLE estimation technique used in Chapter 14. Rather than using the <code>predict()</code> function as we have been, let’s use the <code>predict_posterior()</code> function to make predictions from the posterior distribution of our model parameters. Notice that we are inverting the <code>log</code> link function on the fly in the lines below <em>after</em> we derive descriptive statistics of interest.</p>
-<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb722-1"><a href="19-3-worked-19.html#cb722-1"></a><span class="co"># Log-scale posterior predictions</span></span>
-<span id="cb722-2"><a href="19-3-worked-19.html#cb722-2"></a>lpred_mat &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="kw">posterior_predict</span>(craymod) )</span>
-<span id="cb722-3"><a href="19-3-worked-19.html#cb722-3"></a></span>
-<span id="cb722-4"><a href="19-3-worked-19.html#cb722-4"></a><span class="co"># Descriptive statistics, with log-link inverted</span></span>
-<span id="cb722-5"><a href="19-3-worked-19.html#cb722-5"></a>fit &lt;-<span class="st"> </span><span class="kw">exp</span>( <span class="kw">apply</span>(lpred_mat, <span class="dv">2</span>, mean) )</span>
-<span id="cb722-6"><a href="19-3-worked-19.html#cb722-6"></a>lwr &lt;-<span class="st"> </span><span class="kw">exp</span>( <span class="kw">apply</span>(lpred_mat, <span class="dv">2</span>, quantile, <span class="dt">probs =</span> <span class="fl">0.025</span>) )</span>
-<span id="cb722-7"><a href="19-3-worked-19.html#cb722-7"></a>upr &lt;-<span class="st"> </span><span class="kw">exp</span>( <span class="kw">apply</span>(lpred_mat, <span class="dv">2</span>, quantile, <span class="dt">probs =</span> <span class="fl">0.975</span>) )</span>
-<span id="cb722-8"><a href="19-3-worked-19.html#cb722-8"></a></span>
-<span id="cb722-9"><a href="19-3-worked-19.html#cb722-9"></a><span class="co"># Smash it all together</span></span>
-<span id="cb722-10"><a href="19-3-worked-19.html#cb722-10"></a>cray_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(cray, fit, lwr, upr)</span></code></pre></div>
+<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb721-1"><a href="19-3-worked-19.html#cb721-1"></a><span class="co"># Log-scale posterior predictions</span></span>
+<span id="cb721-2"><a href="19-3-worked-19.html#cb721-2"></a>lpred_mat &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="kw">posterior_predict</span>(craymod) )</span>
+<span id="cb721-3"><a href="19-3-worked-19.html#cb721-3"></a></span>
+<span id="cb721-4"><a href="19-3-worked-19.html#cb721-4"></a><span class="co"># Descriptive statistics, with log-link inverted</span></span>
+<span id="cb721-5"><a href="19-3-worked-19.html#cb721-5"></a>fit &lt;-<span class="st"> </span><span class="kw">exp</span>( <span class="kw">apply</span>(lpred_mat, <span class="dv">2</span>, mean) )</span>
+<span id="cb721-6"><a href="19-3-worked-19.html#cb721-6"></a>lwr &lt;-<span class="st"> </span><span class="kw">exp</span>( <span class="kw">apply</span>(lpred_mat, <span class="dv">2</span>, quantile, <span class="dt">probs =</span> <span class="fl">0.025</span>) )</span>
+<span id="cb721-7"><a href="19-3-worked-19.html#cb721-7"></a>upr &lt;-<span class="st"> </span><span class="kw">exp</span>( <span class="kw">apply</span>(lpred_mat, <span class="dv">2</span>, quantile, <span class="dt">probs =</span> <span class="fl">0.975</span>) )</span>
+<span id="cb721-8"><a href="19-3-worked-19.html#cb721-8"></a></span>
+<span id="cb721-9"><a href="19-3-worked-19.html#cb721-9"></a><span class="co"># Smash it all together</span></span>
+<span id="cb721-10"><a href="19-3-worked-19.html#cb721-10"></a>cray_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(cray, fit, lwr, upr)</span></code></pre></div>
 <p>Now we can plot our predictions by treating this just like any other model:</p>
+<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb722-1"><a href="19-3-worked-19.html#cb722-1"></a><span class="kw">ggplot</span>(cray_preds, <span class="kw">aes</span>(<span class="dt">x =</span> length, <span class="dt">y =</span> mass, <span class="dt">color =</span> site, <span class="dt">fill =</span> site)) <span class="op">+</span></span>
+<span id="cb722-2"><a href="19-3-worked-19.html#cb722-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.10</span>) <span class="op">+</span></span>
+<span id="cb722-3"><a href="19-3-worked-19.html#cb722-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> fit), <span class="dt">lwd =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.50</span>) <span class="op">+</span></span>
+<span id="cb722-4"><a href="19-3-worked-19.html#cb722-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Carapace length (mm)&quot;</span>) <span class="op">+</span></span>
+<span id="cb722-5"><a href="19-3-worked-19.html#cb722-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Mass (g)&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-514-1.png" width="672" /></p>
+<p>This is helpful for identifying some of the differences between sites. In this case, it looks like we have slightly smaller crayfish in a handful of sites (<code>Bailey Road</code>, <code>Colliersville</code>, and <code>Route 80</code>) and the rest of them look pretty similar. It can be difficult to see how our model fits the data for individual groups. Remember, that we could address this by using a quick <code>facet_wrap()</code> in our plotting code:</p>
 <div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb723-1"><a href="19-3-worked-19.html#cb723-1"></a><span class="kw">ggplot</span>(cray_preds, <span class="kw">aes</span>(<span class="dt">x =</span> length, <span class="dt">y =</span> mass, <span class="dt">color =</span> site, <span class="dt">fill =</span> site)) <span class="op">+</span></span>
 <span id="cb723-2"><a href="19-3-worked-19.html#cb723-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.10</span>) <span class="op">+</span></span>
 <span id="cb723-3"><a href="19-3-worked-19.html#cb723-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> fit), <span class="dt">lwd =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.50</span>) <span class="op">+</span></span>
 <span id="cb723-4"><a href="19-3-worked-19.html#cb723-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Carapace length (mm)&quot;</span>) <span class="op">+</span></span>
-<span id="cb723-5"><a href="19-3-worked-19.html#cb723-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Mass (g)&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-528-1.png" width="672" /></p>
-<p>This is helpful for identifying some of the differences between sites. In this case, it looks like we have slightly smaller crayfish in a handful of sites (<code>Bailey Road</code>, <code>Colliersville</code>, and <code>Route 80</code>) and the rest of them look pretty similar. It can be difficult to see how our model fits the data for individual groups. Remember, that we could address this by using a quick <code>facet_wrap()</code> in our plotting code:</p>
-<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="19-3-worked-19.html#cb724-1"></a><span class="kw">ggplot</span>(cray_preds, <span class="kw">aes</span>(<span class="dt">x =</span> length, <span class="dt">y =</span> mass, <span class="dt">color =</span> site, <span class="dt">fill =</span> site)) <span class="op">+</span></span>
-<span id="cb724-2"><a href="19-3-worked-19.html#cb724-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.10</span>) <span class="op">+</span></span>
-<span id="cb724-3"><a href="19-3-worked-19.html#cb724-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> fit), <span class="dt">lwd =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.50</span>) <span class="op">+</span></span>
-<span id="cb724-4"><a href="19-3-worked-19.html#cb724-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Carapace length (mm)&quot;</span>) <span class="op">+</span></span>
-<span id="cb724-5"><a href="19-3-worked-19.html#cb724-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Mass (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb724-6"><a href="19-3-worked-19.html#cb724-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-529-1.png" width="672" /></p>
+<span id="cb723-5"><a href="19-3-worked-19.html#cb723-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Mass (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb723-6"><a href="19-3-worked-19.html#cb723-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-515-1.png" width="672" /></p>
 <p>This let’s us see how well our predictions fit the data from individual streams all alongside the uncertainty in our estimates (even though there isn’t much!!).</p>
 <p>As with LMM in the REML framework, this may seem like a lot of work at first glance, but hopefully you do realize that it is about the same amount of code as making predictions from linear models and general linear models, and now we have introduced yet another way to dealing with violations of assumptions!</p>
 </div>

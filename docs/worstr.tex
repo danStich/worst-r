@@ -1466,7 +1466,7 @@ There are about 17,000 observations (rows) of 6 variables (columns) in this data
 \texttt{backCalculated}: a logical indicating whether or not the length
 of the fish was back-calculated from aging.\\
 
-\texttt{Mass}: the mass of indnividual fish (in grams). Note that this is NA
+\texttt{Mass}: the mass of individual fish (in grams). Note that this is NA
 for all ages that were estimated from hard structures (so all
 cases for which \texttt{backCalculated\ ==\ TRUE}).
 
@@ -2825,7 +2825,7 @@ Let's do it again with that function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1
+## [1] 0
 \end{verbatim}
 
 Or we could hatch a whole bunch of eggs:
@@ -2838,7 +2838,7 @@ Or we could hatch a whole bunch of eggs:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1 1 0 0 1 0 1 0 0 0
+##  [1] 0 1 1 1 0 0 0 0 0 1
 \end{verbatim}
 
 Then, we could even count how many of those were successful. Do you remember how to do that? There are several different ways. You'll have to come up with one for the homework assignment (hint: see \protect\hyperlink{Chapter2}{Chapter 2}).
@@ -2860,7 +2860,7 @@ To sample data from a binomial distribution, we can use \texttt{rbinom} from bas
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 3 5 6 6 3 5 4 7 4 2
+##  [1] 6 5 5 5 6 6 6 5 4 5
 \end{verbatim}
 
 Remember as you look through these that your numbers should look different than mine (at least most of the time) because these are being generated randomly.
@@ -2937,11 +2937,11 @@ Have a look:
 ##  [8,]    0    0    0    0    0
 ##  [9,]    0    0    0    0    0
 ## [10,]    0    0    0    0    1
-## [11,]    0    0    0    0    0
+## [11,]    0    0    0    1    0
 ## [12,]    0    0    0    0    0
-## [13,]    0    0    1    0    0
+## [13,]    0    0    0    0    0
 ## [14,]    0    0    0    0    0
-## [15,]    0    0    0    1    0
+## [15,]    0    0    0    0    0
 ## [16,]    0    0    0    0    0
 ## [17,]    0    0    0    0    0
 ## [18,]    0    0    0    0    0
@@ -2949,10 +2949,10 @@ Have a look:
 ## [20,]    0    0    0    0    0
 ## [21,]    0    0    0    0    0
 ## [22,]    0    0    0    0    0
-## [23,]    0    1    0    0    0
-## [24,]    1    0    0    0    0
+## [23,]    0    0    1    0    0
+## [24,]    0    1    0    0    0
 ## [25,]    0    0    0    0    0
-## [26,]    0    0    0    0    0
+## [26,]    1    0    0    0    0
 \end{verbatim}
 
 \textbf{WHOA} a matrix??!!! \textbf{What does it all mean}?
@@ -2973,13 +2973,13 @@ Take a step back, breathe, and think about this. The rows in this matrix are you
 ##  [2,]    0
 ##  [3,]    0
 ##  [4,]    0
-##  [5,]    0
+##  [5,]    1
 ##  [6,]    0
 ##  [7,]    0
 ##  [8,]    0
 ##  [9,]    0
 ## [10,]    0
-## [11,]    1
+## [11,]    0
 ## [12,]    0
 ## [13,]    0
 ## [14,]    0
@@ -3010,7 +3010,7 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 ##  [1,] "Ava"         "0"
 ##  [2,] "Dillon"      "0"
 ##  [3,] "Delaney"     "0"
-##  [4,] "Manolo"      "1"
+##  [4,] "Manolo"      "0"
 ##  [5,] "Sarah"       "0"
 ##  [6,] "Shannon"     "0"
 ##  [7,] "Olivia"      "0"
@@ -3032,7 +3032,7 @@ Here, we pulled a single sample from the distribution, and probability of sampli
 ## [23,] "Sierra"      "0"
 ## [24,] "Kyle"        "0"
 ## [25,] "Diana"       "0"
-## [26,] "Amanda"      "0"
+## [26,] "Amanda"      "1"
 \end{verbatim}
 
 Now, if I was calling on you randomly in class, after 10 questions, the spread of people who would have participated in class might look like this (or whatever you got - remember, it is random):
@@ -3045,32 +3045,32 @@ Now, if I was calling on you randomly in class, after 10 questions, the spread o
 
 \begin{verbatim}
 ##       name                                                 
-##  [1,] "Ava"         "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [2,] "Dillon"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [3,] "Delaney"     "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [4,] "Manolo"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [1,] "Ava"         "0" "0" "0" "0" "1" "0" "0" "0" "0" "0"
+##  [2,] "Dillon"      "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
+##  [3,] "Delaney"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [4,] "Manolo"      "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
 ##  [5,] "Sarah"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ##  [6,] "Shannon"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [7,] "Olivia"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+##  [7,] "Olivia"      "0" "0" "0" "0" "0" "0" "1" "0" "0" "0"
 ##  [8,] "Ebony"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-##  [9,] "Julia"       "0" "0" "0" "0" "0" "1" "0" "0" "0" "0"
+##  [9,] "Julia"       "0" "0" "0" "0" "0" "0" "0" "0" "1" "0"
 ## [10,] "Davi"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [11,] "Gabrielle"   "0" "0" "0" "0" "1" "0" "0" "0" "0" "0"
+## [11,] "Gabrielle"   "1" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [12,] "Jordan"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [13,] "Tayler"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [14,] "Summer"      "1" "0" "0" "0" "0" "0" "1" "0" "0" "0"
-## [15,] "Leah"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [16,] "Christine"   "0" "0" "0" "0" "0" "0" "0" "1" "0" "0"
-## [17,] "Ashley"      "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
-## [18,] "Katherine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [19,] "James"       "0" "0" "1" "0" "0" "0" "0" "0" "0" "0"
+## [14,] "Summer"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [15,] "Leah"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "1"
+## [16,] "Christine"   "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [17,] "Ashley"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [18,] "Katherine"   "0" "0" "0" "1" "0" "0" "0" "0" "0" "0"
+## [19,] "James"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [20,] "Emily"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [21,] "Cassidy"     "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [22,] "Maximillion" "0" "0" "0" "0" "0" "0" "0" "0" "1" "1"
+## [22,] "Maximillion" "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
 ## [23,] "Sierra"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [24,] "Kyle"        "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [24,] "Kyle"        "0" "0" "0" "0" "0" "0" "0" "1" "0" "0"
 ## [25,] "Diana"       "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
-## [26,] "Amanda"      "0" "0" "0" "0" "0" "0" "0" "0" "0" "0"
+## [26,] "Amanda"      "0" "1" "0" "0" "0" "0" "0" "0" "0" "0"
 \end{verbatim}
 
 Taking this one step further, we could just draw a name and stop looking at these ugly (no but really they are \textbf{awesome}!) matrices:
@@ -3082,7 +3082,7 @@ Taking this one step further, we could just draw a name and stop looking at thes
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Summer"
+## [1] "Julia"
 \end{verbatim}
 
 And now we have a way to randomly select an individual based on a multinomial distribution. What fun!
@@ -3318,7 +3318,7 @@ First, we'll estimate it by making our own function:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.989760  4.026802
+## [1] 19.97659  4.06597
 \end{verbatim}
 
 Because this one is so common, R has built-in estimators that rely on
@@ -3332,7 +3332,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.98976
+## [1] 19.97659
 \end{verbatim}
 
 \begin{Shaded}
@@ -3342,7 +3342,7 @@ of the normal distribution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.027205
+## [1] 4.066376
 \end{verbatim}
 
 Wow, that was a lot less code. That is the beauty of having these functions available. How do these compare to the answers returned by our function if you scroll back up?
@@ -3360,8 +3360,8 @@ R also has built-in \textbf{maximum likelihood} estimators that provide an exact
 
 \begin{verbatim}
 ##       mean           sd     
-##   19.98975968    2.00668934 
-##  ( 0.02006689) ( 0.01418944)
+##   19.97658867    2.01642500 
+##  ( 0.02016425) ( 0.01425828)
 \end{verbatim}
 
 Only one problem here: R doesn't report the second moment! It reports
@@ -3410,14 +3410,14 @@ To get started, we need to take a guess at what those parameters could be. (Yes,
 
 \begin{verbatim}
 ## $par
-## [1] 19.989732  4.027285
+## [1] 19.976345  4.066117
 ## 
 ## $value
-## [1] 21154.25
+## [1] 21202.65
 ## 
 ## $counts
 ## function gradient 
-##       49       NA 
+##       51       NA 
 ## 
 ## $convergence
 ## [1] 0
@@ -3462,9 +3462,9 @@ Look at the structure I'll be damned, it's a list! Hey, we learned about those!
 
 \begin{verbatim}
 ## List of 5
-##  $ par        : num [1:2] 20 4.05
-##  $ value      : num 21154
-##  $ counts     : Named int [1:2] 91 NA
+##  $ par        : num [1:2] 19.98 4.07
+##  $ value      : num 21203
+##  $ counts     : Named int [1:2] 99 NA
 ##   ..- attr(*, "names")= chr [1:2] "function" "gradient"
 ##  $ convergence: int 0
 ##  $ message    : NULL
@@ -3480,7 +3480,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.997021  4.047637
+## [1] 19.97889  4.07040
 \end{verbatim}
 
 \begin{Shaded}
@@ -3491,7 +3491,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.99702
+## [1] 19.97889
 \end{verbatim}
 
 \begin{Shaded}
@@ -3502,7 +3502,7 @@ And, here are the estimates:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.047637
+## [1] 4.0704
 \end{verbatim}
 
 There you have it, a couple of different ways to calculate parameters of the normal distribution using a couple of different approaches each.
@@ -3520,7 +3520,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.99596
+## [1] 19.98588
 \end{verbatim}
 
 \begin{Shaded}
@@ -3532,7 +3532,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##     2.5%    97.5% 
-## 16.02124 23.95039
+## 16.10401 23.97181
 \end{verbatim}
 
 \begin{Shaded}
@@ -3544,7 +3544,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 
 \begin{verbatim}
 ##      25%      75% 
-## 18.67208 21.32131
+## 18.60924 21.34879
 \end{verbatim}
 
 \begin{Shaded}
@@ -3555,7 +3555,7 @@ There are a number of other ways we might like to describe this this (or any) sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 11.78336 27.41013
+## [1] 12.00941 27.79273
 \end{verbatim}
 
 \hypertarget{next5}{%
@@ -7550,11 +7550,11 @@ We will use this function to transform the probability of using the Stillwater B
 
 If our response, \texttt{path} is a binary variable where 1 = Stillwater and 0 = mainstem for each fish 1 to \emph{n}, we can think of p(Stillwater Branch) as:
 
-\(p(Stillwater) = \frac{\sum{path}}{n}\)
+\[p(Stillwater) = \frac{\sum{path}}{n}\]
 
 and the logit of p(Stillwater Branch) can assumed to be normally distributed with a mean of \mu.
 
-\(logit(p) ~ Normal(\mu, \sigma^{2})\)
+\[logit(p) ~ Normal(\mu, \sigma^{2})\]
 
 Now that we know we are doing \emph{more or less} the same thing let's move on with fitting the model.
 
@@ -8009,8 +8009,8 @@ We'll keep working with the \texttt{tidyverse} this week. But, we'll also check 
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{poisson-regression}{%
-\section{Poisson regression}\label{poisson-regression}}
+\hypertarget{poisson-13}{%
+\section{Poisson regression}\label{poisson-13}}
 
 Poisson regression is useful for situations in which we have a response (independent variable) that is a count. These are discrete data that cannot be considered continuous because it is impossible for them to take on non-integer or non-negative values. Common examples of these types of responses include species count data in ecology, cell or colony counts in biology, and the number of respondents or patients reporting a side-effect or symptom of interest in health care studies.
 
@@ -8037,8 +8037,8 @@ Let's use the \texttt{crab} data set to demonstrate the GLM with Poisson data. W
 ##  $ satellites: int  8 4 0 0 1 3 0 0 8 6 ...
 \end{verbatim}
 
-\hypertarget{data-explanation}{%
-\subsection{Data explanation}\label{data-explanation}}
+\hypertarget{data-13}{%
+\subsection{Data explanation}\label{data-13}}
 
 These data represent the number of satellite male horseshoe crabs per female (rows) in relation to a number of characteristics of the females. Here, our response of interest is \texttt{satellites} and the female characteristics are our explanatory (independent) variables. These include female color, spine condition, carapace width, and mass (g).
 
@@ -8088,7 +8088,7 @@ This brings us to the next important point we need to make about GLMS\ldots{}
 Even though we are relaxing the assumptions of linear models, we still need to check to make sure the models we use are valid with respect to our assumptions.
 \end{quote}
 
-This will become considerably more complicated as we begin to move into distributions other than the binomial and the Poisson, as our standard methods become less and less applicable and in-depth model validation becomes more obscure and more involved.
+This will become considerably more complicated as we begin to move into distributions other than the binomial and the Poisson, as our standard methods become less and less applicable and in-depth model validation becomes more obscure and more involved (but more important!).
 
 So, what is going on here? At this point a few things should jump out at you from this plot. First, there is some kind of trend happening at the bottom of our plot where the residuals slant downward from left to right. That's something that should scream ``not good!'' at you, even if you don't know why. Second, this plot doesn't really make it look like our residuals are symmetrically distributed with a mean of zero. But, it is really hard to tell from this graph, especially because of the weird patterns at the bottom of the scatter plot.
 
@@ -8228,8 +8228,8 @@ Now we are starting to look a lot more ``normal'' within groups, and we are gett
 
 Clearly the negative binomial model is far superior to the Poisson model here. Now, with a reasonable model in hand we could proceed with data visualization, but we might also rather have a ``good'' model to work with instead of just one that is ``good enough''. It turns out that the really problem behind the weirdness in our residuals is actually due to an excess number of zero counts of \texttt{satellite} males on a lot of our females. This is actually really common in count data, where we might observe a lot of zeros before actually counting a success. And, once we have one success (e.g.~a parasite infection or illness), we often have extreme events with lots of successes. For example, it might take a while to find a fish with a parasite, or a human with a specific illness, but then that individual could have dozens or hundreds of parasites, or the illness might pop up in a cluster of hundreds of individuals in one location depending on the intensity of the infection. For these cases, we'll need to deal with the issue these excessive zeros (``zero inflation'') directly.
 
-\hypertarget{zero-inflation}{%
-\section{Zero inflation}\label{zero-inflation}}
+\hypertarget{zinf-13}{%
+\section{Zero inflation}\label{zinf-13}}
 
 The fits of these two models, in reality, suggest the need to for what is becoming an increasingly common statistical tool: the zero inflated count model. Zero inflation (excess zeroes in count data) can arise by one of two mechanisms: true (``process'') zeros and observational zeros that result from imperfect detection.
 
@@ -8349,8 +8349,8 @@ Likewise, we can take another look at our model diagnostics for \texttt{step2} t
 
 Here, we can see that our residual plots indicate a pretty drastic improvement.
 
-\hypertarget{predict-counts}{%
-\subsection{Predictions}\label{predict-counts}}
+\hypertarget{predict-13}{%
+\subsection{Predictions}\label{predict-13}}
 
 Now that we are finally happy with our residual plots (wow, that took a lot longer than fitting any of the models!) we can make a plot of our predictions against the raw data to see how we did.
 
@@ -8444,8 +8444,8 @@ Here is a plot showing how the number of \texttt{satellite} males observed chang
 
 Well, it doesn't exactly inspire great confidence in the biological relationship between female horseshoe crab mass and the number of satellite males she attracts, but that is exactly why it is so important to communicate these effects
 
-\hypertarget{next-steps}{%
-\section{Next steps}\label{next-steps}}
+\hypertarget{next-13}{%
+\section{Next steps}\label{next-13}}
 
 This chapter has provided an overview of GLMs that we can use for count data, and demonstrates one way to handle cases of skewed counts or (more extreme case) zero-inflated counts. These are common ``problems'' in biological and ecological data that are easily resolved within the flexible framework of GLM, which includes all of the other models we've looked at since \protect\hyperlink{Chapter6}{Chapter 6}. In \protect\hyperlink{Chapter14}{Chapter 14} and \protect\hyperlink{Chapter15}{Chapter 15} we'll look at how to extend this framework even further (another umbrella) to include repeated observations and relatedness between groups when we introduce mixed effects models.
 
@@ -8584,9 +8584,9 @@ Let's start by loading in a new data set. These data come from a preliminary stu
 ## 6 6/28/2018 Susquehanna River Cooperstown Dam  30.55 5.99  3.419365 1.790091
 \end{verbatim}
 
-We have a fairly straightforward data set this week. There are 964 observations of 7 variables. Each of the observations (rows) corresponds to a rusty crayfish that was collected and measured (\texttt{length} in mm and \texttt{mass} in g) at one of several \texttt{site}s on a given \texttt{date}. The variable \texttt{catch} is the total number caught by electrobugging over a given \texttt{time} (minutes). To compare density between sites, \texttt{catch} was divided by (\texttt{time}/60) to calculate catch per unit effort (\texttt{cpue}) as number of crayfish per hour. Therefore, observations of \texttt{cpue}, \texttt{catch}, and \texttt{time} correspond to unique \texttt{date} and \texttt{site} combinations, but \texttt{length} and \texttt{mass} represent unique individuals within \texttt{site} and \texttt{date}.
+This is a fairly straightforward data set. There are 964 observations of 7 variables. Each of the observations (rows) corresponds to a rusty crayfish that was collected and measured (\texttt{length} in mm and \texttt{mass} in g) at one of several \texttt{site}s on a given \texttt{date}. The variable \texttt{catch} is the total number caught by electrobugging over a given \texttt{time} (minutes). To compare density between sites, \texttt{catch} was divided by (\texttt{time}/60) to calculate catch per unit effort (\texttt{cpue}) as number of crayfish per hour. Therefore, observations of \texttt{cpue}, \texttt{catch}, and \texttt{time} correspond to unique \texttt{date} and \texttt{site} combinations, but \texttt{length} and \texttt{mass} represent unique individuals within \texttt{site} and \texttt{date}.
 
-Our primary objective in this study was to collect baseline data. But curiousity led us to explore variation in the condition of crayfish when we thought we were noticing skinnier crayfish in sites of higher density. Length-weight regressions are one tool that is commonly used to investigate changes in volumetric growth with increasing length. In the absence of a standardized condition metric such as that widely applied in fish populations, relative weight (W\textsubscript{r}), we thought this might offer some insight into variability in condition.
+Our primary objective in this study was to collect baseline data. But curiosity led us to explore variation in the condition of crayfish when we thought we were noticing skinnier crayfish in sites of higher density. Length-weight regressions are one tool that is commonly used to investigate changes in volumetric growth with increasing length. In the absence of a standardized condition metric such as that widely applied in fish populations, relative weight (W\textsubscript{r}), we thought this might offer some insight into variability in condition.
 
 What follows is a steroid-injected version of the analysis we started with.
 
@@ -9218,7 +9218,2267 @@ We can see that our mean predictions aren't terrible, but there is quite a bit o
 \hypertarget{next-15}{%
 \section{Next steps}\label{next-15}}
 
-This chapter completes our investigations into linear models and their extensions. Not to fear, there is a whole wide world of statistics still out there for you to explore. In the final chapters of this text book, we will look at what to do when we have multiple correlated response variables (multivariate statistics in \protect\hyperlink{Chapter16}{Chapter 16}) and what to do when we have tons of explanatory variables but no idea how to meet assumptions of linear models we've discussed so far (classification and regression trees in \protect\hyperlink{Chapter17}{Chapter 17}). To make it all better, we'll see that all of the linear models we've used so far can just be represented as special cases of multivariate statistics where we have only a single response, and we'll see that machine learning is really just a fancy application of linear models!
+This chapter completes our investigations into linear models and their extensions. Not to fear, there is a whole wide world of statistics still out there for you to explore. In the final weeks of class, we will look at what to do when we have multiple correlated response variables (multivariate statistics), what to do when we have tons of explanatory variables but no idea how to meet assumptions of linear models we've discussed so far (classification and regression trees) or when we have non-linear relationships that can be common in biology.
+
+\hypertarget{introduction-to-bayesian-inference}{%
+\chapter{Introduction to Bayesian inference}\label{introduction-to-bayesian-inference}}
+
+This is a northern red-bellied dace. It is one of many sensitive species of stream fishes that can be affected by rusty crayfish, which is invasive to the stream where we caught this fish. We do not take pictures of rusty crayfish.
+
+\hypertarget{intro-16}{%
+\section{Introduction}\label{intro-16}}
+
+In the second half of this decidedly worst stats text, we are going to introduce and apply Bayesian inference. In class, this shift aligns with the introduction of GLM about halfway through the semester for reasons that I hope will become obvious to the astute learner. If not, my rationale for introducing these concepts together is 1) both of these tools rely heavily upon knowledge of sampling distributions that we began to build earlier, and 2) we are beginning to move into the realm where we will become more reliant upon methods of estimation other than ordinary least squares (OLS), which is what we used to estimate models during the first half of this text and class (ANOVA, linear regression, and ANCOVA).
+
+In \href{https://danstich.github.io/worst-r/12-Chapter12.html}{Chapter 12} and \href{https://danstich.github.io/worst-r/13-Chapter13.html}{Chapter 13} we introduced maximum likelihood estimation and extended this to include restricted maximum likelihood estimation in \href{https://danstich.github.io/worst-r/15-Chapter15.html}{Chapter 15}. The fact is most biologists will never understand the mechanical/mathematical underpinnings of those estimation methods either but they won't hesitate to use them, so why not also take a look at Bayesian estimation tools as well? Plus, as you will see, this approach will allow us to do a whole bunch of stuff we just can't do using MLE in most software packages.
+
+During the next several chapters, I am hoping that we can dive in to the basic underpinnings of the Bayesian framework for scientific inference, along with maximum likelihood estimation, as we move through more complex extensions of linear models. The Bayesian framework has been around for a long time, but only recently has it become really broadly applicable to common analytical problems. There are some fundamental (and philosophical) differences between the use of maximum likelihood estimation (aka ``frequentist'') methods and the application of Bayes theorem for answering statistical questions. I am hoping we can touch on some of these during our discussions and show the real, practical strengths of maximum likelihood and Bayesian inference that might actually make you want to use one or the other for certain applications.
+
+For better or worse, there is no way we can possibly do a comprehensive treatment of Bayesian statistics within the context of a survey-style, applied statistics course or textbook such as this. We can, however, set you up with some basic tools so you can apply Bayesian inference to commonly encountered situations (t-tests, regression, ANOVA, ANCOVA, GLM, LMM, and GLMM) that should allow you to explore these concepts on your own in the future. To achieve this, I would like for us to cover some Bayesian analogs to some of frequentist tests that we have considered so far this semester. For this reason, we will explore maximum likelihood and Bayesian estimation methods side by side while learning new techniques during class.
+
+Even though we are switching out our estimation method in this Part, we'll continue to work with the \texttt{tidyverse}. Be sure to load it whenever you are ready to get started.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{installing-rstan}{%
+\subsection{Installing RStan}\label{installing-rstan}}
+
+For this book, we will introduce Bayesian estimation using a similar approach to what we learned for GLM. You need to \textbf{pause here} and \textbf{appreciate how ridiculously easy folks have made this for you}. I used to teach students how to code each of their models by hand in this class. We had to package the data in special ways, write out separate model files with pre-defined likelihoods, and manage the monstrous results lists by hand. Now, thanks to the functionality provided by packages such as \href{http://mc-stan.org/rstan/}{\texttt{RStan}} and \href{https://cran.r-project.org/web/packages/rstanarm/index.html}{\texttt{rstanarm}} you can do this without ever leaving the comfort of R. Do also note that the real power as a modeler still lays in the ability to formulate and specify these models explicitly. This opens up whole new possibilities for model and data structuring that can't be achieved in any single R package. But, that is for another course and a \emph{much} better textbook (eventually I will add citations\ldots or not\ldots this is The Worst Stats Text eveR). We will discuss how the actual estimation works as we go along (and in a less diffuse fashion in class), but you'll need to spend a significant amount of time on your own if you are looking for a deep understanding of the mechanics. You'll probably want to build up to the \href{https://mc-stan.org/docs/2_25/reference-manual/index.html\#overview}{Stan User Manual} rather than starting there if this is your first exposure to Bayesian estimation methods.
+
+The hardest part about getting started with Stan is installing the necessary R packages, but this is getting easier all the time.
+
+We are going to install two R packages here: \texttt{RStan}, the interface to Stan software, and \texttt{rstanarm}, a package that provides Bayesian generalized linear models via Stan. This package allows us to fit everything from ANOVAs discussed in \href{https://danstich.github.io/worst-r/7-1-anova.html}{Chapter 7} to generalized linear mixed models discussed in \href{https://danstich.github.io/worst-r/15-Chapter15.html}{Chapter 15}.
+
+But, first we need to do a little work to get ready. Here's what we are going to do:
+
+\textbf{Step 1}: Configure the C++ toolchain on your operating system following the instructions provided by the Stan Development Team on the \href{https://github.com/stan-dev/rstan/wiki/Configuring-C---Toolchain-for-Mac}{RStan wiki}
+
+\textbf{Step 2}: Install Rstan following the next step on the same wiki \href{https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started\#installation-of-rstan}{here}.
+
+\textbf{Step 3}: Install the \texttt{rstanarm} package by running: \texttt{install.packages("rstanarm")}.
+
+Once, you've done that, don't forget to load it:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(rstanarm)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{intro-to-bayes-theorem}{%
+\section{Intro to Bayes Theorem}\label{intro-to-bayes-theorem}}
+
+Bayes Theorem provides the mathematical framework through which Bayesian inference is applied to quantitative questions. The theorem, in the most basic sense, helps us understand the probability of some event given conditions we suspect are related to that event. This elegant theorem was first derived by Reverend Thomas Bayes in the 1700s. The equation was later reworked by Pierre-Simon Laplace to yield the modern version that we use today:
+
+\[P(A|B) = \frac{P(B|A)\cdot P(A)}{P(B)}\]
+
+which is read ``the probability of A given B is equal to the probability of B given A times the probability of A, divided by the probability of B''.
+
+A common example application of this theorem that may be of interest to biology students is the probability of having cancer at a given age (thanks Wikipedia!). The example goes something like this:
+
+Suppose we want to know the probability that an individual of age 50 has cancer. We might only have information about the marginal probability of their having cancer given that they are a human (let's say 1\%), and the probability of their being 50 years old given population distribution of ages (let's just say 3\% for the sake of demonstration). To calculate the conditional probability that an individual who is 50 years old has cancer, we would need one more piece of information: the probability that a person with cancer is 50 years old. The calculation is relatively straightforward if we know this number exactly, and we can derive an exact conditional probability. For this example, let's start by assuming the probability that people who have cancer are 50 years old is 2\%. Now we can calculate the conditional probability that a person who is 50 years old has cancer:
+
+Start with the theorem:
+
+\[P(Cancer|Age 50) = \frac{P(Age 50|Cancer)\cdot P(Cancer)}{P(Age 50)}\]
+
+Through substitution we get:
+\[P(Cancer|Age 50) = \frac{(0.02\cdot 0.01)}{0.03}\]
+
+And now we can solve for the conditional probability:
+\[P(Cancer|Age 50) = 0.00667\]
+
+Hopefully, you can see from this example and earlier learning about rules of probability why this is such an important theorem in statistical probability theory. In fact, this is one of the reasons for the recent resurgence in the use of Bayes Theorem in applied Bayesian inference in biological and ecological statistics during the past couple of decades. But, if it's so useful, then why has it only been heavily used recently?
+
+It will quickly become obvious to you that the answer is ``computers''. To demonstrate this, let's consider a slightly more complex example.
+
+Now, let's assume that we don't actually have exact information about the probability that individuals who have cancer are age 50. Let's instead assume that we only have a rough idea about that probability, and that we can put a loose distribution around it. Now, there is no longer an exact mathematical solution for Bayes Theorem but rather an infinite number of potential solutions. If we know the distribution, then we can discretize the distribution and find a finite number of solutions to the theorem that would allow us to describe the probability of our event of interest most of the the time. (This should sound like calculus. Because it is. Don't worry, you don't need to do calc here.) However, there are cases for which this problem becomes intractable without the use of computers, even when the distribution is known. You can imagine that this becomes considerably more complex if the form of the distribution is not known with certainty.
+
+For the sake of demonstration, let's examine how this procedure changes if we have some uncertainty in one of our probabilities on the right-hand side of the equation:
+
+Looking back at our example, we had:
+
+\[P(Cancer|Age 50) = \frac{P(Age 50|Cancer)\cdot P(Cancer)}{P(Age 50)}\]
+
+And, by substitution:
+
+\[P(Cancer|Age 50) = \frac{0.02\cdot 0.01}{0.03}\]
+
+Let's now assume that the proportion of people with cancer who are also 50 years old is now an unknown quantity that is drawn from a beta distribution that can be described by parameters \(\alpha\) = 200, and \(\beta\) = 10,000:
+
+\[P(Cancer|Age 50) = \frac{Beta(200, 10000) \cdot 0.01}{0.03}\]
+
+Realistically, this is a \emph{much} tighter distribution than we would use for a situation like this, but we'll discuss that later. The point is that even a little uncertainty makes the process more complicated than if exact values are \emph{known}.
+
+We can make this distribution in R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Simulate 10000 random values for p(Age 50 | Cancer)}
+\NormalTok{p_}\DecValTok{50}\NormalTok{_cancer <-}\StringTok{ }\KeywordTok{rbeta}\NormalTok{(}\FloatTok{1e4}\NormalTok{, }\DecValTok{200}\NormalTok{, }\FloatTok{1e4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We can also look at this distribution:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make the object into a df with}
+\CommentTok{# a single column automatically }
+\CommentTok{# named p_cancer_50}
+\NormalTok{p_50c <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(p_}\DecValTok{50}\NormalTok{_cancer)}
+
+\CommentTok{# Plot it}
+\KeywordTok{ggplot}\NormalTok{(p_50c, }\KeywordTok{aes}\NormalTok{(p_}\DecValTok{50}\NormalTok{_cancer)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{20}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"P(50 | Cancer)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-404-1.pdf}
+
+Now, we have a working probability distribution for the probability of being age 50 given that one has cancer. We can plug this into Bayes Theorem and construct a probability distribution to solve for the inverse: the probability of having cancer given that the patient is age 50 \((P(Cancer|Age 50))\). Let's do it in R.
+
+First, let's define our other marginal probabilities as variables in R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p_cancer <-}\StringTok{ }\FloatTok{0.01} \CommentTok{# Marginal probability of having cancer}
+\NormalTok{p_}\DecValTok{50}\NormalTok{ <-}\StringTok{ }\FloatTok{0.03} \CommentTok{# Marginal probability of being age 50}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can solve the theorem for our finite number of observations:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p_cancer_}\DecValTok{50}\NormalTok{ <-}\StringTok{ }\NormalTok{(p_}\DecValTok{50}\NormalTok{_cancer }\OperatorTok{*}\StringTok{ }\NormalTok{p_cancer) }\OperatorTok{/}\StringTok{ }\NormalTok{p_}\DecValTok{50}
+\end{Highlighting}
+\end{Shaded}
+
+We can calculate descriptive statistics for the conditional probability so that we can describe the distribution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Using a mean and standard deviation}
+\KeywordTok{mean}\NormalTok{(p_cancer_}\DecValTok{50}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.006537503
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sd}\NormalTok{(p_cancer_}\DecValTok{50}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.0004569828
+\end{verbatim}
+
+We can calculate quantiles (95\% CRI). Note that in Bayesian inference, we are going to call these `credible intervals' (CRI) or `high density intervals' (HDI) depending on assumptions related to normality, but they are functionally the same thing as `confidence intervals' as far as we are concerned (tell no one I said that eveR).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{quantile}\NormalTok{(p_cancer_}\DecValTok{50}\NormalTok{, }\DataTypeTok{probs =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.50}\NormalTok{, }\FloatTok{0.975}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        2.5%         50%       97.5% 
+## 0.005675834 0.006529597 0.007457903
+\end{verbatim}
+
+We can also look at the actual distribution:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make the object into a df with}
+\CommentTok{# a single column automatically }
+\CommentTok{# named p_cancer_50}
+\NormalTok{p_c50 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(p_cancer_}\DecValTok{50}\NormalTok{)}
+
+\CommentTok{# Plot it}
+\KeywordTok{ggplot}\NormalTok{(p_c50, }\KeywordTok{aes}\NormalTok{(p_cancer_}\DecValTok{50}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{20}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"P(Cancer | 50)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-409-1.pdf}
+
+Finally, let's say now that there is uncertainty in all of our probabilities of interest:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# First, let's define each of our}
+\CommentTok{# probabilities as variables in R}
+\NormalTok{p_}\DecValTok{50}\NormalTok{_cancer <-}\StringTok{ }\KeywordTok{rbeta}\NormalTok{(}\FloatTok{1e4}\NormalTok{, }\DecValTok{20}\NormalTok{, }\FloatTok{1e3}\NormalTok{)}
+\NormalTok{p_cancer <-}\StringTok{ }\KeywordTok{rbeta}\NormalTok{(}\FloatTok{1e4}\NormalTok{, }\DecValTok{10}\NormalTok{, }\FloatTok{1e3}\NormalTok{)}
+\NormalTok{p_}\DecValTok{50}\NormalTok{ <-}\StringTok{ }\KeywordTok{rbeta}\NormalTok{(}\FloatTok{1e4}\NormalTok{, }\DecValTok{30}\NormalTok{, }\FloatTok{1e3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We can continue as before. We solve the theorem for our finite number of observations:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p_cancer_}\DecValTok{50}\NormalTok{ <-}\StringTok{ }\NormalTok{(p_}\DecValTok{50}\NormalTok{_cancer }\OperatorTok{*}\StringTok{ }\NormalTok{p_cancer) }\OperatorTok{/}\StringTok{ }\NormalTok{p_}\DecValTok{50}
+\end{Highlighting}
+\end{Shaded}
+
+We calculate descriptive statistics for the conditional probability to describe the probability using a mean and standard deviation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(p_cancer_}\DecValTok{50}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.006878759
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sd}\NormalTok{(p_cancer_}\DecValTok{50}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.003025219
+\end{verbatim}
+
+Quantiles (95\% CRI and median):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{quantile}\NormalTok{(p_cancer_}\DecValTok{50}\NormalTok{, }\DataTypeTok{probs =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.50}\NormalTok{, }\FloatTok{0.975}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        2.5%         50%       97.5% 
+## 0.002573577 0.006320881 0.014322826
+\end{verbatim}
+
+And, have a look at our new distribution:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make the object into a df with}
+\CommentTok{# a single column automatically }
+\CommentTok{# named p_cancer_50}
+\NormalTok{p_c50 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(p_cancer_}\DecValTok{50}\NormalTok{)}
+
+\CommentTok{# Plot it}
+\KeywordTok{ggplot}\NormalTok{(p_c50, }\KeywordTok{aes}\NormalTok{(p_cancer_}\DecValTok{50}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{20}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"P(Cancer | 50)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-414-1.pdf}
+
+Now you can see why computers are starting to matter, and we are not even doing Bayesian inference yet. Why is that?
+
+Because we still haven't collected any data!!! All that we have done here is state some basic mathematical representations of our beliefs about certain conditional and marginal probabilities of specific events. Those beliefs may be useful representations, or they may be way off!
+
+This mathematical formulation of our `beliefs' is known as the prior distribution for the probability of the event of interest. ``Want to know more about the prior distribution'', you say? How convenient\ldots{}
+
+\hypertarget{the-prior}{%
+\section{The prior}\label{the-prior}}
+
+The prior distribution, in simple terms, is the information that we have at our disposal \emph{prior} to collecting any further data. Those data might come in the form of hard numbers collected through a pilot study, or they might come from some logical process based on deductive reasoning. We will discuss the fact that the latter form of knowledge can be really useful for establishing book-ends.
+
+One of the really attractive aspects of Bayesian inference is that we have the ability to incorporate information from prior experiences into our statistical models. The advantage of this is that we can start off with some information, and then collect new information to update our beliefs. Why would we want to do this? Glad you ask:
+
+\textbf{1. Improved inference} The use of an informed prior allows us to improve the precision of our parameter estimates by narrowing the scope of credible values that ``the machine'' considers for our estimates. A strong prior can keep our estimates within a certain range of realistic values, for example, if we don't have a ton of data.
+
+\textbf{2. Adaptive research} Incorporation of information from previous studies allows us to continually update our scientific beliefs in an iterative way. If we have data from a similar study, or a previous year of study, then we can use that to inform inference moving forward to obtain more accurate and precise estimates of the parameters of interest, either by adjusting our prior or by including additional data directly.
+
+\textbf{3. Hypothesis testing} We can use specific formulations of the prior distribution to test specific hypotheses about the probability of the event of interest. For example, if we suspect that the probability of a patient surviving an operation is strongly related to the age (or some other pre-existing condition) of the patient, then you could test different formulations of the prior and see which one results in a better model fit to your data. I tend to favor use of cross-validation criteria for Bayesian model selection to do this these days.
+
+\textbf{4. Incorporation of uncertainty} If there is a lot of uncertainty in the event of interest, we can set a very ``weak'' or ``diffuse'' prior. When the prior is extremely diffuse (e.g.~a uniform or ``flat'' prior), then Bayesian inference will yield results that are essentially identical to the results we expect to get from maximum likelihood estimation. The only noticeable difference may be increased precision or accuracy under Bayesian inference in some cases depending on the estimator that we use (some max likelihood estimators don't do well in some situations in which Bayesian does just fine).
+
+So let's go through a couple examples of what a prior distribution actually looks like.
+
+\hypertarget{the-hospital-example}{%
+\subsection{The hospital example}\label{the-hospital-example}}
+
+For this example, let's assume that we are interested in the survival of a hospital patient. Survival will be denoted as a `success', or 1, and mortality as a `failure', or `0'. In this sense, we are dealing with a binomial outcome. But, remember, we can always represent binomial outcomes on the probability scale\ldots right?
+
+In this case, let's say that we are assuming \emph{a priori} that survival might be due to random chance, or that it might be influenced by some factor of interest (we'll use ``hospital'' in the example below).
+
+There are multiple approaches that we could take to formulating a prior distribution for this case.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# A uniform distribution that indicates we}
+\CommentTok{# have no knowledge about how survival}
+\CommentTok{# varies between hospitals}
+\NormalTok{flat <-}\StringTok{ }\KeywordTok{runif}\NormalTok{(}\FloatTok{1e4}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+
+\CommentTok{# A diffuse prior that indicates we think}
+\CommentTok{# survival is the same between hospitals but}
+\CommentTok{# we don't want to make too strong a statement}
+\NormalTok{diffuse <-}\StringTok{ }\KeywordTok{rbeta}\NormalTok{(}\FloatTok{1e4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+
+\CommentTok{# A peaked (strong) prior that indicates we}
+\CommentTok{# are relatively certain ahead of time that}
+\CommentTok{# survival is the same in both hospitals}
+\NormalTok{strong <-}\StringTok{ }\KeywordTok{rbeta}\NormalTok{(}\FloatTok{1e4}\NormalTok{, }\DecValTok{500}\NormalTok{, }\DecValTok{500}\NormalTok{)}
+
+\CommentTok{# A strong prior that indicates we think}
+\CommentTok{# survival is substantially different}
+\CommentTok{# between hospitals}
+\NormalTok{bimodal <-}\StringTok{ }\KeywordTok{rbeta}\NormalTok{(}\FloatTok{1e4}\NormalTok{, }\FloatTok{.5}\NormalTok{, }\FloatTok{.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We can combine these into a dataframe for visualizing them, and then use the \texttt{pivot\_longer()} function to stack the dataframe for plotting:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{priors <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(flat, diffuse, strong, bimodal) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{cols =} \KeywordTok{c}\NormalTok{(flat, diffuse, strong, bimodal))}
+\end{Highlighting}
+\end{Shaded}
+
+We can look at these to compare them. Note that the x-axis is the same in all of the plots below, so changes in the location, shape, and spread are all controlled by the differences in the parameters used to specify each of these priors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(priors, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ value, }\DataTypeTok{color =}\NormalTok{ name, }\DataTypeTok{fill =}\NormalTok{ name)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{20}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{name, }\DataTypeTok{scales =} \StringTok{"free_y"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-417-1.pdf}
+
+You can see how different each of these priors is from one another. Hopefully, you are also starting to think about the different kinds of hypotheses that we might test with these different priors. In this case, the issue that we are always trying to address is whether or not survival (or whatever) is due only to random chance. This could be likened to asking whether or not a coin that we toss is a fair coin, or if it has some bias (say for example that it is more likely to land heads up because it is heavier on one side).
+
+Now that we have a prior distribution for our event of interest, we can go out into the world and collect some data about that event. We will then use those data to formulate a `posterior' distribution that reflects some combination of our prior distribution and the data that we have collected. This process is commonly referred to as `updating' our prior beliefs about the event of interest, and is the foundation that underlies Bayesian inference. How we get from the prior to a posterior is wholly dependent on the tools we use to obtain the solution to Bayes theorem, but most often this occurs through the use of Markov-chain Monte Carlo simulation. This approach allows us to work through Bayes theorem one set of values at a time to obtain a heuristic, simulation-based approach to solving for conditional probabilities. We will discuss this in some (but not too much!) detail as we move forward.
+
+Before moving on, it is important to note that our prior beliefs can potentially have a strong influence on the posterior distribution. This has been the subject of much controversy in the application of Bayesian inference to modern scientific study. Our goal in using prior information should not be to dominate the posterior with our prior beliefs in biological and ecological studies, specifically. It should be to support improved inference through the inclusion of relevant information, and can be extremely helpful for situations in which data are somewhat deficient. We want our data to dominate the form of the posterior distributions that result from our analyses. If this is not the case, then we need to be explicit about this and should almost always attempt to evaluate the ``sensitivity'' of our posterior distribution(s) to the prior(s) we have chosen. This is a field of ongoing development in specific disciplines, and I encourage you to seek out the relevant literature on the matter if you intend to use Bayesian inference in your own research.
+
+\hypertarget{the-posterior}{%
+\section{The posterior}\label{the-posterior}}
+
+Estimation of the posterior predictive distribution is really the hallmark of Bayesian inference, and is the crux of any applied analysis that uses this framework to test hypotheses in biology and ecology. The posterior predictive distribution (more commonly called the `posterior') is the estimated probability distribution of unobserved events conditional on some set of observations related to that event.
+
+The posterior distribution can be estimated as the product of our prior distribution and the corresponding likelihood by re-arranging Bayes theorem:
+
+\[posterior \propto prior \cdot likelihood\]
+
+In the simplest sense, the posterior distribution is a combination of our prior distribution and our data. So if you remember nothing else in the explanation, remember that.
+
+\hypertarget{worked-example-with-the-cray-data}{%
+\section{Worked example with the Cray data}\label{worked-example-with-the-cray-data}}
+
+In this section, we will apply Bayesian inference to the Cray data, which are first introduced in \href{https://danstich.github.io/worst-r/14-Chapter14.html}{Chapter 14 Linear Mixed Models}. Hopefully, this example also demonstrates that linear models are just one special type of GLM that assume a normal error distribution.
+
+We start by reading in data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Read in the data}
+\NormalTok{cray <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/cray.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+These data come from a preliminary study of rusty crayfish \emph{Faxonius} \emph{rusticus} density in various tributaries to the Susquehanna River. The data were collected as part of a summer research project by one of our former high-school interns at the SUNY Oneonta Biological Field Station .
+
+There are 964 observations of 7 variables. Each of the observations (rows) corresponds to a rusty crayfish that was collected and measured (\texttt{length} in mm and \texttt{mass} in g) at one of several \texttt{site}s on a given \texttt{date}. The variable \texttt{catch} is the total number caught by electrobugging over a given \texttt{time} (minutes). To compare density between sites, \texttt{catch} was divided by (\texttt{time}/60) to calculate catch per unit effort (\texttt{cpue}) as number of crayfish per hour. Therefore, observations of \texttt{cpue}, \texttt{catch}, and \texttt{time} correspond to unique \texttt{date} and \texttt{site} combinations, but \texttt{length} and \texttt{mass} represent unique individuals within \texttt{site} and \texttt{date}.
+
+For now, we will use this data set to estimate the relationship between log\textsubscript{e}length and log\textsubscript{e}mass of the crayfish as a linear regression, this time as a GLM using Bayesian inference.
+
+\hypertarget{running-a-bayesian-model-with-rstanarm}{%
+\section{\texorpdfstring{Running a Bayesian model with \texttt{rstanarm}}{Running a Bayesian model with rstanarm}}\label{running-a-bayesian-model-with-rstanarm}}
+
+Any time we use a convenient wrapper in R, we sacrifice a little control, but for getting exposure to Bayesian methods I think this is a worthwhile sacrifice. Truth be told, I write all of my models out by hand because I often need to use non-standard models such as non-linear growth models and I need that control. The convenience and flexibility offered through the model-fitting functions in \texttt{rstanarm} alone will keep you more than busy until you reach a deeper level of understanding needed to write your own should you aspire to do so.
+
+Let's go ahead and estimate a Gaussian GLM using \texttt{logMass} as our response and \texttt{loglength} as our explanatory variable.
+
+For the sake of simplicity, we'll create new columns in the \texttt{cray} data for loglength and logmass:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cray <-}\StringTok{ }\NormalTok{cray }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{loglength =} \KeywordTok{log}\NormalTok{(length),}
+         \DataTypeTok{logmass =} \KeywordTok{log}\NormalTok{(mass)}
+\NormalTok{         )}
+\end{Highlighting}
+\end{Shaded}
+
+The next thing we'll do is tell R to set up some options for Stan to make things work faster. \textbf{We only need to do this once per R session.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rstan}\OperatorTok{::}\KeywordTok{rstan_options}\NormalTok{(}\DataTypeTok{auto_write =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{options}\NormalTok{(}\DataTypeTok{mc.cores =}\NormalTok{ parallel}\OperatorTok{::}\KeywordTok{detectCores}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we can fit our first Bayesian model. We will do this using basically the same approach that we use in R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cray_model <-}\StringTok{ }\KeywordTok{stan_glm}\NormalTok{(logmass }\OperatorTok{~}\StringTok{ }\NormalTok{loglength,}
+         \DataTypeTok{family =} \KeywordTok{gaussian}\NormalTok{(),}
+         \DataTypeTok{data =}\NormalTok{ cray}
+\NormalTok{         )}
+\end{Highlighting}
+\end{Shaded}
+
+This model tests the null hypothesis that the log length of crayfish has no influence on log mass (slope = 0).
+
+We can have a look at a quick \texttt{summary()} of our model in the usual way:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(cray_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Model Info:
+##  function:     stan_glm
+##  family:       gaussian [identity]
+##  formula:      logmass ~ loglength
+##  algorithm:    sampling
+##  sample:       4000 (posterior sample size)
+##  priors:       see help('prior_summary')
+##  observations: 964
+##  predictors:   2
+## 
+## Estimates:
+##               mean   sd   10%   50%   90%
+## (Intercept) -8.5    0.1 -8.5  -8.5  -8.4 
+## loglength    3.0    0.0  3.0   3.0   3.1 
+## sigma        0.2    0.0  0.2   0.2   0.2 
+## 
+## Fit Diagnostics:
+##            mean   sd   10%   50%   90%
+## mean_PPD 1.2    0.0  1.2   1.2   1.2  
+## 
+## The mean_ppd is the sample average posterior predictive distribution of the outcome variable (for details see help('summary.stanreg')).
+## 
+## MCMC diagnostics
+##               mcse Rhat n_eff
+## (Intercept)   0.0  1.0  4095 
+## loglength     0.0  1.0  4182 
+## sigma         0.0  1.0  2281 
+## mean_PPD      0.0  1.0  3540 
+## log-posterior 0.0  1.0  1907 
+## 
+## For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure of effective sample size, and Rhat is the potential scale reduction factor on split chains (at convergence Rhat=1).
+\end{verbatim}
+
+If you look closely at the output above, you should be able to recognize that just as with the \texttt{glm()} function we get a brief summary of our coefficients in the \texttt{Estimates} portion of the output.
+
+\hypertarget{interpreting-the-model-summary}{%
+\subsection{Interpreting the model summary}\label{interpreting-the-model-summary}}
+
+As for the rest of this summary. For now, we will focus on a few specific things:
+
+\textbf{1.} Do our estimates make logical sense? Not are they right or wrong, but is our estimate crap or not? If the 95\% CRI goes from negative infinity to infinity on the real scale here, then we probably have some issues with estimation because this means that we learned nothing new from the data (crap).
+
+\textbf{2.} We need to look at the value of \texttt{Rhat}(\(\hat{r}\), the potential scale-reduction factor). This statistic is a diagnostic that can help us determine whether or not the model has even converged on an estimate for our parameter(s) of interest. It assesses the degree of mixing (agreement) between the chains that we used to get our estimates. Here, our values are about 1, so we are satisfied. Larger values would indicate a problem. We will examine some graphical diagnostics of mixing below.
+
+\textbf{3.} We need to pay attention to \texttt{n\_eff}. This quantity is the `number of effective samples' that we have taken from the posterior. As discussed in class, the draws we take from the posterior can be auto-correlated to varying degrees depending on the sampler used. \texttt{n\_eff} tells us how many independent samples we can actually consider ourselves to have drawn from the posterior. To have have some degree of confidence in our parameter estimates, we want this to be at least several hundred large. More is better, but these models can take a long time to run as they build in complexity so there is a balance to be struck. If we are running long chains and we still are not achieving large \texttt{n\_eff}, it is a pretty good indication that we need to increase our thinning rate or (more likely) consider an alternative model parameterization. We are good to go according to the output from the \texttt{cray\_model} above.
+
+\hypertarget{more-diagnostics}{%
+\section{More diagnostics}\label{more-diagnostics}}
+
+In this section, we will examine some diagnostics to assess the convergence of our parameter estimates and identify any unusual trends in the chains we use for estimation. But, it takes a little while to get there.
+
+First, a brief foray into how these models are estimated. Basically all Bayesian estimation methods rely on some variant of Monte Carlo (random) sampling. Depending on the algorithm, we draw a parameter value, plug it into the model likelihood and evaluate the likelihood of the parameter value relative to the data collected, and then make some decision about whether or not to keep that estimate as part of the posterior distribution (our final parameter estimate). We do this thousands of times, and all of the parameter values that we keep become part of the posterior parameter estimate. We use computer algorithms to determine which parameters values are considered, how they are chosen and whether they should be retained. These algorithms rely on pseudo-random or guided walks called ``Markov chains''. Collectively the approach is referred to as Markov Chain Monte Carlo estimation. For each \textbf{iteration} of the model, we retain one value of each parameter for each \textbf{chain}, and we run multiple chains (usually 3-4). We then assess model stability by examining how well the chains \emph{mix} (\(\hat{r}\)) and whether there are pathological issues related to autocorrelation between samples (\texttt{n\_eff}). Stan and other software programs output each value of each parameter for each chain and each run of a Bayesian model. Therefore, instead of just getting a mean and 95\% confidence interval, we get thousands of individual estimates that we can use to calculate whatever descriptive statistics or derived quantities we choose (e.g.~Difference = post(Group A) - post(Group B)).
+
+\hypertarget{trace-plots}{%
+\subsection{Trace plots}\label{trace-plots}}
+
+In the plot below, the x-axes are model iteration number. Each point on a line shows the parameter value drawn for each chain (of 4 that are run by default) for each iteration that we ran the model (default = 4,000 runs). We can see that there is a high degree of overlap between the four chains, which should inspire some confidence because it means that all of the chains converged on a similar space in each panel (parameter) below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(bayesplot)}
+\KeywordTok{mcmc_trace}\NormalTok{(cray_model, }\DataTypeTok{facet_args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{scales =} \StringTok{"free"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-423-1.pdf}
+
+\hypertarget{colinearity}{%
+\subsection{Colinearity}\label{colinearity}}
+
+Next, we can take a look at the \textbf{pairs plot} to see whether there are any obvious correlations of concern between our parameters. As anticipated, everything looks okay here, except we do see that we have a pretty strong correlation between our intercept and slope parameters. This is not important for this specific analysis, but we would want to consider this if we were estimating slopes and intercepts independently for each population (\texttt{site}) in the data set.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mcmc_pairs}\NormalTok{(}
+\NormalTok{  cray_model,}
+  \DataTypeTok{np =} \KeywordTok{nuts_params}\NormalTok{(cray_model),}
+  \DataTypeTok{off_diag_args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.25}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-424-1.pdf}
+
+\hypertarget{divergence}{%
+\subsection{Divergence}\label{divergence}}
+
+Not like the movies, like ``does not follow expectation''. Divergent transitions are an indication that something has gone wrong in your model. You can read more about them here someday, once you understand the first three paragraphs in this section of the Stan Manual {[}(Chapter 15.5){]} (\url{https://mc-stan.org/docs/2_25/reference-manual/divergent-transitions.html}). For now, understand that divergence in this sense is a bad thing and it probably means you have a problem with the model that you've created. It doesn't mean you have to throw your data in the garbage. There are some tools in Stan to account for this. But, this is usually a good sign that there is at least something in your model you could change to make it easier to estimate. This could mean changing the likelihood, transforming the data, or re-casting it in another way. Even though that can be scary, we still need to take a look!
+
+By default, models fit using RStan will throw a warning if there are divergent transitions. You can get a quick of whether or not this is an issue like so:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mcmc_nuts_divergence}\NormalTok{(}\KeywordTok{nuts_params}\NormalTok{(cray_model), }\KeywordTok{log_posterior}\NormalTok{(cray_model))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-425-1.pdf}
+
+Again, no problems here as far as we are concerned. We will address any further issues related to divergence as they arise later in the textbook or class.
+
+\hypertarget{bayesian-model-selection}{%
+\section{Model selection}\label{bayesian-model-selection}}
+
+Let's say we now want to say something about statistical significance of our effects. There are a couple of ways in which we could do this. First, we could use model selection just like we demonstrated in \href{https://danstich.github.io/worst-r/11-5-a-priori.html}{Chapter 11.5}\ldots sort of. Instead of using AIC (or DIC or BIC or WAIC) this time we will use a leave-one-out cross-validation information criterion, LOO-IC from the \texttt{loo} package \href{https://cran.r-project.org/web/packages/loo/vignettes/loo2-example.html}{(see web vignette here)}.
+
+But first, we'll need another model to which we can compare \texttt{cray\_model}. Just as we did for \texttt{lm()} and \texttt{glm()}, we can create a \texttt{null} model against which we can evaluate the performance of \texttt{cray\_model} to see if including length as a predictor improves our understanding of variability in crayfish mass.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{null_model <-}\StringTok{ }\KeywordTok{stan_glm}\NormalTok{(}\DataTypeTok{formula =}\NormalTok{ logmass }\OperatorTok{~}\StringTok{ }\DecValTok{1}\NormalTok{,}
+         \DataTypeTok{family =}\NormalTok{ gaussian,}
+         \DataTypeTok{data =}\NormalTok{ cray}
+\NormalTok{         )}
+\end{Highlighting}
+\end{Shaded}
+
+Beautiful, now we can do some cross validation. \textbf{This will take a hot minute!}
+
+On the Windows computer I am using, I either need to use a single core for this due to a bug in the version of \texttt{loo} that I am using, or I need to extract the model likelihoods manually with the \texttt{log\_lik} function until I update my version.
+
+Extract the log likelihoods for each of the model like so:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{null_lik <-}\StringTok{ }\KeywordTok{log_lik}\NormalTok{(null_model)}
+\NormalTok{cray_lik <-}\StringTok{ }\KeywordTok{log_lik}\NormalTok{(cray_model)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we can conduct leave-one-out cross validation on the fitted model posteriors and our data using the \texttt{loo()} function. Wow, that is way easier than writing this out by hand, and way faster than re-running the model for each data point!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{null_loo <-}\StringTok{ }\KeywordTok{loo}\NormalTok{(null_lik, }\DataTypeTok{k_threshold =} \FloatTok{0.70}\NormalTok{, }\DataTypeTok{cores =} \DecValTok{7}\NormalTok{)}
+\NormalTok{cray_loo <-}\StringTok{ }\KeywordTok{loo}\NormalTok{(cray_lik, }\DataTypeTok{k_threshold =} \FloatTok{0.70}\NormalTok{, }\DataTypeTok{cores =} \DecValTok{7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+And, finally, we compare the models:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{loo_compare}\NormalTok{(null_loo, cray_loo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        elpd_diff se_diff
+## model2     0.0       0.0
+## model1 -1714.2      70.1
+\end{verbatim}
+
+Based on the same rules of thumb that we used with AIC, we can see that the relationship between \texttt{loglength} and \texttt{logmass} is better supported than the null model, so we can reject the null. No surprise there, but hopefully a useful demonstration.
+
+\hypertarget{summarizing-results}{%
+\section{Summarizing results}\label{summarizing-results}}
+
+But, what if we want to say something about statistical significance without doing model selection? In MLE analyses and all of our statistical hypothesis testing so far, we have used p-values. However, you might notice that there is no p-value associated with our model output above!
+
+One of the easiest ways to assess statistical significance of a coefficient in Bayesian inference, is to simply compare one or more posteriors in a method similar to that used for t-tests and ANOVAs earlier in the book. To do this, we will extract the posterior estimates for loglength (our beta or slope coefficient) and compare the sampling distribution to some value of interest. For most linear-regression-type models we are interested in comparing the coefficient to zero. If the 95\% Credible interval for our coefficient estimate includes zero then we fail to reject the null. If zero is outside the 95\% CRI, then we reject the null and conclude that the relationship is statistically significant.
+
+Sounds simple enough, right? Let's try it out!
+
+First, use the \texttt{as.matrix()} function to extract the posterior estimates for our coefficients and package them in a \texttt{data.frame()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{estimates <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{( }\KeywordTok{as.matrix}\NormalTok{(cray_model) )}
+\end{Highlighting}
+\end{Shaded}
+
+If you have a look you will notice that we now have a data.frame with three columns (\texttt{Intercept}, \texttt{loglength}, and \texttt{sigma}) and 4,000 rows. There is one row for each of our model iterations in this case, so we get 4,000 estimates of each parameter!
+
+Have a look:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(estimates)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   X.Intercept. loglength     sigma
+## 1    -8.477160  3.042697 0.1592483
+## 2    -8.515926  3.058351 0.1583711
+## 3    -8.623194  3.088847 0.1589427
+## 4    -8.599713  3.081586 0.1614639
+## 5    -8.396834  3.017394 0.1613339
+## 6    -8.475691  3.043943 0.1577159
+\end{verbatim}
+
+This is great! Now, if we want we can calculate descriptive statistics for any of these parameters or combine them in any other way that might be meaningful. Here, we are interested in the coefficient (beta) for \texttt{loglength}, so let's check it out.
+
+Calculate the mean:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(estimates}\OperatorTok{$}\NormalTok{loglength)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.039614
+\end{verbatim}
+
+Calculate 95\% CRI:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{quantile}\NormalTok{(estimates}\OperatorTok{$}\NormalTok{loglength, }\DataTypeTok{probs =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.975}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     2.5%    97.5% 
+## 3.008012 3.071415
+\end{verbatim}
+
+We can see that the 95\% CRI excludes zero, so we can now say that the relationship is statistically significant. Of course, this is obvious if you know anything about biology, so we could compare to any other meaningful value. For example, we use a value of 3.00 to represent ``isometric growth'' in biology and could apply the same approach here to that value. Since 3.00 is outside the 95\% CRI, we would determine that growth is not isometric for these populations, but rather ``positively allometric''. Sweet biology.
+
+\hypertarget{making-predictions}{%
+\section{Making predictions}\label{making-predictions}}
+
+Let's go ahead and wrap this all up by making some predictions from our model and plotting those over the raw data. This process is essentially identical to the process we used for linear models and GLM in R:
+
+Make log-scale predictions
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lpreds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{( }\KeywordTok{predict}\NormalTok{(cray_model, }\DataTypeTok{se.fit =} \OtherTok{TRUE}\NormalTok{) )}
+\end{Highlighting}
+\end{Shaded}
+
+Calculate confidence intervals:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lpreds}\OperatorTok{$}\NormalTok{lwr =}\StringTok{ }\NormalTok{lpreds}\OperatorTok{$}\NormalTok{fit }\OperatorTok{-}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{lpreds}\OperatorTok{$}\NormalTok{se.fit}
+\NormalTok{lpreds}\OperatorTok{$}\NormalTok{upr =}\StringTok{ }\NormalTok{lpreds}\OperatorTok{$}\NormalTok{fit }\OperatorTok{+}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{lpreds}\OperatorTok{$}\NormalTok{se.fit}
+\end{Highlighting}
+\end{Shaded}
+
+Now, convert the predictions back to the real scale for plotting:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rpreds <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(lpreds, }\DecValTok{2}\NormalTok{, exp)}
+\end{Highlighting}
+\end{Shaded}
+
+And smash the predictions back together with the data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cray_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(cray, rpreds)}
+\end{Highlighting}
+\end{Shaded}
+
+Finally, we can plot our predictions over the raw data on the real scale:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make the plot of our predictions against raw data}
+\KeywordTok{ggplot}\NormalTok{(cray_preds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ length, }\DataTypeTok{y =}\NormalTok{ mass)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.05}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ length, }\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr),}
+              \DataTypeTok{alpha =} \FloatTok{0.2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Carapace length (mm)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Claw-free mass (g)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-438-1.pdf}
+
+\hypertarget{next-16}{%
+\section{Next steps}\label{next-16}}
+
+There you have it: your first Bayesian data analysis. Needless to say (perhaps?) this was a simple example. However, it demonstrates a basic application and some of the tangible advantages over some of the other methods we have been using so far. We will continue to layer complexity into our Bayesian models as we move forward side by side with other methods.
+
+\hypertarget{Chapter17}{%
+\chapter{Bayesian Logistic regression}\label{Chapter17}}
+
+``Life or death'' is a phrase we reserve for situations that are not normal. Coincidentally, life or death is also a binary variable, and therefore it's residuals are also not normal. Will these zebra mussels live or die? That will be our next adventure, but for that we need the generalized linear model (GLM).
+
+\hypertarget{intro17}{%
+\section{Introduction}\label{intro17}}
+
+In this chapter, we will follow along with the case example from \href{https://danstich.github.io/worst-r/12-Chapter12.html}{Chapter 12} that examined a behavioral choice made by Atlantic salmon smolts while they migrated from streams to the ocean.
+
+We'll work with some packages from the \texttt{tidyverse}, \texttt{rstan}, and \texttt{rstanarm}, and we'll use the \texttt{StillwaterChoice} data from the class data folder. You can go ahead and load those whenever you are ready to get started.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(rstan)}
+\KeywordTok{library}\NormalTok{(rstanarm)}
+\end{Highlighting}
+\end{Shaded}
+
+You can also set up some options for Stan right up front. Here I am telling rstan not to compile a model everytime I run one that is already compiled, and I am setting an option that tells R to detect the number of virtual ``cores'' on my computer so it can run models in parallel to speed things up. This means that instead of sampling all my Markov Chains serially one at a time I can sample each of them on a separate process on my computer.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rstan}\OperatorTok{::}\KeywordTok{rstan_options}\NormalTok{(}\DataTypeTok{auto_write =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{options}\NormalTok{(}\DataTypeTok{mc.cores =}\NormalTok{ parallel}\OperatorTok{::}\KeywordTok{detectCores}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{logistic-17}{%
+\section{Binary (logistic) regression}\label{logistic-17}}
+
+Here, we will duplicate the analysis from \href{https://danstich.github.io/worst-r/12-Chapter12.html}{Chapter 12} using a Bayesian framework with the \texttt{rstanarm} package. We'll note some differences and some similarities as we go along.
+
+Read in the data file.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{choice <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/StillwaterChoiceData.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Look at the first few rows of data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(choice)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   path year hatchery length mass date flow
+## 1    0 2010        1    176   57  118  345
+## 2    0 2005        1    205  101  128 1093
+## 3    0 2010        1    180   56  118  345
+## 4    0 2010        1    193   74  118  345
+## 5    0 2005        1    189   76  128 1093
+## 6    0 2010        1    180   65  118  345
+\end{verbatim}
+
+\hypertarget{data-17}{%
+\subsection{Data Explanation}\label{data-17}}
+
+The full data explanation is provided in \href{https://danstich.github.io/worst-r/12-4-logistic.html}{Chapter 12.4} and will not be repeat it here. Go check it out if you need a reminder of what data are in there.
+
+\hypertarget{analysis-17}{%
+\subsection{Data analysis}\label{analysis-17}}
+
+We are going to use the 1/0 binary data to estimate the effects of a number of covariates of interest on the probability that an individual fish used the Stillwater Branch for migration in each year of this study using logistic regression.
+
+If our response, \texttt{path} is a binary variable where 1 = Stillwater and 0 = mainstem for each fish 1 to \emph{n}, we can think of p(Stillwater Branch) as:
+
+\[p(Stillwater) = \frac{\sum{path}}{n}\]
+
+and the logit of p(Stillwater Branch) can assumed to be normally distributed with a mean of \mu.
+
+\[logit(p) = Normal(\mu, \sigma^{2})\]
+
+Now that we know we are doing \emph{more or less} the same thing as we were for linear models, let's move on with fitting the model.
+
+First, since we are interested in the fixed effects of year, and not the linear trend through time, we need to convert year to factor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{choice}\OperatorTok{$}\NormalTok{year <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(choice}\OperatorTok{$}\NormalTok{year)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, if we want to test hypotheses about the influences of explanatory variables on the probability of using the Stillwater Branch, we could make models to represent those hypotheses. For example, if we wanted to test whether \texttt{flow} had a significant influence on \texttt{path} across \texttt{year}s, then we could build a model that looks like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flow_mod <-}\StringTok{ }\KeywordTok{stan_glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{flow, }
+                     \DataTypeTok{family =} \KeywordTok{binomial}\NormalTok{(}\DataTypeTok{link =} \StringTok{"logit"}\NormalTok{), }
+                     \DataTypeTok{data =}\NormalTok{ choice)}
+\end{Highlighting}
+\end{Shaded}
+
+We could make another model that investigates effects of \texttt{length} on \texttt{path} choice instead of flow:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{len_mod <-}\StringTok{ }\KeywordTok{stan_glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{length, }
+                     \DataTypeTok{family =} \KeywordTok{binomial}\NormalTok{(}\DataTypeTok{link =} \StringTok{"logit"}\NormalTok{), }
+                     \DataTypeTok{data =}\NormalTok{ choice)}
+\end{Highlighting}
+\end{Shaded}
+
+Or a model that includes both with an annoying name:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flow_len_mod <-}\StringTok{ }\KeywordTok{stan_glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{flow }\OperatorTok{+}\StringTok{ }\NormalTok{length, }
+                     \DataTypeTok{family =} \KeywordTok{binomial}\NormalTok{(}\DataTypeTok{link =} \StringTok{"logit"}\NormalTok{), }
+                     \DataTypeTok{data =}\NormalTok{ choice)}
+\end{Highlighting}
+\end{Shaded}
+
+We could look at these individually to determine variable-level significance using approaches demonstrated in \href{https://danstich.github.io/worst-r/16-9-summarizing-results.html}{Chapter 16.9}.
+
+\textbf{First}, let's define a slightly more complex set of models based on \emph{a priori} combinations of explanatory variables. Note that this is pretty much identical to how we do this for models fit with \texttt{glm()} except now we are using \texttt{stan\_glm()} to fit the models!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make an empty list to hold the models}
+\NormalTok{mods <-}\StringTok{ }\KeywordTok{list}\NormalTok{()}
+
+\CommentTok{# Now, add models to the list. Stop and think about what each one means.}
+\NormalTok{mods[[}\DecValTok{1}\NormalTok{]] <-}\StringTok{ }\KeywordTok{stan_glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{hatchery }\OperatorTok{+}\StringTok{ }\NormalTok{length }\OperatorTok{+}\StringTok{ }\NormalTok{flow, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{2}\NormalTok{]] <-}\StringTok{ }\KeywordTok{stan_glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{flow, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{3}\NormalTok{]] <-}\StringTok{ }\KeywordTok{stan_glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{hatchery, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{4}\NormalTok{]] <-}\StringTok{ }\KeywordTok{stan_glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{length, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{5}\NormalTok{]] <-}\StringTok{ }\KeywordTok{stan_glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{length }\OperatorTok{+}\StringTok{ }\NormalTok{hatchery, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{6}\NormalTok{]] <-}\StringTok{ }\KeywordTok{stan_glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{length }\OperatorTok{+}\StringTok{ }\NormalTok{flow, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\NormalTok{mods[[}\DecValTok{7}\NormalTok{]] <-}\StringTok{ }\KeywordTok{stan_glm}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{year }\OperatorTok{+}\StringTok{ }\NormalTok{hatchery }\OperatorTok{+}\StringTok{ }\NormalTok{flow, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Next}, give the models some names using the formulas for each of the models. \emph{Remember}: models are stored as list objects in R, and each of those list objects (models) has names. We can reference those names using the \texttt{\$} notation, and from there we can access the actual model \texttt{formula}. The third element of this \texttt{formula} object contains the explanatory variables!! Just like \texttt{glm()}. Whoa!
+
+We can extract the \texttt{formula} for each model (which is an element in the \texttt{mods} list) using a \texttt{for} loop to assign them one at a time. Here, we are assigning the i\textsuperscript{th} formula to be the name of the i\textsuperscript{th} element in the list \texttt{mods}. Nifty. Note that this is pretty much identical to how we do this for models fit with \texttt{glm()}!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Assign the formula for each of the models as the name}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(mods)) \{}
+  \KeywordTok{names}\NormalTok{(mods)[i] <-}\StringTok{ }\KeywordTok{as.character}\NormalTok{(mods[[i]]}\OperatorTok{$}\NormalTok{formula)[}\DecValTok{3}\NormalTok{]}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we use the \texttt{loo} package to make a model selection table like we did in \protect\hyperlink{bayesian-model-selection}{Chapter 16.8}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Load the library}
+\KeywordTok{library}\NormalTok{(loo)}
+
+\CommentTok{# Extract the log-likelihood matrices}
+\NormalTok{log_liks <-}\StringTok{ }\KeywordTok{lapply}\NormalTok{(mods, log_lik)}
+
+\CommentTok{# Now apply the loo() function to each }
+\CommentTok{# model to get elpd_loo}
+\NormalTok{loos <-}\StringTok{ }\KeywordTok{lapply}\NormalTok{(log_liks, loo)}
+
+\CommentTok{# Finally, we can compare them with loo_compare()}
+\NormalTok{mod_table <-}\StringTok{ }\KeywordTok{loo_compare}\NormalTok{(loos)}
+\end{Highlighting}
+\end{Shaded}
+
+Nice.
+
+\hypertarget{interpretting-17}{%
+\subsection{Interpreting the results}\label{interpretting-17}}
+
+This proceeds the same way for GLM as it does for linear models until we get to making predictions of the response based on our best model.
+
+Our model selection table is an object in R (\emph{right}?), and we can reference that object using \texttt{\$} notation, matrix notation \texttt{{[}\ ,\ {]}}, or by calling \texttt{rownames()} to get the name for each of the models. Let's use this approach to get the best model from our candidate set.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Print the table}
+\NormalTok{mod_table}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                 elpd_diff se_diff
+## year + flow                      0.0       0.0   
+## year + hatchery + flow           0.0       1.4   
+## year + length + flow            -0.2       1.2   
+## year + hatchery + length + flow -0.9       1.5   
+## year + hatchery                 -2.3       3.0   
+## year + length                   -2.8       2.9   
+## year + length + hatchery        -3.1       3.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Look at the structure just to show that it is, indeed, an object:}
+\KeywordTok{str}\NormalTok{(mod_table)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  'compare.loo' num [1:7, 1:8] 0 -0.0444 -0.2276 -0.872 -2.3143 ...
+##  - attr(*, "dimnames")=List of 2
+##   ..$ : chr [1:7] "year + flow" "year + hatchery + flow" "year + length + flow" "year + hatchery + length + flow" ...
+##   ..$ : chr [1:8] "elpd_diff" "se_diff" "elpd_loo" "se_elpd_loo" ...
+\end{verbatim}
+
+Look at the \texttt{rownames} of the table. These \texttt{rownames} are the index for each of our models as they appear in the \texttt{mods} object, and we can use the index to reference objects inside of the \texttt{mods} list\ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rownames}\NormalTok{(mod_table)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "year + flow"                     "year + hatchery + flow"         
+## [3] "year + length + flow"            "year + hatchery + length + flow"
+## [5] "year + hatchery"                 "year + length"                  
+## [7] "year + length + hatchery"
+\end{verbatim}
+
+The rowname for the best model (the one at the top of the table) is \texttt{year\ +\ flow}. Print the model to see it as follows. Notice the back-ticks (``) around the model name to deal with spaces.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{( mods}\OperatorTok{$}\StringTok{`}\DataTypeTok{year + flow}\StringTok{`}\NormalTok{, }\DataTypeTok{digits =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Model Info:
+##  function:     stan_glm
+##  family:       binomial [logit]
+##  formula:      path ~ year + flow
+##  algorithm:    sampling
+##  sample:       4000 (posterior sample size)
+##  priors:       see help('prior_summary')
+##  observations: 759
+##  predictors:   7
+## 
+## Estimates:
+##               mean   sd     10%    50%    90% 
+## (Intercept) -2.995  0.793 -3.998 -2.976 -2.005
+## year2006    -0.504  0.629 -1.314 -0.505  0.304
+## year2009     0.277  0.459 -0.312  0.275  0.872
+## year2010     0.000  0.644 -0.801 -0.016  0.825
+## year2011    -0.796  0.409 -1.309 -0.803 -0.263
+## year2012    -0.762  0.525 -1.423 -0.755 -0.106
+## flow         0.002  0.001  0.001  0.002  0.002
+## 
+## Fit Diagnostics:
+##            mean   sd    10%   50%   90%
+## mean_PPD 0.128  0.017 0.107 0.128 0.150
+## 
+## The mean_ppd is the sample average posterior predictive distribution of the outcome variable (for details see help('summary.stanreg')).
+## 
+## MCMC diagnostics
+##               mcse  Rhat  n_eff
+## (Intercept)   0.023 1.004 1156 
+## year2006      0.018 1.002 1282 
+## year2009      0.013 1.002 1253 
+## year2010      0.018 1.002 1240 
+## year2011      0.009 1.000 2180 
+## year2012      0.013 1.000 1581 
+## flow          0.000 1.004 1483 
+## mean_PPD      0.000 1.000 3593 
+## log-posterior 0.050 1.003 1484 
+## 
+## For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure of effective sample size, and Rhat is the potential scale reduction factor on split chains (at convergence Rhat=1).
+\end{verbatim}
+
+Great! Let's save this to an object so we can work with it a little easier.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{best_mod <-}\StringTok{ }\NormalTok{mods}\OperatorTok{$}\StringTok{`}\DataTypeTok{year + flow}\StringTok{`}
+\end{Highlighting}
+\end{Shaded}
+
+We can get an understanding of the explanatory power of our model using a Bayesian R\textsuperscript{2} (described by Gelman et al.~\href{10.1080/00031305.2018.1549100}{2018}). By default, this function will return one estimate of the R\textsuperscript{2} for each iteration of the model, so we should get 4,000 estimates of R\textsuperscript{2} here.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r_squared <-}\StringTok{ }\KeywordTok{bayes_R2}\NormalTok{(best_mod)}
+
+\KeywordTok{mean}\NormalTok{(r_squared)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.05026233
+\end{verbatim}
+
+Meh, about average for an ecological study, but that doesn't mean it is good. What we are really after here is just a good idea of what proportion of fish use this route and whether it can be reasonably well related to discharge, so we'll keep pressing along to see if we have that.
+
+Let's wrap our interpretation of results by looking at coefficient estimates as indicators of statistical significance.
+
+First, we could extract just the parameters for ease:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coeffs <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{( }\KeywordTok{as.matrix}\NormalTok{(best_mod) )}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{coeffs} object is now a dataframe with 4,000 posterior samples (rows) of each model coefficient (columns).
+
+Then, we can determine whether zero or any other value of interest is included within the credible range of values for each of these coefficients. If zero falls outside the credible range for any of the parameters, we can conclude that the effect was significant. For categorical variables, this means groups are different. For continuous explanatory variables, it means that the slope is different from zero (flat).
+
+Pivot the coefficients into long form first so they are grouped for plotting, and then we'll summarize the posteriors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coeffs_stacked <-}\StringTok{ }\NormalTok{coeffs }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{cols =} \KeywordTok{everything}\NormalTok{(),}
+               \DataTypeTok{names_to =} \StringTok{"coeff"}\NormalTok{,}
+               \DataTypeTok{values_to =} \StringTok{"val"}
+\NormalTok{               ) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(coeff)}
+\end{Highlighting}
+\end{Shaded}
+
+You can calculate means and 95\% Credible intervals for plotting:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{post_summary <-}\StringTok{ }\NormalTok{coeffs_stacked }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \DataTypeTok{fit =} \KeywordTok{mean}\NormalTok{(val),}
+    \DataTypeTok{lwr =} \KeywordTok{quantile}\NormalTok{(val, }\FloatTok{0.025}\NormalTok{),}
+    \DataTypeTok{upr =} \KeywordTok{quantile}\NormalTok{(val, }\FloatTok{0.975}\NormalTok{)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+We can plot these really easily to see whether any of the parameters overlap zero:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(post_summary, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ coeff, }\DataTypeTok{y =}\NormalTok{ fit, }\DataTypeTok{color =}\NormalTok{ coeff, }\DataTypeTok{fill =}\NormalTok{ coeff)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{xend =}\NormalTok{ coeff, }\DataTypeTok{y =}\NormalTok{ lwr, }\DataTypeTok{yend =}\NormalTok{ upr), }\DataTypeTok{lwd=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-459-1.pdf}
+
+You can get a similar plot using the built-in \texttt{plot()} method for the fitted model object a lot more easily like so. By default, this method plots 95\% high density (credible) intervals for each of the posteriors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(best_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-460-1.pdf}
+
+\hypertarget{categorical-17}{%
+\subsubsection{Categorical effects}\label{categorical-17}}
+
+Regardless of the method we use, we see there is a lot of variability between years and there is reasonable support to suggest that this variability is significant. How can we tell this? We don't have access to p-values like we do in MLE or OLS anymore because of how the likelihood is expressed in these models. Instead, we can do group-wise comparisons to determine specific differences but this becomes cumbersome when we have many levels.
+
+Remember, that the null hypothesis for factors under an ANOVA- or ANCOVA-like analysis is just that any two group means differ. In this case, it looks like 2011 and 2009 are the most different since 2011 has lower probability of using Stillwater Branch than 2005 (Intercept) and 2009 is greater.
+
+If we want to compare year-specific means, we'll need to make predictions on the logit scale and then convert to the real scale where we can actually derive the difference between years arithmetically for the entire posteriors.
+
+Make predictions from the model on the logit scale, and convert to the real scale using the \texttt{invlogit()} function from the \texttt{rstanarm} package:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p_stillwater_}\DecValTok{2009}\NormalTok{ <-}\StringTok{ }\KeywordTok{invlogit}\NormalTok{( }
+\NormalTok{  coeffs}\OperatorTok{$}\NormalTok{X.Intercept. }\OperatorTok{+}\StringTok{ }\NormalTok{coeffs}\OperatorTok{$}\NormalTok{year2009 }\OperatorTok{+}\StringTok{ }\NormalTok{coeffs}\OperatorTok{$}\NormalTok{flow }\OperatorTok{*}\StringTok{ }\KeywordTok{mean}\NormalTok{(choice}\OperatorTok{$}\NormalTok{flow))}
+
+\NormalTok{p_stillwater_}\DecValTok{2011}\NormalTok{ <-}\StringTok{ }\KeywordTok{invlogit}\NormalTok{( }
+\NormalTok{  coeffs}\OperatorTok{$}\NormalTok{X.Intercept. }\OperatorTok{+}\StringTok{ }\NormalTok{coeffs}\OperatorTok{$}\NormalTok{year2011 }\OperatorTok{+}\StringTok{ }\NormalTok{coeffs}\OperatorTok{$}\NormalTok{flow }\OperatorTok{*}\StringTok{ }\KeywordTok{mean}\NormalTok{(choice}\OperatorTok{$}\NormalTok{flow))}
+\end{Highlighting}
+\end{Shaded}
+
+And now you can calculate the difference (note that this is for the average flow).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{difference <-}\StringTok{ }\NormalTok{p_stillwater_}\DecValTok{2009} \OperatorTok{-}\StringTok{ }\NormalTok{p_stillwater_}\DecValTok{2011}
+\end{Highlighting}
+\end{Shaded}
+
+If we are interested in whether the true difference is equal to zero (null) then we can calculate quantiles:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{quantile}\NormalTok{(difference, }\DataTypeTok{probs =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.975}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       2.5%      97.5% 
+## 0.03056342 0.18726341
+\end{verbatim}
+
+In this case, there is at least a 95\% chance that the probability of smolts using the Stillwater Branch varies between 2009 and 2011, so we can conclude that the effect is significant at \(\alpha\) = 0.05.
+
+We can also plot a histogram of the differences really easily now that it is just a vector in R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ difference), }\DataTypeTok{binwidth =} \FloatTok{0.01}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Difference in p(Stillwater) between 2009 and 2011"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Count"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{450}\NormalTok{), }\DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}
+    \DataTypeTok{axis.title.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{-1}\NormalTok{),}
+    \DataTypeTok{axis.title.y =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{3}\NormalTok{),}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-464-1.pdf}
+
+\hypertarget{continuous-17}{%
+\subsection{Continuous effects}\label{continuous-17}}
+
+Interpreting significance and direction of continuous effects is a little more straightforward. In this case, we just need to determine whether the posterior estimate of the coefficient for continuous explanatory variables differs from zero or another value of interest.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{quantile}\NormalTok{(coeffs}\OperatorTok{$}\NormalTok{flow, }\DataTypeTok{probs =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.975}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         2.5%        97.5% 
+## 0.0004731594 0.0029117244
+\end{verbatim}
+
+It was really hard to see in the coefficients plot due to differences in scale, so we can make a histogram of this one to visualize that difference as well.
+
+\hypertarget{predictions-17}{%
+\subsection{Making predictions}\label{predictions-17}}
+
+The first thing to remember here is that we have used a link function to estimate this model, so we cannot use the same method as we did for linear models to make predictions about our response from the model coefficients.
+
+The second thing to remember here is that by definition we have used an \emph{invertible} link function to estimate this model so the previous statement is a lie and we actually can use the same method as before to make predictions about our response from the model coefficients. We just need to add an extra step so that we can invert our predictions about the expected value of Y with respect to X.
+
+Confused? Yeah, it's a little confusing. As always an example always goes a long way\ldots{}
+
+We can make predictions from our best model pretty much the same way we did in \href{https://danstich.github.io/worst-r/12-4-logistic.html\#making-predictions}{Chapter 12.4.4}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make predictions from the best model}
+\NormalTok{logit_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{( }\KeywordTok{predict}\NormalTok{(best_mod, }\DataTypeTok{type =} \StringTok{"link"}\NormalTok{, }\DataTypeTok{se.fit =} \OtherTok{TRUE}\NormalTok{) )}
+
+\CommentTok{# Calculate confidence intervals as 1.96 * standard error}
+\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{lwr <-}\StringTok{ }\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{fit }\OperatorTok{+}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{se.fit}
+\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{upr <-}\StringTok{ }\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{fit }\OperatorTok{-}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{se.fit}
+
+\CommentTok{# Invert the link function}
+\NormalTok{real_preds <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(logit_preds, }\DecValTok{2}\NormalTok{, invlogit)}
+
+\CommentTok{# Combine the predictions with the original data}
+\NormalTok{choice_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(choice, real_preds)}
+\end{Highlighting}
+\end{Shaded}
+
+Go ahead and have a look at the \texttt{logit\_preds} and \texttt{real\_preds} objects to make sure you understand what we just did.
+
+Now, we can finish by plotting our predictions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(choice_preds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ flow, }\DataTypeTok{y =}\NormalTok{ fit, }\DataTypeTok{fill =}\NormalTok{ year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr, }\DataTypeTok{fill =}\NormalTok{ year), }\DataTypeTok{alpha =} \FloatTok{0.25}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Flow ( "}\NormalTok{, m}\OperatorTok{^}\DecValTok{3}\NormalTok{, }\StringTok{"\textbackslash{}u00b7"}\NormalTok{, s}\OperatorTok{^-}\DecValTok{1}\NormalTok{, }\StringTok{")"}\NormalTok{))) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{panel.grid =} \KeywordTok{element_blank}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-467-1.pdf}
+
+You can see that, in general, there is a relatively low probability of an individual fish using the Stillwater Branch, but we see increasing probability of using that route with increasing \texttt{flow} across years.
+
+\hypertarget{next17}{%
+\section{Next steps}\label{next17}}
+
+Here we have demonstrated similarities between the GLM and the models with which we have worked previously. You should realize now that the linear models we've been using are really just a special kind of GLM that uses a ``normal'' or ``Gaussian'' error distribution. If we think about what kind of data we actually have, this can open up lots of other ``non-normal'' options without scaring the life out of us! Hopefully, logistic regression is now a useful tool in your statistical hardware box. Finally, you should also appreciate that we have multiple methods (OLS, MLE, Bayesian) for estimating these models and they all work in similar ways with slightly different approaches. Next, we'll look at how to keep extending this GLM framework for analysis of \textbf{count} data in \protect\hyperlink{Chapter18}{Chapter 18}.
+
+\hypertarget{Chapter18}{%
+\chapter{GLM: Count models}\label{Chapter18}}
+
+The majestic female horseshoe crab. Once she has one mate she might attract any number of other ``satellite'' males. How many? Let's find out, but first we'll need a good count model.
+
+\hypertarget{intro18}{%
+\section{Introduction}\label{intro18}}
+
+In this chapter, we will follow along with the case example from \href{https://danstich.github.io/worst-r/13-Chapter13.html}{Chapter 13} that examined attraction of satellite males to female horseshoe crabs.
+
+We'll work with some packages from the \texttt{tidyverse}, as well as the \texttt{rstanarm}, and \texttt{loo} packages. We'll use the \texttt{crabs} data from the class data folder. You can go ahead and load those whenever you are ready to get started.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(rstanarm)}
+\KeywordTok{library}\NormalTok{(loo)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{poisson-18}{%
+\section{Poisson regression}\label{poisson-18}}
+
+Poisson regression is useful for situations in which we have a response (independent variable) that is a count. These are discrete data that cannot be considered continuous because it is impossible for them to take on non-integer or non-negative values. Common examples of these types of responses include species count data in ecology, cell or colony counts in biology, and the number of respondents or patients reporting a side-effect or symptom of interest in health care studies.
+
+For the Poisson family, the link function that we will use is the ``log'' link function. This one is exactly what it sounds like. This link function allows us to work with data that are constrained to be non-negative, a desirable property when we are working with count data.
+
+We will walk through the \texttt{crabs} data set for both the Poisson and negative binomial examples, addressing some distributional assumptions and model fit along the way.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Read in the data. These data also are available through}
+\CommentTok{# the glm2 package in R.}
+\NormalTok{crabs <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/crabs.csv"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{)}
+
+\CommentTok{# Have a look-see}
+\KeywordTok{head}\NormalTok{(crabs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   color spine width mass satellites
+## 1     2     3  28.3 3.05          8
+## 2     3     3  26.0 2.60          4
+## 3     3     3  25.6 2.15          0
+## 4     4     2  21.0 1.85          0
+## 5     2     3  29.0 3.00          1
+## 6     1     2  25.0 2.30          3
+\end{verbatim}
+
+\hypertarget{data-18}{%
+\subsection{Data explanation}\label{data-18}}
+
+These data are described in \href{https://danstich.github.io/worst-r/13-2-poisson-regression.html}{Chapter 13.2}. If you need a reminder of what they are go ahead and check them out there.
+
+We are going to convert color to a \texttt{factor} to start because it is currently stored as a numeric variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# We want to convert color to}
+\CommentTok{# a factor right off the bat}
+\NormalTok{crabs}\OperatorTok{$}\NormalTok{color <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(crabs}\OperatorTok{$}\NormalTok{color)}
+\end{Highlighting}
+\end{Shaded}
+
+Next, we'll fit a ``full'' model that assumes the number of \texttt{satellites} is a function of \texttt{width}, \texttt{mass}, \texttt{spine} condition, and \texttt{color}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fit a model}
+\NormalTok{poisson_mod <-}\StringTok{ }\KeywordTok{stan_glm}\NormalTok{(}
+\NormalTok{  satellites }\OperatorTok{~}\StringTok{ }\NormalTok{width }\OperatorTok{+}\StringTok{ }\NormalTok{mass }\OperatorTok{+}\StringTok{ }\NormalTok{spine }\OperatorTok{+}\StringTok{ }\NormalTok{color,}
+  \DataTypeTok{data =}\NormalTok{ crabs,}
+  \DataTypeTok{family =} \KeywordTok{poisson}\NormalTok{()}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Before we go any further, let's have a quick look at the model diagnostics using the methods we applied to linear models in \protect\hyperlink{Chapter9}{Chapter 9}. Right away, we can see that this model is not a very good fit to the data.
+
+First, put the fitted.values and the residuals from this \texttt{stanreg} object into a dataframe so we can plot them. I am using the same names that are assigned by \texttt{glm()} so I don't have to change my code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{resids <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{.fitted =}\NormalTok{ poisson_mod}\OperatorTok{$}\NormalTok{fitted.values, }
+                     \DataTypeTok{.resid =}\NormalTok{ poisson_mod}\OperatorTok{$}\NormalTok{residuals)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we can plot them:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(resids, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ .fitted, }\DataTypeTok{y =}\NormalTok{ .resid)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Fitted values"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(epsilon)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-473-1.pdf}
+
+Just as in the models we fit with \texttt{glm()} in Chapter 13, a few things should jump right out at you from this plot. First, there is some kind of trend happening at the bottom of our plot where the residuals slant downward from left to right. That's something that should scream ``not good!'' at you, even if you don't know why. Second, this plot doesn't really make it look like our residuals are symmetrically distributed with a mean of zero. But, it is really hard to tell from this graph, especially because of the weird patterns at the bottom of the scatter plot.
+
+We can check this second concern using a histogram if we want to see if it ``looks normal'' like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(resids, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ .resid)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{25}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(epsilon)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-474-1.pdf}
+
+Now that we see it presented this way, it is pretty clear that our residuals are not symmetrically distributed around zero even if the mean is about zero. We could also calculate some descriptive statistics for the residuals to really nail this down.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(poisson_mod}\OperatorTok{$}\NormalTok{residuals)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.001696453
+\end{verbatim}
+
+Hmmm\ldots the mean is fairly close to zero here, but we've already talked about the fact that the mean isn't a very good descriptive statistic for distributions that we suspect or know are not normal. What about the median as a measure of central tendency?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{median}\NormalTok{(poisson_mod}\OperatorTok{$}\NormalTok{residuals)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.8689322
+\end{verbatim}
+
+Wow, okay, that is a bit more negative than the mean, and at this point we may start to question whether we can say that the residuals are normally distributed with a mean of zero.
+
+So, why has this happened to us? Recall that the Poisson distribution is controlled by a single parameter, \(\lambda\), that is both the mean and the variance of the distribution. If we had started by doing data exploration we would have, of course, noticed that even though the data represent counts, they are pretty clearly over-dispersed (variance is much larger than mean) and are indicative of a negative binomial sampling distribution.
+
+For now, we won't bother to look at the results or the predictions from this model because the link function is the same for Poisson and negative binomial, so we can get the results from the negative binomial regression in the same way later if that works. Plus, if our model is in violation of assumptions then the results will be unreliable anyway.
+
+\hypertarget{negbin-18}{%
+\section{Negative binomial regression}\label{negbin-18}}
+
+Okay, moving on with life, let's take a look at the negative binomial regression model as an alternative to Poisson regression. Truthfully, this is usually where I start these days, and then I might consider backing down to use of Poisson if all assumptions are actually verified (but, \textbf{this has literally never happened for me}).
+
+We will start this time by actually doing some data exploration before our analysis. This is really how we should have started above, but that would have ruined all the fun.
+
+First, look at the distribution of the data. Here, it should be pretty obvious to you by now that these are count data for which the mean is not equal to the variance\ldots right?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(crabs, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ satellites)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{15}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-477-1.pdf}
+
+If you think back to \href{https://danstich.github.io/worst-r/5-Chapter5.html}{Chapter 5}, you'll remember this is a pretty typical example of the negative binomial distribution.
+
+We can take a look at how this shakes out between our groups (\texttt{color}) as well.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+\NormalTok{  crabs,}
+  \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ color, }\DataTypeTok{y =}\NormalTok{ satellites, }\DataTypeTok{color =}\NormalTok{ color, }\DataTypeTok{fill =}\NormalTok{ color)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.20}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.25}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Color"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Number of satellites"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}
+    \DataTypeTok{axis.title.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{-1}\NormalTok{),}
+    \DataTypeTok{axis.title.y =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{3}\NormalTok{)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-478-1.pdf}
+
+And, you can see here that even within groups the distributions do not look like they are normal or like they have equal variances, so we will fit a GLM that assumes the response is drawn from a negative binomial distribution.
+
+We can fit it with the GLM function like this using \texttt{rstanarm}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fit a model}
+\NormalTok{negbin_mod <-}\StringTok{ }\KeywordTok{stan_glm}\NormalTok{(}
+\NormalTok{  satellites }\OperatorTok{~}\StringTok{ }\NormalTok{width }\OperatorTok{+}\StringTok{ }\NormalTok{mass }\OperatorTok{+}\StringTok{ }\NormalTok{spine }\OperatorTok{+}\StringTok{ }\NormalTok{color,}
+  \DataTypeTok{data =}\NormalTok{ crabs,}
+  \DataTypeTok{family =} \KeywordTok{neg_binomial_2}\NormalTok{()}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Play around with the two formulations above and see if there's a difference. \emph{Clue}: there's not, really. Just two different ways to do the same thing. The functionality in the \texttt{glm} function only came around recently, that's all.
+
+Now, let's take a look at the distribution of the residuals. I am going to work with the object I fit using the \texttt{glm()} function. This time, we'll split our residuals out by \texttt{color} group so we can see where the problems are
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{resids <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{.fitted =}\NormalTok{ negbin_mod}\OperatorTok{$}\NormalTok{fitted.values, }
+                     \DataTypeTok{.resid =}\NormalTok{ negbin_mod}\OperatorTok{$}\NormalTok{residuals)}
+
+\NormalTok{crab_resids <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(crabs, resids)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we can plot them:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(crab_resids, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ color, }\DataTypeTok{y =}\NormalTok{ .resid)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Fitted values"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(epsilon)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-481-1.pdf}
+
+Now we are starting to look a lot more ``normal'' within groups, and we are getting more symmetrical in our residual sampling distributions. However, just as in Chapter 13, we notice that all the means in our boxplot above seem to be less than zero, which suggests some systematic bias in our residuals.
+
+\textbf{But}, how does this compare to the Poisson model for count data? We can use model selection to compare the Poisson model to the negative binomial model, since the response is the same in both cases.
+
+We can extract the estimated log likelihoods directly from the models:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{poisson_lik <-}\StringTok{ }\KeywordTok{log_lik}\NormalTok{(poisson_mod)}
+\NormalTok{negbin_lik <-}\StringTok{ }\KeywordTok{log_lik}\NormalTok{(negbin_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+And we can compute LOO-IC statistics using the \texttt{loo} package. Notice that here we get some warnings suggesting there are one or more problem observations (!) in the Poisson fit (``too high'' or \textgreater{} 0.70) that seem to be mostly resolved using the negative binomial fit (``slightly high'' or \textgreater{} 0.50).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{poisson_loo <-}\StringTok{ }\KeywordTok{loo}\NormalTok{(poisson_lik)}
+\NormalTok{negbin_loo <-}\StringTok{ }\KeywordTok{loo}\NormalTok{(negbin_lik)}
+\end{Highlighting}
+\end{Shaded}
+
+Then, we can compare the models directly because they use the same response and link function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{loo_compare}\NormalTok{(poisson_loo, negbin_loo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        elpd_diff se_diff
+## model2   0.0       0.0  
+## model1 -88.2      18.9
+\end{verbatim}
+
+The negative binomial model is clearly superior to the Poisson model here.
+
+Now, with a reasonable model in hand we could proceed with data visualization, but we might also rather have a ``good'' model to work with instead of just one that is ``good enough''. It turns out that the real problem behind the weirdness in our residuals is actually due to an excess number of zero counts of \texttt{satellite} males on a lot of our females. This is very common in count data, where we might observe a lot of zeros before actually counting a success. For these cases, we'll need to deal with the issue these excessive zeros (``zero inflation'') directly.
+
+\hypertarget{zinfl-18}{%
+\section{Zero inflation}\label{zinfl-18}}
+
+The fits of these two models, in reality, suggest the need to for what is becoming an increasingly common statistical tool: the zero inflated count model. Zero inflation (excess zeroes in count data) can arise by one of two mechanisms: true (``process'') zeros and observational zeros that result from imperfect detection. There are a number of ways to handle these types of data.
+
+One approach to dealing with this is to use a \textbf{hurdle model}. The idea is to make two separate models: 1) a logistic regression model to help us determine which factors influence whether the phenomenon of interest even occurred (0 or 1), and 2) a count model to help us determine what factors influence with the frequency of occurrence given that it occurred in the first place.
+
+When these models are linked mathematically, we call it a ``mixture model'' - an approach that has become very popular for accounting for imperfect detection when estimating abundance of organisms. For now, let's just look at the hurdle model for our crab data as the n-mixture approach falls solidly in the realm of ``advanced'' methods we'll not discuss in this decidedly Worst statistics book.
+
+\hypertarget{step-1-presence-absence}{%
+\subsection{Step 1: Presence-absence}\label{step-1-presence-absence}}
+
+First, we need to make a binary indicator variable to represent whether or not any satellites were present:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make a new column for count}
+\CommentTok{# and absence (of satellite males)}
+\CommentTok{# and initialize to zero}
+\NormalTok{crabs}\OperatorTok{$}\NormalTok{present <-}\StringTok{ }\DecValTok{0}
+
+\CommentTok{# Assign a '1' if any satellites were}
+\CommentTok{# observed}
+\NormalTok{crabs}\OperatorTok{$}\NormalTok{present[crabs}\OperatorTok{$}\NormalTok{satellites }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+Now, the first step in the hurdle model is to fit a logistic regression model to predict how our response is affected by some combination of explanatory variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hurdle_step1 <-}\StringTok{ }\KeywordTok{stan_glm}\NormalTok{(}
+\NormalTok{  present }\OperatorTok{~}\StringTok{ }\NormalTok{mass, }
+  \DataTypeTok{data =}\NormalTok{ crabs, }
+  \DataTypeTok{family =} \KeywordTok{binomial}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+Let's have a look at the estimated coefficient for \texttt{mass} from this model:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coeffs <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(hurdle_step1)}
+
+\KeywordTok{ggplot}\NormalTok{(coeffs, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mass)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{50}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-487-1.pdf}
+
+Here we see that \texttt{mass} has a significant effect on whether or not \emph{any} satellite males are present because zero is not included within the credible range of estimates. You could imagine fitting any number of plausible biological models for comparison using LOO-IC or elpd\textsubscript{loo} at this point.
+
+\hypertarget{step-2-counts-given-presence}{%
+\subsection{Step 2: Counts given presence}\label{step-2-counts-given-presence}}
+
+Step 2 is to fit a count model to explain the effects of some combination of explanatory variables on the frequency with which the phenomenon occurs given that it ever occurred in the first place. \textbf{Note}: This does not have to be the same combination of explanatory variables. In fact, it is always conceivable that different processes influence these two distinct phenomena. As with the count-absence model, you could even fit a candidate set of models and proceed with model comparisons using LOO-IC.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{crabs2 <-}\StringTok{ }\NormalTok{crabs[crabs}\OperatorTok{$}\NormalTok{satellites }\OperatorTok{!=}\StringTok{ }\DecValTok{0}\NormalTok{, ]}
+
+\CommentTok{# Make a model relating the number}
+\CommentTok{# of satellite males to the mass}
+\CommentTok{# of female crabs}
+\NormalTok{hurdle_step2 <-}\StringTok{ }\KeywordTok{stan_glm}\NormalTok{(}
+\NormalTok{  satellites }\OperatorTok{~}\StringTok{ }\NormalTok{mass,}
+  \DataTypeTok{data =}\NormalTok{ crabs2,}
+  \DataTypeTok{family =} \KeywordTok{neg_binomial_2}\NormalTok{()}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+From these results, we can see that our count models in the previous sections were really just picking up on the large number of zeroes in our data set. We know this because of the differences in the results between the models \texttt{hurdle\_step1} and \texttt{hurdle\_step2}.
+
+Likewise, we can take another look at our model diagnostics for \texttt{hurdle\_step2} to see if our diagnostic plots look more reasonable now.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{resids <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{.fitted =}\NormalTok{ hurdle_step2}\OperatorTok{$}\NormalTok{fitted.values, }
+                     \DataTypeTok{.resid =}\NormalTok{ hurdle_step2}\OperatorTok{$}\NormalTok{residuals)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we can plot them:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(resids, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ .fitted, }\DataTypeTok{y =}\NormalTok{ .resid)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Fitted values"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(epsilon)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-490-1.pdf}
+
+These residuals still aren't perfect, but they are a lot better than they were before. For now, we will go ahead and make some predictive plots to see how we did.
+
+\hypertarget{predict-counts}{%
+\subsection{Predictions}\label{predict-counts}}
+
+Now that we are finally happy with our residual plots (wow, that took a lot longer than fitting any of the models!) we can make a plot of our predictions against the raw data to see how we did.
+
+Let's start with the count/absence component that we fit in \texttt{hurdle\_step1}:
+
+Remember, that \texttt{hurdle\_step1} is just a logistic regression model, so our predictions will follow the same process as we did in \href{https://danstich.github.io/worst-r/12-4-logistic.html\#making-predictions}{Chapter 12.4}. We'll use the \texttt{crabs} data to make and plot predictions for this one since we had presence-absence info for each crab.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make predictions on the logit scale}
+\NormalTok{logit_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{( }\KeywordTok{predict}\NormalTok{(hurdle_step1, }\DataTypeTok{se.fit =} \OtherTok{TRUE}\NormalTok{) )}
+
+\CommentTok{# Get 95% confidence intervals}
+\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{lwr <-}\StringTok{ }\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{fit }\OperatorTok{+}\StringTok{ }\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{se.fit }\OperatorTok{*}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.025}\NormalTok{)}
+\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{upr <-}\StringTok{ }\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{fit }\OperatorTok{+}\StringTok{ }\NormalTok{logit_preds}\OperatorTok{$}\NormalTok{se.fit }\OperatorTok{*}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{)}
+
+\CommentTok{# Invert the logit-link function}
+\NormalTok{logit_preds <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(logit_preds, }\DecValTok{2}\NormalTok{, invlogit)}
+
+\CommentTok{# Combine the new masses and the predictions with which}
+\CommentTok{# they are associated}
+\NormalTok{pres_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(crabs, logit_preds)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Important:} Our hurdle model actually contains two models (\texttt{hurdle\_step1} and \texttt{hurdle\_step2}). The \texttt{hurdle\_step1} component is actually \textbf{logistic regression} and therefore uses the \textbf{logit} link function that we introduced in \protect\hyperlink{Chapter12}{Chapter 12}, so we need to invert the logit to get the probability of a female having any \texttt{satellite} males as a function of \texttt{mass}. This is done in the code above. Make sure you understand how and why we do this!
+
+Once you've got that down, it's all over but the plotting. Here is how predicted probability of \texttt{satellite} male crab count changes across the range of observed female \texttt{mass}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(pres_preds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mass, }\DataTypeTok{y =}\NormalTok{ fit)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr, }\DataTypeTok{color =} \OtherTok{NULL}\NormalTok{), }\DataTypeTok{alpha =} \FloatTok{.3}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Mass of female crab (g)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Probability of satellite male"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-492-1.pdf}
+
+Finally, we can make a plot of the number of \texttt{satellite} males we would expect to see on a female crab given that she had attracted any males in the first place.
+
+\textbf{Also important:} We need to remember here that we have two different models. The first model \texttt{hurdle\_step1} was a binary logistic regression, so it used the logit link. The second model \texttt{hurdle\_step2} was a count model and used the log link. That means we need to invert the \textbf{log} link to get our predicted counts back on the real scale.
+
+We will combine our predictions with the \texttt{crabs2} dataframe, which only contains observations for which there was at least one \texttt{satellite}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make predictions using step2 model and the crabs2 dataframe}
+\NormalTok{count_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{predict}\NormalTok{(hurdle_step2, }\DataTypeTok{se.fit =} \OtherTok{TRUE}\NormalTok{))}
+
+\CommentTok{# Get 95% confidence intervals}
+\NormalTok{count_preds}\OperatorTok{$}\NormalTok{lwr <-}\StringTok{ }\NormalTok{count_preds}\OperatorTok{$}\NormalTok{fit }\OperatorTok{+}\StringTok{ }\NormalTok{count_preds}\OperatorTok{$}\NormalTok{se.fit }\OperatorTok{*}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.025}\NormalTok{)}
+\NormalTok{count_preds}\OperatorTok{$}\NormalTok{upr <-}\StringTok{ }\NormalTok{count_preds}\OperatorTok{$}\NormalTok{fit }\OperatorTok{+}\StringTok{ }\NormalTok{count_preds}\OperatorTok{$}\NormalTok{se.fit }\OperatorTok{*}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{)}
+
+\CommentTok{# Invert the log link function}
+\NormalTok{count_preds <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(count_preds, }\DecValTok{2}\NormalTok{, exp)}
+
+\CommentTok{# Combine the new masses and the predictions with which}
+\CommentTok{# they are associated - overwriting on the fly - yuck!!}
+\NormalTok{count_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(crabs2, count_preds)}
+\end{Highlighting}
+\end{Shaded}
+
+Here is a plot showing how the number of \texttt{satellite} males observed changes with the \texttt{mass} of female horseshoe crabs:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(count_preds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mass, }\DataTypeTok{y =}\NormalTok{ satellites)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ fit)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr, }\DataTypeTok{color =} \OtherTok{NULL}\NormalTok{), }\DataTypeTok{alpha =} \FloatTok{.3}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Mass of female crab (kg)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Number of satellite males"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-494-1.pdf}
+
+Well, it doesn't exactly inspire great confidence in the biological relationship between female horseshoe crab mass and the number of satellite males she attracts, but that is exactly why it is so important to communicate these effects
+
+\hypertarget{next-steps}{%
+\section{Next steps}\label{next-steps}}
+
+This chapter has provided an overview of GLMs that we can use for count data in Bayesian inference, and demonstrates one way to handle cases of skewed counts or (more extreme case) zero-inflated counts. These are common ``problems'' in biological and ecological data that are easily resolved within the flexible framework of GLM, which includes all of the other models we've looked at since \protect\hyperlink{Chapter6}{Chapter 6}. These tools have been extended in both MLE and Bayesian frameworks within the mark-recapture and occupancy realms that I strongly encourage you to check out if you think these data are representative of the kinds of data you collect - this should get you started though! In \protect\hyperlink{Chapter19}{Chapter 19} and \protect\hyperlink{Chapter20}{Chapter 20} we'll look at how to extend this framework even further (another umbrella) to include repeated observations and relatedness between groups when we introduce Bayesian hierarchical models.
+
+\hypertarget{Chapter19}{%
+\chapter{Bayesian hierarchical models}\label{Chapter19}}
+
+This is a big, fat yellow perch . It has grown large by eating invasive rusty crayfish (I made that up - Worst Stats Text eveR). Those rusty crayfish have grown large by eating in our local streams. If we had samples of crayfish from lots of different streams we could find out which rusty crayfish grow the fattest and how this translates to where they are having the biggest impacts. It's crayfish all the way down this time.
+
+\hypertarget{intro-19}{%
+\section{Introduction}\label{intro-19}}
+
+In this chapter, we will extend linear models and generalized linear models to include hierarchical error structures in Bayesian estimation. These are analogous to the linear mixed models introduced in \protect\hyperlink{Chapter14}{Chapter 14}. We will start with examples of the linear mixed model (LMM) in this Chapter and extend these to include non-normal data when we dig into Bayesian hierarchical formulations of the generalized linear model in \protect\hyperlink{Chapter20}{Chapter 20}.
+
+In this chapter, we'll use the usual tools from the \texttt{rstanarm} package as well as the usual suite of functions we need from the \texttt{tidyverse}. Go ahead and load them up when you are ready to get started:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(rstanarm)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{hierarchical}{%
+\section{Bayesian hierarchical models}\label{hierarchical}}
+
+From a practical standpoint, Bayesian hierarchical models are similar to the linear mixed models in \protect\hyperlink{Chapter14}{Chapter 14}. They allow us to account for individual- or group-level variability in estimated parameters of interest (ie. intercepts and slopes for regression). They also allow us to make both group-specific and sample-wide inference about trends of interest. What's more is that the hierarchical structuring of parameters (e.g.~individual within plot within site) allows us to ``share'' information between groups by informing group-specific parameters with global or population-wide ``hyperparameters'' (if that is not cool I don't know what is).
+
+\hypertarget{worked-19}{%
+\section{Worked example}\label{worked-19}}
+
+Let's start by loading the data set. This is the same data set introduced in \protect\hyperlink{lmm-worked}{Chapter 14.4}. For this chapter, I will leave the extended explanation from Chapter 14 to help place the R code within the context of the models we are building.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Read in the data file}
+\CommentTok{# We are reading it in with the optional}
+\CommentTok{# argument because we don't want to deal}
+\CommentTok{# with code relicts if we start}
+\CommentTok{# dropping factor levels}
+\NormalTok{cray <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/cray.csv"}\NormalTok{, }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Look at the data structure}
+\KeywordTok{str}\NormalTok{(cray)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':	964 obs. of  7 variables:
+##  $ date     : chr  "6/28/2018" "6/28/2018" "6/28/2018" "6/28/2018" ...
+##  $ waterbody: chr  "Susquehanna River" "Susquehanna River" "Susquehanna River" "Susquehanna River" ...
+##  $ site     : chr  "Cooperstown Dam" "Cooperstown Dam" "Cooperstown Dam" "Cooperstown Dam" ...
+##  $ length   : num  30.9 31.2 31.1 29.3 28.3 ...
+##  $ mass     : num  7.18 6.85 6.75 6.46 6.14 5.99 5.58 4.95 4.85 4.81 ...
+##  $ loglength: num  3.43 3.44 3.44 3.38 3.34 ...
+##  $ logmass  : num  1.97 1.92 1.91 1.87 1.81 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# And, have a look at the first few lines of data}
+\KeywordTok{head}\NormalTok{(cray)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        date         waterbody            site length mass loglength  logmass
+## 1 6/28/2018 Susquehanna River Cooperstown Dam  30.88 7.18  3.430109 1.971299
+## 2 6/28/2018 Susquehanna River Cooperstown Dam  31.18 6.85  3.439777 1.924249
+## 3 6/28/2018 Susquehanna River Cooperstown Dam  31.15 6.75  3.438814 1.909543
+## 4 6/28/2018 Susquehanna River Cooperstown Dam  29.28 6.46  3.376905 1.865629
+## 5 6/28/2018 Susquehanna River Cooperstown Dam  28.31 6.14  3.343215 1.814825
+## 6 6/28/2018 Susquehanna River Cooperstown Dam  30.55 5.99  3.419365 1.790091
+\end{verbatim}
+
+This is a fairly straightforward data set. There are 964 observations of 7 variables. Each of the observations (rows) corresponds to a rusty crayfish that was collected and measured (\texttt{length} in mm and \texttt{mass} in g) at one of several \texttt{site}s on a given \texttt{date}. The variable \texttt{catch} is the total number caught by electrobugging over a given \texttt{time} (minutes). To compare density between sites, \texttt{catch} was divided by (\texttt{time}/60) to calculate catch per unit effort (\texttt{cpue}) as number of crayfish per hour. Therefore, observations of \texttt{cpue}, \texttt{catch}, and \texttt{time} correspond to unique \texttt{date} and \texttt{site} combinations, but \texttt{length} and \texttt{mass} represent unique individuals within \texttt{site} and \texttt{date}.
+
+Our primary objective in this study was to collect baseline data. But curiosity led us to explore variation in the condition of crayfish when we thought we were noticing skinnier crayfish in sites of higher density. Length-weight regressions are one tool that is commonly used to investigate changes in volumetric growth with increasing length. In the absence of a standardized condition metric such as that widely applied in fish populations, relative weight (W\textsubscript{r}), we thought this might offer some insight into variability in condition.
+
+What follows is a steroid-injected version of the analysis we started with.
+
+Length-weight relationships in animals are generally parameterized by log-transforming length and mass. This is because the relationship between the two is exponential, or can be described using a power function (ouch, think back to intro bio). For a given unit increase in length, we expect mass to increase as an approximately cubic function of length.
+
+We can see this in our un-transformed data pretty cleanly:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(cray, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ length, }\DataTypeTok{y =}\NormalTok{ mass)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-499-1.pdf}
+
+The relationship depicted above can be expressed mathematically as:
+
+\[W = aL^b,\]
+
+and statistically as:
+
+\[W_i = a {L_i}^b e^{\epsilon_i},\]
+
+where \(W_i\) is mass (weight) of individual \(_i\), \(L_i\) is length of the individual, \(a\) and \(b\) are the coefficient and exponent describing change in mass as a function of length, and \(\epsilon_i\) is the multiplicative error term for each crayfish (residuals change with length). Here, \(b\) also has interpretation relative to allometry in growth patterns, where values of 3.0 indicate isometry, values below 3 indicate negative allometry, and values above 3 indicate positive allometry in the length-weight relationship. This means that at values much above 3, we would expect individuals to get heavier faster relative to their length at large sizes.
+
+We can certainly estimate this kind of relationship using nonlinear regression. But, nonlinear regression can get a little unstable due to inherent correlations between parameters, and the multiplicative error described above, even when using Bayesian estimation. So, it can be easier to log-transform both sides of the equation to make the relationship linear and achieve a constant error across the range of X (\emph{homoscedasticity}). As a result, we generally linearize relationships like this to improve modeling whenever we can, in this case by taking the natural logarithm of both sides of the equation:
+
+\[log(W_i) = log(a) + b \cdot log(L_i) + \epsilon_i\]
+
+Now, that should look a whole lot like the linear models we have been talking about all semester. In fact, by substitution, we could say that:
+
+\[Y = \beta_0 + \beta_1 \cdot X_i + \epsilon_i\]
+
+where \(Y\) is \texttt{log(mass)}, and \(X\) is \texttt{log(length)}. Then, we just need to remember that \(\beta_0\) is estimated on the log scale.
+
+We can take a look at how this looks in our data by plotting the transformed data.
+
+Start by log-transforming length and mass
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Log transform length and mass}
+\NormalTok{cray}\OperatorTok{$}\NormalTok{loglength <-}\StringTok{ }\KeywordTok{log}\NormalTok{(cray}\OperatorTok{$}\NormalTok{length)}
+\NormalTok{cray}\OperatorTok{$}\NormalTok{logmass <-}\StringTok{ }\KeywordTok{log}\NormalTok{(cray}\OperatorTok{$}\NormalTok{mass)}
+\end{Highlighting}
+\end{Shaded}
+
+Plot the relationship. Note that only the names have been changed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(cray, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ loglength, }\DataTypeTok{y =}\NormalTok{ logmass)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-501-1.pdf}
+
+If nothing else, this tells me we need to go after more small cray next summer. For now, let's get rid of all crayfish weighing less than 1 g because the data are sparse down there and small values are known to cause some trouble in these kinds of models {[}still refusing to provide citations{]}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Drop the measurements for crayfish < 1 g}
+\NormalTok{cray <-}\StringTok{ }\NormalTok{cray }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(mass }\OperatorTok{>=}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, let's take a look at the residual diagnostics for a linear model that includes a group effect of \texttt{site} and (of course) \texttt{length} as explanatory variables that we will use to predict changes in our response of interest, \texttt{mass}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{testmod <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(logmass }\OperatorTok{~}\StringTok{ }\NormalTok{loglength }\OperatorTok{+}\StringTok{ }\NormalTok{site, }\DataTypeTok{data =}\NormalTok{ cray)}
+
+\KeywordTok{ggplot}\NormalTok{(testmod, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ site, }\DataTypeTok{y =}\NormalTok{ .resid, }\DataTypeTok{fill =}\NormalTok{ site, }\DataTypeTok{color =}\NormalTok{ site)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_violin}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.20}\NormalTok{, }\DataTypeTok{trim =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-503-1.pdf}
+
+These look pretty good over all, but you should recognize at this point that we may have some concerns about whether or not variances are equal between groups, and whether observations at each \texttt{site} can really be considered independent (they cannot).
+
+Next, we will take a look at a few different ways to analyze these data using maximum likelihood estimation. Our goal here is to estimate the relationship between \texttt{length} and \texttt{mass} while accounting for inherent variability between \texttt{site}s.
+
+\hypertarget{random-intercept-19}{%
+\subsection{Random-intercepts model}\label{random-intercept-19}}
+
+First, we will analyze the data assuming that the intercepts for our linear model can vary between populations, but the relationship between length and mass is the same across all populations. This is a very common approach in many ecological and biological applications, as it often is the case that we are just trying to account for sampling design when we do this kind of analysis.
+
+This is really straightforward to do in R. First, load the \texttt{rstanarm} package if you didn't do it at the start of the chapter.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Load the package}
+\KeywordTok{library}\NormalTok{(rstanarm)}
+\end{Highlighting}
+\end{Shaded}
+
+Next, we fit the model. To do this we will use the \texttt{lmer()} function. Notice that now we have to add an argument to specify a random effect of \texttt{site} on the intercept \texttt{1}. This is our way of telling R that we want to account for site-specific variability in the length-mass relationship.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fit the model}
+\NormalTok{craymod <-}\StringTok{ }\KeywordTok{stan_lmer}\NormalTok{(logmass }\OperatorTok{~}\StringTok{ }\NormalTok{loglength }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{site), }
+                     \DataTypeTok{data =}\NormalTok{ cray)}
+\end{Highlighting}
+\end{Shaded}
+
+Being responsible individuals, we now have a look at the residuals to make sure we've met assumptions of normality and homoscedasticity:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Get the residuals}
+\NormalTok{cray_resids <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(cray, }\DataTypeTok{.resid =}\NormalTok{ craymod}\OperatorTok{$}\NormalTok{residuals)}
+
+\CommentTok{# Plot the residuals}
+\KeywordTok{ggplot}\NormalTok{(cray_resids, }
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ site, }\DataTypeTok{y =}\NormalTok{ .resid, }\DataTypeTok{fill =}\NormalTok{ site, }\DataTypeTok{color =}\NormalTok{ site)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_violin}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.20}\NormalTok{, }\DataTypeTok{trim =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-506-1.pdf}
+
+That's looking about as good as we could hope for, so you can go ahead and crack open the model summary if that is your thing.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Print the summary}
+\KeywordTok{summary}\NormalTok{(craymod, }\DataTypeTok{digits =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+For now, I will skip the usual walk through of all the wonderful tidbits that R has to offer and cut right to the chase.
+
+The default coefficient plot from the \texttt{plot()} function for this model is not super helpful. It shows us that there is clearly a significant relationship between length and mass, but we knew that coming into this. The intercept-adjustments are difficult to interpret in this case because of the scale of the intercept, which now doesn't have much interpretation other than the ``average'' \texttt{logmass} of fish at \texttt{loglength\ =\ 0}. We can extract the site-specific intercepts to see if these are different from zero (which would mean they differ from the ``average'').
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coeffs <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(craymod)}
+\end{Highlighting}
+\end{Shaded}
+
+Wow, that is so ridiculously easy to do now.
+
+Now that we have the coefficients in a dataframe, we can clean up the names a little to make the plots a little nicer:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# First strip out that awful front-end text}
+\KeywordTok{names}\NormalTok{(coeffs) <-}\StringTok{ }\KeywordTok{gsub}\NormalTok{(}\DataTypeTok{pattern =} \StringTok{"b..Intercept..site."}\NormalTok{,}
+                      \DataTypeTok{replacement =} \StringTok{""}\NormalTok{,}
+                      \DataTypeTok{x =} \KeywordTok{names}\NormalTok{(coeffs)}
+\NormalTok{                      )}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can stack the coefficients:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Just grab the columns we want to work with here}
+\NormalTok{intercepts <-}\StringTok{ }\NormalTok{coeffs[ , }\DecValTok{3}\OperatorTok{:}\DecValTok{8}\NormalTok{]}
+
+\CommentTok{# Now stack them with pivot_longer}
+\NormalTok{intercepts <-}\StringTok{ }\NormalTok{intercepts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{cols =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{), }
+               \DataTypeTok{names_to =} \StringTok{"Parameter"}\NormalTok{,}
+               \DataTypeTok{values_to =} \StringTok{"Estimate"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Calculate some summary statistics (95\% CRI)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int_summary <-}\StringTok{ }\NormalTok{intercepts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Parameter) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{fit =} \KeywordTok{mean}\NormalTok{(Estimate),}
+            \DataTypeTok{lwr =} \KeywordTok{quantile}\NormalTok{(Estimate, }\FloatTok{0.025}\NormalTok{),}
+            \DataTypeTok{upr =} \KeywordTok{quantile}\NormalTok{(Estimate, }\FloatTok{0.975}\NormalTok{)}
+\NormalTok{            )}
+\end{Highlighting}
+\end{Shaded}
+
+And then you can plot them to see whether zero is excluded.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(int_summary, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Parameter, }\DataTypeTok{y =}\NormalTok{ fit)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{xend =}\NormalTok{ Parameter, }\DataTypeTok{y =}\NormalTok{ lwr, }\DataTypeTok{yend =}\NormalTok{ upr))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-512-1.pdf}
+
+As in \protect\hyperlink{Chapterux5cux252014}{Chapter 14} we see that we probably don't ``need'' to include these random intercepts if we are thinking about group-specific variability as strictly being a nuisance. But, we are here to incorporate that variability directly, so we'll keep it!
+
+Next, let's make some predictions about the relationship between \texttt{length} and \texttt{mass} in each \texttt{site}.
+
+This is the first time we will diverge from the MLE estimation technique used in Chapter 14. Rather than using the \texttt{predict()} function as we have been, let's use the \texttt{predict\_posterior()} function to make predictions from the posterior distribution of our model parameters. Notice that we are inverting the \texttt{log} link function on the fly in the lines below \emph{after} we derive descriptive statistics of interest.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Log-scale posterior predictions}
+\NormalTok{lpred_mat <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{( }\KeywordTok{posterior_predict}\NormalTok{(craymod) )}
+
+\CommentTok{# Descriptive statistics, with log-link inverted}
+\NormalTok{fit <-}\StringTok{ }\KeywordTok{exp}\NormalTok{( }\KeywordTok{apply}\NormalTok{(lpred_mat, }\DecValTok{2}\NormalTok{, mean) )}
+\NormalTok{lwr <-}\StringTok{ }\KeywordTok{exp}\NormalTok{( }\KeywordTok{apply}\NormalTok{(lpred_mat, }\DecValTok{2}\NormalTok{, quantile, }\DataTypeTok{probs =} \FloatTok{0.025}\NormalTok{) )}
+\NormalTok{upr <-}\StringTok{ }\KeywordTok{exp}\NormalTok{( }\KeywordTok{apply}\NormalTok{(lpred_mat, }\DecValTok{2}\NormalTok{, quantile, }\DataTypeTok{probs =} \FloatTok{0.975}\NormalTok{) )}
+
+\CommentTok{# Smash it all together}
+\NormalTok{cray_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(cray, fit, lwr, upr)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can plot our predictions by treating this just like any other model:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(cray_preds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ length, }\DataTypeTok{y =}\NormalTok{ mass, }\DataTypeTok{color =}\NormalTok{ site, }\DataTypeTok{fill =}\NormalTok{ site)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.10}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ fit), }\DataTypeTok{lwd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.50}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Carapace length (mm)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Mass (g)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-514-1.pdf}
+
+This is helpful for identifying some of the differences between sites. In this case, it looks like we have slightly smaller crayfish in a handful of sites (\texttt{Bailey\ Road}, \texttt{Colliersville}, and \texttt{Route\ 80}) and the rest of them look pretty similar. It can be difficult to see how our model fits the data for individual groups. Remember, that we could address this by using a quick \texttt{facet\_wrap()} in our plotting code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(cray_preds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ length, }\DataTypeTok{y =}\NormalTok{ mass, }\DataTypeTok{color =}\NormalTok{ site, }\DataTypeTok{fill =}\NormalTok{ site)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.10}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ fit), }\DataTypeTok{lwd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.50}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Carapace length (mm)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Mass (g)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{site)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-515-1.pdf}
+
+This let's us see how well our predictions fit the data from individual streams all alongside the uncertainty in our estimates (even though there isn't much!!).
+
+As with LMM in the REML framework, this may seem like a lot of work at first glance, but hopefully you do realize that it is about the same amount of code as making predictions from linear models and general linear models, and now we have introduced yet another way to dealing with violations of assumptions!
+
+\hypertarget{next-19}{%
+\section{Next steps}\label{next-19}}
+
+This chapter provided a basic overview of Bayesian hierarchical models, how to analyze them, and how to use predictions and plots to determine what the results mean. These models are a potentially powerful tool that arguably are still under-utilized in biology and ecology. We will round this toolset out by exploring generalized Bayesian hierarchical models for binomial and count responses in \protect\hyperlink{Chapter20}{Chapter 20}.
+
+\hypertarget{Chapter20}{%
+\chapter{Bayesian hierarchical GLM}\label{Chapter20}}
+
+This is a big, fat walleye. It is closely related to the yellow perch from Chapter 14, but it is a bigger, better tasting version. Likewise, GLMM is just a bigger, better tasting version of LMM. This is definitely not the last new fish data set for the book.
+
+\hypertarget{intro-20}{%
+\section{Introduction}\label{intro-20}}
+
+In \protect\hyperlink{Chapter14}{Chapter 14} we introduced the generalized linear mixed model (GLMM) through the lens of the linear mixed model (LMM) in restricted maximum likelihood estimation. Many of the difficulties in specifying, estimating, and predicting from those models are trivial in Bayesian hierarchical models by comparison.
+
+We will use examples of logistic regression and count models to investigate Bayesian hierarchical GLMs in this chapter and round out our discussions from \protect\hyperlink{Chapter14}{Chapters 14}, \protect\hyperlink{Chapter15}{15}, and \protect\hyperlink{Chapter19}{19}. To do this, we will need our usual faves from the \texttt{tidyverse} and \texttt{rstanarm}. You know the drill:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(rstanarm)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{logistic-regression-20-logistic}{%
+\section{Logistic regression \{\#20-logistic\}}\label{logistic-regression-20-logistic}}
+
+For our first example this week, we will use the \texttt{choice} data from a couple weeks ago that we used to demonstrate binomial logistic regression. This time, we will add in a random intercept term that will allow us to account for repeated observations within a year. This has two implications: 1) it accounts for the fact that the years in which we conducted this study are random samples from a larger, unobserved population, and 2) it accounts for the heterogeneity of variance that theoretically might occur as a result of taking multiple, and variable, numbers of measurements within a given year- thereby reducing the overall error of the model and our associated parameter estimates (in theory).
+
+\begin{verbatim}
+##   path year hatchery length mass date flow
+## 1    0 2010        1    176   57  118  345
+## 2    0 2005        1    205  101  128 1093
+## 3    0 2010        1    180   56  118  345
+## 4    0 2010        1    193   74  118  345
+## 5    0 2005        1    189   76  128 1093
+## 6    0 2010        1    180   65  118  345
+\end{verbatim}
+
+\hypertarget{data-explanation-20-logistic-data}{%
+\subsection{Data Explanation \{\#20-logistic-data\}}\label{data-explanation-20-logistic-data}}
+
+These data are from a study that examined factors affecting path choice by wild and hatchery-reared endangered Atlantic salmon smolts during seaward migration in the Penobscot River, Maine. State, local, and federal fishery managers were interested in understanding what factors affected migratory routing through the lower river because there were different numbers of dams, with different estimated smolt mortality rates, on either side of a large island hydropower project in this system. If managers could understand factors influencing migratory route, they might be able to manipulate flows, stocking dates, and dam operation to improve survival of these endangered fish. Furthermore, the results of the study were used to predict the effects of dam removal, and hydropower re-allocation in the lower river on population-level consequences for these fish. Please see the \textless08\_glm\_logisticRegression\textgreater logistic regression module for a complete explanation of the data.
+
+\hypertarget{data-analysis-20-logistic-analysis}{%
+\subsection{Data analysis \{\#20-logistic-analysis\}}\label{data-analysis-20-logistic-analysis}}
+
+We are going to use the 1/0 binary data to estimate the effects of a number of covariates of interest on the probability that an individual fish used the Stillwater Branch for migration in each year of this study using logistic regression.
+
+Since we are not interested in the linear trend in the use of the Stillwater Branch through time, we need to convert \texttt{year} to factor. This is the same as if we wanted to use this as a fixed effect in the model as we did in \href{https://danstich.github.io/worst-r/12-4-logistic.html}{Chapter 12.4} when we last worked with these data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{choice}\OperatorTok{$}\NormalTok{year <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(choice}\OperatorTok{$}\NormalTok{year)}
+\end{Highlighting}
+\end{Shaded}
+
+Rather than run all of the models that we ran in \protect\hyperlink{Chapter17}{Chapter 17} I am just going to run the best one because these models take a little longer to run than the non-hierarchical formulations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{best_mod <-}\StringTok{ }\KeywordTok{stan_glmer}\NormalTok{(path }\OperatorTok{~}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{year) }\OperatorTok{+}\StringTok{ }\NormalTok{flow, }\DataTypeTok{family =}\NormalTok{ binomial, }\DataTypeTok{data =}\NormalTok{ choice)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{predictions-20-logistic-preds}{%
+\subsection{Predictions \{\#20-logistic-preds\}}\label{predictions-20-logistic-preds}}
+
+Finally, we can use these models to make predictions.
+
+This is a little funky for binomial \texttt{stan\_glmer()} models in \texttt{rstanarm} right now because the prevailing wisdom is to predict \textbf{outcomes} from hierarchical models fit with \texttt{rstanarm}. For binomial models, this means the output of \texttt{posterior\_predict()} is ones and zeroes, which is not too terribly useful for visualizing the model results for those less mathematically inclined. Instead, we would like to see how probability of using Stillwater Branch changes in relation to our explanatory variables.
+
+We will create a quick function using some of the \texttt{rstanarm} internals based on \href{https://groups.google.com/g/stan-users/c/GS8_8djvke4}{this example}. My guess is that this will probably be implemented in the package by the next time I teach the class and edit this book.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{predicted_prob <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(fit) \{}
+\NormalTok{  dat <-}\StringTok{ }\NormalTok{rstanarm}\OperatorTok{:::}\KeywordTok{pp_data}\NormalTok{(fit)}
+\NormalTok{  eta <-}\StringTok{ }\NormalTok{rstanarm}\OperatorTok{:::}\KeywordTok{pp_eta}\NormalTok{(fit, dat)}\OperatorTok{$}\NormalTok{eta}
+  \KeywordTok{invlogit}\NormalTok{(eta) }\CommentTok{# inverse-logit }
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Now, we can make predictions about the probability of using Stillwater Branch on each row of our observed data (or new data if we want!) using this function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pred_matrix <-}\StringTok{ }\KeywordTok{predicted_prob}\NormalTok{(best_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+The result is a matrix with 4,000 rows (1,000 iterations x 4 chains) of predicted probability of using the Stillwater Branch for each fish (row) from our original data. That is, the rows in original data correspond to the columns in \texttt{pred\_matrix}. We can summarize this object the same way we did in \protect\hyperlink{Chapter19}{Chapter 19} and add the descriptive statistics to the original data set for easy visualization. Note that we do not need to invert the logit because we already did that inside the \texttt{predict\_prob()} function we created.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Calculate descriptive statistics for predicted probability}
+\CommentTok{# of using Stillwater Branch}
+\NormalTok{fit <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(pred_matrix, }\DecValTok{2}\NormalTok{, mean)}
+\NormalTok{lwr <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(pred_matrix, }\DecValTok{2}\NormalTok{, quantile, }\FloatTok{0.025}\NormalTok{)}
+\NormalTok{upr <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(pred_matrix, }\DecValTok{2}\NormalTok{, quantile, }\FloatTok{0.975}\NormalTok{)}
+
+\CommentTok{# Smoosh them back together with the original data for plotting}
+\NormalTok{choice_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(choice, fit, lwr, upr)}
+\end{Highlighting}
+\end{Shaded}
+
+And now, it is all over but the plotting:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(choice_preds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ flow, }\DataTypeTok{y =}\NormalTok{ fit, }\DataTypeTok{color =}\NormalTok{ year, }\DataTypeTok{fill =}\NormalTok{ year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{xmax =}\NormalTok{ flow, }\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr), }\DataTypeTok{alpha =} \FloatTok{0.10}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Flow (ft"}\OperatorTok{^}\DecValTok{3}\NormalTok{,}\StringTok{"s"}\OperatorTok{^-}\DecValTok{1}\NormalTok{, }\StringTok{")"}\NormalTok{))) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Probability of using Stillwater Branch"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}
+    \DataTypeTok{axis.title.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{-1}\NormalTok{),}
+    \DataTypeTok{axis.title.y =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{3}\NormalTok{)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-523-1.pdf}
+
+\hypertarget{count-models-20-count}{%
+\section{Count models \{\#20-count\}}\label{count-models-20-count}}
+
+\hypertarget{data-explanation-20-count-data}{%
+\subsection{Data explanation \{20-count-data\}}\label{data-explanation-20-count-data}}
+
+We will wrap up our discussions about Bayesian hierarchical GLMs with a worked example of count models. For this one, we will attempt to predict counts of walleye, \emph{Sander vitreus}, in spawning streams of Otsego Lake, NY, based on historical counts and climate data.
+
+We begin by reading in the data set:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Read in the walleye data}
+\NormalTok{eyes <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/walleye.csv"}\NormalTok{, }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Have a look at the first ten lines of the data set:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(eyes, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+And check out the data structure:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(eyes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':	71 obs. of  15 variables:
+##  $ date     : chr  "2009-04-01" "2009-04-01" "2009-04-01" "2009-04-05" ...
+##  $ site     : chr  "Cripple Creek" "Hayden Creek" "Shadow Brook" "Cripple Creek" ...
+##  $ counts   : int  1 1 1 4 61 17 50 10 1 35 ...
+##  $ high_f   : num  48 48 48 52 52 52 NA NA 39 39 ...
+##  $ low_f    : num  34 34 34 32 32 32 NA NA 28 28 ...
+##  $ high_c   : num  8.89 8.89 8.89 11.11 11.11 ...
+##  $ low_c    : num  1.11 1.11 1.11 0 0 ...
+##  $ mean_c   : num  5 5 5 5.56 5.56 ...
+##  $ ddPrep   : num  5 5 5 5.56 5.56 ...
+##  $ day      : int  91 91 91 95 95 95 97 97 99 99 ...
+##  $ year     : int  2009 2009 2009 2009 2009 2009 2009 2009 2009 2009 ...
+##  $ dd       : num  72.4 72.4 72.4 109.3 109.3 ...
+##  $ dd2      : num  5240 5240 5240 11954 11954 ...
+##  $ daylight : num  12.7 12.7 12.7 12.9 12.9 ...
+##  $ daylight2: num  161 161 161 166 166 ...
+\end{verbatim}
+
+These data are counts of walleye that were captured in spawning tributaries of Otsego Lake during the 2009, 2013, 2017,and 2018 spawning season. These measurements are accompanied by various environmental indicators that include high and low flows, precipitation (rain and snow), high, low, mean temperatures (c) and degree days (dd), and photoperiod (daylight) on each day of the year.
+
+We will use the data to predict number of walleye we expect to see each day in the spawning tributaries based on historical counts and some explanatory variables of interest.
+
+\hypertarget{data-analysis-20-count-analysis}{%
+\subsection{Data analysis \{\#20-count-analysis\}}\label{data-analysis-20-count-analysis}}
+
+We start by estimating a model using the \texttt{stan\_glmer()} function. Let's say for the sake of argument that we are simply interested in the lake-wide mean of our counts so that we know when students should, for example, be heading out to tributaries to look for walleyes in streams.
+
+For now, we will model walleye count as a function of photoperiod, with a random effect of site on the intercepts. This model assumes that there is variability in counts of spawning individuals between sites, but that the relationship between photoperiod and count is the same across all sites. In this case, we will specify a quadratic relationship between counts and dates because we expect the number of fish to increase to some point in the run before it decreases. We are not interested in the individual sites in this case, but need to account for repeated observations within spawning locations.
+
+As we look through these results, we can see that we have a significant effect of degree days on spawning behavior. What's more is that our count of spawning fish appears to increase during the year to a point before it starts to decrease.
+
+\textbf{But} we've got what appear to be some major issues related to convergence at the bottom of this output! {[}dun, dun, dun{]}
+
+Before we get started, we need to standardize the covariate (\texttt{dd}) as discussed in \href{https://danstich.github.io/worst-r/15-3-glmm-count.html}{Chapter 15.3}. This helps keep things on a unit scale for model estimation, and prevents wacky estimates like negative variances (!). You can think of this as calculating z-scores for each observation of a given variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Standardize the covariate}
+\NormalTok{eyes}\OperatorTok{$}\NormalTok{sdd <-}\StringTok{ }\KeywordTok{as.vector}\NormalTok{(}\KeywordTok{scale}\NormalTok{(eyes}\OperatorTok{$}\NormalTok{dd))}
+\end{Highlighting}
+\end{Shaded}
+
+And now we can fit the model. In the \texttt{rstanarm} package, the model might look something like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Make the model}
+\NormalTok{wae_mod <-}\StringTok{ }\KeywordTok{stan_glmer}\NormalTok{(counts }\OperatorTok{~}\StringTok{ }\NormalTok{sdd }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(sdd}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{site), }
+                      \DataTypeTok{data =}\NormalTok{ eyes, }
+                      \DataTypeTok{family =} \KeywordTok{neg_binomial_2}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{predictions-20-count-preds}{%
+\subsection{Predictions \{\#20-count-preds\}}\label{predictions-20-count-preds}}
+
+Now, if we want, we can make a graph to show these predictions. Here, we make predictions for all years, and plot by site.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pred_matrix <-}\StringTok{ }\KeywordTok{posterior_predict}\NormalTok{(wae_mod)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, calculate the descriptive statistics and combine with the original data for plotting:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(pred_matrix, }\DecValTok{2}\NormalTok{, mean)}
+\NormalTok{lwr <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(pred_matrix, }\DecValTok{2}\NormalTok{, quantile, }\FloatTok{0.025}\NormalTok{)}
+\NormalTok{upr <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(pred_matrix, }\DecValTok{2}\NormalTok{, quantile, }\FloatTok{0.975}\NormalTok{)}
+
+\NormalTok{wae_preds <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(eyes, fit, lwr, upr)}
+\end{Highlighting}
+\end{Shaded}
+
+And we plot the predictions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(wae_preds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dd, }\DataTypeTok{y =}\NormalTok{ counts, }\DataTypeTok{color =}\NormalTok{ site, }\DataTypeTok{fill =}\NormalTok{ site)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ fit)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{xmin =}\NormalTok{ dd, }\DataTypeTok{ymin =}\NormalTok{ lwr, }\DataTypeTok{ymax =}\NormalTok{ upr, }\DataTypeTok{color =} \OtherTok{NULL}\NormalTok{),}
+              \DataTypeTok{alpha =} \FloatTok{0.15}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Growing degree days"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Number of spawning walleye"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}
+    \DataTypeTok{axis.title.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{-1}\NormalTok{),}
+    \DataTypeTok{axis.title.y =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{vjust =} \DecValTok{3}\NormalTok{)}
+\NormalTok{  )  }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{worstr_files/figure-latex/unnamed-chunk-531-1.pdf}
+
+We can see that these estimates are pretty similar to the predictions from the \texttt{lme4} fit in \protect\hyperlink{Chapter15}{Chapter 15}, but the upper bounds on our credible limits have come down substantially and our predictions now align better with the observed patterns.
+
+\hypertarget{next-20}{%
+\section{Next steps}\label{next-20}}
+
+This chapter completes our investigations into linear models and their extensions. Not to fear, there is a whole wide world of statistics still out there for you to explore. In the final weeks of class, we will look at what to do when we have multiple correlated response variables (multivariate statistics), what to do when we have tons of explanatory variables but no idea how to meet assumptions of linear models we've discussed so far (classification and regression trees) or when we have non-linear relationships that can be common in biology.
 
   \bibliography{book.bib,packages.bib}
 

@@ -453,25 +453,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>One of the easiest ways to assess statistical significance of a coefficient in Bayesian inference, is to simply compare one or more posteriors in a method similar to that used for t-tests and ANOVAs earlier in the book. To do this, we will extract the posterior estimates for loglength (our beta or slope coefficient) and compare the sampling distribution to some value of interest. For most linear-regression-type models we are interested in comparing the coefficient to zero. If the 95% Credible interval for our coefficient estimate includes zero then we fail to reject the null. If zero is outside the 95% CRI, then we reject the null and conclude that the relationship is statistically significant.</p>
 <p>Sounds simple enough, right? Let’s try it out!</p>
 <p>First, use the <code>as.matrix()</code> function to extract the posterior estimates for our coefficients and package them in a <code>data.frame()</code>.</p>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="16-9-summarizing-results.html#cb622-1"></a>estimates &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="kw">as.matrix</span>(cray_model) )</span></code></pre></div>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="16-9-summarizing-results.html#cb621-1"></a>estimates &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="kw">as.matrix</span>(cray_model) )</span></code></pre></div>
 <p>If you have a look you will notice that we now have a data.frame with three columns (<code>Intercept</code>, <code>loglength</code>, and <code>sigma</code>) and 4,000 rows. There is one row for each of our model iterations in this case, so we get 4,000 estimates of each parameter!</p>
 <p>Have a look:</p>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="16-9-summarizing-results.html#cb623-1"></a><span class="kw">head</span>(estimates)</span></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="16-9-summarizing-results.html#cb622-1"></a><span class="kw">head</span>(estimates)</span></code></pre></div>
 <pre><code>##   X.Intercept. loglength     sigma
-## 1    -8.499553  3.050700 0.1589275
-## 2    -8.422808  3.027481 0.1565491
-## 3    -8.531536  3.061452 0.1610556
-## 4    -8.386475  3.016306 0.1523843
-## 5    -8.535800  3.059689 0.1634034
-## 6    -8.591854  3.078638 0.1615504</code></pre>
+## 1    -8.405247  3.020850 0.1571598
+## 2    -8.494797  3.049248 0.1598961
+## 3    -8.463394  3.039873 0.1593970
+## 4    -8.506015  3.052068 0.1594148
+## 5    -8.436514  3.031535 0.1580567
+## 6    -8.436826  3.032928 0.1578346</code></pre>
 <p>This is great! Now, if we want we can calculate descriptive statistics for any of these parameters or combine them in any other way that might be meaningful. Here, we are interested in the coefficient (beta) for <code>loglength</code>, so let’s check it out.</p>
 <p>Calculate the mean:</p>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="16-9-summarizing-results.html#cb625-1"></a><span class="kw">mean</span>(estimates<span class="op">$</span>loglength)</span></code></pre></div>
-<pre><code>## [1] 3.039522</code></pre>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="16-9-summarizing-results.html#cb624-1"></a><span class="kw">mean</span>(estimates<span class="op">$</span>loglength)</span></code></pre></div>
+<pre><code>## [1] 3.039513</code></pre>
 <p>Calculate 95% CRI:</p>
-<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="16-9-summarizing-results.html#cb627-1"></a><span class="kw">quantile</span>(estimates<span class="op">$</span>loglength, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="16-9-summarizing-results.html#cb626-1"></a><span class="kw">quantile</span>(estimates<span class="op">$</span>loglength, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##     2.5%    97.5% 
-## 3.008096 3.072700</code></pre>
+## 3.006317 3.072871</code></pre>
 <p>We can see that the 95% CRI excludes zero, so we can now say that the relationship is statistically significant. Of course, this is obvious if you know anything about biology, so we could compare to any other meaningful value. For example, we use a value of 3.00 to represent “isometric growth” in biology and could apply the same approach here to that value. Since 3.00 is outside the 95% CRI, we would determine that growth is not isometric for these populations, but rather “positively allometric”. Sweet biology.</p>
 </div>
             </section>

@@ -452,21 +452,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Any time we use a convenient wrapper in R, we sacrifice a little control, but for getting exposure to Bayesian methods I think this is a worthwhile sacrifice. Truth be told, I write all of my models out by hand because I often need to use non-standard models such as non-linear growth models and I need that control. The convenience and flexibility offered through the model-fitting functions in <code>rstanarm</code> alone will keep you more than busy until you reach a deeper level of understanding needed to write your own should you aspire to do so.</p>
 <p>Let’s go ahead and estimate a Gaussian GLM using <code>logMass</code> as our response and <code>loglength</code> as our explanatory variable.</p>
 <p>For the sake of simplicity, we’ll create new columns in the <code>cray</code> data for loglength and logmass:</p>
-<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb609-1"></a>cray &lt;-<span class="st"> </span>cray <span class="op">%&gt;%</span></span>
-<span id="cb609-2"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb609-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">loglength =</span> <span class="kw">log</span>(length),</span>
-<span id="cb609-3"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb609-3"></a>         <span class="dt">logmass =</span> <span class="kw">log</span>(mass)</span>
-<span id="cb609-4"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb609-4"></a>         )</span></code></pre></div>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb608-1"></a>cray &lt;-<span class="st"> </span>cray <span class="op">%&gt;%</span></span>
+<span id="cb608-2"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb608-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">loglength =</span> <span class="kw">log</span>(length),</span>
+<span id="cb608-3"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb608-3"></a>         <span class="dt">logmass =</span> <span class="kw">log</span>(mass)</span>
+<span id="cb608-4"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb608-4"></a>         )</span></code></pre></div>
 <p>The next thing we’ll do is tell R to set up some options for Stan to make things work faster. <strong>We only need to do this once per R session.</strong></p>
-<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb610-1"></a>rstan<span class="op">::</span><span class="kw">rstan_options</span>(<span class="dt">auto_write =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb610-2"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb610-2"></a><span class="kw">options</span>(<span class="dt">mc.cores =</span> parallel<span class="op">::</span><span class="kw">detectCores</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb609-1"></a>rstan<span class="op">::</span><span class="kw">rstan_options</span>(<span class="dt">auto_write =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb609-2"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb609-2"></a><span class="kw">options</span>(<span class="dt">mc.cores =</span> parallel<span class="op">::</span><span class="kw">detectCores</span>())</span></code></pre></div>
 <p>Now, we can fit our first Bayesian model. We will do this using basically the same approach that we use in R:</p>
-<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb611-1"></a>cray_model &lt;-<span class="st"> </span><span class="kw">stan_glm</span>(logmass <span class="op">~</span><span class="st"> </span>loglength,</span>
-<span id="cb611-2"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb611-2"></a>         <span class="dt">family =</span> <span class="kw">gaussian</span>(),</span>
-<span id="cb611-3"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb611-3"></a>         <span class="dt">data =</span> cray</span>
-<span id="cb611-4"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb611-4"></a>         )</span></code></pre></div>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb610-1"></a>cray_model &lt;-<span class="st"> </span><span class="kw">stan_glm</span>(logmass <span class="op">~</span><span class="st"> </span>loglength,</span>
+<span id="cb610-2"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb610-2"></a>         <span class="dt">family =</span> <span class="kw">gaussian</span>(),</span>
+<span id="cb610-3"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb610-3"></a>         <span class="dt">data =</span> cray</span>
+<span id="cb610-4"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb610-4"></a>         )</span></code></pre></div>
 <p>This model tests the null hypothesis that the log length of crayfish has no influence on log mass (slope = 0).</p>
 <p>We can have a look at a quick <code>summary()</code> of our model in the usual way:</p>
-<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb612-1"></a><span class="kw">summary</span>(cray_model)</span></code></pre></div>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="16-6-running-a-bayesian-model-with-rstanarm.html#cb611-1"></a><span class="kw">summary</span>(cray_model)</span></code></pre></div>
 <pre><code>## 
 ## Model Info:
 ##  function:     stan_glm
@@ -492,11 +492,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## MCMC diagnostics
 ##               mcse Rhat n_eff
-## (Intercept)   0.0  1.0  4360 
-## loglength     0.0  1.0  4320 
-## sigma         0.0  1.0  2149 
-## mean_PPD      0.0  1.0  3434 
-## log-posterior 0.0  1.0  1730 
+## (Intercept)   0.0  1.0  4103 
+## loglength     0.0  1.0  4117 
+## sigma         0.0  1.0  2241 
+## mean_PPD      0.0  1.0  2719 
+## log-posterior 0.0  1.0  1630 
 ## 
 ## For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure of effective sample size, and Rhat is the potential scale reduction factor on split chains (at convergence Rhat=1).</code></pre>
 <p>If you look closely at the output above, you should be able to recognize that just as with the <code>glm()</code> function we get a brief summary of our coefficients in the <code>Estimates</code> portion of the output.</p>

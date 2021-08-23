@@ -459,12 +459,6 @@ pulses of individual crickets. Our null hypotheses are that there is no differen
 <span id="cb328-2"><a href="8-4-analysis.html#cb328-2"></a><span class="kw">library</span>(car)</span></code></pre></div>
 <p>Now we create the ANVOA table for our ANCOVA model</p>
 <div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="8-4-analysis.html#cb329-1"></a>car<span class="op">::</span><span class="kw">Anova</span>(cricket_mod, <span class="dt">type=</span><span class="st">&#39;III&#39;</span>)</span></code></pre></div>
-<pre><code>## Registered S3 methods overwritten by &#39;car&#39;:
-##   method                          from
-##   influence.merMod                lme4
-##   cooks.distance.influence.merMod lme4
-##   dfbeta.influence.merMod         lme4
-##   dfbetas.influence.merMod        lme4</code></pre>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: Pulse
@@ -476,7 +470,7 @@ pulses of individual crickets. Our null hypotheses are that there is no differen
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>And we can look at the summary:</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="8-4-analysis.html#cb332-1"></a><span class="kw">summary</span>(cricket_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="8-4-analysis.html#cb331-1"></a><span class="kw">summary</span>(cricket_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Pulse ~ Species + Temp, data = crickets)
