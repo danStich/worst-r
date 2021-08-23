@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.10.17)  2 NOV 2020 14:14
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.10.17)  17 MAY 2021 11:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -512,7 +512,7 @@ LaTeX Info: Redefining \cite on input line 694.
 LaTeX Warning: Label `normality' multiply defined.
 
 
-LaTeX Warning: Label `data-explanation' multiply defined.
+LaTeX Warning: Label `making-predictions' multiply defined.
 
 )
 \openout1 = `worstr.aux'.
@@ -883,28 +883,28 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 6.99925pt on input line 5.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 4.99947pt on input line 5.
-[3] [4] [5])
+[3] [4] [5] [6])
 \tf@toc=\write5
 \openout5 = `worstr.toc'.
 
-[6] [7
+[7] [8
 
-] [8
+] [9] [10
 
-] [9] [10] [11
+] [11] [12] [13
 
-] [12
+] [14
 
 ]
 Chapter 1.
-[13] [14] [15]
+[15] [16] [17]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 227.
-[16] [17] [18] [19] [20
+[18] [19] [20] [21] [22
 
 ]
 Chapter 2.
-[21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34]
+[23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36]
 Overfull \hbox (1.5pt too wide) in paragraph at lines 1230--1230
 []\TU/lmtt/m/n/10 ##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.
 1 ...[] 
@@ -933,13 +933,13 @@ File: worstr_files/figure-latex/unnamed-chunk-54-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 1163) has occurred while \output is active []
 
-[35]
+[37]
 File: worstr_files/figure-latex/unnamed-chunk-54-2.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-54-2.pdf>
-[36]
+[38]
 File: worstr_files/figure-latex/unnamed-chunk-54-3.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-54-3.pdf>
-[37]
+[39]
 Overfull \hbox (85.5pt too wide) in paragraph at lines 1340--1340
 []\TU/lmtt/m/n/10 ##  [1]  0.5  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.
 5  6.0  6.5  7.0  7.5[] 
@@ -951,11 +951,11 @@ Overfull \hbox (90.75pt too wide) in paragraph at lines 1340--1340
 b" "c" "d" "a" "b" "c"[] 
  []
 
-[38] [39] [40
+[40] [41] [42
 
 ]
 Chapter 3.
-[41] [42]
+[43] [44]
 Overfull \hbox (38.25pt too wide) in paragraph at lines 1454--1454
 []\TU/lmtt/m/n/10 ##  $ Sex           : Factor w/ 2 levels "B","R": 1 1 1 1 1 1
  1 1 1 1 ...[] 
@@ -992,7 +992,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1466--1468
 
  []
 
-[43]
+[45]
 Overfull \hbox (43.5pt too wide) in paragraph at lines 1503--1503
 []\TU/lmtt/m/n/10 ##  Sex           Age            Length      yearCollected  b
 ackCalculated[] 
@@ -1016,13 +1016,13 @@ Overfull \hbox (27.75pt too wide) in paragraph at lines 1503--1503
 RUE :13900[] 
  []
 
-[44] [45] [46] [47] [48] [49]
+[46] [47] [48] [49] [50] [51]
 File: worstr_files/figure-latex/unnamed-chunk-77-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-77-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[50] [51]
+[52] [53]
 File: worstr_files/figure-latex/unnamed-chunk-79-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-79-1.pdf>
 
@@ -1030,10 +1030,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 1821--1823
 [][]
  []
 
-[52]
+[54]
 File: worstr_files/figure-latex/unnamed-chunk-81-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-81-1.pdf>
-[53]
+[55]
 File: worstr_files/figure-latex/unnamed-chunk-83-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-83-1.pdf>
 
@@ -1041,23 +1041,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 1877--1879
 [][]
  []
 
-[54]
+[56]
 Chapter 4.
-[55
+[57
 
-] [56]
+] [58]
 File: worstr_files/figure-latex/unnamed-chunk-86-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-86-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[57]
+[59]
 File: worstr_files/figure-latex/unnamed-chunk-87-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-87-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[58] [59]
+[60] [61]
 File: worstr_files/figure-latex/unnamed-chunk-88-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-88-1.pdf>
 File: worstr_files/figure-latex/unnamed-chunk-91-1.pdf Graphic file (type pdf)
@@ -1065,37 +1065,37 @@ File: worstr_files/figure-latex/unnamed-chunk-91-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 7397) has occurred while \output is active []
 
-[60]
+[62]
 File: worstr_files/figure-latex/unnamed-chunk-92-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-92-1.pdf>
 
 Underfull \vbox (badness 1102) has occurred while \output is active []
 
-[61]
+[63]
 File: worstr_files/figure-latex/unnamed-chunk-93-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-93-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[62]
+[64]
 File: worstr_files/figure-latex/unnamed-chunk-94-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-94-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[63]
+[65]
 File: worstr_files/figure-latex/unnamed-chunk-95-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-95-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[64]
+[66]
 File: worstr_files/figure-latex/unnamed-chunk-96-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-96-1.pdf>
 
 Underfull \vbox (badness 4569) has occurred while \output is active []
 
-[65] [66]
+[67] [68]
 File: worstr_files/figure-latex/unnamed-chunk-97-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-97-1.pdf>
 File: worstr_files/figure-latex/unnamed-chunk-98-1.pdf Graphic file (type pdf)
@@ -1103,10 +1103,10 @@ File: worstr_files/figure-latex/unnamed-chunk-98-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[67]
+[69]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <14.4> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 2179.
-[68]
+[70]
 File: worstr_files/figure-latex/unnamed-chunk-99-1.pdf Graphic file (type pdf)
 <use worstr_files/figure-latex/unnamed-chunk-99-1.pdf>
 File: worstr_files/figure-latex/unnamed-chunk-100-1.pdf Graphic file (type pdf)
@@ -1115,32 +1115,32 @@ File: worstr_files/figure-latex/unnamed-chunk-100-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 3019) has occurred while \output is active []
 
-[69]
+[71]
 File: worstr_files/figure-latex/unnamed-chunk-101-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-101-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[70]
+[72]
 File: worstr_files/figure-latex/unnamed-chunk-102-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-102-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[71]
+[73]
 File: worstr_files/figure-latex/unnamed-chunk-104-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-104-1.pdf>
-[72]
+[74]
 File: worstr_files/figure-latex/unnamed-chunk-105-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-105-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[73]
+[75]
 File: worstr_files/figure-latex/unnamed-chunk-107-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-107-1.pdf>
@@ -1149,79 +1149,79 @@ Underfull \hbox (badness 10000) in paragraph at lines 2342--2344
 [][]
  []
 
-[74]
+[76]
 File: worstr_files/figure-latex/unnamed-chunk-108-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-108-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[75]
+[77]
 File: worstr_files/figure-latex/unnamed-chunk-110-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-110-1.pdf>
-[76]
+[78]
 File: worstr_files/figure-latex/unnamed-chunk-111-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-111-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[77]
+[79]
 File: worstr_files/figure-latex/unnamed-chunk-112-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-112-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[78]
+[80]
 File: worstr_files/figure-latex/unnamed-chunk-113-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-113-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[79]
+[81]
 File: worstr_files/figure-latex/unnamed-chunk-114-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-114-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[80] [81] [82
+[82] [83] [84
 
 ]
 Chapter 5.
 
 Underfull \vbox (badness 1342) has occurred while \output is active []
 
-[83] [84] [85]
+[85] [86] [87]
 File: worstr_files/figure-latex/unnamed-chunk-117-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-117-1.pdf>
-[86]
+[88]
 File: worstr_files/figure-latex/unnamed-chunk-118-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-118-1.pdf>
-[87] [88]
+[89] [90]
 File: worstr_files/figure-latex/unnamed-chunk-121-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-121-1.pdf>
-[89]
+[91]
 File: worstr_files/figure-latex/unnamed-chunk-123-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-123-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[90] [91]
+[92] [93]
 File: worstr_files/figure-latex/unnamed-chunk-125-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-125-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[92] [93] [94] [95]
+[94] [95] [96] [97]
 Overfull \hbox (38.25pt too wide) in paragraph at lines 2914--2914
 []\TU/lmtt/m/n/10 ##  [1] 0.03846154 0.03846154 0.03846154 0.03846154 0.0384615
 4 0.03846154[] 
@@ -1245,57 +1245,57 @@ Overfull \hbox (38.25pt too wide) in paragraph at lines 2914--2914
 4 0.03846154[] 
  []
 
-[96] [97] [98] [99]
+[98] [99] [100] [101]
 File: worstr_files/figure-latex/unnamed-chunk-138-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-138-1.pdf>
-[100]
+[102]
 File: worstr_files/figure-latex/unnamed-chunk-139-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-139-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[101]
+[103]
 File: worstr_files/figure-latex/unnamed-chunk-140-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-140-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[102]
+[104]
 File: worstr_files/figure-latex/unnamed-chunk-141-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-141-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[103]
+[105]
 File: worstr_files/figure-latex/unnamed-chunk-142-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-142-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[104]
+[106]
 File: worstr_files/figure-latex/unnamed-chunk-143-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-143-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[105]
+[107]
 File: worstr_files/figure-latex/unnamed-chunk-144-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-144-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[106] [107] [108] [109] [110] [111] [112] [113] [114
+[108] [109] [110] [111] [112] [113] [114] [115] [116
 
 ]
 Chapter 6.
-[115] [116] [117]
+[117] [118] [119]
 Overfull \hbox (43.5pt too wide) in paragraph at lines 3719--3719
 []\TU/lmtt/m/n/10 ##  [1] "statistic"   "parameter"   "p.value"     "conf.int" 
    "estimate"[] 
@@ -1307,7 +1307,7 @@ Overfull \hbox (48.75pt too wide) in paragraph at lines 3719--3719
    "data.name"[] 
  []
 
-[118] [119]
+[120] [121]
 File: worstr_files/figure-latex/unnamed-chunk-163-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-163-1.pdf>
@@ -1316,7 +1316,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3809--3811
 [][]
  []
 
-[120] [121] [122] [123] [124]
+[122] [123] [124] [125] [126]
 Overfull \hbox (17.25pt too wide) in paragraph at lines 3967--3967
 []\TU/lmtt/m/n/10 ## alternative hypothesis: true difference in means is not eq
 ual to 0[] 
@@ -1328,18 +1328,18 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 4000--4000
 al to 1[] 
  []
 
-[125] [126]
+[127] [128]
 File: worstr_files/figure-latex/unnamed-chunk-175-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-175-1.pdf>
-[127]
+[129]
 File: worstr_files/figure-latex/unnamed-chunk-176-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-176-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[128] [129]
+[130] [131]
 Overfull \hbox (75.0pt too wide) in paragraph at lines 4163--4163
 []\TU/lmtt/m/n/10 ##   Year Length Weight_kg Age cohort n_stocked     n acre   
 ha nha     kg kg_ha[] 
@@ -1381,13 +1381,13 @@ Overfull \hbox (75.0pt too wide) in paragraph at lines 4163--4163
 03  21 129929   108[] 
  []
 
-[130]
+[132]
 File: worstr_files/figure-latex/unnamed-chunk-180-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-180-1.pdf>
-[131] [132]
+[133] [134]
 Chapter 7.
-[133
+[135
 
 ]
 Overfull \hbox (27.75pt too wide) in paragraph at lines 4257--4257
@@ -1401,18 +1401,18 @@ Overfull \hbox (43.5pt too wide) in paragraph at lines 4257--4257
 1 1 1 1 1 ...[] 
  []
 
-[134] [135] [136] [137] [138] [139]
+[136] [137] [138] [139] [140] [141]
 File: worstr_files/figure-latex/unnamed-chunk-194-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-194-1.pdf>
-[140] [141] [142]
+[142] [143] [144]
 File: worstr_files/figure-latex/unnamed-chunk-197-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-197-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[143] [144]
+[145] [146]
 Overfull \hbox (6.75pt too wide) in paragraph at lines 4668--4668
 []\TU/lmtt/m/n/10 ##                             Estimate Std. Error t value Pr
 (>|t|)[] 
@@ -1454,11 +1454,11 @@ Overfull \hbox (6.75pt too wide) in paragraph at lines 4668--4668
 0.3740[] 
  []
 
-[145] [146] [147]
+[147] [148] [149]
 File: worstr_files/figure-latex/unnamed-chunk-203-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-203-1.pdf>
-[148] [149]
+[150] [151]
 Overfull \hbox (6.75pt too wide) in paragraph at lines 4890--4890
 []\TU/lmtt/m/n/10 ## lm(formula = Fertility ~ Agriculture + Examination + Educa
 tion +[] 
@@ -1467,36 +1467,36 @@ tion +[]
 
 Underfull \vbox (badness 2443) has occurred while \output is active []
 
-[150] [151] [152
+[152] [153] [154
 
 ]
 Chapter 8.
 File: worstr_files/figure-latex/unnamed-chunk-206-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-206-1.pdf>
-[153] [154] [155] [156]
+[155] [156] [157] [158]
 File: worstr_files/figure-latex/unnamed-chunk-214-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-214-1.pdf>
-[157] [158
+[159] [160
 
 ]
 Chapter 9.
-[159] [160] [161]
+[161] [162] [163]
 File: worstr_files/figure-latex/unnamed-chunk-218-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-218-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[162]
+[164]
 File: worstr_files/figure-latex/unnamed-chunk-219-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-219-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[163] [164]
+[165] [166]
 File: worstr_files/figure-latex/unnamed-chunk-222-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-222-1.pdf>
@@ -1506,71 +1506,71 @@ File: worstr_files/figure-latex/unnamed-chunk-223-1.pdf Graphic file (type pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[165]
+[167]
 File: worstr_files/figure-latex/unnamed-chunk-224-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-224-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[166]
+[168]
 File: worstr_files/figure-latex/unnamed-chunk-225-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-225-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[167] [168] [169]
+[169] [170] [171]
 File: worstr_files/figure-latex/unnamed-chunk-228-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-228-1.pdf>
 
 Underfull \vbox (badness 4927) has occurred while \output is active []
 
-[170] [171]
+[172] [173]
 File: worstr_files/figure-latex/unnamed-chunk-229-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-229-1.pdf>
-[172]
+[174]
 File: worstr_files/figure-latex/unnamed-chunk-230-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-230-1.pdf>
-[173]
+[175]
 File: worstr_files/figure-latex/unnamed-chunk-231-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-231-1.pdf>
-[174] [175]
+[176] [177]
 File: worstr_files/figure-latex/unnamed-chunk-236-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-236-1.pdf>
-[176]
+[178]
 File: worstr_files/figure-latex/unnamed-chunk-237-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-237-1.pdf>
-[177]
+[179]
 File: worstr_files/figure-latex/unnamed-chunk-238-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-238-1.pdf>
-[178]
+[180]
 File: worstr_files/figure-latex/unnamed-chunk-240-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-240-1.pdf>
-[179]
+[181]
 File: worstr_files/figure-latex/unnamed-chunk-241-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-241-1.pdf>
-[180]
+[182]
 File: worstr_files/figure-latex/unnamed-chunk-242-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-242-1.pdf>
-[181] [182]
+[183] [184]
 Chapter 10.
 File: worstr_files/figure-latex/unnamed-chunk-244-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-244-1.pdf>
-[183
+[185
 
-] [184] [185]
+] [186] [187]
 Underfull \hbox (badness 1960) in paragraph at lines 5792--5793
 []\TU/lmr/m/n/10 For our plant model, we wrote \TU/lmtt/m/n/10 weight ~ group \
 TU/lmr/m/n/10 in our call to \TU/lmtt/m/n/10 lm()
@@ -1588,52 +1588,52 @@ Overfull \hbox (6.75pt too wide) in paragraph at lines 5792--5793
 /10 + grouptrt1*model.matix$grouptrt1
  []
 
-[186] [187]
+[188] [189]
 Overfull \hbox (17.25pt too wide) in paragraph at lines 5864--5864
 []\TU/lmtt/m/n/10 ##  [5] "fitted.values" "assign"        "qr"            "df.r
 esidual"[] 
  []
 
-[188] [189]
+[190] [191]
 File: worstr_files/figure-latex/unnamed-chunk-258-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-258-1.pdf>
 
 Underfull \vbox (badness 4872) has occurred while \output is active []
 
-[190]
+[192]
 File: worstr_files/figure-latex/unnamed-chunk-259-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-259-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[191]
+[193]
 File: worstr_files/figure-latex/unnamed-chunk-260-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-260-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[192]
+[194]
 File: worstr_files/figure-latex/unnamed-chunk-261-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-261-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[193]
+[195]
 File: worstr_files/figure-latex/unnamed-chunk-262-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-262-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[194] [195] [196] [197]
+[196] [197] [198] [199]
 File: worstr_files/figure-latex/unnamed-chunk-270-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-270-1.pdf>
-[198]
+[200]
 Overfull \hbox (80.25pt too wide) in paragraph at lines 6273--6273
 []\TU/lmtt/m/n/10 ##   (Intercept) lightsLED resinB resinC resinD lightsLED:res
 inB lightsLED:resinC[] 
@@ -1675,11 +1675,11 @@ Overfull \hbox (80.25pt too wide) in paragraph at lines 6273--6273
   0                0[] 
  []
 
-[199]
+[201]
 File: worstr_files/figure-latex/unnamed-chunk-274-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-274-1.pdf>
-[200] [201] [202]
+[202] [203] [204]
 Overfull \hbox (12.0pt too wide) in paragraph at lines 6467--6467
 []\TU/lmtt/m/n/10 ##              Fertility Agriculture Examination Education C
 atholic[] 
@@ -1721,22 +1721,22 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 6467--6467
   90.57[] 
  []
 
-[203] [204]
+[205] [206]
 File: worstr_files/figure-latex/unnamed-chunk-286-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-286-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[205] [206] [207] [208]
+[207] [208] [209] [210]
 File: worstr_files/figure-latex/unnamed-chunk-293-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-293-1.pdf>
-[209] [210
+[211] [212
 
 ]
 Chapter 11.
-[211] [212] [213] [214]
+[213] [214] [215] [216]
 Overfull \hbox (12.0pt too wide) in paragraph at lines 6821--6821
 []\TU/lmtt/m/n/10 ## Fertility ~ Education + Catholic + Infant.Mortality + Agri
 culture[] 
@@ -1760,15 +1760,15 @@ Overfull \hbox (38.25pt too wide) in paragraph at lines 6834--6834
       1.0784[] 
  []
 
-[215] [216] [217]
+[217] [218] [219]
 File: worstr_files/figure-latex/unnamed-chunk-301-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-301-1.pdf>
-[218]
+[220]
 File: worstr_files/figure-latex/unnamed-chunk-302-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-302-1.pdf>
-[219]
+[221]
 Overfull \hbox (22.5pt too wide) in paragraph at lines 7010--7010
 []\TU/lmtt/m/n/10 ##  [1] "call"          "terms"         "residuals"     "coef
 ficients"[] 
@@ -1780,15 +1780,15 @@ Overfull \hbox (6.75pt too wide) in paragraph at lines 7010--7010
 uared"[] 
  []
 
-[220] [221] [222] [223] [224] [225] [226] [227]
+[222] [223] [224] [225] [226] [227] [228] [229]
 File: worstr_files/figure-latex/unnamed-chunk-314-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-314-1.pdf>
-[228]
+[230]
 File: worstr_files/figure-latex/unnamed-chunk-315-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-315-1.pdf>
-[229] [230]
+[231] [232]
 Chapter 12.
 
 Underfull \hbox (badness 1067) in paragraph at lines 7376--7377
@@ -1796,11 +1796,11 @@ Underfull \hbox (badness 1067) in paragraph at lines 7376--7377
 se \TU/lmr/m/n/10 and we’ll use the
  []
 
-[231
+[233
 
-] [232] [233] [234] [235]
+] [234] [235] [236] [237] [238]
 Missing character: There is no 𝜇 in font [lmroman10-regular]:mapping=tex-text;!
-[236] [237] [238]
+[239] [240]
 Overfull \hbox (54.0pt too wide) in paragraph at lines 7681--7681
 []\TU/lmtt/m/n/10 ##                                 K   AICc Delta_AICc AICcWt
  Cum.Wt      LL[] 
@@ -1854,7 +1854,7 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 7700--7700
 4 2 5 7[] 
  []
 
-[239]
+[241]
 Overfull \hbox (59.25pt too wide) in paragraph at lines 7735--7735
 []\TU/lmtt/m/n/10 ## Call:  glm(formula = path ~ year + flow, family = binomial
 , data = choice)[] 
@@ -1878,25 +1878,25 @@ Overfull \hbox (22.5pt too wide) in paragraph at lines 7773--7773
 = choice)[] 
  []
 
-[240]
+[242]
 Overfull \hbox (22.5pt too wide) in paragraph at lines 7811--7811
 []\TU/lmtt/m/n/10 ## glm(formula = path ~ year + flow, family = binomial, data 
 = choice)[] 
  []
 
-[241]
+[243]
 Overfull \hbox (22.5pt too wide) in paragraph at lines 7854--7854
 []\TU/lmtt/m/n/10 ## glm(formula = path ~ year + flow, family = binomial, data 
 = choice)[] 
  []
 
-[242] [243] [244]
+[244] [245] [246]
 File: worstr_files/figure-latex/unnamed-chunk-344-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-344-1.pdf>
-[245] [246]
+[247] [248]
 Chapter 13.
-[247
+[249
 
 ]
 Overfull \hbox (12.0pt too wide) in paragraph at lines 8038--8038
@@ -1910,32 +1910,32 @@ Overfull \hbox (1.5pt too wide) in paragraph at lines 8038--8038
 5 ...[] 
  []
 
-[248]
+[250]
 File: worstr_files/figure-latex/unnamed-chunk-349-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-349-1.pdf>
-[249]
+[251]
 File: worstr_files/figure-latex/unnamed-chunk-350-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-350-1.pdf>
-[250] [251]
+[252] [253]
 File: worstr_files/figure-latex/unnamed-chunk-354-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-354-1.pdf>
 File: worstr_files/figure-latex/unnamed-chunk-355-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-355-1.pdf>
-[252] [253]
+[254] [255]
 File: worstr_files/figure-latex/unnamed-chunk-357-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-357-1.pdf>
-[254] [255]
+[256] [257]
 Overfull \hbox (6.75pt too wide) in paragraph at lines 8287--8287
 []\TU/lmtt/m/n/10 ## glm(formula = present ~ mass, family = "binomial", data = 
 crabs)[] 
  []
 
-[256]
+[258]
 Overfull \hbox (43.5pt too wide) in paragraph at lines 8333--8333
 []\TU/lmtt/m/n/10 ## glm(formula = satellites ~ mass, family = negative.binomia
 l(theta = 1),[] 
@@ -1950,22 +1950,22 @@ n to be 0.3128844)[]
 File: worstr_files/figure-latex/unnamed-chunk-362-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-362-1.pdf>
-[257] [258]
+[259] [260]
 File: worstr_files/figure-latex/unnamed-chunk-364-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-364-1.pdf>
-[259]
+[261]
 File: worstr_files/figure-latex/unnamed-chunk-366-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-366-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[260] [261] [262
+[262] [263] [264
 
 ]
 Chapter 14.
-[263] [264] [265] [266]
+[265] [266] [267] [268]
 Overfull \hbox (38.25pt too wide) in paragraph at lines 8568--8568
 []\TU/lmtt/m/n/10 ##  $ date     : chr  "6/28/2018" "6/28/2018" "6/28/2018" "6/
 28/2018" ...[] 
@@ -2031,58 +2031,58 @@ Overfull \hbox (69.75pt too wide) in paragraph at lines 8585--8585
  3.419365 1.790091[] 
  []
 
-[267]
+[269]
 File: worstr_files/figure-latex/unnamed-chunk-371-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-371-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[268] [269]
+[270] [271]
 File: worstr_files/figure-latex/unnamed-chunk-373-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-373-1.pdf>
-[270]
+[272]
 File: worstr_files/figure-latex/unnamed-chunk-375-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-375-1.pdf>
-[271]
+[273]
 File: worstr_files/figure-latex/unnamed-chunk-378-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-378-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[272] [273]
+[274] [275]
 File: worstr_files/figure-latex/unnamed-chunk-381-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-381-1.pdf>
 
 Underfull \vbox (badness 3623) has occurred while \output is active []
 
-[274]
+[276]
 File: worstr_files/figure-latex/unnamed-chunk-382-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-382-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[275] [276]
+[277] [278]
 File: worstr_files/figure-latex/unnamed-chunk-384-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-384-1.pdf>
-[277] [278]
+[279] [280]
 Chapter 15.
-[279
+[281
 
-] [280] [281] [282]
+] [282] [283] [284]
 File: worstr_files/figure-latex/unnamed-chunk-394-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-394-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[283]
+[285]
 Overfull \hbox (59.25pt too wide) in paragraph at lines 9063--9063
 []\TU/lmtt/m/n/10 ##  $ date     : chr  "2009-04-01" "2009-04-01" "2009-04-01" 
 "2009-04-05" ...[] 
@@ -2094,13 +2094,13 @@ Overfull \hbox (111.75pt too wide) in paragraph at lines 9063--9063
 Brook" "Cripple Creek" ...[] 
  []
 
-[284]
+[286]
 Overfull \hbox (48.75pt too wide) in paragraph at lines 9063--9063
 []\TU/lmtt/m/n/10 ##  $ year     : int  2009 2009 2009 2009 2009 2009 2009 2009
  2009 2009 ...[] 
  []
 
-[285]
+[287]
 Overfull \hbox (12.0pt too wide) in paragraph at lines 9127--9127
 []\TU/lmtt/m/n/10 ## Generalized linear mixed model fit by maximum likelihood (
 Laplace[] 
@@ -2121,35 +2121,376 @@ ive eigenvalues[]
 
 Underfull \vbox (badness 1248) has occurred while \output is active []
 
-[286]
+[288]
 Overfull \hbox (12.0pt too wide) in paragraph at lines 9181--9181
 []\TU/lmtt/m/n/10 ## Generalized linear mixed model fit by maximum likelihood (
 Laplace[] 
  []
 
-[287]
+[289]
 File: worstr_files/figure-latex/unnamed-chunk-400-1.pdf Graphic file (type pdf)
 
 <use worstr_files/figure-latex/unnamed-chunk-400-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[288]
+[290] [291] [292
+
+]
+Chapter 16.
+[293] [294]
+Overfull \hbox (22.42337pt too wide) in paragraph at lines 9262--9263
+[]\TU/lmr/bx/n/10 Step 3\TU/lmr/m/n/10 : Install the \TU/lmtt/m/n/10 rstanarm \
+TU/lmr/m/n/10 package by running: \TU/lmtt/m/n/10 install.packages("rstanarm")\
+TU/lmr/m/n/10 . 
+ []
+
+[295] [296]
+File: worstr_files/figure-latex/unnamed-chunk-404-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-404-1.pdf>
+
+Underfull \vbox (badness 3078) has occurred while \output is active []
+
+[297] [298]
+File: worstr_files/figure-latex/unnamed-chunk-409-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-409-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[299] [300]
+File: worstr_files/figure-latex/unnamed-chunk-414-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-414-1.pdf>
+[301] [302] [303]
+File: worstr_files/figure-latex/unnamed-chunk-417-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-417-1.pdf>
+[304] [305] [306]
+Overfull \hbox (379.5pt too wide) in paragraph at lines 9685--9685
+[]\TU/lmtt/m/n/10 ## The mean_ppd is the sample average posterior predictive di
+stribution of the outcome variable (for details see help('summary.stanreg')).[]
+ 
+ []
+
+
+Overfull \hbox (699.75pt too wide) in paragraph at lines 9685--9685
+[]\TU/lmtt/m/n/10 ## For each parameter, mcse is Monte Carlo standard error, n_
+eff is a crude measure of effective sample size, and Rhat is the potential scal
+e reduction factor on split chains (at convergence Rhat=1).[] 
+ []
+
+[307] [308]
+File: worstr_files/figure-latex/unnamed-chunk-423-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-423-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[309]
+File: worstr_files/figure-latex/unnamed-chunk-424-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-424-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[310]
+File: worstr_files/figure-latex/unnamed-chunk-425-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-425-1.pdf>
+
+Underfull \vbox (badness 8170) has occurred while \output is active []
+
+[311] [312] [313] [314]
+File: worstr_files/figure-latex/unnamed-chunk-438-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-438-1.pdf>
+[315] [316]
+Chapter 17.
+[317
+
+]
+Missing character: There is no 𝜇 in font [lmroman10-regular]:mapping=tex-text;!
+[318] [319] [320]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 10144--10144
+[]\TU/lmtt/m/n/10 ##  'compare.loo' num [1:7, 1:8] 0 -0.0444 -0.2276 -0.872 -2.
+3143 ...[] 
+ []
+
+
+Overfull \hbox (285.0pt too wide) in paragraph at lines 10144--10144
+[]\TU/lmtt/m/n/10 ##   ..$ : chr [1:7] "year + flow" "year + hatchery + flow" "
+year + length + flow" "year + hatchery + length + flow" ...[] 
+ []
+
+
+Overfull \hbox (27.75pt too wide) in paragraph at lines 10144--10144
+[]\TU/lmtt/m/n/10 ##   ..$ : chr [1:8] "elpd_diff" "se_diff" "elpd_loo" "se_elp
+d_loo" ...[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 10159--10159
+[]\TU/lmtt/m/n/10 ## [3] "year + length + flow"            "year + hatchery + l
+ength + flow"[] 
+ []
+
+[321]
+Overfull \hbox (379.5pt too wide) in paragraph at lines 10210--10210
+[]\TU/lmtt/m/n/10 ## The mean_ppd is the sample average posterior predictive di
+stribution of the outcome variable (for details see help('summary.stanreg')).[]
+ 
+ []
+
+
+Overfull \hbox (699.75pt too wide) in paragraph at lines 10210--10210
+[]\TU/lmtt/m/n/10 ## For each parameter, mcse is Monte Carlo standard error, n_
+eff is a crude measure of effective sample size, and Rhat is the potential scal
+e reduction factor on split chains (at convergence Rhat=1).[] 
+ []
+
+[322] [323]
+File: worstr_files/figure-latex/unnamed-chunk-459-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-459-1.pdf>
+File: worstr_files/figure-latex/unnamed-chunk-460-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-460-1.pdf>
+
+Underfull \vbox (badness 6428) has occurred while \output is active []
+
+[324]
+Overfull \vbox (0.64693pt too high) detected at line 10317
+ []
+
+[325]
+File: worstr_files/figure-latex/unnamed-chunk-464-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-464-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[326] [327]
+File: worstr_files/figure-latex/unnamed-chunk-467-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-467-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[328] [329] [330
+
+]
+Chapter 18.
+[331] [332]
+File: worstr_files/figure-latex/unnamed-chunk-473-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-473-1.pdf>
+[333]
+File: worstr_files/figure-latex/unnamed-chunk-474-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-474-1.pdf>
+[334]
+File: worstr_files/figure-latex/unnamed-chunk-477-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-477-1.pdf>
+
+Underfull \vbox (badness 1189) has occurred while \output is active []
+
+[335]
+File: worstr_files/figure-latex/unnamed-chunk-478-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-478-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[336] [337]
+File: worstr_files/figure-latex/unnamed-chunk-481-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-481-1.pdf>
+[338] [339]
+File: worstr_files/figure-latex/unnamed-chunk-487-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-487-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[340] [341]
+File: worstr_files/figure-latex/unnamed-chunk-490-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-490-1.pdf>
+[342]
+File: worstr_files/figure-latex/unnamed-chunk-492-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-492-1.pdf>
+[343] [344]
+File: worstr_files/figure-latex/unnamed-chunk-494-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-494-1.pdf>
+[345] [346]
+Chapter 19.
+
+Underfull \vbox (badness 1275) has occurred while \output is active []
+
+[347
+
+]
+Overfull \hbox (38.25pt too wide) in paragraph at lines 10942--10942
+[]\TU/lmtt/m/n/10 ##  $ date     : chr  "6/28/2018" "6/28/2018" "6/28/2018" "6/
+28/2018" ...[] 
+ []
+
+
+Overfull \hbox (206.25pt too wide) in paragraph at lines 10942--10942
+[]\TU/lmtt/m/n/10 ##  $ waterbody: chr  "Susquehanna River" "Susquehanna River"
+ "Susquehanna River" "Susquehanna River" ...[] 
+ []
+
+
+Overfull \hbox (164.25pt too wide) in paragraph at lines 10942--10942
+[]\TU/lmtt/m/n/10 ##  $ site     : chr  "Cooperstown Dam" "Cooperstown Dam" "Co
+operstown Dam" "Cooperstown Dam" ...[] 
+ []
+
+
+Overfull \hbox (48.75pt too wide) in paragraph at lines 10942--10942
+[]\TU/lmtt/m/n/10 ##  $ mass     : num  7.18 6.85 6.75 6.46 6.14 5.99 5.58 4.95
+ 4.85 4.81 ...[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 10959--10959
+[]\TU/lmtt/m/n/10 ##        date         waterbody            site length mass 
+loglength  logmass[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 10959--10959
+[]\TU/lmtt/m/n/10 ## 1 6/28/2018 Susquehanna River Cooperstown Dam  30.88 7.18 
+ 3.430109 1.971299[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 10959--10959
+[]\TU/lmtt/m/n/10 ## 2 6/28/2018 Susquehanna River Cooperstown Dam  31.18 6.85 
+ 3.439777 1.924249[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 10959--10959
+[]\TU/lmtt/m/n/10 ## 3 6/28/2018 Susquehanna River Cooperstown Dam  31.15 6.75 
+ 3.438814 1.909543[] 
+ []
+
+[348]
+Overfull \hbox (69.75pt too wide) in paragraph at lines 10959--10959
+[]\TU/lmtt/m/n/10 ## 4 6/28/2018 Susquehanna River Cooperstown Dam  29.28 6.46 
+ 3.376905 1.865629[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 10959--10959
+[]\TU/lmtt/m/n/10 ## 5 6/28/2018 Susquehanna River Cooperstown Dam  28.31 6.14 
+ 3.343215 1.814825[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 10959--10959
+[]\TU/lmtt/m/n/10 ## 6 6/28/2018 Susquehanna River Cooperstown Dam  30.55 5.99 
+ 3.419365 1.790091[] 
+ []
+
+File: worstr_files/figure-latex/unnamed-chunk-499-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-499-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[349] [350]
+File: worstr_files/figure-latex/unnamed-chunk-501-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-501-1.pdf>
+[351]
+File: worstr_files/figure-latex/unnamed-chunk-503-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-503-1.pdf>
+[352]
+File: worstr_files/figure-latex/unnamed-chunk-506-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-506-1.pdf>
+
+Underfull \vbox (badness 4013) has occurred while \output is active []
+
+[353] [354]
+File: worstr_files/figure-latex/unnamed-chunk-512-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-512-1.pdf>
+[355]
+File: worstr_files/figure-latex/unnamed-chunk-514-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-514-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[356]
+File: worstr_files/figure-latex/unnamed-chunk-515-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-515-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[357] [358]
+Chapter 20.
+[359
+
+] [360] [361]
+File: worstr_files/figure-latex/unnamed-chunk-523-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-523-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[362]
+Overfull \hbox (59.25pt too wide) in paragraph at lines 11395--11395
+[]\TU/lmtt/m/n/10 ##  $ date     : chr  "2009-04-01" "2009-04-01" "2009-04-01" 
+"2009-04-05" ...[] 
+ []
+
+
+Overfull \hbox (111.75pt too wide) in paragraph at lines 11395--11395
+[]\TU/lmtt/m/n/10 ##  $ site     : chr  "Cripple Creek" "Hayden Creek" "Shadow 
+Brook" "Cripple Creek" ...[] 
+ []
+
+
+Overfull \hbox (48.75pt too wide) in paragraph at lines 11395--11395
+[]\TU/lmtt/m/n/10 ##  $ year     : int  2009 2009 2009 2009 2009 2009 2009 2009
+ 2009 2009 ...[] 
+ []
+
+[363] [364]
+File: worstr_files/figure-latex/unnamed-chunk-531-1.pdf Graphic file (type pdf)
+
+<use worstr_files/figure-latex/unnamed-chunk-531-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[365]
 No file worstr.bbl.
-[289] (./worstr.aux)
+[366] (./worstr.aux)
 Package rerunfilecheck Info: File `worstr.out' has not changed.
-(rerunfilecheck)             Checksum: FA610CFE7C46CAEF6FC3A1332360D16D;14409.
+(rerunfilecheck)             Checksum: 319BD58247822988340207C19A94149A;19440.
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 17804 strings out of 479466
- 331026 string characters out of 5880414
- 765922 words of memory out of 5000000
- 36782 multiletter control sequences out of 15000+600000
+ 18045 strings out of 479466
+ 340955 string characters out of 5880414
+ 774330 words of memory out of 5000000
+ 36993 multiletter control sequences out of 15000+600000
  541619 words of font info for 92 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 84i,6n,118p,1533b,466s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 84i,6n,118p,1647b,466s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on worstr.pdf (289 pages).
+Output written on worstr.pdf (366 pages).
