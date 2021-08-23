@@ -453,17 +453,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>One approach to dealing with this is to use a <strong>hurdle model</strong>. The idea is to make two separate models: 1) a logistic regression model to help us determine which factors influence whether the phenomenon of interest even occurred (0 or 1), and 2) a count model to help us determine what factors influence with the frequency of occurrence given that it occurred in the first place.</p>
 <p>When these models are linked mathematically, we call it a “mixture model” - an approach that has become very popular for accounting for imperfect detection when estimating abundance of organisms. For now, let’s just look at the hurdle model for our crab data as the n-mixture approach falls solidly in the realm of “advanced” methods we’ll not discuss in this book.</p>
 <p>First, we need to make a binary indicator variable to represent whether or not any satellites were present:</p>
-<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="13-4-zinf-13.html#cb533-1"></a><span class="co"># Make a new column for count</span></span>
-<span id="cb533-2"><a href="13-4-zinf-13.html#cb533-2"></a><span class="co"># and absence (of satellite males)</span></span>
-<span id="cb533-3"><a href="13-4-zinf-13.html#cb533-3"></a><span class="co"># and initialize to zero</span></span>
-<span id="cb533-4"><a href="13-4-zinf-13.html#cb533-4"></a>crabs<span class="op">$</span>present &lt;-<span class="st"> </span><span class="dv">0</span></span>
-<span id="cb533-5"><a href="13-4-zinf-13.html#cb533-5"></a></span>
-<span id="cb533-6"><a href="13-4-zinf-13.html#cb533-6"></a><span class="co"># Assign a &#39;1&#39; if any satellites were</span></span>
-<span id="cb533-7"><a href="13-4-zinf-13.html#cb533-7"></a><span class="co"># observed</span></span>
-<span id="cb533-8"><a href="13-4-zinf-13.html#cb533-8"></a>crabs<span class="op">$</span>present[crabs<span class="op">$</span>satellites <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="13-4-zinf-13.html#cb532-1"></a><span class="co"># Make a new column for count</span></span>
+<span id="cb532-2"><a href="13-4-zinf-13.html#cb532-2"></a><span class="co"># and absence (of satellite males)</span></span>
+<span id="cb532-3"><a href="13-4-zinf-13.html#cb532-3"></a><span class="co"># and initialize to zero</span></span>
+<span id="cb532-4"><a href="13-4-zinf-13.html#cb532-4"></a>crabs<span class="op">$</span>present &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb532-5"><a href="13-4-zinf-13.html#cb532-5"></a></span>
+<span id="cb532-6"><a href="13-4-zinf-13.html#cb532-6"></a><span class="co"># Assign a &#39;1&#39; if any satellites were</span></span>
+<span id="cb532-7"><a href="13-4-zinf-13.html#cb532-7"></a><span class="co"># observed</span></span>
+<span id="cb532-8"><a href="13-4-zinf-13.html#cb532-8"></a>crabs<span class="op">$</span>present[crabs<span class="op">$</span>satellites <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <p>Now, the first step in the hurdle model is to fit a logistic regression model to predict how our response is affected by some combination of explanatory variables.</p>
-<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="13-4-zinf-13.html#cb534-1"></a>step1 &lt;-<span class="st"> </span><span class="kw">glm</span>(present <span class="op">~</span><span class="st"> </span>mass, <span class="dt">data =</span> crabs, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
-<span id="cb534-2"><a href="13-4-zinf-13.html#cb534-2"></a><span class="kw">summary</span>(step1)</span></code></pre></div>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="13-4-zinf-13.html#cb533-1"></a>step1 &lt;-<span class="st"> </span><span class="kw">glm</span>(present <span class="op">~</span><span class="st"> </span>mass, <span class="dt">data =</span> crabs, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb533-2"><a href="13-4-zinf-13.html#cb533-2"></a><span class="kw">summary</span>(step1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = present ~ mass, family = &quot;binomial&quot;, data = crabs)
@@ -488,17 +488,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>Here we see that mass has a significant effect on whether or not <em>any</em> satellite males are present. You could imagine fitting any number of plausible biological models for comparison using AIC at this point.</p>
 <p>Step 2 is to fit a count model to explain the effects of some combination of explanatory variables on the frequency with which the phenomenon occurs given that it ever occurred in the first place. <strong>Note</strong>: This does not have to be the same combination of explanatory variables. In fact, it is always conceivable that different processes influence these two distinct phenomena. As with the count-absence model, you could even fit a candidate set of models and proceed with model comparisons using AIC.</p>
-<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="13-4-zinf-13.html#cb536-1"></a><span class="co"># Make a model relating the number</span></span>
-<span id="cb536-2"><a href="13-4-zinf-13.html#cb536-2"></a><span class="co"># of satellite males to the mass</span></span>
-<span id="cb536-3"><a href="13-4-zinf-13.html#cb536-3"></a><span class="co"># of female crabs</span></span>
-<span id="cb536-4"><a href="13-4-zinf-13.html#cb536-4"></a>step2 &lt;-<span class="st"> </span><span class="kw">glm</span>(</span>
-<span id="cb536-5"><a href="13-4-zinf-13.html#cb536-5"></a>  satellites <span class="op">~</span><span class="st"> </span>mass,</span>
-<span id="cb536-6"><a href="13-4-zinf-13.html#cb536-6"></a>  <span class="dt">data =</span> crabs[crabs<span class="op">$</span>satellites <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>, ],</span>
-<span id="cb536-7"><a href="13-4-zinf-13.html#cb536-7"></a>  <span class="dt">family =</span> <span class="st">&quot;negative.binomial&quot;</span>(<span class="dt">theta =</span> <span class="dv">1</span>)</span>
-<span id="cb536-8"><a href="13-4-zinf-13.html#cb536-8"></a>)</span>
-<span id="cb536-9"><a href="13-4-zinf-13.html#cb536-9"></a></span>
-<span id="cb536-10"><a href="13-4-zinf-13.html#cb536-10"></a><span class="co"># Print a summary of the model</span></span>
-<span id="cb536-11"><a href="13-4-zinf-13.html#cb536-11"></a><span class="kw">summary</span>(step2)</span></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="13-4-zinf-13.html#cb535-1"></a><span class="co"># Make a model relating the number</span></span>
+<span id="cb535-2"><a href="13-4-zinf-13.html#cb535-2"></a><span class="co"># of satellite males to the mass</span></span>
+<span id="cb535-3"><a href="13-4-zinf-13.html#cb535-3"></a><span class="co"># of female crabs</span></span>
+<span id="cb535-4"><a href="13-4-zinf-13.html#cb535-4"></a>step2 &lt;-<span class="st"> </span><span class="kw">glm</span>(</span>
+<span id="cb535-5"><a href="13-4-zinf-13.html#cb535-5"></a>  satellites <span class="op">~</span><span class="st"> </span>mass,</span>
+<span id="cb535-6"><a href="13-4-zinf-13.html#cb535-6"></a>  <span class="dt">data =</span> crabs[crabs<span class="op">$</span>satellites <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>, ],</span>
+<span id="cb535-7"><a href="13-4-zinf-13.html#cb535-7"></a>  <span class="dt">family =</span> <span class="st">&quot;negative.binomial&quot;</span>(<span class="dt">theta =</span> <span class="dv">1</span>)</span>
+<span id="cb535-8"><a href="13-4-zinf-13.html#cb535-8"></a>)</span>
+<span id="cb535-9"><a href="13-4-zinf-13.html#cb535-9"></a></span>
+<span id="cb535-10"><a href="13-4-zinf-13.html#cb535-10"></a><span class="co"># Print a summary of the model</span></span>
+<span id="cb535-11"><a href="13-4-zinf-13.html#cb535-11"></a><span class="kw">summary</span>(step2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = satellites ~ mass, family = negative.binomial(theta = 1), 
@@ -524,74 +524,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>From these results, we can see that our count models in the previous sections were really just picking up on the large number of zeroes in our data set. We know this because of the differences in the results between the models <code>step1</code> and <code>step2</code>.</p>
 <p>Likewise, we can take another look at our model diagnostics for <code>step2</code> to see if our diagnostic plots look more reasonable now.</p>
-<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="13-4-zinf-13.html#cb538-1"></a><span class="kw">ggplot</span>(step2, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid)) <span class="op">+</span></span>
-<span id="cb538-2"><a href="13-4-zinf-13.html#cb538-2"></a><span class="st">  </span><span class="kw">geom_jitter</span>() <span class="op">+</span></span>
-<span id="cb538-3"><a href="13-4-zinf-13.html#cb538-3"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fitted values&quot;</span>) <span class="op">+</span></span>
-<span id="cb538-4"><a href="13-4-zinf-13.html#cb538-4"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon)))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-376-1.png" width="672" /></p>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="13-4-zinf-13.html#cb537-1"></a><span class="kw">ggplot</span>(step2, <span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid)) <span class="op">+</span></span>
+<span id="cb537-2"><a href="13-4-zinf-13.html#cb537-2"></a><span class="st">  </span><span class="kw">geom_jitter</span>() <span class="op">+</span></span>
+<span id="cb537-3"><a href="13-4-zinf-13.html#cb537-3"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fitted values&quot;</span>) <span class="op">+</span></span>
+<span id="cb537-4"><a href="13-4-zinf-13.html#cb537-4"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(epsilon)))</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-362-1.png" width="672" /></p>
 <p>Here, we can see that our residual plots indicate a pretty drastic improvement.</p>
 <div id="predict-13" class="section level3">
 <h3><span class="header-section-number">13.4.1</span> Predictions</h3>
 <p>Now that we are finally happy with our residual plots (wow, that took a lot longer than fitting any of the models!) we can make a plot of our predictions against the raw data to see how we did.</p>
 <p>Let’s start with the count/absence component that we fit in <code>step1</code>:</p>
 <p>Make some predictions from the model using a sequence of new values of <code>mass</code> based on what we observed in our data set:</p>
-<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="13-4-zinf-13.html#cb539-1"></a><span class="co"># Sequences of new masses based on the min and max observed</span></span>
-<span id="cb539-2"><a href="13-4-zinf-13.html#cb539-2"></a><span class="co"># in our data</span></span>
-<span id="cb539-3"><a href="13-4-zinf-13.html#cb539-3"></a>new_mass &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mass =</span> <span class="kw">seq</span>(<span class="kw">min</span>(crabs<span class="op">$</span>mass), <span class="kw">max</span>(crabs<span class="op">$</span>mass), <span class="fl">.1</span>))</span>
-<span id="cb539-4"><a href="13-4-zinf-13.html#cb539-4"></a></span>
-<span id="cb539-5"><a href="13-4-zinf-13.html#cb539-5"></a><span class="co"># Make predictions using step1 model and the new_mass df</span></span>
-<span id="cb539-6"><a href="13-4-zinf-13.html#cb539-6"></a>count_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb539-7"><a href="13-4-zinf-13.html#cb539-7"></a>  <span class="kw">predict</span>(step1, <span class="dt">newdata =</span> new_mass, <span class="dt">type =</span> <span class="st">&quot;link&quot;</span>, <span class="dt">se.fit =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb539-8"><a href="13-4-zinf-13.html#cb539-8"></a>)</span>
-<span id="cb539-9"><a href="13-4-zinf-13.html#cb539-9"></a></span>
-<span id="cb539-10"><a href="13-4-zinf-13.html#cb539-10"></a><span class="co"># Get 95% confidence intervals</span></span>
-<span id="cb539-11"><a href="13-4-zinf-13.html#cb539-11"></a>count_preds<span class="op">$</span>lwr &lt;-<span class="st"> </span>count_preds<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span>count_preds<span class="op">$</span>se.fit <span class="op">*</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.025</span>)</span>
-<span id="cb539-12"><a href="13-4-zinf-13.html#cb539-12"></a>count_preds<span class="op">$</span>upr &lt;-<span class="st"> </span>count_preds<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span>count_preds<span class="op">$</span>se.fit <span class="op">*</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)</span>
-<span id="cb539-13"><a href="13-4-zinf-13.html#cb539-13"></a></span>
-<span id="cb539-14"><a href="13-4-zinf-13.html#cb539-14"></a><span class="co"># Invert the logit-link function</span></span>
-<span id="cb539-15"><a href="13-4-zinf-13.html#cb539-15"></a>count_preds &lt;-<span class="st"> </span><span class="kw">apply</span>(count_preds, <span class="dv">2</span>, boot<span class="op">::</span>inv.logit)</span>
-<span id="cb539-16"><a href="13-4-zinf-13.html#cb539-16"></a></span>
-<span id="cb539-17"><a href="13-4-zinf-13.html#cb539-17"></a><span class="co"># Combine the new masses and the predictions with which</span></span>
-<span id="cb539-18"><a href="13-4-zinf-13.html#cb539-18"></a><span class="co"># they are associated</span></span>
-<span id="cb539-19"><a href="13-4-zinf-13.html#cb539-19"></a>pres_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(new_mass, count_preds)</span></code></pre></div>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="13-4-zinf-13.html#cb538-1"></a><span class="co"># Sequences of new masses based on the min and max observed</span></span>
+<span id="cb538-2"><a href="13-4-zinf-13.html#cb538-2"></a><span class="co"># in our data</span></span>
+<span id="cb538-3"><a href="13-4-zinf-13.html#cb538-3"></a>new_mass &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mass =</span> <span class="kw">seq</span>(<span class="kw">min</span>(crabs<span class="op">$</span>mass), <span class="kw">max</span>(crabs<span class="op">$</span>mass), <span class="fl">.1</span>))</span>
+<span id="cb538-4"><a href="13-4-zinf-13.html#cb538-4"></a></span>
+<span id="cb538-5"><a href="13-4-zinf-13.html#cb538-5"></a><span class="co"># Make predictions using step1 model and the new_mass df</span></span>
+<span id="cb538-6"><a href="13-4-zinf-13.html#cb538-6"></a>count_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb538-7"><a href="13-4-zinf-13.html#cb538-7"></a>  <span class="kw">predict</span>(step1, <span class="dt">newdata =</span> new_mass, <span class="dt">type =</span> <span class="st">&quot;link&quot;</span>, <span class="dt">se.fit =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb538-8"><a href="13-4-zinf-13.html#cb538-8"></a>)</span>
+<span id="cb538-9"><a href="13-4-zinf-13.html#cb538-9"></a></span>
+<span id="cb538-10"><a href="13-4-zinf-13.html#cb538-10"></a><span class="co"># Get 95% confidence intervals</span></span>
+<span id="cb538-11"><a href="13-4-zinf-13.html#cb538-11"></a>count_preds<span class="op">$</span>lwr &lt;-<span class="st"> </span>count_preds<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span>count_preds<span class="op">$</span>se.fit <span class="op">*</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.025</span>)</span>
+<span id="cb538-12"><a href="13-4-zinf-13.html#cb538-12"></a>count_preds<span class="op">$</span>upr &lt;-<span class="st"> </span>count_preds<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span>count_preds<span class="op">$</span>se.fit <span class="op">*</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="cb538-13"><a href="13-4-zinf-13.html#cb538-13"></a></span>
+<span id="cb538-14"><a href="13-4-zinf-13.html#cb538-14"></a><span class="co"># Invert the logit-link function</span></span>
+<span id="cb538-15"><a href="13-4-zinf-13.html#cb538-15"></a>count_preds &lt;-<span class="st"> </span><span class="kw">apply</span>(count_preds, <span class="dv">2</span>, boot<span class="op">::</span>inv.logit)</span>
+<span id="cb538-16"><a href="13-4-zinf-13.html#cb538-16"></a></span>
+<span id="cb538-17"><a href="13-4-zinf-13.html#cb538-17"></a><span class="co"># Combine the new masses and the predictions with which</span></span>
+<span id="cb538-18"><a href="13-4-zinf-13.html#cb538-18"></a><span class="co"># they are associated</span></span>
+<span id="cb538-19"><a href="13-4-zinf-13.html#cb538-19"></a>pres_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(new_mass, count_preds)</span></code></pre></div>
 <p><strong>Important:</strong> Our hurdle model actually contains two models (<code>step1</code> and <code>step2</code>). The <code>step1</code> component is actually <strong>logistic regression</strong> and therefore uses the <strong>logit</strong> link function that we introduced in <a href="12-Chapter12.html#Chapter12">Chapter 12</a>, so we need to invert the logit to get the probability of a female having any <code>satellite</code> males as a function of <code>mass</code>. This is done in the code above. Make sure you understand how and why we do this!</p>
 <p>Once you’ve got that down, it’s all over but the plotting. Here is how predicted probability of <code>satellite</code> male crab count changes across the range of observed female <code>mass</code>:</p>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="13-4-zinf-13.html#cb540-1"></a><span class="kw">ggplot</span>(pres_preds, <span class="kw">aes</span>(<span class="dt">x =</span> mass, <span class="dt">y =</span> fit)) <span class="op">+</span></span>
-<span id="cb540-2"><a href="13-4-zinf-13.html#cb540-2"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb540-3"><a href="13-4-zinf-13.html#cb540-3"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr, <span class="dt">color =</span> <span class="ot">NULL</span>), <span class="dt">alpha =</span> <span class="fl">.3</span>) <span class="op">+</span></span>
-<span id="cb540-4"><a href="13-4-zinf-13.html#cb540-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="op">+</span></span>
-<span id="cb540-5"><a href="13-4-zinf-13.html#cb540-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Mass of female crab (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb540-6"><a href="13-4-zinf-13.html#cb540-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability of satellite male&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-378-1.png" width="672" /></p>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="13-4-zinf-13.html#cb539-1"></a><span class="kw">ggplot</span>(pres_preds, <span class="kw">aes</span>(<span class="dt">x =</span> mass, <span class="dt">y =</span> fit)) <span class="op">+</span></span>
+<span id="cb539-2"><a href="13-4-zinf-13.html#cb539-2"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb539-3"><a href="13-4-zinf-13.html#cb539-3"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr, <span class="dt">color =</span> <span class="ot">NULL</span>), <span class="dt">alpha =</span> <span class="fl">.3</span>) <span class="op">+</span></span>
+<span id="cb539-4"><a href="13-4-zinf-13.html#cb539-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb539-5"><a href="13-4-zinf-13.html#cb539-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Mass of female crab (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb539-6"><a href="13-4-zinf-13.html#cb539-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Probability of satellite male&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-364-1.png" width="672" /></p>
 <p>Finally, we can make a plot of the number of <code>satellite</code> males we would expect to see on a female crab given that she had attracted any males in the first place.</p>
 <p><strong>Also important:</strong> We need to remember here that we have two different models. The first model <code>step1</code> was a binary logistic regression, so it used the logit link. The second model <code>step2</code> was a count model and used the log link. That means we need to invert the log link to get our predicted counts back on the real scale.</p>
-<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="13-4-zinf-13.html#cb541-1"></a><span class="co"># Sequences of new masses based on the min and max observed</span></span>
-<span id="cb541-2"><a href="13-4-zinf-13.html#cb541-2"></a><span class="co"># in our data</span></span>
-<span id="cb541-3"><a href="13-4-zinf-13.html#cb541-3"></a>new_mass &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mass =</span> <span class="kw">seq</span>(<span class="kw">min</span>(crabs<span class="op">$</span>mass), <span class="kw">max</span>(crabs<span class="op">$</span>mass), <span class="fl">.1</span>))</span>
-<span id="cb541-4"><a href="13-4-zinf-13.html#cb541-4"></a></span>
-<span id="cb541-5"><a href="13-4-zinf-13.html#cb541-5"></a><span class="co"># Make predictions using step2 model and the new_mass df</span></span>
-<span id="cb541-6"><a href="13-4-zinf-13.html#cb541-6"></a>count_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb541-7"><a href="13-4-zinf-13.html#cb541-7"></a>  <span class="kw">predict</span>(step2, <span class="dt">newdata =</span> new_mass, <span class="dt">type =</span> <span class="st">&quot;link&quot;</span>, <span class="dt">se.fit =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb541-8"><a href="13-4-zinf-13.html#cb541-8"></a>)</span>
-<span id="cb541-9"><a href="13-4-zinf-13.html#cb541-9"></a></span>
-<span id="cb541-10"><a href="13-4-zinf-13.html#cb541-10"></a><span class="co"># Get 95% confidence intervals</span></span>
-<span id="cb541-11"><a href="13-4-zinf-13.html#cb541-11"></a>count_preds<span class="op">$</span>lwr &lt;-<span class="st"> </span>count_preds<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span>count_preds<span class="op">$</span>se.fit <span class="op">*</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.025</span>)</span>
-<span id="cb541-12"><a href="13-4-zinf-13.html#cb541-12"></a>count_preds<span class="op">$</span>upr &lt;-<span class="st"> </span>count_preds<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span>count_preds<span class="op">$</span>se.fit <span class="op">*</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)</span>
-<span id="cb541-13"><a href="13-4-zinf-13.html#cb541-13"></a></span>
-<span id="cb541-14"><a href="13-4-zinf-13.html#cb541-14"></a><span class="co"># Invert the log link function</span></span>
-<span id="cb541-15"><a href="13-4-zinf-13.html#cb541-15"></a>count_preds &lt;-<span class="st"> </span><span class="kw">apply</span>(count_preds, <span class="dv">2</span>, exp)</span>
-<span id="cb541-16"><a href="13-4-zinf-13.html#cb541-16"></a></span>
-<span id="cb541-17"><a href="13-4-zinf-13.html#cb541-17"></a><span class="co"># Combine the new masses and the predictions with which</span></span>
-<span id="cb541-18"><a href="13-4-zinf-13.html#cb541-18"></a><span class="co"># they are associated - overwriting on the fly - yuck!!</span></span>
-<span id="cb541-19"><a href="13-4-zinf-13.html#cb541-19"></a>count_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(new_mass, count_preds)</span></code></pre></div>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="13-4-zinf-13.html#cb540-1"></a><span class="co"># Sequences of new masses based on the min and max observed</span></span>
+<span id="cb540-2"><a href="13-4-zinf-13.html#cb540-2"></a><span class="co"># in our data</span></span>
+<span id="cb540-3"><a href="13-4-zinf-13.html#cb540-3"></a>new_mass &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mass =</span> <span class="kw">seq</span>(<span class="kw">min</span>(crabs<span class="op">$</span>mass), <span class="kw">max</span>(crabs<span class="op">$</span>mass), <span class="fl">.1</span>))</span>
+<span id="cb540-4"><a href="13-4-zinf-13.html#cb540-4"></a></span>
+<span id="cb540-5"><a href="13-4-zinf-13.html#cb540-5"></a><span class="co"># Make predictions using step2 model and the new_mass df</span></span>
+<span id="cb540-6"><a href="13-4-zinf-13.html#cb540-6"></a>count_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb540-7"><a href="13-4-zinf-13.html#cb540-7"></a>  <span class="kw">predict</span>(step2, <span class="dt">newdata =</span> new_mass, <span class="dt">type =</span> <span class="st">&quot;link&quot;</span>, <span class="dt">se.fit =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb540-8"><a href="13-4-zinf-13.html#cb540-8"></a>)</span>
+<span id="cb540-9"><a href="13-4-zinf-13.html#cb540-9"></a></span>
+<span id="cb540-10"><a href="13-4-zinf-13.html#cb540-10"></a><span class="co"># Get 95% confidence intervals</span></span>
+<span id="cb540-11"><a href="13-4-zinf-13.html#cb540-11"></a>count_preds<span class="op">$</span>lwr &lt;-<span class="st"> </span>count_preds<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span>count_preds<span class="op">$</span>se.fit <span class="op">*</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.025</span>)</span>
+<span id="cb540-12"><a href="13-4-zinf-13.html#cb540-12"></a>count_preds<span class="op">$</span>upr &lt;-<span class="st"> </span>count_preds<span class="op">$</span>fit <span class="op">+</span><span class="st"> </span>count_preds<span class="op">$</span>se.fit <span class="op">*</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="cb540-13"><a href="13-4-zinf-13.html#cb540-13"></a></span>
+<span id="cb540-14"><a href="13-4-zinf-13.html#cb540-14"></a><span class="co"># Invert the log link function</span></span>
+<span id="cb540-15"><a href="13-4-zinf-13.html#cb540-15"></a>count_preds &lt;-<span class="st"> </span><span class="kw">apply</span>(count_preds, <span class="dv">2</span>, exp)</span>
+<span id="cb540-16"><a href="13-4-zinf-13.html#cb540-16"></a></span>
+<span id="cb540-17"><a href="13-4-zinf-13.html#cb540-17"></a><span class="co"># Combine the new masses and the predictions with which</span></span>
+<span id="cb540-18"><a href="13-4-zinf-13.html#cb540-18"></a><span class="co"># they are associated - overwriting on the fly - yuck!!</span></span>
+<span id="cb540-19"><a href="13-4-zinf-13.html#cb540-19"></a>count_preds &lt;-<span class="st"> </span><span class="kw">data.frame</span>(new_mass, count_preds)</span></code></pre></div>
 <p>Here is a plot showing how the number of <code>satellite</code> males observed changes with the <code>mass</code> of female horseshoe crabs:</p>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="13-4-zinf-13.html#cb542-1"></a><span class="kw">ggplot</span>(count_preds, <span class="kw">aes</span>(<span class="dt">x =</span> mass, <span class="dt">y =</span> fit)) <span class="op">+</span></span>
-<span id="cb542-2"><a href="13-4-zinf-13.html#cb542-2"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb542-3"><a href="13-4-zinf-13.html#cb542-3"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">x =</span> mass, <span class="dt">y =</span> satellites), <span class="dt">data =</span> crabs[crabs<span class="op">$</span>satellites <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, ]) <span class="op">+</span></span>
-<span id="cb542-4"><a href="13-4-zinf-13.html#cb542-4"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr, <span class="dt">color =</span> <span class="ot">NULL</span>), <span class="dt">alpha =</span> <span class="fl">.3</span>) <span class="op">+</span></span>
-<span id="cb542-5"><a href="13-4-zinf-13.html#cb542-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Mass of female crab (kg)&quot;</span>) <span class="op">+</span></span>
-<span id="cb542-6"><a href="13-4-zinf-13.html#cb542-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Number of satellite males&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-380-1.png" width="672" /></p>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="13-4-zinf-13.html#cb541-1"></a><span class="kw">ggplot</span>(count_preds, <span class="kw">aes</span>(<span class="dt">x =</span> mass, <span class="dt">y =</span> fit)) <span class="op">+</span></span>
+<span id="cb541-2"><a href="13-4-zinf-13.html#cb541-2"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb541-3"><a href="13-4-zinf-13.html#cb541-3"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">x =</span> mass, <span class="dt">y =</span> satellites), <span class="dt">data =</span> crabs[crabs<span class="op">$</span>satellites <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, ]) <span class="op">+</span></span>
+<span id="cb541-4"><a href="13-4-zinf-13.html#cb541-4"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lwr, <span class="dt">ymax =</span> upr, <span class="dt">color =</span> <span class="ot">NULL</span>), <span class="dt">alpha =</span> <span class="fl">.3</span>) <span class="op">+</span></span>
+<span id="cb541-5"><a href="13-4-zinf-13.html#cb541-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Mass of female crab (kg)&quot;</span>) <span class="op">+</span></span>
+<span id="cb541-6"><a href="13-4-zinf-13.html#cb541-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Number of satellite males&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-366-1.png" width="672" /></p>
 <p>Well, it doesn’t exactly inspire great confidence in the biological relationship between female horseshoe crab mass and the number of satellite males she attracts, but that is exactly why it is so important to communicate these effects</p>
 </div>
 </div>
