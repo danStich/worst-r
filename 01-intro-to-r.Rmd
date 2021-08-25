@@ -37,7 +37,7 @@ Depending on how long that took, you may or may not be enthused by the following
 
 > the learning curve for R is steep...like a cliff, not a hill. 
 
-But, once you get the hang of it you can learn a lot really quickly. Cheat sheets like [these](https://www.rstudio.com/resources/cheatsheets/) reference cards can help you along the way by serving as miniature reference manuals in the mean-time. There are also *tons* of e-books and websites out there like the one you are reading now. And, there is a huge, active user-community just a Google away. Just searching "how to ___ in R" will return multiple results for most questions, with everything from open-source text books like this to R project websites (e.g. [RStan](https://mc-stan.org/users/interfaces/rstan)) or programming forums like [StackOverflow](https://stackoverflow.com/questions/tagged/r). You can find links to a few [Additional Resources](https://danstich.github.io/stich/classes/BIOL217/resources.html) on the course website, but part of learning R is learning how to Google about R.
+But, once you get the hang of it you can learn a lot really quickly. Cheat sheets like [these](https://www.rstudio.com/resources/cheatsheets/) reference cards can help you along the way by serving as miniature reference manuals in the meantime. There are also *tons* of e-books and websites out there like the one you are reading now. And, there is a huge, active user-community just a Google away. Just searching "how to ___ in R" will return multiple results for most questions, with everything from open-source text books like this to R project websites (e.g. [RStan](https://mc-stan.org/users/interfaces/rstan)) or programming forums like [StackOverflow](https://stackoverflow.com/questions/tagged/r). You can find links to a few [Additional Resources](https://danstich.github.io/stich/classes/BIOL217/resources.html) on the course website, but part of learning R is learning how to Google about R.
 
 ## Programming conventions
 ### Style and organization {-#style}
@@ -85,7 +85,7 @@ And I will require that you do it, at least to start. Comments are a way for you
 <br>
 
 **Section breaks help organization**
-I like to use the built-in heading style. It works really well for code-folding in R and when I"ve written a script that is several hundred lines long, sometimes all I want to see are the section headings. Go ahead and type the code below into a source file (File > New File > Rscript or `Ctrl+Shift+N`) and save it (File > Save As or `Ctrl+S`). Press the little upside-down triangle to the left of the line to see what it does.
+I like to use the built-in heading style. It works really well for code-folding in R and when I"ve written a script that is several hundred lines long, sometimes all I want to see is an outline. Go ahead and type the code below into a source file (File > New File > Rscript or `Ctrl+Shift+N`) and save it (File > Save As or `Ctrl+S`). Press the little upside-down triangle to the left of the line to see what it does.
 
 ```{r}
 # Follow a comment with four dashes or hashes
@@ -154,7 +154,7 @@ myObject <- 1 # Better, but still annoying
 my_object <- 1 # Same: maybe find a less annoying name?
 ```
 
-Importantly, R doesn't really care and would treat all of these as unique, but equivalent objects in all regards. Worth noting that most R style recommendations are moving toward the last example above.
+Importantly, R doesn't really care and would treat all of these as unique, but equivalent objects in all regards. It's worth noting that most R style recommendations are moving toward the last example above.
 
  <br>
  
@@ -166,7 +166,8 @@ Importantly, R doesn't really care and would treat all of these as unique, but e
 # 1a <- 1
 
 # This one works (try it by typing
-# "a1" in the console)
+# "a1" in the console after you run
+# the code below)
 a1 <- 1
 a2 <- a1 + 1
 a3 <- a2 + 1

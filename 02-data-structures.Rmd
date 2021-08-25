@@ -52,7 +52,7 @@ Let's go play with some!
 str(a)
 ```
 
-Examples of atomic vectors follow. Run the code to see what it does:
+Examples of atomic vectors follow. Run the code to see what it does.
 
 ### Integers and numerics {-#nums}
 First, we demonstrate one way to make a vector in R. The `c()` function ("combine") is our friend here for the quick-and-dirty approach.
@@ -79,10 +79,10 @@ We can change this by explicitly telling R how to build our vector:
 a <- as.vector(x = seq(1, 5, 1), mode = "numeric")
 ```
 
-Notice that I did not include the argument names in the call to `seq()` because these are commonly used default arguments.
+Notice that I did not include the argument names in the call to `seq()` because these are commonly used default arguments. But, you can find out what they are by running `?seq`.
 
 ### Characters and factors {-#strings}
-**Characters** are anything that is represented as text strings.
+**Characters** are anything that is represented as text strings. If I want to make a vector of character strings, I need to close the elements in quotes like I do below. Otherwise, R will go look for objects with these names.
 ```{r}    
 b <- c("a", "b", "c", "d", "e") # Make a character vector
 b # Print it to the console
@@ -96,7 +96,7 @@ b
 str(b) # Look at the data structure
 ```
 
-**Factors** are a special kind of data type in R that we may run across from time to time. They have **levels** that can be ordered numerically. This is not important except that it becomes useful for coding variables used in statistical models- R does most of this behind the scenes and we won't have to worry about it for the most part. In fact, in a lot of cases we will want to change factors to numerics or characters so they are easier to manipulate.
+**Factors** are a special kind of data type in R that we may run across from time to time. They have **levels** that can be ordered numerically. By default, R assigns factor levels (1, 2, 3 ...) in alpha numeric order, not by the order in which levels first appear in the data. This is not important except that it becomes useful for coding variables used in statistical models. But even then R does most of this behind the scenes and we won't have to worry about it for the most part. In fact, in a lot of cases we will want to change factors to numerics or characters so they are easier to manipulate.
 
 This is what it looks like when we code a factor as number:
 ```{r, eval=FALSE}
@@ -108,7 +108,7 @@ as.numeric(b)
 ?as.numeric
 ```
 
-> Aside: we can ask R what functions mean by adding a question mark as we do above. And not just functions: we can ask it about pretty much any built-in object. The help pages take a little getting used to, but once you get the hang of it... In the mean time, the internet is your friend and you will find a multitude of online groups and forums with a quick search.
+> Aside: we can ask R what functions mean by adding a question mark as we do above in a couple of instances. And not just functions: we can ask it about pretty much any built-in object. The help pages take a little getting used to, but once you get the hang of it... In the mean time, the internet is your friend and you will find a multitude of online groups and forums with a quick search.
 
 ### Logical vectors {-#logicals}
 Most of the `logical` vectors we deal with are yes/no or comparisons to determine whether a given piece of information matches a condition. Here, we use a logical check to see if the object `a` we created earlier is the same as object `b`. If we store the results of this check to a new object `c`, we get a new logical vector filled with `TRUE` and `FALSE`, one for each element in `a` and `b`.
@@ -149,7 +149,7 @@ unique(b)
 The examples above are all simple vector operations. These form the basis for data manipulation and analysis in R.
 
 ## Vector operations {#operations}
-A lot of data manipulation in R is based on logical checks like the ones shown above. We can take these one step further to actually perform what one might think of as a query.
+A lot of data manipulation in R is based on logical checks like the ones shown above. We can take these one step further to actually perform what one might think of as a "query" to select certain elements of a vector that satisfy some condition.
 
 For example, we can reference specific elements of vectors directly. Here, we specify that we want to print the third element of `a`.
 
@@ -161,6 +161,7 @@ a[3]
 We might want to store that value to a new object `f` that is easier to read and type out.
 ```{r}
 # This one stores it in a new object
+# f is way easier to type than a
 f <- a[3]
 ```
 
@@ -170,7 +171,7 @@ f <- a[3]
 
 If it is not yet obvious, we have to assign the output of functions to new objects for the values to be usable in the future. In the example above, `a` is never actually *changed*. This is a common source of confusion early on.
 
-Going further, we could select vector elements based on  some condition. On the first line of code, we tell R to show us the indices of the elements in vector `b` that match the character string `c`. Out loud, we would say, "`b` where the value of `b` is equal to `c`" in the first example. We can also use built-in R functions to just store the indices for all elements of `b` where `b` is equal to the character string "`c`".
+Going further, we could select vector elements based on some condition. On the first line of code below, we tell R to show us the indices of the elements in vector `b` that match the character string `c`. Out loud, we would say, "`b` where the value of `b` is equal to `c`" in the first example. We can also use built-in R functions to just store the indices for all elements of `b` where `b` is equal to the character string `"c"`.
 
 ```{r}
 b[b == "c"]
@@ -179,7 +180,6 @@ which(b == "c")
 ```
 
 Perhaps more practically speaking, we can do elementwise operations on vectors easily in R. Here are a bunch of different things that you might be interested in doing with the objects that we've created so far. Give a few of these a try.
-Perhaps more practically speaking, we can do elementwise operations on vectors easily in R. Give a few of these a shot.
 ```{r, eval=FALSE}
 a * .5 # Multiplication
 a + 100 # Addition
@@ -232,7 +232,7 @@ length(a)
 a
 ```
 
-And we can do lots of other nifty things like this. We can also bind multiple vectors together into a rectangular `matrix`. Say what?
+And we can do lots of other nifty things. We can also bind multiple vectors together into a rectangular `matrix`. Say what?
 
 
 ## Matrices {#matrices}
@@ -253,7 +253,7 @@ Or we can make one from scratch.
 mat <- matrix(seq(1, 12), ncol = 3, nrow = 4)
 ```
 
-We can do all of the things we did with vectors to matrices, but now we have more than one column, and official "rows" that we can also use to these ends:
+We can do all of the things we did with vectors to matrices, but now we have more than one column, and a second dimension in the form of "rows" that we can also use to these ends:
 ```{r, eval=FALSE}
 ncol(mat) # Number of columns
 nrow(mat) # Number of rows
@@ -409,7 +409,7 @@ Now let's look at some specific things.
 iris[12, 4]
 
 # What is the mean sepal length
-# among all species in iris?
+# across all species in iris?
 mean(iris$Sepal.Length)
 ```
 
@@ -417,11 +417,11 @@ What about the `mean` of `Sepal.Length` just for `setosa`?
 
 A couple of new things going on here:
 
-1. We can refer to the columns as atomic vectors within the dataframe if we want to. Some times we have to do this...
+1. We can refer to the columns as atomic vectors within the dataframe if we want to. Sometimes we have to do this...
 
 2. Note the logical check for species
 
-What we are saying here is, "Hey R, show me the mean of the column Sepal.Length in the dataframe iris where the species name is `setosa`"
+What we are saying here is, "Hey R, show me the mean of the column `Sepal.Length` in the dataframe `iris` where the species name is `setosa`"
 ```{r}
 mean(iris$Sepal.Length[iris$Species == "setosa"])
 ```
@@ -432,7 +432,7 @@ logicalCheck <- iris$Species == "setosa"
 lengthCheck <- iris$Sepal.Length[iris$Species == "setosa"]
 ```
 
-We can also look at the whole data frame just for `setosa`.
+We can also look at the whole data frame just for `setosa`. We will quickly switch over to using syntax that is a litter easier to understand for this, but this approach is at the core of pretty much all of those.
 ```{r}
 # Note that the structure of species
 # is preserved as a factor with three
@@ -469,9 +469,9 @@ Much, **MUCH** more of this to come as we continue.
 
 **Lists** are the ultimate data type in R. They are actually a [vector](vectors) that can hold different kinds of data, like a [dataframe](#dataframes). In fact, a dataframe is just a spectacularly rectangular list. Each element of a list can be any kind of object (an atomic vector, a matrix, a dataframe, or even another list!!).
 
-Most of the real, filthy R programming relies heavily on lists. We will have to work with them at some point in this class, but we won't take a ton of time on them here.
+Much of the real, filthy R programming relies heavily on lists. We will have to work with them at some point in this class, but we won't take a ton of time on them here. Lists are something we can ease back into later once the world stops spinning so fast from all the R.
 
-Let's make a list- just to see how they work. Notice how our index operator has changed from `[ ]` to `[[ ]]`? And, at the highest level of organization, we have only one dimension in our list, but any given element `myList[[i]]` could hold any number of dimensions.
+Let's make a list - just to see how they work. Notice how our index operator has changed from `[ ]` to `[[ ]]` below? And, at the highest level of organization, we have only one dimension in our list, but any given element `myList[[i]]` could hold any number of dimensions.
 
 ```{r}
 # Create an empty list with four elements
@@ -492,7 +492,7 @@ Have a look at the list:
 myList
 ```
 
-You can assign names when you create the list like we did for dataframes, too. You can do this manually, or R will do it on the fly for you. You can also reassign names to a list that yo've already created.
+You can assign names when you create the list like we did for dataframes, too. You can do this manually, or R will do it on the fly for you. You can also reassign names to a list that you've already created.
   
 ```{r, eval=FALSE}  
 # No names by default
