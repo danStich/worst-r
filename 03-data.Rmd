@@ -241,7 +241,7 @@ If we have a formula that relates two variables, we could predict one based on t
 
 For example, I have fit a length-weight regression to explain the relationship between `Length` and `Mass` using the `am_shad` data we've worked with in previous sections. 
 
-This relationship looks like your old friend $y = mx + b$, the equation for a line, but we log10-transform both of the variables before fitting the line (more to come later in the class). Using this relationship, we can predict our **independent variable** (`Mass`) from our **dependent variable** (`Length`) if we plug in new values for `Length` and the **parameters** of the line.
+This relationship looks like your old friend $y = mx + b$, the equation for a line, but we log10-transform both of the variables before fitting the line (more to come later in the class). Using this relationship, we can predict our **dependent variable** (`Mass`) from our **independent variable** (`Length`) if we plug in new values for `Length` and the **parameters** of the line.
 
 ```{r, echo=FALSE}
 mod <- lm(log10(Mass) ~ log10(Length), data = am_shad[am_shad$Mass != 0, ])
