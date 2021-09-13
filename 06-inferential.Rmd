@@ -44,7 +44,7 @@ First, let's create a sample that includes only age-3 fish. We will store this t
 age3_lengths <- grasscarp$Length[grasscarp$Age == 3]
 ```
 
-Now, let's compare the `Length` of age-3 fish to the rest of the population using a one-sample t-test. To do this, we need to pass `age3_lengths`
+Now, let's compare the `Length` of age-3 fish to the rest of the population using a one-sample t-test. To do this, we need to pass `age3_lengths` to the `t.test()` function as our observed `x`. We'll also specify that we want to compare the observed sample to the population mean (`mu`) that we specify on the fly. We will tell R to use a default confidence level (`conf.level`) of 95%. Finally, we will save the output of our test to a new object, creatively named `our_test`.
 ```{r}
 # Run the test and save the output to an object
 our_test = t.test(age3_lengths,
@@ -89,7 +89,8 @@ We can just look at the names if there are specific pieces in which we are inter
   p_out = our_test$p.value 
   
 # And of course we can look at it
-  print(p_out)             
+  print(p_out)    
+  
 ```
     
 Now we can go through the output as it is displayed by:
@@ -97,6 +98,7 @@ Now we can go through the output as it is displayed by:
 ```{r}
 # Print a summary of the test
   print(our_test)
+
 ```
 
 The first line of the output gives us the actual data that with which we are working- nothing of interest here other than a quick sanity check until later on in the course.
@@ -108,22 +110,23 @@ Our `alteranive hypothesis` (H~A~) was that the sample mean is not equal to popu
 Finally, R reports the mean and the 95% confidence interval of `age3_lengths`. 
     
 #### Assumptions
-It's always important for us to think about the assumptions that we are making when (read *before*) conducting a statistical test. First, there are implicit assumptions that we make. For example, we assume that the data are representative and were collected in a random manner in this case. Then, there are explicit assumptions that we make in specific tests.
+It's always important for us to think about the assumptions that we are making when (read *before*) conducting a statistical test. First, there are implicit assumptions that we make. For example, we assume that the data are representative of what we are trying to measure and were collected in a random manner with respect to other potentially confounding factors in this case. Then, there are explicit assumptions that we make for specific tests.
 
 For the one-sample t-test, the assumption that we really care about is:
 
 1. The data are normally distributed
   
-The t-test is generally robust to violations of this assumption provided that sample sizes are large enough (Google Central Limit Theorem, this is The Worst Stats Text eveR). But, it is always good to check. In particular, when we are working with small sample sizes like this example (n = ```r length(age3_lengths)```), we should really make sure that things look okay. 
+The t-test is generally robust to violations of this assumption provided that sample sizes are large enough (Google "Central Limit Theorem", this is The Worst Stats Text eveR). But, it is always good to check. In particular, when we are working with small sample sizes like this example (n = ```r length(age3_lengths)```), we should really make sure that things look okay or find an alternative tool. 
     
 #### Checking assumptions
 <h5 id="multi"> Visual check for normality </h5>
 
-One simple way to gauge assumptions of normality is to look at a plot of the data. As you will see later, we are usually concerned with the *residuals*, but we can look at the actual data here because we have only one group and if it's normal so are its errors.
+One simple way to assess our assumption of normality is to look at a plot of the data. As you will see later, we are usually concerned with the *residuals*, but we can look at the actual data here because we have only one group and if it's normal so are its errors.
 
 Have a quick look at these to see what we are working with using the histogram code from [Chapter 4](#Chapter4). I set the x-axis limits below using the maximum `Length` from the `grasscarp` data so we can see what part of the length range we've sampled here.
+
 ```{r, warning = FALSE, message= FALSE}
-p <- ggplot() + 
+ggplot() + 
   geom_histogram(aes(age3_lengths), bins = 30) + 
   scale_x_continuous(limits=c(0, max(grasscarp$Length)), expand = c(0, 0)) + 
   scale_y_continuous(expand = c(0, 0)) + 
@@ -135,8 +138,9 @@ p <- ggplot() +
     axis.title.y = element_text(vjust = 3),
     panel.grid = element_blank()
   )
-print(p)
+
 ``` 
+
 Sure, looks totally normal to me? Wouldn't it be great if there were a statistical test for determining whether this sample is different from the normal? Great that you should ask.     
      
 ##### Tests of normality (Shapiro-Wilk)
@@ -158,9 +162,9 @@ So, are we up that proverbial tributary without a paddle, or can we salvage the 
    
 ### Wilcox test
 
-You can think of the Wilcox test as a non-parametric analog of the t-test. In general, non-parametric tests tend to be slightly more "conservative" than the parametric alternatives because they require fewer assumptions. However, non-parametric tests can be useful where our data are not normal, or we don't feel we have sufficient data to know (hmm...maybe don't conduct any tests, in that case!).
+You can think of the Wilcox test as a non-parametric analog of the t-test. In general, non-parametric tests tend to be slightly more "conservative" than the parametric alternatives because they require fewer assumptions. However, non-parametric tests can be useful where our data are not normal, or we don't feel we have sufficient data to say this with confidence (hmm...maybe don't conduct any tests in that case!).
 
-Here, we are checking for shifts in the median (not the mean) of one or more samples. 
+For the Wilcox test, we are checking for shifts in the median (not the mean) of one or more samples. 
 
 Why is this? The mean of a non-normal distribution is not always a useful descriptor of the probability mass under a distribution (it still describes 'central tendency' but does not necessarily describe the place where 'most of the data are'). But, the median always (as in always, always, always) describes central tendency of the data, so we can pretty much use it for describing any sample. This is because the median is defined as the "middle" value. That is, half of the data should fall on either side of the median if you lined up all of your data on the equator (wrong metaphor?).
 
@@ -171,7 +175,7 @@ Why is this? The mean of a non-normal distribution is not always a useful descri
   ?wilcox.test
 ```
     
-Now we can actually run a test to see if the median length of age-3 fish is statistically different from the median value of length in the sample.
+We can use this test to see if the median length of age-3 fish is statistically different from the median value of length in the sample.
 
 ```{r}
     wilcox.test(
@@ -182,17 +186,17 @@ Now we can actually run a test to see if the median length of age-3 fish is stat
     )
 ```
     
-Interpretting the results is essentially the same as for the t-test, but without the degrees of freedom, so we won't belabor this. Importantly, the test, being robust to any distributional assumptions, should also (and does) tell us that the length of age-3 fish is significantly shorter than the population mean (or median- whichever you used).
+Interpreting the results is essentially the same as for the t-test, but without the degrees of freedom, so we won't belabor this. Importantly, the test, being robust to any distributional assumptions, should also (and does) tell us that the length of age-3 fish is significantly shorter than the population mean (or median - whichever you used).
     
     
 ## Two-sample tests 
 
-Okay, with that out of the way, now we can get on to some tests that might be a little more meaningful to most people. We can use **two-sample** tests to whether two groups differ in some metric of interest. This lends itself naturally to use in controlled experiments that we conduct in laboratories, for example.
+Okay, with that out of the way, now we can do some tests that might be a little more meaningful to most people. We can use **two-sample** tests to determine whether two groups differ in some metric of interest. This lends itself naturally to use in controlled experiments that we conduct in laboratories, for example.
     
     
 ### The two-sample t-test
 
-If you have been exposed to only one statistical test already it is probably the two-sample t-test. This is a test that is used to test for differences in some continuous variable between two groups. The test statistic itself is pretty trivial to calculate. You can find a video of that [here](https://www.khanacademy.org/math/ap-statistics/two-sample-inference/two-sample-t-test-means/v/two-sample-t-test-for-difference-of-means). **Seriously, if you have never done a t-test, watch the 6-minute video now**. Otherwise, you may not understand what follows. I am not going to go into the math here because this is The Worst Stats Text eveR. The video will also help you understand how ANOVA and other tests work later. Understanding how these tests work will give you phenomenal cosmic powers when it comes to analyzing biological data. If you email asking me how a t-test works, I am going to send you this video.
+If you have been exposed to only one statistical test already it is probably the two-sample t-test. This is a test that is used to test for differences in a continuous dependent variable between two groups. The test statistic itself is pretty trivial to calculate. You can find a video of that [here](https://www.khanacademy.org/math/ap-statistics/two-sample-inference/two-sample-t-test-means/v/two-sample-t-test-for-difference-of-means). **Seriously, if you have never done a t-test, watch the 6-minute video now**. Otherwise, you may not understand what follows. I am not going to go into the math here because this is The Worst Stats Text eveR. The video will also help you understand how ANOVA and other tests work later. Understanding how these tests work will give you phenomenal cosmic powers when it comes to analyzing biological data. If you email asking me how a t-test works, I am going to send you this video.
 
 Let's keep working with the `grasscarp` data for now for the sake of consistency. But, now we want to know if there is a difference in mean length of fish depending on whether their population density is high or low. To look at this, we'll need to make some groups in our `grasscarp` data that correspond to years of high and low density.
 
