@@ -1,6 +1,7 @@
 # Sampling distributions in R {#Chapter5}
 
 <img src="images/tempsims.png" alt="">
+
 <p style="font-family: times, serif; font-size:.9em; font-style:italic">
 If we can describe the shape of a probability distribution for a random variable like temperature we can make predictions about the world. Sinister? Maybe. These are temperatures that I simulated from the Hudson River using historical data to estimate parameters of a multivariate normal distribution (muwahahaha).</p>
 
