@@ -6,7 +6,7 @@ Yeah, I know this is the picture from Chapter 4. I only have like five pictures.
 
 <h2 id="multi"> Introduction </h2>  
 
-In this chapter, we will introduce a class of statistical tools known collectively as **linear models**. This class of tools includes such examples as analysis of variance (ANOVA), linear regression and correlation, and by extension includes n-way ANOVA, multiple linear regression, and analysis of covariance (ANCOVA). Later this semester, we will see that these models be extended even further to include generalized linear models, generalized linear mixed models, multivariate techniques and even machine learning algorithms.
+In this chapter, we will introduce a class of statistical tools known collectively as **linear models**. This class of tools includes such examples as analysis of variance (ANOVA), linear regression and correlation, and by extension includes n-way ANOVA, multiple linear regression, and analysis of covariance (ANCOVA). Later this semester, we will see that these models can be extended even further to include generalized linear models, generalized linear mixed models, multivariate techniques and even machine learning algorithms.
 
 Linear models are, therefore, the gateway into the rest of the world of statistics. We will focus primarily on parametric applications this week and next. The over-arching theme for this week is that any of these methods can be expressed as the formula for a line, which is how they got their names (oh, snap!). We will start with ANOVA because it is analogous to many of the methods that we've already discussed. However, it is important to recognize that this is just a special case of the linear model. This will help you think about how we test statistical assumptions, test hypotheses, and communicate results of models.
 
@@ -42,7 +42,7 @@ Let's begin by using a one-way ANOVA to determine if the mass of plants differs 
 
 Therefore, if any one of the means is not equal to the others, then we reject the null hypothesis.
 
-You can fit an ANOVA using either the `aov()` function or the `lm()` function in base R. I prefer to use `lm()` for two reasons. First, there is output from `lm()` that I don't get with `aov()`. Second, the `lm()` function is the one we'll use for linear regression, multiple regression, and analysis of covariance. This reminds us that these models are all special cases of the glorious, over-arching group of general linear models [Chapter 8](#Chapter8) and will help us develop a standard workflow moving forward.
+You can fit an ANOVA using either the `aov()` function or the `lm()` function in base R. I prefer to use `lm()` for two reasons. First, there is output from `lm()` that I don't get with `aov()`. Second, the `lm()` function is the one we'll use for linear regression, multiple regression, and analysis of covariance. This reminds us that these models are all special cases of the glorious, over-arching group of general linear models in [Chapter 8](#Chapter8) and will help us develop a standard workflow moving forward.
 ```{r}  
 # Fit the model
 model <- lm(weight~group, data=PlantGrowth)
@@ -102,7 +102,7 @@ Have a look:
 print(R2)
 
 ```
-Now, we can say that our treatment effect explained about 26% of the variation in the data. The rest is a combination error and unexplained variation in the data that might require further investigation.
+Now, we can say that our treatment effect explained about 26% of the variation in the data. The rest is a combination of error and unexplained variation in the data that might require further investigation.
 
 The only problem here is that this is an awful lot of work to get something that should be really easy to do in R. And, we still don't know how `weight` varied between `groups`. We just know that at least one group is different from the other.
 
@@ -129,7 +129,7 @@ Okay, what is going on here? This looks nothing like the output we got from `ano
 
 The `coeffs` object is a dataframe with columns for mean coefficient estimates, the standard error of those estimates, t-statistic, and p-value. We are actually not going to worry about the p-values here for a hot minute. 
 
-Let's focus on the estimate column first. There are three values here. Each of these represents one of the factor levels in the `group` variable in `PlantGrowth`. They are assigned alpha-numerically, and the first (`ctrl`) is assigned as the `(Intercept)` or base level against which all others are compared. In this sense, the `(Intercept)` coefficient is an estimate of the mean value of `weight` for the `group` called `ctrl.`
+Let's focus on the `Estimate` column first. There are three values here. Each of these represents one of the factor levels in the `group` variable in `PlantGrowth`. They are assigned in ascending alpha-numeric order based on the data. The first level (`ctrl`) is assigned as the `(Intercept)` or base level against which all others are compared. In this sense, the `(Intercept)` coefficient is an estimate of the mean value of `weight` for the `group` called `ctrl`.
 
 Do a quick check:
 ```{r}
@@ -165,7 +165,7 @@ If you calculate the means for these groups directly from the data you'll see th
 
 In [Chapter 10](#Chapter10) we will examine how to estimate confidence intervals around these estimates and make predictions from the model that include our uncertainty. But for that, we'll need to talk about a little bit of math and we're dealing with enough right now already!
 
-Finally, the p-values associated with `trt1` and `trt2` indicates whether each group is significantly different from `ctrl`. In the case of the intercept, the p-value simply tells us whether the mean `weight` of `ctrl` is significantly different from zero. A fundamentally dull question - of course it is. This is the first time we really need to think about the differences between our statistical null hypotheses and our biological null hypotheses.
+Finally, the p-values associated with `trt1` and `trt2` indicates whether each group is significantly different from `ctrl`. In the case of the intercept, the p-value simply tells us whether the mean `weight` of `ctrl` is significantly different from zero. A fundamentally dull question - of course the intercept is different from zero because plants can't possibly have a weight of zero or less. This is the first time we really need to think about the differences between our statistical null hypotheses and our biological null hypotheses.
 
 If we want to do further comparisons between groups (other than just comparing `trt1` and `trt2` to `ctrl` by themselves), then we need to add on a little "post-hoc" testing to find out which groups differ. We can use a 'pair-wise' comparison to test for differences between factor levels. Because this essentially means conducting a whole bunch of t-tests, we need a way to account for our repeated Type-I error rate, because at $\alpha$ = 0.05 we stand a 1 in 20 chance of falsely rejecting the null even if it is true. 
 
@@ -173,7 +173,7 @@ One tool that allows us to make multiple comparisons between groups while adjust
 
 Sound confusing? At least it's easy to do in R.
 
-We need to recast our model this as an `aov` object in R...this is essentially the same thing as the `lm` function, but in a different wrapper (literally) that allows us to access the info in a different way. It would be a fine default function for doing ANOVA if we weren't interested in going any further with linear models.
+We need to recast our model as an `aov` object in R first to use the `TukeyHSD()` function...this is essentially the same thing as the `lm` function, but in a different wrapper (literally) that allows us to access the info in a different way. It would be a fine default function for doing ANOVA if we weren't interested in going any further with linear models.
 ```{r}
 TukeyHSD(    # The function that does the Tukey test
   aov(       # A wrapper for lm objects
@@ -188,17 +188,18 @@ This report shows us exactly how `weight` differs between each pair of treatment
 For the readers, and for us, it may be easier to see this information displayed graphically:
 
 ```{r}
-# Make a boxplot of weight by group
-# using the PlantGrowth data and 
-# base graphics
-boxplot(
-  weight~group,           # Relationship of interest as formula
-  data=PlantGrowth,       # Name of the data set
-  col='gray',             # Fill color for boxes
-  ylab='Mass (g)',        # Y-axis label
-  xlab='Treatment group', # X-axis label
-  boxwex=.25
-  )
+ggplot(PlantGrowth, 
+       aes(x = group, y = weight, color = group, fill = group)) +
+  geom_boxplot(alpha = 0.15, width = .25) +
+  geom_jitter(width = 0.1) +
+  xlab("Treatment group") +
+  ylab("Weight (g)") +
+  labs(fill = "Group") + 
+  theme_bw() +
+  theme(axis.title.x = element_text(vjust=-1),
+        axis.title.y = element_text(vjust=3)
+        )  
+
 ```
 
 In addition to what we wrote before, we can now say something along the lines of:
@@ -235,13 +236,13 @@ As you can see, the output for the model is much the same as for the one-way ANO
 As before, we can make a quick boxplot and overlay our raw data to visualize these differences:
 ```{r}
 lint %>% 
-  ggplot(aes(x = species, y = lintmass, fill=gender)) +
-    geom_boxplot() +
+  ggplot(aes(x = species, y = lintmass, color = gender, fill = gender)) +
+    geom_boxplot(alpha = 0.10) +
     geom_point(position=position_jitterdodge(.1)) +
     xlab('Species') +
     ylab('Lint mass') +
-    labs(fill = "Gender") +
     theme_bw() +
+    labs(fill = "Gender", color = "Gender") +
     theme(axis.title.x = element_text(vjust=-1),
           axis.title.y = element_text(vjust=3),
           panel.grid = element_blank()
