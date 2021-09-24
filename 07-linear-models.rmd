@@ -379,4 +379,4 @@ summary(full_mod)
 
 ## Next steps {#next7}
 
-During the next couple of weeks, we'll try to figure out a way to deal with this rat's nest of different explanatory variables and how they are interpretted. But first, we'll talk about combining ANOVA and linear regression into a general linear model (analysis of covariance) in [Chapter 8](#Chapter8) and how to assess assumptions ([Chapter 9](#Chapter9)) and communicate our results effectively ([Chapter 10](#Chapter10)).
+During the next couple of weeks, we'll try to figure out a way to deal with this rat's nest of different explanatory variables and how they are interpreted. But first, we'll talk about combining ANOVA and linear regression into a general linear model (analysis of covariance) in [Chapter 8](#Chapter8) and how to assess assumptions ([Chapter 9](#Chapter9)) and communicate our results effectively ([Chapter 10](#Chapter10)).
