@@ -159,7 +159,7 @@ $$p(Stillwater) = \frac{\sum{path}}{n}$$
 
 and the logit of p(Stillwater Branch) can assumed to be normally distributed with a mean of \mu.
 
-$$logit(p) ~ Normal(\mu, \sigma^{2})$$
+$$logit(p) \sim Normal(\mu, \sigma^{2})$$
 
 Now that we know we are doing *more or less* the same thing let's move on with fitting the model.
 
@@ -175,7 +175,7 @@ Now, if we want to test hypotheses about the influences of explanatory variables
 flow_mod <- glm(path ~ year + flow, family = binomial, data = choice)
 ```
 
-This is the GLM analogue to ANCOVA and it should look pretty much identical except that we now use `glm()` and we have to specify the `family` for the sampling distribution depending on what type of data we have. You can see what families are implemented by running `?glm` and scrolling down to the `family` argument in the help file. If you don't see the one you are looking for, don't worry - it has probably been implented in another package somewhere!
+This is the GLM analogue to ANCOVA and it should look pretty much identical except that we now use `glm()` and we have to specify the `family` for the sampling distribution depending on what type of data we have. You can see what families are implemented by running `?glm` and scrolling down to the `family` argument in the help file. If you don't see the one you are looking for, don't worry - it has probably been implemented in another package somewhere!
 
 We could make another model that investigates effects of `length` instead of flow:
 ```{r}
