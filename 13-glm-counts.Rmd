@@ -107,7 +107,7 @@ Remember that the null hypothesis here is that the sampling distribution of our 
 
 So, why has this happened to us? Recall that the Poisson distribution is controlled by a single parameter, $\lambda$, that is both the mean and the variance of the distribution. If we had started by doing data exploration we would have, of course, noticed that even though the data represent counts, they are pretty clearly over-dispersed (variance is much larger than mean) and are indicative of a negative binomial sampling distribution.
 
-For now, we won't bother to look at these results from this model because the link function is the same, so we can get the results from the negative binomial regression in the same way. Plus, if our model is in violation of assumptions then the results will be unreliable anyway.
+For now, we won't bother to look at the results from this model because the link function is the same, so we can get the results from the negative binomial regression in the same way. Plus, if our model is in violation of assumptions then the results will be unreliable anyway.
 
 
 ## Negative binomial regression {#negbin}
@@ -129,9 +129,7 @@ boxplot(satellites ~ color, data = crabs, boxwex = 0.3)
 
 And, you can see here that even within groups the distributions do not look like they are normal or like they have equal variances, so we will fit a GLM that assumes the response is drawn from a negative binomial distribution. 
 
-For this example, we will use a function called `glm.nb`. This function allows us to estimate a GLM for lets us estimate parameters for a GLM that uses the negative binomial error distribution and estimates the "overdispersion parameter" for the negative binomial distribution. You, of course, remember this parameter and know it as `theta` or `size` from our discussions about sampling distributions.
-
-We can fit it with the GLM function like this as long as we have the `Mass` package loaded:
+We can fit this model with the GLM function like this as long as we have the `MASS` package loaded. We just need to provide a starting value for `theta` to estimate the model.
 
 ```{r}
 neg_mod <- glm(satellites ~ width + mass + color,
@@ -139,8 +137,6 @@ neg_mod <- glm(satellites ~ width + mass + color,
   family = "negative.binomial"(theta = 1)
 )
 ```
-
-Play around with the two formulations above and see if there's a difference. *Clue*: there's not, really. Just two different ways to do the same thing. The functionality in the `glm` function only came around recently, that's all.
 
 Now, let's take a look at the distribution of the residuals. I am going to work with the object I fit using the `glm()` function. This time, we'll split our residuals out by `color` group so we can see where the problems are
 
@@ -154,12 +150,12 @@ ggplot(neg_mod, aes(x = color, y = .resid, fill = factor(color))) +
 
 Now we are starting to look a lot more "normal" within groups, and we are getting more symmetrical in our residual sampling distributions. If we had to move forward with this model we could probably do so with a straight face at this point. However, it looks like most of the area of each violin above is below zero (so the mean of our residuals is also negative and non-zero), so we may have some issues going on here that could make this model bad for prediction.
 
-**But**, how does this compare to the Poisson model for count data? We can use model selection to compare the Poisson model to the negative binomial model, since the response is the same in both cases.
+**But**, how does this compare to the Poisson model for count data? We can use model selection to compare the Poisson model to the negative binomial model, since the response (count) is the same in both cases.
 ```{r}
 AIC(count_mod, neg_mod)
 ```
 
-Clearly the negative binomial model is far superior to the Poisson model here. Now, with a reasonable model in hand we could proceed with data visualization, but we might also rather have a "good" model to work with instead of just one that is "good enough". It turns out that the really problem behind the weirdness in our residuals is actually due to an excess number of zero counts of `satellite` males on a lot of our females. This is actually really common in count data, where we might observe a lot of zeros before actually counting a success. And, once we have one success (e.g. a parasite infection or illness), we often have extreme events with lots of successes. For example, it might take a while to find a fish with a parasite, or a human with a specific illness, but then that individual could have dozens or hundreds of parasites, or the illness might pop up in a cluster of hundreds of individuals in one location depending on the intensity of the infection. For these cases, we'll need to deal with the issue these excessive zeros ("zero inflation") directly.
+The negative binomial model is clearly superior to the Poisson model in this case. Now, with a reasonable model in hand we could proceed with data visualization, but we might also rather have a "good" model to work with instead of just one that is "good enough". It turns out that the real problem behind the weirdness in our residuals is actually due to an excess number of zero counts of `satellite` males on a lot of our females. This is actually really common in count data, where we might observe a lot of zeros before actually counting a success. And, once we have one success (e.g. a parasite infection or illness), we often have extreme events with lots of successes. For example, it might take a while to find a fish with a parasite, or a human with a specific illness, but then that individual could have dozens or hundreds of parasites, or the illness might pop up in a cluster of hundreds of individuals in one location. For these cases, we'll need to deal with the excessive zeros ("zero inflation") directly.
 
 
 ## Zero inflation {#zinf-13}
@@ -192,7 +188,7 @@ summary(step1)
 
 Here we see that mass has a significant effect on whether or not *any* satellite males are present. You could imagine fitting any number of plausible biological models for comparison using AIC at this point.
 
-Step 2 is to fit a count model to explain the effects of some combination of explanatory variables on the frequency with which the phenomenon occurs given that it ever occurred in the first place. **Note**: This does not have to be the same combination of explanatory variables. In fact, it is always conceivable that different processes influence these two distinct phenomena. As with the count-absence model, you could even fit a candidate set of models and proceed with model comparisons using AIC.
+Step 2 is to fit a count model to explain the effects of some combination of explanatory variables on the frequency with which the phenomenon occurs given that it ever occurred in the first place. **Note**: this step does not have to be the same combination of explanatory variables that was used in Step 1. In fact, it is always conceivable that different processes influence these two distinct phenomena. As with the count-absence model, you could even fit a candidate set of models and proceed with model comparisons using AIC.
 
 ```{r}
 # Make a model relating the number
@@ -301,7 +297,7 @@ ggplot(count_preds, aes(x = mass, y = fit)) +
   ylab("Number of satellite males")
 ```
 
-Well, it doesn't exactly inspire great confidence in the biological relationship between female horseshoe crab mass and the number of satellite males she attracts, but that is exactly why it is so important to communicate these effects
+Well, it doesn't exactly inspire great confidence in the biological relationship between female horseshoe crab mass and the number of satellite males she attracts, but that is exactly why it is so important to communicate these effects.
 
 ## Next steps {#next-13}
 
