@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11.5 A priori selection | The Worst Stats Text eveR</title>
+  <meta name="description" content="11.5 A priori selection | The Worst Stats Text eveR" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11.5 A priori selection | The Worst Stats Text eveR" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11.5 A priori selection | The Worst Stats Text eveR" />
+  
+  
+  
+
+<meta name="author" content="Dan Stich" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="11.4-stepwise.html"/>
+<link rel="next" href="11.6-model-validation.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Worst Stats Text eveR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-what-is-r.html"><a href="1.1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-why-should-i-use-r.html"><a href="1.2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
+<li class="chapter" data-level="1.3" data-path="1.3-where-do-i-start.html"><a href="1.3-where-do-i-start.html"><i class="fa fa-check"></i><b>1.3</b> Where do I start?</a></li>
+<li class="chapter" data-level="1.4" data-path="1.4-programming-conventions.html"><a href="1.4-programming-conventions.html"><i class="fa fa-check"></i><b>1.4</b> Programming conventions</a>
+<ul>
+<li class="chapter" data-level="" data-path="1.4-programming-conventions.html"><a href="1.4-programming-conventions.html#style"><i class="fa fa-check"></i>Style and organization</a></li>
+<li class="chapter" data-level="" data-path="1.4-programming-conventions.html"><a href="1.4-programming-conventions.html#tips"><i class="fa fa-check"></i>Some handy coding tips</a></li>
+<li class="chapter" data-level="" data-path="1.4-programming-conventions.html"><a href="1.4-programming-conventions.html#rules"><i class="fa fa-check"></i>Stricter R programming rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1.5-next1.html"><a href="1.5-next1.html"><i class="fa fa-check"></i><b>1.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-Chapter2.html"><a href="2-Chapter2.html"><i class="fa fa-check"></i><b>2</b> Data structures</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-vectors.html"><a href="2.1-vectors.html"><i class="fa fa-check"></i><b>2.1</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="2.1-vectors.html"><a href="2.1-vectors.html#nums"><i class="fa fa-check"></i>Integers and numerics</a></li>
+<li class="chapter" data-level="" data-path="2.1-vectors.html"><a href="2.1-vectors.html#strings"><i class="fa fa-check"></i>Characters and factors</a></li>
+<li class="chapter" data-level="" data-path="2.1-vectors.html"><a href="2.1-vectors.html#logicals"><i class="fa fa-check"></i>Logical vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-operations.html"><a href="2.2-operations.html"><i class="fa fa-check"></i><b>2.2</b> Vector operations</a></li>
+<li class="chapter" data-level="2.3" data-path="2.3-matrices.html"><a href="2.3-matrices.html"><i class="fa fa-check"></i><b>2.3</b> Matrices</a></li>
+<li class="chapter" data-level="2.4" data-path="2.4-dataframes.html"><a href="2.4-dataframes.html"><i class="fa fa-check"></i><b>2.4</b> Dataframes</a></li>
+<li class="chapter" data-level="2.5" data-path="2.5-lists.html"><a href="2.5-lists.html"><i class="fa fa-check"></i><b>2.5</b> Lists</a></li>
+<li class="chapter" data-level="2.6" data-path="2.6-next2.html"><a href="2.6-next2.html"><i class="fa fa-check"></i><b>2.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-Chapter3.html"><a href="3-Chapter3.html"><i class="fa fa-check"></i><b>3</b> Working with data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-data-read.html"><a href="3.1-data-read.html"><i class="fa fa-check"></i><b>3.1</b> Data read</a></li>
+<li class="chapter" data-level="3.2" data-path="3.2-quick-data-summaries.html"><a href="3.2-quick-data-summaries.html"><i class="fa fa-check"></i><b>3.2</b> Quick data summaries</a></li>
+<li class="chapter" data-level="3.3" data-path="3.3-subsetting-and-selecting-data.html"><a href="3.3-subsetting-and-selecting-data.html"><i class="fa fa-check"></i><b>3.3</b> Subsetting and selecting data</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3.3-subsetting-and-selecting-data.html"><a href="3.3-subsetting-and-selecting-data.html#manual-subsets-and-selections"><i class="fa fa-check"></i><b>3.3.1</b> Manual subsets and selections</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3.3-subsetting-and-selecting-data.html"><a href="3.3-subsetting-and-selecting-data.html#subsetting-and-summaries-in-base-r"><i class="fa fa-check"></i><b>3.3.2</b> Subsetting and summaries in base R</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3.3-subsetting-and-selecting-data.html"><a href="3.3-subsetting-and-selecting-data.html#tidyverse"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting and summaries in the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3.4-better-data-summaries.html"><a href="3.4-better-data-summaries.html"><i class="fa fa-check"></i><b>3.4</b> Better data summaries</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-creating-new-variables.html"><a href="3.5-creating-new-variables.html"><i class="fa fa-check"></i><b>3.5</b> Creating new variables</a></li>
+<li class="chapter" data-level="3.6" data-path="3.6-data-simulation.html"><a href="3.6-data-simulation.html"><i class="fa fa-check"></i><b>3.6</b> Data simulation</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="3.6-data-simulation.html"><a href="3.6-data-simulation.html#random-sub-samples-from-a-dataset"><i class="fa fa-check"></i><b>3.6.1</b> Random sub-samples from a dataset</a></li>
+<li class="chapter" data-level="3.6.2" data-path="3.6-data-simulation.html"><a href="3.6-data-simulation.html#stochastic"><i class="fa fa-check"></i><b>3.6.2</b> Stochastic simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="3.7-next3.html"><a href="3.7-next3.html"><i class="fa fa-check"></i><b>3.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-Chapter4.html"><a href="4-Chapter4.html"><i class="fa fa-check"></i><b>4</b> Plotting and graphics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-plots-matter-as-much-as-stats.html"><a href="4.1-plots-matter-as-much-as-stats.html"><i class="fa fa-check"></i><b>4.1</b> Plots matter as much as stats</a></li>
+<li class="chapter" data-level="4.2" data-path="4.2-base-graphics.html"><a href="4.2-base-graphics.html"><i class="fa fa-check"></i><b>4.2</b> Plotting with base R</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="4.2-base-graphics.html"><a href="4.2-base-graphics.html#histograms"><i class="fa fa-check"></i><b>4.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4.2-base-graphics.html"><a href="4.2-base-graphics.html#scatterplots"><i class="fa fa-check"></i><b>4.2.2</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4.2-base-graphics.html"><a href="4.2-base-graphics.html#lines"><i class="fa fa-check"></i><b>4.2.3</b> Lines</a></li>
+<li class="chapter" data-level="4.2.4" data-path="4.2-base-graphics.html"><a href="4.2-base-graphics.html#boxplots"><i class="fa fa-check"></i><b>4.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4.3-plotting-with-ggplot2.html"><a href="4.3-plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>4.3</b> Plotting with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="4.3-plotting-with-ggplot2.html"><a href="4.3-plotting-with-ggplot2.html#gghists"><i class="fa fa-check"></i><b>4.3.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4.3-plotting-with-ggplot2.html"><a href="4.3-plotting-with-ggplot2.html#ggscatter"><i class="fa fa-check"></i><b>4.3.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4.3-plotting-with-ggplot2.html"><a href="4.3-plotting-with-ggplot2.html#gglines"><i class="fa fa-check"></i><b>4.3.3</b> Lines</a></li>
+<li class="chapter" data-level="4.3.4" data-path="4.3-plotting-with-ggplot2.html"><a href="4.3-plotting-with-ggplot2.html#ggboxplots"><i class="fa fa-check"></i><b>4.3.4</b> Boxplots and</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4.4-next4.html"><a href="4.4-next4.html"><i class="fa fa-check"></i><b>4.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-Chapter5.html"><a href="5-Chapter5.html"><i class="fa fa-check"></i><b>5</b> Sampling distributions in R</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-what-are-sampling-distributions.html"><a href="5.1-what-are-sampling-distributions.html"><i class="fa fa-check"></i><b>5.1</b> What are sampling distributions?</a></li>
+<li class="chapter" data-level="5.2" data-path="5.2-probability-distributions-in-r.html"><a href="5.2-probability-distributions-in-r.html"><i class="fa fa-check"></i><b>5.2</b> Probability distributions in R</a></li>
+<li class="chapter" data-level="5.3" data-path="5.3-exponential-family.html"><a href="5.3-exponential-family.html"><i class="fa fa-check"></i><b>5.3</b> Exponential family</a></li>
+<li class="chapter" data-level="5.4" data-path="5.4-continuous-distributions.html"><a href="5.4-continuous-distributions.html"><i class="fa fa-check"></i><b>5.4</b> Continuous distributions</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="5.4-continuous-distributions.html"><a href="5.4-continuous-distributions.html#the-lognormal-distribution"><i class="fa fa-check"></i><b>5.4.1</b> The lognormal distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5.4-continuous-distributions.html"><a href="5.4-continuous-distributions.html#the-beta-distribution"><i class="fa fa-check"></i><b>5.4.2</b> The beta distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html"><i class="fa fa-check"></i><b>5.5</b> Discrete distributions</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html#bernoulli"><i class="fa fa-check"></i><b>5.5.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="5.5.2" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html#binomial"><i class="fa fa-check"></i><b>5.5.2</b> Binomial</a></li>
+<li class="chapter" data-level="5.5.3" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html#multinomial"><i class="fa fa-check"></i><b>5.5.3</b> Multinomial</a></li>
+<li class="chapter" data-level="5.5.4" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html#poisson"><i class="fa fa-check"></i><b>5.5.4</b> Poisson</a></li>
+<li class="chapter" data-level="5.5.5" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html#the-negative-binomial-distribution"><i class="fa fa-check"></i><b>5.5.5</b> The negative binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="5.6-sample-statistics.html"><a href="5.6-sample-statistics.html"><i class="fa fa-check"></i><b>5.6</b> Sample statistics</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="5.6-sample-statistics.html"><a href="5.6-sample-statistics.html#moments-about-the-mean"><i class="fa fa-check"></i><b>5.6.1</b> Moments about the mean</a></li>
+<li class="chapter" data-level="5.6.2" data-path="5.6-sample-statistics.html"><a href="5.6-sample-statistics.html#estimating-parameters-of-the-normal-distribution-from-a-sample"><i class="fa fa-check"></i><b>5.6.2</b> Estimating parameters of the normal distribution from a sample</a></li>
+<li class="chapter" data-level="5.6.3" data-path="5.6-sample-statistics.html"><a href="5.6-sample-statistics.html#quantiles-and-other-descriptive-statistics"><i class="fa fa-check"></i><b>5.6.3</b> Quantiles and other descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="5.7-next5.html"><a href="5.7-next5.html"><i class="fa fa-check"></i><b>5.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-Chapter6.html"><a href="6-Chapter6.html"><i class="fa fa-check"></i><b>6</b> Inferential statistics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6.1-one-sample-tests.html"><a href="6.1-one-sample-tests.html"><i class="fa fa-check"></i><b>6.1</b> One-sample tests</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="6.1-one-sample-tests.html"><a href="6.1-one-sample-tests.html#one-sample-t-test"><i class="fa fa-check"></i><b>6.1.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6.1-one-sample-tests.html"><a href="6.1-one-sample-tests.html#wilcox-test"><i class="fa fa-check"></i><b>6.1.2</b> Wilcox test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6.2-two-sample-tests.html"><a href="6.2-two-sample-tests.html"><i class="fa fa-check"></i><b>6.2</b> Two-sample tests</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6.2-two-sample-tests.html"><a href="6.2-two-sample-tests.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>6.2.1</b> The two-sample t-test</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6.2-two-sample-tests.html"><a href="6.2-two-sample-tests.html#two-sample-wilcox-test"><i class="fa fa-check"></i><b>6.2.2</b> Two-sample Wilcox test</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6.2-two-sample-tests.html"><a href="6.2-two-sample-tests.html#presenting-your-results"><i class="fa fa-check"></i><b>6.2.3</b> Presenting your results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6.3-frequency-analysis.html"><a href="6.3-frequency-analysis.html"><i class="fa fa-check"></i><b>6.3</b> Frequency analysis</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="6.3-frequency-analysis.html"><a href="6.3-frequency-analysis.html#worked-example"><i class="fa fa-check"></i><b>6.3.1</b> Worked example</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="6.4-next6.html"><a href="6.4-next6.html"><i class="fa fa-check"></i><b>6.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-Chapter7.html"><a href="7-Chapter7.html"><i class="fa fa-check"></i><b>7</b> Linear models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-anova.html"><a href="7.1-anova.html"><i class="fa fa-check"></i><b>7.1</b> Analysis of variance (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="7.1-anova.html"><a href="7.1-anova.html#one-way"><i class="fa fa-check"></i><b>7.1.1</b> One-way analysis of variance</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7.1-anova.html"><a href="7.1-anova.html#twon-way-anova"><i class="fa fa-check"></i><b>7.1.2</b> Two(<em>n</em>)-way ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7.2-simple-linear-regression.html"><a href="7.2-simple-linear-regression.html"><i class="fa fa-check"></i><b>7.2</b> Simple linear regression</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="7.2-simple-linear-regression.html"><a href="7.2-simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>7.2.1</b> Simple linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7.3-multiple-linear-regression.html"><a href="7.3-multiple-linear-regression.html"><i class="fa fa-check"></i><b>7.3</b> Multiple linear regression</a></li>
+<li class="chapter" data-level="7.4" data-path="7.4-next7.html"><a href="7.4-next7.html"><i class="fa fa-check"></i><b>7.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-Chapter8.html"><a href="8-Chapter8.html"><i class="fa fa-check"></i><b>8</b> General linear models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="8.1-analysis-of-covariance-ancova.html"><a href="8.1-analysis-of-covariance-ancova.html"><i class="fa fa-check"></i><b>8.1</b> Analysis of covariance (ANCOVA)</a></li>
+<li class="chapter" data-level="8.2" data-path="8.2-motivation.html"><a href="8.2-motivation.html"><i class="fa fa-check"></i><b>8.2</b> Motivation</a></li>
+<li class="chapter" data-level="8.3" data-path="8.3-data.html"><a href="8.3-data.html"><i class="fa fa-check"></i><b>8.3</b> Data</a></li>
+<li class="chapter" data-level="8.4" data-path="8.4-analysis.html"><a href="8.4-analysis.html"><i class="fa fa-check"></i><b>8.4</b> Analysis</a></li>
+<li class="chapter" data-level="8.5" data-path="8.5-predictions.html"><a href="8.5-predictions.html"><i class="fa fa-check"></i><b>8.5</b> Predictions</a></li>
+<li class="chapter" data-level="8.6" data-path="8.6-next8.html"><a href="8.6-next8.html"><i class="fa fa-check"></i><b>8.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-Chapter9.html"><a href="9-Chapter9.html"><i class="fa fa-check"></i><b>9</b> Assumptions of linear models</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="9.1-intro9.html"><a href="9.1-intro9.html"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="9.2-assumptions-of-linear-models.html"><a href="9.2-assumptions-of-linear-models.html"><i class="fa fa-check"></i><b>9.2</b> Assumptions of linear models</a></li>
+<li class="chapter" data-level="9.3" data-path="9.3-ughmath.html"><a href="9.3-ughmath.html"><i class="fa fa-check"></i><b>9.3</b> WTF is a residuals?</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="9.3-ughmath.html"><a href="9.3-ughmath.html#residuals-in-anova"><i class="fa fa-check"></i><b>9.3.1</b> Residuals in ANOVA</a></li>
+<li class="chapter" data-level="9.3.2" data-path="9.3-ughmath.html"><a href="9.3-ughmath.html#residuals-in-linear-regression"><i class="fa fa-check"></i><b>9.3.2</b> Residuals in linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="9.4-the-turtle-problem.html"><a href="9.4-the-turtle-problem.html"><i class="fa fa-check"></i><b>9.4</b> The turtle problem</a></li>
+<li class="chapter" data-level="9.5" data-path="9.5-data-exploration.html"><a href="9.5-data-exploration.html"><i class="fa fa-check"></i><b>9.5</b> Data exploration</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="9.5-data-exploration.html"><a href="9.5-data-exploration.html#independence-of-observations"><i class="fa fa-check"></i><b>9.5.1</b> Independence of observations</a></li>
+<li class="chapter" data-level="9.5.2" data-path="9.5-data-exploration.html"><a href="9.5-data-exploration.html#normality-1"><i class="fa fa-check"></i><b>9.5.2</b> Normality</a></li>
+<li class="chapter" data-level="9.5.3" data-path="9.5-data-exploration.html"><a href="9.5-data-exploration.html#homogeneity-of-variances"><i class="fa fa-check"></i><b>9.5.3</b> Homogeneity of variances</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="9.6-anova-diagnostics.html"><a href="9.6-anova-diagnostics.html"><i class="fa fa-check"></i><b>9.6</b> ANOVA Diagnostics</a></li>
+<li class="chapter" data-level="9.7" data-path="9.7-linear-regression-diagnostics.html"><a href="9.7-linear-regression-diagnostics.html"><i class="fa fa-check"></i><b>9.7</b> Linear regression diagnostics</a></li>
+<li class="chapter" data-level="9.8" data-path="9.8-next9.html"><a href="9.8-next9.html"><i class="fa fa-check"></i><b>9.8</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-Chapter10.html"><a href="10-Chapter10.html"><i class="fa fa-check"></i><b>10</b> Communicating effect sizes</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="10.1-one-way-anova.html"><a href="10.1-one-way-anova.html"><i class="fa fa-check"></i><b>10.1</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="10.1-one-way-anova.html"><a href="10.1-one-way-anova.html#unifying-the-linear-model"><i class="fa fa-check"></i><b>10.1.1</b> Unifying the linear model</a></li>
+<li class="chapter" data-level="10.1.2" data-path="10.1-one-way-anova.html"><a href="10.1-one-way-anova.html#the-model-matrix"><i class="fa fa-check"></i><b>10.1.2</b> The model matrix</a></li>
+<li class="chapter" data-level="10.1.3" data-path="10.1-one-way-anova.html"><a href="10.1-one-way-anova.html#prediction"><i class="fa fa-check"></i><b>10.1.3</b> Prediction</a></li>
+<li class="chapter" data-level="10.1.4" data-path="10.1-one-way-anova.html"><a href="10.1-one-way-anova.html#plotting"><i class="fa fa-check"></i><b>10.1.4</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="10.2-two-way-anova.html"><a href="10.2-two-way-anova.html"><i class="fa fa-check"></i><b>10.2</b> Two-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="10.2-two-way-anova.html"><a href="10.2-two-way-anova.html#main-effects-10"><i class="fa fa-check"></i><b>10.2.1</b> Main effects model</a></li>
+<li class="chapter" data-level="10.2.2" data-path="10.2-two-way-anova.html"><a href="10.2-two-way-anova.html#interactions"><i class="fa fa-check"></i><b>10.2.2</b> Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="10.3-linear-regression.html"><a href="10.3-linear-regression.html"><i class="fa fa-check"></i><b>10.3</b> Linear regression</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="10.3-linear-regression.html"><a href="10.3-linear-regression.html#prediction-1"><i class="fa fa-check"></i><b>10.3.1</b> Prediction</a></li>
+<li class="chapter" data-level="10.3.2" data-path="10.3-linear-regression.html"><a href="10.3-linear-regression.html#plotting-1"><i class="fa fa-check"></i><b>10.3.2</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="10.4-ancova.html"><a href="10.4-ancova.html"><i class="fa fa-check"></i><b>10.4</b> ANCOVA</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="10.4-ancova.html"><a href="10.4-ancova.html#prediction-2"><i class="fa fa-check"></i><b>10.4.1</b> Prediction</a></li>
+<li class="chapter" data-level="10.4.2" data-path="10.4-ancova.html"><a href="10.4-ancova.html#plotting-2"><i class="fa fa-check"></i><b>10.4.2</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="10.5-next10.html"><a href="10.5-next10.html"><i class="fa fa-check"></i><b>10.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-Chapter11.html"><a href="11-Chapter11.html"><i class="fa fa-check"></i><b>11</b> Model selection</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="11.1-intro11.html"><a href="11.1-intro11.html"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
+<li class="chapter" data-level="11.2" data-path="11.2-model-selection-tools.html"><a href="11.2-model-selection-tools.html"><i class="fa fa-check"></i><b>11.2</b> Model selection tools</a></li>
+<li class="chapter" data-level="11.3" data-path="11.3-all-subsets.html"><a href="11.3-all-subsets.html"><i class="fa fa-check"></i><b>11.3</b> All subsets</a></li>
+<li class="chapter" data-level="11.4" data-path="11.4-stepwise.html"><a href="11.4-stepwise.html"><i class="fa fa-check"></i><b>11.4</b> Stepwise selection</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="11.4-stepwise.html"><a href="11.4-stepwise.html#forward-selection"><i class="fa fa-check"></i><b>11.4.1</b> Forward selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="11.5-a-priori.html"><a href="11.5-a-priori.html"><i class="fa fa-check"></i><b>11.5</b> <em>A priori</em> selection</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="11.5-a-priori.html"><a href="11.5-a-priori.html#multi-phase-heirarchical-selection"><i class="fa fa-check"></i><b>11.5.1</b> Multi-phase (heirarchical) selection</a></li>
+<li class="chapter" data-level="11.5.2" data-path="11.5-a-priori.html"><a href="11.5-a-priori.html#single-phase-selection"><i class="fa fa-check"></i><b>11.5.2</b> Single-phase selection</a></li>
+<li class="chapter" data-level="11.5.3" data-path="11.5-a-priori.html"><a href="11.5-a-priori.html#tools-for-a-priori-model-selection"><i class="fa fa-check"></i><b>11.5.3</b> Tools for <em>a priori</em> model selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="11.6-model-validation.html"><a href="11.6-model-validation.html"><i class="fa fa-check"></i><b>11.6</b> Model validation</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="11.6-model-validation.html"><a href="11.6-model-validation.html#leave-one-out-cross-validation"><i class="fa fa-check"></i><b>11.6.1</b> Leave-one-out cross validation</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="11.7-next11.html"><a href="11.7-next11.html"><i class="fa fa-check"></i><b>11.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="12-Chapter12.html"><a href="12-Chapter12.html"><i class="fa fa-check"></i><b>12</b> Logistic regression</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="12.1-intro12.html"><a href="12.1-intro12.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="12.2-Assumptions12.html"><a href="12.2-Assumptions12.html"><i class="fa fa-check"></i><b>12.2</b> Assumptions of linear models</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="12.2-Assumptions12.html"><a href="12.2-Assumptions12.html#assumption-1-normality-of-residuals"><i class="fa fa-check"></i><b>12.2.1</b> Assumption 1: normality of residuals</a></li>
+<li class="chapter" data-level="12.2.2" data-path="12.2-Assumptions12.html"><a href="12.2-Assumptions12.html#assumption-2-independence-of-observations"><i class="fa fa-check"></i><b>12.2.2</b> Assumption 2: independence of observations</a></li>
+<li class="chapter" data-level="12.2.3" data-path="12.2-Assumptions12.html"><a href="12.2-Assumptions12.html#assumption-3-homogeneity-of-variances"><i class="fa fa-check"></i><b>12.2.3</b> Assumption 3: homogeneity of variances</a></li>
+<li class="chapter" data-level="12.2.4" data-path="12.2-Assumptions12.html"><a href="12.2-Assumptions12.html#assumption-4-linearity-and-additivity"><i class="fa fa-check"></i><b>12.2.4</b> Assumption 4: linearity and additivity</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="12.3-introducing-the-glm.html"><a href="12.3-introducing-the-glm.html"><i class="fa fa-check"></i><b>12.3</b> Introducing the GLM</a></li>
+<li class="chapter" data-level="12.4" data-path="12.4-logistic.html"><a href="12.4-logistic.html"><i class="fa fa-check"></i><b>12.4</b> Binary (logistic) regression</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="12.4-logistic.html"><a href="12.4-logistic.html#data-explanation"><i class="fa fa-check"></i><b>12.4.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="12.4.2" data-path="12.4-logistic.html"><a href="12.4-logistic.html#data-analysis"><i class="fa fa-check"></i><b>12.4.2</b> Data analysis</a></li>
+<li class="chapter" data-level="12.4.3" data-path="12.4-logistic.html"><a href="12.4-logistic.html#interpreting-the-results"><i class="fa fa-check"></i><b>12.4.3</b> Interpreting the results</a></li>
+<li class="chapter" data-level="12.4.4" data-path="12.4-logistic.html"><a href="12.4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>12.4.4</b> Making predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="12.5-next12.html"><a href="12.5-next12.html"><i class="fa fa-check"></i><b>12.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="13-Chapter13.html"><a href="13-Chapter13.html"><i class="fa fa-check"></i><b>13</b> GLM: Count models</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="13.1-intro13.html"><a href="13.1-intro13.html"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="13.2-poisson-13.html"><a href="13.2-poisson-13.html"><i class="fa fa-check"></i><b>13.2</b> Poisson regression</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="13.2-poisson-13.html"><a href="13.2-poisson-13.html#data-13"><i class="fa fa-check"></i><b>13.2.1</b> Data explanation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="13.3-negbin.html"><a href="13.3-negbin.html"><i class="fa fa-check"></i><b>13.3</b> Negative binomial regression</a></li>
+<li class="chapter" data-level="13.4" data-path="13.4-zinf-13.html"><a href="13.4-zinf-13.html"><i class="fa fa-check"></i><b>13.4</b> Zero inflation</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="13.4-zinf-13.html"><a href="13.4-zinf-13.html#predict-13"><i class="fa fa-check"></i><b>13.4.1</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="13.5-next-13.html"><a href="13.5-next-13.html"><i class="fa fa-check"></i><b>13.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="14-Chapter14.html"><a href="14-Chapter14.html"><i class="fa fa-check"></i><b>14</b> Linear mixed models</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="14.1-intro-14.html"><a href="14.1-intro-14.html"><i class="fa fa-check"></i><b>14.1</b> Introduction</a></li>
+<li class="chapter" data-level="14.2" data-path="14.2-assumptions-lmm.html"><a href="14.2-assumptions-lmm.html"><i class="fa fa-check"></i><b>14.2</b> Assumptions of linear models</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="14.2-assumptions-lmm.html"><a href="14.2-assumptions-lmm.html#normality-14"><i class="fa fa-check"></i><b>14.2.1</b> Assumption 1: Normality of residuals</a></li>
+<li class="chapter" data-level="14.2.2" data-path="14.2-assumptions-lmm.html"><a href="14.2-assumptions-lmm.html#independence-14"><i class="fa fa-check"></i><b>14.2.2</b> Assumption 2: Independence of observations</a></li>
+<li class="chapter" data-level="14.2.3" data-path="14.2-assumptions-lmm.html"><a href="14.2-assumptions-lmm.html#homogeneity-14"><i class="fa fa-check"></i><b>14.2.3</b> Assumption 3: Homogeneity of variances</a></li>
+<li class="chapter" data-level="14.2.4" data-path="14.2-assumptions-lmm.html"><a href="14.2-assumptions-lmm.html#linearity-14"><i class="fa fa-check"></i><b>14.2.4</b> Assumption 4: Linearity and additivity</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="14.3-linear-mixed-models.html"><a href="14.3-linear-mixed-models.html"><i class="fa fa-check"></i><b>14.3</b> Linear mixed models</a></li>
+<li class="chapter" data-level="14.4" data-path="14.4-lmm-worked.html"><a href="14.4-lmm-worked.html"><i class="fa fa-check"></i><b>14.4</b> Worked example</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="14.4-lmm-worked.html"><a href="14.4-lmm-worked.html#random-intercepts-model"><i class="fa fa-check"></i><b>14.4.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="14.5-next-14.html"><a href="14.5-next-14.html"><i class="fa fa-check"></i><b>14.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="15-Chapter15.html"><a href="15-Chapter15.html"><i class="fa fa-check"></i><b>15</b> Generalized linear mixed models</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="15.1-intro-15.html"><a href="15.1-intro-15.html"><i class="fa fa-check"></i><b>15.1</b> Introduction</a></li>
+<li class="chapter" data-level="15.2" data-path="15.2-glmm-logistic.html"><a href="15.2-glmm-logistic.html"><i class="fa fa-check"></i><b>15.2</b> Logistic regression</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="15.2-glmm-logistic.html"><a href="15.2-glmm-logistic.html#glmm-logistic-data"><i class="fa fa-check"></i><b>15.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="15.2.2" data-path="15.2-glmm-logistic.html"><a href="15.2-glmm-logistic.html#glmm-logistic-analysis"><i class="fa fa-check"></i><b>15.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="15.2.3" data-path="15.2-glmm-logistic.html"><a href="15.2-glmm-logistic.html#glmm-logistic-preds"><i class="fa fa-check"></i><b>15.2.3</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="15.3-glmm-count.html"><a href="15.3-glmm-count.html"><i class="fa fa-check"></i><b>15.3</b> Count models</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="15.3-glmm-count.html"><a href="15.3-glmm-count.html#data-explanation-glmm-count-data"><i class="fa fa-check"></i><b>15.3.1</b> Data explanation {glmm-count-data}</a></li>
+<li class="chapter" data-level="15.3.2" data-path="15.3-glmm-count.html"><a href="15.3-glmm-count.html#glmm-count-analysis"><i class="fa fa-check"></i><b>15.3.2</b> Data analysis</a></li>
+<li class="chapter" data-level="15.3.3" data-path="15.3-glmm-count.html"><a href="15.3-glmm-count.html#glmm-count-preds"><i class="fa fa-check"></i><b>15.3.3</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="15.4-next-15.html"><a href="15.4-next-15.html"><i class="fa fa-check"></i><b>15.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="16-introduction-to-bayesian-inference.html"><a href="16-introduction-to-bayesian-inference.html"><i class="fa fa-check"></i><b>16</b> Introduction to Bayesian inference</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="16.1-intro-16.html"><a href="16.1-intro-16.html"><i class="fa fa-check"></i><b>16.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="16.1-intro-16.html"><a href="16.1-intro-16.html#installing-rstan"><i class="fa fa-check"></i><b>16.1.1</b> Installing RStan</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="16.2-intro-to-bayes-theorem.html"><a href="16.2-intro-to-bayes-theorem.html"><i class="fa fa-check"></i><b>16.2</b> Intro to Bayes Theorem</a></li>
+<li class="chapter" data-level="16.3" data-path="16.3-the-prior.html"><a href="16.3-the-prior.html"><i class="fa fa-check"></i><b>16.3</b> The prior</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="16.3-the-prior.html"><a href="16.3-the-prior.html#the-hospital-example"><i class="fa fa-check"></i><b>16.3.1</b> The hospital example</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="16.4-the-posterior.html"><a href="16.4-the-posterior.html"><i class="fa fa-check"></i><b>16.4</b> The posterior</a></li>
+<li class="chapter" data-level="16.5" data-path="16.5-worked-example-with-the-cray-data.html"><a href="16.5-worked-example-with-the-cray-data.html"><i class="fa fa-check"></i><b>16.5</b> Worked example with the Cray data</a></li>
+<li class="chapter" data-level="16.6" data-path="16.6-running-a-bayesian-model-with-rstanarm.html"><a href="16.6-running-a-bayesian-model-with-rstanarm.html"><i class="fa fa-check"></i><b>16.6</b> Running a Bayesian model with <code>rstanarm</code></a>
+<ul>
+<li class="chapter" data-level="16.6.1" data-path="16.6-running-a-bayesian-model-with-rstanarm.html"><a href="16.6-running-a-bayesian-model-with-rstanarm.html#interpreting-the-model-summary"><i class="fa fa-check"></i><b>16.6.1</b> Interpreting the model summary</a></li>
+</ul></li>
+<li class="chapter" data-level="16.7" data-path="16.7-more-diagnostics.html"><a href="16.7-more-diagnostics.html"><i class="fa fa-check"></i><b>16.7</b> More diagnostics</a>
+<ul>
+<li class="chapter" data-level="16.7.1" data-path="16.7-more-diagnostics.html"><a href="16.7-more-diagnostics.html#trace-plots"><i class="fa fa-check"></i><b>16.7.1</b> Trace plots</a></li>
+<li class="chapter" data-level="16.7.2" data-path="16.7-more-diagnostics.html"><a href="16.7-more-diagnostics.html#colinearity"><i class="fa fa-check"></i><b>16.7.2</b> Colinearity</a></li>
+<li class="chapter" data-level="16.7.3" data-path="16.7-more-diagnostics.html"><a href="16.7-more-diagnostics.html#divergence"><i class="fa fa-check"></i><b>16.7.3</b> Divergence</a></li>
+</ul></li>
+<li class="chapter" data-level="16.8" data-path="16.8-bayesian-model-selection.html"><a href="16.8-bayesian-model-selection.html"><i class="fa fa-check"></i><b>16.8</b> Model selection</a></li>
+<li class="chapter" data-level="16.9" data-path="16.9-summarizing-results.html"><a href="16.9-summarizing-results.html"><i class="fa fa-check"></i><b>16.9</b> Summarizing results</a></li>
+<li class="chapter" data-level="16.10" data-path="16.10-making-predictions-1.html"><a href="16.10-making-predictions-1.html"><i class="fa fa-check"></i><b>16.10</b> Making predictions</a></li>
+<li class="chapter" data-level="16.11" data-path="16.11-next-16.html"><a href="16.11-next-16.html"><i class="fa fa-check"></i><b>16.11</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="17-Chapter17.html"><a href="17-Chapter17.html"><i class="fa fa-check"></i><b>17</b> Bayesian Logistic regression</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="17.1-intro17.html"><a href="17.1-intro17.html"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html"><i class="fa fa-check"></i><b>17.2</b> Binary (logistic) regression</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html#data-17"><i class="fa fa-check"></i><b>17.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="17.2.2" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html#analysis-17"><i class="fa fa-check"></i><b>17.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="17.2.3" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html#interpretting-17"><i class="fa fa-check"></i><b>17.2.3</b> Interpreting the results</a></li>
+<li class="chapter" data-level="17.2.4" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html#continuous-17"><i class="fa fa-check"></i><b>17.2.4</b> Continuous effects</a></li>
+<li class="chapter" data-level="17.2.5" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html#predictions-17"><i class="fa fa-check"></i><b>17.2.5</b> Making predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="17.3-next17.html"><a href="17.3-next17.html"><i class="fa fa-check"></i><b>17.3</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="18-Chapter18.html"><a href="18-Chapter18.html"><i class="fa fa-check"></i><b>18</b> GLM: Count models</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="18.1-intro18.html"><a href="18.1-intro18.html"><i class="fa fa-check"></i><b>18.1</b> Introduction</a></li>
+<li class="chapter" data-level="18.2" data-path="18.2-poisson-18.html"><a href="18.2-poisson-18.html"><i class="fa fa-check"></i><b>18.2</b> Poisson regression</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="18.2-poisson-18.html"><a href="18.2-poisson-18.html#data-18"><i class="fa fa-check"></i><b>18.2.1</b> Data explanation</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="18.3-negbin-18.html"><a href="18.3-negbin-18.html"><i class="fa fa-check"></i><b>18.3</b> Negative binomial regression</a></li>
+<li class="chapter" data-level="18.4" data-path="18.4-zinfl-18.html"><a href="18.4-zinfl-18.html"><i class="fa fa-check"></i><b>18.4</b> Zero inflation</a>
+<ul>
+<li class="chapter" data-level="18.4.1" data-path="18.4-zinfl-18.html"><a href="18.4-zinfl-18.html#step-1-presence-absence"><i class="fa fa-check"></i><b>18.4.1</b> Step 1: Presence-absence</a></li>
+<li class="chapter" data-level="18.4.2" data-path="18.4-zinfl-18.html"><a href="18.4-zinfl-18.html#step-2-counts-given-presence"><i class="fa fa-check"></i><b>18.4.2</b> Step 2: Counts given presence</a></li>
+<li class="chapter" data-level="18.4.3" data-path="18.4-zinfl-18.html"><a href="18.4-zinfl-18.html#predict-counts"><i class="fa fa-check"></i><b>18.4.3</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="18.5" data-path="18.5-next-steps.html"><a href="18.5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="19.1-intro-19.html"><a href="19.1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19.2-hierarchical.html"><a href="19.2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19.3-worked-19.html"><a href="19.3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="19.3-worked-19.html"><a href="19.3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19.4-next-19.html"><a href="19.4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="20-Chapter20.html"><a href="20-Chapter20.html"><i class="fa fa-check"></i><b>20</b> Bayesian hierarchical GLM</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="20.1-intro-20.html"><a href="20.1-intro-20.html"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
+<li class="chapter" data-level="20.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression {#20-logistic}</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-explanation-20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation {#20-logistic-data}</a></li>
+<li class="chapter" data-level="20.2.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-analysis-20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis {#20-logistic-analysis}</a></li>
+<li class="chapter" data-level="20.2.3" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#predictions-20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions {#20-logistic-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models {#20-count}</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
+<li class="chapter" data-level="20.3.2" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-analysis-20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis {#20-count-analysis}</a></li>
+<li class="chapter" data-level="20.3.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#predictions-20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions {#20-count-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="20.4-next-20.html"><a href="20.4-next-20.html"><i class="fa fa-check"></i><b>20.4</b> Next steps</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Worst Stats Text eveR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="a-priori" class="section level2" number="11.5">
+<h2><span class="header-section-number">11.5</span> <em>A priori</em> selection</h2>
+<p>The most widely perpetuated approach to model selection is probably <em>a priori</em> model selection. This means considering only those models for which we have good reasons ahead of time. These are usually models that are designed to represent competing [biological] hypotheses or to balance those hypotheses within a framework for testing. In simple situations, we compare all the models in which we are interested through a single phase of model selection. We will stick to this approach for class. But, in more complex situations we might apply a hierarchical (multi-phase) approach to reduce complexity and test hypotheses about specific groups of parameters one at a time to avoid inflated type-I error rates (yup, that’s still a thing!) when we have lots and lots of models.</p>
+<div id="multi-phase-heirarchical-selection" class="section level3" number="11.5.1">
+<h3><span class="header-section-number">11.5.1</span> Multi-phase (heirarchical) selection</h3>
+<p>Hierarchical model selection is widely used for complex models that have different underlying processes within. A great example of these kinds of models are occupancy and mark-recapture models that incorporate “sub-models” for estimating detection probabilities and other “sub-models” for estimating things like presence-absence, survival, or abundance. These methods are widely used in studies of fish and wildlife populations, and are also a cornerstone in modern epidemiology when we want to account for false positives or false negatives.</p>
+<p>Essentially, multi-phase model selection means that we impose some kind of hierarchy on the steps we take to test competing hypotheses. For instance, we might first wish to compare hypotheses about factors influencing detection probabilities in our examples above. Then, we could use the best model(s) from that set of hypotheses as the basis for testing hypotheses about factors that influence processes such as survival or breeding probability.</p>
+</div>
+<div id="single-phase-selection" class="section level3" number="11.5.2">
+<h3><span class="header-section-number">11.5.2</span> Single-phase selection</h3>
+<p>This is where we’ll spend the majority of our time for the rest of the chapter and the rest of the book. Single-phase selection means that we want to set up and compare a single group of models that each represent a distinct hypothesis (or set of hypotheses in the case of n-way ANOVA, ANCOVA, and multiple regression).</p>
+</div>
+<div id="tools-for-a-priori-model-selection" class="section level3" number="11.5.3">
+<h3><span class="header-section-number">11.5.3</span> Tools for <em>a priori</em> model selection</h3>
+<p>Here, we will focus on a few common approaches to model selection that can be useful in different situations. We will also discuss the importance of thinking about the hypotheses that are represented by our models and how model selection results are interpreted as we go. In this realm of model selection, it is important that we limit the number of models considered to avoid introducing spurious hypotheses and drawing junk conclusions. Remember, now matter what model we choose as best, it can’t represent a good hypothesis if we don’t know what it means. And, no matter what, we will always have a best model even if the best model is a shitty one.</p>
+<p>In the words of the great Scroobius Pip in his <em>Death of the journalist</em>:
+&gt; Throw enough shit at the wall and some of it will stick
+But make no mistake, you’re wall’s still covered in shit</p>
+<p>To ensure that our walls don’t get covered in excrement at all, we will examine the historical application of and difficulties of the Adjusted R<sup>2</sup> statistic, and then we will dig into information-theoretic approaches using the Akaike information criterion (AIC) as this and other information criteria are now the primary methods used for model selection.</p>
+<blockquote>
+<p>Let’s check out some of these tools!</p>
+</blockquote>
+<p>Start by fitting some models, we will use the <code>swiss</code> data again this week for the purpose of demonstrating selection tools because it is a noisy data set with lots of complexity and collinearity between variables.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="11.5-a-priori.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;swiss&quot;</span>)</span>
+<span id="cb8-2"><a href="11.5-a-priori.html#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="11.5-a-priori.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model that tests the</span></span>
+<span id="cb8-4"><a href="11.5-a-priori.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># effects of education on the fertility index</span></span>
+<span id="cb8-5"><a href="11.5-a-priori.html#cb8-5" aria-hidden="true" tabindex="-1"></a>mod_Ed <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> Education, <span class="at">data =</span> swiss)</span>
+<span id="cb8-6"><a href="11.5-a-priori.html#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="11.5-a-priori.html#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit another model that tests</span></span>
+<span id="cb8-8"><a href="11.5-a-priori.html#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># effects of % Catholic on Fertility</span></span>
+<span id="cb8-9"><a href="11.5-a-priori.html#cb8-9" aria-hidden="true" tabindex="-1"></a>mod_Cath <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> Catholic, <span class="at">data =</span> swiss)</span>
+<span id="cb8-10"><a href="11.5-a-priori.html#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="11.5-a-priori.html#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a model with additive effects</span></span>
+<span id="cb8-12"><a href="11.5-a-priori.html#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># of both explanatory variables</span></span>
+<span id="cb8-13"><a href="11.5-a-priori.html#cb8-13" aria-hidden="true" tabindex="-1"></a>mod_EdCath <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> Education <span class="sc">+</span> Catholic, <span class="at">data =</span> swiss)</span>
+<span id="cb8-14"><a href="11.5-a-priori.html#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="11.5-a-priori.html#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a model with multiplicative</span></span>
+<span id="cb8-16"><a href="11.5-a-priori.html#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># effects of both explanatory variables</span></span>
+<span id="cb8-17"><a href="11.5-a-priori.html#cb8-17" aria-hidden="true" tabindex="-1"></a>mod_EdxCath <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> Education <span class="sc">*</span> Catholic, <span class="at">data =</span> swiss)</span></code></pre></div>
+<p>We have four models that represent competing hypotheses:</p>
+<p>1.<code>Education</code> alone is the best explanation among those considered for variability in <code>fertility</code>.</p>
+<p>2.Percent <code>Catholic</code> alone is the best explanation among those considered for variability in <code>fertility</code>.</p>
+<p>3.The additive effects of <code>Education</code> and percent <code>Catholic</code> are the best explanation among those considered for variability in <code>fertility</code>.</p>
+<p>4.The interactive effects of <code>Education</code> and percent <code>Catholic</code> are the best explanation among those considered for variability in <code>fertility</code>.</p>
+<p>Great, but how can we evaluate which of these hypotheses is best supported by our data?</p>
+<p>Have a look at the residuals of the most complex of these models to make sure we haven’t shattered the assumptions of linear models. In this case, “most complex” means the model with the most parameters, or <code>mod.EdxCath</code>. If you are still unsure as to why this model has more parameters than <code>mod.EdCath</code>, then have a look at the output of <code>model.matrix()</code> for each of them.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="11.5-a-priori.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the residuals from</span></span>
+<span id="cb9-2"><a href="11.5-a-priori.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the fitted model object</span></span>
+<span id="cb9-3"><a href="11.5-a-priori.html#cb9-3" aria-hidden="true" tabindex="-1"></a>resids <span class="ot">&lt;-</span> mod_EdxCath<span class="sc">$</span>residuals</span>
+<span id="cb9-4"><a href="11.5-a-priori.html#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="11.5-a-priori.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the residuals to the swiss data</span></span>
+<span id="cb9-6"><a href="11.5-a-priori.html#cb9-6" aria-hidden="true" tabindex="-1"></a>swiss_resids <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(swiss, resids)</span></code></pre></div>
+<p>They definitely look like they are normal with a mean of zero:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="11.5-a-priori.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(swiss_resids, <span class="fu">aes</span>(<span class="at">x =</span> resids)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="11.5-a-priori.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>A glance at the residuals vs fitted seems to indicate that we don’t have any concerning patterns in the residuals with respect to the observed value of fertility, although we do see that one point all by itself over to the left that might make us want to puke a little.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="11.5-a-priori.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a pretty plot to make sure we haven&#39;t</span></span>
+<span id="cb11-2"><a href="11.5-a-priori.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># completely forgotten about those pesky</span></span>
+<span id="cb11-3"><a href="11.5-a-priori.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># assumptions from Chapter 9</span></span>
+<span id="cb11-4"><a href="11.5-a-priori.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mod_EdxCath, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="11.5-a-priori.html#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb11-6"><a href="11.5-a-priori.html#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="11.5-a-priori.html#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Fertility&quot;</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="11.5-a-priori.html#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(epsilon))) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="11.5-a-priori.html#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><br></p>
+<p>Now that we have verified we are not in violation of assumptions we can apply model selection to find out if one model is clearly better than the others and if so which. Then, we’ll use our best model to make predictions just like last week and next week and the week after that…and so on.</p>
+<p>Let’s start by making a list of our models and giving each element (model) in the list a name:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="11.5-a-priori.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Making a list that holds are models inside it</span></span>
+<span id="cb12-2"><a href="11.5-a-priori.html#cb12-2" aria-hidden="true" tabindex="-1"></a>mods <span class="ot">&lt;-</span> <span class="fu">list</span>(mod_Ed, mod_Cath, mod_EdCath, mod_EdxCath)</span>
+<span id="cb12-3"><a href="11.5-a-priori.html#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="11.5-a-priori.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Give names to each element of the list (each model)</span></span>
+<span id="cb12-5"><a href="11.5-a-priori.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mods) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Ed&quot;</span>, <span class="st">&quot;Cath&quot;</span>, <span class="st">&quot;EdCath&quot;</span>, <span class="st">&quot;EdxCath&quot;</span>)</span></code></pre></div>
+<div id="adjusted-r2" class="section level4" number="11.5.3.1">
+<h4><span class="header-section-number">11.5.3.1</span> Adjusted R<sup>2</sup></h4>
+<p>The adjusted R<sup>2</sup> offers a relatively simple tool for model selection. It is superior to the multiple R<sup>2</sup> with which we have been working only because it balances the number of parameters in the model with the number of observations in our data.</p>
+<p>Just as before, we can look at the summary of our model objects that we have stored in this list.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="11.5-a-priori.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Education only model, we can take a look, like this</span></span>
+<span id="cb13-2"><a href="11.5-a-priori.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mods<span class="sc">$</span>Ed)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Fertility ~ Education, data = swiss)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -17.036  -6.711  -1.011   9.526  19.689 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  79.6101     2.1041  37.836  &lt; 2e-16 ***
+## Education    -0.8624     0.1448  -5.954 3.66e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 9.446 on 45 degrees of freedom
+## Multiple R-squared:  0.4406, Adjusted R-squared:  0.4282 
+## F-statistic: 35.45 on 1 and 45 DF,  p-value: 3.659e-07</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="11.5-a-priori.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># REMEMBER: this model is an object stored in R,</span></span>
+<span id="cb15-2"><a href="11.5-a-priori.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># so we can also look at the names of this summary,</span></span>
+<span id="cb15-3"><a href="11.5-a-priori.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># like this</span></span>
+<span id="cb15-4"><a href="11.5-a-priori.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">summary</span>(mods<span class="sc">$</span>Ed))</span></code></pre></div>
+<pre><code>##  [1] &quot;call&quot;          &quot;terms&quot;         &quot;residuals&quot;     &quot;coefficients&quot; 
+##  [5] &quot;aliased&quot;       &quot;sigma&quot;         &quot;df&quot;            &quot;r.squared&quot;    
+##  [9] &quot;adj.r.squared&quot; &quot;fstatistic&quot;    &quot;cov.unscaled&quot;</code></pre>
+<p><em>Whoa</em>, this is some heavy stuff. To recap, we have made a list of models, each of which are actually lists themselves. Each model has lots of elements. The output of <code>summary()</code> for each model is also a list with and the elements have names of their own. Within that final list we can find the <code>Adusted R-squared</code> or what <code>summary()</code> calls the <code>adj.r.squared</code>. It’s turtles all the way down all over again.</p>
+<p>We can, of course, extract the adjusted R<sup>2</sup> value from the output of <code>summary()</code> by name:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="11.5-a-priori.html#cb17-1" aria-hidden="true" tabindex="-1"></a>ed_r <span class="ot">&lt;-</span> <span class="fu">summary</span>(mods<span class="sc">$</span>Ed)<span class="sc">$</span>adj.r.squared</span>
+<span id="cb17-2"><a href="11.5-a-priori.html#cb17-2" aria-hidden="true" tabindex="-1"></a>cath_r <span class="ot">&lt;-</span> <span class="fu">summary</span>(mods<span class="sc">$</span>Cath)<span class="sc">$</span>adj.r.squared</span>
+<span id="cb17-3"><a href="11.5-a-priori.html#cb17-3" aria-hidden="true" tabindex="-1"></a>EdCath_r <span class="ot">&lt;-</span> <span class="fu">summary</span>(mods<span class="sc">$</span>EdCath)<span class="sc">$</span>adj.r.squared</span>
+<span id="cb17-4"><a href="11.5-a-priori.html#cb17-4" aria-hidden="true" tabindex="-1"></a>EdxCath_r <span class="ot">&lt;-</span> <span class="fu">summary</span>(mods<span class="sc">$</span>EdxCath)<span class="sc">$</span>adj.r.squared</span></code></pre></div>
+<p>And, we could even put them in a data frame with the original model names to compare the R<sup>2</sup> values.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="11.5-a-priori.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb18-2"><a href="11.5-a-priori.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="fu">names</span>(mods),</span>
+<span id="cb18-3"><a href="11.5-a-priori.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">adj_r_squared =</span> <span class="fu">c</span>(ed_r, cath_r, EdCath_r, EdxCath_r)</span>
+<span id="cb18-4"><a href="11.5-a-priori.html#cb18-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>##     model adj_r_squared
+## 1      Ed     0.4281849
+## 2    Cath     0.1975591
+## 3  EdCath     0.5551665
+## 4 EdxCath     0.5700628</code></pre>
+<p>When we compare adjusted R<sup>2</sup>, <strong>the model with the highest R<sup>2</sup> is the “best model”</strong>. So, in this case, we would conclude that <code>EdxCath</code> is the best model. But, we have two problems. First, how do we tell if an R<sup>2</sup> value of 0.57 is meaningfully better than an R<sup>2</sup> value of 0.57 statistically? Second, we know we have more parameters in <code>EdxCath</code> than in <code>EdCath</code>. Are these extra parameters worth the small increase in R<sup>2</sup>?. Although we won’t dive into statistics like the PRESS statistic, this and other traditional model-selection statistics suffer the same two deficiencies. Finally, the R<sup>2</sup> is a statistic derived from the sum of squared errors in least-squares estimation so we won’t be able to use it starting in <a href="12-Chapter12.html#Chapter12">Chapter 12</a> when we start to estimate regression coefficients using maximum likelihood estimation from now on.</p>
+<p>So, how to life?</p>
+</div>
+<div id="information-theoretic-approaches" class="section level4" number="11.5.3.2">
+<h4><span class="header-section-number">11.5.3.2</span> Information theoretic approaches</h4>
+<h5 id="multi">
+Akaike’s information criterion (AIC)
+</h5>
+<p>This tool (or the popular alternatives BIC, DIC, WAIC, and LOOIC) will be more useful for us during the next several weeks than any of the methods we’ve discussed so far because it allows us to draw inference based on the likelihood of the model rather than the sum of squared errors, which we will learn that GLMs and other generalizations do not have!</p>
+<p>Information-theoretic approaches to model selection are based on the trade off in information gained through addition of parameters (explanatory variables and how they combine) and the added complexity of the models, with respect to sample size. I will hold off on a detailed explanation because you will learn more about this tool in your readings. So, let’s cut straight to the chase.</p>
+<p>Remember that we made a list of <em>a priori</em> models above that we would like to consider.</p>
+<p>Have a look at the names of those models just in case you’ve forgotten them.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="11.5-a-priori.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mods)</span></code></pre></div>
+<pre><code>## [1] &quot;Ed&quot;      &quot;Cath&quot;    &quot;EdCath&quot;  &quot;EdxCath&quot;</code></pre>
+<p>We can extract the AIC value for each model in our list by using the <code>lapply()</code> or <code>mapply()</code> functions. These functions will split up the list and “apply” a function to each of the elements of that list. The primary difference is that <code>lapply()</code> returns a named list and <code>mapply()</code> returns an atomic vector with named elements (easier to work with if we want to combine results with model names).</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="11.5-a-priori.html#cb22-1" aria-hidden="true" tabindex="-1"></a>mods_AIC <span class="ot">&lt;-</span> <span class="fu">mapply</span>(<span class="at">FUN =</span> <span class="st">&quot;AIC&quot;</span>, mods)</span>
+<span id="cb22-2"><a href="11.5-a-priori.html#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="11.5-a-priori.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb22-4"><a href="11.5-a-priori.html#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Model =</span> <span class="fu">names</span>(mods),</span>
+<span id="cb22-5"><a href="11.5-a-priori.html#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">AIC =</span> mods_AIC</span>
+<span id="cb22-6"><a href="11.5-a-priori.html#cb22-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>##           Model      AIC
+## Ed           Ed 348.4223
+## Cath       Cath 364.3479
+## EdCath   EdCath 337.5636
+## EdxCath EdxCath 336.8823</code></pre>
+<p>Now we have printed a dataframe holding the names of our models in one column and their AIC values in another. Unlike the R<sup>2</sup> statistic, smaller is better when it comes to AIC (and other I-T approaches), even if the values are negative. <strong>The actual value of AIC for any given model has no interpretation other than relative to the remaining three</strong>. To clarify: if I have a single AIC value for one model, it is meaningless. I must have another model with the same response (and data!!) to compare it against. There is no such thing as an inherently “good” or “bad” AIC. They are only interpreted relative to other models in the same candidate set. This is fundamentally different than the R<sup>2</sup> statistic.</p>
+<p>At a glance, we can see that our model with the interaction is the ‘best’ model in the set as indicated by our other statistics, but this time it is only better by less than 1 AIC (<strong>lower AIC is better</strong>). Can we say anything about that?</p>
+<p>Funny you should ask. Yes, we can. We have a few general rules of thumb for interpreting the AIC statistic, and we can actually derive a whole set of statistics based on these rankings.</p>
+<blockquote>
+<p>Open can of worms…</p>
+</blockquote>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="11.5-a-priori.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, we need another library</span></span>
+<span id="cb24-2"><a href="11.5-a-priori.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AICcmodavg)</span>
+<span id="cb24-3"><a href="11.5-a-priori.html#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="11.5-a-priori.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s start digging into this stuff</span></span>
+<span id="cb24-5"><a href="11.5-a-priori.html#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># by making a table that can help us along.</span></span>
+<span id="cb24-6"><a href="11.5-a-priori.html#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">aictab</span>(<span class="at">cand.set =</span> mods, <span class="at">modnames =</span> <span class="fu">names</span>(mods))</span></code></pre></div>
+<pre><code>## 
+## Model selection based on AICc:
+## 
+##         K   AICc Delta_AICc AICcWt Cum.Wt      LL
+## EdxCath 5 338.35       0.00   0.52   0.52 -163.44
+## EdCath  4 338.52       0.17   0.48   1.00 -164.78
+## Ed      3 348.98      10.63   0.00   1.00 -171.21
+## Cath    3 364.91      26.56   0.00   1.00 -179.17</code></pre>
+<p>Lots going on here…<strong>What does it all mean</strong>?</p>
+<p>We’ll walk through the table From left to right. First, notice that the <code>row.names()</code> are actually our model names, which is nice. Next, you should take note that the models are ranked in order of increasing AIC. With some context in-hand we can look at each column as follows:</p>
+<p><strong><code>K</code></strong> is the number of parameters in each of the models</p>
+<p><strong><code>AICc</code></strong> is the AIC score, but it is corrected for sample size. Generally speaking, this means models with many parameters and small number of observations are penalized. In general, using the AIC<sub>c</sub> is almost always a practical approach because it is conservative when we don’t have much data and the effect of the penalty goes away with sufficiently large sample sizes (so it becomes equivalent to regular, uncorrected AIC).</p>
+<p><strong><code>Delta_AICc</code></strong> is the difference in AIC<sub>c</sub> between the best model and each of the other models.</p>
+<p><strong><code>AICcWt</code></strong> is the probability that a given model is the best model in the candidate set.</p>
+<p><strong><code>Cum.Wt</code></strong> is the cumulative weights represented by each of the models from best to last. This can be used to create a 95% confidence set of models.</p>
+<p><strong><code>LL</code></strong> is the log likelihood of each model, the very same discussed at the beginning of our discussions about probability distributions!</p>
+</div>
+<div id="interpreting-aic-statistics" class="section level4" number="11.5.3.3">
+<h4><span class="header-section-number">11.5.3.3</span> Interpreting AIC statistics</h4>
+<p><strong>In general</strong>:</p>
+<p>A lower AIC is better.</p>
+<p>Models with <span class="math inline">\(\Delta\)</span>AIC<sub>c</sub> of less than 2.0 are considered to have similar support as the best model. Models with <span class="math inline">\(\Delta\)</span>AIC<sub>c</sub> from 2 to 4 have some support in the data, but not as much. Models with <span class="math inline">\(\Delta\)</span>AIC<sub>c</sub> &gt; 4 have virtually no support.</p>
+<p>The ratio of AIC weights (w<sub>i</sub>)can be used to interpret the improvement between the best model and each subsequent model. In this example, the best model is only <span class="math inline">\(\frac{0.52}{0.48} = 1.08 \times\)</span> better supported than the next best model, but the best two models have all of the support.</p>
+<p>Our results suggest that <code>Education</code> and <code>Catholic</code> are both important in explaining the variation in <code>Fertility</code>, because both are included in any model receiving any support in the candidate set.</p>
+<p>Unlike our previous results, we have no clear winner in this case, and we are left wondering whether it is the additive effects or the multiplicative effects of <code>Education</code> and <code>Catholic</code> that are important. But, we still may want to get estimates for our main effects, at least, so we can make some good solid inference on the effect sizes. If only we had a method for dealing with this uncertainty now…Oh wait, we do!</p>
+</div>
+<div id="model-averaging" class="section level4" number="11.5.3.4">
+<h4><span class="header-section-number">11.5.3.4</span> Model averaging</h4>
+<p>Using model averaging to account for the model uncertainty, we can see that the unconditional confidence interval for <code>Education</code> is negative and does not overlap zero, and the opposite trend is evident in the trend for <code>Catholic</code>. We also find out that the interaction between <code>Education</code> and <code>Catholic</code> is actually not significant, which is probably why the main effects model had equivalent support in the candidate set. In this case, we can conclude that the cost and complexity introduced through the interaction term is probably not worth the information gained.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="11.5-a-priori.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modavg</span>(mods,</span>
+<span id="cb26-2"><a href="11.5-a-priori.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">parm =</span> <span class="st">&quot;Education&quot;</span>, <span class="at">modnames =</span> <span class="fu">names</span>(mods),</span>
+<span id="cb26-3"><a href="11.5-a-priori.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">conf.level =</span> .<span class="dv">95</span>, <span class="at">exclude =</span> <span class="cn">TRUE</span></span>
+<span id="cb26-4"><a href="11.5-a-priori.html#cb26-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## 
+## Multimodel inference on &quot;Education&quot; based on AICc
+## 
+## AICc table used to obtain model-averaged estimate:
+## 
+##         K   AICc Delta_AICc AICcWt Estimate   SE
+## Ed      3 348.98      10.63   0.00    -0.86 0.14
+## EdCath  4 338.52       0.17   0.48    -0.79 0.13
+## EdxCath 5 338.35       0.00   0.52    -0.43 0.26
+## 
+## Model-averaged estimate: -0.6 
+## Unconditional SE: 0.28 
+## 95% Unconditional confidence interval: -1.14, -0.06</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="11.5-a-priori.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modavg</span>(mods,</span>
+<span id="cb28-2"><a href="11.5-a-priori.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">parm =</span> <span class="st">&quot;Catholic&quot;</span>, <span class="at">modnames =</span> <span class="fu">names</span>(mods),</span>
+<span id="cb28-3"><a href="11.5-a-priori.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">conf.level =</span> .<span class="dv">95</span>, <span class="at">exclude =</span> <span class="cn">TRUE</span></span>
+<span id="cb28-4"><a href="11.5-a-priori.html#cb28-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## 
+## Multimodel inference on &quot;Catholic&quot; based on AICc
+## 
+## AICc table used to obtain model-averaged estimate:
+## 
+##         K   AICc Delta_AICc AICcWt Estimate   SE
+## Cath    3 364.91      26.56   0.00     0.14 0.04
+## EdCath  4 338.52       0.17   0.48     0.11 0.03
+## EdxCath 5 338.35       0.00   0.52     0.18 0.05
+## 
+## Model-averaged estimate: 0.15 
+## Unconditional SE: 0.06 
+## 95% Unconditional confidence interval: 0.04, 0.26</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="11.5-a-priori.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modavg</span>(mods,</span>
+<span id="cb30-2"><a href="11.5-a-priori.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">parm =</span> <span class="st">&quot;Education:Catholic&quot;</span>, <span class="at">modnames =</span> <span class="fu">names</span>(mods),</span>
+<span id="cb30-3"><a href="11.5-a-priori.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">conf.level =</span> .<span class="dv">95</span>, <span class="at">exclude =</span> <span class="cn">TRUE</span></span>
+<span id="cb30-4"><a href="11.5-a-priori.html#cb30-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## 
+## Multimodel inference on &quot;Education:Catholic&quot; based on AICc
+## 
+## AICc table used to obtain model-averaged estimate:
+## 
+##         K   AICc Delta_AICc AICcWt Estimate   SE
+## EdxCath 5 338.35          0      1    -0.01 0.01
+## 
+## Model-averaged estimate: -0.01 
+## Unconditional SE: 0.01 
+## 95% Unconditional confidence interval: -0.02, 0</code></pre>
+<p>Isn’t that fantastic? From here we could move on to make predictions based on the model-averaged parameter estimates using what you learned last week. But…what if we weren’t convinced so easily and wanted a reliable means of seeing how well our model actually performs now that we’ve selected one (or more)?</p>
+<p>The simple fact of the matter is that we have selected a “best” model, but that doesn’t mean our model is necessarily a “good” model.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="11.4-stepwise.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="11.6-model-validation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["worstr.pdf", "worstr.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

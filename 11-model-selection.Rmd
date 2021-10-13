@@ -82,18 +82,18 @@ Here, we see that the best model is that which includes the additive effects of 
 
 ## _A priori_ selection {#a-priori}
 
-The most widely perpetuated approach to model selection is probably *a prior* model selection. This means consideration of only those models for which we have _a priori_ reasons for inclusion. These are usually models that are designed to represent competing [biological] hypotheses or to balance those hypotheses within a framework for testing. In simple situations, we compare all the models in which we are interested through a single phase of model selection. Will stick to this approach for class. But, in more complex situations we might apply a hierarchical (multi-phase) approach to reduce complexity and test hypotheses about specific groups of parameters one at a time to avoid inflated type-I error rates (yup, that's still a thing!) when we have lots and lots of models.
+The most widely perpetuated approach to model selection is probably *a priori* model selection. This means considering only those models for which we have good reasons ahead of time. These are usually models that are designed to represent competing [biological] hypotheses or to balance those hypotheses within a framework for testing. In simple situations, we compare all the models in which we are interested through a single phase of model selection. We will stick to this approach for class. But, in more complex situations we might apply a hierarchical (multi-phase) approach to reduce complexity and test hypotheses about specific groups of parameters one at a time to avoid inflated type-I error rates (yup, that's still a thing!) when we have lots and lots of models.
 
 ### Multi-phase (heirarchical) selection
 
-Hierarchical model selection is widely used for complex models that have different underlying processes (and often "likelihoods") within. A great example of these kinds of models are occupancy and mark-recapture models that incorporate "sub-models" for estimating detection probabilities and other "sub-models" for estimating things like presence-absence, survival, or abundance. These methods are widely used in studies of fish and wildlife populations, and are also a cornerstone in modern epidemiology when we want to account for false positives or false negatives.
+Hierarchical model selection is widely used for complex models that have different underlying processes within. A great example of these kinds of models are occupancy and mark-recapture models that incorporate "sub-models" for estimating detection probabilities and other "sub-models" for estimating things like presence-absence, survival, or abundance. These methods are widely used in studies of fish and wildlife populations, and are also a cornerstone in modern epidemiology when we want to account for false positives or false negatives.
 
 Essentially, multi-phase model selection means that we impose some kind of hierarchy on the steps we take to test competing hypotheses. For instance, we might first wish to compare hypotheses about factors influencing detection probabilities in our examples above. Then, we could use the best model(s) from that set of hypotheses as the basis for testing hypotheses about factors that influence processes such as survival or breeding probability.
 
 
 ### Single-phase selection
 
-This is where we'll spend the majority of our time for the rest of the chapter and the rest of the book. Single-phase selection means that we want to set up an compare a single group of models that each represent a distinct hypothesis (or set of hypotheses in the case of n-way ANOVA, ANCOVA, and multiple regression).
+This is where we'll spend the majority of our time for the rest of the chapter and the rest of the book. Single-phase selection means that we want to set up and compare a single group of models that each represent a distinct hypothesis (or set of hypotheses in the case of n-way ANOVA, ANCOVA, and multiple regression).
 
 
 ### Tools for _a priori_ model selection
@@ -104,11 +104,11 @@ In the words of the great Scroobius Pip in his *Death of the journalist*:
 > Throw enough shit at the wall and some of it will stick
 But make no mistake, you’re wall's still covered in shit
 
-To ensure that our walls don't get covered in excrement at all, we will examine the historical application of and difficulties of the Adjusted R^2^ statistic, and then we will dig into information-theoretic approaches using the Akaike information criterion (AIC) as this, along with other information criteria, is now the primary method used for model selection.
+To ensure that our walls don't get covered in excrement at all, we will examine the historical application of and difficulties of the Adjusted R^2^ statistic, and then we will dig into information-theoretic approaches using the Akaike information criterion (AIC) as this and other information criteria are now the primary methods used for model selection.
 
-> Let's check some of these tools out!
+> Let's check out some of these tools!
 
-Start by fitting some models, we will use the `swiss` data again this week for the purpose of demonstrating selection tools because it is a noisy data set with lots of complexity and colinearity between variables.
+Start by fitting some models, we will use the `swiss` data again this week for the purpose of demonstrating selection tools because it is a noisy data set with lots of complexity and collinearity between variables.
 
 ```{r}
 data("swiss")
@@ -176,7 +176,7 @@ ggplot(mod_EdxCath, aes(x = .fitted, y = .resid)) +
 
 <br>
 
-Now that we have verified we are not in violation of assumptions we can apply model selection to find out if one is clearly better than the others and if so which. Then, we'll use our best model to make predictions just like last week and next week and the week after that...and so on. 
+Now that we have verified we are not in violation of assumptions we can apply model selection to find out if one model is clearly better than the others and if so which. Then, we'll use our best model to make predictions just like last week and next week and the week after that...and so on. 
 
 Let's start by making a list of our models and giving each element (model) in the list a name:
 
@@ -232,19 +232,18 @@ So, how to life?
 
 <h5 id="multi"> Akaike's information criterion (AIC) </h5>
 
-This tool (or the popular alternatives BIC, DIC, and WAIC) will be more useful for us during the next several weeks than any of the methods we've discussed so far because it allows us to draw inference based on the likelihood of the model rather than the sum of squared errors, which we will learn that GLMs and other generalizations do not have!
+This tool (or the popular alternatives BIC, DIC, WAIC, and LOOIC) will be more useful for us during the next several weeks than any of the methods we've discussed so far because it allows us to draw inference based on the likelihood of the model rather than the sum of squared errors, which we will learn that GLMs and other generalizations do not have!
 
 Information-theoretic approaches to model selection are based on the trade off in information gained through addition of parameters (explanatory variables and how they combine) and the added complexity of the models, with respect to sample size. I will hold off on a detailed  explanation because you will learn more about this tool in your readings. So, let's cut straight to the chase.
 
 Remember that we made a list of _a priori_ models above that we would like to consider.
-
 
 Have a look at the names of those models just in case you've forgotten them.
 ```{r} 
 names(mods)
 ```
 
-We can extract the AIC value for each model in our list by using the `lapply()` or `mapply` functions. These functions will split up the list and "apply" a function to each of the elements of that list. The primary difference is that `lapply()` returns a named list and `mapply()` returns an atomic vector with named elements (easier to work with if we want to combine results with model names).
+We can extract the AIC value for each model in our list by using the `lapply()` or `mapply()` functions. These functions will split up the list and "apply" a function to each of the elements of that list. The primary difference is that `lapply()` returns a named list and `mapply()` returns an atomic vector with named elements (easier to work with if we want to combine results with model names).
 
 ```{r}
 mods_AIC <- mapply(FUN = "AIC", mods)
@@ -255,7 +254,7 @@ data.frame(
 )
 ```  
 
-Now we have printed a dataframe holding with the names of our models in one column and their AIC values in another. Unlike the R^2^ statistic, smaller is better when it comes to AIC (and other I-T approaches), even if the values are negative. **The actual value of AIC for any given model has no interpretation other than relative to the remaining three**. To clarify: if I have a single AIC value for one model, it is meaningless. I must have another model with the same response (and data!!) to compare with. There is no such think as an inherently "good" or "bad" AIC. They are only interpreted relative to other models in the same candidate set. This is fundamentally different than the R^2^ statistic.
+Now we have printed a dataframe holding the names of our models in one column and their AIC values in another. Unlike the R^2^ statistic, smaller is better when it comes to AIC (and other I-T approaches), even if the values are negative. **The actual value of AIC for any given model has no interpretation other than relative to the remaining three**. To clarify: if I have a single AIC value for one model, it is meaningless. I must have another model with the same response (and data!!) to compare it against. There is no such thing as an inherently "good" or "bad" AIC. They are only interpreted relative to other models in the same candidate set. This is fundamentally different than the R^2^ statistic.
 
 At a glance, we can see that our model with the interaction is the 'best' model in the set as indicated by our other statistics, but this time it is only better by less than 1 AIC (**lower AIC is better**). Can we say anything about that?
 
@@ -278,7 +277,7 @@ We'll walk through the table From left to right. First, notice that the `row.nam
 
 __`K`__ is the number of parameters in each of the models
 
-__`AICc`__ is the AIC score, but it is corrected for sample size. Generally speaking, this means models with many parameters and small number of observations are penalized for potential instability in the likelihood. In general, using the AIC~c~ is almost always a practical approach because it is conservative when we don't have much data and the effect of the penalty goes away with sufficiently large sample sizes (so it becomes equivelant to AIC).
+__`AICc`__ is the AIC score, but it is corrected for sample size. Generally speaking, this means models with many parameters and small number of observations are penalized. In general, using the AIC~c~ is almost always a practical approach because it is conservative when we don't have much data and the effect of the penalty goes away with sufficiently large sample sizes (so it becomes equivalent to regular, uncorrected AIC).
 
 __`Delta_AICc`__ is the difference in AIC~c~ between the best model and each of the other models.
 
@@ -299,13 +298,13 @@ Models with $\Delta$AIC~c~ of less than 2.0 are considered to have similar suppo
 
 The ratio of AIC weights (w~i~)can be used to interpret the improvement between the best model and each subsequent model. In this example, the best model is only $\frac{0.52}{0.48} = 1.08 \times$ better supported than the next best model, but the best two models have all of the support.
 
-Our results suggest that `Education` and `Catholic` are the both important in explaining the variation in `Fertility`, because both are included in any model receiving any support in the candidate set. 
+Our results suggest that `Education` and `Catholic` are both important in explaining the variation in `Fertility`, because both are included in any model receiving any support in the candidate set. 
 
 Unlike our previous results, we have no clear winner in this case, and we are left wondering whether it is the additive effects or the multiplicative effects of `Education` and  `Catholic` that are important. But, we still may want to get estimates for our main effects, at least, so we can make some good solid inference on the effect sizes. If only we had a method for dealing with this uncertainty now...Oh wait, we do!
 
 
 #### Model averaging
-Using model averaging to account for the model uncertainty, we can see that the unconditional confidence interval for `Education` is negative and does not overlap zero, and the opposite trend is evident in the trend for `Catholic`. We also find out that the interaction between `Education` and `Catholic` is actually not significant, which is probably why the main effects model had equivelant support in the candidate set.
+Using model averaging to account for the model uncertainty, we can see that the unconditional confidence interval for `Education` is negative and does not overlap zero, and the opposite trend is evident in the trend for `Catholic`. We also find out that the interaction between `Education` and `Catholic` is actually not significant, which is probably why the main effects model had equivalent support in the candidate set. In this case, we can conclude that the cost and complexity introduced through the interaction term is probably not worth the information gained.
 
 ```{r}
 modavg(mods,
@@ -329,7 +328,7 @@ The simple fact of the matter is that we have selected a "best" model, but that 
 
 ## Model validation
 
-Once we have selected a best model, or a set of explanatory variables that we want to consider in our analysis, it is important that we validate that model when possible. In truth, comparison of the validity of multiple models can even be a gold-standard method for model selection in itself (e.g. LOO-IC), but we are not going to go there this semester because it would require a much richer understanding of programming than we can achieve in a week.
+Once we have selected a best model, or a set of explanatory variables that we want to consider in our analysis, it is important that we validate the model when possible. In truth, comparison of the validity of multiple models can even be a gold-standard method for model selection in itself (e.g. LOO-IC), but we are not going to go there this semester because it would require a much richer understanding of programming than we can achieve in a week.
 
 Model validation is the use of external data, or subsets of data that we have set aside to assess the predictive ability of our models with data that were not used to estimate the parameters. That is, we can use new data to test how well our model works for making predictions about the phenomenon of interest. Pretty cool, I know!
 
@@ -385,7 +384,7 @@ for (i in 1:n) {
 }
 ```
 
-Let's put our observed (left-out) data and our predictions for each iteration in a dataframe that we can use for plotting the results of model validation.
+Let's put our observed data (left out) and our predictions for each iteration in a dataframe that we can use for plotting the results of model validation.
 
 ```{r}
 loo_df <- data.frame(fert_obs, ed_obs, fert_pred)
@@ -420,7 +419,7 @@ ggplot(loo_df_pred, aes(x = fert_obs, y = fert_pred)) +
 
 You can see that we are generally okay, but tend to under-predict at both low and high values of `Fertility` because the points on either end of the line fall mostly below the line. This is due either to a lack of data at extremes or some overlooked non-linearity in the relationship between X (`Education`) and Y (`Fertility`). If we intentionally collected more data at the extremes of `Education` that could resolve which is the case (because we would either improve prediction at extremes or see the non-linearity in the relationship more clearly). We will use log-transformations to deal help linearize these relationships in some future examples.
 
-We could also look at the summary of our observed vs predicted regression to see how good we are (how much variance in prediction is explained by the model). In this case, it is not great. If we were going to use this for model prediction, we might want there to be a stronger correlation between the observed and predicted values. In that case, it might just mean collecting more or better data or it could mean re-thinking what is being measured and how.
+We could also look at the `summary()` of our observed vs predicted regression to see how good we are (how much variance in prediction is explained by the model). In this case, it is not great. If we were going to use this for model prediction, we might want there to be a stronger correlation between the observed and predicted values. In that case, it might just mean collecting more or better data or it could mean re-thinking what is being measured and how.
 
 ```{r}      
 # Extract the R-squared for observed vs predicted
