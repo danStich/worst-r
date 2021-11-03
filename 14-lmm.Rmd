@@ -185,8 +185,11 @@ craymod <- lmer(logmass ~ loglength + (1 | site), data = cray)
 Being responsible individuals, we now have a look at the residuals to make sure we've met assumptions of normality and homoscedasticity:
 
 ```{r}
+# Get the residuals
+cray$resid <- residuals(craymod)
+
 # Plot the residuals
-ggplot(craymod, aes(x = site, y = .resid, fill = site, color = site)) +
+ggplot(cray, aes(x = site, y = resid, fill = site, color = site)) +
   geom_violin(alpha = 0.20, trim = FALSE) +
   geom_jitter(width = 0.1, alpha = 0.20)
 ```
@@ -243,10 +246,7 @@ IMO, if you are going to go through simulations just to approximate confidence i
 
 In the meantime, here is one way to compute site-specific variances for our predictions about the `length`-`mass` relationship so we don't have to feel like we haven't finished the job! This example uses the `predictInterval()` function from the `merTools` package to demonstrate.
 
-```{r, warning=FALSE, message=FALSE}
-# Load the merTools package
-library(merTools)
-
+```{r}
 # Simulate predictions from the relationship
 # stored in the model fit using our original data
 log_preds <- predictInterval(
