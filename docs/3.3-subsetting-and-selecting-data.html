@@ -137,6 +137,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="1.1-what-is-r.html"><a href="1.1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
@@ -516,51 +518,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">3.3.1</span> Manual subsets and selections</h3>
 <p>We talked a little about sub-setting data with logical queries in <a href="2-Chapter2.html#Chapter2">Chapter 2</a>. Now, let’s refresh and take that a little further to see why we might want to do that.</p>
 <p>First, we’ll select just the data from <code>am_shad</code> where <code>backCalculated</code> was <code>FALSE</code>. This will give us only the measured <code>Length</code> and <code>Mass</code> for each of the fish, along with their <code>Sex</code> and <code>yearCollected</code>. I’ll call this new object <code>measured</code>. Remember, <code>am_shad</code> is a data frame, so it has two dimensions when we use <code>[ ]</code> for sub-setting and these are separated by a comma, like this: <code>object[rows, columns]</code>. When we leave the columns blank, R knows that it should keep all of the columns.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="3.3-subsetting-and-selecting-data.html#cb8-1" aria-hidden="true" tabindex="-1"></a>measured <span class="ot">&lt;-</span> am_shad[am_shad<span class="sc">$</span>backCalculated <span class="sc">==</span> <span class="cn">FALSE</span>, ]</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="3.3-subsetting-and-selecting-data.html#cb118-1" aria-hidden="true" tabindex="-1"></a>measured <span class="ot">&lt;-</span> am_shad[am_shad<span class="sc">$</span>backCalculated <span class="sc">==</span> <span class="cn">FALSE</span>, ]</span></code></pre></div>
 <p>We could do this for as many conceivable conditions in our data on which we may wish to subset, but the code can get clunky and hard to manage. For example can you imagine re-writing this if you just want to select age six roes without back-calculated lengths?</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="3.3-subsetting-and-selecting-data.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notice how we string together multiple </span></span>
-<span id="cb9-2"><a href="3.3-subsetting-and-selecting-data.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># conditions with &quot;&amp;&quot;. If these were &#39;or&#39;</span></span>
-<span id="cb9-3"><a href="3.3-subsetting-and-selecting-data.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># we would use the vertical pipe &quot;|&quot;</span></span>
-<span id="cb9-4"><a href="3.3-subsetting-and-selecting-data.html#cb9-4" aria-hidden="true" tabindex="-1"></a>age_6_rows_measured <span class="ot">&lt;-</span> am_shad[am_shad<span class="sc">$</span>backCalculated <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span> </span>
-<span id="cb9-5"><a href="3.3-subsetting-and-selecting-data.html#cb9-5" aria-hidden="true" tabindex="-1"></a>                                 am_shad<span class="sc">$</span>Sex <span class="sc">==</span> <span class="st">&quot;R&quot;</span> <span class="sc">&amp;</span></span>
-<span id="cb9-6"><a href="3.3-subsetting-and-selecting-data.html#cb9-6" aria-hidden="true" tabindex="-1"></a>                                 am_shad<span class="sc">$</span>Age <span class="sc">==</span> <span class="dv">6</span>, ]</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="3.3-subsetting-and-selecting-data.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notice how we string together multiple </span></span>
+<span id="cb119-2"><a href="3.3-subsetting-and-selecting-data.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="co"># conditions with &quot;&amp;&quot;. If these were &#39;or&#39;</span></span>
+<span id="cb119-3"><a href="3.3-subsetting-and-selecting-data.html#cb119-3" aria-hidden="true" tabindex="-1"></a><span class="co"># we would use the vertical pipe &quot;|&quot;</span></span>
+<span id="cb119-4"><a href="3.3-subsetting-and-selecting-data.html#cb119-4" aria-hidden="true" tabindex="-1"></a>age_6_rows_measured <span class="ot">&lt;-</span> am_shad[am_shad<span class="sc">$</span>backCalculated <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span> </span>
+<span id="cb119-5"><a href="3.3-subsetting-and-selecting-data.html#cb119-5" aria-hidden="true" tabindex="-1"></a>                                 am_shad<span class="sc">$</span>Sex <span class="sc">==</span> <span class="st">&quot;R&quot;</span> <span class="sc">&amp;</span></span>
+<span id="cb119-6"><a href="3.3-subsetting-and-selecting-data.html#cb119-6" aria-hidden="true" tabindex="-1"></a>                                 am_shad<span class="sc">$</span>Age <span class="sc">==</span> <span class="dv">6</span>, ]</span></code></pre></div>
 </div>
 <div id="subsetting-and-summaries-in-base-r" class="section level3" number="3.3.2">
 <h3><span class="header-section-number">3.3.2</span> Subsetting and summaries in base R</h3>
 <p>This notation can be really confusing to folks who are just trying to learn a new programming language. Because of that, there are great functions like <code>subset()</code> available that are more intuitive (but less clear to programmers). You could also subset the data using the following code:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="3.3-subsetting-and-selecting-data.html#cb10-1" aria-hidden="true" tabindex="-1"></a>measured <span class="ot">&lt;-</span> <span class="fu">subset</span>(am_shad, backCalculated <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="3.3-subsetting-and-selecting-data.html#cb120-1" aria-hidden="true" tabindex="-1"></a>measured <span class="ot">&lt;-</span> <span class="fu">subset</span>(am_shad, backCalculated <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>We could also get our age-six females from the previous example using this approach, and at least the code is a little cleaner:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="3.3-subsetting-and-selecting-data.html#cb11-1" aria-hidden="true" tabindex="-1"></a>age_6_roes_measured <span class="ot">&lt;-</span> <span class="fu">subset</span>(am_shad,</span>
-<span id="cb11-2"><a href="3.3-subsetting-and-selecting-data.html#cb11-2" aria-hidden="true" tabindex="-1"></a>                              backCalculated <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
-<span id="cb11-3"><a href="3.3-subsetting-and-selecting-data.html#cb11-3" aria-hidden="true" tabindex="-1"></a>                                Sex <span class="sc">==</span> <span class="st">&quot;R&quot;</span> <span class="sc">&amp;</span></span>
-<span id="cb11-4"><a href="3.3-subsetting-and-selecting-data.html#cb11-4" aria-hidden="true" tabindex="-1"></a>                                Age <span class="sc">==</span> <span class="dv">6</span></span>
-<span id="cb11-5"><a href="3.3-subsetting-and-selecting-data.html#cb11-5" aria-hidden="true" tabindex="-1"></a>                              )</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="3.3-subsetting-and-selecting-data.html#cb121-1" aria-hidden="true" tabindex="-1"></a>age_6_roes_measured <span class="ot">&lt;-</span> <span class="fu">subset</span>(am_shad,</span>
+<span id="cb121-2"><a href="3.3-subsetting-and-selecting-data.html#cb121-2" aria-hidden="true" tabindex="-1"></a>                              backCalculated <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
+<span id="cb121-3"><a href="3.3-subsetting-and-selecting-data.html#cb121-3" aria-hidden="true" tabindex="-1"></a>                                Sex <span class="sc">==</span> <span class="st">&quot;R&quot;</span> <span class="sc">&amp;</span></span>
+<span id="cb121-4"><a href="3.3-subsetting-and-selecting-data.html#cb121-4" aria-hidden="true" tabindex="-1"></a>                                Age <span class="sc">==</span> <span class="dv">6</span></span>
+<span id="cb121-5"><a href="3.3-subsetting-and-selecting-data.html#cb121-5" aria-hidden="true" tabindex="-1"></a>                              )</span></code></pre></div>
 <p>Both do the same thing, but we’ll see later that using functions lik <code>subset</code> or <code>filter</code> is preferable if we plan on chaining together a bunch of data manipulation commands using pipes (<code>%&gt;%</code> or <code>|&gt;</code>).</p>
 <p>Next, we might be interested to know how many fish we have represented in each <code>Sex</code>. We can find this out using the <code>table</code> function in base R:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="3.3-subsetting-and-selecting-data.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here, I use the column name because</span></span>
-<span id="cb12-2"><a href="3.3-subsetting-and-selecting-data.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we just want all observations of a single</span></span>
-<span id="cb12-3"><a href="3.3-subsetting-and-selecting-data.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># variable. Be careful switching between names,</span></span>
-<span id="cb12-4"><a href="3.3-subsetting-and-selecting-data.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># numbers, and $names!</span></span>
-<span id="cb12-5"><a href="3.3-subsetting-and-selecting-data.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(measured[<span class="st">&#39;Sex&#39;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="3.3-subsetting-and-selecting-data.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here, I use the column name because</span></span>
+<span id="cb122-2"><a href="3.3-subsetting-and-selecting-data.html#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we just want all observations of a single</span></span>
+<span id="cb122-3"><a href="3.3-subsetting-and-selecting-data.html#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="co"># variable. Be careful switching between names,</span></span>
+<span id="cb122-4"><a href="3.3-subsetting-and-selecting-data.html#cb122-4" aria-hidden="true" tabindex="-1"></a><span class="co"># numbers, and $names!</span></span>
+<span id="cb122-5"><a href="3.3-subsetting-and-selecting-data.html#cb122-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(measured[<span class="st">&#39;Sex&#39;</span>])</span></code></pre></div>
 <pre><code>## 
 ##    B    R 
 ## 1793 1253</code></pre>
 <p>We see that we have <code>1793</code> females and <code>1253</code> males.</p>
 <p>We can also get tallies of the number of fish in each <code>Age</code> for each <code>Sex</code> if we would like to see that:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="3.3-subsetting-and-selecting-data.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(measured<span class="sc">$</span>Sex, measured<span class="sc">$</span>Age)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="3.3-subsetting-and-selecting-data.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(measured<span class="sc">$</span>Sex, measured<span class="sc">$</span>Age)</span></code></pre></div>
 <pre><code>##    
 ##       3   4   5   6   7
 ##   B 255 848 579 108   3
 ##   R   0 361 658 220  14</code></pre>
 <p>But, what if we wanted to calculate some kind of summary statistic, like a <code>mean</code> and report that by group?</p>
 <p>For our age-6 females example, it would look like this:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="3.3-subsetting-and-selecting-data.html#cb16-1" aria-hidden="true" tabindex="-1"></a>age_6_roes_measured <span class="ot">&lt;-</span> <span class="fu">subset</span>(am_shad,</span>
-<span id="cb16-2"><a href="3.3-subsetting-and-selecting-data.html#cb16-2" aria-hidden="true" tabindex="-1"></a>                              backCalculated <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
-<span id="cb16-3"><a href="3.3-subsetting-and-selecting-data.html#cb16-3" aria-hidden="true" tabindex="-1"></a>                                Sex <span class="sc">==</span> <span class="st">&quot;R&quot;</span> <span class="sc">&amp;</span></span>
-<span id="cb16-4"><a href="3.3-subsetting-and-selecting-data.html#cb16-4" aria-hidden="true" tabindex="-1"></a>                                Age <span class="sc">==</span> <span class="dv">6</span></span>
-<span id="cb16-5"><a href="3.3-subsetting-and-selecting-data.html#cb16-5" aria-hidden="true" tabindex="-1"></a>                              )</span>
-<span id="cb16-6"><a href="3.3-subsetting-and-selecting-data.html#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="3.3-subsetting-and-selecting-data.html#cb16-7" aria-hidden="true" tabindex="-1"></a>age_6_female_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(age_6_roes_measured<span class="sc">$</span>Length)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="3.3-subsetting-and-selecting-data.html#cb126-1" aria-hidden="true" tabindex="-1"></a>age_6_roes_measured <span class="ot">&lt;-</span> <span class="fu">subset</span>(am_shad,</span>
+<span id="cb126-2"><a href="3.3-subsetting-and-selecting-data.html#cb126-2" aria-hidden="true" tabindex="-1"></a>                              backCalculated <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
+<span id="cb126-3"><a href="3.3-subsetting-and-selecting-data.html#cb126-3" aria-hidden="true" tabindex="-1"></a>                                Sex <span class="sc">==</span> <span class="st">&quot;R&quot;</span> <span class="sc">&amp;</span></span>
+<span id="cb126-4"><a href="3.3-subsetting-and-selecting-data.html#cb126-4" aria-hidden="true" tabindex="-1"></a>                                Age <span class="sc">==</span> <span class="dv">6</span></span>
+<span id="cb126-5"><a href="3.3-subsetting-and-selecting-data.html#cb126-5" aria-hidden="true" tabindex="-1"></a>                              )</span>
+<span id="cb126-6"><a href="3.3-subsetting-and-selecting-data.html#cb126-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-7"><a href="3.3-subsetting-and-selecting-data.html#cb126-7" aria-hidden="true" tabindex="-1"></a>age_6_female_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(age_6_roes_measured<span class="sc">$</span>Length)</span></code></pre></div>
 <p>Again, we could do this manually, but would require a lot of code for a simple calculation if we use the methods above all by themselves to get these means for each age group of roes.</p>
 <p>We would basically just copy-and-paste the code over and over to force R into making the data summaries we need. Nothing wrong with this approach, and it certainly has its uses for simple summaries, but it can be cumbersome and redundant. It also fills your workspace up with tons of objects that are hard to keep track of and that will cause your code-completion suggestions to be <em>wicked</em> annoying in RStudio.</p>
 <p>That usually means there is a better way to write the code…</p>
@@ -572,7 +574,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If you haven’t seen it yet, <a href="https://www.youtube.com/watch?v=u1r5XTqrCTQ">here</a> is a three-minute video explaining how to install packages using RStudio. <strong>Watch it. Please.</strong></p>
 <p>It is also easy to install packages by running a line of code in the console. We could install each of the packages in the tidyverse separately. But we can also get all of them at once because they are all packaged together, too.</p>
 <p>Follow the instructions in the YouTube link above, or install the package from the command line:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="3.3-subsetting-and-selecting-data.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="3.3-subsetting-and-selecting-data.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>)</span></code></pre></div>
 <p>Once we have installed these packages, we can use the functions in them to clean up our data manipulation pipeline and get some really useful information.</p>
 </div>
 </div>

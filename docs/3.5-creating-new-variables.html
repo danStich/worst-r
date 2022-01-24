@@ -137,6 +137,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="1.1-what-is-r.html"><a href="1.1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
@@ -519,21 +521,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If I plug these numbers in to the equation above, I can predict <code>log10(Mass)</code> for new lengths <code>log10(Length)</code>:</p>
 <p><span class="math inline">\(log_{10}Mass = 3.0703621 \cdot log_{10}Length - 1.9535405\)</span></p>
 <p>In R, this looks like:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="3.5-creating-new-variables.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters from length-weight regression</span></span>
-<span id="cb26-2"><a href="3.5-creating-new-variables.html#cb26-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fl">3.0703621</span></span>
-<span id="cb26-3"><a href="3.5-creating-new-variables.html#cb26-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fl">1.9535405</span></span>
-<span id="cb26-4"><a href="3.5-creating-new-variables.html#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="3.5-creating-new-variables.html#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a sequence of new lengths based on range in data,</span></span>
-<span id="cb26-6"><a href="3.5-creating-new-variables.html#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co"># then take the log of the whole thing all at once.</span></span>
-<span id="cb26-7"><a href="3.5-creating-new-variables.html#cb26-7" aria-hidden="true" tabindex="-1"></a>log_length <span class="ot">&lt;-</span> <span class="fu">log10</span>( <span class="fu">seq</span>(<span class="fu">min</span>(am_shad<span class="sc">$</span>Length), <span class="fu">max</span>(am_shad<span class="sc">$</span>Length), <span class="dv">1</span>) )</span>
-<span id="cb26-8"><a href="3.5-creating-new-variables.html#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-9"><a href="3.5-creating-new-variables.html#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate a new thing (log10_mass) using parameters for line</span></span>
-<span id="cb26-10"><a href="3.5-creating-new-variables.html#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co"># and sequence of new log10_length.</span></span>
-<span id="cb26-11"><a href="3.5-creating-new-variables.html#cb26-11" aria-hidden="true" tabindex="-1"></a>log_mass <span class="ot">&lt;-</span> m <span class="sc">*</span> log_length <span class="sc">+</span> b</span>
-<span id="cb26-12"><a href="3.5-creating-new-variables.html#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-13"><a href="3.5-creating-new-variables.html#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the prediction</span></span>
-<span id="cb26-14"><a href="3.5-creating-new-variables.html#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> log_length, <span class="at">y =</span> log_mass, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="3.5-creating-new-variables.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters from length-weight regression</span></span>
+<span id="cb136-2"><a href="3.5-creating-new-variables.html#cb136-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fl">3.0703621</span></span>
+<span id="cb136-3"><a href="3.5-creating-new-variables.html#cb136-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fl">1.9535405</span></span>
+<span id="cb136-4"><a href="3.5-creating-new-variables.html#cb136-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb136-5"><a href="3.5-creating-new-variables.html#cb136-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a sequence of new lengths based on range in data,</span></span>
+<span id="cb136-6"><a href="3.5-creating-new-variables.html#cb136-6" aria-hidden="true" tabindex="-1"></a><span class="co"># then take the log of the whole thing all at once.</span></span>
+<span id="cb136-7"><a href="3.5-creating-new-variables.html#cb136-7" aria-hidden="true" tabindex="-1"></a>log_length <span class="ot">&lt;-</span> <span class="fu">log10</span>( <span class="fu">seq</span>(<span class="fu">min</span>(am_shad<span class="sc">$</span>Length), <span class="fu">max</span>(am_shad<span class="sc">$</span>Length), <span class="dv">1</span>) )</span>
+<span id="cb136-8"><a href="3.5-creating-new-variables.html#cb136-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb136-9"><a href="3.5-creating-new-variables.html#cb136-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate a new thing (log10_mass) using parameters for line</span></span>
+<span id="cb136-10"><a href="3.5-creating-new-variables.html#cb136-10" aria-hidden="true" tabindex="-1"></a><span class="co"># and sequence of new log10_length.</span></span>
+<span id="cb136-11"><a href="3.5-creating-new-variables.html#cb136-11" aria-hidden="true" tabindex="-1"></a>log_mass <span class="ot">&lt;-</span> m <span class="sc">*</span> log_length <span class="sc">+</span> b</span>
+<span id="cb136-12"><a href="3.5-creating-new-variables.html#cb136-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb136-13"><a href="3.5-creating-new-variables.html#cb136-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the prediction</span></span>
+<span id="cb136-14"><a href="3.5-creating-new-variables.html#cb136-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> log_length, <span class="at">y =</span> log_mass, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
 </div>
             </section>
 

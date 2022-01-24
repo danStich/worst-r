@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.2 Plotting with base R | The Worst Stats Text eveR</title>
+  <meta name="description" content="4.2 Plotting with base R | The Worst Stats Text eveR" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.2 Plotting with base R | The Worst Stats Text eveR" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.2 Plotting with base R | The Worst Stats Text eveR" />
+  
+  
+  
+
+<meta name="author" content="Dan Stich" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="4.1-plots-matter-as-much-as-stats.html"/>
+<link rel="next" href="4.3-plotting-with-ggplot2.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Worst Stats Text eveR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
+<li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-what-is-r.html"><a href="1.1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-why-should-i-use-r.html"><a href="1.2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
+<li class="chapter" data-level="1.3" data-path="1.3-where-do-i-start.html"><a href="1.3-where-do-i-start.html"><i class="fa fa-check"></i><b>1.3</b> Where do I start?</a></li>
+<li class="chapter" data-level="1.4" data-path="1.4-programming-conventions.html"><a href="1.4-programming-conventions.html"><i class="fa fa-check"></i><b>1.4</b> Programming conventions</a>
+<ul>
+<li class="chapter" data-level="" data-path="1.4-programming-conventions.html"><a href="1.4-programming-conventions.html#style"><i class="fa fa-check"></i>Style and organization</a></li>
+<li class="chapter" data-level="" data-path="1.4-programming-conventions.html"><a href="1.4-programming-conventions.html#tips"><i class="fa fa-check"></i>Some handy coding tips</a></li>
+<li class="chapter" data-level="" data-path="1.4-programming-conventions.html"><a href="1.4-programming-conventions.html#rules"><i class="fa fa-check"></i>Stricter R programming rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1.5-next1.html"><a href="1.5-next1.html"><i class="fa fa-check"></i><b>1.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-Chapter2.html"><a href="2-Chapter2.html"><i class="fa fa-check"></i><b>2</b> Data structures</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-vectors.html"><a href="2.1-vectors.html"><i class="fa fa-check"></i><b>2.1</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="2.1-vectors.html"><a href="2.1-vectors.html#nums"><i class="fa fa-check"></i>Integers and numerics</a></li>
+<li class="chapter" data-level="" data-path="2.1-vectors.html"><a href="2.1-vectors.html#strings"><i class="fa fa-check"></i>Characters and factors</a></li>
+<li class="chapter" data-level="" data-path="2.1-vectors.html"><a href="2.1-vectors.html#logicals"><i class="fa fa-check"></i>Logical vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-operations.html"><a href="2.2-operations.html"><i class="fa fa-check"></i><b>2.2</b> Vector operations</a></li>
+<li class="chapter" data-level="2.3" data-path="2.3-matrices.html"><a href="2.3-matrices.html"><i class="fa fa-check"></i><b>2.3</b> Matrices</a></li>
+<li class="chapter" data-level="2.4" data-path="2.4-dataframes.html"><a href="2.4-dataframes.html"><i class="fa fa-check"></i><b>2.4</b> Dataframes</a></li>
+<li class="chapter" data-level="2.5" data-path="2.5-lists.html"><a href="2.5-lists.html"><i class="fa fa-check"></i><b>2.5</b> Lists</a></li>
+<li class="chapter" data-level="2.6" data-path="2.6-next2.html"><a href="2.6-next2.html"><i class="fa fa-check"></i><b>2.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-Chapter3.html"><a href="3-Chapter3.html"><i class="fa fa-check"></i><b>3</b> Working with data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-data-read.html"><a href="3.1-data-read.html"><i class="fa fa-check"></i><b>3.1</b> Data read</a></li>
+<li class="chapter" data-level="3.2" data-path="3.2-quick-data-summaries.html"><a href="3.2-quick-data-summaries.html"><i class="fa fa-check"></i><b>3.2</b> Quick data summaries</a></li>
+<li class="chapter" data-level="3.3" data-path="3.3-subsetting-and-selecting-data.html"><a href="3.3-subsetting-and-selecting-data.html"><i class="fa fa-check"></i><b>3.3</b> Subsetting and selecting data</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3.3-subsetting-and-selecting-data.html"><a href="3.3-subsetting-and-selecting-data.html#manual-subsets-and-selections"><i class="fa fa-check"></i><b>3.3.1</b> Manual subsets and selections</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3.3-subsetting-and-selecting-data.html"><a href="3.3-subsetting-and-selecting-data.html#subsetting-and-summaries-in-base-r"><i class="fa fa-check"></i><b>3.3.2</b> Subsetting and summaries in base R</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3.3-subsetting-and-selecting-data.html"><a href="3.3-subsetting-and-selecting-data.html#tidyverse"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting and summaries in the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3.4-better-data-summaries.html"><a href="3.4-better-data-summaries.html"><i class="fa fa-check"></i><b>3.4</b> Better data summaries</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-creating-new-variables.html"><a href="3.5-creating-new-variables.html"><i class="fa fa-check"></i><b>3.5</b> Creating new variables</a></li>
+<li class="chapter" data-level="3.6" data-path="3.6-data-simulation.html"><a href="3.6-data-simulation.html"><i class="fa fa-check"></i><b>3.6</b> Data simulation</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="3.6-data-simulation.html"><a href="3.6-data-simulation.html#random-sub-samples-from-a-dataset"><i class="fa fa-check"></i><b>3.6.1</b> Random sub-samples from a dataset</a></li>
+<li class="chapter" data-level="3.6.2" data-path="3.6-data-simulation.html"><a href="3.6-data-simulation.html#stochastic"><i class="fa fa-check"></i><b>3.6.2</b> Stochastic simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="3.7-next3.html"><a href="3.7-next3.html"><i class="fa fa-check"></i><b>3.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-Chapter4.html"><a href="4-Chapter4.html"><i class="fa fa-check"></i><b>4</b> Plotting and graphics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-plots-matter-as-much-as-stats.html"><a href="4.1-plots-matter-as-much-as-stats.html"><i class="fa fa-check"></i><b>4.1</b> Plots matter as much as stats</a></li>
+<li class="chapter" data-level="4.2" data-path="4.2-base-graphics.html"><a href="4.2-base-graphics.html"><i class="fa fa-check"></i><b>4.2</b> Plotting with base R</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="4.2-base-graphics.html"><a href="4.2-base-graphics.html#histograms"><i class="fa fa-check"></i><b>4.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4.2-base-graphics.html"><a href="4.2-base-graphics.html#scatterplots"><i class="fa fa-check"></i><b>4.2.2</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4.2-base-graphics.html"><a href="4.2-base-graphics.html#lines"><i class="fa fa-check"></i><b>4.2.3</b> Lines</a></li>
+<li class="chapter" data-level="4.2.4" data-path="4.2-base-graphics.html"><a href="4.2-base-graphics.html#boxplots"><i class="fa fa-check"></i><b>4.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4.3-plotting-with-ggplot2.html"><a href="4.3-plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>4.3</b> Plotting with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="4.3-plotting-with-ggplot2.html"><a href="4.3-plotting-with-ggplot2.html#gghists"><i class="fa fa-check"></i><b>4.3.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4.3-plotting-with-ggplot2.html"><a href="4.3-plotting-with-ggplot2.html#ggscatter"><i class="fa fa-check"></i><b>4.3.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4.3-plotting-with-ggplot2.html"><a href="4.3-plotting-with-ggplot2.html#gglines"><i class="fa fa-check"></i><b>4.3.3</b> Lines</a></li>
+<li class="chapter" data-level="4.3.4" data-path="4.3-plotting-with-ggplot2.html"><a href="4.3-plotting-with-ggplot2.html#ggboxplots"><i class="fa fa-check"></i><b>4.3.4</b> Boxplots and</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4.4-next4.html"><a href="4.4-next4.html"><i class="fa fa-check"></i><b>4.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-Chapter5.html"><a href="5-Chapter5.html"><i class="fa fa-check"></i><b>5</b> Sampling distributions in R</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-what-are-sampling-distributions.html"><a href="5.1-what-are-sampling-distributions.html"><i class="fa fa-check"></i><b>5.1</b> What are sampling distributions?</a></li>
+<li class="chapter" data-level="5.2" data-path="5.2-probability-distributions-in-r.html"><a href="5.2-probability-distributions-in-r.html"><i class="fa fa-check"></i><b>5.2</b> Probability distributions in R</a></li>
+<li class="chapter" data-level="5.3" data-path="5.3-exponential-family.html"><a href="5.3-exponential-family.html"><i class="fa fa-check"></i><b>5.3</b> Exponential family</a></li>
+<li class="chapter" data-level="5.4" data-path="5.4-continuous-distributions.html"><a href="5.4-continuous-distributions.html"><i class="fa fa-check"></i><b>5.4</b> Continuous distributions</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="5.4-continuous-distributions.html"><a href="5.4-continuous-distributions.html#the-lognormal-distribution"><i class="fa fa-check"></i><b>5.4.1</b> The lognormal distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5.4-continuous-distributions.html"><a href="5.4-continuous-distributions.html#the-beta-distribution"><i class="fa fa-check"></i><b>5.4.2</b> The beta distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html"><i class="fa fa-check"></i><b>5.5</b> Discrete distributions</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html#bernoulli"><i class="fa fa-check"></i><b>5.5.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="5.5.2" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html#binomial"><i class="fa fa-check"></i><b>5.5.2</b> Binomial</a></li>
+<li class="chapter" data-level="5.5.3" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html#multinomial"><i class="fa fa-check"></i><b>5.5.3</b> Multinomial</a></li>
+<li class="chapter" data-level="5.5.4" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html#poisson"><i class="fa fa-check"></i><b>5.5.4</b> Poisson</a></li>
+<li class="chapter" data-level="5.5.5" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html#the-negative-binomial-distribution"><i class="fa fa-check"></i><b>5.5.5</b> The negative binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="5.6-sample-statistics.html"><a href="5.6-sample-statistics.html"><i class="fa fa-check"></i><b>5.6</b> Sample statistics</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="5.6-sample-statistics.html"><a href="5.6-sample-statistics.html#moments-about-the-mean"><i class="fa fa-check"></i><b>5.6.1</b> Moments about the mean</a></li>
+<li class="chapter" data-level="5.6.2" data-path="5.6-sample-statistics.html"><a href="5.6-sample-statistics.html#estimating-parameters-of-the-normal-distribution-from-a-sample"><i class="fa fa-check"></i><b>5.6.2</b> Estimating parameters of the normal distribution from a sample</a></li>
+<li class="chapter" data-level="5.6.3" data-path="5.6-sample-statistics.html"><a href="5.6-sample-statistics.html#quantiles-and-other-descriptive-statistics"><i class="fa fa-check"></i><b>5.6.3</b> Quantiles and other descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="5.7-next5.html"><a href="5.7-next5.html"><i class="fa fa-check"></i><b>5.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-Chapter6.html"><a href="6-Chapter6.html"><i class="fa fa-check"></i><b>6</b> Inferential statistics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6.1-one-sample-tests.html"><a href="6.1-one-sample-tests.html"><i class="fa fa-check"></i><b>6.1</b> One-sample tests</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="6.1-one-sample-tests.html"><a href="6.1-one-sample-tests.html#one-sample-t-test"><i class="fa fa-check"></i><b>6.1.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6.1-one-sample-tests.html"><a href="6.1-one-sample-tests.html#wilcox-test"><i class="fa fa-check"></i><b>6.1.2</b> Wilcox test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6.2-two-sample-tests.html"><a href="6.2-two-sample-tests.html"><i class="fa fa-check"></i><b>6.2</b> Two-sample tests</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6.2-two-sample-tests.html"><a href="6.2-two-sample-tests.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>6.2.1</b> The two-sample t-test</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6.2-two-sample-tests.html"><a href="6.2-two-sample-tests.html#two-sample-wilcox-test"><i class="fa fa-check"></i><b>6.2.2</b> Two-sample Wilcox test</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6.2-two-sample-tests.html"><a href="6.2-two-sample-tests.html#presenting-your-results"><i class="fa fa-check"></i><b>6.2.3</b> Presenting your results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6.3-frequency-analysis.html"><a href="6.3-frequency-analysis.html"><i class="fa fa-check"></i><b>6.3</b> Frequency analysis</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="6.3-frequency-analysis.html"><a href="6.3-frequency-analysis.html#worked-example"><i class="fa fa-check"></i><b>6.3.1</b> Worked example</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="6.4-next6.html"><a href="6.4-next6.html"><i class="fa fa-check"></i><b>6.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-Chapter7.html"><a href="7-Chapter7.html"><i class="fa fa-check"></i><b>7</b> Linear models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-anova.html"><a href="7.1-anova.html"><i class="fa fa-check"></i><b>7.1</b> Analysis of variance (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="7.1-anova.html"><a href="7.1-anova.html#one-way"><i class="fa fa-check"></i><b>7.1.1</b> One-way analysis of variance</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7.1-anova.html"><a href="7.1-anova.html#twon-way-anova"><i class="fa fa-check"></i><b>7.1.2</b> Two(<em>n</em>)-way ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7.2-simple-linear-regression.html"><a href="7.2-simple-linear-regression.html"><i class="fa fa-check"></i><b>7.2</b> Simple linear regression</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="7.2-simple-linear-regression.html"><a href="7.2-simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>7.2.1</b> Simple linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7.3-multiple-linear-regression.html"><a href="7.3-multiple-linear-regression.html"><i class="fa fa-check"></i><b>7.3</b> Multiple linear regression</a></li>
+<li class="chapter" data-level="7.4" data-path="7.4-next7.html"><a href="7.4-next7.html"><i class="fa fa-check"></i><b>7.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-Chapter8.html"><a href="8-Chapter8.html"><i class="fa fa-check"></i><b>8</b> General linear models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="8.1-analysis-of-covariance-ancova.html"><a href="8.1-analysis-of-covariance-ancova.html"><i class="fa fa-check"></i><b>8.1</b> Analysis of covariance (ANCOVA)</a></li>
+<li class="chapter" data-level="8.2" data-path="8.2-motivation.html"><a href="8.2-motivation.html"><i class="fa fa-check"></i><b>8.2</b> Motivation</a></li>
+<li class="chapter" data-level="8.3" data-path="8.3-data.html"><a href="8.3-data.html"><i class="fa fa-check"></i><b>8.3</b> Data</a></li>
+<li class="chapter" data-level="8.4" data-path="8.4-analysis.html"><a href="8.4-analysis.html"><i class="fa fa-check"></i><b>8.4</b> Analysis</a></li>
+<li class="chapter" data-level="8.5" data-path="8.5-predictions.html"><a href="8.5-predictions.html"><i class="fa fa-check"></i><b>8.5</b> Predictions</a></li>
+<li class="chapter" data-level="8.6" data-path="8.6-next8.html"><a href="8.6-next8.html"><i class="fa fa-check"></i><b>8.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-Chapter9.html"><a href="9-Chapter9.html"><i class="fa fa-check"></i><b>9</b> Assumptions of linear models</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="9.1-intro9.html"><a href="9.1-intro9.html"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="9.2-assumptions-of-linear-models.html"><a href="9.2-assumptions-of-linear-models.html"><i class="fa fa-check"></i><b>9.2</b> Assumptions of linear models</a></li>
+<li class="chapter" data-level="9.3" data-path="9.3-ughmath.html"><a href="9.3-ughmath.html"><i class="fa fa-check"></i><b>9.3</b> WTF is a residuals?</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="9.3-ughmath.html"><a href="9.3-ughmath.html#residuals-in-anova"><i class="fa fa-check"></i><b>9.3.1</b> Residuals in ANOVA</a></li>
+<li class="chapter" data-level="9.3.2" data-path="9.3-ughmath.html"><a href="9.3-ughmath.html#residuals-in-linear-regression"><i class="fa fa-check"></i><b>9.3.2</b> Residuals in linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="9.4-the-turtle-problem.html"><a href="9.4-the-turtle-problem.html"><i class="fa fa-check"></i><b>9.4</b> The turtle problem</a></li>
+<li class="chapter" data-level="9.5" data-path="9.5-data-exploration.html"><a href="9.5-data-exploration.html"><i class="fa fa-check"></i><b>9.5</b> Data exploration</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="9.5-data-exploration.html"><a href="9.5-data-exploration.html#independence-of-observations"><i class="fa fa-check"></i><b>9.5.1</b> Independence of observations</a></li>
+<li class="chapter" data-level="9.5.2" data-path="9.5-data-exploration.html"><a href="9.5-data-exploration.html#normality-1"><i class="fa fa-check"></i><b>9.5.2</b> Normality</a></li>
+<li class="chapter" data-level="9.5.3" data-path="9.5-data-exploration.html"><a href="9.5-data-exploration.html#homogeneity-of-variances"><i class="fa fa-check"></i><b>9.5.3</b> Homogeneity of variances</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="9.6-anova-diagnostics.html"><a href="9.6-anova-diagnostics.html"><i class="fa fa-check"></i><b>9.6</b> ANOVA Diagnostics</a></li>
+<li class="chapter" data-level="9.7" data-path="9.7-linear-regression-diagnostics.html"><a href="9.7-linear-regression-diagnostics.html"><i class="fa fa-check"></i><b>9.7</b> Linear regression diagnostics</a></li>
+<li class="chapter" data-level="9.8" data-path="9.8-next9.html"><a href="9.8-next9.html"><i class="fa fa-check"></i><b>9.8</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-Chapter10.html"><a href="10-Chapter10.html"><i class="fa fa-check"></i><b>10</b> Communicating effect sizes</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="10.1-one-way-anova.html"><a href="10.1-one-way-anova.html"><i class="fa fa-check"></i><b>10.1</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="10.1-one-way-anova.html"><a href="10.1-one-way-anova.html#unifying-the-linear-model"><i class="fa fa-check"></i><b>10.1.1</b> Unifying the linear model</a></li>
+<li class="chapter" data-level="10.1.2" data-path="10.1-one-way-anova.html"><a href="10.1-one-way-anova.html#the-model-matrix"><i class="fa fa-check"></i><b>10.1.2</b> The model matrix</a></li>
+<li class="chapter" data-level="10.1.3" data-path="10.1-one-way-anova.html"><a href="10.1-one-way-anova.html#prediction"><i class="fa fa-check"></i><b>10.1.3</b> Prediction</a></li>
+<li class="chapter" data-level="10.1.4" data-path="10.1-one-way-anova.html"><a href="10.1-one-way-anova.html#plotting"><i class="fa fa-check"></i><b>10.1.4</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="10.2-two-way-anova.html"><a href="10.2-two-way-anova.html"><i class="fa fa-check"></i><b>10.2</b> Two-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="10.2-two-way-anova.html"><a href="10.2-two-way-anova.html#main-effects-10"><i class="fa fa-check"></i><b>10.2.1</b> Main effects model</a></li>
+<li class="chapter" data-level="10.2.2" data-path="10.2-two-way-anova.html"><a href="10.2-two-way-anova.html#interactions"><i class="fa fa-check"></i><b>10.2.2</b> Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="10.3-linear-regression.html"><a href="10.3-linear-regression.html"><i class="fa fa-check"></i><b>10.3</b> Linear regression</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="10.3-linear-regression.html"><a href="10.3-linear-regression.html#prediction-1"><i class="fa fa-check"></i><b>10.3.1</b> Prediction</a></li>
+<li class="chapter" data-level="10.3.2" data-path="10.3-linear-regression.html"><a href="10.3-linear-regression.html#plotting-1"><i class="fa fa-check"></i><b>10.3.2</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="10.4-ancova.html"><a href="10.4-ancova.html"><i class="fa fa-check"></i><b>10.4</b> ANCOVA</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="10.4-ancova.html"><a href="10.4-ancova.html#prediction-2"><i class="fa fa-check"></i><b>10.4.1</b> Prediction</a></li>
+<li class="chapter" data-level="10.4.2" data-path="10.4-ancova.html"><a href="10.4-ancova.html#plotting-2"><i class="fa fa-check"></i><b>10.4.2</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="10.5-next10.html"><a href="10.5-next10.html"><i class="fa fa-check"></i><b>10.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-Chapter11.html"><a href="11-Chapter11.html"><i class="fa fa-check"></i><b>11</b> Model selection</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="11.1-intro11.html"><a href="11.1-intro11.html"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
+<li class="chapter" data-level="11.2" data-path="11.2-model-selection-tools.html"><a href="11.2-model-selection-tools.html"><i class="fa fa-check"></i><b>11.2</b> Model selection tools</a></li>
+<li class="chapter" data-level="11.3" data-path="11.3-all-subsets.html"><a href="11.3-all-subsets.html"><i class="fa fa-check"></i><b>11.3</b> All subsets</a></li>
+<li class="chapter" data-level="11.4" data-path="11.4-stepwise.html"><a href="11.4-stepwise.html"><i class="fa fa-check"></i><b>11.4</b> Stepwise selection</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="11.4-stepwise.html"><a href="11.4-stepwise.html#forward-selection"><i class="fa fa-check"></i><b>11.4.1</b> Forward selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="11.5-a-priori.html"><a href="11.5-a-priori.html"><i class="fa fa-check"></i><b>11.5</b> <em>A priori</em> selection</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="11.5-a-priori.html"><a href="11.5-a-priori.html#multi-phase-heirarchical-selection"><i class="fa fa-check"></i><b>11.5.1</b> Multi-phase (heirarchical) selection</a></li>
+<li class="chapter" data-level="11.5.2" data-path="11.5-a-priori.html"><a href="11.5-a-priori.html#single-phase-selection"><i class="fa fa-check"></i><b>11.5.2</b> Single-phase selection</a></li>
+<li class="chapter" data-level="11.5.3" data-path="11.5-a-priori.html"><a href="11.5-a-priori.html#tools-for-a-priori-model-selection"><i class="fa fa-check"></i><b>11.5.3</b> Tools for <em>a priori</em> model selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="11.6-model-validation.html"><a href="11.6-model-validation.html"><i class="fa fa-check"></i><b>11.6</b> Model validation</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="11.6-model-validation.html"><a href="11.6-model-validation.html#leave-one-out-cross-validation"><i class="fa fa-check"></i><b>11.6.1</b> Leave-one-out cross validation</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="11.7-next11.html"><a href="11.7-next11.html"><i class="fa fa-check"></i><b>11.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="12-Chapter12.html"><a href="12-Chapter12.html"><i class="fa fa-check"></i><b>12</b> Logistic regression</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="12.1-intro12.html"><a href="12.1-intro12.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="12.2-Assumptions12.html"><a href="12.2-Assumptions12.html"><i class="fa fa-check"></i><b>12.2</b> Assumptions of linear models</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="12.2-Assumptions12.html"><a href="12.2-Assumptions12.html#assumption-1-normality-of-residuals"><i class="fa fa-check"></i><b>12.2.1</b> Assumption 1: normality of residuals</a></li>
+<li class="chapter" data-level="12.2.2" data-path="12.2-Assumptions12.html"><a href="12.2-Assumptions12.html#assumption-2-independence-of-observations"><i class="fa fa-check"></i><b>12.2.2</b> Assumption 2: independence of observations</a></li>
+<li class="chapter" data-level="12.2.3" data-path="12.2-Assumptions12.html"><a href="12.2-Assumptions12.html#assumption-3-homogeneity-of-variances"><i class="fa fa-check"></i><b>12.2.3</b> Assumption 3: homogeneity of variances</a></li>
+<li class="chapter" data-level="12.2.4" data-path="12.2-Assumptions12.html"><a href="12.2-Assumptions12.html#assumption-4-linearity-and-additivity"><i class="fa fa-check"></i><b>12.2.4</b> Assumption 4: linearity and additivity</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="12.3-introducing-the-glm.html"><a href="12.3-introducing-the-glm.html"><i class="fa fa-check"></i><b>12.3</b> Introducing the GLM</a></li>
+<li class="chapter" data-level="12.4" data-path="12.4-logistic.html"><a href="12.4-logistic.html"><i class="fa fa-check"></i><b>12.4</b> Binary (logistic) regression</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="12.4-logistic.html"><a href="12.4-logistic.html#data-explanation"><i class="fa fa-check"></i><b>12.4.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="12.4.2" data-path="12.4-logistic.html"><a href="12.4-logistic.html#data-analysis"><i class="fa fa-check"></i><b>12.4.2</b> Data analysis</a></li>
+<li class="chapter" data-level="12.4.3" data-path="12.4-logistic.html"><a href="12.4-logistic.html#interpreting-the-results"><i class="fa fa-check"></i><b>12.4.3</b> Interpreting the results</a></li>
+<li class="chapter" data-level="12.4.4" data-path="12.4-logistic.html"><a href="12.4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>12.4.4</b> Making predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="12.5-next12.html"><a href="12.5-next12.html"><i class="fa fa-check"></i><b>12.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="13-Chapter13.html"><a href="13-Chapter13.html"><i class="fa fa-check"></i><b>13</b> GLM: Count models</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="13.1-intro13.html"><a href="13.1-intro13.html"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="13.2-poisson-13.html"><a href="13.2-poisson-13.html"><i class="fa fa-check"></i><b>13.2</b> Poisson regression</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="13.2-poisson-13.html"><a href="13.2-poisson-13.html#data-13"><i class="fa fa-check"></i><b>13.2.1</b> Data explanation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="13.3-negbin.html"><a href="13.3-negbin.html"><i class="fa fa-check"></i><b>13.3</b> Negative binomial regression</a></li>
+<li class="chapter" data-level="13.4" data-path="13.4-zinf-13.html"><a href="13.4-zinf-13.html"><i class="fa fa-check"></i><b>13.4</b> Zero inflation</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="13.4-zinf-13.html"><a href="13.4-zinf-13.html#predict-13"><i class="fa fa-check"></i><b>13.4.1</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="13.5-next-13.html"><a href="13.5-next-13.html"><i class="fa fa-check"></i><b>13.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="14-Chapter14.html"><a href="14-Chapter14.html"><i class="fa fa-check"></i><b>14</b> Linear mixed models</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="14.1-intro-14.html"><a href="14.1-intro-14.html"><i class="fa fa-check"></i><b>14.1</b> Introduction</a></li>
+<li class="chapter" data-level="14.2" data-path="14.2-assumptions-lmm.html"><a href="14.2-assumptions-lmm.html"><i class="fa fa-check"></i><b>14.2</b> Assumptions of linear models</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="14.2-assumptions-lmm.html"><a href="14.2-assumptions-lmm.html#normality-14"><i class="fa fa-check"></i><b>14.2.1</b> Assumption 1: Normality of residuals</a></li>
+<li class="chapter" data-level="14.2.2" data-path="14.2-assumptions-lmm.html"><a href="14.2-assumptions-lmm.html#independence-14"><i class="fa fa-check"></i><b>14.2.2</b> Assumption 2: Independence of observations</a></li>
+<li class="chapter" data-level="14.2.3" data-path="14.2-assumptions-lmm.html"><a href="14.2-assumptions-lmm.html#homogeneity-14"><i class="fa fa-check"></i><b>14.2.3</b> Assumption 3: Homogeneity of variances</a></li>
+<li class="chapter" data-level="14.2.4" data-path="14.2-assumptions-lmm.html"><a href="14.2-assumptions-lmm.html#linearity-14"><i class="fa fa-check"></i><b>14.2.4</b> Assumption 4: Linearity and additivity</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="14.3-linear-mixed-models.html"><a href="14.3-linear-mixed-models.html"><i class="fa fa-check"></i><b>14.3</b> Linear mixed models</a></li>
+<li class="chapter" data-level="14.4" data-path="14.4-lmm-worked.html"><a href="14.4-lmm-worked.html"><i class="fa fa-check"></i><b>14.4</b> Worked example</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="14.4-lmm-worked.html"><a href="14.4-lmm-worked.html#random-intercepts-model"><i class="fa fa-check"></i><b>14.4.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="14.5-next-14.html"><a href="14.5-next-14.html"><i class="fa fa-check"></i><b>14.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="15-Chapter15.html"><a href="15-Chapter15.html"><i class="fa fa-check"></i><b>15</b> Generalized linear mixed models</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="15.1-intro-15.html"><a href="15.1-intro-15.html"><i class="fa fa-check"></i><b>15.1</b> Introduction</a></li>
+<li class="chapter" data-level="15.2" data-path="15.2-glmm-logistic.html"><a href="15.2-glmm-logistic.html"><i class="fa fa-check"></i><b>15.2</b> Logistic regression</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="15.2-glmm-logistic.html"><a href="15.2-glmm-logistic.html#glmm-logistic-data"><i class="fa fa-check"></i><b>15.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="15.2.2" data-path="15.2-glmm-logistic.html"><a href="15.2-glmm-logistic.html#glmm-logistic-analysis"><i class="fa fa-check"></i><b>15.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="15.2.3" data-path="15.2-glmm-logistic.html"><a href="15.2-glmm-logistic.html#glmm-logistic-preds"><i class="fa fa-check"></i><b>15.2.3</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="15.3-glmm-count.html"><a href="15.3-glmm-count.html"><i class="fa fa-check"></i><b>15.3</b> Count models</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="15.3-glmm-count.html"><a href="15.3-glmm-count.html#data-explanation-glmm-count-data"><i class="fa fa-check"></i><b>15.3.1</b> Data explanation {glmm-count-data}</a></li>
+<li class="chapter" data-level="15.3.2" data-path="15.3-glmm-count.html"><a href="15.3-glmm-count.html#glmm-count-analysis"><i class="fa fa-check"></i><b>15.3.2</b> Data analysis</a></li>
+<li class="chapter" data-level="15.3.3" data-path="15.3-glmm-count.html"><a href="15.3-glmm-count.html#glmm-count-preds"><i class="fa fa-check"></i><b>15.3.3</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="15.4-next-15.html"><a href="15.4-next-15.html"><i class="fa fa-check"></i><b>15.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="16-introduction-to-bayesian-inference.html"><a href="16-introduction-to-bayesian-inference.html"><i class="fa fa-check"></i><b>16</b> Introduction to Bayesian inference</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="16.1-intro-16.html"><a href="16.1-intro-16.html"><i class="fa fa-check"></i><b>16.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="16.1-intro-16.html"><a href="16.1-intro-16.html#installing-rstan"><i class="fa fa-check"></i><b>16.1.1</b> Installing RStan</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="16.2-intro-to-bayes-theorem.html"><a href="16.2-intro-to-bayes-theorem.html"><i class="fa fa-check"></i><b>16.2</b> Intro to Bayes Theorem</a></li>
+<li class="chapter" data-level="16.3" data-path="16.3-the-prior.html"><a href="16.3-the-prior.html"><i class="fa fa-check"></i><b>16.3</b> The prior</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="16.3-the-prior.html"><a href="16.3-the-prior.html#the-hospital-example"><i class="fa fa-check"></i><b>16.3.1</b> The hospital example</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="16.4-the-posterior.html"><a href="16.4-the-posterior.html"><i class="fa fa-check"></i><b>16.4</b> The posterior</a></li>
+<li class="chapter" data-level="16.5" data-path="16.5-worked-example-with-the-cray-data.html"><a href="16.5-worked-example-with-the-cray-data.html"><i class="fa fa-check"></i><b>16.5</b> Worked example with the Cray data</a></li>
+<li class="chapter" data-level="16.6" data-path="16.6-running-a-bayesian-model-with-rstanarm.html"><a href="16.6-running-a-bayesian-model-with-rstanarm.html"><i class="fa fa-check"></i><b>16.6</b> Running a Bayesian model with <code>rstanarm</code></a>
+<ul>
+<li class="chapter" data-level="16.6.1" data-path="16.6-running-a-bayesian-model-with-rstanarm.html"><a href="16.6-running-a-bayesian-model-with-rstanarm.html#interpreting-the-model-summary"><i class="fa fa-check"></i><b>16.6.1</b> Interpreting the model summary</a></li>
+</ul></li>
+<li class="chapter" data-level="16.7" data-path="16.7-more-diagnostics.html"><a href="16.7-more-diagnostics.html"><i class="fa fa-check"></i><b>16.7</b> More diagnostics</a>
+<ul>
+<li class="chapter" data-level="16.7.1" data-path="16.7-more-diagnostics.html"><a href="16.7-more-diagnostics.html#trace-plots"><i class="fa fa-check"></i><b>16.7.1</b> Trace plots</a></li>
+<li class="chapter" data-level="16.7.2" data-path="16.7-more-diagnostics.html"><a href="16.7-more-diagnostics.html#colinearity"><i class="fa fa-check"></i><b>16.7.2</b> Colinearity</a></li>
+<li class="chapter" data-level="16.7.3" data-path="16.7-more-diagnostics.html"><a href="16.7-more-diagnostics.html#divergence"><i class="fa fa-check"></i><b>16.7.3</b> Divergence</a></li>
+</ul></li>
+<li class="chapter" data-level="16.8" data-path="16.8-bayesian-model-selection.html"><a href="16.8-bayesian-model-selection.html"><i class="fa fa-check"></i><b>16.8</b> Model selection</a></li>
+<li class="chapter" data-level="16.9" data-path="16.9-summarizing-results.html"><a href="16.9-summarizing-results.html"><i class="fa fa-check"></i><b>16.9</b> Summarizing results</a></li>
+<li class="chapter" data-level="16.10" data-path="16.10-making-predictions-1.html"><a href="16.10-making-predictions-1.html"><i class="fa fa-check"></i><b>16.10</b> Making predictions</a></li>
+<li class="chapter" data-level="16.11" data-path="16.11-next-16.html"><a href="16.11-next-16.html"><i class="fa fa-check"></i><b>16.11</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="17-Chapter17.html"><a href="17-Chapter17.html"><i class="fa fa-check"></i><b>17</b> Bayesian Logistic regression</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="17.1-intro17.html"><a href="17.1-intro17.html"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html"><i class="fa fa-check"></i><b>17.2</b> Binary (logistic) regression</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html#data-17"><i class="fa fa-check"></i><b>17.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="17.2.2" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html#analysis-17"><i class="fa fa-check"></i><b>17.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="17.2.3" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html#interpretting-17"><i class="fa fa-check"></i><b>17.2.3</b> Interpreting the results</a></li>
+<li class="chapter" data-level="17.2.4" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html#continuous-17"><i class="fa fa-check"></i><b>17.2.4</b> Continuous effects</a></li>
+<li class="chapter" data-level="17.2.5" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html#predictions-17"><i class="fa fa-check"></i><b>17.2.5</b> Making predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="17.3-next17.html"><a href="17.3-next17.html"><i class="fa fa-check"></i><b>17.3</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="18-Chapter18.html"><a href="18-Chapter18.html"><i class="fa fa-check"></i><b>18</b> GLM: Count models</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="18.1-intro18.html"><a href="18.1-intro18.html"><i class="fa fa-check"></i><b>18.1</b> Introduction</a></li>
+<li class="chapter" data-level="18.2" data-path="18.2-poisson-18.html"><a href="18.2-poisson-18.html"><i class="fa fa-check"></i><b>18.2</b> Poisson regression</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="18.2-poisson-18.html"><a href="18.2-poisson-18.html#data-18"><i class="fa fa-check"></i><b>18.2.1</b> Data explanation</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="18.3-negbin-18.html"><a href="18.3-negbin-18.html"><i class="fa fa-check"></i><b>18.3</b> Negative binomial regression</a></li>
+<li class="chapter" data-level="18.4" data-path="18.4-zinfl-18.html"><a href="18.4-zinfl-18.html"><i class="fa fa-check"></i><b>18.4</b> Zero inflation</a>
+<ul>
+<li class="chapter" data-level="18.4.1" data-path="18.4-zinfl-18.html"><a href="18.4-zinfl-18.html#step-1-presence-absence"><i class="fa fa-check"></i><b>18.4.1</b> Step 1: Presence-absence</a></li>
+<li class="chapter" data-level="18.4.2" data-path="18.4-zinfl-18.html"><a href="18.4-zinfl-18.html#step-2-counts-given-presence"><i class="fa fa-check"></i><b>18.4.2</b> Step 2: Counts given presence</a></li>
+<li class="chapter" data-level="18.4.3" data-path="18.4-zinfl-18.html"><a href="18.4-zinfl-18.html#predict-counts"><i class="fa fa-check"></i><b>18.4.3</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="18.5" data-path="18.5-next-steps.html"><a href="18.5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="19.1-intro-19.html"><a href="19.1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19.2-hierarchical.html"><a href="19.2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19.3-worked-19.html"><a href="19.3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="19.3-worked-19.html"><a href="19.3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19.4-next-19.html"><a href="19.4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="20-Chapter20.html"><a href="20-Chapter20.html"><i class="fa fa-check"></i><b>20</b> Bayesian hierarchical GLM</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="20.1-intro-20.html"><a href="20.1-intro-20.html"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
+<li class="chapter" data-level="20.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression {#20-logistic}</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-explanation-20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation {#20-logistic-data}</a></li>
+<li class="chapter" data-level="20.2.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-analysis-20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis {#20-logistic-analysis}</a></li>
+<li class="chapter" data-level="20.2.3" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#predictions-20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions {#20-logistic-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models {#20-count}</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
+<li class="chapter" data-level="20.3.2" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-analysis-20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis {#20-count-analysis}</a></li>
+<li class="chapter" data-level="20.3.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#predictions-20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions {#20-count-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="20.4-next-20.html"><a href="20.4-next-20.html"><i class="fa fa-check"></i><b>20.4</b> Next steps</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Worst Stats Text eveR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="base-graphics" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Plotting with base R</h2>
+<p>Let’s look at a few simple types of plots in R. The default graphics in R are not much to look at. But, there are a <strong>ton</strong> of ways to modify these plots, and the user (that’s you!) can build plots from the ground up if needed.</p>
+<p>One of the great things about base graphics is that many of the plot types take the same, or similar arguments that are all based on shared graphical parameters.</p>
+<p>You can access the help file for these shared graphical parameters by running <code>?pars</code> in the console. We will use many of these in the sections that follow.</p>
+<div id="histograms" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Histograms</h3>
+<p>Let’s start with the histogram function that we began playing with at the end of <a href="3.6-data-simulation.html#stochastic">Chapter 3</a>.</p>
+<p>The <code>hist()</code> function plots a histogram but it actually does a whole lot more than just that. Like other plotting utilities, it can take a wide variety of arguments and it actually does some basic data analysis behind the scenes. All of the arguments are optional or have default values with the exception of the data that we want to plot (a numeric variable). This is the case for most plotting functions in the base graphics for R.</p>
+<p>Start by reading in the data contained within the <code>physical.csv</code> file from the class data folder. Remember, I am assuming that your code is inside of a folder that also contains your class data folder that you named <a href="https://danstich.github.io/stich/classes/BIOL217/software.html"><code>data</code></a>.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="4.2-base-graphics.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I added stringsAsFactors = FALSE to read in all</span></span>
+<span id="cb143-2"><a href="4.2-base-graphics.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="co"># text strings as `chr`.</span></span>
+<span id="cb143-3"><a href="4.2-base-graphics.html#cb143-3" aria-hidden="true" tabindex="-1"></a> otsego <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/physical.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>These are data collected each year from Otsego Lake by students, staff, and faculty at the SUNY Oneonta Biological Field Station in Cooperstown, NY, USA. The data set includes temperature (°C), pH, dissolved oxygen, and specific conductance measurements from a period of about 40 years. There are all kinds of cool spatial and seasonal patterns in the data that we can look at. We will use <code>temperature</code> for the examples that follow.</p>
+<p>Make a histogram of temperature across all depths and dates just to see what we are working with here:</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="4.2-base-graphics.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(otsego<span class="sc">$</span>temp)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<p>The default histogram in base graphics leaves much to be desired. Thankfully, it is easy to modify the look of these figures. For example, we can add labels to the x and y-axis using <code>xlab</code> and <code>ylab</code>, and we can give the histogram a meaningful title by adding <code>main = ...</code> to the <code>hist()</code> call or remove it completely by saying <code>main = ""</code>.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="4.2-base-graphics.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(otsego<span class="sc">$</span>temp, <span class="at">xlab =</span> <span class="st">&quot;Temperature&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, <span class="at">main=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
+<p>We can make the axes cross at zero if we are concerned about that. We need to do this by specifying <code>yaxt = "n"</code>, <code>xaxt = "n"</code> in the <code>hist()</code> call and then follow up by telling R exactly where to start each of the axes. In this example, I also add some changes to the color of the bars (<code>col</code>) and the color of the borders (<code>border</code>). Finally, I fix the x- and y-axis scales so I know where they’ll start.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="4.2-base-graphics.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the histogram</span></span>
+<span id="cb146-2"><a href="4.2-base-graphics.html#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(otsego<span class="sc">$</span>temp,</span>
+<span id="cb146-3"><a href="4.2-base-graphics.html#cb146-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Temperature&quot;</span>,</span>
+<span id="cb146-4"><a href="4.2-base-graphics.html#cb146-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>,</span>
+<span id="cb146-5"><a href="4.2-base-graphics.html#cb146-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb146-6"><a href="4.2-base-graphics.html#cb146-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb146-7"><a href="4.2-base-graphics.html#cb146-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">yaxt =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb146-8"><a href="4.2-base-graphics.html#cb146-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;gray87&quot;</span>,</span>
+<span id="cb146-9"><a href="4.2-base-graphics.html#cb146-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb146-10"><a href="4.2-base-graphics.html#cb146-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">30</span>),</span>
+<span id="cb146-11"><a href="4.2-base-graphics.html#cb146-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3500</span>)</span>
+<span id="cb146-12"><a href="4.2-base-graphics.html#cb146-12" aria-hidden="true" tabindex="-1"></a>     )</span>
+<span id="cb146-13"><a href="4.2-base-graphics.html#cb146-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-14"><a href="4.2-base-graphics.html#cb146-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add an x-axis going from zero to thirty degrees</span></span>
+<span id="cb146-15"><a href="4.2-base-graphics.html#cb146-15" aria-hidden="true" tabindex="-1"></a><span class="co"># in increments of 2 degrees and start it at zero</span></span>
+<span id="cb146-16"><a href="4.2-base-graphics.html#cb146-16" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">30</span>, <span class="at">by =</span> <span class="dv">2</span>), <span class="at">pos =</span> <span class="dv">0</span>)</span>
+<span id="cb146-17"><a href="4.2-base-graphics.html#cb146-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-18"><a href="4.2-base-graphics.html#cb146-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a rotated y-axis with default scale and </span></span>
+<span id="cb146-19"><a href="4.2-base-graphics.html#cb146-19" aria-hidden="true" tabindex="-1"></a><span class="co"># start it at zero</span></span>
+<span id="cb146-20"><a href="4.2-base-graphics.html#cb146-20" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">2</span>, <span class="at">las =</span> <span class="dv">2</span>, <span class="at">pos =</span> <span class="dv">0</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<p><strong>Colors!!!</strong></p>
+<p>If <code>gray87</code> is not your style (whatevs), there are another 656 pre-named colors in R. You can see their names by running <code>colors()</code> in the console like this:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="4.2-base-graphics.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colors</span>()</span></code></pre></div>
+<p>If you are a little more adventurous, you might try the <code>rgb()</code> color specification or hex values. I really like the <code>rgb()</code> specification because you can include an <code>alpha</code> channel to make your colors transparent (oooooh!). For example, if I change my code above to use the following:</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="4.2-base-graphics.html#cb148-1" aria-hidden="true" tabindex="-1"></a>col <span class="ot">=</span> <span class="fu">rgb</span>(<span class="at">red =</span> <span class="fl">0.90</span>, <span class="at">green =</span> <span class="dv">0</span>, <span class="at">blue =</span> <span class="fl">0.30</span>, <span class="at">alpha =</span> <span class="fl">0.10</span>)</span></code></pre></div>
+<p>I get a transparent, purple histogram.</p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p>So purply.</p>
+<p>There are tons of great blogs and eBooks with whole chapters devoted to colors and color palletes in R. There are even whole packages we’ll work with dedicated to colors. By all means, check them out! We will work with a few as we continue to increase complexity.</p>
+</div>
+<div id="scatterplots" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Scatterplots</h3>
+<p>Scatter plots are a great starting point for doing exploratory data analysis or for displaying raw data along with summary graphics. They are also the default behavior for the <code>plot()</code> function for continuous variables in base R.</p>
+<p>Let’s demonstrate by by plotting surface temperature (<code>depth</code> = 0.1 m) by month across years. We’ll use the data management skills we picked up in <a href="#Chapter%203">Chapter 3</a> to filter the data first.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="4.2-base-graphics.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to get July surface temperatures</span></span>
+<span id="cb149-2"><a href="4.2-base-graphics.html#cb149-2" aria-hidden="true" tabindex="-1"></a>surface <span class="ot">&lt;-</span> otsego <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="fl">0.1</span>)</span>
+<span id="cb149-3"><a href="4.2-base-graphics.html#cb149-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb149-4"><a href="4.2-base-graphics.html#cb149-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Default scatter plot</span></span>
+<span id="cb149-5"><a href="4.2-base-graphics.html#cb149-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> surface<span class="sc">$</span>month, <span class="at">y =</span> surface<span class="sc">$</span>temp)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
+<p>As with the <code>hist()</code> function, the default here is underwhelming. We can use many of the same arguments that we specified in <code>hist()</code> to dress this up a bit. This time, we will specify a plotting character <code>pch</code> that corresponds to a filled circle. Then, we tell R to give it an <code>rgb()</code> background (<code>bg</code>) with no color for lines that go around each point. That way the data points are darker where there is overlap between them. Finally, we use <code>expression()</code> to include the degree symbol in the y-axis label.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="4.2-base-graphics.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Better scatter plot</span></span>
+<span id="cb150-2"><a href="4.2-base-graphics.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> surface<span class="sc">$</span>month, </span>
+<span id="cb150-3"><a href="4.2-base-graphics.html#cb150-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> surface<span class="sc">$</span>temp,</span>
+<span id="cb150-4"><a href="4.2-base-graphics.html#cb150-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">21</span>,</span>
+<span id="cb150-5"><a href="4.2-base-graphics.html#cb150-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">bg =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.2</span>),</span>
+<span id="cb150-6"><a href="4.2-base-graphics.html#cb150-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="cn">NA</span>,</span>
+<span id="cb150-7"><a href="4.2-base-graphics.html#cb150-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Month&quot;</span>,</span>
+<span id="cb150-8"><a href="4.2-base-graphics.html#cb150-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))</span>
+<span id="cb150-9"><a href="4.2-base-graphics.html#cb150-9" aria-hidden="true" tabindex="-1"></a>     )</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
+<p>This is a lot more informative because it shows us where most of the observations fall within a given month, and how much variability there is. But, it would be nice to have some summary.</p>
+</div>
+<div id="lines" class="section level3" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Lines</h3>
+<p>We can plot lines in a few different ways in the base graphics of R. We can create stand-alone line graphs with data in R pretty easily with the <code>plot()</code> function we used for scatter plots in the preceding section.</p>
+<p>For example, let’s say that we want to just plot average surface temperature in each month as a line graph. We can summarize the data quickly and then plot those:</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="4.2-base-graphics.html#cb151-1" aria-hidden="true" tabindex="-1"></a>mids <span class="ot">&lt;-</span> surface <span class="sc">%&gt;%</span></span>
+<span id="cb151-2"><a href="4.2-base-graphics.html#cb151-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(month) <span class="sc">%&gt;%</span></span>
+<span id="cb151-3"><a href="4.2-base-graphics.html#cb151-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg =</span> <span class="fu">mean</span>(temp))</span>
+<span id="cb151-4"><a href="4.2-base-graphics.html#cb151-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-5"><a href="4.2-base-graphics.html#cb151-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mids<span class="sc">$</span>month, mids<span class="sc">$</span>avg, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Month&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Average&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
+<p>We could even add these to the scatter plot of our raw data using the <code>lines()</code> function. Play around with <code>lty</code> and <code>lwd</code> to see if you can figure out what they do. If you get stuck, don’t forget to Google it! (Worst Stats Text eveR.)</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="4.2-base-graphics.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Same scatter plot</span></span>
+<span id="cb152-2"><a href="4.2-base-graphics.html#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> surface<span class="sc">$</span>month, </span>
+<span id="cb152-3"><a href="4.2-base-graphics.html#cb152-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> surface<span class="sc">$</span>temp,</span>
+<span id="cb152-4"><a href="4.2-base-graphics.html#cb152-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">21</span>,</span>
+<span id="cb152-5"><a href="4.2-base-graphics.html#cb152-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">bg =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.2</span>),</span>
+<span id="cb152-6"><a href="4.2-base-graphics.html#cb152-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="cn">NA</span>,</span>
+<span id="cb152-7"><a href="4.2-base-graphics.html#cb152-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Month&quot;</span>,</span>
+<span id="cb152-8"><a href="4.2-base-graphics.html#cb152-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))</span>
+<span id="cb152-9"><a href="4.2-base-graphics.html#cb152-9" aria-hidden="true" tabindex="-1"></a>     )</span>
+<span id="cb152-10"><a href="4.2-base-graphics.html#cb152-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a thick, dotted line that is gray (this is a gray40 job)</span></span>
+<span id="cb152-11"><a href="4.2-base-graphics.html#cb152-11" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(mids<span class="sc">$</span>month, mids<span class="sc">$</span>avg, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;gray40&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
+<p>We could also add the means to the main plot with <code>points()</code> and choose a different size or color than the raw data. We’ll look at these options and more as we step up complexity.</p>
+<p>For raw data like these, though, we are better off using a box plot to show those types of summaries.</p>
+</div>
+<div id="boxplots" class="section level3" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Boxplots</h3>
+<p>The basic box plot is straightforward to create, but can be a real pain to modify because the syntax is slightly different from the other plotting functions we’ve worked with so far.</p>
+<p>Let’s try to summarize surface temperature by month using a box plot to see how these work in the base R graphics. Notice that we are specifying the variables as a formula here, and explicitly telling R what the data set is:</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="4.2-base-graphics.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(temp<span class="sc">~</span>month, <span class="at">data =</span> surface,</span>
+<span id="cb153-2"><a href="4.2-base-graphics.html#cb153-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Month&quot;</span>,</span>
+<span id="cb153-3"><a href="4.2-base-graphics.html#cb153-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Surface temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>)))</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
+<p>Wow, that was waaaaay to easy! Have you ever tried to make one of those in Excel? Forget about it. It would take you half a day, and then when you realized you forgot ten data points you would have to do it all again.</p>
+<p>But, it is still much ugly. Maybe there is a way we can change that?</p>
+<p>Of course there is!</p>
+<p>Let’s add a little color and tweak some options. For a full set of optional arguments you can change, run <code>?bxp</code> in the console. (Ooh, that one is sneaky: <code>bxp()</code> is the function inside of <code>boxplot()</code> that actually draws the plots).</p>
+<p>Options are named consistently by the part of the plot. For example, <code>boxwex</code>, <code>boxcol</code> and <code>boxfill</code> all control the look of the box. Likewise, the options <code>boxcol</code>, <code>whiskcol</code> and <code>staplecol</code> control the colors of the box, whiskers, and staples, respectively. Nifty, right? Play with the settings below to see what each one does. Then, go explore some more options.It is the easiest way to learn when you are learning from The Worst Stats Text eveR.</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="4.2-base-graphics.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(temp<span class="sc">~</span>month, </span>
+<span id="cb154-2"><a href="4.2-base-graphics.html#cb154-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> surface,</span>
+<span id="cb154-3"><a href="4.2-base-graphics.html#cb154-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Month&quot;</span>,</span>
+<span id="cb154-4"><a href="4.2-base-graphics.html#cb154-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Surface temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>)),      </span>
+<span id="cb154-5"><a href="4.2-base-graphics.html#cb154-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">border =</span> <span class="st">&quot;gray40&quot;</span>,</span>
+<span id="cb154-6"><a href="4.2-base-graphics.html#cb154-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">boxwex =</span> <span class="fl">0.50</span>, <span class="at">boxcol =</span> <span class="st">&quot;gray40&quot;</span>, <span class="at">boxfill =</span> <span class="st">&quot;gray87&quot;</span>,</span>
+<span id="cb154-7"><a href="4.2-base-graphics.html#cb154-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">whisklty =</span> <span class="dv">1</span>, <span class="at">whisklwd=</span><span class="dv">1</span>, <span class="at">whiskcol =</span> <span class="st">&quot;gray40&quot;</span>,</span>
+<span id="cb154-8"><a href="4.2-base-graphics.html#cb154-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">staplewex =</span> <span class="dv">0</span>, <span class="at">staplecol =</span> <span class="cn">NA</span>,</span>
+<span id="cb154-9"><a href="4.2-base-graphics.html#cb154-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">outpch =</span> <span class="dv">21</span>, <span class="at">outbg =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">outcol =</span> <span class="st">&quot;gray90&quot;</span></span>
+<span id="cb154-10"><a href="4.2-base-graphics.html#cb154-10" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<p>Finally, we can combine this with a scatter plot to <code>jitter</code> our raw data over the top of the boxes in each month:</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="4.2-base-graphics.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(temp<span class="sc">~</span>month, </span>
+<span id="cb155-2"><a href="4.2-base-graphics.html#cb155-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> surface,</span>
+<span id="cb155-3"><a href="4.2-base-graphics.html#cb155-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Month&quot;</span>,</span>
+<span id="cb155-4"><a href="4.2-base-graphics.html#cb155-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Surface temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>)),      </span>
+<span id="cb155-5"><a href="4.2-base-graphics.html#cb155-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">border =</span> <span class="st">&quot;gray40&quot;</span>,</span>
+<span id="cb155-6"><a href="4.2-base-graphics.html#cb155-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">boxwex =</span> <span class="fl">0.50</span>, <span class="at">boxcol =</span> <span class="st">&quot;gray40&quot;</span>, <span class="at">boxfill =</span> <span class="st">&quot;gray87&quot;</span>,</span>
+<span id="cb155-7"><a href="4.2-base-graphics.html#cb155-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">whisklty =</span> <span class="dv">1</span>, <span class="at">whisklwd=</span><span class="dv">1</span>, <span class="at">whiskcol =</span> <span class="st">&quot;gray40&quot;</span>,</span>
+<span id="cb155-8"><a href="4.2-base-graphics.html#cb155-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">staplewex =</span> <span class="dv">0</span>, <span class="at">staplecol =</span> <span class="cn">NA</span>,</span>
+<span id="cb155-9"><a href="4.2-base-graphics.html#cb155-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">outpch =</span> <span class="dv">21</span>, <span class="at">outbg =</span> <span class="cn">NA</span>, <span class="at">outcol =</span> <span class="cn">NA</span></span>
+<span id="cb155-10"><a href="4.2-base-graphics.html#cb155-10" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb155-11"><a href="4.2-base-graphics.html#cb155-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">jitter</span>(surface<span class="sc">$</span>month), surface<span class="sc">$</span>temp, <span class="at">cex=</span>.<span class="dv">4</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.2</span>))</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
+<p>That is actually starting to look pretty snazzy! We’ll continue to work to improve our base graphics as we move forward. For now, let’s have a look at how to do these things in <code>ggplot2</code> next.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="4.1-plots-matter-as-much-as-stats.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4.3-plotting-with-ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["worstr.pdf", "worstr.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

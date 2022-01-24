@@ -137,6 +137,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="1.1-what-is-r.html"><a href="1.1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
@@ -518,9 +520,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.1.1</span> One-way analysis of variance</h3>
 <p>The number of grouping variables used in ANOVA confers different fancy naming conventions. The simplest of these contains a single grouping variable (e.g. treatment <strong>or</strong> year) and is referred to as one-way ANOVA. In theory, these models can be extended to include any number <em>n</em> of grouping variables (e.g. treatment <strong>and</strong> year) and are commonly referred to as <em>n</em>-way ANOVA.</p>
 <p>Let’s start by loading the <code>PlantGrowth</code> dataset in R:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="7.1-anova.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(PlantGrowth)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="7.1-anova.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(PlantGrowth)</span></code></pre></div>
 <p><code>PlantGrowth</code> is a dataframe with 30 observations of two variables. The first variable <code>weight</code> describes plant growth (in units of mass), and the second variable <code>group</code> contains control (<code>ctrl</code>) and two treatment groups (<code>trt1</code> and <code>trt2</code>) for individual plants. Have a look, as always:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="7.1-anova.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(PlantGrowth)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="7.1-anova.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(PlantGrowth)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    30 obs. of  2 variables:
 ##  $ weight: num  4.17 5.58 5.18 6.11 4.5 4.61 5.17 4.53 5.33 5.14 ...
 ##  $ group : Factor w/ 3 levels &quot;ctrl&quot;,&quot;trt1&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
@@ -530,11 +532,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Therefore, if any one of the means is not equal to the others, then we reject the null hypothesis.</p>
 <p>You can fit an ANOVA using either the <code>aov()</code> function or the <code>lm()</code> function in base R. I prefer to use <code>lm()</code> for two reasons. First, there is output from <code>lm()</code> that I don’t get with <code>aov()</code>. Second, the <code>lm()</code> function is the one we’ll use for linear regression, multiple regression, and analysis of covariance. This reminds us that these models are all special cases of the glorious, over-arching group of general linear models in <a href="8-Chapter8.html#Chapter8">Chapter 8</a> and will help us develop a standard workflow moving forward.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="7.1-anova.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb5-2"><a href="7.1-anova.html#cb5-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight<span class="sc">~</span>group, <span class="at">data=</span>PlantGrowth)</span>
-<span id="cb5-3"><a href="7.1-anova.html#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="7.1-anova.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the model object to the console</span></span>
-<span id="cb5-5"><a href="7.1-anova.html#cb5-5" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="7.1-anova.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb285-2"><a href="7.1-anova.html#cb285-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight<span class="sc">~</span>group, <span class="at">data=</span>PlantGrowth)</span>
+<span id="cb285-3"><a href="7.1-anova.html#cb285-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb285-4"><a href="7.1-anova.html#cb285-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the model object to the console</span></span>
+<span id="cb285-5"><a href="7.1-anova.html#cb285-5" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = weight ~ group, data = PlantGrowth)
@@ -544,11 +546,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##       5.032       -0.371        0.494</code></pre>
 <p>Wow, that is dangerously easy to do. But, this output is not very useful for getting the information we need if you don’t already know what you are looking at. What we get here is essentially just one part of the information that we would like to (should) report.</p>
 <p>We’ll proceed with a more standard ANOVA table for now using the <code>anova()</code> function:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="7.1-anova.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save anova table to an object</span></span>
-<span id="cb7-2"><a href="7.1-anova.html#cb7-2" aria-hidden="true" tabindex="-1"></a>plant_nova <span class="ot">&lt;-</span> <span class="fu">anova</span>(model)</span>
-<span id="cb7-3"><a href="7.1-anova.html#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="7.1-anova.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Have a look at the goodness</span></span>
-<span id="cb7-5"><a href="7.1-anova.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plant_nova)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="7.1-anova.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save anova table to an object</span></span>
+<span id="cb287-2"><a href="7.1-anova.html#cb287-2" aria-hidden="true" tabindex="-1"></a>plant_nova <span class="ot">&lt;-</span> <span class="fu">anova</span>(model)</span>
+<span id="cb287-3"><a href="7.1-anova.html#cb287-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-4"><a href="7.1-anova.html#cb287-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Have a look at the goodness</span></span>
+<span id="cb287-5"><a href="7.1-anova.html#cb287-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plant_nova)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: weight
@@ -567,27 +569,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[R^2 = \frac{SSB}{SST}\]</span>
 …or…</p>
 <p>Why wouldn’t you do this in R?</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="7.1-anova.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the names of the anova() output</span></span>
-<span id="cb9-2"><a href="7.1-anova.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We want the &quot;Sum Sq&quot; bit</span></span>
-<span id="cb9-3"><a href="7.1-anova.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(plant_nova)</span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="7.1-anova.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here is the sum of squares for the model</span></span>
-<span id="cb10-2"><a href="7.1-anova.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Have to use back-ticks for spaces, sigh</span></span>
-<span id="cb10-3"><a href="7.1-anova.html#cb10-3" aria-hidden="true" tabindex="-1"></a>ssb <span class="ot">&lt;-</span> plant_nova<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>[<span class="dv">1</span>]</span>
-<span id="cb10-4"><a href="7.1-anova.html#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="7.1-anova.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># And the sum of squares total is the sum</span></span>
-<span id="cb10-6"><a href="7.1-anova.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># of the column in this case</span></span>
-<span id="cb10-7"><a href="7.1-anova.html#cb10-7" aria-hidden="true" tabindex="-1"></a>sst <span class="ot">&lt;-</span> <span class="fu">sum</span>(plant_nova<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>)</span>
-<span id="cb10-8"><a href="7.1-anova.html#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="7.1-anova.html#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Some quick division, and we get...</span></span>
-<span id="cb10-10"><a href="7.1-anova.html#cb10-10" aria-hidden="true" tabindex="-1"></a>R2 <span class="ot">&lt;-</span> ssb<span class="sc">/</span>sst</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="7.1-anova.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the names of the anova() output</span></span>
+<span id="cb289-2"><a href="7.1-anova.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We want the &quot;Sum Sq&quot; bit</span></span>
+<span id="cb289-3"><a href="7.1-anova.html#cb289-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(plant_nova)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="7.1-anova.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here is the sum of squares for the model</span></span>
+<span id="cb290-2"><a href="7.1-anova.html#cb290-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Have to use back-ticks for spaces, sigh</span></span>
+<span id="cb290-3"><a href="7.1-anova.html#cb290-3" aria-hidden="true" tabindex="-1"></a>ssb <span class="ot">&lt;-</span> plant_nova<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>[<span class="dv">1</span>]</span>
+<span id="cb290-4"><a href="7.1-anova.html#cb290-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb290-5"><a href="7.1-anova.html#cb290-5" aria-hidden="true" tabindex="-1"></a><span class="co"># And the sum of squares total is the sum</span></span>
+<span id="cb290-6"><a href="7.1-anova.html#cb290-6" aria-hidden="true" tabindex="-1"></a><span class="co"># of the column in this case</span></span>
+<span id="cb290-7"><a href="7.1-anova.html#cb290-7" aria-hidden="true" tabindex="-1"></a>sst <span class="ot">&lt;-</span> <span class="fu">sum</span>(plant_nova<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>)</span>
+<span id="cb290-8"><a href="7.1-anova.html#cb290-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb290-9"><a href="7.1-anova.html#cb290-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Some quick division, and we get...</span></span>
+<span id="cb290-10"><a href="7.1-anova.html#cb290-10" aria-hidden="true" tabindex="-1"></a>R2 <span class="ot">&lt;-</span> ssb<span class="sc">/</span>sst</span></code></pre></div>
 <p>Have a look:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="7.1-anova.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(R2)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="7.1-anova.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(R2)</span></code></pre></div>
 <pre><code>## [1] 0.2641483</code></pre>
 <p>Now, we can say that our treatment effect explained about 26% of the variation in the data. The rest is a combination of error and unexplained variation in the data that might require further investigation.</p>
 <p>The only problem here is that this is an awful lot of work to get something that should be really easy to do in R. And, we still don’t know how <code>weight</code> varied between <code>groups</code>. We just know that at least one group is different from the other.</p>
 <p>Thankfully, the default output of <code>summary()</code> for linear models fit with <code>lm()</code> does a lot of this for us.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="7.1-anova.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the summary of the model</span></span>
-<span id="cb13-2"><a href="7.1-anova.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="7.1-anova.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the summary of the model</span></span>
+<span id="cb293-2"><a href="7.1-anova.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = weight ~ group, data = PlantGrowth)
@@ -611,32 +613,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>But, what if we want to know more about how treatment affected weight? Like, which groups are different? Can we use the p-values reported in the column <code>Pr(&gt;|t|)</code> to infer group-wise differences? The quick answer is “sometimes.”</p>
 <p>The <code>Coefficients</code> chunk of this output can help us with inference in simple situations, and it really is the key to making predictions from our models (see <a href="10-Chapter10.html#Chapter10">Chapter 10</a>).</p>
 <p>Remember, most model output in R is stored as lists, so we can extract the coefficients table like this if we look at `names( summary(model) ) to find what we want:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="7.1-anova.html#cb15-1" aria-hidden="true" tabindex="-1"></a>coeffs <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( <span class="fu">summary</span>(model)<span class="sc">$</span>coefficients )</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="7.1-anova.html#cb295-1" aria-hidden="true" tabindex="-1"></a>coeffs <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( <span class="fu">summary</span>(model)<span class="sc">$</span>coefficients )</span></code></pre></div>
 <p>Okay, what is going on here? This looks nothing like the output we got from <code>anova()</code>.</p>
 <p>The <code>coeffs</code> object is a dataframe with columns for mean coefficient estimates, the standard error of those estimates, t-statistic, and p-value. We are actually not going to worry about the p-values here for a hot minute.</p>
 <p>Let’s focus on the <code>Estimate</code> column first. There are three values here. Each of these represents one of the factor levels in the <code>group</code> variable in <code>PlantGrowth</code>. They are assigned in ascending alpha-numeric order based on the data. The first level (<code>ctrl</code>) is assigned as the <code>(Intercept)</code> or base level against which all others are compared. In this sense, the <code>(Intercept)</code> coefficient is an estimate of the mean value of <code>weight</code> for the <code>group</code> called <code>ctrl</code>.</p>
 <p>Do a quick check:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="7.1-anova.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate and print mean weight</span></span>
-<span id="cb16-2"><a href="7.1-anova.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for the group ctrl in PlantGrowth</span></span>
-<span id="cb16-3"><a href="7.1-anova.html#cb16-3" aria-hidden="true" tabindex="-1"></a>PlantGrowth <span class="sc">%&gt;%</span></span>
-<span id="cb16-4"><a href="7.1-anova.html#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(group <span class="sc">==</span> <span class="st">&#39;ctrl&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-5"><a href="7.1-anova.html#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg =</span> <span class="fu">mean</span>(weight))</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="7.1-anova.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate and print mean weight</span></span>
+<span id="cb296-2"><a href="7.1-anova.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for the group ctrl in PlantGrowth</span></span>
+<span id="cb296-3"><a href="7.1-anova.html#cb296-3" aria-hidden="true" tabindex="-1"></a>PlantGrowth <span class="sc">%&gt;%</span></span>
+<span id="cb296-4"><a href="7.1-anova.html#cb296-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(group <span class="sc">==</span> <span class="st">&#39;ctrl&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb296-5"><a href="7.1-anova.html#cb296-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg =</span> <span class="fu">mean</span>(weight))</span></code></pre></div>
 <pre><code>##     avg
 ## 1 5.032</code></pre>
 <p>As you can see, the prediction from the ANOVA is identical to the group mean estimated directly from the data.</p>
 <p>The coefficients for <code>grouptrt1</code> and <code>grouptrt2</code> can be thought of adjustments to the <code>(Intercept)</code> coefficient, or the difference between the mean of <code>ctrl</code> and <code>trt1</code> or <code>trt2</code>. If the <code>Estimate</code> for <code>grouptrt1</code> or <code>grouptrt2</code> is negative, then the mean for that group is less than <code>ctrl</code> and if it is positive, the mean for the group is greater than <code>ctrl</code>.</p>
 <p>If we wanted to calculate the mean <code>weight</code> of the <code>trt1</code> and <code>trt2</code> groups, we would add them to the <code>(Intercept)</code> coefficient like this:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="7.1-anova.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign model coefficients to objects</span></span>
-<span id="cb18-2"><a href="7.1-anova.html#cb18-2" aria-hidden="true" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> coeffs<span class="sc">$</span>Estimate[<span class="dv">1</span>]</span>
-<span id="cb18-3"><a href="7.1-anova.html#cb18-3" aria-hidden="true" tabindex="-1"></a>trt1 <span class="ot">&lt;-</span> coeffs<span class="sc">$</span>Estimate[<span class="dv">2</span>]</span>
-<span id="cb18-4"><a href="7.1-anova.html#cb18-4" aria-hidden="true" tabindex="-1"></a>trt2 <span class="ot">&lt;-</span> coeffs<span class="sc">$</span>Estimate[<span class="dv">3</span>]</span>
-<span id="cb18-5"><a href="7.1-anova.html#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="7.1-anova.html#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate group means for trt1 and trt2</span></span>
-<span id="cb18-7"><a href="7.1-anova.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># from the model</span></span>
-<span id="cb18-8"><a href="7.1-anova.html#cb18-8" aria-hidden="true" tabindex="-1"></a>trt1_prediction <span class="ot">&lt;-</span> ctrl <span class="sc">+</span> trt1</span>
-<span id="cb18-9"><a href="7.1-anova.html#cb18-9" aria-hidden="true" tabindex="-1"></a>trt2_prediction <span class="ot">&lt;-</span> ctrl <span class="sc">+</span> trt2</span>
-<span id="cb18-10"><a href="7.1-anova.html#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-11"><a href="7.1-anova.html#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(trt1_prediction, trt2_prediction))</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="7.1-anova.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign model coefficients to objects</span></span>
+<span id="cb298-2"><a href="7.1-anova.html#cb298-2" aria-hidden="true" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> coeffs<span class="sc">$</span>Estimate[<span class="dv">1</span>]</span>
+<span id="cb298-3"><a href="7.1-anova.html#cb298-3" aria-hidden="true" tabindex="-1"></a>trt1 <span class="ot">&lt;-</span> coeffs<span class="sc">$</span>Estimate[<span class="dv">2</span>]</span>
+<span id="cb298-4"><a href="7.1-anova.html#cb298-4" aria-hidden="true" tabindex="-1"></a>trt2 <span class="ot">&lt;-</span> coeffs<span class="sc">$</span>Estimate[<span class="dv">3</span>]</span>
+<span id="cb298-5"><a href="7.1-anova.html#cb298-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb298-6"><a href="7.1-anova.html#cb298-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate group means for trt1 and trt2</span></span>
+<span id="cb298-7"><a href="7.1-anova.html#cb298-7" aria-hidden="true" tabindex="-1"></a><span class="co"># from the model</span></span>
+<span id="cb298-8"><a href="7.1-anova.html#cb298-8" aria-hidden="true" tabindex="-1"></a>trt1_prediction <span class="ot">&lt;-</span> ctrl <span class="sc">+</span> trt1</span>
+<span id="cb298-9"><a href="7.1-anova.html#cb298-9" aria-hidden="true" tabindex="-1"></a>trt2_prediction <span class="ot">&lt;-</span> ctrl <span class="sc">+</span> trt2</span>
+<span id="cb298-10"><a href="7.1-anova.html#cb298-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb298-11"><a href="7.1-anova.html#cb298-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(trt1_prediction, trt2_prediction))</span></code></pre></div>
 <pre><code>## [1] 4.661 5.526</code></pre>
 <p>If you calculate the means for these groups directly from the data you’ll see that these values are identical to the mean <code>weight</code> of the <code>trt1</code> and <code>trt2</code> groups.</p>
 <p>In <a href="10-Chapter10.html#Chapter10">Chapter 10</a> we will examine how to estimate confidence intervals around these estimates and make predictions from the model that include our uncertainty. But for that, we’ll need to talk about a little bit of math and we’re dealing with enough right now already!</p>
@@ -645,11 +647,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>One tool that allows us to make multiple comparisons between groups while adjusting for elevated Type-I error is the Tukey HSD (honest significant difference) test. This test makes comparisons between each pairing of groups while controlling for Type-I error. Essentially, this makes it harder to detect differences between groups but when we do we are more sure that they are not spurious (“Honest significant difference,” say it with me).</p>
 <p>Sound confusing? At least it’s easy to do in R.</p>
 <p>We need to recast our model as an <code>aov</code> object in R first to use the <code>TukeyHSD()</code> function…this is essentially the same thing as the <code>lm</code> function, but in a different wrapper (literally) that allows us to access the info in a different way. It would be a fine default function for doing ANOVA if we weren’t interested in going any further with linear models.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="7.1-anova.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(    <span class="co"># The function that does the Tukey test</span></span>
-<span id="cb20-2"><a href="7.1-anova.html#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aov</span>(       <span class="co"># A wrapper for lm objects</span></span>
-<span id="cb20-3"><a href="7.1-anova.html#cb20-3" aria-hidden="true" tabindex="-1"></a>    model    <span class="co"># The model that we ran above</span></span>
-<span id="cb20-4"><a href="7.1-anova.html#cb20-4" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb20-5"><a href="7.1-anova.html#cb20-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="7.1-anova.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(    <span class="co"># The function that does the Tukey test</span></span>
+<span id="cb300-2"><a href="7.1-anova.html#cb300-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aov</span>(       <span class="co"># A wrapper for lm objects</span></span>
+<span id="cb300-3"><a href="7.1-anova.html#cb300-3" aria-hidden="true" tabindex="-1"></a>    model    <span class="co"># The model that we ran above</span></span>
+<span id="cb300-4"><a href="7.1-anova.html#cb300-4" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb300-5"><a href="7.1-anova.html#cb300-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -662,18 +664,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## trt2-trt1  0.865  0.1737839 1.5562161 0.0120064</code></pre>
 <p>This report shows us exactly how <code>weight</code> differs between each pair of treatment groups. Here, we see that the only significant difference (<code>p adj &lt; 0.05</code>) occurs between <code>trt2</code> and <code>trt1</code>.</p>
 <p>For the readers, and for us, it may be easier to see this information displayed graphically:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="7.1-anova.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(PlantGrowth, </span>
-<span id="cb22-2"><a href="7.1-anova.html#cb22-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> weight, <span class="at">color =</span> group, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
-<span id="cb22-3"><a href="7.1-anova.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.15</span>, <span class="at">width =</span> .<span class="dv">25</span>) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="7.1-anova.html#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb22-5"><a href="7.1-anova.html#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Treatment group&quot;</span>) <span class="sc">+</span></span>
-<span id="cb22-6"><a href="7.1-anova.html#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb22-7"><a href="7.1-anova.html#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Group&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Group&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb22-8"><a href="7.1-anova.html#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb22-9"><a href="7.1-anova.html#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust=</span><span class="sc">-</span><span class="dv">1</span>),</span>
-<span id="cb22-10"><a href="7.1-anova.html#cb22-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust=</span><span class="dv">3</span>)</span>
-<span id="cb22-11"><a href="7.1-anova.html#cb22-11" aria-hidden="true" tabindex="-1"></a>        )  </span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="7.1-anova.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(PlantGrowth, </span>
+<span id="cb302-2"><a href="7.1-anova.html#cb302-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> weight, <span class="at">color =</span> group, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
+<span id="cb302-3"><a href="7.1-anova.html#cb302-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.15</span>, <span class="at">width =</span> .<span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb302-4"><a href="7.1-anova.html#cb302-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb302-5"><a href="7.1-anova.html#cb302-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Treatment group&quot;</span>) <span class="sc">+</span></span>
+<span id="cb302-6"><a href="7.1-anova.html#cb302-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb302-7"><a href="7.1-anova.html#cb302-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Group&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Group&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb302-8"><a href="7.1-anova.html#cb302-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb302-9"><a href="7.1-anova.html#cb302-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust=</span><span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb302-10"><a href="7.1-anova.html#cb302-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust=</span><span class="dv">3</span>)</span>
+<span id="cb302-11"><a href="7.1-anova.html#cb302-11" aria-hidden="true" tabindex="-1"></a>        )  </span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
 <p>In addition to what we wrote before, we can now say something along the lines of:</p>
 <blockquote>
 <p>“We found that the mass of plants in the trt2 group (5.5 <span class="math inline">\(\pm\)</span> 0.4 g) was significantly greater than plants in the trt1 group (4.7 <span class="math inline">\(\pm\)</span> 0.8 g; Tukey HSD, p = 0.012). However, we failed to detect differences in mass between plants in the control group (5.0 <span class="math inline">\(\pm\)</span> 0.6 g) and trt1 (p = 0.39) or trt2 (p = 0.20).”</p>
@@ -683,17 +685,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.1.2</span> Two(<em>n</em>)-way ANOVA</h3>
 <p>Next, we’ll step up the complexity and talk about cases for which we have more than one grouping variable and some kind of numeric response. In these cases, we can use a two-way ANOVA (or ‘<em>n</em>-way’ depending on number of factors) to examine effects of more than one grouping variable on the response.</p>
 <p>Here, we will use a data set describing differences in the mass of belly- button lint collected from males and females of three species of apes.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="7.1-anova.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the data:</span></span>
-<span id="cb23-2"><a href="7.1-anova.html#cb23-2" aria-hidden="true" tabindex="-1"></a>lint <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;data/lint.txt&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="7.1-anova.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the data:</span></span>
+<span id="cb303-2"><a href="7.1-anova.html#cb303-2" aria-hidden="true" tabindex="-1"></a>lint <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;data/lint.txt&#39;</span>)</span></code></pre></div>
 <div id="main-effects-7" class="section level4" number="7.1.2.1">
 <h4><span class="header-section-number">7.1.2.1</span> Main effects model</h4>
 <p>Now we can fit a model to the data. This will work the same way as for the one-way ANOVA above, but this time we will add more terms on the right hand side of the equation. We will start by looking at the <em>main effects</em> model for this data set.</p>
 <p>What is a main-effects model? This model assumes that the response of interest, in this case the mass of belly button lint, <code>lintmass</code>, is affected by both <code>species</code> and <code>gender</code>, and that within species the effect of gender is the same. For example, the mass of belly button lint could be greater in one species compared to others, and if there is a difference between sexes we would expect that trend to be the same across species (e.g., boys always have more lint than girls - sorry guys, it’s probably true!).</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="7.1-anova.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model and save it to an object</span></span>
-<span id="cb24-2"><a href="7.1-anova.html#cb24-2" aria-hidden="true" tabindex="-1"></a>lint.model<span class="ot">&lt;-</span> <span class="fu">lm</span>(lintmass<span class="sc">~</span>species <span class="sc">+</span> gender, <span class="at">data =</span> lint)</span>
-<span id="cb24-3"><a href="7.1-anova.html#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="7.1-anova.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the summary of the model fit</span></span>
-<span id="cb24-5"><a href="7.1-anova.html#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lint.model)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="7.1-anova.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model and save it to an object</span></span>
+<span id="cb304-2"><a href="7.1-anova.html#cb304-2" aria-hidden="true" tabindex="-1"></a>lint.model<span class="ot">&lt;-</span> <span class="fu">lm</span>(lintmass<span class="sc">~</span>species <span class="sc">+</span> gender, <span class="at">data =</span> lint)</span>
+<span id="cb304-3"><a href="7.1-anova.html#cb304-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb304-4"><a href="7.1-anova.html#cb304-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the summary of the model fit</span></span>
+<span id="cb304-5"><a href="7.1-anova.html#cb304-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lint.model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = lintmass ~ species + gender, data = lint)
@@ -714,8 +716,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 1.502 on 20 degrees of freedom
 ## Multiple R-squared:  0.8096, Adjusted R-squared:  0.781 
 ## F-statistic: 28.35 on 3 and 20 DF,  p-value: 2.107e-07</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="7.1-anova.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the anova table</span></span>
-<span id="cb26-2"><a href="7.1-anova.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lint.model)</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="7.1-anova.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the anova table</span></span>
+<span id="cb306-2"><a href="7.1-anova.html#cb306-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lint.model)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: lintmass
@@ -727,19 +729,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>As you can see, the output for the model is much the same as for the one-way ANOVA. The only real difference is that we have more than one grouping variable here. We conclude that there is a significant difference in <code>lintmass</code> between <code>species</code> (F = 10.50, df = 2, p &lt; 0.05) and between <code>genders</code> (F = 64.01, df = 1, p &lt; 0.05).</p>
 <p>As before, we can make a quick boxplot and overlay our raw data to visualize these differences:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="7.1-anova.html#cb28-1" aria-hidden="true" tabindex="-1"></a>lint <span class="sc">%&gt;%</span> </span>
-<span id="cb28-2"><a href="7.1-anova.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> lintmass, <span class="at">color =</span> gender, <span class="at">fill =</span> gender)) <span class="sc">+</span></span>
-<span id="cb28-3"><a href="7.1-anova.html#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.10</span>) <span class="sc">+</span></span>
-<span id="cb28-4"><a href="7.1-anova.html#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">position=</span><span class="fu">position_jitterdodge</span>(.<span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb28-5"><a href="7.1-anova.html#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&#39;Species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb28-6"><a href="7.1-anova.html#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&#39;Lint mass&#39;</span>) <span class="sc">+</span></span>
-<span id="cb28-7"><a href="7.1-anova.html#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb28-8"><a href="7.1-anova.html#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Gender&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Gender&quot;</span>) <span class="sc">+</span></span>
-<span id="cb28-9"><a href="7.1-anova.html#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust=</span><span class="sc">-</span><span class="dv">1</span>),</span>
-<span id="cb28-10"><a href="7.1-anova.html#cb28-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust=</span><span class="dv">3</span>),</span>
-<span id="cb28-11"><a href="7.1-anova.html#cb28-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb28-12"><a href="7.1-anova.html#cb28-12" aria-hidden="true" tabindex="-1"></a>          )</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="7.1-anova.html#cb308-1" aria-hidden="true" tabindex="-1"></a>lint <span class="sc">%&gt;%</span> </span>
+<span id="cb308-2"><a href="7.1-anova.html#cb308-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> lintmass, <span class="at">color =</span> gender, <span class="at">fill =</span> gender)) <span class="sc">+</span></span>
+<span id="cb308-3"><a href="7.1-anova.html#cb308-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.10</span>) <span class="sc">+</span></span>
+<span id="cb308-4"><a href="7.1-anova.html#cb308-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">position=</span><span class="fu">position_jitterdodge</span>(.<span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb308-5"><a href="7.1-anova.html#cb308-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&#39;Species&#39;</span>) <span class="sc">+</span></span>
+<span id="cb308-6"><a href="7.1-anova.html#cb308-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&#39;Lint mass&#39;</span>) <span class="sc">+</span></span>
+<span id="cb308-7"><a href="7.1-anova.html#cb308-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb308-8"><a href="7.1-anova.html#cb308-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Gender&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Gender&quot;</span>) <span class="sc">+</span></span>
+<span id="cb308-9"><a href="7.1-anova.html#cb308-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust=</span><span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb308-10"><a href="7.1-anova.html#cb308-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust=</span><span class="dv">3</span>),</span>
+<span id="cb308-11"><a href="7.1-anova.html#cb308-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb308-12"><a href="7.1-anova.html#cb308-12" aria-hidden="true" tabindex="-1"></a>          )</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
 <p>Hopefully after seeing these results you are now starting to realize how important a few well-placed figures and tables can be for clearly communicating the results of your research (even if it is about belly-button lint).</p>
 <p>The math for making predictions becomes a little more complicated once we add a second grouping variable. Even the numbers of pair-wise comparisons can become overwhelming in a simple situation like this. Therefore, we’ll hold off on digging too much deeper into the math until next week.</p>
 </div>
@@ -747,11 +749,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">7.1.2.2</span> Interaction terms</h4>
 <p>The n-way ANOVA is the first kind of model we have used in which it is possible to consider <em>interactions</em> between two or more factors. An interaction occurs when the effects of two or more factors are not additive. This means that the effect of <code>gender</code> might change for different <code>species</code>. For example, let us consider the following scenario in the <code>lint</code> data.</p>
 <p>Perhaps we hypothesize that lint accumulation in the belly buttons of females differs in pattern from males due to social grooming patterns and sex-specific behavioral patterns favoring females in only certain species. As a result, we might expect that <code>gender</code> and <code>species</code> could have some kind of non-additive effect on <code>lintmass</code> in these apes such that there are significant, sex-specific differences only in some species. To test this, we would use the following:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="7.1-anova.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a new model that includes an interaction, signified by &#39;*&#39;</span></span>
-<span id="cb29-2"><a href="7.1-anova.html#cb29-2" aria-hidden="true" tabindex="-1"></a>lint.modeli <span class="ot">&lt;-</span> <span class="fu">lm</span>(lintmass<span class="sc">~</span>species <span class="sc">*</span> gender, <span class="at">data=</span>lint)</span>
-<span id="cb29-3"><a href="7.1-anova.html#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="7.1-anova.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize the model</span></span>
-<span id="cb29-5"><a href="7.1-anova.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lint.modeli)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="7.1-anova.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a new model that includes an interaction, signified by &#39;*&#39;</span></span>
+<span id="cb309-2"><a href="7.1-anova.html#cb309-2" aria-hidden="true" tabindex="-1"></a>lint.modeli <span class="ot">&lt;-</span> <span class="fu">lm</span>(lintmass<span class="sc">~</span>species <span class="sc">*</span> gender, <span class="at">data=</span>lint)</span>
+<span id="cb309-3"><a href="7.1-anova.html#cb309-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-4"><a href="7.1-anova.html#cb309-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize the model</span></span>
+<span id="cb309-5"><a href="7.1-anova.html#cb309-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lint.modeli)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = lintmass ~ species * gender, data = lint)
@@ -761,21 +763,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## -2.525 -0.750  0.050  1.019  1.875 
 ## 
 ## Coefficients:
-##                             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)                  14.9250     0.7404  20.159 8.40e-14 ***
-## speciesSpecies 2             -2.2500     1.0471  -2.149   0.0455 *  
-## speciesSpecies 3             -1.2000     1.0471  -1.146   0.2668    
-## genderMale                    6.1500     1.0471   5.874 1.46e-05 ***
-## speciesSpecies 2:genderMale  -2.3750     1.4808  -1.604   0.1261    
-## speciesSpecies 3:genderMale  -1.3500     1.4808  -0.912   0.3740    
+##                             Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)                  14.9250     0.7404  20.159 8.40e-14
+## speciesSpecies 2             -2.2500     1.0471  -2.149   0.0455
+## speciesSpecies 3             -1.2000     1.0471  -1.146   0.2668
+## genderMale                    6.1500     1.0471   5.874 1.46e-05
+## speciesSpecies 2:genderMale  -2.3750     1.4808  -1.604   0.1261
+## speciesSpecies 3:genderMale  -1.3500     1.4808  -0.912   0.3740
+##                                
+## (Intercept)                 ***
+## speciesSpecies 2            *  
+## speciesSpecies 3               
+## genderMale                  ***
+## speciesSpecies 2:genderMale    
+## speciesSpecies 3:genderMale    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 1.481 on 18 degrees of freedom
 ## Multiple R-squared:  0.8335, Adjusted R-squared:  0.7873 
 ## F-statistic: 18.03 on 5 and 18 DF,  p-value: 1.898e-06</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="7.1-anova.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print an ANOVA table for the model</span></span>
-<span id="cb31-2"><a href="7.1-anova.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lint.modeli)</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="7.1-anova.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print an ANOVA table for the model</span></span>
+<span id="cb311-2"><a href="7.1-anova.html#cb311-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lint.modeli)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: lintmass

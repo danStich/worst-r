@@ -137,6 +137,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="1.1-what-is-r.html"><a href="1.1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
@@ -513,9 +515,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.3</span> Multiple linear regression</h2>
 <p>We can, of course, extend this to include multiple continuous explanatory variables of interest just as we did with ANOVA for multiple categorical explanatory variables!</p>
 <p>Here is an example to whet your appetite. Let’s say we want a multiple regression model that includes both <code>Education</code> and <code>Catholic</code>?</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="7.3-multiple-linear-regression.html#cb39-1" aria-hidden="true" tabindex="-1"></a>multiple_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> Education <span class="sc">+</span> Catholic, <span class="at">data =</span> swiss)</span>
-<span id="cb39-2"><a href="7.3-multiple-linear-regression.html#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="7.3-multiple-linear-regression.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(multiple_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="7.3-multiple-linear-regression.html#cb319-1" aria-hidden="true" tabindex="-1"></a>multiple_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> Education <span class="sc">+</span> Catholic, <span class="at">data =</span> swiss)</span>
+<span id="cb319-2"><a href="7.3-multiple-linear-regression.html#cb319-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb319-3"><a href="7.3-multiple-linear-regression.html#cb319-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(multiple_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Fertility ~ Education + Catholic, data = swiss)
@@ -536,12 +538,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.5745, Adjusted R-squared:  0.5552 
 ## F-statistic:  29.7 on 2 and 44 DF,  p-value: 6.849e-09</code></pre>
 <p>Or if we really want to get crazy with the hot sauce:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="7.3-multiple-linear-regression.html#cb41-1" aria-hidden="true" tabindex="-1"></a>full_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
-<span id="cb41-2"><a href="7.3-multiple-linear-regression.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  Fertility <span class="sc">~</span> Agriculture <span class="sc">+</span> Examination <span class="sc">+</span> Education <span class="sc">+</span> Catholic,</span>
-<span id="cb41-3"><a href="7.3-multiple-linear-regression.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> swiss</span>
-<span id="cb41-4"><a href="7.3-multiple-linear-regression.html#cb41-4" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb41-5"><a href="7.3-multiple-linear-regression.html#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-6"><a href="7.3-multiple-linear-regression.html#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="7.3-multiple-linear-regression.html#cb321-1" aria-hidden="true" tabindex="-1"></a>full_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb321-2"><a href="7.3-multiple-linear-regression.html#cb321-2" aria-hidden="true" tabindex="-1"></a>  Fertility <span class="sc">~</span> Agriculture <span class="sc">+</span> Examination <span class="sc">+</span> Education <span class="sc">+</span> Catholic,</span>
+<span id="cb321-3"><a href="7.3-multiple-linear-regression.html#cb321-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> swiss</span>
+<span id="cb321-4"><a href="7.3-multiple-linear-regression.html#cb321-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb321-5"><a href="7.3-multiple-linear-regression.html#cb321-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb321-6"><a href="7.3-multiple-linear-regression.html#cb321-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Fertility ~ Agriculture + Examination + Education + 
