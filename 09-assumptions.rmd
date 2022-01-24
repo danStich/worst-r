@@ -236,18 +236,7 @@ head(turtles, 10)
 
 If you look closely, you'll notice that we have repeated observations of individuals here. So, we already know that our data do not conform to the assumptions of ANOVA, linear regression, or ANCOVA - but let's keep using these data for the sake of demonstration. There is, of course another major violation of our assumptions that has to do with experimental design (that is commonly violated): these are **discrete** data! We'll pretend for now that we can think of `Stay` as a continuous variable, though.
 
-You can see how this could get tedious to do for every level of every grouping factor and then for each continuous variable. So, we can also take a "shotgun" approach and look at how variables are related to one another.
-
-This approach allows us to look at relationships between all variables at once. Note below that I am using all columns except `ID` because that graph would be a mess. 
-
-```{r}
-# Look at correlations between variables
-pairs(turtles[ , 2:ncol(turtles)])
-```
-
-But, for this data set this is really gross and difficult to interpret due to the nature of the variables. This should tell you that thinking about this stuff before you collect data is really important!
-
-It would make a lot more sense for something like the built-in `swiss` data because those variables are all continuous. You can check that out by running `pairs(swiss)` in your code. Look at all of the related variables in the `swiss` data! This relatedness is called **collinearity** and can cause some issues if we are not careful about it.
+You can see how this could get tedious to do for every level of every grouping factor and then for each continuous variable. If we have only numeric data (like in `swiss`), we could also take a "shotgun" approach and look at how variables are related to one another using the `pairs()` function.
 
 We'll talk about problems related to correlation between variables (e.g. temperature and photoperiod) in detail when we discuss model selection and collinearity. In the sections that follow, we'll just focus our efforts on diagnosing `Year` as a categorical explanatory variable and `Width` as a continuous explanatory variable.
 
