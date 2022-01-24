@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10.1 One-way ANOVA | The Worst Stats Text eveR</title>
+  <meta name="description" content="10.1 One-way ANOVA | The Worst Stats Text eveR" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10.1 One-way ANOVA | The Worst Stats Text eveR" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10.1 One-way ANOVA | The Worst Stats Text eveR" />
+  
+  
+  
+
+<meta name="author" content="Dan Stich" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="10-Chapter10.html"/>
+<link rel="next" href="10.2-two-way-anova.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Worst Stats Text eveR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
+<li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-what-is-r.html"><a href="1.1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-why-should-i-use-r.html"><a href="1.2-why-should-i-use-r.html"><i class="fa fa-check"></i><b>1.2</b> Why should I use R?</a></li>
+<li class="chapter" data-level="1.3" data-path="1.3-where-do-i-start.html"><a href="1.3-where-do-i-start.html"><i class="fa fa-check"></i><b>1.3</b> Where do I start?</a></li>
+<li class="chapter" data-level="1.4" data-path="1.4-programming-conventions.html"><a href="1.4-programming-conventions.html"><i class="fa fa-check"></i><b>1.4</b> Programming conventions</a>
+<ul>
+<li class="chapter" data-level="" data-path="1.4-programming-conventions.html"><a href="1.4-programming-conventions.html#style"><i class="fa fa-check"></i>Style and organization</a></li>
+<li class="chapter" data-level="" data-path="1.4-programming-conventions.html"><a href="1.4-programming-conventions.html#tips"><i class="fa fa-check"></i>Some handy coding tips</a></li>
+<li class="chapter" data-level="" data-path="1.4-programming-conventions.html"><a href="1.4-programming-conventions.html#rules"><i class="fa fa-check"></i>Stricter R programming rules</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1.5-next1.html"><a href="1.5-next1.html"><i class="fa fa-check"></i><b>1.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-Chapter2.html"><a href="2-Chapter2.html"><i class="fa fa-check"></i><b>2</b> Data structures</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-vectors.html"><a href="2.1-vectors.html"><i class="fa fa-check"></i><b>2.1</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="" data-path="2.1-vectors.html"><a href="2.1-vectors.html#nums"><i class="fa fa-check"></i>Integers and numerics</a></li>
+<li class="chapter" data-level="" data-path="2.1-vectors.html"><a href="2.1-vectors.html#strings"><i class="fa fa-check"></i>Characters and factors</a></li>
+<li class="chapter" data-level="" data-path="2.1-vectors.html"><a href="2.1-vectors.html#logicals"><i class="fa fa-check"></i>Logical vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-operations.html"><a href="2.2-operations.html"><i class="fa fa-check"></i><b>2.2</b> Vector operations</a></li>
+<li class="chapter" data-level="2.3" data-path="2.3-matrices.html"><a href="2.3-matrices.html"><i class="fa fa-check"></i><b>2.3</b> Matrices</a></li>
+<li class="chapter" data-level="2.4" data-path="2.4-dataframes.html"><a href="2.4-dataframes.html"><i class="fa fa-check"></i><b>2.4</b> Dataframes</a></li>
+<li class="chapter" data-level="2.5" data-path="2.5-lists.html"><a href="2.5-lists.html"><i class="fa fa-check"></i><b>2.5</b> Lists</a></li>
+<li class="chapter" data-level="2.6" data-path="2.6-next2.html"><a href="2.6-next2.html"><i class="fa fa-check"></i><b>2.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-Chapter3.html"><a href="3-Chapter3.html"><i class="fa fa-check"></i><b>3</b> Working with data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-data-read.html"><a href="3.1-data-read.html"><i class="fa fa-check"></i><b>3.1</b> Data read</a></li>
+<li class="chapter" data-level="3.2" data-path="3.2-quick-data-summaries.html"><a href="3.2-quick-data-summaries.html"><i class="fa fa-check"></i><b>3.2</b> Quick data summaries</a></li>
+<li class="chapter" data-level="3.3" data-path="3.3-subsetting-and-selecting-data.html"><a href="3.3-subsetting-and-selecting-data.html"><i class="fa fa-check"></i><b>3.3</b> Subsetting and selecting data</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3.3-subsetting-and-selecting-data.html"><a href="3.3-subsetting-and-selecting-data.html#manual-subsets-and-selections"><i class="fa fa-check"></i><b>3.3.1</b> Manual subsets and selections</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3.3-subsetting-and-selecting-data.html"><a href="3.3-subsetting-and-selecting-data.html#subsetting-and-summaries-in-base-r"><i class="fa fa-check"></i><b>3.3.2</b> Subsetting and summaries in base R</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3.3-subsetting-and-selecting-data.html"><a href="3.3-subsetting-and-selecting-data.html#tidyverse"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting and summaries in the tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3.4-better-data-summaries.html"><a href="3.4-better-data-summaries.html"><i class="fa fa-check"></i><b>3.4</b> Better data summaries</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-creating-new-variables.html"><a href="3.5-creating-new-variables.html"><i class="fa fa-check"></i><b>3.5</b> Creating new variables</a></li>
+<li class="chapter" data-level="3.6" data-path="3.6-data-simulation.html"><a href="3.6-data-simulation.html"><i class="fa fa-check"></i><b>3.6</b> Data simulation</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="3.6-data-simulation.html"><a href="3.6-data-simulation.html#random-sub-samples-from-a-dataset"><i class="fa fa-check"></i><b>3.6.1</b> Random sub-samples from a dataset</a></li>
+<li class="chapter" data-level="3.6.2" data-path="3.6-data-simulation.html"><a href="3.6-data-simulation.html#stochastic"><i class="fa fa-check"></i><b>3.6.2</b> Stochastic simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="3.7-next3.html"><a href="3.7-next3.html"><i class="fa fa-check"></i><b>3.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-Chapter4.html"><a href="4-Chapter4.html"><i class="fa fa-check"></i><b>4</b> Plotting and graphics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-plots-matter-as-much-as-stats.html"><a href="4.1-plots-matter-as-much-as-stats.html"><i class="fa fa-check"></i><b>4.1</b> Plots matter as much as stats</a></li>
+<li class="chapter" data-level="4.2" data-path="4.2-base-graphics.html"><a href="4.2-base-graphics.html"><i class="fa fa-check"></i><b>4.2</b> Plotting with base R</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="4.2-base-graphics.html"><a href="4.2-base-graphics.html#histograms"><i class="fa fa-check"></i><b>4.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4.2-base-graphics.html"><a href="4.2-base-graphics.html#scatterplots"><i class="fa fa-check"></i><b>4.2.2</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4.2-base-graphics.html"><a href="4.2-base-graphics.html#lines"><i class="fa fa-check"></i><b>4.2.3</b> Lines</a></li>
+<li class="chapter" data-level="4.2.4" data-path="4.2-base-graphics.html"><a href="4.2-base-graphics.html#boxplots"><i class="fa fa-check"></i><b>4.2.4</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4.3-plotting-with-ggplot2.html"><a href="4.3-plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>4.3</b> Plotting with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="4.3-plotting-with-ggplot2.html"><a href="4.3-plotting-with-ggplot2.html#gghists"><i class="fa fa-check"></i><b>4.3.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4.3-plotting-with-ggplot2.html"><a href="4.3-plotting-with-ggplot2.html#ggscatter"><i class="fa fa-check"></i><b>4.3.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4.3-plotting-with-ggplot2.html"><a href="4.3-plotting-with-ggplot2.html#gglines"><i class="fa fa-check"></i><b>4.3.3</b> Lines</a></li>
+<li class="chapter" data-level="4.3.4" data-path="4.3-plotting-with-ggplot2.html"><a href="4.3-plotting-with-ggplot2.html#ggboxplots"><i class="fa fa-check"></i><b>4.3.4</b> Boxplots and</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4.4-next4.html"><a href="4.4-next4.html"><i class="fa fa-check"></i><b>4.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-Chapter5.html"><a href="5-Chapter5.html"><i class="fa fa-check"></i><b>5</b> Sampling distributions in R</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-what-are-sampling-distributions.html"><a href="5.1-what-are-sampling-distributions.html"><i class="fa fa-check"></i><b>5.1</b> What are sampling distributions?</a></li>
+<li class="chapter" data-level="5.2" data-path="5.2-probability-distributions-in-r.html"><a href="5.2-probability-distributions-in-r.html"><i class="fa fa-check"></i><b>5.2</b> Probability distributions in R</a></li>
+<li class="chapter" data-level="5.3" data-path="5.3-exponential-family.html"><a href="5.3-exponential-family.html"><i class="fa fa-check"></i><b>5.3</b> Exponential family</a></li>
+<li class="chapter" data-level="5.4" data-path="5.4-continuous-distributions.html"><a href="5.4-continuous-distributions.html"><i class="fa fa-check"></i><b>5.4</b> Continuous distributions</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="5.4-continuous-distributions.html"><a href="5.4-continuous-distributions.html#the-lognormal-distribution"><i class="fa fa-check"></i><b>5.4.1</b> The lognormal distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5.4-continuous-distributions.html"><a href="5.4-continuous-distributions.html#the-beta-distribution"><i class="fa fa-check"></i><b>5.4.2</b> The beta distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html"><i class="fa fa-check"></i><b>5.5</b> Discrete distributions</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html#bernoulli"><i class="fa fa-check"></i><b>5.5.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="5.5.2" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html#binomial"><i class="fa fa-check"></i><b>5.5.2</b> Binomial</a></li>
+<li class="chapter" data-level="5.5.3" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html#multinomial"><i class="fa fa-check"></i><b>5.5.3</b> Multinomial</a></li>
+<li class="chapter" data-level="5.5.4" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html#poisson"><i class="fa fa-check"></i><b>5.5.4</b> Poisson</a></li>
+<li class="chapter" data-level="5.5.5" data-path="5.5-discrete-distributions.html"><a href="5.5-discrete-distributions.html#the-negative-binomial-distribution"><i class="fa fa-check"></i><b>5.5.5</b> The negative binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="5.6-sample-statistics.html"><a href="5.6-sample-statistics.html"><i class="fa fa-check"></i><b>5.6</b> Sample statistics</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="5.6-sample-statistics.html"><a href="5.6-sample-statistics.html#moments-about-the-mean"><i class="fa fa-check"></i><b>5.6.1</b> Moments about the mean</a></li>
+<li class="chapter" data-level="5.6.2" data-path="5.6-sample-statistics.html"><a href="5.6-sample-statistics.html#estimating-parameters-of-the-normal-distribution-from-a-sample"><i class="fa fa-check"></i><b>5.6.2</b> Estimating parameters of the normal distribution from a sample</a></li>
+<li class="chapter" data-level="5.6.3" data-path="5.6-sample-statistics.html"><a href="5.6-sample-statistics.html#quantiles-and-other-descriptive-statistics"><i class="fa fa-check"></i><b>5.6.3</b> Quantiles and other descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="5.7-next5.html"><a href="5.7-next5.html"><i class="fa fa-check"></i><b>5.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-Chapter6.html"><a href="6-Chapter6.html"><i class="fa fa-check"></i><b>6</b> Inferential statistics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6.1-one-sample-tests.html"><a href="6.1-one-sample-tests.html"><i class="fa fa-check"></i><b>6.1</b> One-sample tests</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="6.1-one-sample-tests.html"><a href="6.1-one-sample-tests.html#one-sample-t-test"><i class="fa fa-check"></i><b>6.1.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6.1-one-sample-tests.html"><a href="6.1-one-sample-tests.html#wilcox-test"><i class="fa fa-check"></i><b>6.1.2</b> Wilcox test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6.2-two-sample-tests.html"><a href="6.2-two-sample-tests.html"><i class="fa fa-check"></i><b>6.2</b> Two-sample tests</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6.2-two-sample-tests.html"><a href="6.2-two-sample-tests.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>6.2.1</b> The two-sample t-test</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6.2-two-sample-tests.html"><a href="6.2-two-sample-tests.html#two-sample-wilcox-test"><i class="fa fa-check"></i><b>6.2.2</b> Two-sample Wilcox test</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6.2-two-sample-tests.html"><a href="6.2-two-sample-tests.html#presenting-your-results"><i class="fa fa-check"></i><b>6.2.3</b> Presenting your results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6.3-frequency-analysis.html"><a href="6.3-frequency-analysis.html"><i class="fa fa-check"></i><b>6.3</b> Frequency analysis</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="6.3-frequency-analysis.html"><a href="6.3-frequency-analysis.html#worked-example"><i class="fa fa-check"></i><b>6.3.1</b> Worked example</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="6.4-next6.html"><a href="6.4-next6.html"><i class="fa fa-check"></i><b>6.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-Chapter7.html"><a href="7-Chapter7.html"><i class="fa fa-check"></i><b>7</b> Linear models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-anova.html"><a href="7.1-anova.html"><i class="fa fa-check"></i><b>7.1</b> Analysis of variance (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="7.1-anova.html"><a href="7.1-anova.html#one-way"><i class="fa fa-check"></i><b>7.1.1</b> One-way analysis of variance</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7.1-anova.html"><a href="7.1-anova.html#twon-way-anova"><i class="fa fa-check"></i><b>7.1.2</b> Two(<em>n</em>)-way ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7.2-simple-linear-regression.html"><a href="7.2-simple-linear-regression.html"><i class="fa fa-check"></i><b>7.2</b> Simple linear regression</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="7.2-simple-linear-regression.html"><a href="7.2-simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>7.2.1</b> Simple linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7.3-multiple-linear-regression.html"><a href="7.3-multiple-linear-regression.html"><i class="fa fa-check"></i><b>7.3</b> Multiple linear regression</a></li>
+<li class="chapter" data-level="7.4" data-path="7.4-next7.html"><a href="7.4-next7.html"><i class="fa fa-check"></i><b>7.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-Chapter8.html"><a href="8-Chapter8.html"><i class="fa fa-check"></i><b>8</b> General linear models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="8.1-analysis-of-covariance-ancova.html"><a href="8.1-analysis-of-covariance-ancova.html"><i class="fa fa-check"></i><b>8.1</b> Analysis of covariance (ANCOVA)</a></li>
+<li class="chapter" data-level="8.2" data-path="8.2-motivation.html"><a href="8.2-motivation.html"><i class="fa fa-check"></i><b>8.2</b> Motivation</a></li>
+<li class="chapter" data-level="8.3" data-path="8.3-data.html"><a href="8.3-data.html"><i class="fa fa-check"></i><b>8.3</b> Data</a></li>
+<li class="chapter" data-level="8.4" data-path="8.4-analysis.html"><a href="8.4-analysis.html"><i class="fa fa-check"></i><b>8.4</b> Analysis</a></li>
+<li class="chapter" data-level="8.5" data-path="8.5-predictions.html"><a href="8.5-predictions.html"><i class="fa fa-check"></i><b>8.5</b> Predictions</a></li>
+<li class="chapter" data-level="8.6" data-path="8.6-next8.html"><a href="8.6-next8.html"><i class="fa fa-check"></i><b>8.6</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-Chapter9.html"><a href="9-Chapter9.html"><i class="fa fa-check"></i><b>9</b> Assumptions of linear models</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="9.1-intro9.html"><a href="9.1-intro9.html"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="9.2-assumptions-of-linear-models.html"><a href="9.2-assumptions-of-linear-models.html"><i class="fa fa-check"></i><b>9.2</b> Assumptions of linear models</a></li>
+<li class="chapter" data-level="9.3" data-path="9.3-ughmath.html"><a href="9.3-ughmath.html"><i class="fa fa-check"></i><b>9.3</b> WTF is a residuals?</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="9.3-ughmath.html"><a href="9.3-ughmath.html#residuals-in-anova"><i class="fa fa-check"></i><b>9.3.1</b> Residuals in ANOVA</a></li>
+<li class="chapter" data-level="9.3.2" data-path="9.3-ughmath.html"><a href="9.3-ughmath.html#residuals-in-linear-regression"><i class="fa fa-check"></i><b>9.3.2</b> Residuals in linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="9.4-the-turtle-problem.html"><a href="9.4-the-turtle-problem.html"><i class="fa fa-check"></i><b>9.4</b> The turtle problem</a></li>
+<li class="chapter" data-level="9.5" data-path="9.5-data-exploration.html"><a href="9.5-data-exploration.html"><i class="fa fa-check"></i><b>9.5</b> Data exploration</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="9.5-data-exploration.html"><a href="9.5-data-exploration.html#independence-of-observations"><i class="fa fa-check"></i><b>9.5.1</b> Independence of observations</a></li>
+<li class="chapter" data-level="9.5.2" data-path="9.5-data-exploration.html"><a href="9.5-data-exploration.html#normality-1"><i class="fa fa-check"></i><b>9.5.2</b> Normality</a></li>
+<li class="chapter" data-level="9.5.3" data-path="9.5-data-exploration.html"><a href="9.5-data-exploration.html#homogeneity-of-variances"><i class="fa fa-check"></i><b>9.5.3</b> Homogeneity of variances</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="9.6-anova-diagnostics.html"><a href="9.6-anova-diagnostics.html"><i class="fa fa-check"></i><b>9.6</b> ANOVA Diagnostics</a></li>
+<li class="chapter" data-level="9.7" data-path="9.7-linear-regression-diagnostics.html"><a href="9.7-linear-regression-diagnostics.html"><i class="fa fa-check"></i><b>9.7</b> Linear regression diagnostics</a></li>
+<li class="chapter" data-level="9.8" data-path="9.8-next9.html"><a href="9.8-next9.html"><i class="fa fa-check"></i><b>9.8</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-Chapter10.html"><a href="10-Chapter10.html"><i class="fa fa-check"></i><b>10</b> Communicating effect sizes</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="10.1-one-way-anova.html"><a href="10.1-one-way-anova.html"><i class="fa fa-check"></i><b>10.1</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="10.1-one-way-anova.html"><a href="10.1-one-way-anova.html#unifying-the-linear-model"><i class="fa fa-check"></i><b>10.1.1</b> Unifying the linear model</a></li>
+<li class="chapter" data-level="10.1.2" data-path="10.1-one-way-anova.html"><a href="10.1-one-way-anova.html#the-model-matrix"><i class="fa fa-check"></i><b>10.1.2</b> The model matrix</a></li>
+<li class="chapter" data-level="10.1.3" data-path="10.1-one-way-anova.html"><a href="10.1-one-way-anova.html#prediction"><i class="fa fa-check"></i><b>10.1.3</b> Prediction</a></li>
+<li class="chapter" data-level="10.1.4" data-path="10.1-one-way-anova.html"><a href="10.1-one-way-anova.html#plotting"><i class="fa fa-check"></i><b>10.1.4</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="10.2-two-way-anova.html"><a href="10.2-two-way-anova.html"><i class="fa fa-check"></i><b>10.2</b> Two-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="10.2-two-way-anova.html"><a href="10.2-two-way-anova.html#main-effects-10"><i class="fa fa-check"></i><b>10.2.1</b> Main effects model</a></li>
+<li class="chapter" data-level="10.2.2" data-path="10.2-two-way-anova.html"><a href="10.2-two-way-anova.html#interactions"><i class="fa fa-check"></i><b>10.2.2</b> Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="10.3-linear-regression.html"><a href="10.3-linear-regression.html"><i class="fa fa-check"></i><b>10.3</b> Linear regression</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="10.3-linear-regression.html"><a href="10.3-linear-regression.html#prediction-1"><i class="fa fa-check"></i><b>10.3.1</b> Prediction</a></li>
+<li class="chapter" data-level="10.3.2" data-path="10.3-linear-regression.html"><a href="10.3-linear-regression.html#plotting-1"><i class="fa fa-check"></i><b>10.3.2</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="10.4-ancova.html"><a href="10.4-ancova.html"><i class="fa fa-check"></i><b>10.4</b> ANCOVA</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="10.4-ancova.html"><a href="10.4-ancova.html#prediction-2"><i class="fa fa-check"></i><b>10.4.1</b> Prediction</a></li>
+<li class="chapter" data-level="10.4.2" data-path="10.4-ancova.html"><a href="10.4-ancova.html#plotting-2"><i class="fa fa-check"></i><b>10.4.2</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="10.5-next10.html"><a href="10.5-next10.html"><i class="fa fa-check"></i><b>10.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="11-Chapter11.html"><a href="11-Chapter11.html"><i class="fa fa-check"></i><b>11</b> Model selection</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="11.1-intro11.html"><a href="11.1-intro11.html"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
+<li class="chapter" data-level="11.2" data-path="11.2-model-selection-tools.html"><a href="11.2-model-selection-tools.html"><i class="fa fa-check"></i><b>11.2</b> Model selection tools</a></li>
+<li class="chapter" data-level="11.3" data-path="11.3-all-subsets.html"><a href="11.3-all-subsets.html"><i class="fa fa-check"></i><b>11.3</b> All subsets</a></li>
+<li class="chapter" data-level="11.4" data-path="11.4-stepwise.html"><a href="11.4-stepwise.html"><i class="fa fa-check"></i><b>11.4</b> Stepwise selection</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="11.4-stepwise.html"><a href="11.4-stepwise.html#forward-selection"><i class="fa fa-check"></i><b>11.4.1</b> Forward selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="11.5-a-priori.html"><a href="11.5-a-priori.html"><i class="fa fa-check"></i><b>11.5</b> <em>A priori</em> selection</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="11.5-a-priori.html"><a href="11.5-a-priori.html#multi-phase-heirarchical-selection"><i class="fa fa-check"></i><b>11.5.1</b> Multi-phase (heirarchical) selection</a></li>
+<li class="chapter" data-level="11.5.2" data-path="11.5-a-priori.html"><a href="11.5-a-priori.html#single-phase-selection"><i class="fa fa-check"></i><b>11.5.2</b> Single-phase selection</a></li>
+<li class="chapter" data-level="11.5.3" data-path="11.5-a-priori.html"><a href="11.5-a-priori.html#tools-for-a-priori-model-selection"><i class="fa fa-check"></i><b>11.5.3</b> Tools for <em>a priori</em> model selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="11.6-model-validation.html"><a href="11.6-model-validation.html"><i class="fa fa-check"></i><b>11.6</b> Model validation</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="11.6-model-validation.html"><a href="11.6-model-validation.html#leave-one-out-cross-validation"><i class="fa fa-check"></i><b>11.6.1</b> Leave-one-out cross validation</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="11.7-next11.html"><a href="11.7-next11.html"><i class="fa fa-check"></i><b>11.7</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="12-Chapter12.html"><a href="12-Chapter12.html"><i class="fa fa-check"></i><b>12</b> Logistic regression</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="12.1-intro12.html"><a href="12.1-intro12.html"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="12.2-Assumptions12.html"><a href="12.2-Assumptions12.html"><i class="fa fa-check"></i><b>12.2</b> Assumptions of linear models</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="12.2-Assumptions12.html"><a href="12.2-Assumptions12.html#assumption-1-normality-of-residuals"><i class="fa fa-check"></i><b>12.2.1</b> Assumption 1: normality of residuals</a></li>
+<li class="chapter" data-level="12.2.2" data-path="12.2-Assumptions12.html"><a href="12.2-Assumptions12.html#assumption-2-independence-of-observations"><i class="fa fa-check"></i><b>12.2.2</b> Assumption 2: independence of observations</a></li>
+<li class="chapter" data-level="12.2.3" data-path="12.2-Assumptions12.html"><a href="12.2-Assumptions12.html#assumption-3-homogeneity-of-variances"><i class="fa fa-check"></i><b>12.2.3</b> Assumption 3: homogeneity of variances</a></li>
+<li class="chapter" data-level="12.2.4" data-path="12.2-Assumptions12.html"><a href="12.2-Assumptions12.html#assumption-4-linearity-and-additivity"><i class="fa fa-check"></i><b>12.2.4</b> Assumption 4: linearity and additivity</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="12.3-introducing-the-glm.html"><a href="12.3-introducing-the-glm.html"><i class="fa fa-check"></i><b>12.3</b> Introducing the GLM</a></li>
+<li class="chapter" data-level="12.4" data-path="12.4-logistic.html"><a href="12.4-logistic.html"><i class="fa fa-check"></i><b>12.4</b> Binary (logistic) regression</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="12.4-logistic.html"><a href="12.4-logistic.html#data-explanation"><i class="fa fa-check"></i><b>12.4.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="12.4.2" data-path="12.4-logistic.html"><a href="12.4-logistic.html#data-analysis"><i class="fa fa-check"></i><b>12.4.2</b> Data analysis</a></li>
+<li class="chapter" data-level="12.4.3" data-path="12.4-logistic.html"><a href="12.4-logistic.html#interpreting-the-results"><i class="fa fa-check"></i><b>12.4.3</b> Interpreting the results</a></li>
+<li class="chapter" data-level="12.4.4" data-path="12.4-logistic.html"><a href="12.4-logistic.html#making-predictions"><i class="fa fa-check"></i><b>12.4.4</b> Making predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="12.5-next12.html"><a href="12.5-next12.html"><i class="fa fa-check"></i><b>12.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="13-Chapter13.html"><a href="13-Chapter13.html"><i class="fa fa-check"></i><b>13</b> GLM: Count models</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="13.1-intro13.html"><a href="13.1-intro13.html"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="13.2-poisson-13.html"><a href="13.2-poisson-13.html"><i class="fa fa-check"></i><b>13.2</b> Poisson regression</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="13.2-poisson-13.html"><a href="13.2-poisson-13.html#data-13"><i class="fa fa-check"></i><b>13.2.1</b> Data explanation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="13.3-negbin.html"><a href="13.3-negbin.html"><i class="fa fa-check"></i><b>13.3</b> Negative binomial regression</a></li>
+<li class="chapter" data-level="13.4" data-path="13.4-zinf-13.html"><a href="13.4-zinf-13.html"><i class="fa fa-check"></i><b>13.4</b> Zero inflation</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="13.4-zinf-13.html"><a href="13.4-zinf-13.html#predict-13"><i class="fa fa-check"></i><b>13.4.1</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="13.5-next-13.html"><a href="13.5-next-13.html"><i class="fa fa-check"></i><b>13.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="14-Chapter14.html"><a href="14-Chapter14.html"><i class="fa fa-check"></i><b>14</b> Linear mixed models</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="14.1-intro-14.html"><a href="14.1-intro-14.html"><i class="fa fa-check"></i><b>14.1</b> Introduction</a></li>
+<li class="chapter" data-level="14.2" data-path="14.2-assumptions-lmm.html"><a href="14.2-assumptions-lmm.html"><i class="fa fa-check"></i><b>14.2</b> Assumptions of linear models</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="14.2-assumptions-lmm.html"><a href="14.2-assumptions-lmm.html#normality-14"><i class="fa fa-check"></i><b>14.2.1</b> Assumption 1: Normality of residuals</a></li>
+<li class="chapter" data-level="14.2.2" data-path="14.2-assumptions-lmm.html"><a href="14.2-assumptions-lmm.html#independence-14"><i class="fa fa-check"></i><b>14.2.2</b> Assumption 2: Independence of observations</a></li>
+<li class="chapter" data-level="14.2.3" data-path="14.2-assumptions-lmm.html"><a href="14.2-assumptions-lmm.html#homogeneity-14"><i class="fa fa-check"></i><b>14.2.3</b> Assumption 3: Homogeneity of variances</a></li>
+<li class="chapter" data-level="14.2.4" data-path="14.2-assumptions-lmm.html"><a href="14.2-assumptions-lmm.html#linearity-14"><i class="fa fa-check"></i><b>14.2.4</b> Assumption 4: Linearity and additivity</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="14.3-linear-mixed-models.html"><a href="14.3-linear-mixed-models.html"><i class="fa fa-check"></i><b>14.3</b> Linear mixed models</a></li>
+<li class="chapter" data-level="14.4" data-path="14.4-lmm-worked.html"><a href="14.4-lmm-worked.html"><i class="fa fa-check"></i><b>14.4</b> Worked example</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="14.4-lmm-worked.html"><a href="14.4-lmm-worked.html#random-intercepts-model"><i class="fa fa-check"></i><b>14.4.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="14.5-next-14.html"><a href="14.5-next-14.html"><i class="fa fa-check"></i><b>14.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="15-Chapter15.html"><a href="15-Chapter15.html"><i class="fa fa-check"></i><b>15</b> Generalized linear mixed models</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="15.1-intro-15.html"><a href="15.1-intro-15.html"><i class="fa fa-check"></i><b>15.1</b> Introduction</a></li>
+<li class="chapter" data-level="15.2" data-path="15.2-glmm-logistic.html"><a href="15.2-glmm-logistic.html"><i class="fa fa-check"></i><b>15.2</b> Logistic regression</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="15.2-glmm-logistic.html"><a href="15.2-glmm-logistic.html#glmm-logistic-data"><i class="fa fa-check"></i><b>15.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="15.2.2" data-path="15.2-glmm-logistic.html"><a href="15.2-glmm-logistic.html#glmm-logistic-analysis"><i class="fa fa-check"></i><b>15.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="15.2.3" data-path="15.2-glmm-logistic.html"><a href="15.2-glmm-logistic.html#glmm-logistic-preds"><i class="fa fa-check"></i><b>15.2.3</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="15.3-glmm-count.html"><a href="15.3-glmm-count.html"><i class="fa fa-check"></i><b>15.3</b> Count models</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="15.3-glmm-count.html"><a href="15.3-glmm-count.html#data-explanation-glmm-count-data"><i class="fa fa-check"></i><b>15.3.1</b> Data explanation {glmm-count-data}</a></li>
+<li class="chapter" data-level="15.3.2" data-path="15.3-glmm-count.html"><a href="15.3-glmm-count.html#glmm-count-analysis"><i class="fa fa-check"></i><b>15.3.2</b> Data analysis</a></li>
+<li class="chapter" data-level="15.3.3" data-path="15.3-glmm-count.html"><a href="15.3-glmm-count.html#glmm-count-preds"><i class="fa fa-check"></i><b>15.3.3</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="15.4-next-15.html"><a href="15.4-next-15.html"><i class="fa fa-check"></i><b>15.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="16-introduction-to-bayesian-inference.html"><a href="16-introduction-to-bayesian-inference.html"><i class="fa fa-check"></i><b>16</b> Introduction to Bayesian inference</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="16.1-intro-16.html"><a href="16.1-intro-16.html"><i class="fa fa-check"></i><b>16.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="16.1-intro-16.html"><a href="16.1-intro-16.html#installing-rstan"><i class="fa fa-check"></i><b>16.1.1</b> Installing RStan</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="16.2-intro-to-bayes-theorem.html"><a href="16.2-intro-to-bayes-theorem.html"><i class="fa fa-check"></i><b>16.2</b> Intro to Bayes Theorem</a></li>
+<li class="chapter" data-level="16.3" data-path="16.3-the-prior.html"><a href="16.3-the-prior.html"><i class="fa fa-check"></i><b>16.3</b> The prior</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="16.3-the-prior.html"><a href="16.3-the-prior.html#the-hospital-example"><i class="fa fa-check"></i><b>16.3.1</b> The hospital example</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="16.4-the-posterior.html"><a href="16.4-the-posterior.html"><i class="fa fa-check"></i><b>16.4</b> The posterior</a></li>
+<li class="chapter" data-level="16.5" data-path="16.5-worked-example-with-the-cray-data.html"><a href="16.5-worked-example-with-the-cray-data.html"><i class="fa fa-check"></i><b>16.5</b> Worked example with the Cray data</a></li>
+<li class="chapter" data-level="16.6" data-path="16.6-running-a-bayesian-model-with-rstanarm.html"><a href="16.6-running-a-bayesian-model-with-rstanarm.html"><i class="fa fa-check"></i><b>16.6</b> Running a Bayesian model with <code>rstanarm</code></a>
+<ul>
+<li class="chapter" data-level="16.6.1" data-path="16.6-running-a-bayesian-model-with-rstanarm.html"><a href="16.6-running-a-bayesian-model-with-rstanarm.html#interpreting-the-model-summary"><i class="fa fa-check"></i><b>16.6.1</b> Interpreting the model summary</a></li>
+</ul></li>
+<li class="chapter" data-level="16.7" data-path="16.7-more-diagnostics.html"><a href="16.7-more-diagnostics.html"><i class="fa fa-check"></i><b>16.7</b> More diagnostics</a>
+<ul>
+<li class="chapter" data-level="16.7.1" data-path="16.7-more-diagnostics.html"><a href="16.7-more-diagnostics.html#trace-plots"><i class="fa fa-check"></i><b>16.7.1</b> Trace plots</a></li>
+<li class="chapter" data-level="16.7.2" data-path="16.7-more-diagnostics.html"><a href="16.7-more-diagnostics.html#colinearity"><i class="fa fa-check"></i><b>16.7.2</b> Colinearity</a></li>
+<li class="chapter" data-level="16.7.3" data-path="16.7-more-diagnostics.html"><a href="16.7-more-diagnostics.html#divergence"><i class="fa fa-check"></i><b>16.7.3</b> Divergence</a></li>
+</ul></li>
+<li class="chapter" data-level="16.8" data-path="16.8-bayesian-model-selection.html"><a href="16.8-bayesian-model-selection.html"><i class="fa fa-check"></i><b>16.8</b> Model selection</a></li>
+<li class="chapter" data-level="16.9" data-path="16.9-summarizing-results.html"><a href="16.9-summarizing-results.html"><i class="fa fa-check"></i><b>16.9</b> Summarizing results</a></li>
+<li class="chapter" data-level="16.10" data-path="16.10-making-predictions-1.html"><a href="16.10-making-predictions-1.html"><i class="fa fa-check"></i><b>16.10</b> Making predictions</a></li>
+<li class="chapter" data-level="16.11" data-path="16.11-next-16.html"><a href="16.11-next-16.html"><i class="fa fa-check"></i><b>16.11</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="17-Chapter17.html"><a href="17-Chapter17.html"><i class="fa fa-check"></i><b>17</b> Bayesian Logistic regression</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="17.1-intro17.html"><a href="17.1-intro17.html"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html"><i class="fa fa-check"></i><b>17.2</b> Binary (logistic) regression</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html#data-17"><i class="fa fa-check"></i><b>17.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="17.2.2" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html#analysis-17"><i class="fa fa-check"></i><b>17.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="17.2.3" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html#interpretting-17"><i class="fa fa-check"></i><b>17.2.3</b> Interpreting the results</a></li>
+<li class="chapter" data-level="17.2.4" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html#continuous-17"><i class="fa fa-check"></i><b>17.2.4</b> Continuous effects</a></li>
+<li class="chapter" data-level="17.2.5" data-path="17.2-logistic-17.html"><a href="17.2-logistic-17.html#predictions-17"><i class="fa fa-check"></i><b>17.2.5</b> Making predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="17.3-next17.html"><a href="17.3-next17.html"><i class="fa fa-check"></i><b>17.3</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="18-Chapter18.html"><a href="18-Chapter18.html"><i class="fa fa-check"></i><b>18</b> GLM: Count models</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="18.1-intro18.html"><a href="18.1-intro18.html"><i class="fa fa-check"></i><b>18.1</b> Introduction</a></li>
+<li class="chapter" data-level="18.2" data-path="18.2-poisson-18.html"><a href="18.2-poisson-18.html"><i class="fa fa-check"></i><b>18.2</b> Poisson regression</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="18.2-poisson-18.html"><a href="18.2-poisson-18.html#data-18"><i class="fa fa-check"></i><b>18.2.1</b> Data explanation</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="18.3-negbin-18.html"><a href="18.3-negbin-18.html"><i class="fa fa-check"></i><b>18.3</b> Negative binomial regression</a></li>
+<li class="chapter" data-level="18.4" data-path="18.4-zinfl-18.html"><a href="18.4-zinfl-18.html"><i class="fa fa-check"></i><b>18.4</b> Zero inflation</a>
+<ul>
+<li class="chapter" data-level="18.4.1" data-path="18.4-zinfl-18.html"><a href="18.4-zinfl-18.html#step-1-presence-absence"><i class="fa fa-check"></i><b>18.4.1</b> Step 1: Presence-absence</a></li>
+<li class="chapter" data-level="18.4.2" data-path="18.4-zinfl-18.html"><a href="18.4-zinfl-18.html#step-2-counts-given-presence"><i class="fa fa-check"></i><b>18.4.2</b> Step 2: Counts given presence</a></li>
+<li class="chapter" data-level="18.4.3" data-path="18.4-zinfl-18.html"><a href="18.4-zinfl-18.html#predict-counts"><i class="fa fa-check"></i><b>18.4.3</b> Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="18.5" data-path="18.5-next-steps.html"><a href="18.5-next-steps.html"><i class="fa fa-check"></i><b>18.5</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="19-Chapter19.html"><a href="19-Chapter19.html"><i class="fa fa-check"></i><b>19</b> Bayesian hierarchical models</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="19.1-intro-19.html"><a href="19.1-intro-19.html"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="19.2-hierarchical.html"><a href="19.2-hierarchical.html"><i class="fa fa-check"></i><b>19.2</b> Bayesian hierarchical models</a></li>
+<li class="chapter" data-level="19.3" data-path="19.3-worked-19.html"><a href="19.3-worked-19.html"><i class="fa fa-check"></i><b>19.3</b> Worked example</a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="19.3-worked-19.html"><a href="19.3-worked-19.html#random-intercept-19"><i class="fa fa-check"></i><b>19.3.1</b> Random-intercepts model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="19.4-next-19.html"><a href="19.4-next-19.html"><i class="fa fa-check"></i><b>19.4</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="20-Chapter20.html"><a href="20-Chapter20.html"><i class="fa fa-check"></i><b>20</b> Bayesian hierarchical GLM</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="20.1-intro-20.html"><a href="20.1-intro-20.html"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
+<li class="chapter" data-level="20.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression {#20-logistic}</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-explanation-20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation {#20-logistic-data}</a></li>
+<li class="chapter" data-level="20.2.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-analysis-20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis {#20-logistic-analysis}</a></li>
+<li class="chapter" data-level="20.2.3" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#predictions-20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions {#20-logistic-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models {#20-count}</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
+<li class="chapter" data-level="20.3.2" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-analysis-20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis {#20-count-analysis}</a></li>
+<li class="chapter" data-level="20.3.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#predictions-20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions {#20-count-preds}</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="20.4-next-20.html"><a href="20.4-next-20.html"><i class="fa fa-check"></i><b>20.4</b> Next steps</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Worst Stats Text eveR</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="one-way-anova" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> One-way ANOVA</h2>
+<p>When we are working in the world of one-way ANOVA, or even more complex models that contain only “main effects” of categorical, explanatory variables, the interpretation of these effects is relatively straightforward. Let’s use the <code>PlantGrowth</code> data as an example.</p>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="10.1-one-way-anova.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;PlantGrowth&quot;</span>)</span></code></pre></div>
+<p>We’ll start here by fitting a one-way anova to test effects of treatment <code>group</code> on on plant <code>weight</code>.</p>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="10.1-one-way-anova.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the names of the df</span></span>
+<span id="cb366-2"><a href="10.1-one-way-anova.html#cb366-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(PlantGrowth)</span></code></pre></div>
+<pre><code>## [1] &quot;weight&quot; &quot;group&quot;</code></pre>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="10.1-one-way-anova.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb368-2"><a href="10.1-one-way-anova.html#cb368-2" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight<span class="sc">~</span>group, <span class="at">data =</span> PlantGrowth)</span></code></pre></div>
+<p>We’ve seen these data and this model before. We know there was a significant effect of treatment on plant weight but only <code>trt1</code> and <code>trt2</code> were different when we checked with the Tukey test. So, for now we will ignore the ANOVA table and just look at the summary.</p>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="10.1-one-way-anova.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = weight ~ group, data = PlantGrowth)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.0710 -0.4180 -0.0060  0.2627  1.3690 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   5.0320     0.1971  25.527   &lt;2e-16 ***
+## grouptrt1    -0.3710     0.2788  -1.331   0.1944    
+## grouptrt2     0.4940     0.2788   1.772   0.0877 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.6234 on 27 degrees of freedom
+## Multiple R-squared:  0.2641, Adjusted R-squared:  0.2096 
+## F-statistic: 4.846 on 2 and 27 DF,  p-value: 0.01591</code></pre>
+<p>This summary gives us three coefficients corresponding to the coefficients of a linear model. Up until now, we’ve mostly ignored these for ANOVA and focused on hypothesis testing. But we need to use the coefficients to make predictions from our model and communicate biological results - which is why there is a history of people not doing this effectively.</p>
+<p>If we wanted to write out that linear model, we could write it like this:</p>
+<p><span class="math inline">\(y = \beta_0 + \beta_1 X_1 + \beta_2 X_2\)</span></p>
+<p>But this is confusing because we only gave R one variable for <code>X</code>! How did it get three? Plus, we’ve been thinking of ANOVA like t-tests. Much puzzlement.</p>
+<div id="unifying-the-linear-model" class="section level3" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> Unifying the linear model</h3>
+<p>To really get full control over making predictions from linear models and the models to come we need to understand a little bit more about what R is doing here. I mentioned in <a href="9-Chapter9.html#Chapter9">Chapter 9.3</a> that we would need to start thinking about the linear model as <span class="math inline">\(y = \beta X + \epsilon\)</span> or <span class="math inline">\(\sum_{k=1}^{K} \beta_k X_k + \epsilon\)</span> to unify the t-test, ANOVA, linear regression, and ANCOVA into a single general framework. The reason for this is that R (and the math) actually don’t see <code>X</code> in our linear models the way we’ve been writing it in our code. The models we’ve talked about so far are solved through Least Squares estimation. This involves solving for however many <span class="math inline">\(\beta\)</span> we might have using linear algebra and a little calculus to minimize the sum of <span class="math inline">\(\epsilon^2\)</span>, or our squared residuals. To do the math, <code>X</code> must be a matrix of values that can be multiplied by a vector coefficients (<span class="math inline">\(\beta\)</span>) because as we now know, <span class="math inline">\(y = \beta X + \epsilon\)</span>.</p>
+<p>So, how does this relate to <span class="math inline">\(\beta_0\)</span> and the fact that we supposedly have three <code>X</code> variables in the <code>PlantGrowth</code> ANOVA even though it is just one column?</p>
+<p>I’ve already told students in my class by this point in the semester, but I’ll repeat here that <span class="math inline">\(\beta_0\)</span> has a special place in my heart. It is the thing that allows us to relate all of this crap back to <span class="math inline">\(y = mx + b\)</span> and makes me feel like I understand statistics a little bit. But, it is also the hard part behind understanding the predictions you make from linear models if you don’t know or like (love) the algebra. Especially for ANVOA and ANCOVA-like models. And let’s face it, most of us as biologists don’t understand let alone love the algebra. We’ll try to keep avoiding that here as long as we can.</p>
+<p>Up until now, we have thought of <span class="math inline">\(\beta_0\)</span> as our <code>(Intercept)</code> term in linear models, and that is both truthful and useful. But, it is just another <span class="math inline">\(\beta\)</span> in the matrix multiplication used to solve least-squares regression.</p>
+<p>How, then, is the intercept represented mathematically in ANOVA?</p>
+</div>
+<div id="the-model-matrix" class="section level3" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> The model matrix</h3>
+<p>In order to understand how the intercept works in ANOVA, we must look at the model matrix.</p>
+<p>The <strong>model matrix</strong> or <strong>design matrix</strong> is <code>X</code> from the really gross equations that I started showing all of a sudden now that the Add/Drop period has ended. (Muahaha). It really isn’t as sinister as it sounds though.</p>
+<p>For our plant model, we wrote <code>weight ~ group</code> in our call to <code>lm()</code> and didn’t have to think twice about what was happening after that. In the meantime, R had re-written the equation as <span class="math inline">\(y = \beta_i X_i\)</span> or <code>y = (Intercept)*model.matrix$</code>(Intercept)<code>+ grouptrt1*model.matix$grouptrt1 + grouptrt2*model.matix$grouptrt2</code>. To begin understanding that difference, we obviously need to see this <code>model.matrix</code> object.</p>
+<p>First, look at the actual data used to fit the model:</p>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="10.1-one-way-anova.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mod<span class="sc">$</span>model)</span></code></pre></div>
+<pre><code>##   weight group
+## 1   4.17  ctrl
+## 2   5.58  ctrl
+## 3   5.18  ctrl
+## 4   6.11  ctrl
+## 5   4.50  ctrl
+## 6   4.61  ctrl</code></pre>
+<p>You can see that we have one column for our response, <code>weight</code>, and one column for our explanatory variable, <code>group</code>, just as you thought.</p>
+<p>Now here is the design matrix:</p>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="10.1-one-way-anova.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract design matrix from fitted</span></span>
+<span id="cb373-2"><a href="10.1-one-way-anova.html#cb373-2" aria-hidden="true" tabindex="-1"></a><span class="co"># PlantGrowth model</span></span>
+<span id="cb373-3"><a href="10.1-one-way-anova.html#cb373-3" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(mod)</span>
+<span id="cb373-4"><a href="10.1-one-way-anova.html#cb373-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-5"><a href="10.1-one-way-anova.html#cb373-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Have a look</span></span>
+<span id="cb373-6"><a href="10.1-one-way-anova.html#cb373-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code></pre></div>
+<pre><code>##   (Intercept) grouptrt1 grouptrt2
+## 1           1         0         0
+## 2           1         0         0
+## 3           1         0         0
+## 4           1         0         0
+## 5           1         0         0
+## 6           1         0         0</code></pre>
+<p>Okay, that’s actually not so bad. So, this is how R sees our data now. What R has done is to <strong>dummy code</strong> our <code>group</code> variable from the <code>PlantGrowth</code> data for each row of the data. The first column, <code>(Intercept)</code> contains only <code>1</code>. You can think of this as <code>X_0</code> in our linear model. It is multiplied by <span class="math inline">\(\beta_0\)</span> in <span class="math inline">\(y = \beta_0 + \beta_k X_k\)</span>. But, since it is always <code>1</code> we just don’t write it when we write the formula for a line and <span class="math inline">\(\beta_0\)</span> is always in the model! OMG that is sooooo annoying. The second column is an indicator variable for whether <code>group</code> is equal to <code>trt1</code> for a given observation (row in <code>PlantGrowth</code>). If <code>group == trt1</code> for that row, then the column <code>grouptrt1</code> gets a <code>1</code>. If not, it gets a <code>0</code>. Same for <code>grouptrt2</code>. The columns <code>grouptrt1</code> and <code>grouptrt2</code> are each multiplied by their own <span class="math inline">\(\beta\)</span> in our formula:</p>
+<p><span class="math inline">\(y = \beta_{(Intercept)} X_{(Intercept)} + \beta_{grouptrt1} X_{grouptrt1} + \beta_{grouptrt1} X_{grouptrt1}\)</span></p>
+<p>If the columns <code>grouptrt1</code> or <code>grouptrt2</code> have <code>0</code>, then <span class="math inline">\(\beta_i X_i = 0\)</span> and the term for that group falls out of the equation, leaving only <code>ctrl</code> or the <code>(Intercept)</code>. We can use this to make predictions directly from our model coefficients.</p>
+<p>Before moving on to prediction, it is helpful if you think of the coefficients for ANOVA as being an intercept (mean of the alphabetically first group) and offsets, or adjustments, to that intercept for each subsequent group. That is, ANOVA is kind of like a linear model with multiple intercepts and no slopes. We are just estimating a bunch of points on the y-axis.</p>
+</div>
+<div id="prediction" class="section level3" number="10.1.3">
+<h3><span class="header-section-number">10.1.3</span> Prediction</h3>
+<p>Now that we’ve seen what R is actually doing, it becomes pretty trivial to make predictions from one-way ANOVA by hand.</p>
+<p>We can get the model coefficients (<span class="math inline">\(\beta\)</span>) like this:</p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="10.1-one-way-anova.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can get the model coefficients like this:</span></span>
+<span id="cb375-2"><a href="10.1-one-way-anova.html#cb375-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mod)</span></code></pre></div>
+<pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;      
+##  [4] &quot;rank&quot;          &quot;fitted.values&quot; &quot;assign&quot;       
+##  [7] &quot;qr&quot;            &quot;df.residual&quot;   &quot;contrasts&quot;    
+## [10] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;        
+## [13] &quot;model&quot;</code></pre>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="10.1-one-way-anova.html#cb377-1" aria-hidden="true" tabindex="-1"></a>coeffs <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(mod<span class="sc">$</span>coefficients)</span>
+<span id="cb377-2"><a href="10.1-one-way-anova.html#cb377-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb377-3"><a href="10.1-one-way-anova.html#cb377-3" aria-hidden="true" tabindex="-1"></a><span class="co"># And now we have a vector of beta</span></span>
+<span id="cb377-4"><a href="10.1-one-way-anova.html#cb377-4" aria-hidden="true" tabindex="-1"></a>betas <span class="ot">&lt;-</span> coeffs<span class="sc">$</span>mod.coefficients</span></code></pre></div>
+<p>We can use <code>betas</code> to make predictions from the formula of our linear model for each group by taking advantage of the dummy coding that R uses.</p>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="10.1-one-way-anova.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From the model, we can estimate:</span></span>
+<span id="cb378-2"><a href="10.1-one-way-anova.html#cb378-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb378-3"><a href="10.1-one-way-anova.html#cb378-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean of control</span></span>
+<span id="cb378-4"><a href="10.1-one-way-anova.html#cb378-4" aria-hidden="true" tabindex="-1"></a>y_control <span class="ot">&lt;-</span> betas[<span class="dv">1</span>] <span class="sc">+</span> betas[<span class="dv">2</span>]<span class="sc">*</span><span class="dv">0</span> <span class="sc">+</span> betas[<span class="dv">3</span>]<span class="sc">*</span><span class="dv">0</span></span>
+<span id="cb378-5"><a href="10.1-one-way-anova.html#cb378-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb378-6"><a href="10.1-one-way-anova.html#cb378-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean of trt1</span></span>
+<span id="cb378-7"><a href="10.1-one-way-anova.html#cb378-7" aria-hidden="true" tabindex="-1"></a>y_trt1 <span class="ot">&lt;-</span> betas[<span class="dv">1</span>] <span class="sc">+</span> betas[<span class="dv">2</span>]<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> betas[<span class="dv">3</span>]<span class="sc">*</span><span class="dv">0</span></span>
+<span id="cb378-8"><a href="10.1-one-way-anova.html#cb378-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb378-9"><a href="10.1-one-way-anova.html#cb378-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean of trt2</span></span>
+<span id="cb378-10"><a href="10.1-one-way-anova.html#cb378-10" aria-hidden="true" tabindex="-1"></a>y_trt2 <span class="ot">&lt;-</span> betas[<span class="dv">1</span>] <span class="sc">+</span> betas[<span class="dv">2</span>]<span class="sc">*</span><span class="dv">0</span> <span class="sc">+</span> betas[<span class="dv">3</span>]<span class="sc">*</span><span class="dv">1</span></span></code></pre></div>
+<p><strong>Or</strong> if you wanted to get really fancy, you could do this with matrix math:</p>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="10.1-one-way-anova.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get unique groups in dummy coded matrix</span></span>
+<span id="cb379-2"><a href="10.1-one-way-anova.html#cb379-2" aria-hidden="true" tabindex="-1"></a>X_pred <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">unique</span>(<span class="fu">model.matrix</span>(mod)))</span>
+<span id="cb379-3"><a href="10.1-one-way-anova.html#cb379-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb379-4"><a href="10.1-one-way-anova.html#cb379-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiply betas by dummy coded</span></span>
+<span id="cb379-5"><a href="10.1-one-way-anova.html#cb379-5" aria-hidden="true" tabindex="-1"></a><span class="co"># matrix using transpose of both</span></span>
+<span id="cb379-6"><a href="10.1-one-way-anova.html#cb379-6" aria-hidden="true" tabindex="-1"></a><span class="co"># These are your predictions </span></span>
+<span id="cb379-7"><a href="10.1-one-way-anova.html#cb379-7" aria-hidden="true" tabindex="-1"></a><span class="co"># for ctrl, trt1, and trt2</span></span>
+<span id="cb379-8"><a href="10.1-one-way-anova.html#cb379-8" aria-hidden="true" tabindex="-1"></a>y_pred <span class="ot">&lt;-</span> <span class="fu">t</span>(betas) <span class="sc">%*%</span> <span class="fu">t</span>(X_pred)</span></code></pre></div>
+<p>Of course, either of these approaches is super useful but R also has default <code>predict()</code> methods for most or all of the models we will work with in this book. We will use these for the most part, as will <code>ggplot()</code>, which is more convenient than you will ever be able to appreciate.</p>
+<p>To make predictions of <code>y</code> from the original data that you used to fit the model (<code>mod</code>), you can just do this:</p>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="10.1-one-way-anova.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get unique values of groups and put it in </span></span>
+<span id="cb380-2"><a href="10.1-one-way-anova.html#cb380-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a data frame. The predict function expects </span></span>
+<span id="cb380-3"><a href="10.1-one-way-anova.html#cb380-3" aria-hidden="true" tabindex="-1"></a><span class="co"># original x variable as a vector or a named </span></span>
+<span id="cb380-4"><a href="10.1-one-way-anova.html#cb380-4" aria-hidden="true" tabindex="-1"></a><span class="co"># column in a data.frame</span></span>
+<span id="cb380-5"><a href="10.1-one-way-anova.html#cb380-5" aria-hidden="true" tabindex="-1"></a>groups <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">group =</span> <span class="fu">unique</span>(PlantGrowth<span class="sc">$</span>group) )</span>
+<span id="cb380-6"><a href="10.1-one-way-anova.html#cb380-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb380-7"><a href="10.1-one-way-anova.html#cb380-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the prediction</span></span>
+<span id="cb380-8"><a href="10.1-one-way-anova.html#cb380-8" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod, <span class="at">newdata =</span> groups, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span>
+<span id="cb380-9"><a href="10.1-one-way-anova.html#cb380-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb380-10"><a href="10.1-one-way-anova.html#cb380-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Add it to the data frame</span></span>
+<span id="cb380-11"><a href="10.1-one-way-anova.html#cb380-11" aria-hidden="true" tabindex="-1"></a>pred_plant <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(groups, y)</span></code></pre></div>
+<p>If we want <code>confidence</code> intervals for the predictions, we can add that, too:</p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="10.1-one-way-anova.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the prediction with confidence</span></span>
+<span id="cb381-2"><a href="10.1-one-way-anova.html#cb381-2" aria-hidden="true" tabindex="-1"></a>yCI <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod, <span class="at">newdata =</span> groups, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span>
+<span id="cb381-3"><a href="10.1-one-way-anova.html#cb381-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb381-4"><a href="10.1-one-way-anova.html#cb381-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add it to the data frame</span></span>
+<span id="cb381-5"><a href="10.1-one-way-anova.html#cb381-5" aria-hidden="true" tabindex="-1"></a>pred_plantCI <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(groups, yCI)</span></code></pre></div>
+<p>You could print this and get a nice clean table of estimated means and 95% confidence intervals for each group.</p>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="10.1-one-way-anova.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pred_plantCI)</span></code></pre></div>
+<pre><code>##   group   fit      lwr      upr
+## 1  ctrl 5.032 4.627526 5.436474
+## 2  trt1 4.661 4.256526 5.065474
+## 3  trt2 5.526 5.121526 5.930474</code></pre>
+<p>Now, let’s compare our model predictions to the actual means.</p>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="10.1-one-way-anova.html#cb384-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate group means</span></span>
+<span id="cb384-2"><a href="10.1-one-way-anova.html#cb384-2" aria-hidden="true" tabindex="-1"></a>means <span class="ot">&lt;-</span> PlantGrowth <span class="sc">%&gt;%</span></span>
+<span id="cb384-3"><a href="10.1-one-way-anova.html#cb384-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span></span>
+<span id="cb384-4"><a href="10.1-one-way-anova.html#cb384-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(weight))</span>
+<span id="cb384-5"><a href="10.1-one-way-anova.html#cb384-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb384-6"><a href="10.1-one-way-anova.html#cb384-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(means)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   group `mean(weight)`
+##   &lt;fct&gt;          &lt;dbl&gt;
+## 1 ctrl            5.03
+## 2 trt1            4.66
+## 3 trt2            5.53</code></pre>
+<p><br></p>
+<p>Pretty much spot on!</p>
+</div>
+<div id="plotting" class="section level3" number="10.1.4">
+<h3><span class="header-section-number">10.1.4</span> Plotting</h3>
+<p>We could use any number of graphical tools to represent these results. Given that we’ve met the assumptions of normality, and we’ve determined that statistical differences exist, the simplest (and most common) method for visualizing these results is to just show a box plot or a violin plot, or both, with the raw data. Hmmm…I never realized how small this data set was.</p>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="10.1-one-way-anova.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(PlantGrowth, <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> weight)) <span class="sc">+</span></span>
+<span id="cb386-2"><a href="10.1-one-way-anova.html#cb386-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">fill=</span>group), <span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb386-3"><a href="10.1-one-way-anova.html#cb386-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill=</span>group), <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb386-4"><a href="10.1-one-way-anova.html#cb386-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color=</span>group), <span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb386-5"><a href="10.1-one-way-anova.html#cb386-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;gray30&#39;</span>, <span class="st">&#39;gray60&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb386-6"><a href="10.1-one-way-anova.html#cb386-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;gray30&#39;</span>, <span class="st">&#39;gray60&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb386-7"><a href="10.1-one-way-anova.html#cb386-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Group&#39;</span>) <span class="sc">+</span></span>
+<span id="cb386-8"><a href="10.1-one-way-anova.html#cb386-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Weight (g)&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb386-9"><a href="10.1-one-way-anova.html#cb386-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb386-10"><a href="10.1-one-way-anova.html#cb386-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb386-11"><a href="10.1-one-way-anova.html#cb386-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb386-12"><a href="10.1-one-way-anova.html#cb386-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb386-13"><a href="10.1-one-way-anova.html#cb386-13" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-271-1.png" width="672" /></p>
+<p>This plot is really cool, but it doesn’t actually show us how our model predictions compare to the raw data!</p>
+<p>However, we could also think of our model predictions as just being different y-intercepts, which will be helpful when we start to work with ANCOVA. If we plotted them that way, they would look like this:</p>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="10.1-one-way-anova.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pred_plantCI, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> fit, <span class="at">color =</span> group)) <span class="sc">+</span></span>
+<span id="cb387-2"><a href="10.1-one-way-anova.html#cb387-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb387-3"><a href="10.1-one-way-anova.html#cb387-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,  <span class="dv">1</span>), <span class="at">expand=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb387-4"><a href="10.1-one-way-anova.html#cb387-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">xend =</span> <span class="dv">0</span>, <span class="at">y =</span> lwr, <span class="at">yend =</span> upr),</span>
+<span id="cb387-5"><a href="10.1-one-way-anova.html#cb387-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb387-6"><a href="10.1-one-way-anova.html#cb387-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;X&quot;</span>) <span class="sc">+</span></span>
+<span id="cb387-7"><a href="10.1-one-way-anova.html#cb387-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb387-8"><a href="10.1-one-way-anova.html#cb387-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Predicted&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
+<p>But this is really hard to see and understand. So, we usually look at it like this in keeping with the dummy coding that is used in the model matrix:</p>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="10.1-one-way-anova.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pred_plantCI, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">y =</span> fit, <span class="at">color =</span> group)) <span class="sc">+</span></span>
+<span id="cb388-2"><a href="10.1-one-way-anova.html#cb388-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb388-3"><a href="10.1-one-way-anova.html#cb388-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,  <span class="dv">4</span>), <span class="at">expand=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb388-4"><a href="10.1-one-way-anova.html#cb388-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">xend =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">y =</span> lwr, <span class="at">yend =</span> upr),</span>
+<span id="cb388-5"><a href="10.1-one-way-anova.html#cb388-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb388-6"><a href="10.1-one-way-anova.html#cb388-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;X[, i]&quot;</span>) <span class="sc">+</span></span>
+<span id="cb388-7"><a href="10.1-one-way-anova.html#cb388-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb388-8"><a href="10.1-one-way-anova.html#cb388-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Predicted&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
+<p>Or, perhaps more mercifully:</p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="10.1-one-way-anova.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pred_plantCI, <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> fit, <span class="at">color =</span> group)) <span class="sc">+</span></span>
+<span id="cb389-2"><a href="10.1-one-way-anova.html#cb389-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb389-3"><a href="10.1-one-way-anova.html#cb389-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">xend =</span> group, <span class="at">y =</span> lwr, <span class="at">yend =</span> upr),</span>
+<span id="cb389-4"><a href="10.1-one-way-anova.html#cb389-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb389-5"><a href="10.1-one-way-anova.html#cb389-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Treatment group&quot;</span>) <span class="sc">+</span></span>
+<span id="cb389-6"><a href="10.1-one-way-anova.html#cb389-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb389-7"><a href="10.1-one-way-anova.html#cb389-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Predicted&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-274-1.png" width="672" /></p>
+<p>Finally, we could put this right over the top of our raw data and/or violin to see how well the model predictions match up with the data:</p>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="10.1-one-way-anova.html#cb390-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(PlantGrowth, <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> weight, <span class="at">color =</span> group)) <span class="sc">+</span></span>
+<span id="cb390-2"><a href="10.1-one-way-anova.html#cb390-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">fill =</span> group), <span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb390-3"><a href="10.1-one-way-anova.html#cb390-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">width =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb390-4"><a href="10.1-one-way-anova.html#cb390-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> fit), </span>
+<span id="cb390-5"><a href="10.1-one-way-anova.html#cb390-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> pred_plantCI,</span>
+<span id="cb390-6"><a href="10.1-one-way-anova.html#cb390-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb390-7"><a href="10.1-one-way-anova.html#cb390-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">xend =</span> group, <span class="at">y =</span> lwr, <span class="at">yend =</span> upr),</span>
+<span id="cb390-8"><a href="10.1-one-way-anova.html#cb390-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> pred_plantCI, </span>
+<span id="cb390-9"><a href="10.1-one-way-anova.html#cb390-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">lwd =</span> <span class="fl">1.5</span>, </span>
+<span id="cb390-10"><a href="10.1-one-way-anova.html#cb390-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb390-11"><a href="10.1-one-way-anova.html#cb390-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb390-12"><a href="10.1-one-way-anova.html#cb390-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb390-13"><a href="10.1-one-way-anova.html#cb390-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Treatment group&quot;</span>) <span class="sc">+</span></span>
+<span id="cb390-14"><a href="10.1-one-way-anova.html#cb390-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb390-15"><a href="10.1-one-way-anova.html#cb390-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Group&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-275-1.png" width="672" /></p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="10-Chapter10.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="10.2-two-way-anova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["worstr.pdf", "worstr.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
