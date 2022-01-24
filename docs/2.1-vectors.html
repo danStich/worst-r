@@ -137,6 +137,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="1.1-what-is-r.html"><a href="1.1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
@@ -513,9 +515,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.1</span> Vectors</h2>
 <p>The vector is the basic unit of information in R. Pretty much everything else we’ll concern ourselves with is made of vectors and can be contained within one. Wow, what an existential paradox <em>that</em> is.</p>
 <p>Let’s take a look at how this works and why it matters. Here, we have defined <code>a</code> as a variable with the value of <code>1</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="2.1-vectors.html#cb1-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="2.1-vectors.html#cb10-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
 <p>…or have we?</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="2.1-vectors.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="2.1-vectors.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>What is the square bracket in the output here? It’s an index. The index is telling us that the first element of <code>a</code> is <code>1</code>. This means that <code>a</code> is actually a “vector,” not a “scalar” or singular value as you may have been thinking about it. You can think of a vector as a column in an Excel spreadsheet or an analogous data table. By treating every object (loosely) as a vector, or an element thereof, the language becomes much more general.</p>
 <p>So, even if we define something with a single value, it is still just a vector with one element. For us, this is important because of the way that it lets us do math. It makes vector operations so easy that we don’t even need to think about them when we start to make statistical models. It makes working through the math a zillion times easier than on paper! In terms of programming, it can make a lot of things easier, too.</p>
@@ -531,47 +533,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>And some others, but none with which we’ll concern ourselves here.</p>
 <p>If you are ever curious about what kind of object you are working with, you can find out by exposing the data structure with <code>str()</code>:</p>
 <p>Let’s go play with some!</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="2.1-vectors.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="2.1-vectors.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a)</span></code></pre></div>
 <pre><code>##  num 1</code></pre>
 <p>Examples of atomic vectors follow. Run the code to see what it does.</p>
 <div id="nums" class="section level3 unnumbered">
 <h3>Integers and numerics</h3>
 <p>First, we demonstrate one way to make a vector in R. The <code>c()</code> function (“combine”) is our friend here for the quick-and-dirty approach.</p>
 <p>In this case, we are making an object that contains a sequence of whole numbers, or integers.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="2.1-vectors.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a vector of integers 1-5</span></span>
-<span id="cb6-2"><a href="2.1-vectors.html#cb6-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb6-3"><a href="2.1-vectors.html#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="2.1-vectors.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># One way to look at our vector</span></span>
-<span id="cb6-5"><a href="2.1-vectors.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="2.1-vectors.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a vector of integers 1-5</span></span>
+<span id="cb15-2"><a href="2.1-vectors.html#cb15-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb15-3"><a href="2.1-vectors.html#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="2.1-vectors.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># One way to look at our vector</span></span>
+<span id="cb15-5"><a href="2.1-vectors.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a)</span></code></pre></div>
 <p>Here is another way to make the same vector, but we need to pay attention to how R sees the data type. A closer look shows that these methods produce a <strong>numeric</strong> vector (<code>num</code>) instead of an <strong>integer</strong> vector (<code>int</code>). For the most part, this one won’t make a huge difference, but it can become important when writing or debugging statistical models.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="2.1-vectors.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the same vector using a sequence</span></span>
-<span id="cb7-2"><a href="2.1-vectors.html#cb7-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
-<span id="cb7-3"><a href="2.1-vectors.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="2.1-vectors.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the same vector using a sequence</span></span>
+<span id="cb16-2"><a href="2.1-vectors.html#cb16-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb16-3"><a href="2.1-vectors.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a)</span></code></pre></div>
 <pre><code>##  num [1:5] 1 2 3 4 5</code></pre>
 <p>We can change this by explicitly telling R how to build our vector:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="2.1-vectors.html#cb9-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>), <span class="at">mode =</span> <span class="st">&quot;numeric&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="2.1-vectors.html#cb18-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>), <span class="at">mode =</span> <span class="st">&quot;numeric&quot;</span>)</span></code></pre></div>
 <p>Notice that I did not include the argument names in the call to <code>seq()</code> because these are commonly used default arguments. But, you can find out what they are by running <code>?seq</code>.</p>
 </div>
 <div id="strings" class="section level3 unnumbered">
 <h3>Characters and factors</h3>
 <p><strong>Characters</strong> are anything that is represented as text strings. If I want to make a vector of character strings, I need to close the elements in quotes like I do below. Otherwise, R will go look for objects with these names.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="2.1-vectors.html#cb10-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>) <span class="co"># Make a character vector</span></span>
-<span id="cb10-2"><a href="2.1-vectors.html#cb10-2" aria-hidden="true" tabindex="-1"></a>b <span class="co"># Print it to the console</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="2.1-vectors.html#cb19-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>) <span class="co"># Make a character vector</span></span>
+<span id="cb19-2"><a href="2.1-vectors.html#cb19-2" aria-hidden="true" tabindex="-1"></a>b <span class="co"># Print it to the console</span></span></code></pre></div>
 <pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot;</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="2.1-vectors.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(b) <span class="co"># Now it&#39;s a character vector</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="2.1-vectors.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(b) <span class="co"># Now it&#39;s a character vector</span></span></code></pre></div>
 <pre><code>##  chr [1:5] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot;</code></pre>
 <p>They are readily converted (sometimes automatically) to <strong>factors</strong>:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="2.1-vectors.html#cb14-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(b) <span class="co"># But we can change if we want</span></span>
-<span id="cb14-2"><a href="2.1-vectors.html#cb14-2" aria-hidden="true" tabindex="-1"></a>b</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="2.1-vectors.html#cb23-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(b) <span class="co"># But we can change if we want</span></span>
+<span id="cb23-2"><a href="2.1-vectors.html#cb23-2" aria-hidden="true" tabindex="-1"></a>b</span></code></pre></div>
 <pre><code>## [1] a b c d e
 ## Levels: a b c d e</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="2.1-vectors.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(b) <span class="co"># Look at the data structure</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="2.1-vectors.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(b) <span class="co"># Look at the data structure</span></span></code></pre></div>
 <pre><code>##  Factor w/ 5 levels &quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,..: 1 2 3 4 5</code></pre>
 <p><strong>Factors</strong> are a special kind of data type in R that we may run across from time to time. They have <strong>levels</strong> that can be ordered numerically. By default, R assigns factor levels (1, 2, 3 …) in alpha numeric order, not by the order in which levels first appear in the data. This is not important except that it becomes useful for coding variables used in statistical models. But even then R does most of this behind the scenes and we won’t have to worry about it for the most part. In fact, in a lot of cases we will want to change factors to numerics or characters so they are easier to manipulate.</p>
 <p>This is what it looks like when we code a factor as number:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="2.1-vectors.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(b)</span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="2.1-vectors.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What did that do?</span></span>
-<span id="cb19-2"><a href="2.1-vectors.html#cb19-2" aria-hidden="true" tabindex="-1"></a>?as.numeric</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="2.1-vectors.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(b)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="2.1-vectors.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What did that do?</span></span>
+<span id="cb28-2"><a href="2.1-vectors.html#cb28-2" aria-hidden="true" tabindex="-1"></a>?as.numeric</span></code></pre></div>
 <blockquote>
 <p>Aside: we can ask R what functions mean by adding a question mark as we do above in a couple of instances. And not just functions: we can ask it about pretty much any built-in object. The help pages take a little getting used to, but once you get the hang of it… In the mean time, the internet is your friend and you will find a multitude of online groups and forums with a quick search.</p>
 </blockquote>
@@ -579,27 +581,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="logicals" class="section level3 unnumbered">
 <h3>Logical vectors</h3>
 <p>Most of the <code>logical</code> vectors we deal with are yes/no or comparisons to determine whether a given piece of information matches a condition. Here, we use a logical check to see if the object <code>a</code> we created earlier is the same as object <code>b</code>. If we store the results of this check to a new object <code>c</code>, we get a new logical vector filled with <code>TRUE</code> and <code>FALSE</code>, one for each element in <code>a</code> and <code>b</code>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="2.1-vectors.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The &quot;==&quot; compares the numeric vector to the factor one</span></span>
-<span id="cb20-2"><a href="2.1-vectors.html#cb20-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> a <span class="sc">==</span> b</span>
-<span id="cb20-3"><a href="2.1-vectors.html#cb20-3" aria-hidden="true" tabindex="-1"></a>c</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="2.1-vectors.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The &quot;==&quot; compares the numeric vector to the factor one</span></span>
+<span id="cb29-2"><a href="2.1-vectors.html#cb29-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> a <span class="sc">==</span> b</span>
+<span id="cb29-3"><a href="2.1-vectors.html#cb29-3" aria-hidden="true" tabindex="-1"></a>c</span></code></pre></div>
 <pre><code>## [1] FALSE FALSE FALSE FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="2.1-vectors.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(c)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="2.1-vectors.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(c)</span></code></pre></div>
 <pre><code>##  logi [1:5] FALSE FALSE FALSE FALSE FALSE</code></pre>
 <p>We now have a logical vector. For the sake of demonstration, we could perform any number of logical checks on a vector using built-in R functions (it does not need to be a logical like <code>c</code> above).</p>
 <p>We can check for missing values.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="2.1-vectors.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="2.1-vectors.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(a)</span></code></pre></div>
 <pre><code>## [1] FALSE FALSE FALSE FALSE FALSE</code></pre>
 <p>We can make sure that all values are finite.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="2.1-vectors.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.finite</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="2.1-vectors.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.finite</span>(a)</span></code></pre></div>
 <pre><code>## [1] TRUE TRUE TRUE TRUE TRUE</code></pre>
 <p>The exclamation <code>!</code> point means “not” in to computers.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="2.1-vectors.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="2.1-vectors.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(a)</span></code></pre></div>
 <pre><code>## [1] TRUE TRUE TRUE TRUE TRUE</code></pre>
 <p>We can see if specific elements meet a criterion.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="2.1-vectors.html#cb30-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> <span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="2.1-vectors.html#cb39-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> <span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] FALSE FALSE  TRUE FALSE FALSE</code></pre>
 <p>We can just look at unique values.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="2.1-vectors.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(b)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="2.1-vectors.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(b)</span></code></pre></div>
 <pre><code>## [1] a b c d e
 ## Levels: a b c d e</code></pre>
 <p>The examples above are all simple vector operations. These form the basis for data manipulation and analysis in R.</p>
@@ -666,6 +668,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

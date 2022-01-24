@@ -137,6 +137,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>The Worst Stats Text eveR</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
 <li class="chapter" data-level="1" data-path="1-Chapter1.html"><a href="1-Chapter1.html"><i class="fa fa-check"></i><b>1</b> Introduction to programming in R</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="1.1-what-is-r.html"><a href="1.1-what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a></li>
@@ -512,14 +514,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="lmm-worked" class="section level2" number="14.4">
 <h2><span class="header-section-number">14.4</span> Worked example</h2>
 <p>Let’s start by loading in a new data set. These data come from a preliminary study of rusty crayfish <a href="https://academic.oup.com/jcb/article/37/5/615/4060680"> <em>Faxonius</em></a> <em>rusticus</em> density in various tributaries to the Susquehanna River. The data were collected as part of a summer research project by one of our former high-school interns at the SUNY Oneonta <a href="https://suny.oneonta.edu/biological-field-station"> Biological Field Station </a>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="14.4-lmm-worked.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the data file</span></span>
-<span id="cb2-2"><a href="14.4-lmm-worked.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We are reading it in with the optional</span></span>
-<span id="cb2-3"><a href="14.4-lmm-worked.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># argument because we don&#39;t want to deal</span></span>
-<span id="cb2-4"><a href="14.4-lmm-worked.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># with code relicts if we start</span></span>
-<span id="cb2-5"><a href="14.4-lmm-worked.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dropping factor levels</span></span>
-<span id="cb2-6"><a href="14.4-lmm-worked.html#cb2-6" aria-hidden="true" tabindex="-1"></a>cray <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/cray.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="14.4-lmm-worked.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the data structure</span></span>
-<span id="cb3-2"><a href="14.4-lmm-worked.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(cray)</span></code></pre></div>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="14.4-lmm-worked.html#cb541-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the data file</span></span>
+<span id="cb541-2"><a href="14.4-lmm-worked.html#cb541-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We are reading it in with the optional</span></span>
+<span id="cb541-3"><a href="14.4-lmm-worked.html#cb541-3" aria-hidden="true" tabindex="-1"></a><span class="co"># argument because we don&#39;t want to deal</span></span>
+<span id="cb541-4"><a href="14.4-lmm-worked.html#cb541-4" aria-hidden="true" tabindex="-1"></a><span class="co"># with code relicts if we start</span></span>
+<span id="cb541-5"><a href="14.4-lmm-worked.html#cb541-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dropping factor levels</span></span>
+<span id="cb541-6"><a href="14.4-lmm-worked.html#cb541-6" aria-hidden="true" tabindex="-1"></a>cray <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/cray.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="14.4-lmm-worked.html#cb542-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the data structure</span></span>
+<span id="cb542-2"><a href="14.4-lmm-worked.html#cb542-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(cray)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    964 obs. of  7 variables:
 ##  $ date     : chr  &quot;6/28/2018&quot; &quot;6/28/2018&quot; &quot;6/28/2018&quot; &quot;6/28/2018&quot; ...
 ##  $ waterbody: chr  &quot;Susquehanna River&quot; &quot;Susquehanna River&quot; &quot;Susquehanna River&quot; &quot;Susquehanna River&quot; ...
@@ -528,23 +530,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ mass     : num  7.18 6.85 6.75 6.46 6.14 5.99 5.58 4.95 4.85 4.81 ...
 ##  $ loglength: num  3.43 3.44 3.44 3.38 3.34 ...
 ##  $ logmass  : num  1.97 1.92 1.91 1.87 1.81 ...</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="14.4-lmm-worked.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># And, have a look at the first few lines of data</span></span>
-<span id="cb5-2"><a href="14.4-lmm-worked.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cray)</span></code></pre></div>
-<pre><code>##        date         waterbody            site length mass loglength  logmass
-## 1 6/28/2018 Susquehanna River Cooperstown Dam  30.88 7.18  3.430109 1.971299
-## 2 6/28/2018 Susquehanna River Cooperstown Dam  31.18 6.85  3.439777 1.924249
-## 3 6/28/2018 Susquehanna River Cooperstown Dam  31.15 6.75  3.438814 1.909543
-## 4 6/28/2018 Susquehanna River Cooperstown Dam  29.28 6.46  3.376905 1.865629
-## 5 6/28/2018 Susquehanna River Cooperstown Dam  28.31 6.14  3.343215 1.814825
-## 6 6/28/2018 Susquehanna River Cooperstown Dam  30.55 5.99  3.419365 1.790091</code></pre>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="14.4-lmm-worked.html#cb544-1" aria-hidden="true" tabindex="-1"></a><span class="co"># And, have a look at the first few lines of data</span></span>
+<span id="cb544-2"><a href="14.4-lmm-worked.html#cb544-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cray)</span></code></pre></div>
+<pre><code>##        date         waterbody            site length mass
+## 1 6/28/2018 Susquehanna River Cooperstown Dam  30.88 7.18
+## 2 6/28/2018 Susquehanna River Cooperstown Dam  31.18 6.85
+## 3 6/28/2018 Susquehanna River Cooperstown Dam  31.15 6.75
+## 4 6/28/2018 Susquehanna River Cooperstown Dam  29.28 6.46
+## 5 6/28/2018 Susquehanna River Cooperstown Dam  28.31 6.14
+## 6 6/28/2018 Susquehanna River Cooperstown Dam  30.55 5.99
+##   loglength  logmass
+## 1  3.430109 1.971299
+## 2  3.439777 1.924249
+## 3  3.438814 1.909543
+## 4  3.376905 1.865629
+## 5  3.343215 1.814825
+## 6  3.419365 1.790091</code></pre>
 <p>This is a fairly straightforward data set. There are 964 observations of 7 variables. Each of the observations (rows) corresponds to a rusty crayfish that was collected and measured (<code>length</code> in mm and <code>mass</code> in g) at one of several <code>site</code>s on a given <code>date</code>. The variable <code>catch</code> is the total number caught by electrobugging over a given <code>time</code> (minutes). To compare density between sites, <code>catch</code> was divided by (<code>time</code>/60) to calculate catch per unit effort (<code>cpue</code>) as number of crayfish per hour. Therefore, observations of <code>cpue</code>, <code>catch</code>, and <code>time</code> correspond to unique <code>date</code> and <code>site</code> combinations, but <code>length</code> and <code>mass</code> represent unique individuals within <code>site</code> and <code>date</code>.</p>
 <p>Our primary objective in this study was to collect baseline data. But curiosity led us to explore variation in the condition of crayfish when we thought we were noticing skinnier crayfish in sites of higher density. Length-weight regressions are one tool that is commonly used to investigate changes in volumetric growth with increasing length. In the absence of a standardized condition metric such as that widely applied in fish populations, relative weight (W<sub>r</sub>), we thought this might offer some insight into variability in condition.</p>
 <p>What follows is a steroid-injected version of the analysis we started with.</p>
 <p>Length-weight relationships in animals are generally parameterized by log-transforming length and mass. This is because the relationship between the two is exponential, or can be described using a power function (ouch, think back to intro bio). For a given unit increase in length, we expect mass to increase as an approximately cubic function of length.</p>
 <p>We can see this in our un-transformed data pretty cleanly:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="14.4-lmm-worked.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cray, <span class="fu">aes</span>(<span class="at">x =</span> length, <span class="at">y =</span> mass)) <span class="sc">+</span></span>
-<span id="cb7-2"><a href="14.4-lmm-worked.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="14.4-lmm-worked.html#cb546-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cray, <span class="fu">aes</span>(<span class="at">x =</span> length, <span class="at">y =</span> mass)) <span class="sc">+</span></span>
+<span id="cb546-2"><a href="14.4-lmm-worked.html#cb546-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-384-1.png" width="672" /></p>
 <p>The relationship depicted above can be expressed mathematically as:</p>
 <p><span class="math display">\[W = aL^b,\]</span></p>
 <p>and statistically as:</p>
@@ -557,47 +566,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>where <span class="math inline">\(Y\)</span> is <code>log(mass)</code>, and <span class="math inline">\(X\)</span> is <code>log(length)</code>. Then, we just need to remember that <span class="math inline">\(\beta_0\)</span> is estimated on the log scale.</p>
 <p>We can take a look at how this looks in our data by plotting the transformed data.</p>
 <p>Start by log-transforming length and mass</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="14.4-lmm-worked.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Log transform length and mass</span></span>
-<span id="cb8-2"><a href="14.4-lmm-worked.html#cb8-2" aria-hidden="true" tabindex="-1"></a>cray<span class="sc">$</span>loglength <span class="ot">&lt;-</span> <span class="fu">log</span>(cray<span class="sc">$</span>length)</span>
-<span id="cb8-3"><a href="14.4-lmm-worked.html#cb8-3" aria-hidden="true" tabindex="-1"></a>cray<span class="sc">$</span>logmass <span class="ot">&lt;-</span> <span class="fu">log</span>(cray<span class="sc">$</span>mass)</span></code></pre></div>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="14.4-lmm-worked.html#cb547-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Log transform length and mass</span></span>
+<span id="cb547-2"><a href="14.4-lmm-worked.html#cb547-2" aria-hidden="true" tabindex="-1"></a>cray<span class="sc">$</span>loglength <span class="ot">&lt;-</span> <span class="fu">log</span>(cray<span class="sc">$</span>length)</span>
+<span id="cb547-3"><a href="14.4-lmm-worked.html#cb547-3" aria-hidden="true" tabindex="-1"></a>cray<span class="sc">$</span>logmass <span class="ot">&lt;-</span> <span class="fu">log</span>(cray<span class="sc">$</span>mass)</span></code></pre></div>
 <p>Plot the relationship. Note that only the names have been changed</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="14.4-lmm-worked.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cray, <span class="fu">aes</span>(<span class="at">x =</span> loglength, <span class="at">y =</span> logmass)) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="14.4-lmm-worked.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="14.4-lmm-worked.html#cb548-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cray, <span class="fu">aes</span>(<span class="at">x =</span> loglength, <span class="at">y =</span> logmass)) <span class="sc">+</span></span>
+<span id="cb548-2"><a href="14.4-lmm-worked.html#cb548-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-386-1.png" width="672" /></p>
 <p>If nothing else, this tells me we need to go after more small cray next summer. For now, let’s get rid of all crayfish weighing less than 1 g because the data are sparse down there and small values are known to cause some trouble in these kinds of models [still refusing to provide citations].</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="14.4-lmm-worked.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop the measurements for crayfish &lt; 1 g</span></span>
-<span id="cb10-2"><a href="14.4-lmm-worked.html#cb10-2" aria-hidden="true" tabindex="-1"></a>cray <span class="ot">&lt;-</span> cray <span class="sc">%&gt;%</span></span>
-<span id="cb10-3"><a href="14.4-lmm-worked.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mass <span class="sc">&gt;=</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="14.4-lmm-worked.html#cb549-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop the measurements for crayfish &lt; 1 g</span></span>
+<span id="cb549-2"><a href="14.4-lmm-worked.html#cb549-2" aria-hidden="true" tabindex="-1"></a>cray <span class="ot">&lt;-</span> cray <span class="sc">%&gt;%</span></span>
+<span id="cb549-3"><a href="14.4-lmm-worked.html#cb549-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mass <span class="sc">&gt;=</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>Now, let’s take a look at the residual diagnostics for a linear model that includes a group effect of <code>site</code> and (of course) <code>length</code> as explanatory variables that we will use to predict changes in our response of interest, <code>mass</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="14.4-lmm-worked.html#cb11-1" aria-hidden="true" tabindex="-1"></a>testmod <span class="ot">&lt;-</span> <span class="fu">lm</span>(logmass <span class="sc">~</span> loglength <span class="sc">+</span> site, <span class="at">data =</span> cray)</span>
-<span id="cb11-2"><a href="14.4-lmm-worked.html#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="14.4-lmm-worked.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(testmod, <span class="fu">aes</span>(<span class="at">x =</span> site, <span class="at">y =</span> .resid, <span class="at">fill =</span> site, <span class="at">color =</span> site)) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="14.4-lmm-worked.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> <span class="fl">0.20</span>, <span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb11-5"><a href="14.4-lmm-worked.html#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.20</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="14.4-lmm-worked.html#cb550-1" aria-hidden="true" tabindex="-1"></a>testmod <span class="ot">&lt;-</span> <span class="fu">lm</span>(logmass <span class="sc">~</span> loglength <span class="sc">+</span> site, <span class="at">data =</span> cray)</span>
+<span id="cb550-2"><a href="14.4-lmm-worked.html#cb550-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb550-3"><a href="14.4-lmm-worked.html#cb550-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(testmod, <span class="fu">aes</span>(<span class="at">x =</span> site, <span class="at">y =</span> .resid, <span class="at">fill =</span> site, <span class="at">color =</span> site)) <span class="sc">+</span></span>
+<span id="cb550-4"><a href="14.4-lmm-worked.html#cb550-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> <span class="fl">0.20</span>, <span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb550-5"><a href="14.4-lmm-worked.html#cb550-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.20</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-388-1.png" width="672" /></p>
 <p>These look pretty good over all, but you should recognize at this point that we may have some concerns about whether or not variances are equal between groups, and whether observations at each <code>site</code> can really be considered independent (they cannot).</p>
 <p>Next, we will take a look at a few different ways to analyze these data using maximum likelihood estimation. Our goal here is to estimate the relationship between <code>length</code> and <code>mass</code> while accounting for inherent variability between <code>site</code>s.</p>
 <div id="random-intercepts-model" class="section level3" number="14.4.1">
 <h3><span class="header-section-number">14.4.1</span> Random-intercepts model</h3>
 <p>First, we will analyze the data assuming that the intercepts for our linear model can vary between populations, but the relationship between length and mass is the same across all populations. This is a very common approach in many ecological and biological applications, as it often is the case that we are just trying to account for sampling design when we do this kind of analysis.</p>
 <p>This is really straightforward to do in R. First, load the <code>lme4</code> package if you didn’t do it at the start of the chapter.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="14.4-lmm-worked.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the package</span></span>
-<span id="cb12-2"><a href="14.4-lmm-worked.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span></code></pre></div>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="14.4-lmm-worked.html#cb551-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the package</span></span>
+<span id="cb551-2"><a href="14.4-lmm-worked.html#cb551-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span></code></pre></div>
 <p>Next, we fit the model. To do this we will use the <code>lmer()</code> function. Notice that now we have to add an argument to specify a random effect of <code>site</code> on the intercept <code>1</code>. This is our way of telling R that we want to account for site-specific variability in the length-mass relationship.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="14.4-lmm-worked.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb13-2"><a href="14.4-lmm-worked.html#cb13-2" aria-hidden="true" tabindex="-1"></a>craymod <span class="ot">&lt;-</span> <span class="fu">lmer</span>(logmass <span class="sc">~</span> loglength <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> site), <span class="at">data =</span> cray)</span></code></pre></div>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="14.4-lmm-worked.html#cb552-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb552-2"><a href="14.4-lmm-worked.html#cb552-2" aria-hidden="true" tabindex="-1"></a>craymod <span class="ot">&lt;-</span> <span class="fu">lmer</span>(logmass <span class="sc">~</span> loglength <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> site), <span class="at">data =</span> cray)</span></code></pre></div>
 <p>Being responsible individuals, we now have a look at the residuals to make sure we’ve met assumptions of normality and homoscedasticity:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="14.4-lmm-worked.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the residuals</span></span>
-<span id="cb14-2"><a href="14.4-lmm-worked.html#cb14-2" aria-hidden="true" tabindex="-1"></a>cray<span class="sc">$</span>resid <span class="ot">&lt;-</span> <span class="fu">residuals</span>(craymod)</span>
-<span id="cb14-3"><a href="14.4-lmm-worked.html#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="14.4-lmm-worked.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the residuals</span></span>
-<span id="cb14-5"><a href="14.4-lmm-worked.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cray, <span class="fu">aes</span>(<span class="at">x =</span> site, <span class="at">y =</span> resid, <span class="at">fill =</span> site, <span class="at">color =</span> site)) <span class="sc">+</span></span>
-<span id="cb14-6"><a href="14.4-lmm-worked.html#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> <span class="fl">0.20</span>, <span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb14-7"><a href="14.4-lmm-worked.html#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.20</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="14.4-lmm-worked.html#cb553-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the residuals</span></span>
+<span id="cb553-2"><a href="14.4-lmm-worked.html#cb553-2" aria-hidden="true" tabindex="-1"></a>cray<span class="sc">$</span>resid <span class="ot">&lt;-</span> <span class="fu">residuals</span>(craymod)</span>
+<span id="cb553-3"><a href="14.4-lmm-worked.html#cb553-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb553-4"><a href="14.4-lmm-worked.html#cb553-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the residuals</span></span>
+<span id="cb553-5"><a href="14.4-lmm-worked.html#cb553-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cray, <span class="fu">aes</span>(<span class="at">x =</span> site, <span class="at">y =</span> resid, <span class="at">fill =</span> site, <span class="at">color =</span> site)) <span class="sc">+</span></span>
+<span id="cb553-6"><a href="14.4-lmm-worked.html#cb553-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> <span class="fl">0.20</span>, <span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb553-7"><a href="14.4-lmm-worked.html#cb553-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.20</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-391-1.png" width="672" /></p>
 <p>That’s looking about as good as we could hope for, so now let’s go ahead and crack open the model summary.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="14.4-lmm-worked.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the summary</span></span>
-<span id="cb15-2"><a href="14.4-lmm-worked.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(craymod)</span></code></pre></div>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="14.4-lmm-worked.html#cb554-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the summary</span></span>
+<span id="cb554-2"><a href="14.4-lmm-worked.html#cb554-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(craymod)</span></code></pre></div>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
 ## Formula: logmass ~ loglength + (1 | site)
 ##    Data: cray
@@ -625,56 +634,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For now, we will skip the usual walkthrough of all the wonderful tidbits that R has to offer and cut right to the chase. We can see from the table for our fixed effects that we have successfully detected the relationship between <code>length</code> and <code>mass</code> (p &lt; 0.05), but this should come as no surprise based on the plot we saw and the fact that I already told you this is a well conserved biological relationship.</p>
 <p>We can see that the estimated sd for our intercept is fairly low, so we may not need to specify this as a random effect were we concerned about model complexity. Given that we are interested in this random effect, and that we (in this case) want to think of <code>site</code> as having been sampled from a broader population of sites, we will retain it in our model. From here, we could go on to make predictions across populations using our fixed intercept and slope, or we could use the population specific intercepts and the shared slope.</p>
 <p>First, let’s make some predictions about the average relationship between <code>length</code> and <code>mass</code> in each <code>site</code>. This is still really easy to do using the built-in <code>predict()</code> methods for <code>lmer()</code> objects:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="14.4-lmm-worked.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions from craymod</span></span>
-<span id="cb17-2"><a href="14.4-lmm-worked.html#cb17-2" aria-hidden="true" tabindex="-1"></a>log_preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(craymod)</span>
-<span id="cb17-3"><a href="14.4-lmm-worked.html#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="14.4-lmm-worked.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Undo the log-transform</span></span>
-<span id="cb17-5"><a href="14.4-lmm-worked.html#cb17-5" aria-hidden="true" tabindex="-1"></a>real_preds <span class="ot">&lt;-</span> <span class="fu">exp</span>(log_preds)</span>
-<span id="cb17-6"><a href="14.4-lmm-worked.html#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="14.4-lmm-worked.html#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine them with the original data</span></span>
-<span id="cb17-8"><a href="14.4-lmm-worked.html#cb17-8" aria-hidden="true" tabindex="-1"></a>cray_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(cray, log_preds, real_preds)</span></code></pre></div>
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="14.4-lmm-worked.html#cb556-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions from craymod</span></span>
+<span id="cb556-2"><a href="14.4-lmm-worked.html#cb556-2" aria-hidden="true" tabindex="-1"></a>log_preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(craymod)</span>
+<span id="cb556-3"><a href="14.4-lmm-worked.html#cb556-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb556-4"><a href="14.4-lmm-worked.html#cb556-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Undo the log-transform</span></span>
+<span id="cb556-5"><a href="14.4-lmm-worked.html#cb556-5" aria-hidden="true" tabindex="-1"></a>real_preds <span class="ot">&lt;-</span> <span class="fu">exp</span>(log_preds)</span>
+<span id="cb556-6"><a href="14.4-lmm-worked.html#cb556-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb556-7"><a href="14.4-lmm-worked.html#cb556-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine them with the original data</span></span>
+<span id="cb556-8"><a href="14.4-lmm-worked.html#cb556-8" aria-hidden="true" tabindex="-1"></a>cray_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(cray, log_preds, real_preds)</span></code></pre></div>
 <p>Now we can plot our predictions by treating this just like any other model:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="14.4-lmm-worked.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cray_preds, <span class="fu">aes</span>(<span class="at">x =</span> length, <span class="at">y =</span> mass, <span class="at">color =</span> site, <span class="at">fill =</span> site)) <span class="sc">+</span></span>
-<span id="cb18-2"><a href="14.4-lmm-worked.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.10</span>) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="14.4-lmm-worked.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> real_preds), <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.50</span>) <span class="sc">+</span></span>
-<span id="cb18-4"><a href="14.4-lmm-worked.html#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Carapace length (mm)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb18-5"><a href="14.4-lmm-worked.html#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Mass (g)&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="14.4-lmm-worked.html#cb557-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cray_preds, <span class="fu">aes</span>(<span class="at">x =</span> length, <span class="at">y =</span> mass, <span class="at">color =</span> site, <span class="at">fill =</span> site)) <span class="sc">+</span></span>
+<span id="cb557-2"><a href="14.4-lmm-worked.html#cb557-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.10</span>) <span class="sc">+</span></span>
+<span id="cb557-3"><a href="14.4-lmm-worked.html#cb557-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> real_preds), <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.50</span>) <span class="sc">+</span></span>
+<span id="cb557-4"><a href="14.4-lmm-worked.html#cb557-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Carapace length (mm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb557-5"><a href="14.4-lmm-worked.html#cb557-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Mass (g)&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-394-1.png" width="672" /></p>
 <p>This is helpful for identifying some of the differences between sites. In this case, it looks like we have slightly smaller crayfish in a handful of sites (<code>Bailey Road</code>, <code>Colliersville</code>, and <code>Route 80</code>) and the rest of them look pretty similar. It can be difficult to see how our model fits the data for individual groups. Remember, that we could address this by using a quick <code>facet_wrap()</code> in our plotting code:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="14.4-lmm-worked.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cray_preds, <span class="fu">aes</span>(<span class="at">x =</span> length, <span class="at">y =</span> mass, <span class="at">color =</span> site, <span class="at">fill =</span> site)) <span class="sc">+</span></span>
-<span id="cb19-2"><a href="14.4-lmm-worked.html#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.10</span>) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="14.4-lmm-worked.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> real_preds), <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.50</span>) <span class="sc">+</span></span>
-<span id="cb19-4"><a href="14.4-lmm-worked.html#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>site) <span class="sc">+</span></span>
-<span id="cb19-5"><a href="14.4-lmm-worked.html#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Carapace length (mm)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb19-6"><a href="14.4-lmm-worked.html#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Mass (g)&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="14.4-lmm-worked.html#cb558-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cray_preds, <span class="fu">aes</span>(<span class="at">x =</span> length, <span class="at">y =</span> mass, <span class="at">color =</span> site, <span class="at">fill =</span> site)) <span class="sc">+</span></span>
+<span id="cb558-2"><a href="14.4-lmm-worked.html#cb558-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.10</span>) <span class="sc">+</span></span>
+<span id="cb558-3"><a href="14.4-lmm-worked.html#cb558-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> real_preds), <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.50</span>) <span class="sc">+</span></span>
+<span id="cb558-4"><a href="14.4-lmm-worked.html#cb558-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>site) <span class="sc">+</span></span>
+<span id="cb558-5"><a href="14.4-lmm-worked.html#cb558-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Carapace length (mm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb558-6"><a href="14.4-lmm-worked.html#cb558-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Mass (g)&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-395-1.png" width="672" /></p>
 <p>This let’s us see how well our predictions fit the data from individual streams.</p>
 <p>But, we still don’t really have a great way of looking at differences between groups if we are interested in those. And, we can’t see the uncertainty in our predictions (e.g. the confidence bands we usually plot with these). Why is this? We do not have the technology. Basically, computing group-specific variances is conceptually and programmatically challenging. But, we can use some simulation methods to do this, and some of these have been implemented in newer versions of the <code>lme4</code> package and related packages like <code>merTools</code>.</p>
 <p>IMO, if you are going to go through simulations just to approximate confidence intervals, you are probably interested in the group-level estimates as well, and you should really be thinking about Bayesian approaches at this point. But we won’t talk about those in this book because it is The Worst Stats Text eveR.</p>
 <p>In the meantime, here is one way to compute site-specific variances for our predictions about the <code>length</code>-<code>mass</code> relationship so we don’t have to feel like we haven’t finished the job! This example uses the <code>predictInterval()</code> function from the <code>merTools</code> package to demonstrate.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="14.4-lmm-worked.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate predictions from the relationship</span></span>
-<span id="cb20-2"><a href="14.4-lmm-worked.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># stored in the model fit using our original data</span></span>
-<span id="cb20-3"><a href="14.4-lmm-worked.html#cb20-3" aria-hidden="true" tabindex="-1"></a>log_preds <span class="ot">&lt;-</span> <span class="fu">predictInterval</span>(</span>
-<span id="cb20-4"><a href="14.4-lmm-worked.html#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">merMod =</span> craymod,</span>
-<span id="cb20-5"><a href="14.4-lmm-worked.html#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">n.sims =</span> <span class="dv">1000</span>,</span>
-<span id="cb20-6"><a href="14.4-lmm-worked.html#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">stat =</span> <span class="st">&quot;median&quot;</span>, <span class="at">type =</span> <span class="st">&quot;linear.prediction&quot;</span>,</span>
-<span id="cb20-7"><a href="14.4-lmm-worked.html#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">include.resid.var =</span> <span class="cn">TRUE</span></span>
-<span id="cb20-8"><a href="14.4-lmm-worked.html#cb20-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-9"><a href="14.4-lmm-worked.html#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-10"><a href="14.4-lmm-worked.html#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert them to the real scale for plotting</span></span>
-<span id="cb20-11"><a href="14.4-lmm-worked.html#cb20-11" aria-hidden="true" tabindex="-1"></a>real_preds <span class="ot">&lt;-</span> <span class="fu">apply</span>(log_preds, <span class="dv">2</span>, exp)</span>
-<span id="cb20-12"><a href="14.4-lmm-worked.html#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-13"><a href="14.4-lmm-worked.html#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine predictions with the original data</span></span>
-<span id="cb20-14"><a href="14.4-lmm-worked.html#cb20-14" aria-hidden="true" tabindex="-1"></a>mer_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(cray, real_preds)</span></code></pre></div>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="14.4-lmm-worked.html#cb559-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate predictions from the relationship</span></span>
+<span id="cb559-2"><a href="14.4-lmm-worked.html#cb559-2" aria-hidden="true" tabindex="-1"></a><span class="co"># stored in the model fit using our original data</span></span>
+<span id="cb559-3"><a href="14.4-lmm-worked.html#cb559-3" aria-hidden="true" tabindex="-1"></a>log_preds <span class="ot">&lt;-</span> <span class="fu">predictInterval</span>(</span>
+<span id="cb559-4"><a href="14.4-lmm-worked.html#cb559-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">merMod =</span> craymod,</span>
+<span id="cb559-5"><a href="14.4-lmm-worked.html#cb559-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">n.sims =</span> <span class="dv">1000</span>,</span>
+<span id="cb559-6"><a href="14.4-lmm-worked.html#cb559-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">stat =</span> <span class="st">&quot;median&quot;</span>, <span class="at">type =</span> <span class="st">&quot;linear.prediction&quot;</span>,</span>
+<span id="cb559-7"><a href="14.4-lmm-worked.html#cb559-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">include.resid.var =</span> <span class="cn">TRUE</span></span>
+<span id="cb559-8"><a href="14.4-lmm-worked.html#cb559-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb559-9"><a href="14.4-lmm-worked.html#cb559-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb559-10"><a href="14.4-lmm-worked.html#cb559-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert them to the real scale for plotting</span></span>
+<span id="cb559-11"><a href="14.4-lmm-worked.html#cb559-11" aria-hidden="true" tabindex="-1"></a>real_preds <span class="ot">&lt;-</span> <span class="fu">apply</span>(log_preds, <span class="dv">2</span>, exp)</span>
+<span id="cb559-12"><a href="14.4-lmm-worked.html#cb559-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb559-13"><a href="14.4-lmm-worked.html#cb559-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine predictions with the original data</span></span>
+<span id="cb559-14"><a href="14.4-lmm-worked.html#cb559-14" aria-hidden="true" tabindex="-1"></a>mer_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(cray, real_preds)</span></code></pre></div>
 <p>Finally, let’s add that beautiful uncertainty to our site-specific predictive plots that we made above!</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="14.4-lmm-worked.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mer_preds, <span class="fu">aes</span>(<span class="at">x =</span> length, <span class="at">y =</span> mass, <span class="at">color =</span> site, <span class="at">fill =</span> site)) <span class="sc">+</span></span>
-<span id="cb21-2"><a href="14.4-lmm-worked.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.10</span>) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="14.4-lmm-worked.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">color =</span> <span class="cn">NULL</span>), <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="14.4-lmm-worked.html#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> fit), <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.50</span>) <span class="sc">+</span></span>
-<span id="cb21-5"><a href="14.4-lmm-worked.html#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>site) <span class="sc">+</span></span>
-<span id="cb21-6"><a href="14.4-lmm-worked.html#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Carapace length (mm)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb21-7"><a href="14.4-lmm-worked.html#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Mass (g)&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="14.4-lmm-worked.html#cb560-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mer_preds, <span class="fu">aes</span>(<span class="at">x =</span> length, <span class="at">y =</span> mass, <span class="at">color =</span> site, <span class="at">fill =</span> site)) <span class="sc">+</span></span>
+<span id="cb560-2"><a href="14.4-lmm-worked.html#cb560-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.10</span>) <span class="sc">+</span></span>
+<span id="cb560-3"><a href="14.4-lmm-worked.html#cb560-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">color =</span> <span class="cn">NULL</span>), <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb560-4"><a href="14.4-lmm-worked.html#cb560-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> fit), <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.50</span>) <span class="sc">+</span></span>
+<span id="cb560-5"><a href="14.4-lmm-worked.html#cb560-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>site) <span class="sc">+</span></span>
+<span id="cb560-6"><a href="14.4-lmm-worked.html#cb560-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Carapace length (mm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb560-7"><a href="14.4-lmm-worked.html#cb560-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Mass (g)&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-397-1.png" width="672" /></p>
 <p>This may seem like a lot of work at first glance, but hopefully you do realize that it is about the same amount of code as making predictions from linear models and general linear models, and now we have introduced yet another way to dealing with violations of assumptions! Realize that these tools are still constantly being developed, and just a couple of years ago it took a lot more code to do this for mixed models than it does now.</p>
 </div>
 </div>
