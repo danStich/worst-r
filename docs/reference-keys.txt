@@ -237,3 +237,10 @@ data-explanation-20-count-data
 data-analysis-20-count-analysis
 predictions-20-count-preds
 next-20
+id_20-logistic
+id_20-logistic-data
+id_20-logistic-analysis
+id_20-logistic-preds
+id_20-count
+id_20-count-analysis
+id_20-count-preds

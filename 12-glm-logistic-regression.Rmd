@@ -313,7 +313,7 @@ If it helps, we can make some predictions. Let's say we want to ask **what was t
 
 ```{r}
 # Remember:  y = mx + b
-logit_pred2006 <- -2.91162 + 0.00164 * mean(choice$flow)
+logit_pred2006 <- -2.91162 - 0.518631856 + 0.00164 * mean(choice$flow)
 ```
 
 This is the prediction on the logit scale that we used to fit the model:
