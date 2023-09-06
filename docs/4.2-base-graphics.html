@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.2 Plotting with base R | The Worst Stats Text eveR</title>
   <meta name="description" content="4.2 Plotting with base R | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.2 Plotting with base R | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -32,8 +31,8 @@
   
 <link rel="prev" href="4.1-plots-matter-as-much-as-stats.html"/>
 <link rel="next" href="4.3-plotting-with-ggplot2.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,9 +48,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -92,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -477,17 +476,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="20" data-path="20-Chapter20.html"><a href="20-Chapter20.html"><i class="fa fa-check"></i><b>20</b> Bayesian hierarchical GLM</a>
 <ul>
 <li class="chapter" data-level="20.1" data-path="20.1-intro-20.html"><a href="20.1-intro-20.html"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
-<li class="chapter" data-level="20.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression {#20-logistic}</a>
+<li class="chapter" data-level="20.2" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression</a>
 <ul>
-<li class="chapter" data-level="20.2.1" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-explanation-20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation {#20-logistic-data}</a></li>
-<li class="chapter" data-level="20.2.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-analysis-20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis {#20-logistic-analysis}</a></li>
-<li class="chapter" data-level="20.2.3" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#predictions-20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions {#20-logistic-preds}</a></li>
+<li class="chapter" data-level="20.2.1" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="20.2.2" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="20.2.3" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions</a></li>
 </ul></li>
-<li class="chapter" data-level="20.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models {#20-count}</a>
+<li class="chapter" data-level="20.3" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models</a>
 <ul>
-<li class="chapter" data-level="20.3.1" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
-<li class="chapter" data-level="20.3.2" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-analysis-20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis {#20-count-analysis}</a></li>
-<li class="chapter" data-level="20.3.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#predictions-20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions {#20-count-preds}</a></li>
+<li class="chapter" data-level="20.3.1" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
+<li class="chapter" data-level="20.3.2" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#id_20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis</a></li>
+<li class="chapter" data-level="20.3.3" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#id_20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions</a></li>
 </ul></li>
 <li class="chapter" data-level="20.4" data-path="20.4-next-20.html"><a href="20.4-next-20.html"><i class="fa fa-check"></i><b>20.4</b> Next steps</a></li>
 </ul></li>
@@ -511,13 +510,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="base-graphics" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Plotting with base R</h2>
+<div id="base-graphics" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Plotting with base R<a href="4.2-base-graphics.html#base-graphics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s look at a few simple types of plots in R. The default graphics in R are not much to look at. But, there are a <strong>ton</strong> of ways to modify these plots, and the user (that’s you!) can build plots from the ground up if needed.</p>
 <p>One of the great things about base graphics is that many of the plot types take the same, or similar arguments that are all based on shared graphical parameters.</p>
 <p>You can access the help file for these shared graphical parameters by running <code>?pars</code> in the console. We will use many of these in the sections that follow.</p>
-<div id="histograms" class="section level3" number="4.2.1">
-<h3><span class="header-section-number">4.2.1</span> Histograms</h3>
+<div id="histograms" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Histograms<a href="4.2-base-graphics.html#histograms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s start with the histogram function that we began playing with at the end of <a href="3.6-data-simulation.html#stochastic">Chapter 3</a>.</p>
 <p>The <code>hist()</code> function plots a histogram but it actually does a whole lot more than just that. Like other plotting utilities, it can take a wide variety of arguments and it actually does some basic data analysis behind the scenes. All of the arguments are optional or have default values with the exception of the data that we want to plot (a numeric variable). This is the case for most plotting functions in the base graphics for R.</p>
 <p>Start by reading in the data contained within the <code>physical.csv</code> file from the class data folder. Remember, I am assuming that your code is inside of a folder that also contains your class data folder that you named <a href="https://danstich.github.io/stich/classes/BIOL217/software.html"><code>data</code></a>.</p>
@@ -527,10 +526,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>These are data collected each year from Otsego Lake by students, staff, and faculty at the SUNY Oneonta Biological Field Station in Cooperstown, NY, USA. The data set includes temperature (°C), pH, dissolved oxygen, and specific conductance measurements from a period of about 40 years. There are all kinds of cool spatial and seasonal patterns in the data that we can look at. We will use <code>temperature</code> for the examples that follow.</p>
 <p>Make a histogram of temperature across all depths and dates just to see what we are working with here:</p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="4.2-base-graphics.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(otsego<span class="sc">$</span>temp)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 <p>The default histogram in base graphics leaves much to be desired. Thankfully, it is easy to modify the look of these figures. For example, we can add labels to the x and y-axis using <code>xlab</code> and <code>ylab</code>, and we can give the histogram a meaningful title by adding <code>main = ...</code> to the <code>hist()</code> call or remove it completely by saying <code>main = ""</code>.</p>
 <div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="4.2-base-graphics.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(otsego<span class="sc">$</span>temp, <span class="at">xlab =</span> <span class="st">&quot;Temperature&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, <span class="at">main=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
 <p>We can make the axes cross at zero if we are concerned about that. We need to do this by specifying <code>yaxt = "n"</code>, <code>xaxt = "n"</code> in the <code>hist()</code> call and then follow up by telling R exactly where to start each of the axes. In this example, I also add some changes to the color of the bars (<code>col</code>) and the color of the borders (<code>border</code>). Finally, I fix the x- and y-axis scales so I know where they’ll start.</p>
 <div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="4.2-base-graphics.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the histogram</span></span>
 <span id="cb146-2"><a href="4.2-base-graphics.html#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(otsego<span class="sc">$</span>temp,</span>
@@ -552,19 +551,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb146-18"><a href="4.2-base-graphics.html#cb146-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a rotated y-axis with default scale and </span></span>
 <span id="cb146-19"><a href="4.2-base-graphics.html#cb146-19" aria-hidden="true" tabindex="-1"></a><span class="co"># start it at zero</span></span>
 <span id="cb146-20"><a href="4.2-base-graphics.html#cb146-20" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">2</span>, <span class="at">las =</span> <span class="dv">2</span>, <span class="at">pos =</span> <span class="dv">0</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
 <p><strong>Colors!!!</strong></p>
 <p>If <code>gray87</code> is not your style (whatevs), there are another 656 pre-named colors in R. You can see their names by running <code>colors()</code> in the console like this:</p>
 <div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="4.2-base-graphics.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colors</span>()</span></code></pre></div>
 <p>If you are a little more adventurous, you might try the <code>rgb()</code> color specification or hex values. I really like the <code>rgb()</code> specification because you can include an <code>alpha</code> channel to make your colors transparent (oooooh!). For example, if I change my code above to use the following:</p>
 <div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="4.2-base-graphics.html#cb148-1" aria-hidden="true" tabindex="-1"></a>col <span class="ot">=</span> <span class="fu">rgb</span>(<span class="at">red =</span> <span class="fl">0.90</span>, <span class="at">green =</span> <span class="dv">0</span>, <span class="at">blue =</span> <span class="fl">0.30</span>, <span class="at">alpha =</span> <span class="fl">0.10</span>)</span></code></pre></div>
 <p>I get a transparent, purple histogram.</p>
-<p><img src="worstr_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
 <p>So purply.</p>
 <p>There are tons of great blogs and eBooks with whole chapters devoted to colors and color palletes in R. There are even whole packages we’ll work with dedicated to colors. By all means, check them out! We will work with a few as we continue to increase complexity.</p>
 </div>
-<div id="scatterplots" class="section level3" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Scatterplots</h3>
+<div id="scatterplots" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Scatterplots<a href="4.2-base-graphics.html#scatterplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Scatter plots are a great starting point for doing exploratory data analysis or for displaying raw data along with summary graphics. They are also the default behavior for the <code>plot()</code> function for continuous variables in base R.</p>
 <p>Let’s demonstrate by by plotting surface temperature (<code>depth</code> = 0.1 m) by month across years. We’ll use the data management skills we picked up in <a href="#Chapter%203">Chapter 3</a> to filter the data first.</p>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="4.2-base-graphics.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to get July surface temperatures</span></span>
@@ -572,7 +571,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb149-3"><a href="4.2-base-graphics.html#cb149-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb149-4"><a href="4.2-base-graphics.html#cb149-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Default scatter plot</span></span>
 <span id="cb149-5"><a href="4.2-base-graphics.html#cb149-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> surface<span class="sc">$</span>month, <span class="at">y =</span> surface<span class="sc">$</span>temp)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
 <p>As with the <code>hist()</code> function, the default here is underwhelming. We can use many of the same arguments that we specified in <code>hist()</code> to dress this up a bit. This time, we will specify a plotting character <code>pch</code> that corresponds to a filled circle. Then, we tell R to give it an <code>rgb()</code> background (<code>bg</code>) with no color for lines that go around each point. That way the data points are darker where there is overlap between them. Finally, we use <code>expression()</code> to include the degree symbol in the y-axis label.</p>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="4.2-base-graphics.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Better scatter plot</span></span>
 <span id="cb150-2"><a href="4.2-base-graphics.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> surface<span class="sc">$</span>month, </span>
@@ -583,11 +582,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb150-7"><a href="4.2-base-graphics.html#cb150-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Month&quot;</span>,</span>
 <span id="cb150-8"><a href="4.2-base-graphics.html#cb150-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))</span>
 <span id="cb150-9"><a href="4.2-base-graphics.html#cb150-9" aria-hidden="true" tabindex="-1"></a>     )</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
 <p>This is a lot more informative because it shows us where most of the observations fall within a given month, and how much variability there is. But, it would be nice to have some summary.</p>
 </div>
-<div id="lines" class="section level3" number="4.2.3">
-<h3><span class="header-section-number">4.2.3</span> Lines</h3>
+<div id="lines" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Lines<a href="4.2-base-graphics.html#lines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can plot lines in a few different ways in the base graphics of R. We can create stand-alone line graphs with data in R pretty easily with the <code>plot()</code> function we used for scatter plots in the preceding section.</p>
 <p>For example, let’s say that we want to just plot average surface temperature in each month as a line graph. We can summarize the data quickly and then plot those:</p>
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="4.2-base-graphics.html#cb151-1" aria-hidden="true" tabindex="-1"></a>mids <span class="ot">&lt;-</span> surface <span class="sc">%&gt;%</span></span>
@@ -595,7 +594,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb151-3"><a href="4.2-base-graphics.html#cb151-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg =</span> <span class="fu">mean</span>(temp))</span>
 <span id="cb151-4"><a href="4.2-base-graphics.html#cb151-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb151-5"><a href="4.2-base-graphics.html#cb151-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mids<span class="sc">$</span>month, mids<span class="sc">$</span>avg, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Month&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Average&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
 <p>We could even add these to the scatter plot of our raw data using the <code>lines()</code> function. Play around with <code>lty</code> and <code>lwd</code> to see if you can figure out what they do. If you get stuck, don’t forget to Google it! (Worst Stats Text eveR.)</p>
 <div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="4.2-base-graphics.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Same scatter plot</span></span>
 <span id="cb152-2"><a href="4.2-base-graphics.html#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> surface<span class="sc">$</span>month, </span>
@@ -608,18 +607,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb152-9"><a href="4.2-base-graphics.html#cb152-9" aria-hidden="true" tabindex="-1"></a>     )</span>
 <span id="cb152-10"><a href="4.2-base-graphics.html#cb152-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a thick, dotted line that is gray (this is a gray40 job)</span></span>
 <span id="cb152-11"><a href="4.2-base-graphics.html#cb152-11" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(mids<span class="sc">$</span>month, mids<span class="sc">$</span>avg, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;gray40&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
 <p>We could also add the means to the main plot with <code>points()</code> and choose a different size or color than the raw data. We’ll look at these options and more as we step up complexity.</p>
 <p>For raw data like these, though, we are better off using a box plot to show those types of summaries.</p>
 </div>
-<div id="boxplots" class="section level3" number="4.2.4">
-<h3><span class="header-section-number">4.2.4</span> Boxplots</h3>
+<div id="boxplots" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Boxplots<a href="4.2-base-graphics.html#boxplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The basic box plot is straightforward to create, but can be a real pain to modify because the syntax is slightly different from the other plotting functions we’ve worked with so far.</p>
 <p>Let’s try to summarize surface temperature by month using a box plot to see how these work in the base R graphics. Notice that we are specifying the variables as a formula here, and explicitly telling R what the data set is:</p>
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="4.2-base-graphics.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(temp<span class="sc">~</span>month, <span class="at">data =</span> surface,</span>
 <span id="cb153-2"><a href="4.2-base-graphics.html#cb153-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Month&quot;</span>,</span>
 <span id="cb153-3"><a href="4.2-base-graphics.html#cb153-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Surface temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>)))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
 <p>Wow, that was waaaaay to easy! Have you ever tried to make one of those in Excel? Forget about it. It would take you half a day, and then when you realized you forgot ten data points you would have to do it all again.</p>
 <p>But, it is still much ugly. Maybe there is a way we can change that?</p>
 <p>Of course there is!</p>
@@ -635,7 +634,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb154-8"><a href="4.2-base-graphics.html#cb154-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">staplewex =</span> <span class="dv">0</span>, <span class="at">staplecol =</span> <span class="cn">NA</span>,</span>
 <span id="cb154-9"><a href="4.2-base-graphics.html#cb154-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">outpch =</span> <span class="dv">21</span>, <span class="at">outbg =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">outcol =</span> <span class="st">&quot;gray90&quot;</span></span>
 <span id="cb154-10"><a href="4.2-base-graphics.html#cb154-10" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
 <p>Finally, we can combine this with a scatter plot to <code>jitter</code> our raw data over the top of the boxes in each month:</p>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="4.2-base-graphics.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(temp<span class="sc">~</span>month, </span>
 <span id="cb155-2"><a href="4.2-base-graphics.html#cb155-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> surface,</span>
@@ -648,7 +647,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb155-9"><a href="4.2-base-graphics.html#cb155-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">outpch =</span> <span class="dv">21</span>, <span class="at">outbg =</span> <span class="cn">NA</span>, <span class="at">outcol =</span> <span class="cn">NA</span></span>
 <span id="cb155-10"><a href="4.2-base-graphics.html#cb155-10" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb155-11"><a href="4.2-base-graphics.html#cb155-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">jitter</span>(surface<span class="sc">$</span>month), surface<span class="sc">$</span>temp, <span class="at">cex=</span>.<span class="dv">4</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.2</span>))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
+<p><img src="worstr_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 <p>That is actually starting to look pretty snazzy! We’ll continue to work to improve our base graphics as we move forward. For now, let’s have a look at how to do these things in <code>ggplot2</code> next.</p>
 </div>
 </div>
@@ -662,7 +661,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -703,7 +701,7 @@ gitbook.start({
 },
 "download": ["worstr.pdf", "worstr.epub"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -719,7 +717,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

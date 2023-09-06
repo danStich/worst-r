@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16.8 Model selection | The Worst Stats Text eveR</title>
   <meta name="description" content="16.8 Model selection | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16.8 Model selection | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -32,8 +31,8 @@
   
 <link rel="prev" href="16.7-more-diagnostics.html"/>
 <link rel="next" href="16.9-summarizing-results.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,9 +48,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -92,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -477,17 +476,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="20" data-path="20-Chapter20.html"><a href="20-Chapter20.html"><i class="fa fa-check"></i><b>20</b> Bayesian hierarchical GLM</a>
 <ul>
 <li class="chapter" data-level="20.1" data-path="20.1-intro-20.html"><a href="20.1-intro-20.html"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
-<li class="chapter" data-level="20.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression {#20-logistic}</a>
+<li class="chapter" data-level="20.2" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression</a>
 <ul>
-<li class="chapter" data-level="20.2.1" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-explanation-20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation {#20-logistic-data}</a></li>
-<li class="chapter" data-level="20.2.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-analysis-20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis {#20-logistic-analysis}</a></li>
-<li class="chapter" data-level="20.2.3" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#predictions-20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions {#20-logistic-preds}</a></li>
+<li class="chapter" data-level="20.2.1" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="20.2.2" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="20.2.3" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions</a></li>
 </ul></li>
-<li class="chapter" data-level="20.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models {#20-count}</a>
+<li class="chapter" data-level="20.3" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models</a>
 <ul>
-<li class="chapter" data-level="20.3.1" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
-<li class="chapter" data-level="20.3.2" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-analysis-20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis {#20-count-analysis}</a></li>
-<li class="chapter" data-level="20.3.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#predictions-20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions {#20-count-preds}</a></li>
+<li class="chapter" data-level="20.3.1" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
+<li class="chapter" data-level="20.3.2" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#id_20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis</a></li>
+<li class="chapter" data-level="20.3.3" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#id_20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions</a></li>
 </ul></li>
 <li class="chapter" data-level="20.4" data-path="20.4-next-20.html"><a href="20.4-next-20.html"><i class="fa fa-check"></i><b>20.4</b> Next steps</a></li>
 </ul></li>
@@ -511,27 +510,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="bayesian-model-selection" class="section level2" number="16.8">
-<h2><span class="header-section-number">16.8</span> Model selection</h2>
+<div id="bayesian-model-selection" class="section level2 hasAnchor" number="16.8">
+<h2><span class="header-section-number">16.8</span> Model selection<a href="16.8-bayesian-model-selection.html#bayesian-model-selection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s say we now want to say something about statistical significance of our effects. There are a couple of ways in which we could do this. First, we could use model selection just like we demonstrated in <a href="https://danstich.github.io/worst-r/11-5-a-priori.html">Chapter 11.5</a>…sort of. Instead of using AIC (or DIC or BIC or WAIC) this time we will use a leave-one-out cross-validation information criterion, LOO-IC from the <code>loo</code> package <a href="https://cran.r-project.org/web/packages/loo/vignettes/loo2-example.html">(see web vignette here)</a>.</p>
 <p>But first, we’ll need another model to which we can compare <code>cray_model</code>. Just as we did for <code>lm()</code> and <code>glm()</code>, we can create a <code>null</code> model against which we can evaluate the performance of <code>cray_model</code> to see if including length as a predictor improves our understanding of variability in crayfish mass.</p>
-<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="16.8-bayesian-model-selection.html#cb614-1" aria-hidden="true" tabindex="-1"></a>null_model <span class="ot">&lt;-</span> <span class="fu">stan_glm</span>(<span class="at">formula =</span> logmass <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb614-2"><a href="16.8-bayesian-model-selection.html#cb614-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">family =</span> gaussian,</span>
-<span id="cb614-3"><a href="16.8-bayesian-model-selection.html#cb614-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> cray</span>
-<span id="cb614-4"><a href="16.8-bayesian-model-selection.html#cb614-4" aria-hidden="true" tabindex="-1"></a>         )</span></code></pre></div>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="16.8-bayesian-model-selection.html#cb616-1" aria-hidden="true" tabindex="-1"></a>null_model <span class="ot">&lt;-</span> <span class="fu">stan_glm</span>(<span class="at">formula =</span> logmass <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb616-2"><a href="16.8-bayesian-model-selection.html#cb616-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">family =</span> gaussian,</span>
+<span id="cb616-3"><a href="16.8-bayesian-model-selection.html#cb616-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> cray</span>
+<span id="cb616-4"><a href="16.8-bayesian-model-selection.html#cb616-4" aria-hidden="true" tabindex="-1"></a>         )</span></code></pre></div>
 <p>Beautiful, now we can do some cross validation. <strong>This will take a hot minute!</strong></p>
 <p>On the Windows computer I am using, I either need to use a single core for this due to a bug in the version of <code>loo</code> that I am using, or I need to extract the model likelihoods manually with the <code>log_lik</code> function until I update my version.</p>
 <p>Extract the log likelihoods for each of the model like so:</p>
-<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="16.8-bayesian-model-selection.html#cb615-1" aria-hidden="true" tabindex="-1"></a>null_lik <span class="ot">&lt;-</span> <span class="fu">log_lik</span>(null_model)</span>
-<span id="cb615-2"><a href="16.8-bayesian-model-selection.html#cb615-2" aria-hidden="true" tabindex="-1"></a>cray_lik <span class="ot">&lt;-</span> <span class="fu">log_lik</span>(cray_model)</span></code></pre></div>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="16.8-bayesian-model-selection.html#cb617-1" aria-hidden="true" tabindex="-1"></a>null_lik <span class="ot">&lt;-</span> <span class="fu">log_lik</span>(null_model)</span>
+<span id="cb617-2"><a href="16.8-bayesian-model-selection.html#cb617-2" aria-hidden="true" tabindex="-1"></a>cray_lik <span class="ot">&lt;-</span> <span class="fu">log_lik</span>(cray_model)</span></code></pre></div>
 <p>Now, we can conduct leave-one-out cross validation on the fitted model posteriors and our data using the <code>loo()</code> function. Wow, that is way easier than writing this out by hand, and way faster than re-running the model for each data point!</p>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="16.8-bayesian-model-selection.html#cb616-1" aria-hidden="true" tabindex="-1"></a>null_loo <span class="ot">&lt;-</span> <span class="fu">loo</span>(null_lik, <span class="at">k_threshold =</span> <span class="fl">0.70</span>, <span class="at">cores =</span> <span class="dv">7</span>)</span>
-<span id="cb616-2"><a href="16.8-bayesian-model-selection.html#cb616-2" aria-hidden="true" tabindex="-1"></a>cray_loo <span class="ot">&lt;-</span> <span class="fu">loo</span>(cray_lik, <span class="at">k_threshold =</span> <span class="fl">0.70</span>, <span class="at">cores =</span> <span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="16.8-bayesian-model-selection.html#cb618-1" aria-hidden="true" tabindex="-1"></a>null_loo <span class="ot">&lt;-</span> <span class="fu">loo</span>(null_lik, <span class="at">k_threshold =</span> <span class="fl">0.70</span>, <span class="at">cores =</span> <span class="dv">7</span>)</span>
+<span id="cb618-2"><a href="16.8-bayesian-model-selection.html#cb618-2" aria-hidden="true" tabindex="-1"></a>cray_loo <span class="ot">&lt;-</span> <span class="fu">loo</span>(cray_lik, <span class="at">k_threshold =</span> <span class="fl">0.70</span>, <span class="at">cores =</span> <span class="dv">7</span>)</span></code></pre></div>
 <p>And, finally, we compare the models:</p>
-<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="16.8-bayesian-model-selection.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="fu">loo_compare</span>(null_loo, cray_loo)</span></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="16.8-bayesian-model-selection.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="fu">loo_compare</span>(null_loo, cray_loo)</span></code></pre></div>
 <pre><code>##        elpd_diff se_diff
 ## model2     0.0       0.0
-## model1 -1715.0      69.8</code></pre>
+## model1 -1714.9      69.7</code></pre>
 <p>Based on the same rules of thumb that we used with AIC, we can see that the relationship between <code>loglength</code> and <code>logmass</code> is better supported than the null model, so we can reject the null. No surprise there, but hopefully a useful demonstration.</p>
 </div>
             </section>
@@ -544,7 +543,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -585,7 +583,7 @@ gitbook.start({
 },
 "download": ["worstr.pdf", "worstr.epub"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -601,7 +599,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

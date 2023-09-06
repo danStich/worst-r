@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.7 Linear regression diagnostics | The Worst Stats Text eveR</title>
   <meta name="description" content="9.7 Linear regression diagnostics | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.7 Linear regression diagnostics | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -32,8 +31,8 @@
   
 <link rel="prev" href="9.6-anova-diagnostics.html"/>
 <link rel="next" href="9.8-next9.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,9 +48,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -92,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -477,17 +476,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="20" data-path="20-Chapter20.html"><a href="20-Chapter20.html"><i class="fa fa-check"></i><b>20</b> Bayesian hierarchical GLM</a>
 <ul>
 <li class="chapter" data-level="20.1" data-path="20.1-intro-20.html"><a href="20.1-intro-20.html"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
-<li class="chapter" data-level="20.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression {#20-logistic}</a>
+<li class="chapter" data-level="20.2" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression</a>
 <ul>
-<li class="chapter" data-level="20.2.1" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-explanation-20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation {#20-logistic-data}</a></li>
-<li class="chapter" data-level="20.2.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-analysis-20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis {#20-logistic-analysis}</a></li>
-<li class="chapter" data-level="20.2.3" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#predictions-20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions {#20-logistic-preds}</a></li>
+<li class="chapter" data-level="20.2.1" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="20.2.2" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="20.2.3" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions</a></li>
 </ul></li>
-<li class="chapter" data-level="20.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models {#20-count}</a>
+<li class="chapter" data-level="20.3" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models</a>
 <ul>
-<li class="chapter" data-level="20.3.1" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
-<li class="chapter" data-level="20.3.2" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-analysis-20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis {#20-count-analysis}</a></li>
-<li class="chapter" data-level="20.3.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#predictions-20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions {#20-count-preds}</a></li>
+<li class="chapter" data-level="20.3.1" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
+<li class="chapter" data-level="20.3.2" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#id_20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis</a></li>
+<li class="chapter" data-level="20.3.3" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#id_20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions</a></li>
 </ul></li>
 <li class="chapter" data-level="20.4" data-path="20.4-next-20.html"><a href="20.4-next-20.html"><i class="fa fa-check"></i><b>20.4</b> Next steps</a></li>
 </ul></li>
@@ -511,60 +510,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="linear-regression-diagnostics" class="section level2" number="9.7">
-<h2><span class="header-section-number">9.7</span> Linear regression diagnostics</h2>
+<div id="linear-regression-diagnostics" class="section level2 hasAnchor" number="9.7">
+<h2><span class="header-section-number">9.7</span> Linear regression diagnostics<a href="9.7-linear-regression-diagnostics.html#linear-regression-diagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Finally, what if we have a continuous explanatory variable and a continuous response that necessitates use of linear regression or ANCOVA?</p>
 <p>We use the same approach (whoa, that’s sweet, huh?). Here, let’s fit and assess a model that predicts the length of <code>Stay</code> in turtle rehab based on the hook <code>Width</code> that caught them in the first place.</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="9.7-linear-regression-diagnostics.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb360-2"><a href="9.7-linear-regression-diagnostics.html#cb360-2" aria-hidden="true" tabindex="-1"></a>fit_width <span class="ot">&lt;-</span> <span class="fu">lm</span>( Stay <span class="sc">~</span> Width, <span class="at">data =</span> turtles)</span>
-<span id="cb360-3"><a href="9.7-linear-regression-diagnostics.html#cb360-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb360-4"><a href="9.7-linear-regression-diagnostics.html#cb360-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Now plot the residuals</span></span>
-<span id="cb360-5"><a href="9.7-linear-regression-diagnostics.html#cb360-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fit_width, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid, <span class="at">color =</span> Width)) <span class="sc">+</span> </span>
-<span id="cb360-6"><a href="9.7-linear-regression-diagnostics.html#cb360-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb360-7"><a href="9.7-linear-regression-diagnostics.html#cb360-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Hook width&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb360-8"><a href="9.7-linear-regression-diagnostics.html#cb360-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(epsilon)))</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="9.7-linear-regression-diagnostics.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb362-2"><a href="9.7-linear-regression-diagnostics.html#cb362-2" aria-hidden="true" tabindex="-1"></a>fit_width <span class="ot">&lt;-</span> <span class="fu">lm</span>( Stay <span class="sc">~</span> Width, <span class="at">data =</span> turtles)</span>
+<span id="cb362-3"><a href="9.7-linear-regression-diagnostics.html#cb362-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb362-4"><a href="9.7-linear-regression-diagnostics.html#cb362-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Now plot the residuals</span></span>
+<span id="cb362-5"><a href="9.7-linear-regression-diagnostics.html#cb362-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fit_width, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid, <span class="at">color =</span> Width)) <span class="sc">+</span> </span>
+<span id="cb362-6"><a href="9.7-linear-regression-diagnostics.html#cb362-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb362-7"><a href="9.7-linear-regression-diagnostics.html#cb362-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Hook width&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb362-8"><a href="9.7-linear-regression-diagnostics.html#cb362-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(epsilon)))</span></code></pre></div>
 <p><br></p>
 <p>Bleh. As with our example above, we can see that we clearly fail the assumption that the residuals are normally distributed with a mean of zero! It also looks like the residual error increases with increasing hook width, which means our observations are also not independent. This specific type of non-independence is called <em>heteroscedasticity</em>. That’s a real word.</p>
 <p>Let’s see if our new toy, the log-transformation can help us here:</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="9.7-linear-regression-diagnostics.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb361-2"><a href="9.7-linear-regression-diagnostics.html#cb361-2" aria-hidden="true" tabindex="-1"></a>log_fit_width <span class="ot">&lt;-</span> <span class="fu">lm</span>( <span class="fu">log</span>(Stay) <span class="sc">~</span> Width, <span class="at">data =</span> turtles)</span>
-<span id="cb361-3"><a href="9.7-linear-regression-diagnostics.html#cb361-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb361-4"><a href="9.7-linear-regression-diagnostics.html#cb361-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Now plot the residuals</span></span>
-<span id="cb361-5"><a href="9.7-linear-regression-diagnostics.html#cb361-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(log_fit_width, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid, <span class="at">color =</span> Width)) <span class="sc">+</span> </span>
-<span id="cb361-6"><a href="9.7-linear-regression-diagnostics.html#cb361-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb361-7"><a href="9.7-linear-regression-diagnostics.html#cb361-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Hook width&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb361-8"><a href="9.7-linear-regression-diagnostics.html#cb361-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(epsilon)))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-253-1.png" width="672" /></p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="9.7-linear-regression-diagnostics.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb363-2"><a href="9.7-linear-regression-diagnostics.html#cb363-2" aria-hidden="true" tabindex="-1"></a>log_fit_width <span class="ot">&lt;-</span> <span class="fu">lm</span>( <span class="fu">log</span>(Stay) <span class="sc">~</span> Width, <span class="at">data =</span> turtles)</span>
+<span id="cb363-3"><a href="9.7-linear-regression-diagnostics.html#cb363-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb363-4"><a href="9.7-linear-regression-diagnostics.html#cb363-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Now plot the residuals</span></span>
+<span id="cb363-5"><a href="9.7-linear-regression-diagnostics.html#cb363-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(log_fit_width, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid, <span class="at">color =</span> Width)) <span class="sc">+</span> </span>
+<span id="cb363-6"><a href="9.7-linear-regression-diagnostics.html#cb363-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb363-7"><a href="9.7-linear-regression-diagnostics.html#cb363-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Hook width&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb363-8"><a href="9.7-linear-regression-diagnostics.html#cb363-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(epsilon)))</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-239-1.png" width="672" /></p>
 <p>Wow, that actually looks a whole lot better! There are still a couple of data points flying high that we would want to investigate further in this data set, but the pukey feeling in my stomach is slowly subsiding here.</p>
 <p>And remember, if you <em>really</em> want to see how your model fits the data, you could always plot the predictions over the raw data:</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="9.7-linear-regression-diagnostics.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Need to get rid of a couple NA values</span></span>
-<span id="cb362-2"><a href="9.7-linear-regression-diagnostics.html#cb362-2" aria-hidden="true" tabindex="-1"></a>turts <span class="ot">&lt;-</span> <span class="fu">subset</span>(turtles, <span class="sc">!</span><span class="fu">is.na</span>(Width))</span>
-<span id="cb362-3"><a href="9.7-linear-regression-diagnostics.html#cb362-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb362-4"><a href="9.7-linear-regression-diagnostics.html#cb362-4" aria-hidden="true" tabindex="-1"></a>log_fit_width <span class="ot">&lt;-</span> <span class="fu">lm</span>( <span class="fu">log</span>(Stay) <span class="sc">~</span> Width, <span class="at">data =</span> turts)</span>
-<span id="cb362-5"><a href="9.7-linear-regression-diagnostics.html#cb362-5" aria-hidden="true" tabindex="-1"></a>turt_pred <span class="ot">&lt;-</span> <span class="fu">cbind</span>(turts, <span class="fu">predict</span>(log_fit_width, <span class="at">interval =</span> <span class="st">&#39;confidence&#39;</span>))</span>
-<span id="cb362-6"><a href="9.7-linear-regression-diagnostics.html#cb362-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb362-7"><a href="9.7-linear-regression-diagnostics.html#cb362-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(turt_pred, <span class="fu">aes</span>(<span class="at">x =</span> Width, <span class="at">y =</span> <span class="fu">log</span>(Stay), <span class="at">color =</span> Year, <span class="at">fill =</span> Year)) <span class="sc">+</span></span>
-<span id="cb362-8"><a href="9.7-linear-regression-diagnostics.html#cb362-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb362-9"><a href="9.7-linear-regression-diagnostics.html#cb362-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> fit), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb362-10"><a href="9.7-linear-regression-diagnostics.html#cb362-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">color =</span> <span class="cn">NULL</span>), <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb362-11"><a href="9.7-linear-regression-diagnostics.html#cb362-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Hook width&quot;</span>) <span class="sc">+</span></span>
-<span id="cb362-12"><a href="9.7-linear-regression-diagnostics.html#cb362-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;log(Length of stay in days)&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-254-1.png" width="672" /></p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="9.7-linear-regression-diagnostics.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Need to get rid of a couple NA values</span></span>
+<span id="cb364-2"><a href="9.7-linear-regression-diagnostics.html#cb364-2" aria-hidden="true" tabindex="-1"></a>turts <span class="ot">&lt;-</span> <span class="fu">subset</span>(turtles, <span class="sc">!</span><span class="fu">is.na</span>(Width))</span>
+<span id="cb364-3"><a href="9.7-linear-regression-diagnostics.html#cb364-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb364-4"><a href="9.7-linear-regression-diagnostics.html#cb364-4" aria-hidden="true" tabindex="-1"></a>log_fit_width <span class="ot">&lt;-</span> <span class="fu">lm</span>( <span class="fu">log</span>(Stay) <span class="sc">~</span> Width, <span class="at">data =</span> turts)</span>
+<span id="cb364-5"><a href="9.7-linear-regression-diagnostics.html#cb364-5" aria-hidden="true" tabindex="-1"></a>turt_pred <span class="ot">&lt;-</span> <span class="fu">cbind</span>(turts, <span class="fu">predict</span>(log_fit_width, <span class="at">interval =</span> <span class="st">&#39;confidence&#39;</span>))</span>
+<span id="cb364-6"><a href="9.7-linear-regression-diagnostics.html#cb364-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb364-7"><a href="9.7-linear-regression-diagnostics.html#cb364-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(turt_pred, <span class="fu">aes</span>(<span class="at">x =</span> Width, <span class="at">y =</span> <span class="fu">log</span>(Stay), <span class="at">color =</span> Year, <span class="at">fill =</span> Year)) <span class="sc">+</span></span>
+<span id="cb364-8"><a href="9.7-linear-regression-diagnostics.html#cb364-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb364-9"><a href="9.7-linear-regression-diagnostics.html#cb364-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> fit), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb364-10"><a href="9.7-linear-regression-diagnostics.html#cb364-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">color =</span> <span class="cn">NULL</span>), <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb364-11"><a href="9.7-linear-regression-diagnostics.html#cb364-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Hook width&quot;</span>) <span class="sc">+</span></span>
+<span id="cb364-12"><a href="9.7-linear-regression-diagnostics.html#cb364-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;log(Length of stay in days)&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-240-1.png" width="672" /></p>
 <p>Surely this plot alone is evidence enough that we need to investigate confounding between hook <code>Width</code> and <code>Year</code> in any further investigation into this data set! Maybe with an ANCOVA?</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="9.7-linear-regression-diagnostics.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Need to get rid of a couple NA values</span></span>
-<span id="cb363-2"><a href="9.7-linear-regression-diagnostics.html#cb363-2" aria-hidden="true" tabindex="-1"></a>turts <span class="ot">&lt;-</span> <span class="fu">subset</span>(turtles, <span class="sc">!</span><span class="fu">is.na</span>(Width))</span>
-<span id="cb363-3"><a href="9.7-linear-regression-diagnostics.html#cb363-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb363-4"><a href="9.7-linear-regression-diagnostics.html#cb363-4" aria-hidden="true" tabindex="-1"></a>log_fit_width <span class="ot">&lt;-</span> <span class="fu">lm</span>( <span class="fu">log</span>(Stay) <span class="sc">~</span> Year <span class="sc">+</span> Width, <span class="at">data =</span> turts)</span>
-<span id="cb363-5"><a href="9.7-linear-regression-diagnostics.html#cb363-5" aria-hidden="true" tabindex="-1"></a>turt_pred <span class="ot">&lt;-</span> <span class="fu">cbind</span>(turts, <span class="fu">predict</span>(log_fit_width, <span class="at">interval =</span> <span class="st">&#39;confidence&#39;</span>))</span>
-<span id="cb363-6"><a href="9.7-linear-regression-diagnostics.html#cb363-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb363-7"><a href="9.7-linear-regression-diagnostics.html#cb363-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(turt_pred, </span>
-<span id="cb363-8"><a href="9.7-linear-regression-diagnostics.html#cb363-8" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Width, <span class="at">y =</span> <span class="fu">log</span>(Stay), <span class="at">color =</span> Year, <span class="at">fill =</span> Year)) <span class="sc">+</span></span>
-<span id="cb363-9"><a href="9.7-linear-regression-diagnostics.html#cb363-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb363-10"><a href="9.7-linear-regression-diagnostics.html#cb363-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> fit), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb363-11"><a href="9.7-linear-regression-diagnostics.html#cb363-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">color =</span> <span class="cn">NULL</span>), <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb363-12"><a href="9.7-linear-regression-diagnostics.html#cb363-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Hook width&quot;</span>) <span class="sc">+</span></span>
-<span id="cb363-13"><a href="9.7-linear-regression-diagnostics.html#cb363-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;log(Length of stay in days)&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="9.7-linear-regression-diagnostics.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Need to get rid of a couple NA values</span></span>
+<span id="cb365-2"><a href="9.7-linear-regression-diagnostics.html#cb365-2" aria-hidden="true" tabindex="-1"></a>turts <span class="ot">&lt;-</span> <span class="fu">subset</span>(turtles, <span class="sc">!</span><span class="fu">is.na</span>(Width))</span>
+<span id="cb365-3"><a href="9.7-linear-regression-diagnostics.html#cb365-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb365-4"><a href="9.7-linear-regression-diagnostics.html#cb365-4" aria-hidden="true" tabindex="-1"></a>log_fit_width <span class="ot">&lt;-</span> <span class="fu">lm</span>( <span class="fu">log</span>(Stay) <span class="sc">~</span> Year <span class="sc">+</span> Width, <span class="at">data =</span> turts)</span>
+<span id="cb365-5"><a href="9.7-linear-regression-diagnostics.html#cb365-5" aria-hidden="true" tabindex="-1"></a>turt_pred <span class="ot">&lt;-</span> <span class="fu">cbind</span>(turts, <span class="fu">predict</span>(log_fit_width, <span class="at">interval =</span> <span class="st">&#39;confidence&#39;</span>))</span>
+<span id="cb365-6"><a href="9.7-linear-regression-diagnostics.html#cb365-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb365-7"><a href="9.7-linear-regression-diagnostics.html#cb365-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(turt_pred, </span>
+<span id="cb365-8"><a href="9.7-linear-regression-diagnostics.html#cb365-8" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Width, <span class="at">y =</span> <span class="fu">log</span>(Stay), <span class="at">color =</span> Year, <span class="at">fill =</span> Year)) <span class="sc">+</span></span>
+<span id="cb365-9"><a href="9.7-linear-regression-diagnostics.html#cb365-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb365-10"><a href="9.7-linear-regression-diagnostics.html#cb365-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> fit), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb365-11"><a href="9.7-linear-regression-diagnostics.html#cb365-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">color =</span> <span class="cn">NULL</span>), <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb365-12"><a href="9.7-linear-regression-diagnostics.html#cb365-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Hook width&quot;</span>) <span class="sc">+</span></span>
+<span id="cb365-13"><a href="9.7-linear-regression-diagnostics.html#cb365-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;log(Length of stay in days)&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-241-1.png" width="672" /></p>
 <p>Holy crap…<strong>three lines</strong>. Where did the other two come from? Keep reading to find out in <a href="10-Chapter10.html#Chapter10">Chapter 10</a>.</p>
 <p>Notice that we still have not looked at the results of any of these models.</p>
 </div>
@@ -578,7 +577,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -619,7 +617,7 @@ gitbook.start({
 },
 "download": ["worstr.pdf", "worstr.epub"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -635,7 +633,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

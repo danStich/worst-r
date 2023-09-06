@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16.7 More diagnostics | The Worst Stats Text eveR</title>
   <meta name="description" content="16.7 More diagnostics | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16.7 More diagnostics | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -32,8 +31,8 @@
   
 <link rel="prev" href="16.6-running-a-bayesian-model-with-rstanarm.html"/>
 <link rel="next" href="16.8-bayesian-model-selection.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,9 +48,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -92,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -477,17 +476,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="20" data-path="20-Chapter20.html"><a href="20-Chapter20.html"><i class="fa fa-check"></i><b>20</b> Bayesian hierarchical GLM</a>
 <ul>
 <li class="chapter" data-level="20.1" data-path="20.1-intro-20.html"><a href="20.1-intro-20.html"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
-<li class="chapter" data-level="20.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression {#20-logistic}</a>
+<li class="chapter" data-level="20.2" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression</a>
 <ul>
-<li class="chapter" data-level="20.2.1" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-explanation-20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation {#20-logistic-data}</a></li>
-<li class="chapter" data-level="20.2.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-analysis-20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis {#20-logistic-analysis}</a></li>
-<li class="chapter" data-level="20.2.3" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#predictions-20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions {#20-logistic-preds}</a></li>
+<li class="chapter" data-level="20.2.1" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="20.2.2" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="20.2.3" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions</a></li>
 </ul></li>
-<li class="chapter" data-level="20.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models {#20-count}</a>
+<li class="chapter" data-level="20.3" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models</a>
 <ul>
-<li class="chapter" data-level="20.3.1" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
-<li class="chapter" data-level="20.3.2" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-analysis-20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis {#20-count-analysis}</a></li>
-<li class="chapter" data-level="20.3.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#predictions-20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions {#20-count-preds}</a></li>
+<li class="chapter" data-level="20.3.1" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
+<li class="chapter" data-level="20.3.2" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#id_20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis</a></li>
+<li class="chapter" data-level="20.3.3" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#id_20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions</a></li>
 </ul></li>
 <li class="chapter" data-level="20.4" data-path="20.4-next-20.html"><a href="20.4-next-20.html"><i class="fa fa-check"></i><b>20.4</b> Next steps</a></li>
 </ul></li>
@@ -511,33 +510,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="more-diagnostics" class="section level2" number="16.7">
-<h2><span class="header-section-number">16.7</span> More diagnostics</h2>
+<div id="more-diagnostics" class="section level2 hasAnchor" number="16.7">
+<h2><span class="header-section-number">16.7</span> More diagnostics<a href="16.7-more-diagnostics.html#more-diagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this section, we will examine some diagnostics to assess the convergence of our parameter estimates and identify any unusual trends in the chains we use for estimation. But, it takes a little while to get there.</p>
-<p>First, a brief foray into how these models are estimated. Basically all Bayesian estimation methods rely on some variant of Monte Carlo (random) sampling. Depending on the algorithm, we draw a parameter value, plug it into the model likelihood and evaluate the likelihood of the parameter value relative to the data collected, and then make some decision about whether or not to keep that estimate as part of the posterior distribution (our final parameter estimate). We do this thousands of times, and all of the parameter values that we keep become part of the posterior parameter estimate. We use computer algorithms to determine which parameters values are considered, how they are chosen and whether they should be retained. These algorithms rely on pseudo-random or guided walks called “Markov chains.” Collectively the approach is referred to as Markov Chain Monte Carlo estimation. For each <strong>iteration</strong> of the model, we retain one value of each parameter for each <strong>chain</strong>, and we run multiple chains (usually 3-4). We then assess model stability by examining how well the chains <em>mix</em> (<span class="math inline">\(\hat{r}\)</span>) and whether there are pathological issues related to autocorrelation between samples (<code>n_eff</code>). Stan and other software programs output each value of each parameter for each chain and each run of a Bayesian model. Therefore, instead of just getting a mean and 95% confidence interval, we get thousands of individual estimates that we can use to calculate whatever descriptive statistics or derived quantities we choose (e.g. Difference = post(Group A) - post(Group B)).</p>
-<div id="trace-plots" class="section level3" number="16.7.1">
-<h3><span class="header-section-number">16.7.1</span> Trace plots</h3>
+<p>First, a brief foray into how these models are estimated. Basically all Bayesian estimation methods rely on some variant of Monte Carlo (random) sampling. Depending on the algorithm, we draw a parameter value, plug it into the model likelihood and evaluate the likelihood of the parameter value relative to the data collected, and then make some decision about whether or not to keep that estimate as part of the posterior distribution (our final parameter estimate). We do this thousands of times, and all of the parameter values that we keep become part of the posterior parameter estimate. We use computer algorithms to determine which parameters values are considered, how they are chosen and whether they should be retained. These algorithms rely on pseudo-random or guided walks called “Markov chains”. Collectively the approach is referred to as Markov Chain Monte Carlo estimation. For each <strong>iteration</strong> of the model, we retain one value of each parameter for each <strong>chain</strong>, and we run multiple chains (usually 3-4). We then assess model stability by examining how well the chains <em>mix</em> (<span class="math inline">\(\hat{r}\)</span>) and whether there are pathological issues related to autocorrelation between samples (<code>n_eff</code>). Stan and other software programs output each value of each parameter for each chain and each run of a Bayesian model. Therefore, instead of just getting a mean and 95% confidence interval, we get thousands of individual estimates that we can use to calculate whatever descriptive statistics or derived quantities we choose (e.g. Difference = post(Group A) - post(Group B)).</p>
+<div id="trace-plots" class="section level3 hasAnchor" number="16.7.1">
+<h3><span class="header-section-number">16.7.1</span> Trace plots<a href="16.7-more-diagnostics.html#trace-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the plot below, the x-axes are model iteration number. Each point on a line shows the parameter value drawn for each chain (of 4 that are run by default) for each iteration that we ran the model (default = 4,000 runs). We can see that there is a high degree of overlap between the four chains, which should inspire some confidence because it means that all of the chains converged on a similar space in each panel (parameter) below.</p>
-<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="16.7-more-diagnostics.html#cb611-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span>
-<span id="cb611-2"><a href="16.7-more-diagnostics.html#cb611-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_trace</span>(cray_model, <span class="at">facet_args =</span> <span class="fu">list</span>(<span class="at">scales =</span> <span class="st">&quot;free&quot;</span>))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-436-1.png" width="576" /></p>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="16.7-more-diagnostics.html#cb613-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span>
+<span id="cb613-2"><a href="16.7-more-diagnostics.html#cb613-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_trace</span>(cray_model, <span class="at">facet_args =</span> <span class="fu">list</span>(<span class="at">scales =</span> <span class="st">&quot;free&quot;</span>))</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-422-1.png" width="576" /></p>
 </div>
-<div id="colinearity" class="section level3" number="16.7.2">
-<h3><span class="header-section-number">16.7.2</span> Colinearity</h3>
+<div id="colinearity" class="section level3 hasAnchor" number="16.7.2">
+<h3><span class="header-section-number">16.7.2</span> Colinearity<a href="16.7-more-diagnostics.html#colinearity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Next, we can take a look at the <strong>pairs plot</strong> to see whether there are any obvious correlations of concern between our parameters. As anticipated, everything looks okay here, except we do see that we have a pretty strong correlation between our intercept and slope parameters. This is not important for this specific analysis, but we would want to consider this if we were estimating slopes and intercepts independently for each population (<code>site</code>) in the data set.</p>
-<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="16.7-more-diagnostics.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_pairs</span>(</span>
-<span id="cb612-2"><a href="16.7-more-diagnostics.html#cb612-2" aria-hidden="true" tabindex="-1"></a>  cray_model,</span>
-<span id="cb612-3"><a href="16.7-more-diagnostics.html#cb612-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">np =</span> <span class="fu">nuts_params</span>(cray_model),</span>
-<span id="cb612-4"><a href="16.7-more-diagnostics.html#cb612-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">off_diag_args =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>)</span>
-<span id="cb612-5"><a href="16.7-more-diagnostics.html#cb612-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-437-1.png" width="672" /></p>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="16.7-more-diagnostics.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_pairs</span>(</span>
+<span id="cb614-2"><a href="16.7-more-diagnostics.html#cb614-2" aria-hidden="true" tabindex="-1"></a>  cray_model,</span>
+<span id="cb614-3"><a href="16.7-more-diagnostics.html#cb614-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">np =</span> <span class="fu">nuts_params</span>(cray_model),</span>
+<span id="cb614-4"><a href="16.7-more-diagnostics.html#cb614-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">off_diag_args =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>)</span>
+<span id="cb614-5"><a href="16.7-more-diagnostics.html#cb614-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-423-1.png" width="672" /></p>
 </div>
-<div id="divergence" class="section level3" number="16.7.3">
-<h3><span class="header-section-number">16.7.3</span> Divergence</h3>
-<p>Not like the movies, like “does not follow expectation.” Divergent transitions are an indication that something has gone wrong in your model. You can read more about them here someday, once you understand the first three paragraphs in this section of the Stan Manual [(Chapter 15.5)] (<a href="https://mc-stan.org/docs/2_25/reference-manual/divergent-transitions.html" class="uri">https://mc-stan.org/docs/2_25/reference-manual/divergent-transitions.html</a>). For now, understand that divergence in this sense is a bad thing and it probably means you have a problem with the model that you’ve created. It doesn’t mean you have to throw your data in the garbage. There are some tools in Stan to account for this. But, this is usually a good sign that there is at least something in your model you could change to make it easier to estimate. This could mean changing the likelihood, transforming the data, or re-casting it in another way. Even though that can be scary, we still need to take a look!</p>
+<div id="divergence" class="section level3 hasAnchor" number="16.7.3">
+<h3><span class="header-section-number">16.7.3</span> Divergence<a href="16.7-more-diagnostics.html#divergence" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Not like the movies, like “does not follow expectation”. Divergent transitions are an indication that something has gone wrong in your model. You can read more about them here someday, once you understand the first three paragraphs in this section of the Stan Manual [(Chapter 15.5)] (<a href="https://mc-stan.org/docs/2_25/reference-manual/divergent-transitions.html" class="uri">https://mc-stan.org/docs/2_25/reference-manual/divergent-transitions.html</a>). For now, understand that divergence in this sense is a bad thing and it probably means you have a problem with the model that you’ve created. It doesn’t mean you have to throw your data in the garbage. There are some tools in Stan to account for this. But, this is usually a good sign that there is at least something in your model you could change to make it easier to estimate. This could mean changing the likelihood, transforming the data, or re-casting it in another way. Even though that can be scary, we still need to take a look!</p>
 <p>By default, models fit using RStan will throw a warning if there are divergent transitions. You can get a quick of whether or not this is an issue like so:</p>
-<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="16.7-more-diagnostics.html#cb613-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_nuts_divergence</span>(<span class="fu">nuts_params</span>(cray_model), <span class="fu">log_posterior</span>(cray_model))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-438-1.png" width="672" /></p>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="16.7-more-diagnostics.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_nuts_divergence</span>(<span class="fu">nuts_params</span>(cray_model), <span class="fu">log_posterior</span>(cray_model))</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-424-1.png" width="672" /></p>
 <p>Again, no problems here as far as we are concerned. We will address any further issues related to divergence as they arise later in the textbook or class.</p>
 </div>
 </div>
@@ -551,7 +550,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -592,7 +590,7 @@ gitbook.start({
 },
 "download": ["worstr.pdf", "worstr.epub"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -608,7 +606,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
