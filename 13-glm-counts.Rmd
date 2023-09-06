@@ -221,7 +221,7 @@ Here, we can see that our residual plots indicate a pretty drastic improvement.
 
 Now that we are finally happy with our residual plots (wow, that took a lot longer than fitting any of the models!) we can make a plot of our predictions against the raw data to see how we did.
 
-Let's start with the count/absence component that we fit in `step1`:
+Let's start with the presence/absence component that we fit in `step1`:
 
 Make some predictions from the model using a sequence of new values of `mass` based on what we observed in our data set:
 ```{r}

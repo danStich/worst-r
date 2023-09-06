@@ -122,7 +122,7 @@ age_6_roes_measured <- subset(am_shad,
                               )
 ```
 
-Both do the same thing, but we'll see later that using functions lik `subset` or `filter` is preferable if we plan on chaining together a bunch of data manipulation commands using pipes (`%>%` or `|>`).
+Both do the same thing, but we'll see later that using functions like `subset` or `filter` is preferable if we plan on chaining together a bunch of data manipulation commands using pipes (`%>%` or `|>`).
 
 Next, we might be interested to know how many fish we have represented in each `Sex`. We can find this out using the `table` function in base R:
 ```{r}
