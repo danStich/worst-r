@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>10.2 Two-way ANOVA | The Worst Stats Text eveR</title>
   <meta name="description" content="10.2 Two-way ANOVA | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="10.2 Two-way ANOVA | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -32,8 +31,8 @@
   
 <link rel="prev" href="10.1-one-way-anova.html"/>
 <link rel="next" href="10.3-linear-regression.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,9 +48,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -92,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -477,17 +476,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="20" data-path="20-Chapter20.html"><a href="20-Chapter20.html"><i class="fa fa-check"></i><b>20</b> Bayesian hierarchical GLM</a>
 <ul>
 <li class="chapter" data-level="20.1" data-path="20.1-intro-20.html"><a href="20.1-intro-20.html"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
-<li class="chapter" data-level="20.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression {#20-logistic}</a>
+<li class="chapter" data-level="20.2" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression</a>
 <ul>
-<li class="chapter" data-level="20.2.1" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-explanation-20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation {#20-logistic-data}</a></li>
-<li class="chapter" data-level="20.2.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-analysis-20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis {#20-logistic-analysis}</a></li>
-<li class="chapter" data-level="20.2.3" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#predictions-20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions {#20-logistic-preds}</a></li>
+<li class="chapter" data-level="20.2.1" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="20.2.2" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="20.2.3" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions</a></li>
 </ul></li>
-<li class="chapter" data-level="20.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models {#20-count}</a>
+<li class="chapter" data-level="20.3" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models</a>
 <ul>
-<li class="chapter" data-level="20.3.1" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
-<li class="chapter" data-level="20.3.2" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-analysis-20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis {#20-count-analysis}</a></li>
-<li class="chapter" data-level="20.3.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#predictions-20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions {#20-count-preds}</a></li>
+<li class="chapter" data-level="20.3.1" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
+<li class="chapter" data-level="20.3.2" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#id_20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis</a></li>
+<li class="chapter" data-level="20.3.3" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#id_20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions</a></li>
 </ul></li>
 <li class="chapter" data-level="20.4" data-path="20.4-next-20.html"><a href="20.4-next-20.html"><i class="fa fa-check"></i><b>20.4</b> Next steps</a></li>
 </ul></li>
@@ -511,20 +510,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="two-way-anova" class="section level2" number="10.2">
-<h2><span class="header-section-number">10.2</span> Two-way ANOVA</h2>
+<div id="two-way-anova" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Two-way ANOVA<a href="10.2-two-way-anova.html#two-way-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Two-way ANOVA works the same way as one-way ANOVA, except that now we have multiple dummy-coded variables tied up in the intercept. For this example, we will consider a new data set. These data are from an experiment in Restorative Dentistry and Endodontics that was published in 2014. The study examines effects of drying light and resin type on the strength of a bonding resin for teeth.</p>
 <p>The full citation for the paper is:</p>
 <p>Kim, H-Y. 2014. Statistical notes for clinical researchers: Two-way analysis of variance (ANOVA)-exploring possible interaction between factors. Restorative Dentistry and Endodontics 39(2):143-147.</p>
 <p>Here are the data:</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="10.2-two-way-anova.html#cb391-1" aria-hidden="true" tabindex="-1"></a>dental <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;data/dental.csv&#39;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<div id="main-effects-10" class="section level3" number="10.2.1">
-<h3><span class="header-section-number">10.2.1</span> Main effects model</h3>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="10.2-two-way-anova.html#cb393-1" aria-hidden="true" tabindex="-1"></a>dental <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;data/dental.csv&#39;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div id="main-effects-10" class="section level3 hasAnchor" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Main effects model<a href="10.2-two-way-anova.html#main-effects-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We will start by fitting a linear model to the data that tests effects of <code>lights</code> and <code>resin</code> on adhesive strength <code>mpa</code>. Since both <code>lights</code> and <code>resin</code> are categorical, this is a two-way ANOVA. We use the <code>+</code> to imply additive, or main-effects only.</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="10.2-two-way-anova.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We are looking only at main effects for now</span></span>
-<span id="cb392-2"><a href="10.2-two-way-anova.html#cb392-2" aria-hidden="true" tabindex="-1"></a>dental.mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpa <span class="sc">~</span> lights <span class="sc">+</span> resin, <span class="at">data =</span> dental)</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="10.2-two-way-anova.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We are looking only at main effects for now</span></span>
+<span id="cb394-2"><a href="10.2-two-way-anova.html#cb394-2" aria-hidden="true" tabindex="-1"></a>dental.mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpa <span class="sc">~</span> lights <span class="sc">+</span> resin, <span class="at">data =</span> dental)</span></code></pre></div>
 <p>If we make an ANOVA table for this two-way ANOVA, we see that there are significant main effects of resin type but not lights used for drying.</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="10.2-two-way-anova.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(dental.mod)</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="10.2-two-way-anova.html#cb395-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(dental.mod)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: mpa
@@ -535,7 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>We can also examine the model coefficients for a closer look at what this means.</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="10.2-two-way-anova.html#cb395-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dental.mod)</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="10.2-two-way-anova.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dental.mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mpa ~ lights + resin, data = dental)
@@ -559,9 +558,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## F-statistic: 9.958 on 4 and 75 DF,  p-value: 1.616e-06</code></pre>
 <p>Remember, in our data we had 2 kinds of lights, and 4 kinds of resin. But, here we have one less of each! Why is this? It is because of the way categorical variables are dummy coded for linear models. But, now we have two separate sets of adjustments, so one level of each variable is wrapped up in the estimate for our intercept (<code>lightsHalogen</code> and <code>resinA</code>).</p>
 <p>When in doubt, have a look at the model matrix:</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="10.2-two-way-anova.html#cb397-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(dental.mod)</span>
-<span id="cb397-2"><a href="10.2-two-way-anova.html#cb397-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb397-3"><a href="10.2-two-way-anova.html#cb397-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="10.2-two-way-anova.html#cb399-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(dental.mod)</span>
+<span id="cb399-2"><a href="10.2-two-way-anova.html#cb399-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb399-3"><a href="10.2-two-way-anova.html#cb399-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code></pre></div>
 <pre><code>##   (Intercept) lightsLED resinB resinC resinD
 ## 1           1         0      0      0      0
 ## 2           1         0      0      0      0
@@ -572,45 +571,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Right now, you might be a little confused about how to calculate and show the effect size for these variables. If you are not, you should probably take a more advanced stats class and get a better book.</p>
 <p>One reasonable option might be to summarize the data by the means and plot the means, but we already decided that we are going to plot our model predictions against the raw data following the form of the statistical model. Rather than go throught the math again, let’s just use the built-in <code>predict()</code> function that I know you now appreciate!</p>
 <p>First, we need to do a little magic to get the group combinations for <code>lights</code> and <code>resin</code> into a data.frame that we can use for prediction.</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="10.2-two-way-anova.html#cb399-1" aria-hidden="true" tabindex="-1"></a>groups <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb399-2"><a href="10.2-two-way-anova.html#cb399-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(dental, <span class="fu">unique</span>(<span class="fu">data.frame</span>(lights, resin)))</span>
-<span id="cb399-3"><a href="10.2-two-way-anova.html#cb399-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="10.2-two-way-anova.html#cb401-1" aria-hidden="true" tabindex="-1"></a>groups <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb401-2"><a href="10.2-two-way-anova.html#cb401-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(dental, <span class="fu">unique</span>(<span class="fu">data.frame</span>(lights, resin)))</span>
+<span id="cb401-3"><a href="10.2-two-way-anova.html#cb401-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Now we can make our predictions:</p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="10.2-two-way-anova.html#cb400-1" aria-hidden="true" tabindex="-1"></a>dental_y_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(</span>
-<span id="cb400-2"><a href="10.2-two-way-anova.html#cb400-2" aria-hidden="true" tabindex="-1"></a>  dental.mod, <span class="at">newdata =</span> groups, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span></span>
-<span id="cb400-3"><a href="10.2-two-way-anova.html#cb400-3" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb400-4"><a href="10.2-two-way-anova.html#cb400-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb400-5"><a href="10.2-two-way-anova.html#cb400-5" aria-hidden="true" tabindex="-1"></a>pred_dental <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(groups, dental_y_pred)</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="10.2-two-way-anova.html#cb402-1" aria-hidden="true" tabindex="-1"></a>dental_y_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(</span>
+<span id="cb402-2"><a href="10.2-two-way-anova.html#cb402-2" aria-hidden="true" tabindex="-1"></a>  dental.mod, <span class="at">newdata =</span> groups, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span></span>
+<span id="cb402-3"><a href="10.2-two-way-anova.html#cb402-3" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb402-4"><a href="10.2-two-way-anova.html#cb402-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb402-5"><a href="10.2-two-way-anova.html#cb402-5" aria-hidden="true" tabindex="-1"></a>pred_dental <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(groups, dental_y_pred)</span></code></pre></div>
 <p>And now we can plot it just like we did for ANOVA:</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="10.2-two-way-anova.html#cb401-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dental, <span class="fu">aes</span>(<span class="at">x =</span> lights, <span class="at">y =</span> mpa, <span class="at">color =</span> lights)) <span class="sc">+</span></span>
-<span id="cb401-2"><a href="10.2-two-way-anova.html#cb401-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">fill=</span>lights), <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb401-3"><a href="10.2-two-way-anova.html#cb401-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">width =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
-<span id="cb401-4"><a href="10.2-two-way-anova.html#cb401-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lights, <span class="at">y =</span> fit), </span>
-<span id="cb401-5"><a href="10.2-two-way-anova.html#cb401-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> pred_dental,</span>
-<span id="cb401-6"><a href="10.2-two-way-anova.html#cb401-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
-<span id="cb401-7"><a href="10.2-two-way-anova.html#cb401-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb401-8"><a href="10.2-two-way-anova.html#cb401-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb401-9"><a href="10.2-two-way-anova.html#cb401-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> lights, <span class="at">xend =</span> lights, <span class="at">y =</span> lwr, <span class="at">yend =</span> upr),</span>
-<span id="cb401-10"><a href="10.2-two-way-anova.html#cb401-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> pred_dental,</span>
-<span id="cb401-11"><a href="10.2-two-way-anova.html#cb401-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&#39;black&#39;</span>) <span class="sc">+</span>  </span>
-<span id="cb401-12"><a href="10.2-two-way-anova.html#cb401-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>resin) <span class="sc">+</span></span>
-<span id="cb401-13"><a href="10.2-two-way-anova.html#cb401-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb401-14"><a href="10.2-two-way-anova.html#cb401-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb401-15"><a href="10.2-two-way-anova.html#cb401-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Treatment group&quot;</span>) <span class="sc">+</span></span>
-<span id="cb401-16"><a href="10.2-two-way-anova.html#cb401-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb401-17"><a href="10.2-two-way-anova.html#cb401-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Group&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-283-1.png" width="672" /></p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="10.2-two-way-anova.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dental, <span class="fu">aes</span>(<span class="at">x =</span> lights, <span class="at">y =</span> mpa, <span class="at">color =</span> lights)) <span class="sc">+</span></span>
+<span id="cb403-2"><a href="10.2-two-way-anova.html#cb403-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">fill=</span>lights), <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb403-3"><a href="10.2-two-way-anova.html#cb403-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">width =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb403-4"><a href="10.2-two-way-anova.html#cb403-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lights, <span class="at">y =</span> fit), </span>
+<span id="cb403-5"><a href="10.2-two-way-anova.html#cb403-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> pred_dental,</span>
+<span id="cb403-6"><a href="10.2-two-way-anova.html#cb403-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb403-7"><a href="10.2-two-way-anova.html#cb403-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb403-8"><a href="10.2-two-way-anova.html#cb403-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb403-9"><a href="10.2-two-way-anova.html#cb403-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> lights, <span class="at">xend =</span> lights, <span class="at">y =</span> lwr, <span class="at">yend =</span> upr),</span>
+<span id="cb403-10"><a href="10.2-two-way-anova.html#cb403-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> pred_dental,</span>
+<span id="cb403-11"><a href="10.2-two-way-anova.html#cb403-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&#39;black&#39;</span>) <span class="sc">+</span>  </span>
+<span id="cb403-12"><a href="10.2-two-way-anova.html#cb403-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>resin) <span class="sc">+</span></span>
+<span id="cb403-13"><a href="10.2-two-way-anova.html#cb403-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb403-14"><a href="10.2-two-way-anova.html#cb403-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb403-15"><a href="10.2-two-way-anova.html#cb403-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Treatment group&quot;</span>) <span class="sc">+</span></span>
+<span id="cb403-16"><a href="10.2-two-way-anova.html#cb403-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb403-17"><a href="10.2-two-way-anova.html#cb403-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Group&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-269-1.png" width="672" /></p>
 <p>Now, this looks really nice, but there is definitely something funky going on with <code>Halogen</code> in panel D in the figure above! We have clearly done a poor job of predicting this group. The reason for this, in this case, is because we need to include an <strong>interaction</strong> term in our model, which makes things even grosser in terms of the math, but is easy to do in R. Of course, if we had been doing a good job of data exploration and residual analysis, we would have noticed this before making predictive plots…</p>
 </div>
-<div id="interactions" class="section level3" number="10.2.2">
-<h3><span class="header-section-number">10.2.2</span> Interactions</h3>
+<div id="interactions" class="section level3 hasAnchor" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> Interactions<a href="10.2-two-way-anova.html#interactions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To make a model that includes an interaction between <code>lights</code> and <code>resin</code> in the <code>dental</code> data, we will need to go all the way back to our model fitting process.</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="10.2-two-way-anova.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The &quot;*&quot; operator is shorthand for what we want to do</span></span>
-<span id="cb402-2"><a href="10.2-two-way-anova.html#cb402-2" aria-hidden="true" tabindex="-1"></a><span class="co"># here - more of an &quot;advanced&quot; stats topic</span></span>
-<span id="cb402-3"><a href="10.2-two-way-anova.html#cb402-3" aria-hidden="true" tabindex="-1"></a>dental_int <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpa <span class="sc">~</span> lights <span class="sc">*</span> resin, <span class="at">data =</span> dental)</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="10.2-two-way-anova.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The &quot;*&quot; operator is shorthand for what we want to do</span></span>
+<span id="cb404-2"><a href="10.2-two-way-anova.html#cb404-2" aria-hidden="true" tabindex="-1"></a><span class="co"># here - more of an &quot;advanced&quot; stats topic</span></span>
+<span id="cb404-3"><a href="10.2-two-way-anova.html#cb404-3" aria-hidden="true" tabindex="-1"></a>dental_int <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpa <span class="sc">~</span> lights <span class="sc">*</span> resin, <span class="at">data =</span> dental)</span></code></pre></div>
 <p>We just have three more columns in our model matrix to distinguish between coefficients for <code>resin</code> that correspond to <code>LED</code> and coefficients for <code>resin</code> that correspond to <code>Halogen</code>. It is at this point that not even I want to do the math by hand!</p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="10.2-two-way-anova.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Have a look on your own:</span></span>
-<span id="cb403-2"><a href="10.2-two-way-anova.html#cb403-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">model.matrix</span>(dental_int))</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="10.2-two-way-anova.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Have a look on your own:</span></span>
+<span id="cb405-2"><a href="10.2-two-way-anova.html#cb405-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">model.matrix</span>(dental_int))</span></code></pre></div>
 <pre><code>##   (Intercept) lightsLED resinB resinC resinD lightsLED:resinB
 ## 1           1         0      0      0      0                0
 ## 2           1         0      0      0      0                0
@@ -627,32 +626,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6                0                0</code></pre>
 <p>The process for making predictions, thankfully, is identical to two-way ANOVA in R.</p>
 <p>Using the groups we made for the main-effects model:</p>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="10.2-two-way-anova.html#cb405-1" aria-hidden="true" tabindex="-1"></a>int_y_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(</span>
-<span id="cb405-2"><a href="10.2-two-way-anova.html#cb405-2" aria-hidden="true" tabindex="-1"></a>  dental_int, <span class="at">newdata =</span> groups, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span></span>
-<span id="cb405-3"><a href="10.2-two-way-anova.html#cb405-3" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb405-4"><a href="10.2-two-way-anova.html#cb405-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb405-5"><a href="10.2-two-way-anova.html#cb405-5" aria-hidden="true" tabindex="-1"></a>int_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(groups, int_y_pred)</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="10.2-two-way-anova.html#cb407-1" aria-hidden="true" tabindex="-1"></a>int_y_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(</span>
+<span id="cb407-2"><a href="10.2-two-way-anova.html#cb407-2" aria-hidden="true" tabindex="-1"></a>  dental_int, <span class="at">newdata =</span> groups, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span></span>
+<span id="cb407-3"><a href="10.2-two-way-anova.html#cb407-3" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb407-4"><a href="10.2-two-way-anova.html#cb407-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb407-5"><a href="10.2-two-way-anova.html#cb407-5" aria-hidden="true" tabindex="-1"></a>int_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(groups, int_y_pred)</span></code></pre></div>
 <p>And now we plot the predictions against the raw data changing only the name of the data containing our predictions, <code>int_pred</code>.</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="10.2-two-way-anova.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dental, <span class="fu">aes</span>(<span class="at">x =</span> lights, <span class="at">y =</span> mpa, <span class="at">color =</span> lights)) <span class="sc">+</span></span>
-<span id="cb406-2"><a href="10.2-two-way-anova.html#cb406-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">fill=</span>lights), <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb406-3"><a href="10.2-two-way-anova.html#cb406-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">width =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
-<span id="cb406-4"><a href="10.2-two-way-anova.html#cb406-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lights, <span class="at">y =</span> fit), </span>
-<span id="cb406-5"><a href="10.2-two-way-anova.html#cb406-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> int_pred,</span>
-<span id="cb406-6"><a href="10.2-two-way-anova.html#cb406-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
-<span id="cb406-7"><a href="10.2-two-way-anova.html#cb406-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb406-8"><a href="10.2-two-way-anova.html#cb406-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb406-9"><a href="10.2-two-way-anova.html#cb406-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> lights, <span class="at">xend =</span> lights, <span class="at">y =</span> lwr, <span class="at">yend =</span> upr),</span>
-<span id="cb406-10"><a href="10.2-two-way-anova.html#cb406-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> int_pred,</span>
-<span id="cb406-11"><a href="10.2-two-way-anova.html#cb406-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&#39;black&#39;</span>) <span class="sc">+</span>  </span>
-<span id="cb406-12"><a href="10.2-two-way-anova.html#cb406-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>resin) <span class="sc">+</span></span>
-<span id="cb406-13"><a href="10.2-two-way-anova.html#cb406-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb406-14"><a href="10.2-two-way-anova.html#cb406-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb406-15"><a href="10.2-two-way-anova.html#cb406-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Treatment group&quot;</span>) <span class="sc">+</span></span>
-<span id="cb406-16"><a href="10.2-two-way-anova.html#cb406-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb406-17"><a href="10.2-two-way-anova.html#cb406-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Group&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-287-1.png" width="672" /></p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="10.2-two-way-anova.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dental, <span class="fu">aes</span>(<span class="at">x =</span> lights, <span class="at">y =</span> mpa, <span class="at">color =</span> lights)) <span class="sc">+</span></span>
+<span id="cb408-2"><a href="10.2-two-way-anova.html#cb408-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">fill=</span>lights), <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb408-3"><a href="10.2-two-way-anova.html#cb408-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">width =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb408-4"><a href="10.2-two-way-anova.html#cb408-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lights, <span class="at">y =</span> fit), </span>
+<span id="cb408-5"><a href="10.2-two-way-anova.html#cb408-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> int_pred,</span>
+<span id="cb408-6"><a href="10.2-two-way-anova.html#cb408-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
+<span id="cb408-7"><a href="10.2-two-way-anova.html#cb408-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb408-8"><a href="10.2-two-way-anova.html#cb408-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb408-9"><a href="10.2-two-way-anova.html#cb408-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> lights, <span class="at">xend =</span> lights, <span class="at">y =</span> lwr, <span class="at">yend =</span> upr),</span>
+<span id="cb408-10"><a href="10.2-two-way-anova.html#cb408-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> int_pred,</span>
+<span id="cb408-11"><a href="10.2-two-way-anova.html#cb408-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&#39;black&#39;</span>) <span class="sc">+</span>  </span>
+<span id="cb408-12"><a href="10.2-two-way-anova.html#cb408-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>resin) <span class="sc">+</span></span>
+<span id="cb408-13"><a href="10.2-two-way-anova.html#cb408-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb408-14"><a href="10.2-two-way-anova.html#cb408-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb408-15"><a href="10.2-two-way-anova.html#cb408-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Treatment group&quot;</span>) <span class="sc">+</span></span>
+<span id="cb408-16"><a href="10.2-two-way-anova.html#cb408-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb408-17"><a href="10.2-two-way-anova.html#cb408-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Group&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
 <p>You should see below that <strong>all</strong> of our means match up much better with the observed data in the violins. And, if you go back to the ANOVA output for this model you will see that the interaction term is significant even though <code>lights</code> still is not on it’s own. In coming chapters, we’ll talk about how to design and compare multiple models like these to compare meaningful biological hypotheses against one another.</p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="10.2-two-way-anova.html#cb407-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(dental_int)</span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="10.2-two-way-anova.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(dental_int)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: mpa
@@ -676,7 +675,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -717,7 +715,7 @@ gitbook.start({
 },
 "download": ["worstr.pdf", "worstr.epub"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -733,7 +731,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

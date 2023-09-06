@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11.6 Model validation | The Worst Stats Text eveR</title>
   <meta name="description" content="11.6 Model validation | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11.6 Model validation | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -32,8 +31,8 @@
   
 <link rel="prev" href="11.5-a-priori.html"/>
 <link rel="next" href="11.7-next11.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,9 +48,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -92,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -477,17 +476,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="20" data-path="20-Chapter20.html"><a href="20-Chapter20.html"><i class="fa fa-check"></i><b>20</b> Bayesian hierarchical GLM</a>
 <ul>
 <li class="chapter" data-level="20.1" data-path="20.1-intro-20.html"><a href="20.1-intro-20.html"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
-<li class="chapter" data-level="20.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression {#20-logistic}</a>
+<li class="chapter" data-level="20.2" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html"><i class="fa fa-check"></i><b>20.2</b> Logistic regression</a>
 <ul>
-<li class="chapter" data-level="20.2.1" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-explanation-20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation {#20-logistic-data}</a></li>
-<li class="chapter" data-level="20.2.2" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#data-analysis-20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis {#20-logistic-analysis}</a></li>
-<li class="chapter" data-level="20.2.3" data-path="20.2-logistic-regression-20-logistic.html"><a href="20.2-logistic-regression-20-logistic.html#predictions-20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions {#20-logistic-preds}</a></li>
+<li class="chapter" data-level="20.2.1" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-data"><i class="fa fa-check"></i><b>20.2.1</b> Data Explanation</a></li>
+<li class="chapter" data-level="20.2.2" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-analysis"><i class="fa fa-check"></i><b>20.2.2</b> Data analysis</a></li>
+<li class="chapter" data-level="20.2.3" data-path="20.2-id_20-logistic.html"><a href="20.2-id_20-logistic.html#id_20-logistic-preds"><i class="fa fa-check"></i><b>20.2.3</b> Predictions</a></li>
 </ul></li>
-<li class="chapter" data-level="20.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models {#20-count}</a>
+<li class="chapter" data-level="20.3" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html"><i class="fa fa-check"></i><b>20.3</b> Count models</a>
 <ul>
-<li class="chapter" data-level="20.3.1" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
-<li class="chapter" data-level="20.3.2" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#data-analysis-20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis {#20-count-analysis}</a></li>
-<li class="chapter" data-level="20.3.3" data-path="20.3-count-models-20-count.html"><a href="20.3-count-models-20-count.html#predictions-20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions {#20-count-preds}</a></li>
+<li class="chapter" data-level="20.3.1" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#data-explanation-20-count-data"><i class="fa fa-check"></i><b>20.3.1</b> Data explanation {20-count-data}</a></li>
+<li class="chapter" data-level="20.3.2" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#id_20-count-analysis"><i class="fa fa-check"></i><b>20.3.2</b> Data analysis</a></li>
+<li class="chapter" data-level="20.3.3" data-path="20.3-id_20-count.html"><a href="20.3-id_20-count.html#id_20-count-preds"><i class="fa fa-check"></i><b>20.3.3</b> Predictions</a></li>
 </ul></li>
 <li class="chapter" data-level="20.4" data-path="20.4-next-20.html"><a href="20.4-next-20.html"><i class="fa fa-check"></i><b>20.4</b> Next steps</a></li>
 </ul></li>
@@ -511,77 +510,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="model-validation" class="section level2" number="11.6">
-<h2><span class="header-section-number">11.6</span> Model validation</h2>
+<div id="model-validation" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> Model validation<a href="11.6-model-validation.html#model-validation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Once we have selected a best model, or a set of explanatory variables that we want to consider in our analysis, it is important that we validate the model when possible. In truth, comparison of the validity of multiple models can even be a gold-standard method for model selection in itself (e.g. LOO-IC), but we are not going to go there this semester because it would require a much richer understanding of programming than we can achieve in a week.</p>
 <p>Model validation is the use of external data, or subsets of data that we have set aside to assess the predictive ability of our models with data that were not used to estimate the parameters. That is, we can use new data to test how well our model works for making predictions about the phenomenon of interest. Pretty cool, I know!</p>
 <p>There are lots of different methods for model validation, most of which use some of your data for fitting (or <strong>training</strong>) the model and then saves some of the data for predicting new observations based on your model parameters (<strong>testing</strong>). The most common form of model validation is called cross-validation.</p>
 <p>Very generally speaking, there are a large (near-infinite) number of ways to do model validation based on how you split up your data set and how you choose to evaluate predictions. This <a href="http://machinelearningmastery.com/how-to-estimate-model-accuracy-in-r-using-the-caret-package/">blog</a> gives a nice overview of these methods with the <code>iris</code> data set in R using the <code>caret</code> package. We’ll write a little code so you can see how it works, though.</p>
-<div id="leave-one-out-cross-validation" class="section level3" number="11.6.1">
-<h3><span class="header-section-number">11.6.1</span> Leave-one-out cross validation</h3>
+<div id="leave-one-out-cross-validation" class="section level3 hasAnchor" number="11.6.1">
+<h3><span class="header-section-number">11.6.1</span> Leave-one-out cross validation<a href="11.6-model-validation.html#leave-one-out-cross-validation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We will do some manual cross validation here to demonstrate the general procedure. In order to do that, we will use a “loop” to repeat the process over and over again. For each iteration (<code>i</code>), we will choose a subset of the <code>swiss</code> data to use for training and set the rest aside for comparing to our predictions. Then, we will fit the education model and store the result. Finally, in each iteration, we will store the training data and the predictions in separate lists that we can then use to visualize the results of our model validation. For this example, we will use leave-one-out (LOO) cross validation, but other methods such as “k-fold” that use specified chunks of data are also common. I just prefer LOO, especially because you are likely to run into this one in the near future as it becomes increasingly easy to use and increasingly useful for model comparison via LOO-IC in Bayesian statistics.</p>
 <p>First, we need to make a couple of empty vectors to hold our training data and our predictions for each iteration of our cross-validation loop. We define <code>n</code> as the number of rows in the data and will use this as the total number of iterations so that each data point gets left out of the data set exactly once in the process.</p>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="11.6-model-validation.html#cb463-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of rows in the data set</span></span>
-<span id="cb463-2"><a href="11.6-model-validation.html#cb463-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Also the number of times the for loop will run</span></span>
-<span id="cb463-3"><a href="11.6-model-validation.html#cb463-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(swiss)</span>
-<span id="cb463-4"><a href="11.6-model-validation.html#cb463-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb463-5"><a href="11.6-model-validation.html#cb463-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Will hold observation of Fertility withheld for each iteration</span></span>
-<span id="cb463-6"><a href="11.6-model-validation.html#cb463-6" aria-hidden="true" tabindex="-1"></a>fert_obs <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;numeric&quot;</span>, <span class="at">length =</span> n)</span>
-<span id="cb463-7"><a href="11.6-model-validation.html#cb463-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb463-8"><a href="11.6-model-validation.html#cb463-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Will hold observation of Education withheld for each iteration</span></span>
-<span id="cb463-9"><a href="11.6-model-validation.html#cb463-9" aria-hidden="true" tabindex="-1"></a>ed_obs <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;numeric&quot;</span>, <span class="at">length =</span> n)</span>
-<span id="cb463-10"><a href="11.6-model-validation.html#cb463-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb463-11"><a href="11.6-model-validation.html#cb463-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Will hold our prediction for each iteration</span></span>
-<span id="cb463-12"><a href="11.6-model-validation.html#cb463-12" aria-hidden="true" tabindex="-1"></a>fert_pred <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;numeric&quot;</span>, <span class="at">length =</span> n)</span></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="11.6-model-validation.html#cb465-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of rows in the data set</span></span>
+<span id="cb465-2"><a href="11.6-model-validation.html#cb465-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Also the number of times the for loop will run</span></span>
+<span id="cb465-3"><a href="11.6-model-validation.html#cb465-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(swiss)</span>
+<span id="cb465-4"><a href="11.6-model-validation.html#cb465-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb465-5"><a href="11.6-model-validation.html#cb465-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Will hold observation of Fertility withheld for each iteration</span></span>
+<span id="cb465-6"><a href="11.6-model-validation.html#cb465-6" aria-hidden="true" tabindex="-1"></a>fert_obs <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;numeric&quot;</span>, <span class="at">length =</span> n)</span>
+<span id="cb465-7"><a href="11.6-model-validation.html#cb465-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb465-8"><a href="11.6-model-validation.html#cb465-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Will hold observation of Education withheld for each iteration</span></span>
+<span id="cb465-9"><a href="11.6-model-validation.html#cb465-9" aria-hidden="true" tabindex="-1"></a>ed_obs <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;numeric&quot;</span>, <span class="at">length =</span> n)</span>
+<span id="cb465-10"><a href="11.6-model-validation.html#cb465-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb465-11"><a href="11.6-model-validation.html#cb465-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Will hold our prediction for each iteration</span></span>
+<span id="cb465-12"><a href="11.6-model-validation.html#cb465-12" aria-hidden="true" tabindex="-1"></a>fert_pred <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;numeric&quot;</span>, <span class="at">length =</span> n)</span></code></pre></div>
 <p>Now, drop one data point, fit the model, and predict the missing data point one row at a time until you have done them all.</p>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="11.6-model-validation.html#cb464-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeat this for each row of the data set</span></span>
-<span id="cb464-2"><a href="11.6-model-validation.html#cb464-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from 1 to n until we have left each row out</span></span>
-<span id="cb464-3"><a href="11.6-model-validation.html#cb464-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
-<span id="cb464-4"><a href="11.6-model-validation.html#cb464-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb464-5"><a href="11.6-model-validation.html#cb464-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sample the data, leaving out the ith row</span></span>
-<span id="cb464-6"><a href="11.6-model-validation.html#cb464-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># These will be our &#39;training data&#39;</span></span>
-<span id="cb464-7"><a href="11.6-model-validation.html#cb464-7" aria-hidden="true" tabindex="-1"></a>  data_train <span class="ot">&lt;-</span> swiss[<span class="sc">-</span>i, ]</span>
-<span id="cb464-8"><a href="11.6-model-validation.html#cb464-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb464-9"><a href="11.6-model-validation.html#cb464-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># These will be the data we use for prediction</span></span>
-<span id="cb464-10"><a href="11.6-model-validation.html#cb464-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># We are just dropping the rows that were used for training</span></span>
-<span id="cb464-11"><a href="11.6-model-validation.html#cb464-11" aria-hidden="true" tabindex="-1"></a>  data_pred <span class="ot">&lt;-</span> swiss[i, ]</span>
-<span id="cb464-12"><a href="11.6-model-validation.html#cb464-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb464-13"><a href="11.6-model-validation.html#cb464-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fit the model that tests the effects of Education</span></span>
-<span id="cb464-14"><a href="11.6-model-validation.html#cb464-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># on the Fertility</span></span>
-<span id="cb464-15"><a href="11.6-model-validation.html#cb464-15" aria-hidden="true" tabindex="-1"></a>  mod_ed <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> Education, <span class="at">data =</span> data_train)</span>
-<span id="cb464-16"><a href="11.6-model-validation.html#cb464-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb464-17"><a href="11.6-model-validation.html#cb464-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Predict Fertility from the fitted model and store it</span></span>
-<span id="cb464-18"><a href="11.6-model-validation.html#cb464-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Along with values of Fertility and Education</span></span>
-<span id="cb464-19"><a href="11.6-model-validation.html#cb464-19" aria-hidden="true" tabindex="-1"></a>  fert_obs[i] <span class="ot">&lt;-</span> swiss<span class="sc">$</span>Fertility[i]</span>
-<span id="cb464-20"><a href="11.6-model-validation.html#cb464-20" aria-hidden="true" tabindex="-1"></a>  ed_obs[i] <span class="ot">&lt;-</span> swiss<span class="sc">$</span>Education[i]</span>
-<span id="cb464-21"><a href="11.6-model-validation.html#cb464-21" aria-hidden="true" tabindex="-1"></a>  fert_pred[i] <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod_ed, data_pred)</span>
-<span id="cb464-22"><a href="11.6-model-validation.html#cb464-22" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="11.6-model-validation.html#cb466-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeat this for each row of the data set</span></span>
+<span id="cb466-2"><a href="11.6-model-validation.html#cb466-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from 1 to n until we have left each row out</span></span>
+<span id="cb466-3"><a href="11.6-model-validation.html#cb466-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb466-4"><a href="11.6-model-validation.html#cb466-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb466-5"><a href="11.6-model-validation.html#cb466-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sample the data, leaving out the ith row</span></span>
+<span id="cb466-6"><a href="11.6-model-validation.html#cb466-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># These will be our &#39;training data&#39;</span></span>
+<span id="cb466-7"><a href="11.6-model-validation.html#cb466-7" aria-hidden="true" tabindex="-1"></a>  data_train <span class="ot">&lt;-</span> swiss[<span class="sc">-</span>i, ]</span>
+<span id="cb466-8"><a href="11.6-model-validation.html#cb466-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb466-9"><a href="11.6-model-validation.html#cb466-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># These will be the data we use for prediction</span></span>
+<span id="cb466-10"><a href="11.6-model-validation.html#cb466-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># We are just dropping the rows that were used for training</span></span>
+<span id="cb466-11"><a href="11.6-model-validation.html#cb466-11" aria-hidden="true" tabindex="-1"></a>  data_pred <span class="ot">&lt;-</span> swiss[i, ]</span>
+<span id="cb466-12"><a href="11.6-model-validation.html#cb466-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb466-13"><a href="11.6-model-validation.html#cb466-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fit the model that tests the effects of Education</span></span>
+<span id="cb466-14"><a href="11.6-model-validation.html#cb466-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># on the Fertility</span></span>
+<span id="cb466-15"><a href="11.6-model-validation.html#cb466-15" aria-hidden="true" tabindex="-1"></a>  mod_ed <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> Education, <span class="at">data =</span> data_train)</span>
+<span id="cb466-16"><a href="11.6-model-validation.html#cb466-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb466-17"><a href="11.6-model-validation.html#cb466-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Predict Fertility from the fitted model and store it</span></span>
+<span id="cb466-18"><a href="11.6-model-validation.html#cb466-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Along with values of Fertility and Education</span></span>
+<span id="cb466-19"><a href="11.6-model-validation.html#cb466-19" aria-hidden="true" tabindex="-1"></a>  fert_obs[i] <span class="ot">&lt;-</span> swiss<span class="sc">$</span>Fertility[i]</span>
+<span id="cb466-20"><a href="11.6-model-validation.html#cb466-20" aria-hidden="true" tabindex="-1"></a>  ed_obs[i] <span class="ot">&lt;-</span> swiss<span class="sc">$</span>Education[i]</span>
+<span id="cb466-21"><a href="11.6-model-validation.html#cb466-21" aria-hidden="true" tabindex="-1"></a>  fert_pred[i] <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod_ed, data_pred)</span>
+<span id="cb466-22"><a href="11.6-model-validation.html#cb466-22" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Let’s put our observed data (left out) and our predictions for each iteration in a dataframe that we can use for plotting the results of model validation.</p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="11.6-model-validation.html#cb465-1" aria-hidden="true" tabindex="-1"></a>loo_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(fert_obs, ed_obs, fert_pred)</span></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="11.6-model-validation.html#cb467-1" aria-hidden="true" tabindex="-1"></a>loo_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(fert_obs, ed_obs, fert_pred)</span></code></pre></div>
 <p>Now, We can look at a plot of our predicted values for each iteration against the data point that was withheld for making the prediction.</p>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="11.6-model-validation.html#cb466-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(loo_df, <span class="fu">aes</span>(<span class="at">x =</span> fert_obs, <span class="at">y =</span> fert_pred)) <span class="sc">+</span></span>
-<span id="cb466-2"><a href="11.6-model-validation.html#cb466-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-327-1.png" width="672" /></p>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="11.6-model-validation.html#cb468-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(loo_df, <span class="fu">aes</span>(<span class="at">x =</span> fert_obs, <span class="at">y =</span> fert_pred)) <span class="sc">+</span></span>
+<span id="cb468-2"><a href="11.6-model-validation.html#cb468-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-313-1.png" width="672" /></p>
 <p>We can add a regression line to the plot to see whether we are over or under predicting <code>Fertility</code> from our model in a systematic way:</p>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="11.6-model-validation.html#cb467-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb467-2"><a href="11.6-model-validation.html#cb467-2" aria-hidden="true" tabindex="-1"></a>pred_line <span class="ot">&lt;-</span> <span class="fu">lm</span>(fert_pred <span class="sc">~</span> fert_obs, <span class="at">data =</span> loo_df)</span>
-<span id="cb467-3"><a href="11.6-model-validation.html#cb467-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb467-4"><a href="11.6-model-validation.html#cb467-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions</span></span>
-<span id="cb467-5"><a href="11.6-model-validation.html#cb467-5" aria-hidden="true" tabindex="-1"></a>loo_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(pred_line, loo_df)</span>
-<span id="cb467-6"><a href="11.6-model-validation.html#cb467-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb467-7"><a href="11.6-model-validation.html#cb467-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add them to the loo_df</span></span>
-<span id="cb467-8"><a href="11.6-model-validation.html#cb467-8" aria-hidden="true" tabindex="-1"></a>loo_df_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(loo_df, loo_pred)</span>
-<span id="cb467-9"><a href="11.6-model-validation.html#cb467-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb467-10"><a href="11.6-model-validation.html#cb467-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the line against the observed and predicted Fertility</span></span>
-<span id="cb467-11"><a href="11.6-model-validation.html#cb467-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(loo_df_pred, <span class="fu">aes</span>(<span class="at">x =</span> fert_obs, <span class="at">y =</span> fert_pred)) <span class="sc">+</span></span>
-<span id="cb467-12"><a href="11.6-model-validation.html#cb467-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb467-13"><a href="11.6-model-validation.html#cb467-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> loo_pred))</span></code></pre></div>
-<p><img src="worstr_files/figure-html/unnamed-chunk-328-1.png" width="672" /></p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="11.6-model-validation.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb469-2"><a href="11.6-model-validation.html#cb469-2" aria-hidden="true" tabindex="-1"></a>pred_line <span class="ot">&lt;-</span> <span class="fu">lm</span>(fert_pred <span class="sc">~</span> fert_obs, <span class="at">data =</span> loo_df)</span>
+<span id="cb469-3"><a href="11.6-model-validation.html#cb469-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb469-4"><a href="11.6-model-validation.html#cb469-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions</span></span>
+<span id="cb469-5"><a href="11.6-model-validation.html#cb469-5" aria-hidden="true" tabindex="-1"></a>loo_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(pred_line, loo_df)</span>
+<span id="cb469-6"><a href="11.6-model-validation.html#cb469-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb469-7"><a href="11.6-model-validation.html#cb469-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add them to the loo_df</span></span>
+<span id="cb469-8"><a href="11.6-model-validation.html#cb469-8" aria-hidden="true" tabindex="-1"></a>loo_df_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(loo_df, loo_pred)</span>
+<span id="cb469-9"><a href="11.6-model-validation.html#cb469-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb469-10"><a href="11.6-model-validation.html#cb469-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the line against the observed and predicted Fertility</span></span>
+<span id="cb469-11"><a href="11.6-model-validation.html#cb469-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(loo_df_pred, <span class="fu">aes</span>(<span class="at">x =</span> fert_obs, <span class="at">y =</span> fert_pred)) <span class="sc">+</span></span>
+<span id="cb469-12"><a href="11.6-model-validation.html#cb469-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb469-13"><a href="11.6-model-validation.html#cb469-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> loo_pred))</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-314-1.png" width="672" /></p>
 <p><br></p>
 <p>You can see that we are generally okay, but tend to under-predict at both low and high values of <code>Fertility</code> because the points on either end of the line fall mostly below the line. This is due either to a lack of data at extremes or some overlooked non-linearity in the relationship between X (<code>Education</code>) and Y (<code>Fertility</code>). If we intentionally collected more data at the extremes of <code>Education</code> that could resolve which is the case (because we would either improve prediction at extremes or see the non-linearity in the relationship more clearly). We will use log-transformations to deal help linearize these relationships in some future examples.</p>
 <p>We could also look at the <code>summary()</code> of our observed vs predicted regression to see how good we are (how much variance in prediction is explained by the model). In this case, it is not great. If we were going to use this for model prediction, we might want there to be a stronger correlation between the observed and predicted values. In that case, it might just mean collecting more or better data or it could mean re-thinking what is being measured and how.</p>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="11.6-model-validation.html#cb468-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the R-squared for observed vs predicted</span></span>
-<span id="cb468-2"><a href="11.6-model-validation.html#cb468-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pred_line)<span class="sc">$</span>r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="11.6-model-validation.html#cb470-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the R-squared for observed vs predicted</span></span>
+<span id="cb470-2"><a href="11.6-model-validation.html#cb470-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pred_line)<span class="sc">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.3991715</code></pre>
 <p>There are lots of other takes on cross-validation, including popular approaches such as k-fold cross-validation, and a number of simulation-based tools: many of which can be implemented in wrappers available through various R packages. I will leave you to explore these in your leisure time. In general, the more data that are set aside, the more robust the validation is, but we usually don’t want to set aside so much of our data that the training model isn’t representative of the data we’ve collected.</p>
 <p>If we are happy enough with our cross-validation results at this point we can go ahead and make predictions from our model.</p>
@@ -597,7 +596,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -638,7 +636,7 @@ gitbook.start({
 },
 "download": ["worstr.pdf", "worstr.epub"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -654,7 +652,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
