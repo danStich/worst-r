@@ -1,4 +1,6 @@
 bookdown::gitbook:
+  includes:
+    in_header: links.html
   css: style.css
   config:
     toc:
