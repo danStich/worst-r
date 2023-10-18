@@ -51,6 +51,16 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<html>
+
+<head>
+<base target="_blank">
+</head>
+
+<body>
+
+</body>
+</html>
 
 
 <style type="text/css">
@@ -515,22 +525,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>There are a number of simple ways to summarize data quickly in base R. We already looked at a few of these in previous chapters. But what about something a little more in-depth?</p>
 <p>One quick way to look at your data is using the <code>summary()</code> function</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="3.2-quick-data-summaries.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(am_shad)</span></code></pre></div>
-<pre><code>##      Sex                 Age            Length     
-##  Length:16946       Min.   :1.000   Min.   : 3.00  
-##  Class :character   1st Qu.:2.000   1st Qu.:31.00  
-##  Mode  :character   Median :3.000   Median :38.00  
-##                     Mean   :3.155   Mean   :36.39  
-##                     3rd Qu.:4.000   3rd Qu.:43.00  
-##                     Max.   :7.000   Max.   :55.00  
-##                                                    
-##  yearCollected  backCalculated       Mass      
-##  Min.   :2010   Mode :logical   Min.   :   0   
-##  1st Qu.:2011   FALSE:3046      1st Qu.: 900   
-##  Median :2012   TRUE :13900     Median :1120   
-##  Mean   :2012                   Mean   :1173   
-##  3rd Qu.:2013                   3rd Qu.:1440   
-##  Max.   :2014                   Max.   :3280   
-##                                 NA&#39;s   :14115</code></pre>
+<pre><code>##      Sex                 Age       
+##  Length:16946       Min.   :1.000  
+##  Class :character   1st Qu.:2.000  
+##  Mode  :character   Median :3.000  
+##                     Mean   :3.155  
+##                     3rd Qu.:4.000  
+##                     Max.   :7.000  
+##                                    
+##      Length      yearCollected 
+##  Min.   : 3.00   Min.   :2010  
+##  1st Qu.:31.00   1st Qu.:2011  
+##  Median :38.00   Median :2012  
+##  Mean   :36.39   Mean   :2012  
+##  3rd Qu.:43.00   3rd Qu.:2013  
+##  Max.   :55.00   Max.   :2014  
+##                                
+##  backCalculated       Mass      
+##  Mode :logical   Min.   :   0   
+##  FALSE:3046      1st Qu.: 900   
+##  TRUE :13900     Median :1120   
+##                  Mean   :1173   
+##                  3rd Qu.:1440   
+##                  Max.   :3280   
+##                  NA&#39;s   :14115</code></pre>
 <p>This is useful for getting the big-picture. For continuous variables (e.g., <code>Age</code> and <code>Length</code>) R will report some descriptive statistics like the <code>mean</code>, <code>median</code>, and some quantiles. For discrete variables (e.g. <code>Sex</code> and <code>backCalculated</code>) we get the mode (if not <code>factor</code> or <code>chr</code>) and counts of observations within each discrete level (e.g. number of observations of <code>B</code> and <code>R</code> in the variable <code>Sex</code>).</p>
 <p>But, this approach doesn’t really give us much info.</p>
 <p>We can create more meaningful summaries pretty easily if we install and load some packages like we talked about in <a href="1-Chapter1.html#Chapter1">Chapter 1</a>, and then look at different ways of sub-setting the data with base R and some methods that might be a little more intuitive for you.</p>

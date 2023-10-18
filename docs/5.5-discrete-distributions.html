@@ -51,6 +51,16 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<html>
+
+<head>
+<base target="_blank">
+</head>
+
+<body>
+
+</body>
+</html>
 
 
 <style type="text/css">
@@ -529,7 +539,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Or we could hatch a whole bunch of eggs:</p>
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="5.5-discrete-distributions.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hatch ten eggs, each with p = 0.5</span></span>
 <span id="cb187-2"><a href="5.5-discrete-distributions.html#cb187-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rbern</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">prob =</span> .<span class="dv">5</span>)</span></code></pre></div>
-<pre><code>##  [1] 0 0 0 0 1 1 0 0 0 0</code></pre>
+<pre><code>##  [1] 0 0 1 1 1 0 1 0 0 1</code></pre>
 <p>Then, we could even count how many of those were successful. Do you remember how to do that? There are several different ways. You’ll have to come up with one for the homework assignment (hint: see <a href="2-Chapter2.html#Chapter2">Chapter 2</a>).</p>
 </div>
 <div id="binomial" class="section level3 hasAnchor" number="5.5.2">
@@ -540,7 +550,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb189-2"><a href="5.5-discrete-distributions.html#cb189-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from a binomial distribution with 10 trials</span></span>
 <span id="cb189-3"><a href="5.5-discrete-distributions.html#cb189-3" aria-hidden="true" tabindex="-1"></a><span class="co"># and probability of success equal to 0.50</span></span>
 <span id="cb189-4"><a href="5.5-discrete-distributions.html#cb189-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="at">n=</span><span class="dv">10</span>, <span class="at">size=</span><span class="dv">10</span>, <span class="at">prob=</span><span class="fl">0.5</span>)</span></code></pre></div>
-<pre><code>##  [1] 5 5 6 3 5 8 2 1 4 4</code></pre>
+<pre><code>##  [1] 4 6 5 4 4 7 6 7 5 5</code></pre>
 <p>Remember as you look through these that your numbers should look different than mine (at least most of the time) because these are being generated randomly.</p>
 </div>
 <div id="multinomial" class="section level3 hasAnchor" number="5.5.3">
@@ -561,12 +571,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb193-6"><a href="5.5-discrete-distributions.html#cb193-6" aria-hidden="true" tabindex="-1"></a><span class="co"># name in our vector of names</span></span>
 <span id="cb193-7"><a href="5.5-discrete-distributions.html#cb193-7" aria-hidden="true" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">rep</span>(prob_each, <span class="at">times =</span> <span class="fu">length</span>(name))      </span>
 <span id="cb193-8"><a href="5.5-discrete-distributions.html#cb193-8" aria-hidden="true" tabindex="-1"></a>probs      </span></code></pre></div>
-<pre><code>##  [1] 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154
-##  [6] 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154
-## [11] 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154
-## [16] 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154
-## [21] 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154
-## [26] 0.03846154</code></pre>
+<pre><code>##  [1] 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154
+##  [7] 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154
+## [13] 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154
+## [19] 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154 0.03846154
+## [25] 0.03846154 0.03846154</code></pre>
 <p>This shows us that the probability of drawing any of the individual names is <code>{r prob_each}</code>.</p>
 <p>Now, we can sample from a multinomial distribution using our objects. Here we are taking 5 samples from the distribution, each time we sample there is only one trial, and we are sampling with the 26 probabilities above.</p>
 <p>Have a look:</p>
@@ -574,25 +583,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>##       [,1] [,2] [,3] [,4] [,5]
 ##  [1,]    0    0    0    0    0
 ##  [2,]    0    0    0    0    0
-##  [3,]    0    0    0    0    0
+##  [3,]    0    1    0    0    0
 ##  [4,]    0    0    0    0    0
-##  [5,]    0    0    0    0    0
-##  [6,]    0    0    1    0    0
+##  [5,]    0    0    0    0    1
+##  [6,]    0    0    0    0    0
 ##  [7,]    0    0    0    0    0
 ##  [8,]    0    0    0    0    0
 ##  [9,]    0    0    0    0    0
 ## [10,]    0    0    0    0    0
-## [11,]    0    0    0    0    1
-## [12,]    0    0    0    1    0
+## [11,]    0    0    0    0    0
+## [12,]    0    0    1    1    0
 ## [13,]    0    0    0    0    0
-## [14,]    0    0    0    0    0
+## [14,]    1    0    0    0    0
 ## [15,]    0    0    0    0    0
 ## [16,]    0    0    0    0    0
-## [17,]    1    0    0    0    0
+## [17,]    0    0    0    0    0
 ## [18,]    0    0    0    0    0
 ## [19,]    0    0    0    0    0
 ## [20,]    0    0    0    0    0
-## [21,]    0    1    0    0    0
+## [21,]    0    0    0    0    0
 ## [22,]    0    0    0    0    0
 ## [23,]    0    0    0    0    0
 ## [24,]    0    0    0    0    0
@@ -607,7 +616,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  [1,]    0
 ##  [2,]    0
 ##  [3,]    0
-##  [4,]    1
+##  [4,]    0
 ##  [5,]    0
 ##  [6,]    0
 ##  [7,]    0
@@ -628,7 +637,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [22,]    0
 ## [23,]    0
 ## [24,]    0
-## [25,]    0
+## [25,]    1
 ## [26,]    0</code></pre>
 <p>Here, we pulled a single sample from the distribution, and probability of sampling a given individual was 0.04 (1/26). If it makes it easier, we can put your names next to it:</p>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="5.5-discrete-distributions.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(name, <span class="fu">rmultinom</span>(<span class="at">n=</span><span class="dv">1</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">prob=</span>probs))</span></code></pre></div>
@@ -642,7 +651,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  [7,] &quot;Olivia&quot;      &quot;0&quot;
 ##  [8,] &quot;Ebony&quot;       &quot;0&quot;
 ##  [9,] &quot;Julia&quot;       &quot;0&quot;
-## [10,] &quot;Davi&quot;        &quot;1&quot;
+## [10,] &quot;Davi&quot;        &quot;0&quot;
 ## [11,] &quot;Gabrielle&quot;   &quot;0&quot;
 ## [12,] &quot;Jordan&quot;      &quot;0&quot;
 ## [13,] &quot;Tayler&quot;      &quot;0&quot;
@@ -653,7 +662,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [18,] &quot;Katherine&quot;   &quot;0&quot;
 ## [19,] &quot;James&quot;       &quot;0&quot;
 ## [20,] &quot;Emily&quot;       &quot;0&quot;
-## [21,] &quot;Cassidy&quot;     &quot;0&quot;
+## [21,] &quot;Cassidy&quot;     &quot;1&quot;
 ## [22,] &quot;Maximillion&quot; &quot;0&quot;
 ## [23,] &quot;Sierra&quot;      &quot;0&quot;
 ## [24,] &quot;Kyle&quot;        &quot;0&quot;
@@ -663,34 +672,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="5.5-discrete-distributions.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(name, <span class="fu">rmultinom</span>(<span class="at">n=</span><span class="dv">10</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">prob=</span>probs))</span></code></pre></div>
 <pre><code>##       name                                                 
 ##  [1,] &quot;Ava&quot;         &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
-##  [2,] &quot;Dillon&quot;      &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
+##  [2,] &quot;Dillon&quot;      &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
 ##  [3,] &quot;Delaney&quot;     &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
-##  [4,] &quot;Manolo&quot;      &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
+##  [4,] &quot;Manolo&quot;      &quot;0&quot; &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
 ##  [5,] &quot;Sarah&quot;       &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
-##  [6,] &quot;Shannon&quot;     &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
-##  [7,] &quot;Olivia&quot;      &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
-##  [8,] &quot;Ebony&quot;       &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
+##  [6,] &quot;Shannon&quot;     &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
+##  [7,] &quot;Olivia&quot;      &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
+##  [8,] &quot;Ebony&quot;       &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot;
 ##  [9,] &quot;Julia&quot;       &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
-## [10,] &quot;Davi&quot;        &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
-## [11,] &quot;Gabrielle&quot;   &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
-## [12,] &quot;Jordan&quot;      &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
-## [13,] &quot;Tayler&quot;      &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
-## [14,] &quot;Summer&quot;      &quot;0&quot; &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
+## [10,] &quot;Davi&quot;        &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
+## [11,] &quot;Gabrielle&quot;   &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
+## [12,] &quot;Jordan&quot;      &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
+## [13,] &quot;Tayler&quot;      &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;1&quot;
+## [14,] &quot;Summer&quot;      &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
 ## [15,] &quot;Leah&quot;        &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
-## [16,] &quot;Christine&quot;   &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
-## [17,] &quot;Ashley&quot;      &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
-## [18,] &quot;Katherine&quot;   &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;1&quot;
-## [19,] &quot;James&quot;       &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
-## [20,] &quot;Emily&quot;       &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot;
+## [16,] &quot;Christine&quot;   &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
+## [17,] &quot;Ashley&quot;      &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
+## [18,] &quot;Katherine&quot;   &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
+## [19,] &quot;James&quot;       &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
+## [20,] &quot;Emily&quot;       &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
 ## [21,] &quot;Cassidy&quot;     &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
 ## [22,] &quot;Maximillion&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
 ## [23,] &quot;Sierra&quot;      &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
-## [24,] &quot;Kyle&quot;        &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot; &quot;0&quot;
-## [25,] &quot;Diana&quot;       &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
+## [24,] &quot;Kyle&quot;        &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;
+## [25,] &quot;Diana&quot;       &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;1&quot; &quot;0&quot; &quot;0&quot;
 ## [26,] &quot;Amanda&quot;      &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot;</code></pre>
 <p>Taking this one step further, we could just draw a name and stop looking at these ugly (no but really they are <strong>awesome</strong>!) matrices:</p>
 <div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="5.5-discrete-distributions.html#cb203-1" aria-hidden="true" tabindex="-1"></a>name[<span class="fu">which</span>(<span class="fu">rmultinom</span>(<span class="at">n=</span><span class="dv">1</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">prob=</span>probs)<span class="sc">&gt;</span><span class="dv">0</span>)]</span></code></pre></div>
-<pre><code>## [1] &quot;Ava&quot;</code></pre>
+<pre><code>## [1] &quot;Summer&quot;</code></pre>
 <p>And now we have a way to randomly select an individual based on a multinomial distribution. What fun!</p>
 </div>
 <div id="poisson" class="section level3 hasAnchor" number="5.5.4">

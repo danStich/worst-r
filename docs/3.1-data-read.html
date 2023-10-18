@@ -51,6 +51,16 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<html>
+
+<head>
+<base target="_blank">
+</head>
+
+<body>
+
+</body>
+</html>
 
 
 <style type="text/css">
@@ -524,17 +534,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You can look at the first few rows of data with the <code>head()</code> function:</p>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="3.1-data-read.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the first 10 rows</span></span>
 <span id="cb112-2"><a href="3.1-data-read.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(am_shad, <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##    Sex Age Length yearCollected backCalculated Mass
-## 1    B   1     13          2010           TRUE   NA
-## 2    B   1     15          2010           TRUE   NA
-## 3    B   1     15          2010           TRUE   NA
-## 4    B   1     15          2010           TRUE   NA
-## 5    B   1     15          2010           TRUE   NA
-## 6    B   1     15          2010           TRUE   NA
-## 7    B   1     16          2010           TRUE   NA
-## 8    B   1     16          2010           TRUE   NA
-## 9    B   1     16          2010           TRUE   NA
-## 10   B   1     16          2010           TRUE   NA</code></pre>
+<pre><code>##    Sex Age Length yearCollected backCalculated
+## 1    B   1     13          2010           TRUE
+## 2    B   1     15          2010           TRUE
+## 3    B   1     15          2010           TRUE
+## 4    B   1     15          2010           TRUE
+## 5    B   1     15          2010           TRUE
+## 6    B   1     15          2010           TRUE
+## 7    B   1     16          2010           TRUE
+## 8    B   1     16          2010           TRUE
+## 9    B   1     16          2010           TRUE
+## 10   B   1     16          2010           TRUE
+##    Mass
+## 1    NA
+## 2    NA
+## 3    NA
+## 4    NA
+## 5    NA
+## 6    NA
+## 7    NA
+## 8    NA
+## 9    NA
+## 10   NA</code></pre>
 <p>The <code>NA</code> values are supposed to be there. They are missing data.</p>
 <p>And, don’t forget about your old friend <code>str()</code> for a peek at how R sees your data. This can take care of a lot of potential problems later on.</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="3.1-data-read.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the structure of the data</span></span>
