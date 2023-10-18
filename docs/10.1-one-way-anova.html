@@ -51,6 +51,16 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<html>
+
+<head>
+<base target="_blank">
+</head>
+
+<body>
+
+</body>
+</html>
 
 
 <style type="text/css">
@@ -593,10 +603,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can get the model coefficients (<span class="math inline">\(\beta\)</span>) like this:</p>
 <div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="10.1-one-way-anova.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can get the model coefficients like this:</span></span>
 <span id="cb377-2"><a href="10.1-one-way-anova.html#cb377-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mod)</span></code></pre></div>
-<pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;      
-##  [4] &quot;rank&quot;          &quot;fitted.values&quot; &quot;assign&quot;       
-##  [7] &quot;qr&quot;            &quot;df.residual&quot;   &quot;contrasts&quot;    
-## [10] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;        
+<pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
+##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
+##  [9] &quot;contrasts&quot;     &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;        
 ## [13] &quot;model&quot;</code></pre>
 <div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="10.1-one-way-anova.html#cb379-1" aria-hidden="true" tabindex="-1"></a>coeffs <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(mod<span class="sc">$</span>coefficients)</span>
 <span id="cb379-2"><a href="10.1-one-way-anova.html#cb379-2" aria-hidden="true" tabindex="-1"></a></span>

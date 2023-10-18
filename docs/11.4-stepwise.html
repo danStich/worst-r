@@ -51,6 +51,16 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<html>
+
+<head>
+<base target="_blank">
+</head>
+
+<body>
+
+</body>
+</html>
 
 
 <style type="text/css">
@@ -583,10 +593,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##     Agriculture, data = swiss)
 ## 
 ## Coefficients:
-##      (Intercept)         Education          Catholic  
-##          62.1013           -0.9803            0.1247  
-## Infant.Mortality       Agriculture  
-##           1.0784           -0.1546</code></pre>
+##      (Intercept)         Education          Catholic  Infant.Mortality  
+##          62.1013           -0.9803            0.1247            1.0784  
+##      Agriculture  
+##          -0.1546</code></pre>
 <p>Here, we see that the best model is that which includes the additive effects of <code>Education</code>, <code>Catholic</code>, <code>Infant.Mortality</code>, and <code>Agriculture</code>, or our <code>full</code> model. Go ahead and try it with a different starting <code>object</code> or <code>direction</code> to see if this changes the result.</p>
 </div>
 </div>

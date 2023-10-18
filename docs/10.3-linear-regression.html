@@ -51,6 +51,16 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<html>
+
+<head>
+<base target="_blank">
+</head>
+
+<body>
+
+</body>
+</html>
 
 
 <style type="text/css">
@@ -572,27 +582,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb418-7"><a href="10.3-linear-regression.html#cb418-7" aria-hidden="true" tabindex="-1"></a>swiss_pred2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(swiss, y_pred2)</span></code></pre></div>
 <p>Whichever way you do this, you’ll notice that we have a unique value of fit for every value of <code>Education</code> in the original data because <code>fit</code> is predicted as a continuous function of <code>Education</code> in this case:</p>
 <div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="10.3-linear-regression.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>( swiss_pred2)</span></code></pre></div>
-<pre><code>##              Fertility Agriculture Examination Education
-## Courtelary        80.2        17.0          15        12
-## Delemont          83.1        45.1           6         9
-## Franches-Mnt      92.5        39.7           5         5
-## Moutier           85.8        36.5          12         7
-## Neuveville        76.9        43.5          17        15
-## Porrentruy        76.1        35.3           9         7
-##              Catholic Infant.Mortality      fit      lwr
-## Courtelary       9.96             22.2 69.26186 50.03294
-## Delemont        84.84             22.2 71.84891 52.61363
-## Franches-Mnt    93.40             20.2 75.29831 55.99275
-## Moutier         33.77             20.3 73.57361 54.31199
-## Neuveville       5.16             20.6 66.67480 47.41244
-## Porrentruy      90.57             26.6 73.57361 54.31199
-##                   upr
-## Courtelary   88.49077
-## Delemont     91.08418
-## Franches-Mnt 94.60387
-## Moutier      92.83522
-## Neuveville   85.93717
-## Porrentruy   92.83522</code></pre>
+<pre><code>##              Fertility Agriculture Examination Education Catholic
+## Courtelary        80.2        17.0          15        12     9.96
+## Delemont          83.1        45.1           6         9    84.84
+## Franches-Mnt      92.5        39.7           5         5    93.40
+## Moutier           85.8        36.5          12         7    33.77
+## Neuveville        76.9        43.5          17        15     5.16
+## Porrentruy        76.1        35.3           9         7    90.57
+##              Infant.Mortality      fit      lwr      upr
+## Courtelary               22.2 69.26186 50.03294 88.49077
+## Delemont                 22.2 71.84891 52.61363 91.08418
+## Franches-Mnt             20.2 75.29831 55.99275 94.60387
+## Moutier                  20.3 73.57361 54.31199 92.83522
+## Neuveville               20.6 66.67480 47.41244 85.93717
+## Porrentruy               26.6 73.57361 54.31199 92.83522</code></pre>
 <p>We could also make predictions for specific values of <code>Education</code> by creating (simulating) new values of <code>Education</code>. Below, we make a sequence of new values for <code>Education</code> from the minimum to the maximum in 30 equal increments and then make predictions with that object instead of the model data.</p>
 <div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="10.3-linear-regression.html#cb421-1" aria-hidden="true" tabindex="-1"></a>new_ed <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb421-2"><a href="10.3-linear-regression.html#cb421-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Education =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">min</span>(swiss<span class="sc">$</span>Education),</span>

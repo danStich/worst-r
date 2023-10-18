@@ -51,6 +51,16 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<html>
+
+<head>
+<base target="_blank">
+</head>
+
+<body>
+
+</body>
+</html>
 
 
 <style type="text/css">
@@ -614,10 +624,9 @@ But make no mistake, you’re wall’s still covered in shit</p>
 <span id="cb448-2"><a href="11.5-a-priori.html#cb448-2" aria-hidden="true" tabindex="-1"></a><span class="co"># so we can also look at the names of this summary,</span></span>
 <span id="cb448-3"><a href="11.5-a-priori.html#cb448-3" aria-hidden="true" tabindex="-1"></a><span class="co"># like this</span></span>
 <span id="cb448-4"><a href="11.5-a-priori.html#cb448-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">summary</span>(mods<span class="sc">$</span>Ed))</span></code></pre></div>
-<pre><code>##  [1] &quot;call&quot;          &quot;terms&quot;         &quot;residuals&quot;    
-##  [4] &quot;coefficients&quot;  &quot;aliased&quot;       &quot;sigma&quot;        
-##  [7] &quot;df&quot;            &quot;r.squared&quot;     &quot;adj.r.squared&quot;
-## [10] &quot;fstatistic&quot;    &quot;cov.unscaled&quot;</code></pre>
+<pre><code>##  [1] &quot;call&quot;          &quot;terms&quot;         &quot;residuals&quot;     &quot;coefficients&quot; 
+##  [5] &quot;aliased&quot;       &quot;sigma&quot;         &quot;df&quot;            &quot;r.squared&quot;    
+##  [9] &quot;adj.r.squared&quot; &quot;fstatistic&quot;    &quot;cov.unscaled&quot;</code></pre>
 <p><em>Whoa</em>, this is some heavy stuff. To recap, we have made a list of models, each of which are actually lists themselves. Each model has lots of elements. The output of <code>summary()</code> for each model is also a list with and the elements have names of their own. Within that final list we can find the <code>Adusted R-squared</code> or what <code>summary()</code> calls the <code>adj.r.squared</code>. It’s turtles all the way down all over again.</p>
 <p>We can, of course, extract the adjusted R<sup>2</sup> value from the output of <code>summary()</code> by name:</p>
 <div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="11.5-a-priori.html#cb450-1" aria-hidden="true" tabindex="-1"></a>ed_r <span class="ot">&lt;-</span> <span class="fu">summary</span>(mods<span class="sc">$</span>Ed)<span class="sc">$</span>adj.r.squared</span>
