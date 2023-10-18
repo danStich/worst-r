@@ -51,6 +51,16 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<html>
+
+<head>
+<base target="_blank">
+</head>
+
+<body>
+
+</body>
+</html>
 
 
 <style type="text/css">
@@ -557,13 +567,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can calculate descriptive statistics for the conditional probability so that we can describe the distribution.</p>
 <div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="16.2-intro-to-bayes-theorem.html#cb588-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using a mean and standard deviation</span></span>
 <span id="cb588-2"><a href="16.2-intro-to-bayes-theorem.html#cb588-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(p_cancer_50)</span></code></pre></div>
-<pre><code>## [1] 0.006540933</code></pre>
+<pre><code>## [1] 0.006542499</code></pre>
 <div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="16.2-intro-to-bayes-theorem.html#cb590-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(p_cancer_50)</span></code></pre></div>
-<pre><code>## [1] 0.0004584092</code></pre>
+<pre><code>## [1] 0.0004636688</code></pre>
 <p>We can calculate quantiles (95% CRI). Note that in Bayesian inference, we are going to call these ‘credible intervals’ (CRI) or ‘high density intervals’ (HDI) depending on assumptions related to normality, but they are functionally the same thing as ‘confidence intervals’ as far as we are concerned (tell no one I said that eveR).</p>
 <div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="16.2-intro-to-bayes-theorem.html#cb592-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(p_cancer_50, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.50</span>, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##        2.5%         50%       97.5% 
-## 0.005676046 0.006531290 0.007480736</code></pre>
+## 0.005675167 0.006532033 0.007476551</code></pre>
 <p>We can also look at the actual distribution:</p>
 <div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="16.2-intro-to-bayes-theorem.html#cb594-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the object into a df with</span></span>
 <span id="cb594-2"><a href="16.2-intro-to-bayes-theorem.html#cb594-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a single column automatically </span></span>
@@ -585,13 +595,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="16.2-intro-to-bayes-theorem.html#cb596-1" aria-hidden="true" tabindex="-1"></a>p_cancer_50 <span class="ot">&lt;-</span> (p_50_cancer <span class="sc">*</span> p_cancer) <span class="sc">/</span> p_50</span></code></pre></div>
 <p>We calculate descriptive statistics for the conditional probability to describe the probability using a mean and standard deviation.</p>
 <div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="16.2-intro-to-bayes-theorem.html#cb597-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(p_cancer_50)</span></code></pre></div>
-<pre><code>## [1] 0.006867163</code></pre>
+<pre><code>## [1] 0.006910022</code></pre>
 <div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="16.2-intro-to-bayes-theorem.html#cb599-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(p_cancer_50)</span></code></pre></div>
-<pre><code>## [1] 0.003029482</code></pre>
+<pre><code>## [1] 0.003036828</code></pre>
 <p>Quantiles (95% CRI and median):</p>
 <div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="16.2-intro-to-bayes-theorem.html#cb601-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(p_cancer_50, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.50</span>, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##        2.5%         50%       97.5% 
-## 0.002611509 0.006338278 0.014218340</code></pre>
+## 0.002615966 0.006368953 0.014270435</code></pre>
 <p>And, have a look at our new distribution:</p>
 <div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="16.2-intro-to-bayes-theorem.html#cb603-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the object into a df with</span></span>
 <span id="cb603-2"><a href="16.2-intro-to-bayes-theorem.html#cb603-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a single column automatically </span></span>

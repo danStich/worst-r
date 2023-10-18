@@ -51,6 +51,16 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<html>
+
+<head>
+<base target="_blank">
+</head>
+
+<body>
+
+</body>
+</html>
 
 
 <style type="text/css">
@@ -521,20 +531,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Have a look:</p>
 <div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="16.9-summarizing-results.html#cb622-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(estimates)</span></code></pre></div>
 <pre><code>##   X.Intercept. loglength     sigma
-## 1    -8.529477  3.058206 0.1606697
-## 2    -8.538918  3.061094 0.1591567
-## 3    -8.542668  3.062802 0.1601930
-## 4    -8.344437  3.002359 0.1604233
-## 5    -8.527767  3.057397 0.1600839
-## 6    -8.402236  3.020779 0.1628488</code></pre>
+## 1    -8.469077  3.041585 0.1587965
+## 2    -8.497330  3.049864 0.1580963
+## 3    -8.459683  3.038081 0.1585211
+## 4    -8.500968  3.050388 0.1566849
+## 5    -8.427594  3.026240 0.1663090
+## 6    -8.447470  3.032372 0.1668952</code></pre>
 <p>This is great! Now, if we want we can calculate descriptive statistics for any of these parameters or combine them in any other way that might be meaningful. Here, we are interested in the coefficient (beta) for <code>loglength</code>, so let’s check it out.</p>
 <p>Calculate the mean:</p>
 <div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="16.9-summarizing-results.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(estimates<span class="sc">$</span>loglength)</span></code></pre></div>
-<pre><code>## [1] 3.039398</code></pre>
+<pre><code>## [1] 3.0391</code></pre>
 <p>Calculate 95% CRI:</p>
 <div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="16.9-summarizing-results.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(estimates<span class="sc">$</span>loglength, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##     2.5%    97.5% 
-## 3.007513 3.071199</code></pre>
+## 3.004856 3.071714</code></pre>
 <p>We can see that the 95% CRI excludes zero, so we can now say that the relationship is statistically significant. Of course, this is obvious if you know anything about biology, so we could compare to any other meaningful value. For example, we use a value of 3.00 to represent “isometric growth” in biology and could apply the same approach here to that value. Since 3.00 is outside the 95% CRI, we would determine that growth is not isometric for these populations, but rather “positively allometric”. Sweet biology.</p>
 </div>
             </section>
