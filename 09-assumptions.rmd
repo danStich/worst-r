@@ -390,7 +390,7 @@ Finally, what if we have a continuous explanatory variable and a continuous resp
 
 We use the same approach (whoa, that's sweet, huh?). Here, let's fit and assess a model that predicts the length of `Stay` in turtle rehab based on the hook `Width` that caught them in the first place.
 
-```{r eval=FALSE}
+```{r}
 # Fit the model
 fit_width <- lm( Stay ~ Width, data = turtles)
 

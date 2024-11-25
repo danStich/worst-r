@@ -531,20 +531,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Have a look:</p>
 <div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="16.9-summarizing-results.html#cb622-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(estimates)</span></code></pre></div>
 <pre><code>##   X.Intercept. loglength     sigma
-## 1    -8.469077  3.041585 0.1587965
-## 2    -8.497330  3.049864 0.1580963
-## 3    -8.459683  3.038081 0.1585211
-## 4    -8.500968  3.050388 0.1566849
-## 5    -8.427594  3.026240 0.1663090
-## 6    -8.447470  3.032372 0.1668952</code></pre>
+## 1    -8.607364  3.084598 0.1606508
+## 2    -8.467601  3.042739 0.1596674
+## 3    -8.350011  3.006174 0.1634294
+## 4    -8.310061  2.990164 0.1640723
+## 5    -8.344402  3.000888 0.1637709
+## 6    -8.425654  3.025415 0.1621101</code></pre>
 <p>This is great! Now, if we want we can calculate descriptive statistics for any of these parameters or combine them in any other way that might be meaningful. Here, we are interested in the coefficient (beta) for <code>loglength</code>, so let’s check it out.</p>
 <p>Calculate the mean:</p>
 <div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="16.9-summarizing-results.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(estimates<span class="sc">$</span>loglength)</span></code></pre></div>
-<pre><code>## [1] 3.0391</code></pre>
+<pre><code>## [1] 3.039897</code></pre>
 <p>Calculate 95% CRI:</p>
 <div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="16.9-summarizing-results.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(estimates<span class="sc">$</span>loglength, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##     2.5%    97.5% 
-## 3.004856 3.071714</code></pre>
+## 3.006825 3.072814</code></pre>
 <p>We can see that the 95% CRI excludes zero, so we can now say that the relationship is statistically significant. Of course, this is obvious if you know anything about biology, so we could compare to any other meaningful value. For example, we use a value of 3.00 to represent “isometric growth” in biology and could apply the same approach here to that value. Since 3.00 is outside the 95% CRI, we would determine that growth is not isometric for these populations, but rather “positively allometric”. Sweet biology.</p>
 </div>
             </section>

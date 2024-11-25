@@ -541,20 +541,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ logmass  : num  1.97 1.92 1.91 1.87 1.81 ...</code></pre>
 <div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="19.3-worked-19.html#cb705-1" aria-hidden="true" tabindex="-1"></a><span class="co"># And, have a look at the first few lines of data</span></span>
 <span id="cb705-2"><a href="19.3-worked-19.html#cb705-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cray)</span></code></pre></div>
-<pre><code>##        date         waterbody            site length mass loglength
-## 1 6/28/2018 Susquehanna River Cooperstown Dam  30.88 7.18  3.430109
-## 2 6/28/2018 Susquehanna River Cooperstown Dam  31.18 6.85  3.439777
-## 3 6/28/2018 Susquehanna River Cooperstown Dam  31.15 6.75  3.438814
-## 4 6/28/2018 Susquehanna River Cooperstown Dam  29.28 6.46  3.376905
-## 5 6/28/2018 Susquehanna River Cooperstown Dam  28.31 6.14  3.343215
-## 6 6/28/2018 Susquehanna River Cooperstown Dam  30.55 5.99  3.419365
-##    logmass
-## 1 1.971299
-## 2 1.924249
-## 3 1.909543
-## 4 1.865629
-## 5 1.814825
-## 6 1.790091</code></pre>
+<pre><code>##        date         waterbody            site length mass loglength  logmass
+## 1 6/28/2018 Susquehanna River Cooperstown Dam  30.88 7.18  3.430109 1.971299
+## 2 6/28/2018 Susquehanna River Cooperstown Dam  31.18 6.85  3.439777 1.924249
+## 3 6/28/2018 Susquehanna River Cooperstown Dam  31.15 6.75  3.438814 1.909543
+## 4 6/28/2018 Susquehanna River Cooperstown Dam  29.28 6.46  3.376905 1.865629
+## 5 6/28/2018 Susquehanna River Cooperstown Dam  28.31 6.14  3.343215 1.814825
+## 6 6/28/2018 Susquehanna River Cooperstown Dam  30.55 5.99  3.419365 1.790091</code></pre>
 <p>This is a fairly straightforward data set. There are 964 observations of 7 variables. Each of the observations (rows) corresponds to a rusty crayfish that was collected and measured (<code>length</code> in mm and <code>mass</code> in g) at one of several <code>site</code>s on a given <code>date</code>. The variable <code>catch</code> is the total number caught by electrobugging over a given <code>time</code> (minutes). To compare density between sites, <code>catch</code> was divided by (<code>time</code>/60) to calculate catch per unit effort (<code>cpue</code>) as number of crayfish per hour. Therefore, observations of <code>cpue</code>, <code>catch</code>, and <code>time</code> correspond to unique <code>date</code> and <code>site</code> combinations, but <code>length</code> and <code>mass</code> represent unique individuals within <code>site</code> and <code>date</code>.</p>
 <p>Our primary objective in this study was to collect baseline data. But curiosity led us to explore variation in the condition of crayfish when we thought we were noticing skinnier crayfish in sites of higher density. Length-weight regressions are one tool that is commonly used to investigate changes in volumetric growth with increasing length. In the absence of a standardized condition metric such as that widely applied in fish populations, relative weight (W<sub>r</sub>), we thought this might offer some insight into variability in condition.</p>
 <p>What follows is a steroid-injected version of the analysis we started with.</p>

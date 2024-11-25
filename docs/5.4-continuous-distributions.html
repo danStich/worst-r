@@ -578,7 +578,7 @@ The normal distribution
 <span id="cb177-4"><a href="5.4-continuous-distributions.html#cb177-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(</span>
 <span id="cb177-5"><a href="5.4-continuous-distributions.html#cb177-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">length</span>(samp)), </span>
 <span id="cb177-6"><a href="5.4-continuous-distributions.html#cb177-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rep</span>(<span class="dv">2</span>, <span class="fu">length</span>(samp2)), </span>
-<span id="cb177-7"><a href="5.4-continuous-distributions.html#cb177-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rep</span>(.<span class="dv">5</span>, <span class="fu">length</span>(samp3))</span>
+<span id="cb177-7"><a href="5.4-continuous-distributions.html#cb177-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rep</span>(<span class="fl">0.5</span>, <span class="fu">length</span>(samp3))</span>
 <span id="cb177-8"><a href="5.4-continuous-distributions.html#cb177-8" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb177-9"><a href="5.4-continuous-distributions.html#cb177-9" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb177-10"><a href="5.4-continuous-distributions.html#cb177-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
@@ -655,10 +655,10 @@ The normal distribution
 <span id="cb181-9"><a href="5.4-continuous-distributions.html#cb181-9" aria-hidden="true" tabindex="-1"></a><span class="co"># using &quot;theta&quot; because often that is how we</span></span>
 <span id="cb181-10"><a href="5.4-continuous-distributions.html#cb181-10" aria-hidden="true" tabindex="-1"></a><span class="co"># refer collectively to a group of parameters</span></span>
 <span id="cb181-11"><a href="5.4-continuous-distributions.html#cb181-11" aria-hidden="true" tabindex="-1"></a>betas <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb181-12"><a href="5.4-continuous-distributions.html#cb181-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">Value =</span> <span class="fu">c</span>(samp, samp2, samp3),</span>
+<span id="cb181-12"><a href="5.4-continuous-distributions.html#cb181-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">Value =</span> <span class="fu">c</span>(samp1, samp2, samp3),</span>
 <span id="cb181-13"><a href="5.4-continuous-distributions.html#cb181-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">theta =</span> <span class="fu">factor</span>(</span>
 <span id="cb181-14"><a href="5.4-continuous-distributions.html#cb181-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(</span>
-<span id="cb181-15"><a href="5.4-continuous-distributions.html#cb181-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rep</span>(<span class="st">&#39;a = 50, b = 50&#39;</span>, <span class="fu">length</span>(samp)), </span>
+<span id="cb181-15"><a href="5.4-continuous-distributions.html#cb181-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rep</span>(<span class="st">&#39;a = 50, b = 50&#39;</span>, <span class="fu">length</span>(samp1)), </span>
 <span id="cb181-16"><a href="5.4-continuous-distributions.html#cb181-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rep</span>(<span class="st">&#39;a = 50, b = 100&#39;</span>, <span class="fu">length</span>(samp2)), </span>
 <span id="cb181-17"><a href="5.4-continuous-distributions.html#cb181-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rep</span>(<span class="st">&#39;a = 500, b = 250&#39;</span>, <span class="fu">length</span>(samp3))</span>
 <span id="cb181-18"><a href="5.4-continuous-distributions.html#cb181-18" aria-hidden="true" tabindex="-1"></a>    )</span>

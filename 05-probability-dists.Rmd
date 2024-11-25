@@ -132,7 +132,7 @@ normals <- data.frame(
     c(
       rep(1, length(samp)), 
       rep(2, length(samp2)), 
-      rep(.5, length(samp3))
+      rep(0.5, length(samp3))
     )
   )
 )
@@ -227,10 +227,10 @@ samp3 <- rbeta(n=1e4, shape1=500, shape2=250)
 # using "theta" because often that is how we
 # refer collectively to a group of parameters
 betas <- data.frame(
-  Value = c(samp, samp2, samp3),
+  Value = c(samp1, samp2, samp3),
   theta = factor(
     c(
-      rep('a = 50, b = 50', length(samp)), 
+      rep('a = 50, b = 50', length(samp1)), 
       rep('a = 50, b = 100', length(samp2)), 
       rep('a = 500, b = 250', length(samp3))
     )

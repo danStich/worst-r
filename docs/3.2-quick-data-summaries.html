@@ -525,22 +525,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>There are a number of simple ways to summarize data quickly in base R. We already looked at a few of these in previous chapters. But what about something a little more in-depth?</p>
 <p>One quick way to look at your data is using the <code>summary()</code> function</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="3.2-quick-data-summaries.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(am_shad)</span></code></pre></div>
-<pre><code>##      Sex                 Age       
-##  Length:16946       Min.   :1.000  
-##  Class :character   1st Qu.:2.000  
-##  Mode  :character   Median :3.000  
-##                     Mean   :3.155  
-##                     3rd Qu.:4.000  
-##                     Max.   :7.000  
-##                                    
-##      Length      yearCollected 
-##  Min.   : 3.00   Min.   :2010  
-##  1st Qu.:31.00   1st Qu.:2011  
-##  Median :38.00   Median :2012  
-##  Mean   :36.39   Mean   :2012  
-##  3rd Qu.:43.00   3rd Qu.:2013  
-##  Max.   :55.00   Max.   :2014  
-##                                
+<pre><code>##      Sex                 Age            Length      yearCollected 
+##  Length:16946       Min.   :1.000   Min.   : 3.00   Min.   :2010  
+##  Class :character   1st Qu.:2.000   1st Qu.:31.00   1st Qu.:2011  
+##  Mode  :character   Median :3.000   Median :38.00   Median :2012  
+##                     Mean   :3.155   Mean   :36.39   Mean   :2012  
+##                     3rd Qu.:4.000   3rd Qu.:43.00   3rd Qu.:2013  
+##                     Max.   :7.000   Max.   :55.00   Max.   :2014  
+##                                                                   
 ##  backCalculated       Mass      
 ##  Mode :logical   Min.   :   0   
 ##  FALSE:3046      1st Qu.: 900   

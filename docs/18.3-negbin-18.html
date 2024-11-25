@@ -574,7 +574,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="18.3-negbin-18.html#cb689-1" aria-hidden="true" tabindex="-1"></a><span class="fu">loo_compare</span>(poisson_loo, negbin_loo)</span></code></pre></div>
 <pre><code>##        elpd_diff se_diff
 ## model2   0.0       0.0  
-## model1 -87.6      19.0</code></pre>
+## model1 -87.9      18.9</code></pre>
 <p>The negative binomial model is clearly superior to the Poisson model here.</p>
 <p>Now, with a reasonable model in hand we could proceed with data visualization, but we might also rather have a “good” model to work with instead of just one that is “good enough”. It turns out that the real problem behind the weirdness in our residuals is actually due to an excess number of zero counts of <code>satellite</code> males on a lot of our females. This is very common in count data, where we might observe a lot of zeros before actually counting a success. For these cases, we’ll need to deal with the issue these excessive zeros (“zero inflation”) directly.</p>
 </div>

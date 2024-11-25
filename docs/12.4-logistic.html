@@ -615,22 +615,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## Model selection based on AICc:
 ## 
-##                                 K   AICc Delta_AICc AICcWt Cum.Wt
-## year + flow                     7 565.16       0.00   0.31   0.31
-## year + hatchery + flow          8 565.23       0.07   0.30   0.61
-## year + length + flow            8 565.91       0.75   0.21   0.82
-## year + hatchery + length + flow 9 567.12       1.96   0.12   0.93
-## year + hatchery                 7 569.50       4.34   0.04   0.97
-## year + length                   7 570.80       5.64   0.02   0.99
-## year + length + hatchery        8 571.37       6.21   0.01   1.00
-##                                      LL
-## year + flow                     -275.51
-## year + hatchery + flow          -274.52
-## year + length + flow            -274.86
-## year + hatchery + length + flow -274.44
-## year + hatchery                 -277.68
-## year + length                   -278.33
-## year + length + hatchery        -277.59</code></pre>
+##                                 K   AICc Delta_AICc AICcWt Cum.Wt      LL
+## year + flow                     7 565.16       0.00   0.31   0.31 -275.51
+## year + hatchery + flow          8 565.23       0.07   0.30   0.61 -274.52
+## year + length + flow            8 565.91       0.75   0.21   0.82 -274.86
+## year + hatchery + length + flow 9 567.12       1.96   0.12   0.93 -274.44
+## year + hatchery                 7 569.50       4.34   0.04   0.97 -277.68
+## year + length                   7 570.80       5.64   0.02   0.99 -278.33
+## year + length + hatchery        8 571.37       6.21   0.01   1.00 -277.59</code></pre>
 <div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="12.4-logistic.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the structure just to show that it is, indeed, an object:</span></span>
 <span id="cb489-2"><a href="12.4-logistic.html#cb489-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mod_table)</span></code></pre></div>
 <pre><code>## Classes &#39;aictab&#39; and &#39;data.frame&#39;:   7 obs. of  8 variables:
@@ -651,10 +643,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Call:  glm(formula = path ~ year + flow, family = binomial, data = choice)
 ## 
 ## Coefficients:
-## (Intercept)     year2006     year2009     year2010     year2011  
-##   -2.911624    -0.518632     0.243194    -0.043979    -0.814334  
-##    year2012         flow  
-##   -0.764289     0.001642  
+## (Intercept)     year2006     year2009     year2010     year2011     year2012  
+##   -2.911624    -0.518632     0.243194    -0.043979    -0.814334    -0.764289  
+##        flow  
+##    0.001642  
 ## 
 ## Degrees of Freedom: 758 Total (i.e. Null);  752 Residual
 ## Null Deviance:       580.2 

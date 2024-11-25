@@ -532,6 +532,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb362-6"><a href="9.7-linear-regression-diagnostics.html#cb362-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb362-7"><a href="9.7-linear-regression-diagnostics.html#cb362-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Hook width&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb362-8"><a href="9.7-linear-regression-diagnostics.html#cb362-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(epsilon)))</span></code></pre></div>
+<p><img src="worstr_files/figure-html/unnamed-chunk-238-1.png" width="672" /></p>
 <p><br></p>
 <p>Bleh. As with our example above, we can see that we clearly fail the assumption that the residuals are normally distributed with a mean of zero! It also looks like the residual error increases with increasing hook width, which means our observations are also not independent. This specific type of non-independence is called <em>heteroscedasticity</em>. That’s a real word.</p>
 <p>Let’s see if our new toy, the log-transformation can help us here:</p>
