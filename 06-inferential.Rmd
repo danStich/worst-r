@@ -226,12 +226,11 @@ mid_carps <- grasscarp %>% subset(Age == 10)
 
 Now, we can conduct our two-sample t-test!
 
-The syntax is pretty straightforward, and is similar to what we used above, except that now we have two groups so we will omit `mu` and specify the t-test as a formula with independent (x, `density`) and dependent (y, `Length`) variables. There is no pairing of our observations, so we specify `paired = FALSE`, and we tell R we don't want to assume that the variance of `Length` is equal between `density` groups.
+The syntax is pretty straightforward, and is similar to what we used above, except that now we have two groups so we will omit `mu` and specify the t-test as a formula with independent (x, `density`) and dependent (y, `Length`) variables. We tell R we don't want to assume that the variance of `Length` is equal between `density` groups.
 
 ```{r}
   t.test(Length ~ density,
          data = mid_carps,
-         paired = FALSE,      # 2-sample test, not "paired"
          var.equal = FALSE,   # We make no variance assumption
          conf.level = 0.95    # Alpha = 0.05
     )
@@ -240,7 +239,6 @@ The syntax is pretty straightforward, and is similar to what we used above, exce
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
  test <- t.test(Length ~ density,
          data = mid_carps,
-         paired = FALSE,      # 2-sample test, not "paired"
          var.equal = FALSE,   # We make no variance assumption
          conf.level = 0.95    # Alpha = 0.05
     )
@@ -283,7 +281,7 @@ wilcox.test(Length~density, mid_carps)
 
 As expected, this test also shows that the two samples differ significantly.
 
-*Note: this is equivelent to the Mann-Whitney U-test you may have learned about elsewhere. Had these samples been paired, R would have defaulted to a signed-rank test, with which you may also be familiar.*
+*Note: this is equivalent to the Mann-Whitney U-test you may have learned about elsewhere. Had these samples been paired, R would have defaulted to a signed-rank test, with which you may also be familiar.*
 
 
 ### Presenting your results

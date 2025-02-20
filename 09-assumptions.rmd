@@ -28,7 +28,7 @@ library(GGally)
 
 From last week:
 
->Now that you hold real power in your hands to do data analysis, we need to to have our first talk about due diligence and assumptions of the statistical models that we use.
+>Now that you hold real power in your hands to do data analysis, we need to have our first talk about due diligence and assumptions of the statistical models that we use.
 There are three fundamental assumptions that we either need to validate or address through experimental design in this class of models.
 
 >**1.** Independence of observations.<br>

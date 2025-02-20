@@ -105,7 +105,7 @@ colors()
 If you are a little more adventurous, you might try the `rgb()` color specification or hex values. I really like the `rgb()` specification because you can include an `alpha` channel to make your colors transparent (oooooh!). For example, if I change my code above to use the following:
 ```{r, eval = FALSE, echo = TRUE}
 col = rgb(red = 0.90, green = 0, blue = 0.30, alpha = 0.10)
-````
+```
 
 I get a transparent, purple histogram.
 
