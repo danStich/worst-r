@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.3 Plotting with ggplot2 | The Worst Stats Text eveR</title>
   <meta name="description" content="4.3 Plotting with ggplot2 | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.3 Plotting with ggplot2 | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -527,51 +531,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="gghists" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> Histograms<a href="4.3-plotting-with-ggplot2.html#gghists" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The default histogram is easy to create with <code>ggplot()</code> and a geometry layer. We start with the <code>ggplot</code> call, and then add the histogram geometry, <code>geom_histogram()</code>, like this. I usually save the plot to an object with an arbitrary name I don’t use for anything, like <code>p</code> or <code>s</code> or <code>v</code>, and then print it explicitly.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="4.3-plotting-with-ggplot2.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of water temperature across </span></span>
-<span id="cb156-2"><a href="4.3-plotting-with-ggplot2.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="co"># all dates and depths</span></span>
-<span id="cb156-3"><a href="4.3-plotting-with-ggplot2.html#cb156-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(otsego, <span class="fu">aes</span>(<span class="at">x=</span>temp)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>)</span>
-<span id="cb156-4"><a href="4.3-plotting-with-ggplot2.html#cb156-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-5"><a href="4.3-plotting-with-ggplot2.html#cb156-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="4.3-plotting-with-ggplot2.html#cb156-1" tabindex="-1"></a><span class="co"># Histogram of water temperature across </span></span>
+<span id="cb156-2"><a href="4.3-plotting-with-ggplot2.html#cb156-2" tabindex="-1"></a><span class="co"># all dates and depths</span></span>
+<span id="cb156-3"><a href="4.3-plotting-with-ggplot2.html#cb156-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(otsego, <span class="fu">aes</span>(<span class="at">x=</span>temp)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>)</span>
+<span id="cb156-4"><a href="4.3-plotting-with-ggplot2.html#cb156-4" tabindex="-1"></a></span>
+<span id="cb156-5"><a href="4.3-plotting-with-ggplot2.html#cb156-5" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 <p>Right away this looks a lot prettier than the default histogram that we produced with base graphics. Of course, we can customize just like we did before.</p>
 <p>Let’s add labels for the x and y-axis next:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="4.3-plotting-with-ggplot2.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of water temperature across </span></span>
-<span id="cb157-2"><a href="4.3-plotting-with-ggplot2.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="co"># all dates and depths</span></span>
-<span id="cb157-3"><a href="4.3-plotting-with-ggplot2.html#cb157-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(otsego, <span class="fu">aes</span>(<span class="at">x=</span>temp)) <span class="sc">+</span> </span>
-<span id="cb157-4"><a href="4.3-plotting-with-ggplot2.html#cb157-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>) <span class="sc">+</span> </span>
-<span id="cb157-5"><a href="4.3-plotting-with-ggplot2.html#cb157-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature (&quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
-<span id="cb157-6"><a href="4.3-plotting-with-ggplot2.html#cb157-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Count&quot;</span>)</span>
-<span id="cb157-7"><a href="4.3-plotting-with-ggplot2.html#cb157-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb157-8"><a href="4.3-plotting-with-ggplot2.html#cb157-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="4.3-plotting-with-ggplot2.html#cb157-1" tabindex="-1"></a><span class="co"># Histogram of water temperature across </span></span>
+<span id="cb157-2"><a href="4.3-plotting-with-ggplot2.html#cb157-2" tabindex="-1"></a><span class="co"># all dates and depths</span></span>
+<span id="cb157-3"><a href="4.3-plotting-with-ggplot2.html#cb157-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(otsego, <span class="fu">aes</span>(<span class="at">x=</span>temp)) <span class="sc">+</span> </span>
+<span id="cb157-4"><a href="4.3-plotting-with-ggplot2.html#cb157-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>) <span class="sc">+</span> </span>
+<span id="cb157-5"><a href="4.3-plotting-with-ggplot2.html#cb157-5" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature (&quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb157-6"><a href="4.3-plotting-with-ggplot2.html#cb157-6" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Count&quot;</span>)</span>
+<span id="cb157-7"><a href="4.3-plotting-with-ggplot2.html#cb157-7" tabindex="-1"></a></span>
+<span id="cb157-8"><a href="4.3-plotting-with-ggplot2.html#cb157-8" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 <p>We can also scale the <code>x-axis</code> and the <code>y-axis</code> like we did in the <a href="4.2-base-graphics.html#histograms">base graphics example</a>.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="4.3-plotting-with-ggplot2.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of water temperature across </span></span>
-<span id="cb158-2"><a href="4.3-plotting-with-ggplot2.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="co"># all dates and depths</span></span>
-<span id="cb158-3"><a href="4.3-plotting-with-ggplot2.html#cb158-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(otsego, <span class="fu">aes</span>(<span class="at">x=</span>temp)) <span class="sc">+</span> </span>
-<span id="cb158-4"><a href="4.3-plotting-with-ggplot2.html#cb158-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>) <span class="sc">+</span> </span>
-<span id="cb158-5"><a href="4.3-plotting-with-ggplot2.html#cb158-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature (&quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
-<span id="cb158-6"><a href="4.3-plotting-with-ggplot2.html#cb158-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Count&quot;</span>) <span class="sc">+</span></span>
-<span id="cb158-7"><a href="4.3-plotting-with-ggplot2.html#cb158-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">25</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
-<span id="cb158-8"><a href="4.3-plotting-with-ggplot2.html#cb158-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
-<span id="cb158-9"><a href="4.3-plotting-with-ggplot2.html#cb158-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="4.3-plotting-with-ggplot2.html#cb158-1" tabindex="-1"></a><span class="co"># Histogram of water temperature across </span></span>
+<span id="cb158-2"><a href="4.3-plotting-with-ggplot2.html#cb158-2" tabindex="-1"></a><span class="co"># all dates and depths</span></span>
+<span id="cb158-3"><a href="4.3-plotting-with-ggplot2.html#cb158-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(otsego, <span class="fu">aes</span>(<span class="at">x=</span>temp)) <span class="sc">+</span> </span>
+<span id="cb158-4"><a href="4.3-plotting-with-ggplot2.html#cb158-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>) <span class="sc">+</span> </span>
+<span id="cb158-5"><a href="4.3-plotting-with-ggplot2.html#cb158-5" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature (&quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb158-6"><a href="4.3-plotting-with-ggplot2.html#cb158-6" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb158-7"><a href="4.3-plotting-with-ggplot2.html#cb158-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">25</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
+<span id="cb158-8"><a href="4.3-plotting-with-ggplot2.html#cb158-8" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb158-9"><a href="4.3-plotting-with-ggplot2.html#cb158-9" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
 <p>We can modify each of other layers individually, all at once using preset ggplot <a href="http://www.sthda.com/english/wiki/ggplot2-title-main-axis-and-legend-titles">themes</a> or by modifying a pre-defined theme.</p>
 <p>Let’s have a look at how a theme changes the appearance. I am going to add <code>theme_bw()</code> here, but check out the others linked above. I also add a few adjust the position of the x- and y-axis labels and removed the panel grid in the <code>theme()</code> function after applying a theme.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="4.3-plotting-with-ggplot2.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of water temperature across </span></span>
-<span id="cb159-2"><a href="4.3-plotting-with-ggplot2.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="co"># all dates and depths</span></span>
-<span id="cb159-3"><a href="4.3-plotting-with-ggplot2.html#cb159-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(otsego, <span class="fu">aes</span>(<span class="at">x=</span>temp)) <span class="sc">+</span> </span>
-<span id="cb159-4"><a href="4.3-plotting-with-ggplot2.html#cb159-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>) <span class="sc">+</span> </span>
-<span id="cb159-5"><a href="4.3-plotting-with-ggplot2.html#cb159-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">25</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
-<span id="cb159-6"><a href="4.3-plotting-with-ggplot2.html#cb159-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
-<span id="cb159-7"><a href="4.3-plotting-with-ggplot2.html#cb159-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature (&quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
-<span id="cb159-8"><a href="4.3-plotting-with-ggplot2.html#cb159-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Count&quot;</span>) <span class="sc">+</span></span>
-<span id="cb159-9"><a href="4.3-plotting-with-ggplot2.html#cb159-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb159-10"><a href="4.3-plotting-with-ggplot2.html#cb159-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb159-11"><a href="4.3-plotting-with-ggplot2.html#cb159-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
-<span id="cb159-12"><a href="4.3-plotting-with-ggplot2.html#cb159-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
-<span id="cb159-13"><a href="4.3-plotting-with-ggplot2.html#cb159-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb159-14"><a href="4.3-plotting-with-ggplot2.html#cb159-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb159-15"><a href="4.3-plotting-with-ggplot2.html#cb159-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="4.3-plotting-with-ggplot2.html#cb159-1" tabindex="-1"></a><span class="co"># Histogram of water temperature across </span></span>
+<span id="cb159-2"><a href="4.3-plotting-with-ggplot2.html#cb159-2" tabindex="-1"></a><span class="co"># all dates and depths</span></span>
+<span id="cb159-3"><a href="4.3-plotting-with-ggplot2.html#cb159-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(otsego, <span class="fu">aes</span>(<span class="at">x=</span>temp)) <span class="sc">+</span> </span>
+<span id="cb159-4"><a href="4.3-plotting-with-ggplot2.html#cb159-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>) <span class="sc">+</span> </span>
+<span id="cb159-5"><a href="4.3-plotting-with-ggplot2.html#cb159-5" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">25</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
+<span id="cb159-6"><a href="4.3-plotting-with-ggplot2.html#cb159-6" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
+<span id="cb159-7"><a href="4.3-plotting-with-ggplot2.html#cb159-7" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature (&quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb159-8"><a href="4.3-plotting-with-ggplot2.html#cb159-8" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb159-9"><a href="4.3-plotting-with-ggplot2.html#cb159-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb159-10"><a href="4.3-plotting-with-ggplot2.html#cb159-10" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb159-11"><a href="4.3-plotting-with-ggplot2.html#cb159-11" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb159-12"><a href="4.3-plotting-with-ggplot2.html#cb159-12" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb159-13"><a href="4.3-plotting-with-ggplot2.html#cb159-13" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb159-14"><a href="4.3-plotting-with-ggplot2.html#cb159-14" tabindex="-1"></a>  )</span>
+<span id="cb159-15"><a href="4.3-plotting-with-ggplot2.html#cb159-15" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
 <p>Spend some time practicing this and changing options to see what you can come up with. Be sure to check out the descriptions of the options you can pass to theme by running <code>?theme</code> to get the help file.</p>
 </div>
@@ -580,52 +584,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now that we have a basic feel for the <code>ggplot2</code> work flow, changing plot types is really easy because all of the parts of our plots work together in the same way.</p>
 <p>As a reminder, we previously built scatter plots of surface temperature in Otsego Lake, NY by month using base graphics.</p>
 <p>Go ahead and subset the data again:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="4.3-plotting-with-ggplot2.html#cb160-1" aria-hidden="true" tabindex="-1"></a>surface <span class="ot">&lt;-</span> otsego <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="fl">0.10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="4.3-plotting-with-ggplot2.html#cb160-1" tabindex="-1"></a>surface <span class="ot">&lt;-</span> otsego <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="fl">0.10</span>)</span></code></pre></div>
 <p>Now, we can make the default scatterplot:</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="4.3-plotting-with-ggplot2.html#cb161-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(surface, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
-<span id="cb161-2"><a href="4.3-plotting-with-ggplot2.html#cb161-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb161-3"><a href="4.3-plotting-with-ggplot2.html#cb161-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(s)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="4.3-plotting-with-ggplot2.html#cb161-1" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(surface, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
+<span id="cb161-2"><a href="4.3-plotting-with-ggplot2.html#cb161-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb161-3"><a href="4.3-plotting-with-ggplot2.html#cb161-3" tabindex="-1"></a><span class="fu">print</span>(s)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
 <p>At a glance, this already looks a lot nicer than the default scatterplots from base graphics, but we still have a lot of work to do. Plus, we get ggplots own odd behaviors when it comes to the x-axis scale and titles. So, let’s get to work!</p>
 <p>First, we’ll replace the default axis titles and add the <code>theme_bw()</code> that we used above, with the same modifications to axis positions and grid lines.</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="4.3-plotting-with-ggplot2.html#cb162-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(surface, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
-<span id="cb162-2"><a href="4.3-plotting-with-ggplot2.html#cb162-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb162-3"><a href="4.3-plotting-with-ggplot2.html#cb162-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
-<span id="cb162-4"><a href="4.3-plotting-with-ggplot2.html#cb162-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
-<span id="cb162-5"><a href="4.3-plotting-with-ggplot2.html#cb162-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb162-6"><a href="4.3-plotting-with-ggplot2.html#cb162-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
-<span id="cb162-7"><a href="4.3-plotting-with-ggplot2.html#cb162-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
-<span id="cb162-8"><a href="4.3-plotting-with-ggplot2.html#cb162-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb162-9"><a href="4.3-plotting-with-ggplot2.html#cb162-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb162-10"><a href="4.3-plotting-with-ggplot2.html#cb162-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(s)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="4.3-plotting-with-ggplot2.html#cb162-1" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(surface, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
+<span id="cb162-2"><a href="4.3-plotting-with-ggplot2.html#cb162-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb162-3"><a href="4.3-plotting-with-ggplot2.html#cb162-3" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
+<span id="cb162-4"><a href="4.3-plotting-with-ggplot2.html#cb162-4" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb162-5"><a href="4.3-plotting-with-ggplot2.html#cb162-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb162-6"><a href="4.3-plotting-with-ggplot2.html#cb162-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb162-7"><a href="4.3-plotting-with-ggplot2.html#cb162-7" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb162-8"><a href="4.3-plotting-with-ggplot2.html#cb162-8" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb162-9"><a href="4.3-plotting-with-ggplot2.html#cb162-9" tabindex="-1"></a>  )</span>
+<span id="cb162-10"><a href="4.3-plotting-with-ggplot2.html#cb162-10" tabindex="-1"></a><span class="fu">print</span>(s)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
 <p>Okay, now we need to fix that pesky x-axis scale to use whole months or text labels.</p>
 <p>To fix the axis scales, we’ve actually got to do a little bit of work this time. In this case the easiest thing to do is probably to make a categorical variable out of the column <code>month</code>, which is an integer. We can do this using some fancy indexing with the built-in object that contains month abbreviations, <code>month.abb</code> in base R.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="4.3-plotting-with-ggplot2.html#cb163-1" aria-hidden="true" tabindex="-1"></a>surface<span class="sc">$</span>c_month <span class="ot">&lt;-</span> <span class="fu">factor</span>(month.abb[surface<span class="sc">$</span>month], <span class="at">levels=</span>month.abb)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="4.3-plotting-with-ggplot2.html#cb163-1" tabindex="-1"></a>surface<span class="sc">$</span>c_month <span class="ot">&lt;-</span> <span class="fu">factor</span>(month.abb[surface<span class="sc">$</span>month], <span class="at">levels=</span>month.abb)</span></code></pre></div>
 <p>Whoa, that was a heavy lift (sarcasm). Let’s see how that changes the appearance of our plot:</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="4.3-plotting-with-ggplot2.html#cb164-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(surface, <span class="fu">aes</span>(<span class="at">x =</span> c_month, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
-<span id="cb164-2"><a href="4.3-plotting-with-ggplot2.html#cb164-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb164-3"><a href="4.3-plotting-with-ggplot2.html#cb164-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
-<span id="cb164-4"><a href="4.3-plotting-with-ggplot2.html#cb164-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
-<span id="cb164-5"><a href="4.3-plotting-with-ggplot2.html#cb164-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb164-6"><a href="4.3-plotting-with-ggplot2.html#cb164-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
-<span id="cb164-7"><a href="4.3-plotting-with-ggplot2.html#cb164-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
-<span id="cb164-8"><a href="4.3-plotting-with-ggplot2.html#cb164-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb164-9"><a href="4.3-plotting-with-ggplot2.html#cb164-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb164-10"><a href="4.3-plotting-with-ggplot2.html#cb164-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(s)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="4.3-plotting-with-ggplot2.html#cb164-1" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(surface, <span class="fu">aes</span>(<span class="at">x =</span> c_month, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
+<span id="cb164-2"><a href="4.3-plotting-with-ggplot2.html#cb164-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb164-3"><a href="4.3-plotting-with-ggplot2.html#cb164-3" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
+<span id="cb164-4"><a href="4.3-plotting-with-ggplot2.html#cb164-4" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb164-5"><a href="4.3-plotting-with-ggplot2.html#cb164-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb164-6"><a href="4.3-plotting-with-ggplot2.html#cb164-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb164-7"><a href="4.3-plotting-with-ggplot2.html#cb164-7" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb164-8"><a href="4.3-plotting-with-ggplot2.html#cb164-8" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb164-9"><a href="4.3-plotting-with-ggplot2.html#cb164-9" tabindex="-1"></a>  )</span>
+<span id="cb164-10"><a href="4.3-plotting-with-ggplot2.html#cb164-10" tabindex="-1"></a><span class="fu">print</span>(s)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-107-1.png" width="672" />
 This is starting to look really nice.</p>
 <p>Finally, we just add a little transparency to the points by specifying <code>alpha = 0.2</code> inside of <code>geom_point()</code> and we are good to go!</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="4.3-plotting-with-ggplot2.html#cb165-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(surface, <span class="fu">aes</span>(<span class="at">x =</span> c_month, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
-<span id="cb165-2"><a href="4.3-plotting-with-ggplot2.html#cb165-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span> </span>
-<span id="cb165-3"><a href="4.3-plotting-with-ggplot2.html#cb165-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
-<span id="cb165-4"><a href="4.3-plotting-with-ggplot2.html#cb165-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
-<span id="cb165-5"><a href="4.3-plotting-with-ggplot2.html#cb165-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb165-6"><a href="4.3-plotting-with-ggplot2.html#cb165-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
-<span id="cb165-7"><a href="4.3-plotting-with-ggplot2.html#cb165-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
-<span id="cb165-8"><a href="4.3-plotting-with-ggplot2.html#cb165-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb165-9"><a href="4.3-plotting-with-ggplot2.html#cb165-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb165-10"><a href="4.3-plotting-with-ggplot2.html#cb165-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(s)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="4.3-plotting-with-ggplot2.html#cb165-1" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(surface, <span class="fu">aes</span>(<span class="at">x =</span> c_month, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
+<span id="cb165-2"><a href="4.3-plotting-with-ggplot2.html#cb165-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span> </span>
+<span id="cb165-3"><a href="4.3-plotting-with-ggplot2.html#cb165-3" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
+<span id="cb165-4"><a href="4.3-plotting-with-ggplot2.html#cb165-4" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb165-5"><a href="4.3-plotting-with-ggplot2.html#cb165-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb165-6"><a href="4.3-plotting-with-ggplot2.html#cb165-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb165-7"><a href="4.3-plotting-with-ggplot2.html#cb165-7" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb165-8"><a href="4.3-plotting-with-ggplot2.html#cb165-8" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb165-9"><a href="4.3-plotting-with-ggplot2.html#cb165-9" tabindex="-1"></a>  )</span>
+<span id="cb165-10"><a href="4.3-plotting-with-ggplot2.html#cb165-10" tabindex="-1"></a><span class="fu">print</span>(s)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
 <p>Looks just like the one we made with base graphics!</p>
 </div>
@@ -634,33 +638,33 @@ This is starting to look really nice.</p>
 <p>Most of the time we plot line graphs, whether in base graphics or using <code>ggplot2</code>, we are going to be adding them to existing plots. This was really straightforward in base graphics. It is only slightly more complicated in <code>ggplot2</code>.</p>
 <p>We’ll start with the default line graph, and then add it to the scatter plot from the previous section.</p>
 <p>Let’s calculate monthly means of surface temperature in Otsego Lake again:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="4.3-plotting-with-ggplot2.html#cb166-1" aria-hidden="true" tabindex="-1"></a>mids <span class="ot">&lt;-</span> surface <span class="sc">%&gt;%</span></span>
-<span id="cb166-2"><a href="4.3-plotting-with-ggplot2.html#cb166-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(month) <span class="sc">%&gt;%</span></span>
-<span id="cb166-3"><a href="4.3-plotting-with-ggplot2.html#cb166-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg =</span> <span class="fu">mean</span>(temp))</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="4.3-plotting-with-ggplot2.html#cb166-1" tabindex="-1"></a>mids <span class="ot">&lt;-</span> surface <span class="sc">%&gt;%</span></span>
+<span id="cb166-2"><a href="4.3-plotting-with-ggplot2.html#cb166-2" tabindex="-1"></a>  <span class="fu">group_by</span>(month) <span class="sc">%&gt;%</span></span>
+<span id="cb166-3"><a href="4.3-plotting-with-ggplot2.html#cb166-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg =</span> <span class="fu">mean</span>(temp))</span></code></pre></div>
 <p>Now plot it with <code>ggplot()</code>:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="4.3-plotting-with-ggplot2.html#cb167-1" aria-hidden="true" tabindex="-1"></a>lp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mids, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> avg)) <span class="sc">+</span></span>
-<span id="cb167-2"><a href="4.3-plotting-with-ggplot2.html#cb167-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
-<span id="cb167-3"><a href="4.3-plotting-with-ggplot2.html#cb167-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb167-4"><a href="4.3-plotting-with-ggplot2.html#cb167-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lp)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="4.3-plotting-with-ggplot2.html#cb167-1" tabindex="-1"></a>lp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mids, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> avg)) <span class="sc">+</span></span>
+<span id="cb167-2"><a href="4.3-plotting-with-ggplot2.html#cb167-2" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
+<span id="cb167-3"><a href="4.3-plotting-with-ggplot2.html#cb167-3" tabindex="-1"></a></span>
+<span id="cb167-4"><a href="4.3-plotting-with-ggplot2.html#cb167-4" tabindex="-1"></a><span class="fu">print</span>(lp)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
 <p>There you have it!</p>
 <p>Now, we just need to add this to our scatterplot that we made previously. To do this, we have to insert <code>geom_line()</code> in the code, but we must specify</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="4.3-plotting-with-ggplot2.html#cb168-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> surface, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> c_month, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
-<span id="cb168-2"><a href="4.3-plotting-with-ggplot2.html#cb168-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.20</span>) <span class="sc">+</span> </span>
-<span id="cb168-3"><a href="4.3-plotting-with-ggplot2.html#cb168-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> avg),</span>
-<span id="cb168-4"><a href="4.3-plotting-with-ggplot2.html#cb168-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> mids,</span>
-<span id="cb168-5"><a href="4.3-plotting-with-ggplot2.html#cb168-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">&#39;gray40&#39;</span>,</span>
-<span id="cb168-6"><a href="4.3-plotting-with-ggplot2.html#cb168-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">lty =</span> <span class="dv">3</span>,</span>
-<span id="cb168-7"><a href="4.3-plotting-with-ggplot2.html#cb168-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb168-8"><a href="4.3-plotting-with-ggplot2.html#cb168-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
-<span id="cb168-9"><a href="4.3-plotting-with-ggplot2.html#cb168-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
-<span id="cb168-10"><a href="4.3-plotting-with-ggplot2.html#cb168-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb168-11"><a href="4.3-plotting-with-ggplot2.html#cb168-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
-<span id="cb168-12"><a href="4.3-plotting-with-ggplot2.html#cb168-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
-<span id="cb168-13"><a href="4.3-plotting-with-ggplot2.html#cb168-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb168-14"><a href="4.3-plotting-with-ggplot2.html#cb168-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb168-15"><a href="4.3-plotting-with-ggplot2.html#cb168-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb168-16"><a href="4.3-plotting-with-ggplot2.html#cb168-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(s)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="4.3-plotting-with-ggplot2.html#cb168-1" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> surface, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> c_month, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
+<span id="cb168-2"><a href="4.3-plotting-with-ggplot2.html#cb168-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.20</span>) <span class="sc">+</span> </span>
+<span id="cb168-3"><a href="4.3-plotting-with-ggplot2.html#cb168-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> avg),</span>
+<span id="cb168-4"><a href="4.3-plotting-with-ggplot2.html#cb168-4" tabindex="-1"></a>            <span class="at">data =</span> mids,</span>
+<span id="cb168-5"><a href="4.3-plotting-with-ggplot2.html#cb168-5" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">&#39;gray40&#39;</span>,</span>
+<span id="cb168-6"><a href="4.3-plotting-with-ggplot2.html#cb168-6" tabindex="-1"></a>            <span class="at">lty =</span> <span class="dv">3</span>,</span>
+<span id="cb168-7"><a href="4.3-plotting-with-ggplot2.html#cb168-7" tabindex="-1"></a>            <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb168-8"><a href="4.3-plotting-with-ggplot2.html#cb168-8" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
+<span id="cb168-9"><a href="4.3-plotting-with-ggplot2.html#cb168-9" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb168-10"><a href="4.3-plotting-with-ggplot2.html#cb168-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb168-11"><a href="4.3-plotting-with-ggplot2.html#cb168-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb168-12"><a href="4.3-plotting-with-ggplot2.html#cb168-12" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb168-13"><a href="4.3-plotting-with-ggplot2.html#cb168-13" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb168-14"><a href="4.3-plotting-with-ggplot2.html#cb168-14" tabindex="-1"></a>  )</span>
+<span id="cb168-15"><a href="4.3-plotting-with-ggplot2.html#cb168-15" tabindex="-1"></a></span>
+<span id="cb168-16"><a href="4.3-plotting-with-ggplot2.html#cb168-16" tabindex="-1"></a><span class="fu">print</span>(s)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
 <p>We will continue to use this approach throughout the book to plot raw data and model predictions. So, if it is giving you trouble now, spend some extra time with it.</p>
 </div>
@@ -668,36 +672,36 @@ This is starting to look really nice.</p>
 <h3><span class="header-section-number">4.3.4</span> Boxplots and<a href="4.3-plotting-with-ggplot2.html#ggboxplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To wrap up our tour of plotting examples in <code>ggplot2</code>, we will reproduce (more or less) the box plots we made in <a href="4.2-base-graphics.html#boxplots">base graphics</a>.</p>
 <p>Make the default box plot of surface water temperatures in Otsego Lake, NY. Notice that we use the <code>c_month</code> variable that we made previously in the <code>surface</code> data so R knows these are groups.</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="4.3-plotting-with-ggplot2.html#cb169-1" aria-hidden="true" tabindex="-1"></a>bp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(surface, <span class="fu">aes</span>(<span class="at">x =</span> c_month, <span class="at">y =</span> temp)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
-<span id="cb169-2"><a href="4.3-plotting-with-ggplot2.html#cb169-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb169-3"><a href="4.3-plotting-with-ggplot2.html#cb169-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(bp)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="4.3-plotting-with-ggplot2.html#cb169-1" tabindex="-1"></a>bp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(surface, <span class="fu">aes</span>(<span class="at">x =</span> c_month, <span class="at">y =</span> temp)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
+<span id="cb169-2"><a href="4.3-plotting-with-ggplot2.html#cb169-2" tabindex="-1"></a></span>
+<span id="cb169-3"><a href="4.3-plotting-with-ggplot2.html#cb169-3" tabindex="-1"></a><span class="fu">print</span>(bp)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
 <p>If we add changes we made to previous plots here, then we can get a cleaner look:</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="4.3-plotting-with-ggplot2.html#cb170-1" aria-hidden="true" tabindex="-1"></a>bp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(surface, <span class="fu">aes</span>(<span class="at">x =</span> c_month, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
-<span id="cb170-2"><a href="4.3-plotting-with-ggplot2.html#cb170-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&#39;gray40&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;gray87&#39;</span>, <span class="at">width =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb170-3"><a href="4.3-plotting-with-ggplot2.html#cb170-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
-<span id="cb170-4"><a href="4.3-plotting-with-ggplot2.html#cb170-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
-<span id="cb170-5"><a href="4.3-plotting-with-ggplot2.html#cb170-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb170-6"><a href="4.3-plotting-with-ggplot2.html#cb170-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
-<span id="cb170-7"><a href="4.3-plotting-with-ggplot2.html#cb170-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
-<span id="cb170-8"><a href="4.3-plotting-with-ggplot2.html#cb170-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb170-9"><a href="4.3-plotting-with-ggplot2.html#cb170-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb170-10"><a href="4.3-plotting-with-ggplot2.html#cb170-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-11"><a href="4.3-plotting-with-ggplot2.html#cb170-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(bp)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="4.3-plotting-with-ggplot2.html#cb170-1" tabindex="-1"></a>bp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(surface, <span class="fu">aes</span>(<span class="at">x =</span> c_month, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
+<span id="cb170-2"><a href="4.3-plotting-with-ggplot2.html#cb170-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&#39;gray40&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;gray87&#39;</span>, <span class="at">width =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb170-3"><a href="4.3-plotting-with-ggplot2.html#cb170-3" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
+<span id="cb170-4"><a href="4.3-plotting-with-ggplot2.html#cb170-4" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb170-5"><a href="4.3-plotting-with-ggplot2.html#cb170-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb170-6"><a href="4.3-plotting-with-ggplot2.html#cb170-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb170-7"><a href="4.3-plotting-with-ggplot2.html#cb170-7" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb170-8"><a href="4.3-plotting-with-ggplot2.html#cb170-8" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb170-9"><a href="4.3-plotting-with-ggplot2.html#cb170-9" tabindex="-1"></a>  )</span>
+<span id="cb170-10"><a href="4.3-plotting-with-ggplot2.html#cb170-10" tabindex="-1"></a></span>
+<span id="cb170-11"><a href="4.3-plotting-with-ggplot2.html#cb170-11" tabindex="-1"></a><span class="fu">print</span>(bp)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
 <p>And, of course, we can add our “jittered”, raw data points over the top to show the spread.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="4.3-plotting-with-ggplot2.html#cb171-1" aria-hidden="true" tabindex="-1"></a>bp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(surface, <span class="fu">aes</span>(<span class="at">x =</span> c_month, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
-<span id="cb171-2"><a href="4.3-plotting-with-ggplot2.html#cb171-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&#39;gray40&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;gray87&#39;</span>, <span class="at">width =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb171-3"><a href="4.3-plotting-with-ggplot2.html#cb171-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> .<span class="dv">5</span>, <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb171-4"><a href="4.3-plotting-with-ggplot2.html#cb171-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
-<span id="cb171-5"><a href="4.3-plotting-with-ggplot2.html#cb171-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
-<span id="cb171-6"><a href="4.3-plotting-with-ggplot2.html#cb171-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb171-7"><a href="4.3-plotting-with-ggplot2.html#cb171-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
-<span id="cb171-8"><a href="4.3-plotting-with-ggplot2.html#cb171-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
-<span id="cb171-9"><a href="4.3-plotting-with-ggplot2.html#cb171-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb171-10"><a href="4.3-plotting-with-ggplot2.html#cb171-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb171-11"><a href="4.3-plotting-with-ggplot2.html#cb171-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb171-12"><a href="4.3-plotting-with-ggplot2.html#cb171-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(bp)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="4.3-plotting-with-ggplot2.html#cb171-1" tabindex="-1"></a>bp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(surface, <span class="fu">aes</span>(<span class="at">x =</span> c_month, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
+<span id="cb171-2"><a href="4.3-plotting-with-ggplot2.html#cb171-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&#39;gray40&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;gray87&#39;</span>, <span class="at">width =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb171-3"><a href="4.3-plotting-with-ggplot2.html#cb171-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> .<span class="dv">5</span>, <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb171-4"><a href="4.3-plotting-with-ggplot2.html#cb171-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
+<span id="cb171-5"><a href="4.3-plotting-with-ggplot2.html#cb171-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb171-6"><a href="4.3-plotting-with-ggplot2.html#cb171-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb171-7"><a href="4.3-plotting-with-ggplot2.html#cb171-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb171-8"><a href="4.3-plotting-with-ggplot2.html#cb171-8" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb171-9"><a href="4.3-plotting-with-ggplot2.html#cb171-9" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb171-10"><a href="4.3-plotting-with-ggplot2.html#cb171-10" tabindex="-1"></a>  )</span>
+<span id="cb171-11"><a href="4.3-plotting-with-ggplot2.html#cb171-11" tabindex="-1"></a></span>
+<span id="cb171-12"><a href="4.3-plotting-with-ggplot2.html#cb171-12" tabindex="-1"></a><span class="fu">print</span>(bp)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
 </div>
 </div>

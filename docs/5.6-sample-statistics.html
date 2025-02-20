@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.6 Sample statistics | The Worst Stats Text eveR</title>
   <meta name="description" content="5.6 Sample statistics | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.6 Sample statistics | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -564,83 +568,83 @@ distribution in the normal</li>
 <h4><span class="header-section-number">5.6.2.1</span> Method of moments estimator<a href="5.6-sample-statistics.html#method-of-moments-estimator" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The moments of the normal distribution are well defined, and you are probably familiar with how to calculate a mean (average) already. See if you can rearrange this in a way that makes sense with how you know to calculate a <strong>mean</strong> and a <strong>variance</strong>!</p>
 <p>Start by simulating a variable with a known mean and standard deviation. We’ll pretend that we are simulating cold temperatures here:</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="5.6-sample-statistics.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a random sample from a normal</span></span>
-<span id="cb212-2"><a href="5.6-sample-statistics.html#cb212-2" aria-hidden="true" tabindex="-1"></a><span class="co"># with a mean of 20 and a standard</span></span>
-<span id="cb212-3"><a href="5.6-sample-statistics.html#cb212-3" aria-hidden="true" tabindex="-1"></a><span class="co"># deviation of 2</span></span>
-<span id="cb212-4"><a href="5.6-sample-statistics.html#cb212-4" aria-hidden="true" tabindex="-1"></a>test_norm <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e4</span>, <span class="dv">20</span>, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="5.6-sample-statistics.html#cb212-1" tabindex="-1"></a><span class="co"># Take a random sample from a normal</span></span>
+<span id="cb212-2"><a href="5.6-sample-statistics.html#cb212-2" tabindex="-1"></a><span class="co"># with a mean of 20 and a standard</span></span>
+<span id="cb212-3"><a href="5.6-sample-statistics.html#cb212-3" tabindex="-1"></a><span class="co"># deviation of 2</span></span>
+<span id="cb212-4"><a href="5.6-sample-statistics.html#cb212-4" tabindex="-1"></a>test_norm <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e4</span>, <span class="dv">20</span>, <span class="dv">2</span>)</span></code></pre></div>
 <p>First, we’ll estimate it by making our own function:</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="5.6-sample-statistics.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the function</span></span>
-<span id="cb213-2"><a href="5.6-sample-statistics.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="co"># First, define a function by name</span></span>
-<span id="cb213-3"><a href="5.6-sample-statistics.html#cb213-3" aria-hidden="true" tabindex="-1"></a>norm.mom <span class="ot">=</span> <span class="cf">function</span>(x){      </span>
-<span id="cb213-4"><a href="5.6-sample-statistics.html#cb213-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb213-5"><a href="5.6-sample-statistics.html#cb213-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate mean</span></span>
-<span id="cb213-6"><a href="5.6-sample-statistics.html#cb213-6" aria-hidden="true" tabindex="-1"></a>  x_bar <span class="ot">=</span> (<span class="dv">1</span><span class="sc">/</span><span class="fu">length</span>(x)) <span class="sc">*</span> <span class="fu">sum</span>(x) </span>
-<span id="cb213-7"><a href="5.6-sample-statistics.html#cb213-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb213-8"><a href="5.6-sample-statistics.html#cb213-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate variance</span></span>
-<span id="cb213-9"><a href="5.6-sample-statistics.html#cb213-9" aria-hidden="true" tabindex="-1"></a>  sigma2 <span class="ot">=</span> (<span class="dv">1</span><span class="sc">/</span><span class="fu">length</span>(x)) <span class="sc">*</span> <span class="fu">sum</span>((x<span class="sc">-</span>x_bar)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb213-10"><a href="5.6-sample-statistics.html#cb213-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb213-11"><a href="5.6-sample-statistics.html#cb213-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return the calculations</span></span>
-<span id="cb213-12"><a href="5.6-sample-statistics.html#cb213-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(x_bar, sigma2))      </span>
-<span id="cb213-13"><a href="5.6-sample-statistics.html#cb213-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb213-14"><a href="5.6-sample-statistics.html#cb213-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb213-15"><a href="5.6-sample-statistics.html#cb213-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Test the function</span></span>
-<span id="cb213-16"><a href="5.6-sample-statistics.html#cb213-16" aria-hidden="true" tabindex="-1"></a><span class="fu">norm.mom</span>(test_norm)</span></code></pre></div>
-<pre><code>## [1] 20.022525  3.997012</code></pre>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="5.6-sample-statistics.html#cb213-1" tabindex="-1"></a><span class="co"># Write the function</span></span>
+<span id="cb213-2"><a href="5.6-sample-statistics.html#cb213-2" tabindex="-1"></a><span class="co"># First, define a function by name</span></span>
+<span id="cb213-3"><a href="5.6-sample-statistics.html#cb213-3" tabindex="-1"></a>norm.mom <span class="ot">=</span> <span class="cf">function</span>(x){      </span>
+<span id="cb213-4"><a href="5.6-sample-statistics.html#cb213-4" tabindex="-1"></a>  </span>
+<span id="cb213-5"><a href="5.6-sample-statistics.html#cb213-5" tabindex="-1"></a>  <span class="co"># Calculate mean</span></span>
+<span id="cb213-6"><a href="5.6-sample-statistics.html#cb213-6" tabindex="-1"></a>  x_bar <span class="ot">=</span> (<span class="dv">1</span><span class="sc">/</span><span class="fu">length</span>(x)) <span class="sc">*</span> <span class="fu">sum</span>(x) </span>
+<span id="cb213-7"><a href="5.6-sample-statistics.html#cb213-7" tabindex="-1"></a>  </span>
+<span id="cb213-8"><a href="5.6-sample-statistics.html#cb213-8" tabindex="-1"></a>  <span class="co"># Calculate variance</span></span>
+<span id="cb213-9"><a href="5.6-sample-statistics.html#cb213-9" tabindex="-1"></a>  sigma2 <span class="ot">=</span> (<span class="dv">1</span><span class="sc">/</span><span class="fu">length</span>(x)) <span class="sc">*</span> <span class="fu">sum</span>((x<span class="sc">-</span>x_bar)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb213-10"><a href="5.6-sample-statistics.html#cb213-10" tabindex="-1"></a>  </span>
+<span id="cb213-11"><a href="5.6-sample-statistics.html#cb213-11" tabindex="-1"></a>  <span class="co"># Return the calculations</span></span>
+<span id="cb213-12"><a href="5.6-sample-statistics.html#cb213-12" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(x_bar, sigma2))      </span>
+<span id="cb213-13"><a href="5.6-sample-statistics.html#cb213-13" tabindex="-1"></a>  </span>
+<span id="cb213-14"><a href="5.6-sample-statistics.html#cb213-14" tabindex="-1"></a>}</span>
+<span id="cb213-15"><a href="5.6-sample-statistics.html#cb213-15" tabindex="-1"></a><span class="co"># Test the function</span></span>
+<span id="cb213-16"><a href="5.6-sample-statistics.html#cb213-16" tabindex="-1"></a><span class="fu">norm.mom</span>(test_norm)</span></code></pre></div>
+<pre><code>## [1] 19.960317  3.963253</code></pre>
 <p>Because this one is so common, R has built-in estimators that rely on
 the exact solution provided by the formulas for the first two moments
 of the normal distribution:</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="5.6-sample-statistics.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(test_norm)</span></code></pre></div>
-<pre><code>## [1] 20.02253</code></pre>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="5.6-sample-statistics.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(test_norm)</span></code></pre></div>
-<pre><code>## [1] 3.997411</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="5.6-sample-statistics.html#cb215-1" tabindex="-1"></a><span class="fu">mean</span>(test_norm)</span></code></pre></div>
+<pre><code>## [1] 19.96032</code></pre>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="5.6-sample-statistics.html#cb217-1" tabindex="-1"></a><span class="fu">var</span>(test_norm)</span></code></pre></div>
+<pre><code>## [1] 3.963649</code></pre>
 <p>Wow, that was a lot less code. That is the beauty of having these functions available. How do these compare to the answers returned by our function if you scroll back up?</p>
 </div>
 <div id="maximum-likelihood-estimator" class="section level4 hasAnchor" number="5.6.2.2">
 <h4><span class="header-section-number">5.6.2.2</span> Maximum likelihood estimator<a href="5.6-sample-statistics.html#maximum-likelihood-estimator" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>R also has built-in <strong>maximum likelihood</strong> estimators that provide an exact solution to the first two moments of the normal distribution. These are available through the <code>MASS</code> package.</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="5.6-sample-statistics.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fitdistr</span>(test_norm, <span class="st">&#39;normal&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="5.6-sample-statistics.html#cb219-1" tabindex="-1"></a><span class="fu">fitdistr</span>(test_norm, <span class="st">&#39;normal&#39;</span>)</span></code></pre></div>
 <pre><code>##       mean           sd     
-##   20.02252503    1.99925277 
-##  ( 0.01999253) ( 0.01413685)</code></pre>
+##   19.96031700    1.99079208 
+##  ( 0.01990792) ( 0.01407703)</code></pre>
 <p>Only one problem here: R doesn’t report the second moment! It reports
 the square root of the second moment: the <strong>standard deviation</strong>!</p>
 <p>Finally, let’s write our own function and maximize the likelihood with the <code>optim()</code> function in R.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="5.6-sample-statistics.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the function</span></span>
-<span id="cb221-2"><a href="5.6-sample-statistics.html#cb221-2" aria-hidden="true" tabindex="-1"></a>normal.lik <span class="ot">=</span> <span class="cf">function</span>(theta, y){</span>
-<span id="cb221-3"><a href="5.6-sample-statistics.html#cb221-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb221-4"><a href="5.6-sample-statistics.html#cb221-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The starting value for</span></span>
-<span id="cb221-5"><a href="5.6-sample-statistics.html#cb221-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># mu that we provide</span></span>
-<span id="cb221-6"><a href="5.6-sample-statistics.html#cb221-6" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">=</span> theta[<span class="dv">1</span>]</span>
-<span id="cb221-7"><a href="5.6-sample-statistics.html#cb221-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb221-8"><a href="5.6-sample-statistics.html#cb221-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The starting value for</span></span>
-<span id="cb221-9"><a href="5.6-sample-statistics.html#cb221-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sigma2 that we provide</span></span>
-<span id="cb221-10"><a href="5.6-sample-statistics.html#cb221-10" aria-hidden="true" tabindex="-1"></a>  sigma2 <span class="ot">=</span> theta[<span class="dv">2</span>]</span>
-<span id="cb221-11"><a href="5.6-sample-statistics.html#cb221-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb221-12"><a href="5.6-sample-statistics.html#cb221-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Number of observations in the data</span></span>
-<span id="cb221-13"><a href="5.6-sample-statistics.html#cb221-13" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">=</span> <span class="fu">nrow</span>(y)</span>
-<span id="cb221-14"><a href="5.6-sample-statistics.html#cb221-14" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb221-15"><a href="5.6-sample-statistics.html#cb221-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Compute the log likelihood of the</span></span>
-<span id="cb221-16"><a href="5.6-sample-statistics.html#cb221-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># data (y) using the likelihood</span></span>
-<span id="cb221-17"><a href="5.6-sample-statistics.html#cb221-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># function for the normal distribution</span></span>
-<span id="cb221-18"><a href="5.6-sample-statistics.html#cb221-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># given the starting values for our</span></span>
-<span id="cb221-19"><a href="5.6-sample-statistics.html#cb221-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># parameters (contained in the vector &#39;theta&#39;)</span></span>
-<span id="cb221-20"><a href="5.6-sample-statistics.html#cb221-20" aria-hidden="true" tabindex="-1"></a>  logl <span class="ot">=</span> <span class="sc">-</span>.<span class="dv">5</span><span class="sc">*</span>n<span class="sc">*</span><span class="fu">log</span>(<span class="dv">2</span><span class="sc">*</span>pi) <span class="sc">-</span>.<span class="dv">5</span><span class="sc">*</span>n<span class="sc">*</span><span class="fu">log</span>(sigma2)<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>sigma2))<span class="sc">*</span><span class="fu">sum</span>((y<span class="sc">-</span>mu)<span class="sc">**</span><span class="dv">2</span>)</span>
-<span id="cb221-21"><a href="5.6-sample-statistics.html#cb221-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="sc">-</span>logl)</span>
-<span id="cb221-22"><a href="5.6-sample-statistics.html#cb221-22" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="5.6-sample-statistics.html#cb221-1" tabindex="-1"></a><span class="co"># Define the function</span></span>
+<span id="cb221-2"><a href="5.6-sample-statistics.html#cb221-2" tabindex="-1"></a>normal.lik <span class="ot">=</span> <span class="cf">function</span>(theta, y){</span>
+<span id="cb221-3"><a href="5.6-sample-statistics.html#cb221-3" tabindex="-1"></a>  </span>
+<span id="cb221-4"><a href="5.6-sample-statistics.html#cb221-4" tabindex="-1"></a>  <span class="co"># The starting value for</span></span>
+<span id="cb221-5"><a href="5.6-sample-statistics.html#cb221-5" tabindex="-1"></a>  <span class="co"># mu that we provide</span></span>
+<span id="cb221-6"><a href="5.6-sample-statistics.html#cb221-6" tabindex="-1"></a>  mu <span class="ot">=</span> theta[<span class="dv">1</span>]</span>
+<span id="cb221-7"><a href="5.6-sample-statistics.html#cb221-7" tabindex="-1"></a>  </span>
+<span id="cb221-8"><a href="5.6-sample-statistics.html#cb221-8" tabindex="-1"></a>  <span class="co"># The starting value for</span></span>
+<span id="cb221-9"><a href="5.6-sample-statistics.html#cb221-9" tabindex="-1"></a>  <span class="co"># sigma2 that we provide</span></span>
+<span id="cb221-10"><a href="5.6-sample-statistics.html#cb221-10" tabindex="-1"></a>  sigma2 <span class="ot">=</span> theta[<span class="dv">2</span>]</span>
+<span id="cb221-11"><a href="5.6-sample-statistics.html#cb221-11" tabindex="-1"></a>  </span>
+<span id="cb221-12"><a href="5.6-sample-statistics.html#cb221-12" tabindex="-1"></a>  <span class="co"># Number of observations in the data</span></span>
+<span id="cb221-13"><a href="5.6-sample-statistics.html#cb221-13" tabindex="-1"></a>  n <span class="ot">=</span> <span class="fu">nrow</span>(y)</span>
+<span id="cb221-14"><a href="5.6-sample-statistics.html#cb221-14" tabindex="-1"></a>  </span>
+<span id="cb221-15"><a href="5.6-sample-statistics.html#cb221-15" tabindex="-1"></a>  <span class="co"># Compute the log likelihood of the</span></span>
+<span id="cb221-16"><a href="5.6-sample-statistics.html#cb221-16" tabindex="-1"></a>  <span class="co"># data (y) using the likelihood</span></span>
+<span id="cb221-17"><a href="5.6-sample-statistics.html#cb221-17" tabindex="-1"></a>  <span class="co"># function for the normal distribution</span></span>
+<span id="cb221-18"><a href="5.6-sample-statistics.html#cb221-18" tabindex="-1"></a>  <span class="co"># given the starting values for our</span></span>
+<span id="cb221-19"><a href="5.6-sample-statistics.html#cb221-19" tabindex="-1"></a>  <span class="co"># parameters (contained in the vector &#39;theta&#39;)</span></span>
+<span id="cb221-20"><a href="5.6-sample-statistics.html#cb221-20" tabindex="-1"></a>  logl <span class="ot">=</span> <span class="sc">-</span>.<span class="dv">5</span><span class="sc">*</span>n<span class="sc">*</span><span class="fu">log</span>(<span class="dv">2</span><span class="sc">*</span>pi) <span class="sc">-</span>.<span class="dv">5</span><span class="sc">*</span>n<span class="sc">*</span><span class="fu">log</span>(sigma2)<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>sigma2))<span class="sc">*</span><span class="fu">sum</span>((y<span class="sc">-</span>mu)<span class="sc">**</span><span class="dv">2</span>)</span>
+<span id="cb221-21"><a href="5.6-sample-statistics.html#cb221-21" tabindex="-1"></a>  <span class="fu">return</span>(<span class="sc">-</span>logl)</span>
+<span id="cb221-22"><a href="5.6-sample-statistics.html#cb221-22" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now, we use the <code>optim</code> function to maximize the likelihood of the data
 (technically by minimizing the -2*log[likehood]) given different values of
 our parameters (<code>mu</code> and <code>sigma2</code>).</p>
 <p>To get started, we need to take a guess at what those parameters could be. (Yes, we know they are mu = 20 and sd = 2)</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="5.6-sample-statistics.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">optim</span>(<span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">4</span>), normal.lik, <span class="at">y=</span><span class="fu">data.frame</span>(test_norm))</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="5.6-sample-statistics.html#cb222-1" tabindex="-1"></a><span class="fu">optim</span>(<span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">4</span>), normal.lik, <span class="at">y=</span><span class="fu">data.frame</span>(test_norm))</span></code></pre></div>
 <pre><code>## $par
-## [1] 20.021441  3.997482
+## [1] 19.959778  3.963014
 ## 
 ## $value
-## [1] 21117.12
+## [1] 21074.71
 ## 
 ## $counts
 ## function gradient 
-##       41       NA 
+##       49       NA 
 ## 
 ## $convergence
 ## [1] 0
@@ -648,61 +652,50 @@ our parameters (<code>mu</code> and <code>sigma2</code>).</p>
 ## $message
 ## NULL</code></pre>
 <p>The pieces are in <code>pars</code> here (right where we told R to put them!). We can also make the output into an object and call the parts by name:</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="5.6-sample-statistics.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make it into an object</span></span>
-<span id="cb224-2"><a href="5.6-sample-statistics.html#cb224-2" aria-hidden="true" tabindex="-1"></a>est <span class="ot">=</span> <span class="fu">optim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
-<span id="cb224-3"><a href="5.6-sample-statistics.html#cb224-3" aria-hidden="true" tabindex="-1"></a>            normal.lik,</span>
-<span id="cb224-4"><a href="5.6-sample-statistics.html#cb224-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">y=</span><span class="fu">data.frame</span>(test_norm)</span>
-<span id="cb224-5"><a href="5.6-sample-statistics.html#cb224-5" aria-hidden="true" tabindex="-1"></a>            ) </span></code></pre></div>
-<pre><code>## Warning in log(sigma2): NaNs produced
-
-## Warning in log(sigma2): NaNs produced
-
-## Warning in log(sigma2): NaNs produced
-
-## Warning in log(sigma2): NaNs produced
-
-## Warning in log(sigma2): NaNs produced
-
-## Warning in log(sigma2): NaNs produced</code></pre>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="5.6-sample-statistics.html#cb224-1" tabindex="-1"></a><span class="co"># Make it into an object</span></span>
+<span id="cb224-2"><a href="5.6-sample-statistics.html#cb224-2" tabindex="-1"></a>est <span class="ot">=</span> <span class="fu">optim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb224-3"><a href="5.6-sample-statistics.html#cb224-3" tabindex="-1"></a>            normal.lik,</span>
+<span id="cb224-4"><a href="5.6-sample-statistics.html#cb224-4" tabindex="-1"></a>            <span class="at">y=</span><span class="fu">data.frame</span>(test_norm)</span>
+<span id="cb224-5"><a href="5.6-sample-statistics.html#cb224-5" tabindex="-1"></a>            ) </span></code></pre></div>
 <p>Look at the structure I’ll be damned, it’s a list! Hey, we learned about those!</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="5.6-sample-statistics.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(est)   </span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="5.6-sample-statistics.html#cb225-1" tabindex="-1"></a><span class="fu">str</span>(est)   </span></code></pre></div>
 <pre><code>## List of 5
-##  $ par        : num [1:2] 20 4
-##  $ value      : num 21117
-##  $ counts     : Named int [1:2] 99 NA
+##  $ par        : num [1:2] 19.96 3.97
+##  $ value      : num 21075
+##  $ counts     : Named int [1:2] 95 NA
 ##   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;function&quot; &quot;gradient&quot;
 ##  $ convergence: int 0
 ##  $ message    : NULL</code></pre>
 <p>And, here are the estimates:</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="5.6-sample-statistics.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Both</span></span>
-<span id="cb228-2"><a href="5.6-sample-statistics.html#cb228-2" aria-hidden="true" tabindex="-1"></a>est<span class="sc">$</span>par </span></code></pre></div>
-<pre><code>## [1] 20.024468  3.999281</code></pre>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="5.6-sample-statistics.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The mean  </span></span>
-<span id="cb230-2"><a href="5.6-sample-statistics.html#cb230-2" aria-hidden="true" tabindex="-1"></a>est<span class="sc">$</span>par[<span class="dv">1</span>]</span></code></pre></div>
-<pre><code>## [1] 20.02447</code></pre>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="5.6-sample-statistics.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The variance  </span></span>
-<span id="cb232-2"><a href="5.6-sample-statistics.html#cb232-2" aria-hidden="true" tabindex="-1"></a>est<span class="sc">$</span>par[<span class="dv">2</span>] </span></code></pre></div>
-<pre><code>## [1] 3.999281</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="5.6-sample-statistics.html#cb227-1" tabindex="-1"></a><span class="co"># Both</span></span>
+<span id="cb227-2"><a href="5.6-sample-statistics.html#cb227-2" tabindex="-1"></a>est<span class="sc">$</span>par </span></code></pre></div>
+<pre><code>## [1] 19.958277  3.969413</code></pre>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="5.6-sample-statistics.html#cb229-1" tabindex="-1"></a><span class="co"># The mean  </span></span>
+<span id="cb229-2"><a href="5.6-sample-statistics.html#cb229-2" tabindex="-1"></a>est<span class="sc">$</span>par[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 19.95828</code></pre>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="5.6-sample-statistics.html#cb231-1" tabindex="-1"></a><span class="co"># The variance  </span></span>
+<span id="cb231-2"><a href="5.6-sample-statistics.html#cb231-2" tabindex="-1"></a>est<span class="sc">$</span>par[<span class="dv">2</span>] </span></code></pre></div>
+<pre><code>## [1] 3.969413</code></pre>
 <p>There you have it, a couple of different ways to calculate parameters of the normal distribution using a couple of different approaches each.</p>
 </div>
 </div>
 <div id="quantiles-and-other-descriptive-statistics" class="section level3 hasAnchor" number="5.6.3">
 <h3><span class="header-section-number">5.6.3</span> Quantiles and other descriptive statistics<a href="5.6-sample-statistics.html#quantiles-and-other-descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are a number of other ways we might like to describe this this (or any) sampling distribution. Here are a few examples that we will work with this semester.</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="5.6-sample-statistics.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here is the median, or 50th percentile</span></span>
-<span id="cb234-2"><a href="5.6-sample-statistics.html#cb234-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(test_norm) </span></code></pre></div>
-<pre><code>## [1] 20.03938</code></pre>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="5.6-sample-statistics.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The 95% confidence limits</span></span>
-<span id="cb236-2"><a href="5.6-sample-statistics.html#cb236-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(test_norm, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="5.6-sample-statistics.html#cb233-1" tabindex="-1"></a><span class="co"># Here is the median, or 50th percentile</span></span>
+<span id="cb233-2"><a href="5.6-sample-statistics.html#cb233-2" tabindex="-1"></a><span class="fu">median</span>(test_norm) </span></code></pre></div>
+<pre><code>## [1] 19.97228</code></pre>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="5.6-sample-statistics.html#cb235-1" tabindex="-1"></a><span class="co"># The 95% confidence limits</span></span>
+<span id="cb235-2"><a href="5.6-sample-statistics.html#cb235-2" tabindex="-1"></a><span class="fu">quantile</span>(test_norm, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)) </span></code></pre></div>
 <pre><code>##     2.5%    97.5% 
-## 16.12232 23.90639</code></pre>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="5.6-sample-statistics.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interquartile range (Q1 and Q3)</span></span>
-<span id="cb238-2"><a href="5.6-sample-statistics.html#cb238-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(test_norm, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))    </span></code></pre></div>
+## 16.01360 23.81532</code></pre>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="5.6-sample-statistics.html#cb237-1" tabindex="-1"></a><span class="co"># Interquartile range (Q1 and Q3)</span></span>
+<span id="cb237-2"><a href="5.6-sample-statistics.html#cb237-2" tabindex="-1"></a><span class="fu">quantile</span>(test_norm, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))    </span></code></pre></div>
 <pre><code>##      25%      75% 
-## 18.68611 21.37703</code></pre>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="5.6-sample-statistics.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Range of sample</span></span>
-<span id="cb240-2"><a href="5.6-sample-statistics.html#cb240-2" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(test_norm)                             </span></code></pre></div>
-<pre><code>## [1] 12.25893 27.73656</code></pre>
+## 18.62495 21.30882</code></pre>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="5.6-sample-statistics.html#cb239-1" tabindex="-1"></a><span class="co"># Range of sample</span></span>
+<span id="cb239-2"><a href="5.6-sample-statistics.html#cb239-2" tabindex="-1"></a><span class="fu">range</span>(test_norm)                             </span></code></pre></div>
+<pre><code>## [1] 12.94880 28.02709</code></pre>
 </div>
 </div>
             </section>

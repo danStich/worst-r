@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16.3 The prior | The Worst Stats Text eveR</title>
   <meta name="description" content="16.3 The prior | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16.3 The prior | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -534,32 +538,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For this example, let’s assume that we are interested in the survival of a hospital patient. Survival will be denoted as a ‘success’, or 1, and mortality as a ‘failure’, or ‘0’. In this sense, we are dealing with a binomial outcome. But, remember, we can always represent binomial outcomes on the probability scale…right?</p>
 <p>In this case, let’s say that we are assuming <em>a priori</em> that survival might be due to random chance, or that it might be influenced by some factor of interest (we’ll use “hospital” in the example below).</p>
 <p>There are multiple approaches that we could take to formulating a prior distribution for this case.</p>
-<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="16.3-the-prior.html#cb604-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A uniform distribution that indicates we</span></span>
-<span id="cb604-2"><a href="16.3-the-prior.html#cb604-2" aria-hidden="true" tabindex="-1"></a><span class="co"># have no knowledge about how survival</span></span>
-<span id="cb604-3"><a href="16.3-the-prior.html#cb604-3" aria-hidden="true" tabindex="-1"></a><span class="co"># varies between hospitals</span></span>
-<span id="cb604-4"><a href="16.3-the-prior.html#cb604-4" aria-hidden="true" tabindex="-1"></a>flat <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fl">1e4</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb604-5"><a href="16.3-the-prior.html#cb604-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb604-6"><a href="16.3-the-prior.html#cb604-6" aria-hidden="true" tabindex="-1"></a><span class="co"># A diffuse prior that indicates we think</span></span>
-<span id="cb604-7"><a href="16.3-the-prior.html#cb604-7" aria-hidden="true" tabindex="-1"></a><span class="co"># survival is the same between hospitals but</span></span>
-<span id="cb604-8"><a href="16.3-the-prior.html#cb604-8" aria-hidden="true" tabindex="-1"></a><span class="co"># we don&#39;t want to make too strong a statement</span></span>
-<span id="cb604-9"><a href="16.3-the-prior.html#cb604-9" aria-hidden="true" tabindex="-1"></a>diffuse <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="fl">1e4</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
-<span id="cb604-10"><a href="16.3-the-prior.html#cb604-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb604-11"><a href="16.3-the-prior.html#cb604-11" aria-hidden="true" tabindex="-1"></a><span class="co"># A peaked (strong) prior that indicates we</span></span>
-<span id="cb604-12"><a href="16.3-the-prior.html#cb604-12" aria-hidden="true" tabindex="-1"></a><span class="co"># are relatively certain ahead of time that</span></span>
-<span id="cb604-13"><a href="16.3-the-prior.html#cb604-13" aria-hidden="true" tabindex="-1"></a><span class="co"># survival is the same in both hospitals</span></span>
-<span id="cb604-14"><a href="16.3-the-prior.html#cb604-14" aria-hidden="true" tabindex="-1"></a>strong <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="fl">1e4</span>, <span class="dv">500</span>, <span class="dv">500</span>)</span>
-<span id="cb604-15"><a href="16.3-the-prior.html#cb604-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb604-16"><a href="16.3-the-prior.html#cb604-16" aria-hidden="true" tabindex="-1"></a><span class="co"># A strong prior that indicates we think</span></span>
-<span id="cb604-17"><a href="16.3-the-prior.html#cb604-17" aria-hidden="true" tabindex="-1"></a><span class="co"># survival is substantially different</span></span>
-<span id="cb604-18"><a href="16.3-the-prior.html#cb604-18" aria-hidden="true" tabindex="-1"></a><span class="co"># between hospitals</span></span>
-<span id="cb604-19"><a href="16.3-the-prior.html#cb604-19" aria-hidden="true" tabindex="-1"></a>bimodal <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="fl">1e4</span>, .<span class="dv">5</span>, .<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="16.3-the-prior.html#cb602-1" tabindex="-1"></a><span class="co"># A uniform distribution that indicates we</span></span>
+<span id="cb602-2"><a href="16.3-the-prior.html#cb602-2" tabindex="-1"></a><span class="co"># have no knowledge about how survival</span></span>
+<span id="cb602-3"><a href="16.3-the-prior.html#cb602-3" tabindex="-1"></a><span class="co"># varies between hospitals</span></span>
+<span id="cb602-4"><a href="16.3-the-prior.html#cb602-4" tabindex="-1"></a>flat <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fl">1e4</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb602-5"><a href="16.3-the-prior.html#cb602-5" tabindex="-1"></a></span>
+<span id="cb602-6"><a href="16.3-the-prior.html#cb602-6" tabindex="-1"></a><span class="co"># A diffuse prior that indicates we think</span></span>
+<span id="cb602-7"><a href="16.3-the-prior.html#cb602-7" tabindex="-1"></a><span class="co"># survival is the same between hospitals but</span></span>
+<span id="cb602-8"><a href="16.3-the-prior.html#cb602-8" tabindex="-1"></a><span class="co"># we don&#39;t want to make too strong a statement</span></span>
+<span id="cb602-9"><a href="16.3-the-prior.html#cb602-9" tabindex="-1"></a>diffuse <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="fl">1e4</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb602-10"><a href="16.3-the-prior.html#cb602-10" tabindex="-1"></a></span>
+<span id="cb602-11"><a href="16.3-the-prior.html#cb602-11" tabindex="-1"></a><span class="co"># A peaked (strong) prior that indicates we</span></span>
+<span id="cb602-12"><a href="16.3-the-prior.html#cb602-12" tabindex="-1"></a><span class="co"># are relatively certain ahead of time that</span></span>
+<span id="cb602-13"><a href="16.3-the-prior.html#cb602-13" tabindex="-1"></a><span class="co"># survival is the same in both hospitals</span></span>
+<span id="cb602-14"><a href="16.3-the-prior.html#cb602-14" tabindex="-1"></a>strong <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="fl">1e4</span>, <span class="dv">500</span>, <span class="dv">500</span>)</span>
+<span id="cb602-15"><a href="16.3-the-prior.html#cb602-15" tabindex="-1"></a></span>
+<span id="cb602-16"><a href="16.3-the-prior.html#cb602-16" tabindex="-1"></a><span class="co"># A strong prior that indicates we think</span></span>
+<span id="cb602-17"><a href="16.3-the-prior.html#cb602-17" tabindex="-1"></a><span class="co"># survival is substantially different</span></span>
+<span id="cb602-18"><a href="16.3-the-prior.html#cb602-18" tabindex="-1"></a><span class="co"># between hospitals</span></span>
+<span id="cb602-19"><a href="16.3-the-prior.html#cb602-19" tabindex="-1"></a>bimodal <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="fl">1e4</span>, .<span class="dv">5</span>, .<span class="dv">5</span>)</span></code></pre></div>
 <p>We can combine these into a dataframe for visualizing them, and then use the <code>pivot_longer()</code> function to stack the dataframe for plotting:</p>
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="16.3-the-prior.html#cb605-1" aria-hidden="true" tabindex="-1"></a>priors <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(flat, diffuse, strong, bimodal) <span class="sc">%&gt;%</span></span>
-<span id="cb605-2"><a href="16.3-the-prior.html#cb605-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(flat, diffuse, strong, bimodal))</span></code></pre></div>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="16.3-the-prior.html#cb603-1" tabindex="-1"></a>priors <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(flat, diffuse, strong, bimodal) <span class="sc">%&gt;%</span></span>
+<span id="cb603-2"><a href="16.3-the-prior.html#cb603-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(flat, diffuse, strong, bimodal))</span></code></pre></div>
 <p>We can look at these to compare them. Note that the x-axis is the same in all of the plots below, so changes in the location, shape, and spread are all controlled by the differences in the parameters used to specify each of these priors.</p>
-<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="16.3-the-prior.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(priors, <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">color =</span> name, <span class="at">fill =</span> name)) <span class="sc">+</span></span>
-<span id="cb606-2"><a href="16.3-the-prior.html#cb606-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb606-3"><a href="16.3-the-prior.html#cb606-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="16.3-the-prior.html#cb604-1" tabindex="-1"></a><span class="fu">ggplot</span>(priors, <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">color =</span> name, <span class="at">fill =</span> name)) <span class="sc">+</span></span>
+<span id="cb604-2"><a href="16.3-the-prior.html#cb604-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb604-3"><a href="16.3-the-prior.html#cb604-3" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-416-1.png" width="672" /></p>
 <p>You can see how different each of these priors is from one another. Hopefully, you are also starting to think about the different kinds of hypotheses that we might test with these different priors. In this case, the issue that we are always trying to address is whether or not survival (or whatever) is due only to random chance. This could be likened to asking whether or not a coin that we toss is a fair coin, or if it has some bias (say for example that it is more likely to land heads up because it is heavier on one side).</p>
 <p>Now that we have a prior distribution for our event of interest, we can go out into the world and collect some data about that event. We will then use those data to formulate a ‘posterior’ distribution that reflects some combination of our prior distribution and the data that we have collected. This process is commonly referred to as ‘updating’ our prior beliefs about the event of interest, and is the foundation that underlies Bayesian inference. How we get from the prior to a posterior is wholly dependent on the tools we use to obtain the solution to Bayes theorem, but most often this occurs through the use of Markov-chain Monte Carlo simulation. This approach allows us to work through Bayes theorem one set of values at a time to obtain a heuristic, simulation-based approach to solving for conditional probabilities. We will discuss this in some (but not too much!) detail as we move forward.</p>

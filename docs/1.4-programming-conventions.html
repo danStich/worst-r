@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.4 Programming conventions | The Worst Stats Text eveR</title>
   <meta name="description" content="1.4 Programming conventions | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.4 Programming conventions | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -543,22 +547,22 @@ In general, RStudio is really good about keeping track of things for you, and it
 <p><br></p>
 <p><strong>Commenting code is helpful</strong>
 And I will require that you do it, at least to start. Comments are a way for you to explain what your code does and why. This is useful for sharing code or just figuring out what you did six months ago. It could also be that critical piece of clarity that makes me say “Oh, I see what you did there, +1” on your homework.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="1.4-programming-conventions.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a comment.</span></span>
-<span id="cb1-2"><a href="1.4-programming-conventions.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We know because it is preceded</span></span>
-<span id="cb1-3"><a href="1.4-programming-conventions.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># by a hashtag, or &quot;octothorpe&quot;.</span></span>
-<span id="cb1-4"><a href="1.4-programming-conventions.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="1.4-programming-conventions.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># R ignores comments so you have</span></span>
-<span id="cb1-6"><a href="1.4-programming-conventions.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># a way to write down what you have</span></span>
-<span id="cb1-7"><a href="1.4-programming-conventions.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># done or what you are doing.</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="1.4-programming-conventions.html#cb1-1" tabindex="-1"></a><span class="co"># This is a comment.</span></span>
+<span id="cb1-2"><a href="1.4-programming-conventions.html#cb1-2" tabindex="-1"></a><span class="co"># We know because it is preceded</span></span>
+<span id="cb1-3"><a href="1.4-programming-conventions.html#cb1-3" tabindex="-1"></a><span class="co"># by a hashtag, or &quot;octothorpe&quot;.</span></span>
+<span id="cb1-4"><a href="1.4-programming-conventions.html#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="1.4-programming-conventions.html#cb1-5" tabindex="-1"></a><span class="co"># R ignores comments so you have</span></span>
+<span id="cb1-6"><a href="1.4-programming-conventions.html#cb1-6" tabindex="-1"></a><span class="co"># a way to write down what you have</span></span>
+<span id="cb1-7"><a href="1.4-programming-conventions.html#cb1-7" tabindex="-1"></a><span class="co"># done or what you are doing.</span></span></code></pre></div>
 <p><br></p>
 <p><strong>Section breaks help organization</strong>
 I like to use the built-in heading style. It works really well for code-folding in R and when I”ve written a script that is several hundred lines long, sometimes all I want to see is an outline. Go ahead and type the code below into a source file (File &gt; New File &gt; Rscript or <code>Ctrl+Shift+N</code>) and save it (File &gt; Save As or <code>Ctrl+S</code>). Press the little upside-down triangle to the left of the line to see what it does.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="1.4-programming-conventions.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Follow a comment with four dashes or hashes</span></span>
-<span id="cb2-2"><a href="1.4-programming-conventions.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># to insert a section heading</span></span>
-<span id="cb2-3"><a href="1.4-programming-conventions.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="1.4-programming-conventions.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Section heading ----</span></span>
-<span id="cb2-5"><a href="1.4-programming-conventions.html#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="1.4-programming-conventions.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Also a section heading ####</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="1.4-programming-conventions.html#cb2-1" tabindex="-1"></a><span class="co"># Follow a comment with four dashes or hashes</span></span>
+<span id="cb2-2"><a href="1.4-programming-conventions.html#cb2-2" tabindex="-1"></a><span class="co"># to insert a section heading</span></span>
+<span id="cb2-3"><a href="1.4-programming-conventions.html#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="1.4-programming-conventions.html#cb2-4" tabindex="-1"></a><span class="co"># Section heading ----</span></span>
+<span id="cb2-5"><a href="1.4-programming-conventions.html#cb2-5" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="1.4-programming-conventions.html#cb2-6" tabindex="-1"></a><span class="co"># Also a section heading ####</span></span></code></pre></div>
 <p>This is really handy for organizing sections in your homework or for breaking code up into smaller sections when you get started. You’ll later learn that when you have to do this a lot, there are usually ways you can reduce your code or split it up more efficiently into other files.</p>
 </div>
 <div id="rules" class="section level3 unnumbered hasAnchor">
@@ -567,10 +571,10 @@ I like to use the built-in heading style. It works really well for code-folding 
 <p><br></p>
 <p><strong>All code is in R is case sensitive.</strong>
 Run the following lines (with the Run button or <code>Ctrl+Enter</code>). If you highlight all of them, they will all be run in sequence from top to bottom. Or, you can manually run each line. Running each line can be helpful for learning how to debug code early on.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="1.4-programming-conventions.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Same letter, different case</span></span>
-<span id="cb3-2"><a href="1.4-programming-conventions.html#cb3-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb3-3"><a href="1.4-programming-conventions.html#cb3-3" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb3-4"><a href="1.4-programming-conventions.html#cb3-4" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> A</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="1.4-programming-conventions.html#cb3-1" tabindex="-1"></a><span class="co"># Same letter, different case</span></span>
+<span id="cb3-2"><a href="1.4-programming-conventions.html#cb3-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb3-3"><a href="1.4-programming-conventions.html#cb3-3" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb3-4"><a href="1.4-programming-conventions.html#cb3-4" tabindex="-1"></a>a <span class="sc">==</span> A</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p><br></p>
 <p>So, what just happened? A few things going on here.</p>
@@ -581,39 +585,39 @@ Run the following lines (with the Run button or <code>Ctrl+Enter</code>). If you
 </ol>
 <p><br></p>
 <p><strong>R will overwrite objects sequentially, so don’t name two things the same, unless you don’t need the first.</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="1.4-programming-conventions.html#cb5-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb5-2"><a href="1.4-programming-conventions.html#cb5-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb5-3"><a href="1.4-programming-conventions.html#cb5-3" aria-hidden="true" tabindex="-1"></a>a <span class="co"># a takes on the second value here</span></span>
-<span id="cb5-4"><a href="1.4-programming-conventions.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a) <span class="co"># This is another way to look at the value of an object</span></span>
-<span id="cb5-5"><a href="1.4-programming-conventions.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">show</span>(a) <span class="co"># And, here is one more</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="1.4-programming-conventions.html#cb5-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb5-2"><a href="1.4-programming-conventions.html#cb5-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb5-3"><a href="1.4-programming-conventions.html#cb5-3" tabindex="-1"></a>a <span class="co"># a takes on the second value here</span></span>
+<span id="cb5-4"><a href="1.4-programming-conventions.html#cb5-4" tabindex="-1"></a><span class="fu">print</span>(a) <span class="co"># This is another way to look at the value of an object</span></span>
+<span id="cb5-5"><a href="1.4-programming-conventions.html#cb5-5" tabindex="-1"></a><span class="fu">show</span>(a) <span class="co"># And, here is one more</span></span></code></pre></div>
 <p><br></p>
 <p><strong>Names should be short and meaningful.</strong> <code>a</code> is a terrible name, even for a temporary object in most cases.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="1.4-programming-conventions.html#cb6-1" aria-hidden="true" tabindex="-1"></a>myFirstObject <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="1.4-programming-conventions.html#cb6-1" tabindex="-1"></a>myFirstObject <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
 <p>Cheesy, but better…</p>
 <p><br></p>
 <p><strong>Punctuation and special symbols are important</strong> And, they are annoying to type in names. Avoid them in object names except for underscores “<code>_</code>” where you can. I try to stick with lowercase for everything I do except built-in data and data from external files because it is a pain to change everything.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="1.4-programming-conventions.html#cb7-1" aria-hidden="true" tabindex="-1"></a>myobject <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Illegible</span></span>
-<span id="cb7-2"><a href="1.4-programming-conventions.html#cb7-2" aria-hidden="true" tabindex="-1"></a>my.Object <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Annoying to type</span></span>
-<span id="cb7-3"><a href="1.4-programming-conventions.html#cb7-3" aria-hidden="true" tabindex="-1"></a>myObject <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Better, but still annoying</span></span>
-<span id="cb7-4"><a href="1.4-programming-conventions.html#cb7-4" aria-hidden="true" tabindex="-1"></a>my_object <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Same: maybe find a less annoying name?</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="1.4-programming-conventions.html#cb7-1" tabindex="-1"></a>myobject <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Illegible</span></span>
+<span id="cb7-2"><a href="1.4-programming-conventions.html#cb7-2" tabindex="-1"></a>my.Object <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Annoying to type</span></span>
+<span id="cb7-3"><a href="1.4-programming-conventions.html#cb7-3" tabindex="-1"></a>myObject <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Better, but still annoying</span></span>
+<span id="cb7-4"><a href="1.4-programming-conventions.html#cb7-4" tabindex="-1"></a>my_object <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Same: maybe find a less annoying name?</span></span></code></pre></div>
 <p>Importantly, R doesn’t really care and would treat all of these as unique, but equivalent objects in all regards. It’s worth noting that most R style recommendations are moving toward the last example above.</p>
 <p><br></p>
 <p><strong>Some symbol combinations are not allowed in object names</strong> But, these are usually bad names or temporary objects that create junk in your workspace anyway.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="1.4-programming-conventions.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In Rstudio there are nifty</span></span>
-<span id="cb8-2"><a href="1.4-programming-conventions.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># little markers to show this</span></span>
-<span id="cb8-3"><a href="1.4-programming-conventions.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># is broken</span></span>
-<span id="cb8-4"><a href="1.4-programming-conventions.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1a &lt;- 1</span></span>
-<span id="cb8-5"><a href="1.4-programming-conventions.html#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="1.4-programming-conventions.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># This one works (try it by typing</span></span>
-<span id="cb8-7"><a href="1.4-programming-conventions.html#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;a1&quot; in the console after you run</span></span>
-<span id="cb8-8"><a href="1.4-programming-conventions.html#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># the code below)</span></span>
-<span id="cb8-9"><a href="1.4-programming-conventions.html#cb8-9" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb8-10"><a href="1.4-programming-conventions.html#cb8-10" aria-hidden="true" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> a1 <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb8-11"><a href="1.4-programming-conventions.html#cb8-11" aria-hidden="true" tabindex="-1"></a>a3 <span class="ot">&lt;-</span> a2 <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="1.4-programming-conventions.html#cb8-1" tabindex="-1"></a><span class="co"># In Rstudio there are nifty</span></span>
+<span id="cb8-2"><a href="1.4-programming-conventions.html#cb8-2" tabindex="-1"></a><span class="co"># little markers to show this</span></span>
+<span id="cb8-3"><a href="1.4-programming-conventions.html#cb8-3" tabindex="-1"></a><span class="co"># is broken</span></span>
+<span id="cb8-4"><a href="1.4-programming-conventions.html#cb8-4" tabindex="-1"></a><span class="co"># 1a &lt;- 1</span></span>
+<span id="cb8-5"><a href="1.4-programming-conventions.html#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="1.4-programming-conventions.html#cb8-6" tabindex="-1"></a><span class="co"># This one works (try it by typing</span></span>
+<span id="cb8-7"><a href="1.4-programming-conventions.html#cb8-7" tabindex="-1"></a><span class="co"># &quot;a1&quot; in the console after you run</span></span>
+<span id="cb8-8"><a href="1.4-programming-conventions.html#cb8-8" tabindex="-1"></a><span class="co"># the code below)</span></span>
+<span id="cb8-9"><a href="1.4-programming-conventions.html#cb8-9" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb8-10"><a href="1.4-programming-conventions.html#cb8-10" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> a1 <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb8-11"><a href="1.4-programming-conventions.html#cb8-11" tabindex="-1"></a>a3 <span class="ot">&lt;-</span> a2 <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
 <p>We’ll see later that sequential operations that require creation of redundant objects (that require memory) are usually better replace by over-writing objects in place or using functions like the pipe <code>%&gt;%</code> from the <code>magrittr</code> package that help us keep a “tidy” workspace.</p>
 <p><br></p>
 <p><strong>Some things can be expressed in multiple ways.</strong> Both <code>T</code> and <code>TRUE</code> can be used to indicate a logical that evaluates as being TRUE. But <code>t</code> is used to transpose data.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="1.4-programming-conventions.html#cb9-1" aria-hidden="true" tabindex="-1"></a>T <span class="sc">==</span> <span class="cn">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="1.4-programming-conventions.html#cb9-1" tabindex="-1"></a>T <span class="sc">==</span> <span class="cn">TRUE</span></span></code></pre></div>
 <p><br></p>
 <p><strong>Some names are “reserved”, “built-in”, or pre-defined.</strong> Did you notice that R already knew what <code>T</code> and <code>TRUE</code> were? We will talk more about this later in the course if we need to.</p>
 <p>Other examples include functions like <code>in, if, else, for, function()</code> and a mess of others have special uses.</p>

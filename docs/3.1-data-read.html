@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.1 Data read | The Worst Stats Text eveR</title>
   <meta name="description" content="3.1 Data read | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.1 Data read | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -527,13 +531,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The data are stored in a “comma separated values” file (<code>.csv</code> extension). This is a fairly universal format, so we read it in using the fairly universal <code>read.csv()</code> function. This would change depending on how the data were stored, or how big the data files were, but that is a topic of further investigation for a later date. I probably do 95% of my data reads using <code>.csv</code> files. We’ll look at a few others later.</p>
 <p><strong>Important</strong> Remember that I am assuming your scripts are in the same directory (folder) on your computer as where you downloaded and unzipped the class data (see <a href="https://danstich.github.io/stich/classes/BIOL217/software.html">here</a> for reminder).</p>
 <p><strong>Before you can read this file</strong> you will need to set your working directory. For class, I will ask that you click <code>Session &gt; Set Working Directory &gt; To Source File Location</code>. This will set the working directory to wherever you have saved your code so that R can find the folder <code>data</code> and the files inside of it. You’ll notice that R spits out some code in the console when you click this. You can also use that code to set a working directory in your script but that can cause <a href="https://support.rstudio.com/hc/en-us/articles/200711843-Working-Directories-and-Workspaces">all kinds of problems</a>, so don’t do it.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="3.1-data-read.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start by reading in the data</span></span>
-<span id="cb111-2"><a href="3.1-data-read.html#cb111-2" aria-hidden="true" tabindex="-1"></a>am_shad <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/ctr_fish.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="3.1-data-read.html#cb111-1" tabindex="-1"></a><span class="co"># Start by reading in the data</span></span>
+<span id="cb111-2"><a href="3.1-data-read.html#cb111-2" tabindex="-1"></a>am_shad <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/ctr_fish.csv&quot;</span>)</span></code></pre></div>
 <p>Once you’ve read your data in, it’s always a good idea to look at the first few lines of data to make sure nothing looks ‘fishy’. Ha-ha, I couldn’t help myself!</p>
 <p>These are sex-specific length and age data for American shad (<em>Alosa sapidissima</em>) from the Connecticut River, USA. The data are used in models that I maintain with collaborators from NOAA Fisheries, the US Geological Survey, the US Fish and Wildlife Service, and others. The data were provided by CT Department of Energy and Environmental Protection (CTDEEP) and come from adult fish that return to the river from the ocean each year to spawn in fresh water.</p>
 <p>You can look at the first few rows of data with the <code>head()</code> function:</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="3.1-data-read.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the first 10 rows</span></span>
-<span id="cb112-2"><a href="3.1-data-read.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(am_shad, <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="3.1-data-read.html#cb112-1" tabindex="-1"></a><span class="co"># Look at the first 10 rows</span></span>
+<span id="cb112-2"><a href="3.1-data-read.html#cb112-2" tabindex="-1"></a><span class="fu">head</span>(am_shad, <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##    Sex Age Length yearCollected backCalculated Mass
 ## 1    B   1     13          2010           TRUE   NA
 ## 2    B   1     15          2010           TRUE   NA
@@ -547,8 +551,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10   B   1     16          2010           TRUE   NA</code></pre>
 <p>The <code>NA</code> values are supposed to be there. They are missing data.</p>
 <p>And, don’t forget about your old friend <code>str()</code> for a peek at how R sees your data. This can take care of a lot of potential problems later on.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="3.1-data-read.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the structure of the data</span></span>
-<span id="cb114-2"><a href="3.1-data-read.html#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(am_shad)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="3.1-data-read.html#cb114-1" tabindex="-1"></a><span class="co"># Look at the structure of the data</span></span>
+<span id="cb114-2"><a href="3.1-data-read.html#cb114-2" tabindex="-1"></a><span class="fu">str</span>(am_shad)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    16946 obs. of  6 variables:
 ##  $ Sex           : chr  &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; ...
 ##  $ Age           : int  1 1 1 1 1 1 1 1 1 1 ...

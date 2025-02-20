@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>20.3 Count models | The Worst Stats Text eveR</title>
   <meta name="description" content="20.3 Count models | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="20.3 Count models | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -526,12 +530,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">20.3.1</span> Data explanation {20-count-data}<a href="20.3-id_20-count.html#data-explanation-20-count-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We will wrap up our discussions about Bayesian hierarchical GLMs with a worked example of count models. For this one, we will attempt to predict counts of walleye, <em>Sander vitreus</em>, in spawning streams of Otsego Lake, NY, based on historical counts and climate data.</p>
 <p>We begin by reading in the data set:</p>
-<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="20.3-id_20-count.html#cb732-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the walleye data</span></span>
-<span id="cb732-2"><a href="20.3-id_20-count.html#cb732-2" aria-hidden="true" tabindex="-1"></a>eyes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/walleye.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="20.3-id_20-count.html#cb730-1" tabindex="-1"></a><span class="co"># Read in the walleye data</span></span>
+<span id="cb730-2"><a href="20.3-id_20-count.html#cb730-2" tabindex="-1"></a>eyes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/walleye.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Have a look at the first ten lines of the data set:</p>
-<div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb733-1"><a href="20.3-id_20-count.html#cb733-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(eyes, <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb731-1"><a href="20.3-id_20-count.html#cb731-1" tabindex="-1"></a><span class="fu">head</span>(eyes, <span class="dv">10</span>)</span></code></pre></div>
 <p>And check out the data structure:</p>
-<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="20.3-id_20-count.html#cb734-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(eyes)</span></code></pre></div>
+<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="20.3-id_20-count.html#cb732-1" tabindex="-1"></a><span class="fu">str</span>(eyes)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    71 obs. of  15 variables:
 ##  $ date     : chr  &quot;2009-04-01&quot; &quot;2009-04-01&quot; &quot;2009-04-01&quot; &quot;2009-04-05&quot; ...
 ##  $ site     : chr  &quot;Cripple Creek&quot; &quot;Hayden Creek&quot; &quot;Shadow Brook&quot; &quot;Cripple Creek&quot; ...
@@ -558,37 +562,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As we look through these results, we can see that we have a significant effect of degree days on spawning behavior. What’s more is that our count of spawning fish appears to increase during the year to a point before it starts to decrease.</p>
 <p><strong>But</strong> we’ve got what appear to be some major issues related to convergence at the bottom of this output! [dun, dun, dun]</p>
 <p>Before we get started, we need to standardize the covariate (<code>dd</code>) as discussed in <a href="https://danstich.github.io/worst-r/15-3-glmm-count.html">Chapter 15.3</a>. This helps keep things on a unit scale for model estimation, and prevents wacky estimates like negative variances (!). You can think of this as calculating z-scores for each observation of a given variable.</p>
-<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="20.3-id_20-count.html#cb736-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize the covariate</span></span>
-<span id="cb736-2"><a href="20.3-id_20-count.html#cb736-2" aria-hidden="true" tabindex="-1"></a>eyes<span class="sc">$</span>sdd <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">scale</span>(eyes<span class="sc">$</span>dd))</span></code></pre></div>
+<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="20.3-id_20-count.html#cb734-1" tabindex="-1"></a><span class="co"># Standardize the covariate</span></span>
+<span id="cb734-2"><a href="20.3-id_20-count.html#cb734-2" tabindex="-1"></a>eyes<span class="sc">$</span>sdd <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">scale</span>(eyes<span class="sc">$</span>dd))</span></code></pre></div>
 <p>And now we can fit the model. In the <code>rstanarm</code> package, the model might look something like this:</p>
-<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb737-1"><a href="20.3-id_20-count.html#cb737-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the model</span></span>
-<span id="cb737-2"><a href="20.3-id_20-count.html#cb737-2" aria-hidden="true" tabindex="-1"></a>wae_mod <span class="ot">&lt;-</span> <span class="fu">stan_glmer</span>(counts <span class="sc">~</span> sdd <span class="sc">+</span> <span class="fu">I</span>(sdd<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> site), </span>
-<span id="cb737-3"><a href="20.3-id_20-count.html#cb737-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> eyes, </span>
-<span id="cb737-4"><a href="20.3-id_20-count.html#cb737-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">family =</span> <span class="fu">neg_binomial_2</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb735-1"><a href="20.3-id_20-count.html#cb735-1" tabindex="-1"></a><span class="co"># Make the model</span></span>
+<span id="cb735-2"><a href="20.3-id_20-count.html#cb735-2" tabindex="-1"></a>wae_mod <span class="ot">&lt;-</span> <span class="fu">stan_glmer</span>(counts <span class="sc">~</span> sdd <span class="sc">+</span> <span class="fu">I</span>(sdd<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> site), </span>
+<span id="cb735-3"><a href="20.3-id_20-count.html#cb735-3" tabindex="-1"></a>                      <span class="at">data =</span> eyes, </span>
+<span id="cb735-4"><a href="20.3-id_20-count.html#cb735-4" tabindex="-1"></a>                      <span class="at">family =</span> <span class="fu">neg_binomial_2</span>())</span></code></pre></div>
 </div>
 <div id="id_20-count-preds" class="section level3 hasAnchor" number="20.3.3">
 <h3><span class="header-section-number">20.3.3</span> Predictions<a href="20.3-id_20-count.html#id_20-count-preds" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now, if we want, we can make a graph to show these predictions. Here, we make predictions for all years, and plot by site.</p>
-<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="20.3-id_20-count.html#cb738-1" aria-hidden="true" tabindex="-1"></a>pred_matrix <span class="ot">&lt;-</span> <span class="fu">posterior_predict</span>(wae_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="20.3-id_20-count.html#cb736-1" tabindex="-1"></a>pred_matrix <span class="ot">&lt;-</span> <span class="fu">posterior_predict</span>(wae_mod)</span></code></pre></div>
 <p>Now, calculate the descriptive statistics and combine with the original data for plotting:</p>
-<div class="sourceCode" id="cb739"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb739-1"><a href="20.3-id_20-count.html#cb739-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_matrix, <span class="dv">2</span>, mean)</span>
-<span id="cb739-2"><a href="20.3-id_20-count.html#cb739-2" aria-hidden="true" tabindex="-1"></a>lwr <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_matrix, <span class="dv">2</span>, quantile, <span class="fl">0.025</span>)</span>
-<span id="cb739-3"><a href="20.3-id_20-count.html#cb739-3" aria-hidden="true" tabindex="-1"></a>upr <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_matrix, <span class="dv">2</span>, quantile, <span class="fl">0.975</span>)</span>
-<span id="cb739-4"><a href="20.3-id_20-count.html#cb739-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb739-5"><a href="20.3-id_20-count.html#cb739-5" aria-hidden="true" tabindex="-1"></a>wae_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(eyes, fit, lwr, upr)</span></code></pre></div>
+<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb737-1"><a href="20.3-id_20-count.html#cb737-1" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_matrix, <span class="dv">2</span>, mean)</span>
+<span id="cb737-2"><a href="20.3-id_20-count.html#cb737-2" tabindex="-1"></a>lwr <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_matrix, <span class="dv">2</span>, quantile, <span class="fl">0.025</span>)</span>
+<span id="cb737-3"><a href="20.3-id_20-count.html#cb737-3" tabindex="-1"></a>upr <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_matrix, <span class="dv">2</span>, quantile, <span class="fl">0.975</span>)</span>
+<span id="cb737-4"><a href="20.3-id_20-count.html#cb737-4" tabindex="-1"></a></span>
+<span id="cb737-5"><a href="20.3-id_20-count.html#cb737-5" tabindex="-1"></a>wae_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(eyes, fit, lwr, upr)</span></code></pre></div>
 <p>And we plot the predictions:</p>
-<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="20.3-id_20-count.html#cb740-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wae_preds, <span class="fu">aes</span>(<span class="at">x =</span> dd, <span class="at">y =</span> counts, <span class="at">color =</span> site, <span class="at">fill =</span> site)) <span class="sc">+</span></span>
-<span id="cb740-2"><a href="20.3-id_20-count.html#cb740-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb740-3"><a href="20.3-id_20-count.html#cb740-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> fit)) <span class="sc">+</span></span>
-<span id="cb740-4"><a href="20.3-id_20-count.html#cb740-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> dd, <span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">color =</span> <span class="cn">NULL</span>),</span>
-<span id="cb740-5"><a href="20.3-id_20-count.html#cb740-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
-<span id="cb740-6"><a href="20.3-id_20-count.html#cb740-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Growing degree days&quot;</span>) <span class="sc">+</span></span>
-<span id="cb740-7"><a href="20.3-id_20-count.html#cb740-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Number of spawning walleye&quot;</span>) <span class="sc">+</span></span>
-<span id="cb740-8"><a href="20.3-id_20-count.html#cb740-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb740-9"><a href="20.3-id_20-count.html#cb740-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb740-10"><a href="20.3-id_20-count.html#cb740-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
-<span id="cb740-11"><a href="20.3-id_20-count.html#cb740-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>)</span>
-<span id="cb740-12"><a href="20.3-id_20-count.html#cb740-12" aria-hidden="true" tabindex="-1"></a>  )  </span></code></pre></div>
+<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="20.3-id_20-count.html#cb738-1" tabindex="-1"></a><span class="fu">ggplot</span>(wae_preds, <span class="fu">aes</span>(<span class="at">x =</span> dd, <span class="at">y =</span> counts, <span class="at">color =</span> site, <span class="at">fill =</span> site)) <span class="sc">+</span></span>
+<span id="cb738-2"><a href="20.3-id_20-count.html#cb738-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb738-3"><a href="20.3-id_20-count.html#cb738-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> fit)) <span class="sc">+</span></span>
+<span id="cb738-4"><a href="20.3-id_20-count.html#cb738-4" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> dd, <span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">color =</span> <span class="cn">NULL</span>),</span>
+<span id="cb738-5"><a href="20.3-id_20-count.html#cb738-5" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
+<span id="cb738-6"><a href="20.3-id_20-count.html#cb738-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Growing degree days&quot;</span>) <span class="sc">+</span></span>
+<span id="cb738-7"><a href="20.3-id_20-count.html#cb738-7" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Number of spawning walleye&quot;</span>) <span class="sc">+</span></span>
+<span id="cb738-8"><a href="20.3-id_20-count.html#cb738-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb738-9"><a href="20.3-id_20-count.html#cb738-9" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb738-10"><a href="20.3-id_20-count.html#cb738-10" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb738-11"><a href="20.3-id_20-count.html#cb738-11" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>)</span>
+<span id="cb738-12"><a href="20.3-id_20-count.html#cb738-12" tabindex="-1"></a>  )  </span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-530-1.png" width="672" /></p>
 <p>We can see that these estimates are pretty similar to the predictions from the <code>lme4</code> fit in <a href="15-Chapter15.html#Chapter15">Chapter 15</a>, but the upper bounds on our credible limits have come down substantially and our predictions now align better with the observed patterns.</p>
 </div>

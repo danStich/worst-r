@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.4 Analysis | The Worst Stats Text eveR</title>
   <meta name="description" content="8.4 Analysis | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.4 Analysis | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -525,13 +529,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here we want to investigate the effects of species and temperature on
 pulses of individual crickets. Our null hypotheses are that there is no difference in <code>Pulse</code> between <code>Species</code> and no change in <code>Pulse</code> with increasing temperature. We conduct the test at the default <span class="math inline">\(\alpha\)</span> = 0.05.</p>
 <p>We use the <code>lm()</code> function to fit the model, and the formula looks identical to the main-effects ANOVA and linear regression models from <a href="4-Chapter4.html#Chapter4">Chapter 4</a>. Isn’t that handy?</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="8.4-analysis.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb328-2"><a href="8.4-analysis.html#cb328-2" aria-hidden="true" tabindex="-1"></a>cricket_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Pulse <span class="sc">~</span> Species <span class="sc">+</span> Temp, <span class="at">data=</span>crickets)</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="8.4-analysis.html#cb326-1" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb326-2"><a href="8.4-analysis.html#cb326-2" tabindex="-1"></a>cricket_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Pulse <span class="sc">~</span> Species <span class="sc">+</span> Temp, <span class="at">data=</span>crickets)</span></code></pre></div>
 <p>Install the <code>car</code> package. We need a function from this package for model summary because now we have a mix of categorical and continuous explanatory variables. This means we want to calculate the sums of squared errors a little differently than we did before.</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="8.4-analysis.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the package after it&#39;s installed</span></span>
-<span id="cb329-2"><a href="8.4-analysis.html#cb329-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="8.4-analysis.html#cb327-1" tabindex="-1"></a><span class="co"># Load the package after it&#39;s installed</span></span>
+<span id="cb327-2"><a href="8.4-analysis.html#cb327-2" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
 <p>Now we create the ANVOA table for our ANCOVA model</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="8.4-analysis.html#cb330-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(cricket_mod, <span class="at">type=</span><span class="st">&#39;III&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="8.4-analysis.html#cb328-1" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(cricket_mod, <span class="at">type=</span><span class="st">&#39;III&#39;</span>)</span></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: Pulse
@@ -543,7 +547,7 @@ pulses of individual crickets. Our null hypotheses are that there is no differen
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>And we can look at the summary:</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="8.4-analysis.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cricket_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="8.4-analysis.html#cb330-1" tabindex="-1"></a><span class="fu">summary</span>(cricket_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Pulse ~ Species + Temp, data = crickets)

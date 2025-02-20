@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>15.2 Logistic regression | The Worst Stats Text eveR</title>
   <meta name="description" content="15.2 Logistic regression | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="15.2 Logistic regression | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -537,73 +541,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="glmm-logistic-analysis" class="section level3 hasAnchor" number="15.2.2">
 <h3><span class="header-section-number">15.2.2</span> Data analysis<a href="15.2-glmm-logistic.html#glmm-logistic-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We are going to use the 1/0 binary data to estimate the effects of a number of covariates of interest on the probability that an individual fish used the Stillwater Branch for migration in each year of this study using logistic regression. In order to do this, we will use the ‘logit’ link function, which can be defined as:</p>
-<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="15.2-glmm-logistic.html#cb565-1" aria-hidden="true" tabindex="-1"></a>logit <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb565-2"><a href="15.2-glmm-logistic.html#cb565-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(x <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> x))</span>
-<span id="cb565-3"><a href="15.2-glmm-logistic.html#cb565-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="15.2-glmm-logistic.html#cb563-1" tabindex="-1"></a>logit <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb563-2"><a href="15.2-glmm-logistic.html#cb563-2" tabindex="-1"></a>  <span class="fu">log</span>(x <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> x))</span>
+<span id="cb563-3"><a href="15.2-glmm-logistic.html#cb563-3" tabindex="-1"></a>}</span></code></pre></div>
 <p>The inverse of the logit function is:</p>
-<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="15.2-glmm-logistic.html#cb566-1" aria-hidden="true" tabindex="-1"></a>invlogit <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb566-2"><a href="15.2-glmm-logistic.html#cb566-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">exp</span>(x) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(x))</span>
-<span id="cb566-3"><a href="15.2-glmm-logistic.html#cb566-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="15.2-glmm-logistic.html#cb564-1" tabindex="-1"></a>invlogit <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb564-2"><a href="15.2-glmm-logistic.html#cb564-2" tabindex="-1"></a>  <span class="fu">exp</span>(x) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(x))</span>
+<span id="cb564-3"><a href="15.2-glmm-logistic.html#cb564-3" tabindex="-1"></a>}</span></code></pre></div>
 <p>Since we are not interested in the linear trend in the use of the Stillwater Branch through time, we need to convert <code>year</code> to factor. This is the same as if we wanted to use this as a fixed effect in the model as we did in <a href="https://danstich.github.io/worst-r/12-4-logistic.html">Chapter 12.4</a> when we last worked with these data.</p>
-<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="15.2-glmm-logistic.html#cb567-1" aria-hidden="true" tabindex="-1"></a>choice<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(choice<span class="sc">$</span>year)</span></code></pre></div>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="15.2-glmm-logistic.html#cb565-1" tabindex="-1"></a>choice<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(choice<span class="sc">$</span>year)</span></code></pre></div>
 <p>Next, define a set of models based on a priori combinations of explanatory variables.</p>
-<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="15.2-glmm-logistic.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, make an empty list to hold the models</span></span>
-<span id="cb568-2"><a href="15.2-glmm-logistic.html#cb568-2" aria-hidden="true" tabindex="-1"></a>mods <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb568-3"><a href="15.2-glmm-logistic.html#cb568-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb568-4"><a href="15.2-glmm-logistic.html#cb568-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, fill the list with several a priori models</span></span>
-<span id="cb568-5"><a href="15.2-glmm-logistic.html#cb568-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Need to load the `lme4` package for the `glmer` function</span></span>
-<span id="cb568-6"><a href="15.2-glmm-logistic.html#cb568-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb568-7"><a href="15.2-glmm-logistic.html#cb568-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
-<span id="cb568-8"><a href="15.2-glmm-logistic.html#cb568-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Here is the list</span></span>
-<span id="cb568-9"><a href="15.2-glmm-logistic.html#cb568-9" aria-hidden="true" tabindex="-1"></a>mods[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">glmer</span>(path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> hatchery <span class="sc">+</span> length <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
-<span id="cb568-10"><a href="15.2-glmm-logistic.html#cb568-10" aria-hidden="true" tabindex="-1"></a>mods[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">glmer</span>(path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
-<span id="cb568-11"><a href="15.2-glmm-logistic.html#cb568-11" aria-hidden="true" tabindex="-1"></a>mods[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="fu">glmer</span>(path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> hatchery, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
-<span id="cb568-12"><a href="15.2-glmm-logistic.html#cb568-12" aria-hidden="true" tabindex="-1"></a>mods[[<span class="dv">4</span>]] <span class="ot">&lt;-</span> <span class="fu">glmer</span>(path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> length, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
-<span id="cb568-13"><a href="15.2-glmm-logistic.html#cb568-13" aria-hidden="true" tabindex="-1"></a>mods[[<span class="dv">5</span>]] <span class="ot">&lt;-</span> <span class="fu">glmer</span>(path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> length <span class="sc">+</span> hatchery, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
-<span id="cb568-14"><a href="15.2-glmm-logistic.html#cb568-14" aria-hidden="true" tabindex="-1"></a>mods[[<span class="dv">6</span>]] <span class="ot">&lt;-</span> <span class="fu">glmer</span>(path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> length <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
-<span id="cb568-15"><a href="15.2-glmm-logistic.html#cb568-15" aria-hidden="true" tabindex="-1"></a>mods[[<span class="dv">7</span>]] <span class="ot">&lt;-</span> <span class="fu">glmer</span>(path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> hatchery <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span></code></pre></div>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="15.2-glmm-logistic.html#cb566-1" tabindex="-1"></a><span class="co"># First, make an empty list to hold the models</span></span>
+<span id="cb566-2"><a href="15.2-glmm-logistic.html#cb566-2" tabindex="-1"></a>mods <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb566-3"><a href="15.2-glmm-logistic.html#cb566-3" tabindex="-1"></a></span>
+<span id="cb566-4"><a href="15.2-glmm-logistic.html#cb566-4" tabindex="-1"></a><span class="co"># Now, fill the list with several a priori models</span></span>
+<span id="cb566-5"><a href="15.2-glmm-logistic.html#cb566-5" tabindex="-1"></a><span class="co"># Need to load the `lme4` package for the `glmer` function</span></span>
+<span id="cb566-6"><a href="15.2-glmm-logistic.html#cb566-6" tabindex="-1"></a></span>
+<span id="cb566-7"><a href="15.2-glmm-logistic.html#cb566-7" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb566-8"><a href="15.2-glmm-logistic.html#cb566-8" tabindex="-1"></a><span class="co"># Here is the list</span></span>
+<span id="cb566-9"><a href="15.2-glmm-logistic.html#cb566-9" tabindex="-1"></a>mods[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">glmer</span>(path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> hatchery <span class="sc">+</span> length <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
+<span id="cb566-10"><a href="15.2-glmm-logistic.html#cb566-10" tabindex="-1"></a>mods[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">glmer</span>(path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
+<span id="cb566-11"><a href="15.2-glmm-logistic.html#cb566-11" tabindex="-1"></a>mods[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="fu">glmer</span>(path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> hatchery, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
+<span id="cb566-12"><a href="15.2-glmm-logistic.html#cb566-12" tabindex="-1"></a>mods[[<span class="dv">4</span>]] <span class="ot">&lt;-</span> <span class="fu">glmer</span>(path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> length, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
+<span id="cb566-13"><a href="15.2-glmm-logistic.html#cb566-13" tabindex="-1"></a>mods[[<span class="dv">5</span>]] <span class="ot">&lt;-</span> <span class="fu">glmer</span>(path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> length <span class="sc">+</span> hatchery, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
+<span id="cb566-14"><a href="15.2-glmm-logistic.html#cb566-14" tabindex="-1"></a>mods[[<span class="dv">6</span>]] <span class="ot">&lt;-</span> <span class="fu">glmer</span>(path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> length <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
+<span id="cb566-15"><a href="15.2-glmm-logistic.html#cb566-15" tabindex="-1"></a>mods[[<span class="dv">7</span>]] <span class="ot">&lt;-</span> <span class="fu">glmer</span>(path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> hatchery <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span></code></pre></div>
 <p>Give the models some names using the formulas for each of the models. <strong>Remember</strong>: models are stored as list objects in R, and each of those list objects (models) has names. We can reference those names using the <code>$</code> notation:</p>
-<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="15.2-glmm-logistic.html#cb569-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(mods)) {</span>
-<span id="cb569-2"><a href="15.2-glmm-logistic.html#cb569-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(mods)[i] <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">summary</span>(mods[[i]])<span class="sc">$</span>call<span class="sc">$</span>formula)[<span class="dv">3</span>]</span>
-<span id="cb569-3"><a href="15.2-glmm-logistic.html#cb569-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="15.2-glmm-logistic.html#cb567-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(mods)) {</span>
+<span id="cb567-2"><a href="15.2-glmm-logistic.html#cb567-2" tabindex="-1"></a>  <span class="fu">names</span>(mods)[i] <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">summary</span>(mods[[i]])<span class="sc">$</span>call<span class="sc">$</span>formula)[<span class="dv">3</span>]</span>
+<span id="cb567-3"><a href="15.2-glmm-logistic.html#cb567-3" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now, we use the <code>AICcmodavg</code> package to make a model selection table like we did last week:</p>
-<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="15.2-glmm-logistic.html#cb570-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the package and make the table</span></span>
-<span id="cb570-2"><a href="15.2-glmm-logistic.html#cb570-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AICcmodavg)</span>
-<span id="cb570-3"><a href="15.2-glmm-logistic.html#cb570-3" aria-hidden="true" tabindex="-1"></a>modtable <span class="ot">&lt;-</span> <span class="fu">aictab</span>(<span class="at">cand.set =</span> mods, <span class="at">modnames =</span> <span class="fu">names</span>(mods))</span></code></pre></div>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="15.2-glmm-logistic.html#cb568-1" tabindex="-1"></a><span class="co"># Load the package and make the table</span></span>
+<span id="cb568-2"><a href="15.2-glmm-logistic.html#cb568-2" tabindex="-1"></a><span class="fu">library</span>(AICcmodavg)</span>
+<span id="cb568-3"><a href="15.2-glmm-logistic.html#cb568-3" tabindex="-1"></a>modtable <span class="ot">&lt;-</span> <span class="fu">aictab</span>(<span class="at">cand.set =</span> mods, <span class="at">modnames =</span> <span class="fu">names</span>(mods))</span></code></pre></div>
 <p>Here, we see the best model is the one that incorporates only flow, and that the addition of <code>length</code> or <code>hatchery</code> or both doesn’t really improve the fit of our model. Therefore, we’ll go ahead and make predictions from the simplest (best) model alone.</p>
 <p>Let’s re-name that model really quick to make things easier to remember:</p>
-<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="15.2-glmm-logistic.html#cb571-1" aria-hidden="true" tabindex="-1"></a>best_mod <span class="ot">&lt;-</span> <span class="fu">glmer</span>(</span>
-<span id="cb571-2"><a href="15.2-glmm-logistic.html#cb571-2" aria-hidden="true" tabindex="-1"></a>  path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> flow,</span>
-<span id="cb571-3"><a href="15.2-glmm-logistic.html#cb571-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> binomial, <span class="at">data =</span> choice</span>
-<span id="cb571-4"><a href="15.2-glmm-logistic.html#cb571-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="15.2-glmm-logistic.html#cb569-1" tabindex="-1"></a>best_mod <span class="ot">&lt;-</span> <span class="fu">glmer</span>(</span>
+<span id="cb569-2"><a href="15.2-glmm-logistic.html#cb569-2" tabindex="-1"></a>  path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> flow,</span>
+<span id="cb569-3"><a href="15.2-glmm-logistic.html#cb569-3" tabindex="-1"></a>  <span class="at">family =</span> binomial, <span class="at">data =</span> choice</span>
+<span id="cb569-4"><a href="15.2-glmm-logistic.html#cb569-4" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="glmm-logistic-preds" class="section level3 hasAnchor" number="15.2.3">
 <h3><span class="header-section-number">15.2.3</span> Predictions<a href="15.2-glmm-logistic.html#glmm-logistic-preds" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Finally, we can use these models to make predictions about the relationships in our models the same way we have done previously with linear models and GLMs.</p>
-<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="15.2-glmm-logistic.html#cb572-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the merTools package</span></span>
-<span id="cb572-2"><a href="15.2-glmm-logistic.html#cb572-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(merTools)</span>
-<span id="cb572-3"><a href="15.2-glmm-logistic.html#cb572-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb572-4"><a href="15.2-glmm-logistic.html#cb572-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate predictions from the relationship</span></span>
-<span id="cb572-5"><a href="15.2-glmm-logistic.html#cb572-5" aria-hidden="true" tabindex="-1"></a><span class="co"># stored in the model fit using our original data</span></span>
-<span id="cb572-6"><a href="15.2-glmm-logistic.html#cb572-6" aria-hidden="true" tabindex="-1"></a>logit_preds <span class="ot">&lt;-</span> <span class="fu">predictInterval</span>(</span>
-<span id="cb572-7"><a href="15.2-glmm-logistic.html#cb572-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">merMod =</span> best_mod,</span>
-<span id="cb572-8"><a href="15.2-glmm-logistic.html#cb572-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">n.sims =</span> <span class="dv">10000</span>,</span>
-<span id="cb572-9"><a href="15.2-glmm-logistic.html#cb572-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">stat =</span> <span class="st">&quot;median&quot;</span>, <span class="at">type =</span> <span class="st">&quot;linear.prediction&quot;</span></span>
-<span id="cb572-10"><a href="15.2-glmm-logistic.html#cb572-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb572-11"><a href="15.2-glmm-logistic.html#cb572-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb572-12"><a href="15.2-glmm-logistic.html#cb572-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert them to the real scale for plotting</span></span>
-<span id="cb572-13"><a href="15.2-glmm-logistic.html#cb572-13" aria-hidden="true" tabindex="-1"></a>real_preds <span class="ot">&lt;-</span> <span class="fu">apply</span>(logit_preds, <span class="dv">2</span>, invlogit)</span>
-<span id="cb572-14"><a href="15.2-glmm-logistic.html#cb572-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb572-15"><a href="15.2-glmm-logistic.html#cb572-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine predictions with the original data</span></span>
-<span id="cb572-16"><a href="15.2-glmm-logistic.html#cb572-16" aria-hidden="true" tabindex="-1"></a>mer_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(choice, real_preds)</span>
-<span id="cb572-17"><a href="15.2-glmm-logistic.html#cb572-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb572-18"><a href="15.2-glmm-logistic.html#cb572-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the predictions</span></span>
-<span id="cb572-19"><a href="15.2-glmm-logistic.html#cb572-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mer_preds, <span class="fu">aes</span>(<span class="at">x =</span> flow, <span class="at">y =</span> fit, <span class="at">color =</span> year, <span class="at">fill =</span> year)) <span class="sc">+</span></span>
-<span id="cb572-20"><a href="15.2-glmm-logistic.html#cb572-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.10</span>) <span class="sc">+</span></span>
-<span id="cb572-21"><a href="15.2-glmm-logistic.html#cb572-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">color =</span> <span class="cn">NULL</span>), <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb572-22"><a href="15.2-glmm-logistic.html#cb572-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> fit), <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.50</span>) <span class="sc">+</span></span>
-<span id="cb572-23"><a href="15.2-glmm-logistic.html#cb572-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Discharge&quot;</span>) <span class="sc">+</span></span>
-<span id="cb572-24"><a href="15.2-glmm-logistic.html#cb572-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability of using Stillwater Branch&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="15.2-glmm-logistic.html#cb570-1" tabindex="-1"></a><span class="co"># Load the merTools package</span></span>
+<span id="cb570-2"><a href="15.2-glmm-logistic.html#cb570-2" tabindex="-1"></a><span class="fu">library</span>(merTools)</span>
+<span id="cb570-3"><a href="15.2-glmm-logistic.html#cb570-3" tabindex="-1"></a></span>
+<span id="cb570-4"><a href="15.2-glmm-logistic.html#cb570-4" tabindex="-1"></a><span class="co"># Simulate predictions from the relationship</span></span>
+<span id="cb570-5"><a href="15.2-glmm-logistic.html#cb570-5" tabindex="-1"></a><span class="co"># stored in the model fit using our original data</span></span>
+<span id="cb570-6"><a href="15.2-glmm-logistic.html#cb570-6" tabindex="-1"></a>logit_preds <span class="ot">&lt;-</span> <span class="fu">predictInterval</span>(</span>
+<span id="cb570-7"><a href="15.2-glmm-logistic.html#cb570-7" tabindex="-1"></a>  <span class="at">merMod =</span> best_mod,</span>
+<span id="cb570-8"><a href="15.2-glmm-logistic.html#cb570-8" tabindex="-1"></a>  <span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">n.sims =</span> <span class="dv">10000</span>,</span>
+<span id="cb570-9"><a href="15.2-glmm-logistic.html#cb570-9" tabindex="-1"></a>  <span class="at">stat =</span> <span class="st">&quot;median&quot;</span>, <span class="at">type =</span> <span class="st">&quot;linear.prediction&quot;</span></span>
+<span id="cb570-10"><a href="15.2-glmm-logistic.html#cb570-10" tabindex="-1"></a>)</span>
+<span id="cb570-11"><a href="15.2-glmm-logistic.html#cb570-11" tabindex="-1"></a></span>
+<span id="cb570-12"><a href="15.2-glmm-logistic.html#cb570-12" tabindex="-1"></a><span class="co"># Convert them to the real scale for plotting</span></span>
+<span id="cb570-13"><a href="15.2-glmm-logistic.html#cb570-13" tabindex="-1"></a>real_preds <span class="ot">&lt;-</span> <span class="fu">apply</span>(logit_preds, <span class="dv">2</span>, invlogit)</span>
+<span id="cb570-14"><a href="15.2-glmm-logistic.html#cb570-14" tabindex="-1"></a></span>
+<span id="cb570-15"><a href="15.2-glmm-logistic.html#cb570-15" tabindex="-1"></a><span class="co"># Combine predictions with the original data</span></span>
+<span id="cb570-16"><a href="15.2-glmm-logistic.html#cb570-16" tabindex="-1"></a>mer_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(choice, real_preds)</span>
+<span id="cb570-17"><a href="15.2-glmm-logistic.html#cb570-17" tabindex="-1"></a></span>
+<span id="cb570-18"><a href="15.2-glmm-logistic.html#cb570-18" tabindex="-1"></a><span class="co"># Plot the predictions</span></span>
+<span id="cb570-19"><a href="15.2-glmm-logistic.html#cb570-19" tabindex="-1"></a><span class="fu">ggplot</span>(mer_preds, <span class="fu">aes</span>(<span class="at">x =</span> flow, <span class="at">y =</span> fit, <span class="at">color =</span> year, <span class="at">fill =</span> year)) <span class="sc">+</span></span>
+<span id="cb570-20"><a href="15.2-glmm-logistic.html#cb570-20" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.10</span>) <span class="sc">+</span></span>
+<span id="cb570-21"><a href="15.2-glmm-logistic.html#cb570-21" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">color =</span> <span class="cn">NULL</span>), <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb570-22"><a href="15.2-glmm-logistic.html#cb570-22" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> fit), <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.50</span>) <span class="sc">+</span></span>
+<span id="cb570-23"><a href="15.2-glmm-logistic.html#cb570-23" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Discharge&quot;</span>) <span class="sc">+</span></span>
+<span id="cb570-24"><a href="15.2-glmm-logistic.html#cb570-24" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability of using Stillwater Branch&quot;</span>)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-393-1.png" width="672" /></p>
 </div>
 </div>

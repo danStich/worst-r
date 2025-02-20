@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>10.4 ANCOVA | The Worst Stats Text eveR</title>
   <meta name="description" content="10.4 ANCOVA | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="10.4 ANCOVA | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -524,16 +528,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.4</span> ANCOVA<a href="10.4-ancova.html#ancova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now, we are going to step up the complexity a little bit and start to look at how to interpret linear models with more than one variable, and more than one variable type. Exciting, I know!</p>
 <p>Last week we worked with the <code>crickets</code> data to demonstrate ANCOVA. Let’s keep working with that one.</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="10.4-ancova.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read cricket data</span></span>
-<span id="cb426-2"><a href="10.4-ancova.html#cb426-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This data set contains pulses of</span></span>
-<span id="cb426-3"><a href="10.4-ancova.html#cb426-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 species of crickets collected under</span></span>
-<span id="cb426-4"><a href="10.4-ancova.html#cb426-4" aria-hidden="true" tabindex="-1"></a><span class="co"># varying temperatures</span></span>
-<span id="cb426-5"><a href="10.4-ancova.html#cb426-5" aria-hidden="true" tabindex="-1"></a>  crickets <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;data/crickets.txt&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="10.4-ancova.html#cb424-1" tabindex="-1"></a><span class="co"># Read cricket data</span></span>
+<span id="cb424-2"><a href="10.4-ancova.html#cb424-2" tabindex="-1"></a><span class="co"># This data set contains pulses of</span></span>
+<span id="cb424-3"><a href="10.4-ancova.html#cb424-3" tabindex="-1"></a><span class="co"># 2 species of crickets collected under</span></span>
+<span id="cb424-4"><a href="10.4-ancova.html#cb424-4" tabindex="-1"></a><span class="co"># varying temperatures</span></span>
+<span id="cb424-5"><a href="10.4-ancova.html#cb424-5" tabindex="-1"></a>  crickets <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;data/crickets.txt&#39;</span>)</span></code></pre></div>
 <p>We investigated the additive effects of <code>Species</code> and temperature (<code>Temp</code>) on chirpy pulses of individual crickets and found significant evidence of both.</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="10.4-ancova.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb427-2"><a href="10.4-ancova.html#cb427-2" aria-hidden="true" tabindex="-1"></a>cricket.mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Pulse<span class="sc">~</span>Species <span class="sc">+</span> Temp, <span class="at">data=</span>crickets)</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="10.4-ancova.html#cb425-1" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb425-2"><a href="10.4-ancova.html#cb425-2" tabindex="-1"></a>cricket.mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Pulse<span class="sc">~</span>Species <span class="sc">+</span> Temp, <span class="at">data=</span>crickets)</span></code></pre></div>
 <p>Here is the summary of the linear model:</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="10.4-ancova.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cricket.mod)</span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="10.4-ancova.html#cb426-1" tabindex="-1"></a><span class="fu">summary</span>(cricket.mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Pulse ~ Species + Temp, data = crickets)
@@ -554,43 +558,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.9896, Adjusted R-squared:  0.9888 
 ## F-statistic:  1331 on 2 and 28 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>And the model matrix:</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="10.4-ancova.html#cb430-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(cricket.mod)</span></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="10.4-ancova.html#cb428-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(cricket.mod)</span></code></pre></div>
 <p>You can see that the model matrix still has a column for the <code>(Intercept)</code> that represents <code>Species</code> <code>ex</code> and a dummy variable called <code>Speciesniv</code> to indicate rows in the <code>cricket</code> data where <code>Species == niv</code>. But, now we also have a column in the model matrix for a continuous variable. Not to fear, the math works exactly the same way as it did for ANOVA and for linear regression.</p>
 <div id="prediction-2" class="section level3 hasAnchor" number="10.4.1">
 <h3><span class="header-section-number">10.4.1</span> Prediction<a href="10.4-ancova.html#prediction-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We could do this using linear algebra (matrix math). Note that the math has stayed the same for ANOVA, regression and ANCOVA. That is because they are all just different special cases of the same general model.</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="10.4-ancova.html#cb431-1" aria-hidden="true" tabindex="-1"></a>X_pred <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">model.matrix</span>(cricket.mod))</span>
-<span id="cb431-2"><a href="10.4-ancova.html#cb431-2" aria-hidden="true" tabindex="-1"></a>betas <span class="ot">&lt;-</span> cricket.mod<span class="sc">$</span>coefficients</span>
-<span id="cb431-3"><a href="10.4-ancova.html#cb431-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb431-4"><a href="10.4-ancova.html#cb431-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiply betas by dummy coded</span></span>
-<span id="cb431-5"><a href="10.4-ancova.html#cb431-5" aria-hidden="true" tabindex="-1"></a><span class="co"># matrix using transpose of both</span></span>
-<span id="cb431-6"><a href="10.4-ancova.html#cb431-6" aria-hidden="true" tabindex="-1"></a><span class="co"># These are your predictions </span></span>
-<span id="cb431-7"><a href="10.4-ancova.html#cb431-7" aria-hidden="true" tabindex="-1"></a><span class="co"># for ctrl, trt1, and trt2</span></span>
-<span id="cb431-8"><a href="10.4-ancova.html#cb431-8" aria-hidden="true" tabindex="-1"></a>y_pred <span class="ot">&lt;-</span> <span class="fu">as.vector</span>( <span class="fu">t</span>(betas) <span class="sc">%*%</span> <span class="fu">t</span>(X_pred) )</span>
-<span id="cb431-9"><a href="10.4-ancova.html#cb431-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb431-10"><a href="10.4-ancova.html#cb431-10" aria-hidden="true" tabindex="-1"></a>cricket_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(crickets, y_pred)</span></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="10.4-ancova.html#cb429-1" tabindex="-1"></a>X_pred <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">model.matrix</span>(cricket.mod))</span>
+<span id="cb429-2"><a href="10.4-ancova.html#cb429-2" tabindex="-1"></a>betas <span class="ot">&lt;-</span> cricket.mod<span class="sc">$</span>coefficients</span>
+<span id="cb429-3"><a href="10.4-ancova.html#cb429-3" tabindex="-1"></a></span>
+<span id="cb429-4"><a href="10.4-ancova.html#cb429-4" tabindex="-1"></a><span class="co"># Multiply betas by dummy coded</span></span>
+<span id="cb429-5"><a href="10.4-ancova.html#cb429-5" tabindex="-1"></a><span class="co"># matrix using transpose of both</span></span>
+<span id="cb429-6"><a href="10.4-ancova.html#cb429-6" tabindex="-1"></a><span class="co"># These are your predictions </span></span>
+<span id="cb429-7"><a href="10.4-ancova.html#cb429-7" tabindex="-1"></a><span class="co"># for ctrl, trt1, and trt2</span></span>
+<span id="cb429-8"><a href="10.4-ancova.html#cb429-8" tabindex="-1"></a>y_pred <span class="ot">&lt;-</span> <span class="fu">as.vector</span>( <span class="fu">t</span>(betas) <span class="sc">%*%</span> <span class="fu">t</span>(X_pred) )</span>
+<span id="cb429-9"><a href="10.4-ancova.html#cb429-9" tabindex="-1"></a></span>
+<span id="cb429-10"><a href="10.4-ancova.html#cb429-10" tabindex="-1"></a>cricket_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(crickets, y_pred)</span></code></pre></div>
 <p>But since it is a pain to get prediction intervals like this, we’ll use the default <code>predict()</code> function here as well. I am not going to lie, I am literally just copying and pasting code from ANOVA and regression here and changing the names. This is the power of understanding what actually goes on under the hood for us!</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="10.4-ancova.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions</span></span>
-<span id="cb432-2"><a href="10.4-ancova.html#cb432-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(cricket.mod, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span>
-<span id="cb432-3"><a href="10.4-ancova.html#cb432-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb432-4"><a href="10.4-ancova.html#cb432-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine with original data</span></span>
-<span id="cb432-5"><a href="10.4-ancova.html#cb432-5" aria-hidden="true" tabindex="-1"></a>cricket_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(crickets, y_pred)</span></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="10.4-ancova.html#cb430-1" tabindex="-1"></a><span class="co"># Make predictions</span></span>
+<span id="cb430-2"><a href="10.4-ancova.html#cb430-2" tabindex="-1"></a>y_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(cricket.mod, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span>
+<span id="cb430-3"><a href="10.4-ancova.html#cb430-3" tabindex="-1"></a></span>
+<span id="cb430-4"><a href="10.4-ancova.html#cb430-4" tabindex="-1"></a><span class="co"># Combine with original data</span></span>
+<span id="cb430-5"><a href="10.4-ancova.html#cb430-5" tabindex="-1"></a>cricket_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(crickets, y_pred)</span></code></pre></div>
 </div>
 <div id="plotting-2" class="section level3 hasAnchor" number="10.4.2">
 <h3><span class="header-section-number">10.4.2</span> Plotting<a href="10.4-ancova.html#plotting-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Plot the predictions by species. Again, I am pretty much changing the names of the data and the colors at this point. Who’d have thought that fitting and and making predictions from scary ANCOVA models could be so easy!? Dangerously easy…</p>
 <p>In this case, though, we should expect to see two lines on our graph if I have not completely lied to you. This is because we have both categorical and continuous explanatory variables in <code>X</code>. <strong>Remember that the <span class="math inline">\(\beta\)</span>s for categorical variables are just adjustments or offsets to the intercept in linear models.</strong> That means that we should have two parallel lines given that we had two groups (so one intercept + 1 offset) and a single slope.</p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="10.4-ancova.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a pretty plot showing raw data and model predictions</span></span>
-<span id="cb433-2"><a href="10.4-ancova.html#cb433-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cricket_pred, <span class="fu">aes</span>(<span class="at">x =</span> Temp, <span class="at">y =</span> Pulse, <span class="at">group =</span> Species)) <span class="sc">+</span></span>
-<span id="cb433-3"><a href="10.4-ancova.html#cb433-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Species, <span class="at">fill =</span> Species), <span class="at">alpha =</span> <span class="fl">0.75</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb433-4"><a href="10.4-ancova.html#cb433-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>( <span class="fu">aes</span>(<span class="at">y =</span> fit, <span class="at">color =</span> Species), <span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb433-5"><a href="10.4-ancova.html#cb433-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">color =</span> Species, <span class="at">fill =</span> Species),</span>
-<span id="cb433-6"><a href="10.4-ancova.html#cb433-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb433-7"><a href="10.4-ancova.html#cb433-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;gray40&#39;</span>, <span class="st">&#39;black&#39;</span>)) <span class="sc">+</span></span>
-<span id="cb433-8"><a href="10.4-ancova.html#cb433-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;gray40&#39;</span>, <span class="st">&#39;black&#39;</span>)) <span class="sc">+</span></span>
-<span id="cb433-9"><a href="10.4-ancova.html#cb433-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
-<span id="cb433-10"><a href="10.4-ancova.html#cb433-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb433-11"><a href="10.4-ancova.html#cb433-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="10.4-ancova.html#cb431-1" tabindex="-1"></a><span class="co"># Make a pretty plot showing raw data and model predictions</span></span>
+<span id="cb431-2"><a href="10.4-ancova.html#cb431-2" tabindex="-1"></a><span class="fu">ggplot</span>(cricket_pred, <span class="fu">aes</span>(<span class="at">x =</span> Temp, <span class="at">y =</span> Pulse, <span class="at">group =</span> Species)) <span class="sc">+</span></span>
+<span id="cb431-3"><a href="10.4-ancova.html#cb431-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Species, <span class="at">fill =</span> Species), <span class="at">alpha =</span> <span class="fl">0.75</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb431-4"><a href="10.4-ancova.html#cb431-4" tabindex="-1"></a>  <span class="fu">geom_line</span>( <span class="fu">aes</span>(<span class="at">y =</span> fit, <span class="at">color =</span> Species), <span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb431-5"><a href="10.4-ancova.html#cb431-5" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">color =</span> Species, <span class="at">fill =</span> Species),</span>
+<span id="cb431-6"><a href="10.4-ancova.html#cb431-6" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb431-7"><a href="10.4-ancova.html#cb431-7" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;gray40&#39;</span>, <span class="st">&#39;black&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb431-8"><a href="10.4-ancova.html#cb431-8" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;gray40&#39;</span>, <span class="st">&#39;black&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb431-9"><a href="10.4-ancova.html#cb431-9" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Temperature ( &quot;</span>, degree, <span class="st">&quot;C)&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb431-10"><a href="10.4-ancova.html#cb431-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb431-11"><a href="10.4-ancova.html#cb431-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-292-1.png" width="672" /></p>
 <p>Ta-da!</p>
 </div>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11.4 Stepwise selection | The Worst Stats Text eveR</title>
   <meta name="description" content="11.4 Stepwise selection | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11.4 Stepwise selection | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -528,10 +532,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">11.4.1</span> Forward selection<a href="11.4-stepwise.html#forward-selection" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We start by making a “null” model that includes no explanatory variables. This model is simply a least-squares estimate of the mean. If we think about it in terms of a linear model, the only parameter is the intercept <span class="math inline">\(Y = \beta_0\)</span>, so the estimate of <code>(Intercept)</code> that R reports from the model is simply the mean of <code>y</code> in the data. Let’s demonstrate with the <code>swiss</code> data.</p>
 <p>We write the <strong>null model</strong> like this.</p>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="11.4-stepwise.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(swiss)</span>
-<span id="cb434-2"><a href="11.4-stepwise.html#cb434-2" aria-hidden="true" tabindex="-1"></a>null <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> swiss)</span></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="11.4-stepwise.html#cb432-1" tabindex="-1"></a><span class="fu">data</span>(swiss)</span>
+<span id="cb432-2"><a href="11.4-stepwise.html#cb432-2" tabindex="-1"></a>null <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> swiss)</span></code></pre></div>
 <p>Mathemetically, the <code>1</code> just tells R to make a model matrix with a single column of <code>1</code>s called <code>(Intercept)</code>. Have a look:</p>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="11.4-stepwise.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">model.matrix</span>(null))</span></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="11.4-stepwise.html#cb433-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">model.matrix</span>(null))</span></code></pre></div>
 <pre><code>##              (Intercept)
 ## Courtelary             1
 ## Delemont               1
@@ -540,9 +544,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Neuveville             1
 ## Porrentruy             1</code></pre>
 <p>Now that we have a <code>null</code> model, we need to make a full model. The <strong>full model</strong> is the model that includes all the variables we want to consider in different combinations. In phylogenetics, these would be different trees that consider varying numbers of splits and different groupings. We can write out the formula for the full model by hand in the <code>lm()</code> function, or we can use <code>.</code> to tell R that we want it to consider <em>additive</em> combinations of all columns other than <code>Fertility</code>.</p>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="11.4-stepwise.html#cb437-1" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> ., <span class="at">data =</span> swiss)</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="11.4-stepwise.html#cb435-1" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> ., <span class="at">data =</span> swiss)</span></code></pre></div>
 <p>Now we perform the forward selection using the <code>step()</code> function. Watch them fly by in real time! Here we are telling R to start with the <code>null</code> model we created above using <code>object = null</code>, but we could actually specify any other model between the <code>null</code> and <code>full</code> if we wanted to. Next, we tell R that the <code>scope</code> of models to consider should include all combinations of explanatory variables (<code>Education</code>, <code>Catholic</code>, <code>Infant.Mortality</code>, and <code>Agriculture</code>), including none of them (<code>null</code>) and all of them (<code>full</code>). Then, we tell R what direction to build models in, either <code>forward</code>, <code>backward</code>, or <code>both</code>.</p>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="11.4-stepwise.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="fu">step</span>(<span class="at">object =</span> null, <span class="at">scope =</span> <span class="fu">list</span>(<span class="at">lower =</span> null, <span class="at">upper =</span> full), <span class="at">direction =</span> <span class="st">&quot;forward&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="11.4-stepwise.html#cb436-1" tabindex="-1"></a><span class="fu">step</span>(<span class="at">object =</span> null, <span class="at">scope =</span> <span class="fu">list</span>(<span class="at">lower =</span> null, <span class="at">upper =</span> full), <span class="at">direction =</span> <span class="st">&quot;forward&quot;</span>)</span></code></pre></div>
 <pre><code>## Start:  AIC=238.35
 ## Fertility ~ 1
 ## 

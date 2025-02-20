@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16.5 Worked example with the Cray data | The Worst Stats Text eveR</title>
   <meta name="description" content="16.5 Worked example with the Cray data | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16.5 Worked example with the Cray data | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -524,8 +528,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">16.5</span> Worked example with the Cray data<a href="16.5-worked-example-with-the-cray-data.html#worked-example-with-the-cray-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this section, we will apply Bayesian inference to the Cray data, which are first introduced in <a href="https://danstich.github.io/worst-r/14-Chapter14.html">Chapter 14 Linear Mixed Models</a>. Hopefully, this example also demonstrates that linear models are just one special type of GLM that assume a normal error distribution.</p>
 <p>We start by reading in data.</p>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="16.5-worked-example-with-the-cray-data.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the data</span></span>
-<span id="cb607-2"><a href="16.5-worked-example-with-the-cray-data.html#cb607-2" aria-hidden="true" tabindex="-1"></a>cray <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/cray.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="16.5-worked-example-with-the-cray-data.html#cb605-1" tabindex="-1"></a><span class="co"># Read in the data</span></span>
+<span id="cb605-2"><a href="16.5-worked-example-with-the-cray-data.html#cb605-2" tabindex="-1"></a>cray <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/cray.csv&quot;</span>)</span></code></pre></div>
 <p>These data come from a preliminary study of rusty crayfish <a href="https://academic.oup.com/jcb/article/37/5/615/4060680"> <em>Faxonius</em></a> <em>rusticus</em> density in various tributaries to the Susquehanna River. The data were collected as part of a summer research project by one of our former high-school interns at the SUNY Oneonta <a href="https://suny.oneonta.edu/biological-field-station"> Biological Field Station </a>.</p>
 <p>There are 964 observations of 7 variables. Each of the observations (rows) corresponds to a rusty crayfish that was collected and measured (<code>length</code> in mm and <code>mass</code> in g) at one of several <code>site</code>s on a given <code>date</code>. The variable <code>catch</code> is the total number caught by electrobugging over a given <code>time</code> (minutes). To compare density between sites, <code>catch</code> was divided by (<code>time</code>/60) to calculate catch per unit effort (<code>cpue</code>) as number of crayfish per hour. Therefore, observations of <code>cpue</code>, <code>catch</code>, and <code>time</code> correspond to unique <code>date</code> and <code>site</code> combinations, but <code>length</code> and <code>mass</code> represent unique individuals within <code>site</code> and <code>date</code>.</p>
 <p>For now, we will use this data set to estimate the relationship between log<sub>e</sub>length and log<sub>e</sub>mass of the crayfish as a linear regression, this time as a GLM using Bayesian inference.</p>

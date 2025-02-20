@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>20.2 Logistic regression | The Worst Stats Text eveR</title>
   <meta name="description" content="20.2 Logistic regression | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="20.2 Logistic regression | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -538,42 +542,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">20.2.2</span> Data analysis<a href="20.2-id_20-logistic.html#id_20-logistic-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We are going to use the 1/0 binary data to estimate the effects of a number of covariates of interest on the probability that an individual fish used the Stillwater Branch for migration in each year of this study using logistic regression.</p>
 <p>Since we are not interested in the linear trend in the use of the Stillwater Branch through time, we need to convert <code>year</code> to factor. This is the same as if we wanted to use this as a fixed effect in the model as we did in <a href="https://danstich.github.io/worst-r/12-4-logistic.html">Chapter 12.4</a> when we last worked with these data.</p>
-<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="20.2-id_20-logistic.html#cb726-1" aria-hidden="true" tabindex="-1"></a>choice<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(choice<span class="sc">$</span>year)</span></code></pre></div>
+<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="20.2-id_20-logistic.html#cb724-1" tabindex="-1"></a>choice<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(choice<span class="sc">$</span>year)</span></code></pre></div>
 <p>Rather than run all of the models that we ran in <a href="17-Chapter17.html#Chapter17">Chapter 17</a> I am just going to run the best one because these models take a little longer to run than the non-hierarchical formulations.</p>
-<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="20.2-id_20-logistic.html#cb727-1" aria-hidden="true" tabindex="-1"></a>best_mod <span class="ot">&lt;-</span> <span class="fu">stan_glmer</span>(path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span></code></pre></div>
+<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="20.2-id_20-logistic.html#cb725-1" tabindex="-1"></a>best_mod <span class="ot">&lt;-</span> <span class="fu">stan_glmer</span>(path <span class="sc">~</span> (<span class="dv">1</span> <span class="sc">|</span> year) <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span></code></pre></div>
 </div>
 <div id="id_20-logistic-preds" class="section level3 hasAnchor" number="20.2.3">
 <h3><span class="header-section-number">20.2.3</span> Predictions<a href="20.2-id_20-logistic.html#id_20-logistic-preds" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Finally, we can use these models to make predictions.</p>
 <p>This is a little funky for binomial <code>stan_glmer()</code> models in <code>rstanarm</code> right now because the prevailing wisdom is to predict <strong>outcomes</strong> from hierarchical models fit with <code>rstanarm</code>. For binomial models, this means the output of <code>posterior_predict()</code> is ones and zeroes, which is not too terribly useful for visualizing the model results for those less mathematically inclined. Instead, we would like to see how probability of using Stillwater Branch changes in relation to our explanatory variables.</p>
 <p>We will create a quick function using some of the <code>rstanarm</code> internals based on <a href="https://groups.google.com/g/stan-users/c/GS8_8djvke4">this example</a>. My guess is that this will probably be implemented in the package by the next time I teach the class and edit this book.</p>
-<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="20.2-id_20-logistic.html#cb728-1" aria-hidden="true" tabindex="-1"></a>predicted_prob <span class="ot">&lt;-</span> <span class="cf">function</span>(fit) {</span>
-<span id="cb728-2"><a href="20.2-id_20-logistic.html#cb728-2" aria-hidden="true" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> rstanarm<span class="sc">:::</span><span class="fu">pp_data</span>(fit)</span>
-<span id="cb728-3"><a href="20.2-id_20-logistic.html#cb728-3" aria-hidden="true" tabindex="-1"></a>  eta <span class="ot">&lt;-</span> rstanarm<span class="sc">:::</span><span class="fu">pp_eta</span>(fit, dat)<span class="sc">$</span>eta</span>
-<span id="cb728-4"><a href="20.2-id_20-logistic.html#cb728-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">invlogit</span>(eta) <span class="co"># inverse-logit </span></span>
-<span id="cb728-5"><a href="20.2-id_20-logistic.html#cb728-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="20.2-id_20-logistic.html#cb726-1" tabindex="-1"></a>predicted_prob <span class="ot">&lt;-</span> <span class="cf">function</span>(fit) {</span>
+<span id="cb726-2"><a href="20.2-id_20-logistic.html#cb726-2" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> rstanarm<span class="sc">:::</span><span class="fu">pp_data</span>(fit)</span>
+<span id="cb726-3"><a href="20.2-id_20-logistic.html#cb726-3" tabindex="-1"></a>  eta <span class="ot">&lt;-</span> rstanarm<span class="sc">:::</span><span class="fu">pp_eta</span>(fit, dat)<span class="sc">$</span>eta</span>
+<span id="cb726-4"><a href="20.2-id_20-logistic.html#cb726-4" tabindex="-1"></a>  <span class="fu">invlogit</span>(eta) <span class="co"># inverse-logit </span></span>
+<span id="cb726-5"><a href="20.2-id_20-logistic.html#cb726-5" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now, we can make predictions about the probability of using Stillwater Branch on each row of our observed data (or new data if we want!) using this function.</p>
-<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="20.2-id_20-logistic.html#cb729-1" aria-hidden="true" tabindex="-1"></a>pred_matrix <span class="ot">&lt;-</span> <span class="fu">predicted_prob</span>(best_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="20.2-id_20-logistic.html#cb727-1" tabindex="-1"></a>pred_matrix <span class="ot">&lt;-</span> <span class="fu">predicted_prob</span>(best_mod)</span></code></pre></div>
 <p>The result is a matrix with 4,000 rows (1,000 iterations x 4 chains) of predicted probability of using the Stillwater Branch for each fish (row) from our original data. That is, the rows in original data correspond to the columns in <code>pred_matrix</code>. We can summarize this object the same way we did in <a href="19-Chapter19.html#Chapter19">Chapter 19</a> and add the descriptive statistics to the original data set for easy visualization. Note that we do not need to invert the logit because we already did that inside the <code>predict_prob()</code> function we created.</p>
-<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="20.2-id_20-logistic.html#cb730-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate descriptive statistics for predicted probability</span></span>
-<span id="cb730-2"><a href="20.2-id_20-logistic.html#cb730-2" aria-hidden="true" tabindex="-1"></a><span class="co"># of using Stillwater Branch</span></span>
-<span id="cb730-3"><a href="20.2-id_20-logistic.html#cb730-3" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_matrix, <span class="dv">2</span>, mean)</span>
-<span id="cb730-4"><a href="20.2-id_20-logistic.html#cb730-4" aria-hidden="true" tabindex="-1"></a>lwr <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_matrix, <span class="dv">2</span>, quantile, <span class="fl">0.025</span>)</span>
-<span id="cb730-5"><a href="20.2-id_20-logistic.html#cb730-5" aria-hidden="true" tabindex="-1"></a>upr <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_matrix, <span class="dv">2</span>, quantile, <span class="fl">0.975</span>)</span>
-<span id="cb730-6"><a href="20.2-id_20-logistic.html#cb730-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb730-7"><a href="20.2-id_20-logistic.html#cb730-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Smoosh them back together with the original data for plotting</span></span>
-<span id="cb730-8"><a href="20.2-id_20-logistic.html#cb730-8" aria-hidden="true" tabindex="-1"></a>choice_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(choice, fit, lwr, upr)</span></code></pre></div>
+<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="20.2-id_20-logistic.html#cb728-1" tabindex="-1"></a><span class="co"># Calculate descriptive statistics for predicted probability</span></span>
+<span id="cb728-2"><a href="20.2-id_20-logistic.html#cb728-2" tabindex="-1"></a><span class="co"># of using Stillwater Branch</span></span>
+<span id="cb728-3"><a href="20.2-id_20-logistic.html#cb728-3" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_matrix, <span class="dv">2</span>, mean)</span>
+<span id="cb728-4"><a href="20.2-id_20-logistic.html#cb728-4" tabindex="-1"></a>lwr <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_matrix, <span class="dv">2</span>, quantile, <span class="fl">0.025</span>)</span>
+<span id="cb728-5"><a href="20.2-id_20-logistic.html#cb728-5" tabindex="-1"></a>upr <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_matrix, <span class="dv">2</span>, quantile, <span class="fl">0.975</span>)</span>
+<span id="cb728-6"><a href="20.2-id_20-logistic.html#cb728-6" tabindex="-1"></a></span>
+<span id="cb728-7"><a href="20.2-id_20-logistic.html#cb728-7" tabindex="-1"></a><span class="co"># Smoosh them back together with the original data for plotting</span></span>
+<span id="cb728-8"><a href="20.2-id_20-logistic.html#cb728-8" tabindex="-1"></a>choice_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(choice, fit, lwr, upr)</span></code></pre></div>
 <p>And now, it is all over but the plotting:</p>
-<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb731-1"><a href="20.2-id_20-logistic.html#cb731-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(choice_preds, <span class="fu">aes</span>(<span class="at">x =</span> flow, <span class="at">y =</span> fit, <span class="at">color =</span> year, <span class="at">fill =</span> year)) <span class="sc">+</span></span>
-<span id="cb731-2"><a href="20.2-id_20-logistic.html#cb731-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">xmax =</span> flow, <span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr), <span class="at">alpha =</span> <span class="fl">0.10</span>) <span class="sc">+</span></span>
-<span id="cb731-3"><a href="20.2-id_20-logistic.html#cb731-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb731-4"><a href="20.2-id_20-logistic.html#cb731-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Flow (ft&quot;</span><span class="sc">^</span><span class="dv">3</span>,<span class="st">&quot;s&quot;</span><span class="sc">^-</span><span class="dv">1</span>, <span class="st">&quot;)&quot;</span>))) <span class="sc">+</span></span>
-<span id="cb731-5"><a href="20.2-id_20-logistic.html#cb731-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability of using Stillwater Branch&quot;</span>) <span class="sc">+</span></span>
-<span id="cb731-6"><a href="20.2-id_20-logistic.html#cb731-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb731-7"><a href="20.2-id_20-logistic.html#cb731-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb731-8"><a href="20.2-id_20-logistic.html#cb731-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
-<span id="cb731-9"><a href="20.2-id_20-logistic.html#cb731-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>)</span>
-<span id="cb731-10"><a href="20.2-id_20-logistic.html#cb731-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="20.2-id_20-logistic.html#cb729-1" tabindex="-1"></a><span class="fu">ggplot</span>(choice_preds, <span class="fu">aes</span>(<span class="at">x =</span> flow, <span class="at">y =</span> fit, <span class="at">color =</span> year, <span class="at">fill =</span> year)) <span class="sc">+</span></span>
+<span id="cb729-2"><a href="20.2-id_20-logistic.html#cb729-2" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">xmax =</span> flow, <span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr), <span class="at">alpha =</span> <span class="fl">0.10</span>) <span class="sc">+</span></span>
+<span id="cb729-3"><a href="20.2-id_20-logistic.html#cb729-3" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb729-4"><a href="20.2-id_20-logistic.html#cb729-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Flow (ft&quot;</span><span class="sc">^</span><span class="dv">3</span>,<span class="st">&quot;s&quot;</span><span class="sc">^-</span><span class="dv">1</span>, <span class="st">&quot;)&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb729-5"><a href="20.2-id_20-logistic.html#cb729-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability of using Stillwater Branch&quot;</span>) <span class="sc">+</span></span>
+<span id="cb729-6"><a href="20.2-id_20-logistic.html#cb729-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb729-7"><a href="20.2-id_20-logistic.html#cb729-7" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb729-8"><a href="20.2-id_20-logistic.html#cb729-8" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb729-9"><a href="20.2-id_20-logistic.html#cb729-9" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>)</span>
+<span id="cb729-10"><a href="20.2-id_20-logistic.html#cb729-10" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-522-1.png" width="672" /></p>
 </div>
 </div>

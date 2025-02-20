@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12.4 Binary (logistic) regression | The Worst Stats Text eveR</title>
   <meta name="description" content="12.4 Binary (logistic) regression | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12.4 Binary (logistic) regression | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -524,9 +528,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">12.4</span> Binary (logistic) regression<a href="12.4-logistic.html#logistic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Logistic regression generally is reserved for the case in which we have a binary response that, by definition, can take on values of either 1 or 0. These values can be expressed as outcomes of individual trials (Bernoulli) or as outcomes of some number of trials (Binomial). These data types are common in biological and ecological data analyses, and thus it is important that you understand how to analyze these data when you encounter them because <strong>linear models will not accommodate this data type</strong>. The easiest way to look at what is going on is to use a worked example.</p>
 <p>Let’s read in another smolt data set that we have not yet played with (it’s the last new fish data set for the course, so soak it all up!).</p>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="12.4-logistic.html#cb473-1" aria-hidden="true" tabindex="-1"></a>choice <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/StillwaterChoiceData.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="12.4-logistic.html#cb471-1" tabindex="-1"></a>choice <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/StillwaterChoiceData.csv&quot;</span>)</span></code></pre></div>
 <p>Look at the first few rows of data:</p>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="12.4-logistic.html#cb474-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(choice)</span></code></pre></div>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="12.4-logistic.html#cb472-1" tabindex="-1"></a><span class="fu">head</span>(choice)</span></code></pre></div>
 <pre><code>##   path year hatchery length mass date flow
 ## 1    0 2010        1    176   57  118  345
 ## 2    0 2005        1    205  101  128 1093
@@ -552,13 +556,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">12.4.2</span> Data analysis<a href="12.4-logistic.html#data-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We are going to use the 1/0 binary data to estimate the effects of a number of covariates of interest on the probability that an individual fish used the Stillwater Branch for migration in each year of this study using logistic regression.</p>
 <p>In order to do this, we will use the ‘logit’ link function, which can be defined as:</p>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="12.4-logistic.html#cb476-1" aria-hidden="true" tabindex="-1"></a>logit <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb476-2"><a href="12.4-logistic.html#cb476-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(x <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> x))</span>
-<span id="cb476-3"><a href="12.4-logistic.html#cb476-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="12.4-logistic.html#cb474-1" tabindex="-1"></a>logit <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb474-2"><a href="12.4-logistic.html#cb474-2" tabindex="-1"></a>  <span class="fu">log</span>(x <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> x))</span>
+<span id="cb474-3"><a href="12.4-logistic.html#cb474-3" tabindex="-1"></a>}</span></code></pre></div>
 <p>The inverse of the logit function is:</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="12.4-logistic.html#cb477-1" aria-hidden="true" tabindex="-1"></a>invlogit <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb477-2"><a href="12.4-logistic.html#cb477-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">exp</span>(x) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(x))</span>
-<span id="cb477-3"><a href="12.4-logistic.html#cb477-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="12.4-logistic.html#cb475-1" tabindex="-1"></a>invlogit <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb475-2"><a href="12.4-logistic.html#cb475-2" tabindex="-1"></a>  <span class="fu">exp</span>(x) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(x))</span>
+<span id="cb475-3"><a href="12.4-logistic.html#cb475-3" tabindex="-1"></a>}</span></code></pre></div>
 <p>We will use this function to transform the probability of using the Stillwater Branch (0 - 1) onto an asymptotically normal x-y space. So, logit( p(Stillwater) ) is “normal” way down on the inside of our models.</p>
 <p>If our response, <code>path</code> is a binary variable where 1 = Stillwater and 0 = mainstem for each fish 1 to <em>n</em>, we can think of p(Stillwater Branch) as:</p>
 <p><span class="math display">\[p(Stillwater) = \frac{\sum{path}}{n}\]</span></p>
@@ -566,52 +570,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[logit(p) \sim Normal(\mu, \sigma^{2})\]</span></p>
 <p>Now that we know we are doing <em>more or less</em> the same thing let’s move on with fitting the model.</p>
 <p>First, since we are interested in the fixed effects of year, and not the linear trend through time, we need to convert year to factor.</p>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="12.4-logistic.html#cb478-1" aria-hidden="true" tabindex="-1"></a>choice<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(choice<span class="sc">$</span>year)</span></code></pre></div>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="12.4-logistic.html#cb476-1" tabindex="-1"></a>choice<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(choice<span class="sc">$</span>year)</span></code></pre></div>
 <p>Now, if we want to test hypotheses about the influences of explanatory variables on the probability of using the Stillwater Branch, we could make models to represent those hypotheses. For example, if we wanted to test whether <code>flow</code> had a significant influence on <code>path</code> across <code>year</code>s, then we could build a model that looks like this:</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="12.4-logistic.html#cb479-1" aria-hidden="true" tabindex="-1"></a>flow_mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="12.4-logistic.html#cb477-1" tabindex="-1"></a>flow_mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span></code></pre></div>
 <p>This is the GLM analogue to ANCOVA and it should look pretty much identical except that we now use <code>glm()</code> and we have to specify the <code>family</code> for the sampling distribution depending on what type of data we have. You can see what families are implemented by running <code>?glm</code> and scrolling down to the <code>family</code> argument in the help file. If you don’t see the one you are looking for, don’t worry - it has probably been implemented in another package somewhere!</p>
 <p>We could make another model that investigates effects of <code>length</code> instead of flow:</p>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="12.4-logistic.html#cb480-1" aria-hidden="true" tabindex="-1"></a>len_mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> length, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span></code></pre></div>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="12.4-logistic.html#cb478-1" tabindex="-1"></a>len_mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> length, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span></code></pre></div>
 <p>Or a model that includes both with an annoying name:</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="12.4-logistic.html#cb481-1" aria-hidden="true" tabindex="-1"></a>flow_len_mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> flow <span class="sc">+</span> length, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="12.4-logistic.html#cb479-1" tabindex="-1"></a>flow_len_mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> flow <span class="sc">+</span> length, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span></code></pre></div>
 <p>We could look at these individually to determine variable-level significance using p-values, or compare them as competing explanations using Akaike information criterion (AIC), which we discussed last week.</p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="12.4-logistic.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(flow_mod, len_mod, flow_len_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="12.4-logistic.html#cb480-1" tabindex="-1"></a><span class="fu">AIC</span>(flow_mod, len_mod, flow_len_mod)</span></code></pre></div>
 <pre><code>##              df      AIC
 ## flow_mod      7 565.0131
 ## len_mod       7 570.6512
 ## flow_len_mod  8 565.7209</code></pre>
 <p>But, we can also streamline this to get other information about the models. To do this:</p>
 <p><strong>First</strong>, let’s define a slightly more complex set of models based on <em>a priori</em> combinations of explanatory variables.</p>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="12.4-logistic.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make an empty list to hold the models</span></span>
-<span id="cb484-2"><a href="12.4-logistic.html#cb484-2" aria-hidden="true" tabindex="-1"></a>mods <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb484-3"><a href="12.4-logistic.html#cb484-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb484-4"><a href="12.4-logistic.html#cb484-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, add models to the list. Stop and think about what each one means.</span></span>
-<span id="cb484-5"><a href="12.4-logistic.html#cb484-5" aria-hidden="true" tabindex="-1"></a>mods[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> hatchery <span class="sc">+</span> length <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
-<span id="cb484-6"><a href="12.4-logistic.html#cb484-6" aria-hidden="true" tabindex="-1"></a>mods[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
-<span id="cb484-7"><a href="12.4-logistic.html#cb484-7" aria-hidden="true" tabindex="-1"></a>mods[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> hatchery, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
-<span id="cb484-8"><a href="12.4-logistic.html#cb484-8" aria-hidden="true" tabindex="-1"></a>mods[[<span class="dv">4</span>]] <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> length, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
-<span id="cb484-9"><a href="12.4-logistic.html#cb484-9" aria-hidden="true" tabindex="-1"></a>mods[[<span class="dv">5</span>]] <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> length <span class="sc">+</span> hatchery, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
-<span id="cb484-10"><a href="12.4-logistic.html#cb484-10" aria-hidden="true" tabindex="-1"></a>mods[[<span class="dv">6</span>]] <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> length <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
-<span id="cb484-11"><a href="12.4-logistic.html#cb484-11" aria-hidden="true" tabindex="-1"></a>mods[[<span class="dv">7</span>]] <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> hatchery <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="12.4-logistic.html#cb482-1" tabindex="-1"></a><span class="co"># Make an empty list to hold the models</span></span>
+<span id="cb482-2"><a href="12.4-logistic.html#cb482-2" tabindex="-1"></a>mods <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb482-3"><a href="12.4-logistic.html#cb482-3" tabindex="-1"></a></span>
+<span id="cb482-4"><a href="12.4-logistic.html#cb482-4" tabindex="-1"></a><span class="co"># Now, add models to the list. Stop and think about what each one means.</span></span>
+<span id="cb482-5"><a href="12.4-logistic.html#cb482-5" tabindex="-1"></a>mods[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> hatchery <span class="sc">+</span> length <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
+<span id="cb482-6"><a href="12.4-logistic.html#cb482-6" tabindex="-1"></a>mods[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
+<span id="cb482-7"><a href="12.4-logistic.html#cb482-7" tabindex="-1"></a>mods[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> hatchery, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
+<span id="cb482-8"><a href="12.4-logistic.html#cb482-8" tabindex="-1"></a>mods[[<span class="dv">4</span>]] <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> length, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
+<span id="cb482-9"><a href="12.4-logistic.html#cb482-9" tabindex="-1"></a>mods[[<span class="dv">5</span>]] <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> length <span class="sc">+</span> hatchery, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
+<span id="cb482-10"><a href="12.4-logistic.html#cb482-10" tabindex="-1"></a>mods[[<span class="dv">6</span>]] <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> length <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span>
+<span id="cb482-11"><a href="12.4-logistic.html#cb482-11" tabindex="-1"></a>mods[[<span class="dv">7</span>]] <span class="ot">&lt;-</span> <span class="fu">glm</span>(path <span class="sc">~</span> year <span class="sc">+</span> hatchery <span class="sc">+</span> flow, <span class="at">family =</span> binomial, <span class="at">data =</span> choice)</span></code></pre></div>
 <p><strong>Next</strong>, give the models some names using the formulas for each of the models. <em>Remember</em>: models are stored as list objects in R, and each of those list objects (models) has names. We can reference those names using the <code>$</code> notation, and from there we can access the actual model <code>formula</code> from the <code>call</code>. The third element of this <code>formula</code> object contains the explanatory variables!! Whoa!</p>
 <p>We can extract the <code>formula</code> for each model (which is an element in the <code>mods</code> list) using a <code>for</code> loop to assign them one at a time. Here, we are assigning the i<sup>th</sup> formula to be the name of the i<sup>th</sup> element in the list <code>mods</code>. Nifty.</p>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="12.4-logistic.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the formula for each of the models as the name</span></span>
-<span id="cb485-2"><a href="12.4-logistic.html#cb485-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(mods)) {</span>
-<span id="cb485-3"><a href="12.4-logistic.html#cb485-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(mods)[i] <span class="ot">&lt;-</span> <span class="fu">as.character</span>(mods[[i]]<span class="sc">$</span>call<span class="sc">$</span>formula)[<span class="dv">3</span>]</span>
-<span id="cb485-4"><a href="12.4-logistic.html#cb485-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="12.4-logistic.html#cb483-1" tabindex="-1"></a><span class="co"># Assign the formula for each of the models as the name</span></span>
+<span id="cb483-2"><a href="12.4-logistic.html#cb483-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(mods)) {</span>
+<span id="cb483-3"><a href="12.4-logistic.html#cb483-3" tabindex="-1"></a>  <span class="fu">names</span>(mods)[i] <span class="ot">&lt;-</span> <span class="fu">as.character</span>(mods[[i]]<span class="sc">$</span>call<span class="sc">$</span>formula)[<span class="dv">3</span>]</span>
+<span id="cb483-4"><a href="12.4-logistic.html#cb483-4" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now, we use the <code>AICcmodavg</code> package to make a model selection table like we did in <a href="#a-prior">Chapter 11.4</a>:</p>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="12.4-logistic.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the library</span></span>
-<span id="cb486-2"><a href="12.4-logistic.html#cb486-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AICcmodavg)</span>
-<span id="cb486-3"><a href="12.4-logistic.html#cb486-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb486-4"><a href="12.4-logistic.html#cb486-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the model selection table</span></span>
-<span id="cb486-5"><a href="12.4-logistic.html#cb486-5" aria-hidden="true" tabindex="-1"></a>mod_table <span class="ot">&lt;-</span> <span class="fu">aictab</span>(<span class="at">cand.set =</span> mods, <span class="at">modnames =</span> <span class="fu">names</span>(mods))</span></code></pre></div>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="12.4-logistic.html#cb484-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb484-2"><a href="12.4-logistic.html#cb484-2" tabindex="-1"></a><span class="fu">library</span>(AICcmodavg)</span>
+<span id="cb484-3"><a href="12.4-logistic.html#cb484-3" tabindex="-1"></a></span>
+<span id="cb484-4"><a href="12.4-logistic.html#cb484-4" tabindex="-1"></a><span class="co"># Make the model selection table</span></span>
+<span id="cb484-5"><a href="12.4-logistic.html#cb484-5" tabindex="-1"></a>mod_table <span class="ot">&lt;-</span> <span class="fu">aictab</span>(<span class="at">cand.set =</span> mods, <span class="at">modnames =</span> <span class="fu">names</span>(mods))</span></code></pre></div>
 </div>
 <div id="interpreting-the-results" class="section level3 hasAnchor" number="12.4.3">
 <h3><span class="header-section-number">12.4.3</span> Interpreting the results<a href="12.4-logistic.html#interpreting-the-results" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This pretty much proceeds the same way for GLM as it does for linear models until we get to making predictions of the response based on our best model.</p>
 <p>Our model selection table is an object in R (<em>right</em>?), and we can reference that object using <code>$</code> notation, matrix notation <code>[ , ]</code>, or by calling rownames to get the index for each of the models. Let’s use this approach to get the best model from our candidate set. Here is a worked example in the code that follows:</p>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="12.4-logistic.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table</span></span>
-<span id="cb487-2"><a href="12.4-logistic.html#cb487-2" aria-hidden="true" tabindex="-1"></a>mod_table</span></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="12.4-logistic.html#cb485-1" tabindex="-1"></a><span class="co"># Print the table</span></span>
+<span id="cb485-2"><a href="12.4-logistic.html#cb485-2" tabindex="-1"></a>mod_table</span></code></pre></div>
 <pre><code>## 
 ## Model selection based on AICc:
 ## 
@@ -623,8 +627,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## year + hatchery                 7 569.50       4.34   0.04   0.97 -277.68
 ## year + length                   7 570.80       5.64   0.02   0.99 -278.33
 ## year + length + hatchery        8 571.37       6.21   0.01   1.00 -277.59</code></pre>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="12.4-logistic.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the structure just to show that it is, indeed, an object:</span></span>
-<span id="cb489-2"><a href="12.4-logistic.html#cb489-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mod_table)</span></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="12.4-logistic.html#cb487-1" tabindex="-1"></a><span class="co"># Look at the structure just to show that it is, indeed, an object:</span></span>
+<span id="cb487-2"><a href="12.4-logistic.html#cb487-2" tabindex="-1"></a><span class="fu">str</span>(mod_table)</span></code></pre></div>
 <pre><code>## Classes &#39;aictab&#39; and &#39;data.frame&#39;:   7 obs. of  8 variables:
 ##  $ Modnames  : chr  &quot;year + flow&quot; &quot;year + hatchery + flow&quot; &quot;year + length + flow&quot; &quot;year + hatchery + length + flow&quot; ...
 ##  $ K         : num  7 8 8 9 7 7 8
@@ -635,10 +639,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ LL        : num  -276 -275 -275 -274 -278 ...
 ##  $ Cum.Wt    : num  0.308 0.605 0.817 0.933 0.968 ...</code></pre>
 <p>Look at the <code>rownames</code> of the table. These <code>rownames</code> are the index for each of our models as they appear in the <code>mods</code> object, and we can use the index to reference objects inside of the <code>mods</code> list…</p>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="12.4-logistic.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(mod_table)</span></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="12.4-logistic.html#cb489-1" tabindex="-1"></a><span class="fu">rownames</span>(mod_table)</span></code></pre></div>
 <pre><code>## [1] &quot;2&quot; &quot;7&quot; &quot;6&quot; &quot;1&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot;</code></pre>
 <p>This tells us that the rowname for the best model (the one at the top of the table) is . That means that our best model is stored in position 2 of our model list that we named ‘mods’. Let’s double check it to make sure:</p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="12.4-logistic.html#cb493-1" aria-hidden="true" tabindex="-1"></a>mods[[<span class="dv">2</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="12.4-logistic.html#cb491-1" tabindex="-1"></a>mods[[<span class="dv">2</span>]]</span></code></pre></div>
 <pre><code>## 
 ## Call:  glm(formula = path ~ year + flow, family = binomial, data = choice)
 ## 
@@ -652,14 +656,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Null Deviance:       580.2 
 ## Residual Deviance: 551   AIC: 565</code></pre>
 <p>This looks pretty darn good! We could also do a summary of the model to get the coefficient estimates and the significance codes for the estimated coefficients:</p>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="12.4-logistic.html#cb495-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mods[[<span class="dv">2</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="12.4-logistic.html#cb493-1" tabindex="-1"></a><span class="fu">summary</span>(mods[[<span class="dv">2</span>]])</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = path ~ year + flow, family = binomial, data = choice)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.2183  -0.5757  -0.4401  -0.3564   2.4577  
 ## 
 ## Coefficients:
 ##               Estimate Std. Error z value Pr(&gt;|z|)    
@@ -681,14 +681,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>Cool!! But, what if we wanted the script to always grab the summary of the top model in our model selection table no matter what the <code>rowname</code> was? Well, in that case, we could do this:</p>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="12.4-logistic.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mods[[<span class="fu">as.numeric</span>(<span class="fu">rownames</span>(mod_table[<span class="dv">1</span>, ]))]])</span></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="12.4-logistic.html#cb495-1" tabindex="-1"></a><span class="fu">summary</span>(mods[[<span class="fu">as.numeric</span>(<span class="fu">rownames</span>(mod_table[<span class="dv">1</span>, ]))]])</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = path ~ year + flow, family = binomial, data = choice)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.2183  -0.5757  -0.4401  -0.3564   2.4577  
 ## 
 ## Coefficients:
 ##               Estimate Std. Error z value Pr(&gt;|z|)    
@@ -710,19 +706,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>Here we are asking for the <code>rowname</code> of the first row in our model selection table. We have to convert that to a number from a character string to reference the index in the <code>mods</code> list, and then we can summarize the best model. Another way to do this is:</p>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="12.4-logistic.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, get the number corresponding to the list index for the best</span></span>
-<span id="cb499-2"><a href="12.4-logistic.html#cb499-2" aria-hidden="true" tabindex="-1"></a><span class="co"># model in the candidate set</span></span>
-<span id="cb499-3"><a href="12.4-logistic.html#cb499-3" aria-hidden="true" tabindex="-1"></a>best <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">rownames</span>(mod_table[<span class="dv">1</span>, ]))</span>
-<span id="cb499-4"><a href="12.4-logistic.html#cb499-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb499-5"><a href="12.4-logistic.html#cb499-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, get the summary for the model in mods that was the best</span></span>
-<span id="cb499-6"><a href="12.4-logistic.html#cb499-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mods[[best]])</span></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="12.4-logistic.html#cb497-1" tabindex="-1"></a><span class="co"># First, get the number corresponding to the list index for the best</span></span>
+<span id="cb497-2"><a href="12.4-logistic.html#cb497-2" tabindex="-1"></a><span class="co"># model in the candidate set</span></span>
+<span id="cb497-3"><a href="12.4-logistic.html#cb497-3" tabindex="-1"></a>best <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">rownames</span>(mod_table[<span class="dv">1</span>, ]))</span>
+<span id="cb497-4"><a href="12.4-logistic.html#cb497-4" tabindex="-1"></a></span>
+<span id="cb497-5"><a href="12.4-logistic.html#cb497-5" tabindex="-1"></a><span class="co"># Now, get the summary for the model in mods that was the best</span></span>
+<span id="cb497-6"><a href="12.4-logistic.html#cb497-6" tabindex="-1"></a><span class="fu">summary</span>(mods[[best]])</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = path ~ year + flow, family = binomial, data = choice)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.2183  -0.5757  -0.4401  -0.3564   2.4577  
 ## 
 ## Coefficients:
 ##               Estimate Std. Error z value Pr(&gt;|z|)    
@@ -744,8 +736,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>Since this is really the same thing as ANCOVA we can use the <code>Anova()</code> function from the <code>car</code> package to get an ANCOVA-like summary for the model to look at significance of our main effects in an Analysis of Deviance table:</p>
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="12.4-logistic.html#cb501-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb501-2"><a href="12.4-logistic.html#cb501-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(mods[[best]])</span></code></pre></div>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="12.4-logistic.html#cb499-1" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb499-2"><a href="12.4-logistic.html#cb499-2" tabindex="-1"></a><span class="fu">Anova</span>(mods[[best]])</span></code></pre></div>
 <pre><code>## Analysis of Deviance Table (Type II tests)
 ## 
 ## Response: path
@@ -762,9 +754,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The second thing to remember here is that by definition we have used an <em>invertible</em> link function to estimate this model so the previous statement is a lie and we actually can use the same method as before to make predictions about our response from the model coefficients. We just need to add an extra step so that we can invert our predictions about the expected value of Y with respect to X.</p>
 <p>Confused? Yeah, it’s a little confusing. As always an example always goes a long way…</p>
 <p>Let’s start by grabbing the summary for our <code>best</code> model.</p>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="12.4-logistic.html#cb503-1" aria-hidden="true" tabindex="-1"></a>c.res <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">summary</span>(mods[[best]])<span class="sc">$</span>coefficients)</span></code></pre></div>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="12.4-logistic.html#cb501-1" tabindex="-1"></a>c.res <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">summary</span>(mods[[best]])<span class="sc">$</span>coefficients)</span></code></pre></div>
 <p>Now we can look at the coefficient estimates. These estimates may not make a lot of intuitive sense at first. That is because they are on the <strong>logit</strong> scale.</p>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="12.4-logistic.html#cb504-1" aria-hidden="true" tabindex="-1"></a>c.res</span></code></pre></div>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="12.4-logistic.html#cb502-1" tabindex="-1"></a>c.res</span></code></pre></div>
 <pre><code>##                 Estimate   Std..Error     z.value     Pr...z..
 ## (Intercept) -2.911624325 0.7981931477 -3.64776913 0.0002645272
 ## year2006    -0.518631856 0.6237029032 -0.83153670 0.4056705026
@@ -774,36 +766,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## year2012    -0.764288967 0.5137640800 -1.48762632 0.1368494687
 ## flow         0.001641583 0.0006194926  2.64988401 0.0080519409</code></pre>
 <p>If it helps, we can make some predictions. Let’s say we want to ask <strong>what was the mean probability of using the Stillwater Branch in 2006 under average flow?</strong>. To answer that question, we would do:</p>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="12.4-logistic.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remember:  y = mx + b</span></span>
-<span id="cb506-2"><a href="12.4-logistic.html#cb506-2" aria-hidden="true" tabindex="-1"></a>logit_pred2006 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">2.91162</span> <span class="sc">-</span> <span class="fl">0.518631856</span> <span class="sc">+</span> <span class="fl">0.00164</span> <span class="sc">*</span> <span class="fu">mean</span>(choice<span class="sc">$</span>flow)</span></code></pre></div>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="12.4-logistic.html#cb504-1" tabindex="-1"></a><span class="co"># Remember:  y = mx + b</span></span>
+<span id="cb504-2"><a href="12.4-logistic.html#cb504-2" tabindex="-1"></a>logit_pred2006 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">2.91162</span> <span class="sc">-</span> <span class="fl">0.518631856</span> <span class="sc">+</span> <span class="fl">0.00164</span> <span class="sc">*</span> <span class="fu">mean</span>(choice<span class="sc">$</span>flow)</span></code></pre></div>
 <p>This is the prediction on the logit scale that we used to fit the model:</p>
-<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="12.4-logistic.html#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(logit_pred2006)</span></code></pre></div>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="12.4-logistic.html#cb505-1" tabindex="-1"></a><span class="fu">print</span>(logit_pred2006)</span></code></pre></div>
 <pre><code>## [1] -2.240364</code></pre>
 <p>And here it is on the real (probability) scale:</p>
-<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="12.4-logistic.html#cb509-1" aria-hidden="true" tabindex="-1"></a><span class="fu">invlogit</span>(logit_pred2006)</span></code></pre></div>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="12.4-logistic.html#cb507-1" tabindex="-1"></a><span class="fu">invlogit</span>(logit_pred2006)</span></code></pre></div>
 <pre><code>## [1] 0.09618391</code></pre>
 <p>So, we would predict that about 15% of the fish used the Stillwater Branch during average flow periods in 2006. But what if we wanted to see the range of responses to flows across all years so we could compare years?</p>
 <p>We can do this the same way we did in <a href="10-Chapter10.html#Chapter10">Chapter 10</a> with linear models! Now, instead of the <code>interval</code>, we need to tell R whether we want the predictions on the <code>link</code> scale or the <code>real</code> scale, and if it is on the <code>link</code> scale, we’ll want to tell R that we need the estimated standard errors (<code>se.fit = TRUE</code>) so we can derive 95% confidence intervals on the logit scale before we convert them back into probabilities. Finally, we will convert the predictions to the real scale using the <code>invlogit()</code> function we wrote inside a call to <code>apply()</code>.</p>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="12.4-logistic.html#cb511-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions from the best model</span></span>
-<span id="cb511-2"><a href="12.4-logistic.html#cb511-2" aria-hidden="true" tabindex="-1"></a>logit_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">predict</span>(mods[[best]], <span class="at">type =</span> <span class="st">&quot;link&quot;</span>, <span class="at">se.fit =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb511-3"><a href="12.4-logistic.html#cb511-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb511-4"><a href="12.4-logistic.html#cb511-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate confidence intervals as 1.96 * standard error</span></span>
-<span id="cb511-5"><a href="12.4-logistic.html#cb511-5" aria-hidden="true" tabindex="-1"></a>logit_preds<span class="sc">$</span>lwr <span class="ot">&lt;-</span> logit_preds<span class="sc">$</span>fit <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> logit_preds<span class="sc">$</span>se.fit</span>
-<span id="cb511-6"><a href="12.4-logistic.html#cb511-6" aria-hidden="true" tabindex="-1"></a>logit_preds<span class="sc">$</span>upr <span class="ot">&lt;-</span> logit_preds<span class="sc">$</span>fit <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> logit_preds<span class="sc">$</span>se.fit</span>
-<span id="cb511-7"><a href="12.4-logistic.html#cb511-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb511-8"><a href="12.4-logistic.html#cb511-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Invert the link function</span></span>
-<span id="cb511-9"><a href="12.4-logistic.html#cb511-9" aria-hidden="true" tabindex="-1"></a>real_preds <span class="ot">&lt;-</span> <span class="fu">apply</span>(logit_preds, <span class="dv">2</span>, invlogit)</span>
-<span id="cb511-10"><a href="12.4-logistic.html#cb511-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb511-11"><a href="12.4-logistic.html#cb511-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the predictions with the original data</span></span>
-<span id="cb511-12"><a href="12.4-logistic.html#cb511-12" aria-hidden="true" tabindex="-1"></a>choice_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(choice, real_preds)</span></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="12.4-logistic.html#cb509-1" tabindex="-1"></a><span class="co"># Make predictions from the best model</span></span>
+<span id="cb509-2"><a href="12.4-logistic.html#cb509-2" tabindex="-1"></a>logit_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">predict</span>(mods[[best]], <span class="at">type =</span> <span class="st">&quot;link&quot;</span>, <span class="at">se.fit =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb509-3"><a href="12.4-logistic.html#cb509-3" tabindex="-1"></a></span>
+<span id="cb509-4"><a href="12.4-logistic.html#cb509-4" tabindex="-1"></a><span class="co"># Calculate confidence intervals as 1.96 * standard error</span></span>
+<span id="cb509-5"><a href="12.4-logistic.html#cb509-5" tabindex="-1"></a>logit_preds<span class="sc">$</span>lwr <span class="ot">&lt;-</span> logit_preds<span class="sc">$</span>fit <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> logit_preds<span class="sc">$</span>se.fit</span>
+<span id="cb509-6"><a href="12.4-logistic.html#cb509-6" tabindex="-1"></a>logit_preds<span class="sc">$</span>upr <span class="ot">&lt;-</span> logit_preds<span class="sc">$</span>fit <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> logit_preds<span class="sc">$</span>se.fit</span>
+<span id="cb509-7"><a href="12.4-logistic.html#cb509-7" tabindex="-1"></a></span>
+<span id="cb509-8"><a href="12.4-logistic.html#cb509-8" tabindex="-1"></a><span class="co"># Invert the link function</span></span>
+<span id="cb509-9"><a href="12.4-logistic.html#cb509-9" tabindex="-1"></a>real_preds <span class="ot">&lt;-</span> <span class="fu">apply</span>(logit_preds, <span class="dv">2</span>, invlogit)</span>
+<span id="cb509-10"><a href="12.4-logistic.html#cb509-10" tabindex="-1"></a></span>
+<span id="cb509-11"><a href="12.4-logistic.html#cb509-11" tabindex="-1"></a><span class="co"># Combine the predictions with the original data</span></span>
+<span id="cb509-12"><a href="12.4-logistic.html#cb509-12" tabindex="-1"></a>choice_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(choice, real_preds)</span></code></pre></div>
 <p>Go ahead and have a look at the <code>logit_preds</code> and <code>real_preds</code> objects to make sure you understand what we just did.</p>
 <p>Now, we can finish by plotting our predictions:</p>
-<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="12.4-logistic.html#cb512-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(choice_preds, <span class="fu">aes</span>(<span class="at">x =</span> flow, <span class="at">y =</span> fit, <span class="at">fill =</span> year)) <span class="sc">+</span></span>
-<span id="cb512-2"><a href="12.4-logistic.html#cb512-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">fill =</span> year), <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb512-3"><a href="12.4-logistic.html#cb512-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> year)) <span class="sc">+</span></span>
-<span id="cb512-4"><a href="12.4-logistic.html#cb512-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Flow ( &quot;</span>, m<span class="sc">^</span><span class="dv">3</span>, <span class="st">&quot;\u00b7&quot;</span>, s<span class="sc">^-</span><span class="dv">1</span>, <span class="st">&quot;)&quot;</span>))) <span class="sc">+</span></span>
-<span id="cb512-5"><a href="12.4-logistic.html#cb512-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb512-6"><a href="12.4-logistic.html#cb512-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="12.4-logistic.html#cb510-1" tabindex="-1"></a><span class="fu">ggplot</span>(choice_preds, <span class="fu">aes</span>(<span class="at">x =</span> flow, <span class="at">y =</span> fit, <span class="at">fill =</span> year)) <span class="sc">+</span></span>
+<span id="cb510-2"><a href="12.4-logistic.html#cb510-2" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">fill =</span> year), <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb510-3"><a href="12.4-logistic.html#cb510-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> year)) <span class="sc">+</span></span>
+<span id="cb510-4"><a href="12.4-logistic.html#cb510-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Flow ( &quot;</span>, m<span class="sc">^</span><span class="dv">3</span>, <span class="st">&quot;\u00b7&quot;</span>, s<span class="sc">^-</span><span class="dv">1</span>, <span class="st">&quot;)&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb510-5"><a href="12.4-logistic.html#cb510-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb510-6"><a href="12.4-logistic.html#cb510-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-343-1.png" width="672" />
 <br></p>
 <p>You can see that, in general, there is a relatively low probability of an individual fish using the Stillwater Branch, but we see increasing probability of using that route with increasing <code>flow</code>.</p>

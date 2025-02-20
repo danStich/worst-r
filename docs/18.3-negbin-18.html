@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>18.3 Negative binomial regression | The Worst Stats Text eveR</title>
   <meta name="description" content="18.3 Negative binomial regression | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="18.3 Negative binomial regression | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -525,56 +529,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Okay, moving on with life, let’s take a look at the negative binomial regression model as an alternative to Poisson regression. Truthfully, this is usually where I start these days, and then I might consider backing down to use of Poisson if all assumptions are actually verified (but, <strong>this has literally never happened for me</strong>).</p>
 <p>We will start this time by actually doing some data exploration before our analysis. This is really how we should have started above, but that would have ruined all the fun.</p>
 <p>First, look at the distribution of the data. Here, it should be pretty obvious to you by now that these are count data for which the mean is not equal to the variance…right?</p>
-<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="18.3-negbin-18.html#cb682-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(crabs, <span class="fu">aes</span>(<span class="at">x =</span> satellites)) <span class="sc">+</span> </span>
-<span id="cb682-2"><a href="18.3-negbin-18.html#cb682-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="18.3-negbin-18.html#cb680-1" tabindex="-1"></a><span class="fu">ggplot</span>(crabs, <span class="fu">aes</span>(<span class="at">x =</span> satellites)) <span class="sc">+</span> </span>
+<span id="cb680-2"><a href="18.3-negbin-18.html#cb680-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-476-1.png" width="672" /></p>
 <p>If you think back to <a href="https://danstich.github.io/worst-r/5-Chapter5.html">Chapter 5</a>, you’ll remember this is a pretty typical example of the negative binomial distribution.</p>
 <p>We can take a look at how this shakes out between our groups (<code>color</code>) as well.</p>
-<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="18.3-negbin-18.html#cb683-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb683-2"><a href="18.3-negbin-18.html#cb683-2" aria-hidden="true" tabindex="-1"></a>  crabs,</span>
-<span id="cb683-3"><a href="18.3-negbin-18.html#cb683-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> color, <span class="at">y =</span> satellites, <span class="at">color =</span> color, <span class="at">fill =</span> color)) <span class="sc">+</span> </span>
-<span id="cb683-4"><a href="18.3-negbin-18.html#cb683-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.20</span>, <span class="at">width =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb683-5"><a href="18.3-negbin-18.html#cb683-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Color&quot;</span>) <span class="sc">+</span></span>
-<span id="cb683-6"><a href="18.3-negbin-18.html#cb683-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Number of satellites&quot;</span>) <span class="sc">+</span></span>
-<span id="cb683-7"><a href="18.3-negbin-18.html#cb683-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb683-8"><a href="18.3-negbin-18.html#cb683-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb683-9"><a href="18.3-negbin-18.html#cb683-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
-<span id="cb683-10"><a href="18.3-negbin-18.html#cb683-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>)</span>
-<span id="cb683-11"><a href="18.3-negbin-18.html#cb683-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="18.3-negbin-18.html#cb681-1" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb681-2"><a href="18.3-negbin-18.html#cb681-2" tabindex="-1"></a>  crabs,</span>
+<span id="cb681-3"><a href="18.3-negbin-18.html#cb681-3" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> color, <span class="at">y =</span> satellites, <span class="at">color =</span> color, <span class="at">fill =</span> color)) <span class="sc">+</span> </span>
+<span id="cb681-4"><a href="18.3-negbin-18.html#cb681-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.20</span>, <span class="at">width =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb681-5"><a href="18.3-negbin-18.html#cb681-5" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Color&quot;</span>) <span class="sc">+</span></span>
+<span id="cb681-6"><a href="18.3-negbin-18.html#cb681-6" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Number of satellites&quot;</span>) <span class="sc">+</span></span>
+<span id="cb681-7"><a href="18.3-negbin-18.html#cb681-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb681-8"><a href="18.3-negbin-18.html#cb681-8" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb681-9"><a href="18.3-negbin-18.html#cb681-9" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb681-10"><a href="18.3-negbin-18.html#cb681-10" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>)</span>
+<span id="cb681-11"><a href="18.3-negbin-18.html#cb681-11" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-477-1.png" width="672" /></p>
 <p>And, you can see here that even within groups the distributions do not look like they are normal or like they have equal variances, so we will fit a GLM that assumes the response is drawn from a negative binomial distribution.</p>
 <p>We can fit it with the GLM function like this using <code>rstanarm</code>:</p>
-<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="18.3-negbin-18.html#cb684-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a model</span></span>
-<span id="cb684-2"><a href="18.3-negbin-18.html#cb684-2" aria-hidden="true" tabindex="-1"></a>negbin_mod <span class="ot">&lt;-</span> <span class="fu">stan_glm</span>(</span>
-<span id="cb684-3"><a href="18.3-negbin-18.html#cb684-3" aria-hidden="true" tabindex="-1"></a>  satellites <span class="sc">~</span> width <span class="sc">+</span> mass <span class="sc">+</span> spine <span class="sc">+</span> color,</span>
-<span id="cb684-4"><a href="18.3-negbin-18.html#cb684-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> crabs,</span>
-<span id="cb684-5"><a href="18.3-negbin-18.html#cb684-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">neg_binomial_2</span>()</span>
-<span id="cb684-6"><a href="18.3-negbin-18.html#cb684-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="18.3-negbin-18.html#cb682-1" tabindex="-1"></a><span class="co"># Fit a model</span></span>
+<span id="cb682-2"><a href="18.3-negbin-18.html#cb682-2" tabindex="-1"></a>negbin_mod <span class="ot">&lt;-</span> <span class="fu">stan_glm</span>(</span>
+<span id="cb682-3"><a href="18.3-negbin-18.html#cb682-3" tabindex="-1"></a>  satellites <span class="sc">~</span> width <span class="sc">+</span> mass <span class="sc">+</span> spine <span class="sc">+</span> color,</span>
+<span id="cb682-4"><a href="18.3-negbin-18.html#cb682-4" tabindex="-1"></a>  <span class="at">data =</span> crabs,</span>
+<span id="cb682-5"><a href="18.3-negbin-18.html#cb682-5" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">neg_binomial_2</span>()</span>
+<span id="cb682-6"><a href="18.3-negbin-18.html#cb682-6" tabindex="-1"></a>)</span></code></pre></div>
 <p>Play around with the two formulations above and see if there’s a difference. <em>Clue</em>: there’s not, really. Just two different ways to do the same thing. The functionality in the <code>glm</code> function only came around recently, that’s all.</p>
 <p>Now, let’s take a look at the distribution of the residuals. I am going to work with the object I fit using the <code>glm()</code> function. This time, we’ll split our residuals out by <code>color</code> group so we can see where the problems are</p>
-<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="18.3-negbin-18.html#cb685-1" aria-hidden="true" tabindex="-1"></a>resids <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">.fitted =</span> negbin_mod<span class="sc">$</span>fitted.values, </span>
-<span id="cb685-2"><a href="18.3-negbin-18.html#cb685-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">.resid =</span> negbin_mod<span class="sc">$</span>residuals)</span>
-<span id="cb685-3"><a href="18.3-negbin-18.html#cb685-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb685-4"><a href="18.3-negbin-18.html#cb685-4" aria-hidden="true" tabindex="-1"></a>crab_resids <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(crabs, resids)</span></code></pre></div>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="18.3-negbin-18.html#cb683-1" tabindex="-1"></a>resids <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">.fitted =</span> negbin_mod<span class="sc">$</span>fitted.values, </span>
+<span id="cb683-2"><a href="18.3-negbin-18.html#cb683-2" tabindex="-1"></a>                     <span class="at">.resid =</span> negbin_mod<span class="sc">$</span>residuals)</span>
+<span id="cb683-3"><a href="18.3-negbin-18.html#cb683-3" tabindex="-1"></a></span>
+<span id="cb683-4"><a href="18.3-negbin-18.html#cb683-4" tabindex="-1"></a>crab_resids <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(crabs, resids)</span></code></pre></div>
 <p>Now, we can plot them:</p>
-<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="18.3-negbin-18.html#cb686-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(crab_resids, <span class="fu">aes</span>(<span class="at">x =</span> color, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
-<span id="cb686-2"><a href="18.3-negbin-18.html#cb686-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb686-3"><a href="18.3-negbin-18.html#cb686-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Fitted values&quot;</span>) <span class="sc">+</span></span>
-<span id="cb686-4"><a href="18.3-negbin-18.html#cb686-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(epsilon)))</span></code></pre></div>
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="18.3-negbin-18.html#cb684-1" tabindex="-1"></a><span class="fu">ggplot</span>(crab_resids, <span class="fu">aes</span>(<span class="at">x =</span> color, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb684-2"><a href="18.3-negbin-18.html#cb684-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb684-3"><a href="18.3-negbin-18.html#cb684-3" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Fitted values&quot;</span>) <span class="sc">+</span></span>
+<span id="cb684-4"><a href="18.3-negbin-18.html#cb684-4" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(epsilon)))</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-480-1.png" width="672" /></p>
 <p>Now we are starting to look a lot more “normal” within groups, and we are getting more symmetrical in our residual sampling distributions. However, just as in Chapter 13, we notice that all the means in our boxplot above seem to be less than zero, which suggests some systematic bias in our residuals.</p>
 <p><strong>But</strong>, how does this compare to the Poisson model for count data? We can use model selection to compare the Poisson model to the negative binomial model, since the response is the same in both cases.</p>
 <p>We can extract the estimated log likelihoods directly from the models:</p>
-<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="18.3-negbin-18.html#cb687-1" aria-hidden="true" tabindex="-1"></a>poisson_lik <span class="ot">&lt;-</span> <span class="fu">log_lik</span>(poisson_mod)</span>
-<span id="cb687-2"><a href="18.3-negbin-18.html#cb687-2" aria-hidden="true" tabindex="-1"></a>negbin_lik <span class="ot">&lt;-</span> <span class="fu">log_lik</span>(negbin_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="18.3-negbin-18.html#cb685-1" tabindex="-1"></a>poisson_lik <span class="ot">&lt;-</span> <span class="fu">log_lik</span>(poisson_mod)</span>
+<span id="cb685-2"><a href="18.3-negbin-18.html#cb685-2" tabindex="-1"></a>negbin_lik <span class="ot">&lt;-</span> <span class="fu">log_lik</span>(negbin_mod)</span></code></pre></div>
 <p>And we can compute LOO-IC statistics using the <code>loo</code> package. Notice that here we get some warnings suggesting there are one or more problem observations (!) in the Poisson fit (“too high” or &gt; 0.70) that seem to be mostly resolved using the negative binomial fit (“slightly high” or &gt; 0.50).</p>
-<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="18.3-negbin-18.html#cb688-1" aria-hidden="true" tabindex="-1"></a>poisson_loo <span class="ot">&lt;-</span> <span class="fu">loo</span>(poisson_lik)</span>
-<span id="cb688-2"><a href="18.3-negbin-18.html#cb688-2" aria-hidden="true" tabindex="-1"></a>negbin_loo <span class="ot">&lt;-</span> <span class="fu">loo</span>(negbin_lik)</span></code></pre></div>
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="18.3-negbin-18.html#cb686-1" tabindex="-1"></a>poisson_loo <span class="ot">&lt;-</span> <span class="fu">loo</span>(poisson_lik)</span>
+<span id="cb686-2"><a href="18.3-negbin-18.html#cb686-2" tabindex="-1"></a>negbin_loo <span class="ot">&lt;-</span> <span class="fu">loo</span>(negbin_lik)</span></code></pre></div>
 <p>Then, we can compare the models directly because they use the same response and link function:</p>
-<div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="18.3-negbin-18.html#cb689-1" aria-hidden="true" tabindex="-1"></a><span class="fu">loo_compare</span>(poisson_loo, negbin_loo)</span></code></pre></div>
+<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="18.3-negbin-18.html#cb687-1" tabindex="-1"></a><span class="fu">loo_compare</span>(poisson_loo, negbin_loo)</span></code></pre></div>
 <pre><code>##        elpd_diff se_diff
 ## model2   0.0       0.0  
-## model1 -87.9      18.9</code></pre>
+## model1 -87.8      19.0</code></pre>
 <p>The negative binomial model is clearly superior to the Poisson model here.</p>
 <p>Now, with a reasonable model in hand we could proceed with data visualization, but we might also rather have a “good” model to work with instead of just one that is “good enough”. It turns out that the real problem behind the weirdness in our residuals is actually due to an excess number of zero counts of <code>satellite</code> males on a lot of our females. This is very common in count data, where we might observe a lot of zeros before actually counting a success. For these cases, we’ll need to deal with the issue these excessive zeros (“zero inflation”) directly.</p>
 </div>

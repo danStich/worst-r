@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>10 Communicating effect sizes | The Worst Stats Text eveR</title>
   <meta name="description" content="10 Communicating effect sizes | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="10 Communicating effect sizes | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -530,7 +534,7 @@ This is the graph showing how the amount of time spent in rehab by sea turtles c
 <p>Now that we have a handle on interpreting the statistical results of linear models we need to think about how to communicate biological differences (effects) and the uncertainty associated with our predictions. This is a major short coming of many scientific studies, and has led to wide-spread reporting of statistically significant results that confer minimal biological meaning. On the other hand, if we do have really cool biological results, we want to be able to show those to people! A well designed graphic will tell most of your readers more than a parentheses-packed, numerically dense Results section - I don’t care how well you write.</p>
 <p>How we approach communication of our results can range from summarizing and graphing raw data to plotting futuristic curves over raw data depending on the type of effect we are trying to communicate. That depends, of course, on the model that we fit, the data that we collected, and how they were collected. To do this well, we have to at least understand how R is using our data, and that requires at least a superficial understanding of the actual math we are doing. Sorry. We’ll take it one step at a time and work through ANOVA (so hard), linear regressions (super easy), and ANCOVA (not that hard once you “get it”).</p>
 <p>For this chapter, we will revisit some of the built-in data sets we’ve been using for hypothesis testing and linear models and introduce the <code>dental</code> data set. We’ll also be working with a few packages in the <code>tidyverse</code> so you can go ahead and load that now if you want to.</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="10-Chapter10.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="10-Chapter10.html#cb364-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
             </section>
 

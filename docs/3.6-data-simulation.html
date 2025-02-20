@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.6 Data simulation | The Worst Stats Text eveR</title>
   <meta name="description" content="3.6 Data simulation | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.6 Data simulation | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -528,17 +532,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s say we want to take random samples from our huge data set so we can fit models to a subset of data and then use the rest of our data for model validation in weeks to come.</p>
 <p>We have around 17,000 observations in the <code>am_shad</code> data set. But, what if we wanted to know what it would look like if we only had 100 samples from the same population?</p>
 <p>First, tell R how many samples you want.</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="3.6-data-simulation.html#cb137-1" aria-hidden="true" tabindex="-1"></a>n_samples <span class="ot">&lt;-</span> <span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="3.6-data-simulation.html#cb137-1" tabindex="-1"></a>n_samples <span class="ot">&lt;-</span> <span class="dv">100</span></span></code></pre></div>
 <p>Now let’s take two samples of 100 fish from our dataframe to see how they compare:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="3.6-data-simulation.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Randomly sample 100 rows of data from our data frame two different</span></span>
-<span id="cb138-2"><a href="3.6-data-simulation.html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="co"># times to see the differences</span></span>
-<span id="cb138-3"><a href="3.6-data-simulation.html#cb138-3" aria-hidden="true" tabindex="-1"></a>samp1 <span class="ot">&lt;-</span> am_shad[<span class="fu">sample</span>(<span class="fu">nrow</span>(am_shad), <span class="at">size =</span> n_samples, <span class="at">replace =</span> <span class="cn">FALSE</span>), ]</span>
-<span id="cb138-4"><a href="3.6-data-simulation.html#cb138-4" aria-hidden="true" tabindex="-1"></a>samp2 <span class="ot">&lt;-</span> am_shad[<span class="fu">sample</span>(<span class="fu">nrow</span>(am_shad), <span class="at">size =</span> n_samples, <span class="at">replace =</span> <span class="cn">FALSE</span>), ]</span>
-<span id="cb138-5"><a href="3.6-data-simulation.html#cb138-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-6"><a href="3.6-data-simulation.html#cb138-6" aria-hidden="true" tabindex="-1"></a><span class="co"># We can look at them with our histograms</span></span>
-<span id="cb138-7"><a href="3.6-data-simulation.html#cb138-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb138-8"><a href="3.6-data-simulation.html#cb138-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(samp1<span class="sc">$</span>Length, <span class="at">main =</span> <span class="st">&quot;&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span>
-<span id="cb138-9"><a href="3.6-data-simulation.html#cb138-9" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(samp2<span class="sc">$</span>Length, <span class="at">main =</span> <span class="st">&quot;&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="3.6-data-simulation.html#cb138-1" tabindex="-1"></a><span class="co"># Randomly sample 100 rows of data from our data frame two different</span></span>
+<span id="cb138-2"><a href="3.6-data-simulation.html#cb138-2" tabindex="-1"></a><span class="co"># times to see the differences</span></span>
+<span id="cb138-3"><a href="3.6-data-simulation.html#cb138-3" tabindex="-1"></a>samp1 <span class="ot">&lt;-</span> am_shad[<span class="fu">sample</span>(<span class="fu">nrow</span>(am_shad), <span class="at">size =</span> n_samples, <span class="at">replace =</span> <span class="cn">FALSE</span>), ]</span>
+<span id="cb138-4"><a href="3.6-data-simulation.html#cb138-4" tabindex="-1"></a>samp2 <span class="ot">&lt;-</span> am_shad[<span class="fu">sample</span>(<span class="fu">nrow</span>(am_shad), <span class="at">size =</span> n_samples, <span class="at">replace =</span> <span class="cn">FALSE</span>), ]</span>
+<span id="cb138-5"><a href="3.6-data-simulation.html#cb138-5" tabindex="-1"></a></span>
+<span id="cb138-6"><a href="3.6-data-simulation.html#cb138-6" tabindex="-1"></a><span class="co"># We can look at them with our histograms</span></span>
+<span id="cb138-7"><a href="3.6-data-simulation.html#cb138-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb138-8"><a href="3.6-data-simulation.html#cb138-8" tabindex="-1"></a><span class="fu">hist</span>(samp1<span class="sc">$</span>Length, <span class="at">main =</span> <span class="st">&quot;&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span>
+<span id="cb138-9"><a href="3.6-data-simulation.html#cb138-9" tabindex="-1"></a><span class="fu">hist</span>(samp2<span class="sc">$</span>Length, <span class="at">main =</span> <span class="st">&quot;&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-79-1.png" width="672" />
 *If you are struggling to get your plotting window back to “normal” after this, you can either click the broom button in your “Plots” window, or you can run the following code for now:</p>
 </div>
@@ -547,31 +551,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now, instead of sampling our data let’s say we have some distribution from which we would like sample. So, let’s make a distribution.</p>
 <p>We will start with the normal, and we can move into others when we talk about probability distributions and sample statistics in <a href="5-Chapter5.html#Chapter5">Chapter 5</a>. For this, we will use the distribution of American shad lengths for age-6 females because it approximates a normal distribution. We will calculate the <code>mean</code> and <code>sd</code> because those are the parameters of the normal distribution.</p>
 <p>Start by looking at the size distribution for age 6 females. We use the tidy workflow here with really awful default graphics (more to come in <a href="4-Chapter4.html#Chapter4">Chapter 4</a>), but we add two arguments to our <code>subset</code> call. We want to select only the variable <code>Length</code> from <code>am_shad</code>, and we want to drop all other information so we can send the output straight to the <code>hist()</code> function as a vector.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="3.6-data-simulation.html#cb139-1" aria-hidden="true" tabindex="-1"></a>am_shad <span class="sc">%&gt;%</span></span>
-<span id="cb139-2"><a href="3.6-data-simulation.html#cb139-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(Age <span class="sc">==</span> <span class="dv">6</span> <span class="sc">&amp;</span> Sex <span class="sc">==</span> <span class="st">&quot;R&quot;</span>, <span class="at">select=</span><span class="st">&#39;Length&#39;</span>, <span class="at">drop=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb139-3"><a href="3.6-data-simulation.html#cb139-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">hist</span>(<span class="at">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="3.6-data-simulation.html#cb139-1" tabindex="-1"></a>am_shad <span class="sc">%&gt;%</span></span>
+<span id="cb139-2"><a href="3.6-data-simulation.html#cb139-2" tabindex="-1"></a>  <span class="fu">subset</span>(Age <span class="sc">==</span> <span class="dv">6</span> <span class="sc">&amp;</span> Sex <span class="sc">==</span> <span class="st">&quot;R&quot;</span>, <span class="at">select=</span><span class="st">&#39;Length&#39;</span>, <span class="at">drop=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb139-3"><a href="3.6-data-simulation.html#cb139-3" tabindex="-1"></a>   <span class="fu">hist</span>(<span class="at">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
 <p>Now, let’s calculate the <code>mean</code> and <code>sd</code> of <code>Length</code> for age 6 females.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="3.6-data-simulation.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean Length </span></span>
-<span id="cb140-2"><a href="3.6-data-simulation.html#cb140-2" aria-hidden="true" tabindex="-1"></a>x_bar <span class="ot">&lt;-</span> am_shad <span class="sc">%&gt;%</span></span>
-<span id="cb140-3"><a href="3.6-data-simulation.html#cb140-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(Age <span class="sc">==</span> <span class="dv">6</span> <span class="sc">&amp;</span> Sex <span class="sc">==</span> <span class="st">&quot;R&quot;</span>, <span class="at">select=</span><span class="st">&#39;Length&#39;</span>, <span class="at">drop=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb140-4"><a href="3.6-data-simulation.html#cb140-4" aria-hidden="true" tabindex="-1"></a>  mean</span>
-<span id="cb140-5"><a href="3.6-data-simulation.html#cb140-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb140-6"><a href="3.6-data-simulation.html#cb140-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate standard deviation of Length</span></span>
-<span id="cb140-7"><a href="3.6-data-simulation.html#cb140-7" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> am_shad <span class="sc">%&gt;%</span></span>
-<span id="cb140-8"><a href="3.6-data-simulation.html#cb140-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(Age <span class="sc">==</span> <span class="dv">6</span> <span class="sc">&amp;</span> Sex <span class="sc">==</span> <span class="st">&quot;R&quot;</span>, <span class="at">select=</span><span class="st">&#39;Length&#39;</span>, <span class="at">drop=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb140-9"><a href="3.6-data-simulation.html#cb140-9" aria-hidden="true" tabindex="-1"></a>  sd</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="3.6-data-simulation.html#cb140-1" tabindex="-1"></a><span class="co"># Calculate the mean Length </span></span>
+<span id="cb140-2"><a href="3.6-data-simulation.html#cb140-2" tabindex="-1"></a>x_bar <span class="ot">&lt;-</span> am_shad <span class="sc">%&gt;%</span></span>
+<span id="cb140-3"><a href="3.6-data-simulation.html#cb140-3" tabindex="-1"></a>  <span class="fu">subset</span>(Age <span class="sc">==</span> <span class="dv">6</span> <span class="sc">&amp;</span> Sex <span class="sc">==</span> <span class="st">&quot;R&quot;</span>, <span class="at">select=</span><span class="st">&#39;Length&#39;</span>, <span class="at">drop=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb140-4"><a href="3.6-data-simulation.html#cb140-4" tabindex="-1"></a>  mean</span>
+<span id="cb140-5"><a href="3.6-data-simulation.html#cb140-5" tabindex="-1"></a></span>
+<span id="cb140-6"><a href="3.6-data-simulation.html#cb140-6" tabindex="-1"></a><span class="co"># Calculate standard deviation of Length</span></span>
+<span id="cb140-7"><a href="3.6-data-simulation.html#cb140-7" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> am_shad <span class="sc">%&gt;%</span></span>
+<span id="cb140-8"><a href="3.6-data-simulation.html#cb140-8" tabindex="-1"></a>  <span class="fu">subset</span>(Age <span class="sc">==</span> <span class="dv">6</span> <span class="sc">&amp;</span> Sex <span class="sc">==</span> <span class="st">&quot;R&quot;</span>, <span class="at">select=</span><span class="st">&#39;Length&#39;</span>, <span class="at">drop=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb140-9"><a href="3.6-data-simulation.html#cb140-9" tabindex="-1"></a>  sd</span></code></pre></div>
 <p>Note that we could also use the <code>filter()</code> function from the <code>dplyr</code> package for this job, and for big data sets it would be a lot faster for un-grouped data.</p>
 <p>Now, we can use the mean and standard deviation to randomly sample our normal distribution of lengths.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="3.6-data-simulation.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a random sample from a normal distribution</span></span>
-<span id="cb141-2"><a href="3.6-data-simulation.html#cb141-2" aria-hidden="true" tabindex="-1"></a>length_sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">mean =</span> x_bar, <span class="at">sd =</span> sigma)</span>
-<span id="cb141-3"><a href="3.6-data-simulation.html#cb141-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb141-4"><a href="3.6-data-simulation.html#cb141-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the sample to see if it is a normal- YAY it is!</span></span>
-<span id="cb141-5"><a href="3.6-data-simulation.html#cb141-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(length_sample,</span>
-<span id="cb141-6"><a href="3.6-data-simulation.html#cb141-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;gray&quot;</span>,</span>
-<span id="cb141-7"><a href="3.6-data-simulation.html#cb141-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb141-8"><a href="3.6-data-simulation.html#cb141-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Forklength (cm)&quot;</span></span>
-<span id="cb141-9"><a href="3.6-data-simulation.html#cb141-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="3.6-data-simulation.html#cb141-1" tabindex="-1"></a><span class="co"># Take a random sample from a normal distribution</span></span>
+<span id="cb141-2"><a href="3.6-data-simulation.html#cb141-2" tabindex="-1"></a>length_sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">mean =</span> x_bar, <span class="at">sd =</span> sigma)</span>
+<span id="cb141-3"><a href="3.6-data-simulation.html#cb141-3" tabindex="-1"></a></span>
+<span id="cb141-4"><a href="3.6-data-simulation.html#cb141-4" tabindex="-1"></a><span class="co"># Plot the sample to see if it is a normal- YAY it is!</span></span>
+<span id="cb141-5"><a href="3.6-data-simulation.html#cb141-5" tabindex="-1"></a><span class="fu">hist</span>(length_sample,</span>
+<span id="cb141-6"><a href="3.6-data-simulation.html#cb141-6" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;gray&quot;</span>,</span>
+<span id="cb141-7"><a href="3.6-data-simulation.html#cb141-7" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb141-8"><a href="3.6-data-simulation.html#cb141-8" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Forklength (cm)&quot;</span></span>
+<span id="cb141-9"><a href="3.6-data-simulation.html#cb141-9" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-83-1.png" width="672" />
 We’ve add a couple of new arguments to the histogram call to make it a little less ugly here. In <a href="4-Chapter4.html#Chapter4">Chapter 4</a> we are going to ramp it up and play with some plots!</p>
 </div>

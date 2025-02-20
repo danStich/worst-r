@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.3 Multiple linear regression | The Worst Stats Text eveR</title>
   <meta name="description" content="7.3 Multiple linear regression | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.3 Multiple linear regression | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -524,9 +528,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.3</span> Multiple linear regression<a href="7.3-multiple-linear-regression.html#multiple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can, of course, extend this to include multiple continuous explanatory variables of interest just as we did with ANOVA for multiple categorical explanatory variables!</p>
 <p>Here is an example to whet your appetite. Let’s say we want a multiple regression model that includes both <code>Education</code> and <code>Catholic</code>?</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="7.3-multiple-linear-regression.html#cb321-1" aria-hidden="true" tabindex="-1"></a>multiple_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> Education <span class="sc">+</span> Catholic, <span class="at">data =</span> swiss)</span>
-<span id="cb321-2"><a href="7.3-multiple-linear-regression.html#cb321-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb321-3"><a href="7.3-multiple-linear-regression.html#cb321-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(multiple_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="7.3-multiple-linear-regression.html#cb319-1" tabindex="-1"></a>multiple_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> Education <span class="sc">+</span> Catholic, <span class="at">data =</span> swiss)</span>
+<span id="cb319-2"><a href="7.3-multiple-linear-regression.html#cb319-2" tabindex="-1"></a></span>
+<span id="cb319-3"><a href="7.3-multiple-linear-regression.html#cb319-3" tabindex="-1"></a><span class="fu">summary</span>(multiple_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Fertility ~ Education + Catholic, data = swiss)
@@ -547,12 +551,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.5745, Adjusted R-squared:  0.5552 
 ## F-statistic:  29.7 on 2 and 44 DF,  p-value: 6.849e-09</code></pre>
 <p>Or if we really want to get crazy with the hot sauce:</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="7.3-multiple-linear-regression.html#cb323-1" aria-hidden="true" tabindex="-1"></a>full_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
-<span id="cb323-2"><a href="7.3-multiple-linear-regression.html#cb323-2" aria-hidden="true" tabindex="-1"></a>  Fertility <span class="sc">~</span> Agriculture <span class="sc">+</span> Examination <span class="sc">+</span> Education <span class="sc">+</span> Catholic,</span>
-<span id="cb323-3"><a href="7.3-multiple-linear-regression.html#cb323-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> swiss</span>
-<span id="cb323-4"><a href="7.3-multiple-linear-regression.html#cb323-4" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb323-5"><a href="7.3-multiple-linear-regression.html#cb323-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb323-6"><a href="7.3-multiple-linear-regression.html#cb323-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="7.3-multiple-linear-regression.html#cb321-1" tabindex="-1"></a>full_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb321-2"><a href="7.3-multiple-linear-regression.html#cb321-2" tabindex="-1"></a>  Fertility <span class="sc">~</span> Agriculture <span class="sc">+</span> Examination <span class="sc">+</span> Education <span class="sc">+</span> Catholic,</span>
+<span id="cb321-3"><a href="7.3-multiple-linear-regression.html#cb321-3" tabindex="-1"></a>  <span class="at">data =</span> swiss</span>
+<span id="cb321-4"><a href="7.3-multiple-linear-regression.html#cb321-4" tabindex="-1"></a>  )</span>
+<span id="cb321-5"><a href="7.3-multiple-linear-regression.html#cb321-5" tabindex="-1"></a></span>
+<span id="cb321-6"><a href="7.3-multiple-linear-regression.html#cb321-6" tabindex="-1"></a><span class="fu">summary</span>(full_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Fertility ~ Agriculture + Examination + Education + 

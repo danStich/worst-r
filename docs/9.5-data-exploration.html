@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.5 Data exploration | The Worst Stats Text eveR</title>
   <meta name="description" content="9.5 Data exploration | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.5 Data exploration | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -533,7 +537,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br></p>
 <p>For linear models, we want data that were sampled randomly and independently from all other data points. For this information, we have to examine the actual experimental design. In a best case, an experiment is designed intentionally so that all groups get opposite treatments and those there is no correlation (relationship) between treatments (“orthogonal design”). This is easy to achieve with some thought in the design of controlled experiments, but can be difficult or impossible to do in semi-controlled experiments or observational studies. This is one reason why controlled experimentation has long been thought of as the gold standard in science.</p>
 <p>There is one obvious thing that is going to tell us that the observations in <code>turtles</code> are not collected independently, but there are a few others. What is it? You can probably infer the answer just from the variable names.</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="9.5-data-exploration.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(turtles, <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="9.5-data-exploration.html#cb346-1" tabindex="-1"></a><span class="fu">head</span>(turtles, <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##             ID Year   Gear Width Removed Status Stay nHooks
 ## 1       AL-002 2013      J  1.45      UE      1    9      1
 ## 2  AL-LT14-001 2014      J  6.25      ME      0    4      1
@@ -557,28 +561,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>First, we could go level by level for all of our grouping variables and conduct Shapiro tests (not shown here).</p>
 <p>We can look at a few different plots of our response to start teasing apart some of the potential violations of our assumptions.</p>
 <p>We know we will need to look at a year effect here because that is yet another form of non-independence (and potentially homogeneity) in our data. Let’s start with a boxplot:</p>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="9.5-data-exploration.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(turtles, </span>
-<span id="cb350-2"><a href="9.5-data-exploration.html#cb350-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Year), <span class="at">y =</span> Stay, <span class="at">group =</span> Year), <span class="at">fill =</span> <span class="st">&#39;gray87&#39;</span>) <span class="sc">+</span></span>
-<span id="cb350-3"><a href="9.5-data-exploration.html#cb350-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb350-4"><a href="9.5-data-exploration.html#cb350-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Year&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="9.5-data-exploration.html#cb348-1" tabindex="-1"></a><span class="fu">ggplot</span>(turtles, </span>
+<span id="cb348-2"><a href="9.5-data-exploration.html#cb348-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Year), <span class="at">y =</span> Stay, <span class="at">group =</span> Year), <span class="at">fill =</span> <span class="st">&#39;gray87&#39;</span>) <span class="sc">+</span></span>
+<span id="cb348-3"><a href="9.5-data-exploration.html#cb348-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb348-4"><a href="9.5-data-exploration.html#cb348-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Year&quot;</span>)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
 <p>Whoa! We have a couple of issues here.</p>
 <p>First of all: we have clearly identified a number of ‘outliers’ in our data. These are the circles that are outside the whiskers of our box plots.</p>
 <p>One way to address these outliers is by dropping them from the data. We only want to do this if we have a pretty good justification for this ahead of time (“<em>a priori</em>”). And, sometimes these can be some of the most interesting observations.</p>
 <p>Another way to deal with this is through data transformation. For example, we could use a log transformation in an attempt to normalize extreme values in our data. This certainly looks a little better, but may not get us all the way there…</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="9.5-data-exploration.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(turtles, </span>
-<span id="cb351-2"><a href="9.5-data-exploration.html#cb351-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Year), <span class="at">y =</span> <span class="fu">log</span>(Stay), <span class="at">group =</span> Year), </span>
-<span id="cb351-3"><a href="9.5-data-exploration.html#cb351-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&#39;gray87&#39;</span>) <span class="sc">+</span></span>
-<span id="cb351-4"><a href="9.5-data-exploration.html#cb351-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb351-5"><a href="9.5-data-exploration.html#cb351-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Year&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="9.5-data-exploration.html#cb349-1" tabindex="-1"></a><span class="fu">ggplot</span>(turtles, </span>
+<span id="cb349-2"><a href="9.5-data-exploration.html#cb349-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Year), <span class="at">y =</span> <span class="fu">log</span>(Stay), <span class="at">group =</span> Year), </span>
+<span id="cb349-3"><a href="9.5-data-exploration.html#cb349-3" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&#39;gray87&#39;</span>) <span class="sc">+</span></span>
+<span id="cb349-4"><a href="9.5-data-exploration.html#cb349-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb349-5"><a href="9.5-data-exploration.html#cb349-5" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Year&quot;</span>)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
 <blockquote>
 <p>NOTE: I will not cover variable transformation extensively in this class or text. The justification is: 1) you can Google it to learn more about what transformations are useful for what, and 2) I will argue that most of the time there are better methods for dealing with non-normal data and then I will show you how to use those methods as we go.</p>
 </blockquote>
 <p>We can also look at histograms to investigate normality within groups. We’ll continue using log(Stay) for now.</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="9.5-data-exploration.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(turtles, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(Stay))) <span class="sc">+</span></span>
-<span id="cb352-2"><a href="9.5-data-exploration.html#cb352-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb352-3"><a href="9.5-data-exploration.html#cb352-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Year)</span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="9.5-data-exploration.html#cb350-1" tabindex="-1"></a><span class="fu">ggplot</span>(turtles, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(Stay))) <span class="sc">+</span></span>
+<span id="cb350-2"><a href="9.5-data-exploration.html#cb350-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb350-3"><a href="9.5-data-exploration.html#cb350-3" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Year)</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
 <p><br></p>
 <p>Again, a little better, but perhaps not as good as we’d like.</p>
@@ -587,9 +591,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">9.5.3</span> Homogeneity of variances<a href="9.5-data-exploration.html#homogeneity-of-variances" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Finally, we assume in all of our linear models that variability in our residuals (which are really just part of our variances) are constant among groups or across the range of continuous variables <span class="math inline">\(x\)</span>. This is the same assumption that we made for t-tests and tested with the F-test in <a href="6-Chapter6.html#Chapter6">Chapter 6</a>. We’ll now look at a few options for linear models in this chapter depending on how the data are structured.</p>
 <p>A quick check of variances in the <code>Stay</code> variable by <code>Year</code> will make it clear that we are also in violation of this assumption if we do not log-transform the data.</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="9.5-data-exploration.html#cb353-1" aria-hidden="true" tabindex="-1"></a>turtles <span class="sc">%&gt;%</span></span>
-<span id="cb353-2"><a href="9.5-data-exploration.html#cb353-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb353-3"><a href="9.5-data-exploration.html#cb353-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">var</span>(Stay))</span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="9.5-data-exploration.html#cb351-1" tabindex="-1"></a>turtles <span class="sc">%&gt;%</span></span>
+<span id="cb351-2"><a href="9.5-data-exploration.html#cb351-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb351-3"><a href="9.5-data-exploration.html#cb351-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">var</span>(Stay))</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##    Year `var(Stay)`
 ##   &lt;int&gt;       &lt;dbl&gt;
@@ -598,9 +602,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 3  2015        91.7</code></pre>
 <p>You can go ahead and conduct a few F-tests if you don’t believe me that these are different, but I’m pretty sure you won’t convince me that the ratios of any two of these variances are equal to 1.00!</p>
 <p>This, too, is made magically (A little) better when we log-transform <code>Stay</code>:</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="9.5-data-exploration.html#cb355-1" aria-hidden="true" tabindex="-1"></a>turtles <span class="sc">%&gt;%</span></span>
-<span id="cb355-2"><a href="9.5-data-exploration.html#cb355-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb355-3"><a href="9.5-data-exploration.html#cb355-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">var</span>(<span class="fu">log</span>(Stay)))</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="9.5-data-exploration.html#cb353-1" tabindex="-1"></a>turtles <span class="sc">%&gt;%</span></span>
+<span id="cb353-2"><a href="9.5-data-exploration.html#cb353-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb353-3"><a href="9.5-data-exploration.html#cb353-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">var</span>(<span class="fu">log</span>(Stay)))</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##    Year `var(log(Stay))`
 ##   &lt;int&gt;            &lt;dbl&gt;

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.5 Predictions | The Worst Stats Text eveR</title>
   <meta name="description" content="8.5 Predictions | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.5 Predictions | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -524,19 +528,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.5</span> Predictions<a href="8.5-predictions.html#predictions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here we will take a quick look at how to plot model predictions over our raw data to demonstrate the relationships we have discovered and to show how they compare to our observations. We should have a separate line for each group based on differences in <code>Pulse</code> between species, but the lines should be parallel based on how our model was formulated. Again, we will dig deep into why this is the case in <a href="10-Chapter10.html#Chapter10">Chapter 10</a>.</p>
 <p>Note that this procedure is identical to the one we used for linear regression. That is because linear regression is just one special case of the general linear model!</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="8.5-predictions.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions from the fitted model object using observed data</span></span>
-<span id="cb334-2"><a href="8.5-predictions.html#cb334-2" aria-hidden="true" tabindex="-1"></a>predicted_pulse <span class="ot">=</span> <span class="fu">predict</span>(cricket_mod, <span class="at">interval =</span> <span class="st">&#39;confidence&#39;</span>)</span>
-<span id="cb334-3"><a href="8.5-predictions.html#cb334-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb334-4"><a href="8.5-predictions.html#cb334-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add these to the cricket data</span></span>
-<span id="cb334-5"><a href="8.5-predictions.html#cb334-5" aria-hidden="true" tabindex="-1"></a>cricket_pred <span class="ot">&lt;-</span> <span class="fu">cbind</span>(crickets, predicted_pulse)</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="8.5-predictions.html#cb332-1" tabindex="-1"></a><span class="co"># Make predictions from the fitted model object using observed data</span></span>
+<span id="cb332-2"><a href="8.5-predictions.html#cb332-2" tabindex="-1"></a>predicted_pulse <span class="ot">=</span> <span class="fu">predict</span>(cricket_mod, <span class="at">interval =</span> <span class="st">&#39;confidence&#39;</span>)</span>
+<span id="cb332-3"><a href="8.5-predictions.html#cb332-3" tabindex="-1"></a></span>
+<span id="cb332-4"><a href="8.5-predictions.html#cb332-4" tabindex="-1"></a><span class="co"># Add these to the cricket data</span></span>
+<span id="cb332-5"><a href="8.5-predictions.html#cb332-5" tabindex="-1"></a>cricket_pred <span class="ot">&lt;-</span> <span class="fu">cbind</span>(crickets, predicted_pulse)</span></code></pre></div>
 <p>Now, we can plot the raw data as a scatterplot and add our model estimates over the top just like we did for the <code>swiss</code> data in <a href="4-Chapter4.html#Chapter4">Chapter 4</a>.</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="8.5-predictions.html#cb335-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sets up data and aesthetics</span></span>
-<span id="cb335-2"><a href="8.5-predictions.html#cb335-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cricket_pred, </span>
-<span id="cb335-3"><a href="8.5-predictions.html#cb335-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Temp, <span class="at">y =</span> Pulse, <span class="at">color =</span> Species, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
-<span id="cb335-4"><a href="8.5-predictions.html#cb335-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb335-5"><a href="8.5-predictions.html#cb335-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> fit), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb335-6"><a href="8.5-predictions.html#cb335-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">color =</span> <span class="cn">NULL</span>), <span class="at">alpha =</span> .<span class="dv">3</span>)<span class="sc">+</span></span>
-<span id="cb335-7"><a href="8.5-predictions.html#cb335-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&#39;Temperature (&#39;</span>, degree, <span class="st">&#39;C)&#39;</span>)))  </span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="8.5-predictions.html#cb333-1" tabindex="-1"></a><span class="co"># Sets up data and aesthetics</span></span>
+<span id="cb333-2"><a href="8.5-predictions.html#cb333-2" tabindex="-1"></a><span class="fu">ggplot</span>(cricket_pred, </span>
+<span id="cb333-3"><a href="8.5-predictions.html#cb333-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Temp, <span class="at">y =</span> Pulse, <span class="at">color =</span> Species, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb333-4"><a href="8.5-predictions.html#cb333-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb333-5"><a href="8.5-predictions.html#cb333-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> fit), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb333-6"><a href="8.5-predictions.html#cb333-6" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">color =</span> <span class="cn">NULL</span>), <span class="at">alpha =</span> .<span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb333-7"><a href="8.5-predictions.html#cb333-7" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&#39;Temperature (&#39;</span>, degree, <span class="st">&#39;C)&#39;</span>)))  </span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
 </div>
             </section>

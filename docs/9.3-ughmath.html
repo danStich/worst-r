@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.3 WTF is a residuals? | The Worst Stats Text eveR</title>
   <meta name="description" content="9.3 WTF is a residuals? | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.3 WTF is a residuals? | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -543,16 +547,16 @@ if you like that one better.</p>
 <div id="residuals-in-anova" class="section level3 hasAnchor" number="9.3.1">
 <h3><span class="header-section-number">9.3.1</span> Residuals in ANOVA<a href="9.3-ughmath.html#residuals-in-anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The error for each observation is calculated relative to both the grand mean and group-specific means for each observation (data point) in ANOVA. And, these errors are directly related to the calculation of the sum of squares calculations we talked about for t-tests in <a href="6-Chapter6.html#Chapter6">Chapter 6</a> and ANOVA in <a href="7-Chapter7.html#Chapter7">Chapter 7</a>. As an example of what this looks like, we can calculate the residual error (<span class="math inline">\(\epsilon\)</span>) of <code>Petal.Length</code> for each <code>Species</code> in the <code>iris</code> data like this:</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="9.3-ughmath.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the iris data</span></span>
-<span id="cb336-2"><a href="9.3-ughmath.html#cb336-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
-<span id="cb336-3"><a href="9.3-ughmath.html#cb336-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb336-4"><a href="9.3-ughmath.html#cb336-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean of each group</span></span>
-<span id="cb336-5"><a href="9.3-ughmath.html#cb336-5" aria-hidden="true" tabindex="-1"></a>means <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span></span>
-<span id="cb336-6"><a href="9.3-ughmath.html#cb336-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
-<span id="cb336-7"><a href="9.3-ughmath.html#cb336-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(Petal.Length))</span>
-<span id="cb336-8"><a href="9.3-ughmath.html#cb336-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb336-9"><a href="9.3-ughmath.html#cb336-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Have a look</span></span>
-<span id="cb336-10"><a href="9.3-ughmath.html#cb336-10" aria-hidden="true" tabindex="-1"></a>means</span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="9.3-ughmath.html#cb334-1" tabindex="-1"></a><span class="co"># Load the iris data</span></span>
+<span id="cb334-2"><a href="9.3-ughmath.html#cb334-2" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb334-3"><a href="9.3-ughmath.html#cb334-3" tabindex="-1"></a></span>
+<span id="cb334-4"><a href="9.3-ughmath.html#cb334-4" tabindex="-1"></a><span class="co"># Calculate mean of each group</span></span>
+<span id="cb334-5"><a href="9.3-ughmath.html#cb334-5" tabindex="-1"></a>means <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span></span>
+<span id="cb334-6"><a href="9.3-ughmath.html#cb334-6" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
+<span id="cb334-7"><a href="9.3-ughmath.html#cb334-7" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(Petal.Length))</span>
+<span id="cb334-8"><a href="9.3-ughmath.html#cb334-8" tabindex="-1"></a></span>
+<span id="cb334-9"><a href="9.3-ughmath.html#cb334-9" tabindex="-1"></a><span class="co"># Have a look</span></span>
+<span id="cb334-10"><a href="9.3-ughmath.html#cb334-10" tabindex="-1"></a>means</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   Species    x_bar
 ##   &lt;fct&gt;      &lt;dbl&gt;
@@ -560,58 +564,58 @@ if you like that one better.</p>
 ## 2 versicolor  4.26
 ## 3 virginica   5.55</code></pre>
 <p>If we merge these group <code>means</code> with the <code>iris</code> data, it is really easy to calculate the error for each observation in each <code>Species</code>, or group:</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="9.3-ughmath.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge them. R will use &quot;Species&quot;  in both by default</span></span>
-<span id="cb338-2"><a href="9.3-ughmath.html#cb338-2" aria-hidden="true" tabindex="-1"></a>resid_df <span class="ot">&lt;-</span> <span class="fu">merge</span>(iris, means)</span>
-<span id="cb338-3"><a href="9.3-ughmath.html#cb338-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb338-4"><a href="9.3-ughmath.html#cb338-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate residual error:</span></span>
-<span id="cb338-5"><a href="9.3-ughmath.html#cb338-5" aria-hidden="true" tabindex="-1"></a>resid_df<span class="sc">$</span>epsilon <span class="ot">&lt;-</span> resid_df<span class="sc">$</span>Petal.Length <span class="sc">-</span> resid_df<span class="sc">$</span>x_bar</span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="9.3-ughmath.html#cb336-1" tabindex="-1"></a><span class="co"># Merge them. R will use &quot;Species&quot;  in both by default</span></span>
+<span id="cb336-2"><a href="9.3-ughmath.html#cb336-2" tabindex="-1"></a>resid_df <span class="ot">&lt;-</span> <span class="fu">merge</span>(iris, means)</span>
+<span id="cb336-3"><a href="9.3-ughmath.html#cb336-3" tabindex="-1"></a></span>
+<span id="cb336-4"><a href="9.3-ughmath.html#cb336-4" tabindex="-1"></a><span class="co"># Calculate residual error:</span></span>
+<span id="cb336-5"><a href="9.3-ughmath.html#cb336-5" tabindex="-1"></a>resid_df<span class="sc">$</span>epsilon <span class="ot">&lt;-</span> resid_df<span class="sc">$</span>Petal.Length <span class="sc">-</span> resid_df<span class="sc">$</span>x_bar</span></code></pre></div>
 <p>We can make a histogram of the residuals to confirm the assumption that the residuals are normally distributed with a mean of zero. This assumption is important because it allows us to drop <span class="math inline">\(\epsilon\)</span> from the equations above and fall back to our old friend <span class="math inline">\(y = mx + b\)</span>. As you can see below, the mean of our residuals is about zero, and the distribution of residuals also appears to be symmetrical (normal).</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="9.3-ughmath.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(resid_df, <span class="fu">aes</span>(<span class="at">x =</span> epsilon)) <span class="sc">+</span></span>
-<span id="cb339-2"><a href="9.3-ughmath.html#cb339-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="9.3-ughmath.html#cb337-1" tabindex="-1"></a><span class="fu">ggplot</span>(resid_df, <span class="fu">aes</span>(<span class="at">x =</span> epsilon)) <span class="sc">+</span></span>
+<span id="cb337-2"><a href="9.3-ughmath.html#cb337-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
 <p>We could also examine residuals within <code>Species</code> using a box plot. Again, we should see that our residuals are normally distributed with a mean of zero within groups. However, you may notice that the variance of <span class="math inline">\(\epsilon\)</span> is clearly not equal between groups.</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="9.3-ughmath.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(resid_df, <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> epsilon)) <span class="sc">+</span></span>
-<span id="cb340-2"><a href="9.3-ughmath.html#cb340-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="9.3-ughmath.html#cb338-1" tabindex="-1"></a><span class="fu">ggplot</span>(resid_df, <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> epsilon)) <span class="sc">+</span></span>
+<span id="cb338-2"><a href="9.3-ughmath.html#cb338-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-219-1.png" width="672" /></p>
 </div>
 <div id="residuals-in-linear-regression" class="section level3 hasAnchor" number="9.3.2">
 <h3><span class="header-section-number">9.3.2</span> Residuals in linear regression<a href="9.3-ughmath.html#residuals-in-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For linear regression (continuous <span class="math inline">\(X\)</span>), the residuals are calculated as the difference between each data point (<span class="math inline">\(x\)</span>) and the corresponding prediction of <span class="math inline">\(\hat{y}\)</span> at that value of <span class="math inline">\(x\)</span> from the line of best fit (<span class="math inline">\(\epsilon_i = x_i - \hat{y}\)</span>). These are referred to as <code>fitted</code> (<span class="math inline">\(x\)</span>) and <code>predicted</code> (<span class="math inline">\(\hat{y}\)</span>) values in R.</p>
 <p>Here’s some code in case the math isn’t doing it for you. Don’t worry, we’ll make some graphs, too.</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="9.3-ughmath.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a linear regression to estimate change</span></span>
-<span id="cb341-2"><a href="9.3-ughmath.html#cb341-2" aria-hidden="true" tabindex="-1"></a><span class="co"># in Petal.Width with Petal.Length</span></span>
-<span id="cb341-3"><a href="9.3-ughmath.html#cb341-3" aria-hidden="true" tabindex="-1"></a>fit_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Petal.Width <span class="sc">~</span> Petal.Length, <span class="at">data =</span> iris)</span>
-<span id="cb341-4"><a href="9.3-ughmath.html#cb341-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb341-5"><a href="9.3-ughmath.html#cb341-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Now extract the residuals from</span></span>
-<span id="cb341-6"><a href="9.3-ughmath.html#cb341-6" aria-hidden="true" tabindex="-1"></a><span class="co"># the fitted model object</span></span>
-<span id="cb341-7"><a href="9.3-ughmath.html#cb341-7" aria-hidden="true" tabindex="-1"></a>resids <span class="ot">&lt;-</span> fit_lm<span class="sc">$</span>residuals</span></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="9.3-ughmath.html#cb339-1" tabindex="-1"></a><span class="co"># Fit a linear regression to estimate change</span></span>
+<span id="cb339-2"><a href="9.3-ughmath.html#cb339-2" tabindex="-1"></a><span class="co"># in Petal.Width with Petal.Length</span></span>
+<span id="cb339-3"><a href="9.3-ughmath.html#cb339-3" tabindex="-1"></a>fit_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Petal.Width <span class="sc">~</span> Petal.Length, <span class="at">data =</span> iris)</span>
+<span id="cb339-4"><a href="9.3-ughmath.html#cb339-4" tabindex="-1"></a></span>
+<span id="cb339-5"><a href="9.3-ughmath.html#cb339-5" tabindex="-1"></a><span class="co"># Now extract the residuals from</span></span>
+<span id="cb339-6"><a href="9.3-ughmath.html#cb339-6" tabindex="-1"></a><span class="co"># the fitted model object</span></span>
+<span id="cb339-7"><a href="9.3-ughmath.html#cb339-7" tabindex="-1"></a>resids <span class="ot">&lt;-</span> fit_lm<span class="sc">$</span>residuals</span></code></pre></div>
 <p>The order of values in the vector <code>resids</code> in the code above matches the order of the data in <code>iris</code>, so we can combine these as we did above:</p>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="9.3-ughmath.html#cb342-1" aria-hidden="true" tabindex="-1"></a>iris<span class="sc">$</span>resids <span class="ot">&lt;-</span> resids</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="9.3-ughmath.html#cb340-1" tabindex="-1"></a>iris<span class="sc">$</span>resids <span class="ot">&lt;-</span> resids</span></code></pre></div>
 <p>And now we can make a histogram to see if they are normal with a mean of zero.</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="9.3-ughmath.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> resids)) <span class="sc">+</span></span>
-<span id="cb343-2"><a href="9.3-ughmath.html#cb343-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="9.3-ughmath.html#cb341-1" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> resids)) <span class="sc">+</span></span>
+<span id="cb341-2"><a href="9.3-ughmath.html#cb341-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
 <p>This also allows us to determine whether there are any changes in the residuals along the range of <span class="math inline">\(x\)</span> values to assess whether we have satisfied the assumption of independence of observations. To do this, we just need to plot the residuals against the fitted values (the data in the <code>iris$Petal.Length</code> column).</p>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="9.3-ughmath.html#cb344-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Petal.Length, <span class="at">y =</span> resids)) <span class="sc">+</span></span>
-<span id="cb344-2"><a href="9.3-ughmath.html#cb344-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="9.3-ughmath.html#cb342-1" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Petal.Length, <span class="at">y =</span> resids)) <span class="sc">+</span></span>
+<span id="cb342-2"><a href="9.3-ughmath.html#cb342-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
 <p><br></p>
 <p>If we’ve met assumptions of independence of observations, the plot above should look like random scatter from left to right and top to bottom. Looks like that is not the case here because the group of data on the left have a much lower spread of residuals than the rest of the data. In fact, if you color by <code>Species</code> it becomes obvious that these are samples for <code>setosa</code>.</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="9.3-ughmath.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Petal.Length, <span class="at">y =</span> resids, <span class="at">color =</span> Species)) <span class="sc">+</span></span>
-<span id="cb345-2"><a href="9.3-ughmath.html#cb345-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="9.3-ughmath.html#cb343-1" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Petal.Length, <span class="at">y =</span> resids, <span class="at">color =</span> Species)) <span class="sc">+</span></span>
+<span id="cb343-2"><a href="9.3-ughmath.html#cb343-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-224-1.png" width="672" /></p>
 <p>Boo <code>setosa</code>!</p>
 <p>Finally, if the code doesn’t do it for you, we can graph the regression to see what residuals actually look like for our model. It is the squared sum of these errors, specifically, which R is trying to minimize when it estimates the coefficients for the formula of our line. That is why we talk about “sums of squares” in ANOVA tables.</p>
 <p>Here is a visual representation of residuals. The points are our raw data, the diagonal line is our model prediction, and the vertical lines represent the residual error for each observation.</p>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="9.3-ughmath.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions from the model</span></span>
-<span id="cb346-2"><a href="9.3-ughmath.html#cb346-2" aria-hidden="true" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_lm)</span>
-<span id="cb346-3"><a href="9.3-ughmath.html#cb346-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb346-4"><a href="9.3-ughmath.html#cb346-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Petal.Length, <span class="at">y =</span> Petal.Width, <span class="at">color =</span> Species) ) <span class="sc">+</span></span>
-<span id="cb346-5"><a href="9.3-ughmath.html#cb346-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;gray87&quot;</span>) <span class="sc">+</span></span>
-<span id="cb346-6"><a href="9.3-ughmath.html#cb346-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb346-7"><a href="9.3-ughmath.html#cb346-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> Petal.Length, <span class="at">yend =</span> y_hat), <span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb346-8"><a href="9.3-ughmath.html#cb346-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb346-9"><a href="9.3-ughmath.html#cb346-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="9.3-ughmath.html#cb344-1" tabindex="-1"></a><span class="co"># Make predictions from the model</span></span>
+<span id="cb344-2"><a href="9.3-ughmath.html#cb344-2" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_lm)</span>
+<span id="cb344-3"><a href="9.3-ughmath.html#cb344-3" tabindex="-1"></a></span>
+<span id="cb344-4"><a href="9.3-ughmath.html#cb344-4" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Petal.Length, <span class="at">y =</span> Petal.Width, <span class="at">color =</span> Species) ) <span class="sc">+</span></span>
+<span id="cb344-5"><a href="9.3-ughmath.html#cb344-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;gray87&quot;</span>) <span class="sc">+</span></span>
+<span id="cb344-6"><a href="9.3-ughmath.html#cb344-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb344-7"><a href="9.3-ughmath.html#cb344-7" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> Petal.Length, <span class="at">yend =</span> y_hat), <span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb344-8"><a href="9.3-ughmath.html#cb344-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb344-9"><a href="9.3-ughmath.html#cb344-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
 <p><img src="worstr_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
 <p><br></p>
 <p>So, now that we know what residuals <em>are</em> or at least what they <em>look like</em> we can talk about how they are used.</p>

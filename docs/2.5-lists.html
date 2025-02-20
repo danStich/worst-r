@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.5 Lists | The Worst Stats Text eveR</title>
   <meta name="description" content="2.5 Lists | The Worst Stats Text eveR" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.5 Lists | The Worst Stats Text eveR" />
   <meta property="og:type" content="book" />
@@ -65,7 +65,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -75,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -525,26 +529,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Lists</strong> are the ultimate data type in R. They are actually a <a href="vectors">vector</a> that can hold different kinds of data, like a <a href="2.4-dataframes.html#dataframes">dataframe</a>. In fact, a dataframe is just a spectacularly rectangular list. Each element of a list can be any kind of object (an atomic vector, a matrix, a dataframe, or even another list!!).</p>
 <p>Much of the real, filthy R programming relies heavily on lists. We will have to work with them at some point in this class, but we won’t take a ton of time on them here. Lists are something we can ease back into later once the world stops spinning so fast from all the R.</p>
 <p>Let’s make a list - just to see how they work. Notice how our index operator has changed from <code>[ ]</code> to <code>[[ ]]</code> below? And, at the highest level of organization, we have only one dimension in our list, but any given element <code>myList[[i]]</code> could hold any number of dimensions.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="2.5-lists.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty list with four elements</span></span>
-<span id="cb107-2"><a href="2.5-lists.html#cb107-2" aria-hidden="true" tabindex="-1"></a>myList <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;list&quot;</span>, <span class="at">length =</span> <span class="dv">4</span>)</span>
-<span id="cb107-3"><a href="2.5-lists.html#cb107-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-4"><a href="2.5-lists.html#cb107-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign some of our previously</span></span>
-<span id="cb107-5"><a href="2.5-lists.html#cb107-5" aria-hidden="true" tabindex="-1"></a><span class="co"># created objects to the elements</span></span>
-<span id="cb107-6"><a href="2.5-lists.html#cb107-6" aria-hidden="true" tabindex="-1"></a>myList[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> a</span>
-<span id="cb107-7"><a href="2.5-lists.html#cb107-7" aria-hidden="true" tabindex="-1"></a>myList[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> c</span>
-<span id="cb107-8"><a href="2.5-lists.html#cb107-8" aria-hidden="true" tabindex="-1"></a>myList[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> mat</span>
-<span id="cb107-9"><a href="2.5-lists.html#cb107-9" aria-hidden="true" tabindex="-1"></a>myList[[<span class="dv">4</span>]] <span class="ot">&lt;-</span> d</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="2.5-lists.html#cb107-1" tabindex="-1"></a><span class="co"># Create an empty list with four elements</span></span>
+<span id="cb107-2"><a href="2.5-lists.html#cb107-2" tabindex="-1"></a>myList <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;list&quot;</span>, <span class="at">length =</span> <span class="dv">4</span>)</span>
+<span id="cb107-3"><a href="2.5-lists.html#cb107-3" tabindex="-1"></a></span>
+<span id="cb107-4"><a href="2.5-lists.html#cb107-4" tabindex="-1"></a><span class="co"># Assign some of our previously</span></span>
+<span id="cb107-5"><a href="2.5-lists.html#cb107-5" tabindex="-1"></a><span class="co"># created objects to the elements</span></span>
+<span id="cb107-6"><a href="2.5-lists.html#cb107-6" tabindex="-1"></a>myList[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> a</span>
+<span id="cb107-7"><a href="2.5-lists.html#cb107-7" tabindex="-1"></a>myList[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> c</span>
+<span id="cb107-8"><a href="2.5-lists.html#cb107-8" tabindex="-1"></a>myList[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> mat</span>
+<span id="cb107-9"><a href="2.5-lists.html#cb107-9" tabindex="-1"></a>myList[[<span class="dv">4</span>]] <span class="ot">&lt;-</span> d</span></code></pre></div>
 <p>Have a look at the list:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="2.5-lists.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print it</span></span>
-<span id="cb108-2"><a href="2.5-lists.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Cool, huh?</span></span>
-<span id="cb108-3"><a href="2.5-lists.html#cb108-3" aria-hidden="true" tabindex="-1"></a>myList</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="2.5-lists.html#cb108-1" tabindex="-1"></a><span class="co"># Print it</span></span>
+<span id="cb108-2"><a href="2.5-lists.html#cb108-2" tabindex="-1"></a><span class="co"># Cool, huh?</span></span>
+<span id="cb108-3"><a href="2.5-lists.html#cb108-3" tabindex="-1"></a>myList</span></code></pre></div>
 <pre><code>## [[1]]
-##  [1]  0.5  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0
-## [15]  7.5  8.0  8.5  9.0  9.5 10.0
+##  [1]  0.5  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5  8.0
+## [17]  8.5  9.0  9.5 10.0
 ## 
 ## [[2]]
-##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;a&quot; &quot;b&quot;
-## [19] &quot;c&quot; &quot;d&quot;
+##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;
 ## 
 ## [[3]]
 ##        first second third
@@ -576,25 +579,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 19  9.5  90.25 c
 ## 20 10.0 100.00 d</code></pre>
 <p>You can assign names when you create the list like we did for dataframes, too. You can do this manually, or R will do it on the fly for you. You can also reassign names to a list that you’ve already created.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="2.5-lists.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># No names by default</span></span>
-<span id="cb110-2"><a href="2.5-lists.html#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(myList)</span>
-<span id="cb110-3"><a href="2.5-lists.html#cb110-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-4"><a href="2.5-lists.html#cb110-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Give it names like we did with</span></span>
-<span id="cb110-5"><a href="2.5-lists.html#cb110-5" aria-hidden="true" tabindex="-1"></a><span class="co"># a dataframe</span></span>
-<span id="cb110-6"><a href="2.5-lists.html#cb110-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(myList) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;mat&quot;</span>, <span class="st">&quot;d&quot;</span>)</span>
-<span id="cb110-7"><a href="2.5-lists.html#cb110-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-8"><a href="2.5-lists.html#cb110-8" aria-hidden="true" tabindex="-1"></a><span class="co"># See how the names work now?</span></span>
-<span id="cb110-9"><a href="2.5-lists.html#cb110-9" aria-hidden="true" tabindex="-1"></a>myList</span>
-<span id="cb110-10"><a href="2.5-lists.html#cb110-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-11"><a href="2.5-lists.html#cb110-11" aria-hidden="true" tabindex="-1"></a><span class="co"># We reference these differently [[]]</span></span>
-<span id="cb110-12"><a href="2.5-lists.html#cb110-12" aria-hidden="true" tabindex="-1"></a>myList[[<span class="dv">1</span>]]</span>
-<span id="cb110-13"><a href="2.5-lists.html#cb110-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-14"><a href="2.5-lists.html#cb110-14" aria-hidden="true" tabindex="-1"></a><span class="co"># But we can still get into each object</span></span>
-<span id="cb110-15"><a href="2.5-lists.html#cb110-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Play around with the numbers to see what they do!</span></span>
-<span id="cb110-16"><a href="2.5-lists.html#cb110-16" aria-hidden="true" tabindex="-1"></a>myList[[<span class="dv">2</span>]][<span class="dv">5</span>]</span>
-<span id="cb110-17"><a href="2.5-lists.html#cb110-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-18"><a href="2.5-lists.html#cb110-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Can also reference it this way!</span></span>
-<span id="cb110-19"><a href="2.5-lists.html#cb110-19" aria-hidden="true" tabindex="-1"></a>myList<span class="sc">$</span>c[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="2.5-lists.html#cb110-1" tabindex="-1"></a><span class="co"># No names by default</span></span>
+<span id="cb110-2"><a href="2.5-lists.html#cb110-2" tabindex="-1"></a><span class="fu">names</span>(myList)</span>
+<span id="cb110-3"><a href="2.5-lists.html#cb110-3" tabindex="-1"></a></span>
+<span id="cb110-4"><a href="2.5-lists.html#cb110-4" tabindex="-1"></a><span class="co"># Give it names like we did with</span></span>
+<span id="cb110-5"><a href="2.5-lists.html#cb110-5" tabindex="-1"></a><span class="co"># a dataframe</span></span>
+<span id="cb110-6"><a href="2.5-lists.html#cb110-6" tabindex="-1"></a><span class="fu">names</span>(myList) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;mat&quot;</span>, <span class="st">&quot;d&quot;</span>)</span>
+<span id="cb110-7"><a href="2.5-lists.html#cb110-7" tabindex="-1"></a></span>
+<span id="cb110-8"><a href="2.5-lists.html#cb110-8" tabindex="-1"></a><span class="co"># See how the names work now?</span></span>
+<span id="cb110-9"><a href="2.5-lists.html#cb110-9" tabindex="-1"></a>myList</span>
+<span id="cb110-10"><a href="2.5-lists.html#cb110-10" tabindex="-1"></a></span>
+<span id="cb110-11"><a href="2.5-lists.html#cb110-11" tabindex="-1"></a><span class="co"># We reference these differently [[]]</span></span>
+<span id="cb110-12"><a href="2.5-lists.html#cb110-12" tabindex="-1"></a>myList[[<span class="dv">1</span>]]</span>
+<span id="cb110-13"><a href="2.5-lists.html#cb110-13" tabindex="-1"></a></span>
+<span id="cb110-14"><a href="2.5-lists.html#cb110-14" tabindex="-1"></a><span class="co"># But we can still get into each object</span></span>
+<span id="cb110-15"><a href="2.5-lists.html#cb110-15" tabindex="-1"></a><span class="co"># Play around with the numbers to see what they do!</span></span>
+<span id="cb110-16"><a href="2.5-lists.html#cb110-16" tabindex="-1"></a>myList[[<span class="dv">2</span>]][<span class="dv">5</span>]</span>
+<span id="cb110-17"><a href="2.5-lists.html#cb110-17" tabindex="-1"></a></span>
+<span id="cb110-18"><a href="2.5-lists.html#cb110-18" tabindex="-1"></a><span class="co"># Can also reference it this way!</span></span>
+<span id="cb110-19"><a href="2.5-lists.html#cb110-19" tabindex="-1"></a>myList<span class="sc">$</span>c[<span class="dv">1</span>]</span></code></pre></div>
 <p>Very commonly, model objects and output are stored as lists. In fact, most objects that require a large amount of diverse information in R pack it all together in one place using lists, that way we always know where to find it and how as long as the objects are documented. Conceptually, every object in R, from your workspace on down the line, is a list <strong>AND</strong> an element of a list. It seems like a lot to take in now, but will be very useful in the future.</p>
 </div>
             </section>
